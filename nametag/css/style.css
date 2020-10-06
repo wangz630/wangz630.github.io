@@ -1,0 +1,98 @@
+#nametag-container{
+    width:753px;
+    height:473px;
+    background-color: #F5EBEB;
+    margin:0 auto;
+    border:30px solid rgb(232,211,211);
+    box-sizing: border-box;
+    border-image: -moz-linear-gradient(-50deg, rgba(232,211,211,1) 40%, rgba(72,157,169,1) 100%)20 20; /* FF3.6-15 */
+    border-image: -webkit-linear-gradient(-50deg, rgba(232,211,211,1) 40%,rgba(72,157,169,1) 100%)20 20; /* Chrome10-25,Safari5.1-6 */
+    border-image: linear-gradient(130deg, rgba(232,211,211,1) 40%,rgba(72,157,169,1) 100%)20 20; /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e8d3d3', endColorstr='#489da9',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    
+}
+
+
+h1{
+    font-size: 64px;
+    text-align: center;
+    font-family: sans-serif;
+    color: #386C77;
+    margin:106px 0 0;
+}
+
+h2{
+    font-size: 26px;
+    text-align: center;
+    font-family: sans-serif;
+    color: #6E9CA6;
+    margin:0;
+}
+
+h3,h4{
+    font-size:14px;
+    text-align: center;
+    font-family: sans-serif;
+    color:#6E9CA6;
+    margin:0;
+}
+
+.font34{
+   margin:105px;
+   opacity:0;
+   transition:.25s ease-in;
+}
+
+#nametag-container:hover .font34{
+    opacity:1;
+}
+
+
+.font-block{
+    position: absolute;
+    width: 694px;
+    height: 254px;
+    top:37px;
+    margin:0 auto;
+    background: rgba(156, 191, 197, 0.8);
+    transition:.25s ease-out;
+}
+
+#nametag-container:hover .font-block{
+    background-color: #F5EBEB;
+}
+
+
+.block-container{
+    position: absolute;
+    width: 235px;
+    height: 18px;
+    top:236px;
+    left:228px;
+    background: #FFFFFF;
+    opacity:0.8;
+}
+
+.block2-container{
+    margin:5px;
+}
+
+.block2-container:nth-child(odd){
+    width: 24px;
+    height: 18px;
+    background: #386C77;
+    display: inline-block;
+}
+
+.block2-container:nth-child(even){
+width: 69px;
+height: 18px;
+background: #386C77;
+display:inline-block;
+}
+
+.block2{
+    position: absolute;
+    top:280px;
+    left:170px;
+}
