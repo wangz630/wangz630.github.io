@@ -1,0 +1,202 @@
+body{
+background: linear-gradient(180deg, #FFFFFF 0%, rgba(194, 217, 232, 0.921875) 56.77%, rgba(173, 176, 179, 0.79) 100%);
+font-family: 'Shadows Into Light', cursive;
+text-align: center;
+}
+
+h1{
+    font-size:70px;
+    color:#0E346D;
+}
+
+h2{
+    font-size:50px;
+    color:#0E346D;
+}
+
+#verse-1 p{
+    margin:250px;
+    font-size:40px;
+    color: #7C7D7D;
+}
+
+#verse-2 p{
+    margin:150px;
+    font-size:40px;
+    color: #7C7D7D;
+}
+
+#verse-3 p{
+    margin:70px;
+    font-size:40px;
+    color:#FFFFFF;
+}
+
+#verse-4 p{
+    margin:10px;
+    font-size:40px;
+    color:#FFFFFF;
+}
+
+.snow span:nth-child(1){
+    position: absolute;
+    top:100px;
+    left:50px;
+    background-color: #D2D9DE;
+    }
+    .snow span:nth-child(2){
+        position: absolute;
+        top:400px;
+        left:1200px;
+        background-color: #D2D9DE;
+        }
+        .snow span:nth-child(3){
+            position: absolute;
+            top:600px;
+            left:300px;
+            background-color: #FFFFFF;
+            }
+            .snow span:nth-child(4){
+                position: absolute;
+                top:800px;
+                left:800px;
+                background-color: #D2D9DE;
+                }
+                .snow span:nth-child(5){
+                    position: absolute;
+                    top:900px;
+                    left:1300px;
+                    background-color: #FFFFFF;
+                    }
+                    .snow span:nth-child(6){
+                        position: absolute;
+                        top:1100px;
+                        left:500px;
+                        background-color: #FFFFFF;
+                        }
+                        .snow span:nth-child(7){
+                            position: absolute;
+                            top:1400px;
+                            left:600px;
+                            background-color: #FFFFFF;
+                            }
+                            .snow span:nth-child(8){
+                                position: absolute;
+                                top:1500px;
+                                left:1000px;
+                                background-color: #D2D9DE;
+                                }
+                                .snow span:nth-child(9){
+                                    position: absolute;
+                                    top:1700px;
+                                    left:200px;
+                                    background-color: #FFFFFF;
+                                    }
+                                    .snow span:nth-child(10){
+                                        position: absolute;
+                                        top:1900px;
+                                        left:300px;
+                                        background-color: #D2D9DE;
+                                        }
+                                        .snow span:nth-child(11){
+                                            position: absolute;
+                                            top:2200px;
+                                            left:450px;
+                                            background-color: #FFFFFF;
+                                            }
+                                            .snow span:nth-child(12){
+                                                position: absolute;
+                                                top:2500px;
+                                                left:1000px;
+                                                background-color: #FFFFFF;
+                                                }
+                                                .snow span:nth-child(13){
+                                                    position: absolute;
+                                                    top:2600px;
+                                                    left:900px;
+                                                    background-color: #D2D9DE;
+                                                    }
+                                                    .snow span:nth-child(14){
+                                                        position: absolute;
+                                                        top:2900px;
+                                                        left:300px;
+                                                        background-color: #FFFFFF;
+                                                        }
+                                                        .snow span:nth-child(15){
+                                                            position: absolute;
+                                                            top:3100px;
+                                                            left:50px;
+                                                            background-color: #D2D9DE;
+                                                            }
+                                                            .snow span:nth-child(16){
+                                                                position: absolute;
+                                                                top:3400px;
+                                                                left:700px;
+                                                                background-color: #D2D9DE;
+                                                                }
+                                                                .snow span:nth-child(17){
+                                                                    position: absolute;
+                                                                    top:3500px;
+                                                                    left:1300px;
+                                                                    background-color: #FFFFFF;
+                                                                    }
+                                                                    .snow span:nth-child(18){
+                                                                        position: absolute;
+                                                                        top:3600PX;
+                                                                        left:1150px;
+                                                                        background-color: #FFFFFF;
+                                                                        }
+                                                                        .snow span:nth-child(19){
+                                                                            position: absolute;
+                                                                            top:3700px;
+                                                                            left:250px;
+                                                                            background-color: #FFFFFF;
+                                                                            }
+                                                                            .snow span:nth-child(20){
+                                                                                position: absolute;
+                                                                                top:3750px;
+                                                                                left:600px;
+                                                                                background-color: #FFFFFF;
+                                                                                }
+                                                                                .snow span:nth-child(21){
+                                                                                    position: absolute;
+                                                                                    top:3800px;
+                                                                                    left:1200px;
+                                                                                    background-color: #FFFFFF;
+                                                                                    }
+.snow span {
+    width: 41px;
+    height: 41px;
+    display: inline-block;
+    border-radius: 100%;
+    margin: 0 10px;
+}
+
+
+body:hover .snow span{
+    transform:translate(30px,600px);
+    transition-duration: 20s;
+}
+#verse-1{
+    transition-duration: 2s;
+}
+
+#verse-1:hover{
+    transform:translate(30px,30px);
+}
+
+#verse-2{
+    transition-duration: 2s;
+}
+
+#verse-2:hover{
+    transform:translate(-30px,30px);
+}
+
+#verse-3{
+    transition-duration: 2s;
+}
+
+#verse-3:hover{
+    transform:translate(30px,30px);
+}
