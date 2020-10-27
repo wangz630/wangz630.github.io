@@ -1,0 +1,178 @@
+body{
+    margin:0;
+}
+
+nav{
+    position:fixed;
+    width: 100%;
+    height: 50px;
+    padding:10px;
+    margin:0;
+    top:0;
+    background: #D7F0F8;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    z-index: 3;
+}
+
+main{
+    margin-top:60px;    
+}
+#logo{
+    position:absolute;
+    top:10px;
+    left:20px;
+    margin:0;
+    background:#D7F0F8;
+}
+
+#options{
+    width:20%;
+    height: 80%;
+    background:#5B98C5;
+}
+
+#search-bar{
+    width:30%;
+    height: 80%;
+    background:#698299;
+}
+
+#sign-in{
+    width:10%;
+    height: 80%;
+    background:#5B98C5;
+}
+
+.category{
+    width: 100%;
+    height:15%;
+    margin:10px 0 0 0;
+    background:#D7DFE2;
+    display:flex;
+    align-items: center;
+}
+
+.category div{
+    width:25%;
+    height:70%;
+    background: #D7F0F8;
+    margin:10px;
+}
+
+#heading{
+    width:40%;
+    height:30%;
+    background:#698299;
+    border:10PX solid #FFFFFF;
+    margin:0 auto;
+}
+
+.image-category{
+    height:650px;
+    margin:0;
+    padding:40px;
+    background:#D7DFE2;
+}
+
+.image-category ul{
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+.image-category ul {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    column-gap: 40px;
+    row-gap: 40px;
+}
+
+.image-category li {    
+    height:300px;
+    background: #5B98C5;
+    
+}
+
+
+
+.category2{
+    width: 100%;
+    height:15%;
+    margin:100px 0 0 0;
+    background:#D7DFE2;
+    display:flex;
+    align-items: center;
+}
+
+.category2 div{
+    width:25%;
+    height:70%;
+    background: #D7F0F8;
+    margin:10px;
+}
+
+#image{
+    position: relative;
+    width:100%;
+    height:40%;
+    background:#698299;
+    margin:10px 0 10px 0;
+    z-index: 1 ;
+}
+
+#image div{
+    position:absolute;
+    left:500px;
+    width:2%;
+    height:100%;
+    background:white;
+}
+
+.image-category2{
+    height:550px;
+    margin:0;
+    padding:40px;
+    background:#D7DFE2;
+}
+
+.image-category2 ul{
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+.image-category2 ul {
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    column-gap: 40px;
+    row-gap: 40px;
+}
+
+.image-category2 li {    
+    height:150px;
+    background: #5B98C5;
+    
+}
+.image-category2 li:nth-child(1){    
+    height:90px;
+    margin-right:100px;
+    background: #698299;
+    
+}
+.image-category2 li:nth-child(6) {    
+    height:90px;
+    margin-right:100px;
+    background: #698299;
+    
+}
+.image-category2 li:nth-child(11) {    
+    height:90px;
+    margin-right:100px;
+    background: #698299;
+    
+}
+
+
+
