@@ -5,9 +5,9 @@ body {
 }
 
 #image-container {
-    width:900px;
+    width:1000px;
     height:675px;
-    left:318px;
+    left:350px;
     position:absolute;
     display: block;
     margin-top:40px;
@@ -24,11 +24,11 @@ body {
 
 
 #blocks{
-    width: 900px;
+    width: 1000px;
     height:675px;
     position:absolute;
     display:grid;
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns: repeat(11,1fr);
     margin:0;
     padding:0;
 }
@@ -38,23 +38,33 @@ body {
     height:100%;
     margin:0;
     padding:0;
-    transition-duration: .5s;
+    transition-duration: .3s;
 }
 
-#blocks :nth-child(1){
+#blocks :nth-child(odd){
     background-color:#EEC8C8 ;
 }
 
-#blocks :nth-child(2){
+#blocks :nth-child(even){
     background-color:#9D6666 ;
 }
 
-#blocks :nth-child(3){
-    background-color:#9D6666 ;
+button{
+    font-family: sans-serif;
+    font-size: 30px;
+    color:#9D6666;
+    width: 200px;
+    height:200px;
+    position:absolute;
+    left:100px;
+    top:300px;
+    border-radius: 5px;
+    background-color: #F7EBEB;
+    display: block;
+    outline: none;
+    border:none;
+ 
 }
-
-#blocks :nth-child(4){
-    background-color:#EEC8C8 ;
 
 
 
