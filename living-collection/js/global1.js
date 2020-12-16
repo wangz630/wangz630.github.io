@@ -4,9 +4,9 @@ window.addEventListener("load", function() {
     var total = carouselSlides.length;
     var carouselSlides1 = document.querySelectorAll('.carousel-slide1');
     var currentSlide1 = 0;
-    var total1 = carouselSlides.length;
-    var nextBtn = document.querySelector('#arrow1');
-    var prevBtn = document.getElementById('arrow2');
+    var total1 = carouselSlides1.length;
+    var nextBtn = document.querySelector('#arrow2');
+    var prevBtn = document.getElementById('arrow1');
 
     
 
@@ -38,18 +38,18 @@ window.addEventListener("load", function() {
 
     function showNextSlide1() {
         hideAllSlides1();
-        if(currentSlide1 === total - 1) {
+        if(currentSlide1 === total1 - 1) {
             currentSlide1 = 0;
         } else {
             currentSlide1++;
         }
-        carouselSlides[currentSlide].style.opacity = 1;
+        carouselSlides1[currentSlide1].style.opacity = 1;
     }
 
     function showPrevSlide1() {
         hideAllSlides1();
         if(currentSlide1 === 0) {
-            currentSlide1 = total - 1;
+            currentSlide1 = total1 - 1;
         } else {
             currentSlide1--;
         }
