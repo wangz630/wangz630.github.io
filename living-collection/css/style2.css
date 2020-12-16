@@ -169,3 +169,22 @@ li {
 #carousel-list1 li:nth-child(1) {
     opacity: 1;
 }
+
+#link{
+    font-family: 'Rajdhani', sans-serif;
+    position: absolute;
+    top:400px;
+    font-size: 28px;
+    line-height:30px;
+    left:12vw;
+    color:  #FFFEFB;
+    outline: none;
+    border:none;
+    background-color:transparent;
+    transition-duration: 0.4s;
+
+}
+
+#link:hover{
+    text-shadow: 2px 2px #FFFEFB;
+}
