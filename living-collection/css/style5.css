@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani&family=Ramabhadra&family=Roboto&display=swap');
+
+body{
+    background: #FFFEFB;
+    margin:0;
+}
+
+h1{
+    position: absolute;
+    font-family: 'Roboto',sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 60px;
+    top:70px;
+    left:12vw;
+    color: #A6ABA2;
+}
+
+#description{
+    position: absolute;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    top:220px;
+    left:12vw;
+    display:block;
+    width:500px;
+    color: #A6ABA2;
+}
+
+h2{
+    position: absolute;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 25px;
+    top:185px;
+    left:12vw;
+    display:block;
+    width:500px;
+    color: #A6ABA2;
+}
+
+#homepage{
+    font-family: 'Rajdhani', sans-serif;
+    position: absolute;
+    top:-20px;
+    font-size: 28px;
+    line-height:30px;
+    left:9px;
+    color:  #A6ABA2;
+    outline: none;
+    border:none;
+    background-color:transparent;
+    transition-duration: 0.4s;
+}
+
+#homepage:hover{
+    text-shadow: 2px 2px #A6ABA2;
+}
+
+#homepage-back{
+    position: relative;
+    background: #B9CDC9;
+    height: 15px;
+    width: 290px;
+    margin-left:32.5vw;
+    top:500px;
+    
+}
+
+#block1{
+    position: absolute;
+    height: 220px;
+    width: 300px;
+    left: 490px;
+    top: 580px;
+    margin-bottom:50px;
+    background: #FFFEFB;
+}
+
+#symbol1{
+    position:fixed;
+    top:85vh;
+    left:4vw;
+}
+
+#arrow1{
+    position: absolute;
+    top:665px;
+    left: 420px;
+}
+
+#arrow1:hover{
+    opacity:0.6;
+    transition-duration: 0.4s;
+}
+
+#block2{
+    position: absolute;
+    height: 700px;
+    width: 500px;
+    left: 860px;
+    top: 100px;
+    margin-bottom:50px;
+    background: #FFFEFB;
+}
+
+#arrow2{
+    position: absolute;
+    top:415px;
+    left: 1410px;
+}
+
+#arrow2:hover{
+    opacity:0.6;
+    transition-duration: 0.4s;
+}
+
+ul,
+li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display:block;
+}
+
+#carousel-list {
+    margin: 0;
+    position: relative;
+    display:cover;
+}
+
+#carousel-list img {
+    width: 100%;
+}
+
+#carousel-list1 {
+    margin: 0;
+    position: relative;
+    display:cover;
+}
+
+#carousel-list1 img {
+    width: 100%;
+}
+
+#carousel-list li {
+    position: absolute;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease-out;
+}
+
+
+#carousel-list li:nth-child(1) {
+    opacity: 1;
+}
+
+#carousel-list1 li {
+    position: absolute;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease-out;
+}
+
+
+#carousel-list1 li:nth-child(1) {
+    opacity: 1;
+}
+
+#link{
+    font-family: 'Rajdhani', sans-serif;
+    position: absolute;
+    top:400px;
+    font-size: 28px;
+    line-height:30px;
+    left:12vw;
+    color:  #A6ABA2;
+    outline: none;
+    border:none;
+    background-color:transparent;
+    transition-duration: 0.4s;
+
+}
+
+#link:hover{
+    text-shadow: 2px 2px #A6ABA2;
+}

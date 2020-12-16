@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani&family=Ramabhadra&family=Roboto&display=swap');
+
+body{
+    background: #A6ABA2;
+    margin:0;
+}
+
+#symbol{
+    width:400px;
+    margin-top:5%;
+    margin-left:5%;
+}
+
+h1{
+    position: absolute;
+    font-family: 'Roboto',sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 70px;
+    top:120px;
+    left:800px;
+    color: #FFFEFB;
+}
+
+#introduction{
+    position: absolute;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 25px;
+    top:320px;
+    left:750px;
+    display:block;
+    width:500px;
+    color: #FFFEFB;
+}
+
+#homepage{
+    font-family: 'Rajdhani', sans-serif;
+    position: absolute;
+    top:-48px;
+    font-size: 30px;
+    line-height:30px;
+    left:2px;
+    color:  #FFFEFB;
+    outline: none;
+    border:none;
+    background-color:transparent;
+    transition-duration: 0.4s;
+}
+
+#homepage:hover{
+    text-shadow: 2px 2px #FFFEFB;
+}
+
+#homepage-back{
+    position: relative;
+    background: #C6DCD8;
+    height: 15px;
+    width: 170px;
+    margin-left:1100px;
+    top:-80px;
+    
+}
+
+@media (max-width: 376px) {
+
+#symbol{
+    width:150px;
+    margin-top:5%;
+    margin-left:30%;
+}
+
+h1{
+    top:200px;
+    left:60px;
+}
+
+#introduction{
+
+    font-size: 20px;
+    left:-20px;
+
+}
+
+#homepage{
+    font-family: 'Rajdhani', sans-serif;
+    position: absolute;
+    top:-30px;
+    font-size: 20px;
+    line-height:20px;
+    left:2px;
+    color:  #FFFEFB;
+    outline: none;
+    border:none;
+    background-color:transparent;
+    transition-duration: 0.4s;
+}
+
+
+#homepage-back{
+    position: relative;
+    background: #C6DCD8;
+    height: 15px;
+    width: 130px;
+    margin-left:110px;
+    top:300px;
+    
+}
+
+}

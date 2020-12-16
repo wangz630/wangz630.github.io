@@ -1,0 +1,318 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani&family=Ramabhadra&family=Roboto&display=swap');
+
+
+body{
+    background-color: #FFFEFB;
+    margin:0;
+
+}
+
+#about{
+    font-family: 'Rajdhani', sans-serif;
+    position: absolute;
+    top:-22px;
+    font-size: 30px;
+    left:7px;
+    color: #A6ABA2;
+    outline: none;
+    border:none;
+    background-color:transparent;
+    transition-duration: 0.4s;
+}
+
+#about:hover{
+    text-shadow: 2px 2px #A6ABA2;
+}
+
+#about-back{
+    position: relative;
+    background: #C6DCD8;
+    height: 15px;
+    width: 150px;
+    margin:0 auto;
+    top:35px;
+    
+}
+
+h1{
+    font-family: 'Ramabhadra', sans-serif;
+    font-weight: normal;
+    font-size: 120px;
+    text-align: center;
+    color: #A6ABA2;
+    margin:80px 0 0 0;
+    
+}
+
+#self-intro{
+    position: relative;
+    font-family: 'Roboto',sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 25px;
+    top:-50px;
+    color: #A6ABA2;
+    
+}
+
+#symbol{
+    position: relative;
+    width:200px;
+    top:90px;
+    margin-right:50px;
+}
+
+#latest-work-block{
+    height: 580px;
+    width: 500px;
+    margin-top:350px;
+    background: #CDD2C9;
+    margin-left:7%;
+    background-image:url("../image/wikibook1.png");
+    background-size: cover;
+}
+
+h2{
+    position: absolute;
+    font-family: 'Roboto',sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 35px;
+    top:1200px;
+    left:800px;
+    color: #A6ABA2;
+}
+
+#latest-work-intro{
+    position: absolute;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    top:1300px;
+    left:800px;
+    display:block;
+    width:500px;
+    color: #A6ABA2;
+}
+
+#more-detail{
+    font-family: 'Rajdhani', sans-serif;
+    position: absolute;
+    top:-20px;
+    font-size: 25px;
+    left:7px;
+    color: #A6ABA2;
+    outline: none;
+    border:none;
+    background-color:transparent;
+    transition-duration: 0.4s;
+}
+
+#more-detail:hover{
+    text-shadow: 2px 2px #A6ABA2;
+}
+
+#more-detail-back{
+    position: relative;
+    background: #C6DCD8;
+    height: 10px;
+    width: 150px;
+    margin-left:1000px;
+    top:-70px;
+    
+}
+
+.block1{
+    position: absolute;
+    height: 530px;
+    width: 430px;
+    top: 1700px;
+    margin-top:100px;
+    background: #CDD2C9;
+    padding:10px;
+}
+
+.block1:hover{
+    background-image:url("../image/wikibook1.png");
+    background-size: cover;
+    font-size: 0;
+}
+
+
+.block2{
+    position: absolute;
+    height: 265px;
+    width: 430px;
+    top: 2200px;
+    margin-top:185px;
+    background: #E5DCBB;
+    padding:10px;
+}
+
+.block2:hover{
+    background-image:url("../image/plastic6.jpg");
+    background-size: cover;
+    font-size: 0;
+}
+
+.block3{
+    position: absolute;
+    height: 180px;
+    width: 320px;
+    margin-left:485px;
+    top: 1700px;
+    margin-top:100px;
+    background: #B9CDC9;
+    padding:10px;
+}
+
+.block3:hover{
+    background-image:url("../image/html1.png");
+    background-size: cover;
+    font-size: 0;
+}
+
+.block4{
+    position: absolute;
+    height: 200px;
+    width: 135px;
+    margin-left:485px;
+    top: 1935px;
+    margin-top:100px;
+    background: #E5DCBB;
+    padding:10px;
+}
+
+.block4:hover{
+    background-image:url("../image/expressive1.png");
+    background-size: cover;
+    font-size: 0;
+}
+
+.block5{
+    position: absolute;
+    height: 200px;
+    width: 135px;
+    margin-left:675px;
+    top: 1935px;
+    margin-top:100px;
+    background: #CDD2C9;
+    padding:10px;
+}
+
+.block5:hover{
+    background-image:url("../image/nametag2.png");
+    background-size: cover;
+    font-size: 0;
+}
+
+.block6{
+    position: absolute;
+    height: 360px;
+    width: 320px;
+    margin-left:485px;
+    top: 2190px;
+    margin-top:100px;
+    background: #B9CDC9;
+    padding:10px;
+}
+
+.block6:hover{
+    background-image:url("../image/zine1.jpg");
+    background-size: cover;
+    font-size: 0;
+}
+
+
+.block7{
+    position: absolute;
+    height: 180px;
+    width: 320px;
+    margin-left:860px;
+    top: 1700px;
+    margin-top:100px;
+    background: #E5DCBB;
+    padding:10px;
+}
+
+.block7:hover{
+    background-image:url("../image/toy1.png");
+    background-size: cover;
+    font-size: 0;
+}
+
+.block8{
+    position: absolute;
+    height: 330px;
+    width: 320px;
+    margin-left:860px;
+    top: 1935px;
+    margin-top:100px;
+    background: #B9CDC9;
+    padding:10px;
+}
+
+.block9{
+    position: absolute;
+    height: 230px;
+    width: 320px;
+    margin-left:860px;
+    margin-bottom: 10%;
+    top: 2320px;
+    margin-top:100px;
+    background: #E5DCBB;
+    padding:10px;
+}
+
+#block-container{
+    margin-left:10%;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 25px;
+    color: #FFFEFB;
+}
+
+#block-container div:hover{
+   box-shadow:0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+   transition-duration: 0.4s;
+
+}
+
+@media (max-width: 376px) {
+    h1{
+        font-size:80px;
+    }
+
+    #self-intro{
+       
+        font-size: 20px;
+        top:-40px;
+        color: #A6ABA2;
+        
+    }
+
+    #latest-work-block{
+        height: 380px;
+        width: 330px;
+    }
+    
+    h2{
+        top:1300px;
+        left:40px;
+    }
+    
+    #latest-work-intro{
+        width:300px;
+        top:1370px;
+        left:40px;
+    }
+    
+    
+    
+    #more-detail-back{
+        margin-left:40px;
+        top:280px;
+    }}
