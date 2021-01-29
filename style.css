@@ -1,12 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani&family=Ramabhadra&family=Roboto&display=swap');
+
 h1{
     font-size:100px;
-}
-
-h2{
-    font-size:80px;
+    color:#9fa897;
+    text-align: center;
 }
 
 body{
-    background-color: #c7dfe0;
-    font-size:100px;
+    background-color: #FFFEFB;
+    margin:0;
+
+}
+
+a{
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 30px;
+    color: #A6ABA2;
+    transition-duration: 0.4s;
+    text-align: center;
+}
+
+a:hover{
+    text-shadow: 2px 2px #A6ABA2;
+}
+li{
+    list-style-type: none;
+    text-align: center;
 }
