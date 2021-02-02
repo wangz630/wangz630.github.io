@@ -1,0 +1,101 @@
+@font-face {
+    font-family: sansation;
+    src: url(Sansation_Regular.ttf);
+  }
+  
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
+
+body{
+    background: linear-gradient(180deg, #FFFBF3 10%,#F9E3DA 70%);
+    font-family: 'sansation', sans-serif;
+    color:#301B03;
+}
+
+#mom-profile{
+    float:left;
+    width: 150px; 
+    height: 200px; 
+    object-fit: cover;
+    object-position: 60% 10%; 
+    margin-left:6vw;
+    margin-top:20px;
+    filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.6));
+}
+
+#text{
+    font-family: 'sansation',sans-serif;
+    font-size: 40px;
+    padding-top:60px;
+    margin-left:20vw;
+    width:1000px;
+    color: #301B03;
+}
+
+#mom-name{
+    font-size:40px;
+    font-family:"Shadows+Into+Light",cursive;
+    color:#df5b0f;
+    margin-left:7vw;
+    margin-top:-10px;
+}
+
+h1{
+    font-size:80px;
+    margin-left:53vw;
+    margin-top:10px;
+}
+
+#arrow{
+    margin-left:60vw;
+    margin-top:-20px;
+}
+
+a{
+    border:5px solid #301B03;
+    padding:60px;
+    font-size: 80px;
+    display: block;
+    width:700px;
+    color:#301B03;
+    line-height:100px;
+    margin-left:35vw;
+    margin-top:80px;
+    transition-duration: 0.4s;
+    position:absolute;
+}
+
+a:hover{
+    text-shadow: 4px 4px #df997d;
+}
+
+#prompt{
+    font-size:25px;
+    float:right;
+    margin-right:40px;
+}
+
+#boy{
+    position:absolute;
+    left:7vw;
+    width:300px;
+    height:400px;
+    top:630px;
+    object-fit: cover;
+    filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.6));
+}
+
+#boy-name{
+    font-size:50px;
+    margin-left:11vw;
+    margin-top:490px;
+    font-family:"Shadows+Into+Light",cursive;
+    color:#df5b0f;
+}
+
+#back-image{
+    position:fixed;
+    top:140px;
+    left:820px;
+    opacity: 0.5;
+    z-index: -1;
+}

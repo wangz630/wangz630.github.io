@@ -65,7 +65,7 @@ td {
 }
 
 #duplicate{
-    float:right;
+    float:left;
     margin-right:600px;
     margin-top:-20px;
     margin-bottom: -5px;
