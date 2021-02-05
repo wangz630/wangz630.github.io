@@ -10,8 +10,8 @@ body{
 
 .mom{
     position:fixed;
+    left:42vw;
     width:200px;
-    left:650px;
     top:10px;
     z-index: -1;
 }
