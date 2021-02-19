@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost&display=swap');
+
+body{
+    background-color:rgb(245, 233, 192);
+    font-family: 'Jost',sans-serif;
+}
+
+h1{
+    font-family: 'Architects Daughter',sans-serif;
+    color:rgb(214, 168, 41);
+    font-size: 2em;
+}
+
+
+img{
+    display: block;
+    margin:0 auto;
+    width:600px;
+}
+
+a{
+    font-size:5em;
+    border: solid 5px rgb(112, 125, 197);
+    color:rgb(112, 125, 197);
+    text-shadow: 2px 2px #A6ABA2;
+    transition-duration: 0.4s;  
+}
+
+a:hover{
+    color:aqua;
+    border:solid 5px aqua;
+}
+
+.text{
+    color: rgb(112, 125, 197);
+    font-size:2em;
+    margin-left:750px;
+}

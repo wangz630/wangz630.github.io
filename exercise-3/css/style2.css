@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lusitana&family=Rubik+Mono+One&display=swap');
+
+body{
+    background-color:rgb(200, 192, 245);
+    font-family:'Rubik Mono One',sans-serif ;
+}
+
+h1{
+    color:rgb(20, 12, 128);
+    margin:50px;
+    font-size: 4em;
+    text-align: center;
+    width:100px;
+}
+
+
+video{
+    display: block;
+    margin:0 auto;
+}
+
+a{
+    font-size:7em;
+    border: solid 5px rgb(112, 125, 197);
+    color:rgb(112, 125, 197);
+    display:block;
+    text-align: center;
+    text-shadow: 2px 2px #A6ABA2;
+    transition-duration: 0.4s;
+}
+
+a:hover{
+    color:aqua;
+    border:solid 5px aqua;
+}
+
+.text{
+    color: rgb(20, 12, 128);
+    font-size:4em;
+    text-align: center;
+}

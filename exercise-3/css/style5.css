@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lusitana&family=Michroma&family=Rubik+Mono+One&display=swap');
+
+body{
+    background-color:rgb(255, 221, 221);
+    font-family: 'Jost',sans-serif;
+}
+
+h1{
+    font-family: 'Michroma',sans-serif;
+    color:rgb(255, 49, 49);
+    font-size: 2em;
+    position:fixed;
+    top:680px;
+    left:1100px;
+    background-color: aquamarine;
+}
+
+.time{
+    font-family: 'Michroma',sans-serif;
+    color:rgb(228, 113, 141);
+    font-size: 3em;
+}
+
+a{
+    font-size:5em;
+    border: solid 3px rgb(228, 113, 141);
+    color:rgb(228, 113, 141);
+    text-shadow: 2px 2px #A6ABA2;
+    transition-duration: 0.4s;  
+}
+
+a:hover{
+    color:aqua;
+    border:solid 5px aqua;
+}
+
+video{
+    margin-top: 40px;
+}
+
+.text{
+    color: rgb(228, 113, 141);
+    font-size:2em;
+}

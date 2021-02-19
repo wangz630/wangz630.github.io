@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lusitana&family=Michroma&family=Rubik+Mono+One&display=swap');
+
+body{
+    background-color:rgb(0, 0, 0);
+    font-family: 'Jost',sans-serif;
+}
+
+h1{
+    font-family: 'Lusitana',serif;
+    color:rgb(0, 0, 0);
+    font-size: 2em;
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    margin:50px 600px;
+}
+
+.text1{
+    font-family: 'Rubik Mono One',sans-serif;
+    color: rgb(255, 255, 255);
+    font-size:2em;
+    text-align: center;
+}
+
+.text2{
+    font-family: 'Architects Daughter',sans-serif;
+    color: rgb(255, 255, 255);
+    font-size:2em;
+    text-align: center;
+}
+
+.text3{
+    font-family: 'Architects Daughter',sans-serif;
+    color: rgb(255, 255, 255);
+    font-size:4em;
+    text-align: center;
+}
+
+a{
+    position:absolute;
+    top:360px;
+    left:750px;
+    font-size:5em;
+    border: solid 6px rgb(88, 145, 230);
+    color:rgb(88, 145, 230);
+    text-shadow: 2px 2px #A6ABA2;
+    transition-duration: 0.4s;  
+}
+
+.time{
+    padding:20px;
+}
+
+div{
+    text-align: center;
+}
+
+a:hover{
+    color:aqua;
+    border:solid 5px aqua;
+}
+
+video{
+    display: block;
+    margin:0 auto;
+}
+
+img{
+    display: block;
+    margin:0 auto;
+}
