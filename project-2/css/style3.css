@@ -1,0 +1,82 @@
+
+
+@font-face {
+    font-family: "Chronicle";
+    src: url("font/ChronicleTextG1-Roman.woff") format("woff");  
+  }
+  
+  @font-face {
+      font-family: "Landmark";
+      src: url("font/Landmark-Regular.woff") format("woff");  
+    }
+  
+  h1{
+      position:fixed;
+      left:47vw;
+      font-family: 'Landmark', sans-serif;
+      font-weight: normal;
+  }
+  
+    .text-container{
+        margin:0 auto;
+        width:1000px;
+        height:1300px;
+    }
+  
+    p{
+        position:fixed;
+        top:150px;
+        margin:50px;
+        margin-left:80px;
+        font-size:24px;
+        font-family: 'Chronicle', serif;
+        font-style: normal;
+        font-weight: 325;
+        font-size: 34px;
+        width:1000px;
+        color:black;
+    }
+
+    nav{
+        position:fixed;
+        top:630px;
+        left:12vw;
+    }
+  
+    nav button{
+      outline: none;
+      border:none;
+      background-color:transparent;
+      font-size: 36px;
+      font-family: 'Landmark', serif;
+      font-weight: normal;
+      margin:20px 30px;
+      color:black;
+      transition-duration: 0.2s;
+    }
+  
+    nav button:hover{
+      text-shadow: 2px 2px black;
+  }
+  
+  .chapter3{
+      color:white;
+      background-color: black;
+  }
+
+a{
+    position:fixed;
+    top:550px;
+    left:28vw;
+    color:black;
+    margin-left:300px;
+    font-size: 2em;
+    font-family: 'Landmark', sans-serif;
+    font-weight: normal;
+    text-decoration: none;
+    transition-duration: 0.2s;
+}
+
+a:hover{
+    text-shadow: 2px 2px black;
+}

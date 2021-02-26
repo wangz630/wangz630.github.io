@@ -1,0 +1,105 @@
+
+@font-face {
+    font-family: "Chronicle";
+    src: url("font/ChronicleTextG1-Roman.woff") format("woff");  
+  }
+  
+  @font-face {
+      font-family: "Landmark";
+      src: url("font/Landmark-Regular.woff") format("woff");  
+    }
+  
+  
+  
+    .text-container{
+        margin:0 auto;
+        width:1000px;
+        height:2950px;
+    }
+  
+    p{
+        margin:50px;
+        font-size:24px;
+        font-family: 'Chronicle', serif;
+        font-style: normal;
+        font-weight: 325;
+        font-size: 34px;
+        line-height: 52px;
+        width:1000px;
+        color:black;
+        animation-name: color;
+        animation-duration: 5s;
+    }
+      
+      @keyframes color {
+        0%   {color: white;}
+        50%  {color: rgb(94, 93, 93);}
+        65%  {color: rgb(56, 56, 56);}
+        80%  {color: rgb(37, 37, 37);}
+        100% {color: rgb(0, 0, 0);}
+      }
+  
+      .hidden{
+        color:white;
+        transition-duration: 0.2s;
+    }
+    
+    .hidden:hover{
+        background-color: black;
+    }
+
+    nav{
+        position:fixed;
+        top:100px;
+        left:2vw;
+        display: flex;
+        position:fixed;
+        flex-direction:column;
+    }
+  
+    nav button{
+      outline: none;
+      border:none;
+      background-color:transparent;
+      font-size: 36px;
+      font-family: 'Landmark', serif;
+      font-weight: normal;
+      margin:20px 30px;
+      color:black;
+      transition-duration: 0.2s;
+    }
+  
+    nav button:hover{
+      text-shadow: 2px 2px black;
+  }
+  
+  .chapter2{
+      color:white;
+      background-color: black;
+  }
+
+a{
+  color:black;
+  margin-left:300px;
+  font-size: 3em;
+  font-family: 'Chronicle', serif;
+  animation-name: text;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-out;
+  z-index: -1;  
+}
+
+@keyframes text {
+0% {color: rgb(0, 0, 0); }
+20% {color: rgb(107, 107, 107); }
+40% {color: rgb(207, 207, 207); }
+60% {color: rgb(158, 157, 157); }
+80% {color: rgb(112, 112, 112); }
+100% {color: rgb(0, 0, 0); }
+}
+
+.place-holder{
+  width:100px;
+  height:100px;
+}

@@ -1,0 +1,135 @@
+
+
+@font-face {
+    font-family: "Chronicle";
+    src: url("font/ChronicleTextG1-Roman.woff") format("woff");  
+  }
+  
+  @font-face {
+      font-family: "Landmark";
+      src: url("font/Landmark-Regular.woff") format("woff");  
+    }
+  
+    body{
+    margin:0;
+    transition-duration: 0.2s;
+    height:1800px;
+    }
+
+    #button1{
+        position:fixed;
+        font-size:26px;
+        font-family: "Landmark", sans-serif;
+        width:200px;
+        padding:8px;
+        outline: none;
+        margin-left:5vw;
+        top:150px;
+        border-radius:10px;
+        background-color:transparent;
+        transition-duration: 0.2s;
+    }
+
+    #button1:hover{
+        background-color: black;
+        color:white;
+    }
+
+    #button2{
+        position:fixed;
+        font-size:26px;
+        font-family: "Landmark", sans-serif;
+        width:200px;
+        padding:8px;
+        margin-left:5vw;
+        top:400px;
+        outline: none;
+        border-radius:10px;
+        background-color:transparent;
+        transition-duration: 0.2s;
+        color:white;
+        opacity:0;
+    }
+
+    #button2:hover{
+        background-color: white;
+        color:black;
+    }
+
+    .text-container{
+        margin:0 auto;
+        width:1000px;
+        height:1200px;
+    }
+  
+    p{
+        margin:50px;
+        margin-left:150px;
+        font-size:24px;
+        font-family: 'Chronicle', serif;
+        font-style: normal;
+        font-weight: 325;
+        font-size: 34px;
+        line-height: 52px;
+        width:1000px;
+        color:rgb(165, 165, 165);
+        transition-duration: 0.2s;
+    }
+
+    nav{
+        position:fixed;
+        top:630px;
+        margin-left:0;
+        width:100%;
+        background-color: black;
+        padding:20px 0px 20px 250px;
+        opacity:0.8;
+    }
+  
+    nav button{
+      outline: none;
+      border:none;
+      background-color:transparent;
+      font-size: 36px;
+      font-family: 'Landmark', serif;
+      font-weight: normal;
+      margin:20px 30px;
+      color:white;
+      transition-duration: 0.2s;
+    }
+  
+ nav button:hover{
+    text-decoration: underline;
+}
+
+  
+  .chapter4{
+      color:black;
+      background-color: white;
+  }
+
+#link{
+    text-decoration: underline;
+}
+
+#link:hover{
+    font-size: 45px;
+    color:#555555;
+}
+/* #link{
+position:relative;
+animation-name: link;
+animation-duration: 1s;
+animation-iteration-count: infinite;
+animation-delay: 1s;
+animation-timing-function: ease-in;
+}
+
+@keyframes link {
+0% {top: 10px; }
+20% {top: 20px; }
+40% {top: 10px; }
+60% {top: 0px; }
+80% {top: 10px; }
+100% {top: 0px;}
+} */

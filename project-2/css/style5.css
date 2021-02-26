@@ -1,0 +1,424 @@
+
+
+@font-face {
+    font-family: "Chronicle";
+    src: url("font/ChronicleTextG1-Roman.woff") format("woff");  
+  }
+  
+  @font-face {
+      font-family: "Landmark";
+      src: url("font/Landmark-Regular.woff") format("woff");  
+    }
+  
+    body{
+    margin:0;
+    transition-duration: 0.2s;
+    height:2450px;
+    }
+  
+
+    #box1{
+        position:absolute;
+        background-color:black;
+        top:150px;
+        left:12vw;
+        width:500px;
+        height:200px;
+        z-index: -1;
+        transition-duration: 0.5s;
+    }
+
+    #circle1{
+        position:relative;
+        top:50px;
+        left:14vw;
+        width:80px;
+        z-index: -1;
+        animation-name: circle1;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+        animation-delay: .11s;
+        animation-timing-function: ease-in;
+    }
+
+        @keyframes circle1 {
+        0% {top: 50px; }
+        20% {top: 60px; }
+        40% {top: 50px; }
+        60% {top: 60px; }
+        80% {top: 50px; }
+        90% {top: 60px;}
+        100% {top: 50px;}
+        }
+
+   
+
+
+    #box2{
+        position:absolute;
+        background-color:black;
+        top:150px;
+        left:53vw;
+        width:500px;
+        height:700px;
+        z-index: -1;
+    }
+
+    #circle2{
+        position:relative;
+        top:300px;
+        left:14vw;
+        width:80px;
+        z-index: -1;
+        animation-name: circle2;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+        animation-delay: .11s;
+        animation-timing-function: ease-in;
+    }
+
+    @keyframes circle2 {
+        0% {top: 300px; }
+        20% {top: 310px; }
+        40% {top: 320px; }
+        60% {top: 310px; }
+        80% {top: 300px; }
+        90% {top: 320px;}
+        100% {top: 300px;}
+        }
+
+        #box3{
+            position:absolute;
+            background-color:black;
+            top:420px;
+            left:12vw;
+            width:500px;
+            height:1080px;
+            z-index: -1;
+        }
+    
+        #circle3{
+            position:relative;
+            top:600px;
+            left:14vw;
+            width:80px;
+            z-index: -1;
+            animation-name: circle3;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+            animation-delay: .1s;
+            animation-timing-function: ease-in;
+        }
+    
+        @keyframes circle3 {
+            0% {top: 600px; }
+            20% {top: 620px; }
+            40% {top: 610px; }
+            60% {top: 600px; }
+            80% {top: 610px; }
+            90% {top: 620px;}
+            100% {top: 600px;}
+            }
+
+            #box4{
+                position:absolute;
+                background-color:black;
+                top:900px;
+                left:53vw;
+                width:500px;
+                height:340px;
+                z-index: -1;
+            }
+        
+            #circle4{
+                position:relative;
+                top:150px;
+                left:14vw;
+                width:80px;
+                z-index: -1;
+                animation-name: circle4;
+                animation-duration: 2s;
+                animation-iteration-count: infinite;
+                animation-delay: .1s;
+                animation-timing-function: ease-in;
+            }
+        
+            @keyframes circle4 {
+                0% {top: 150px; }
+                20% {top: 160px; }
+                40% {top: 150px; }
+                60% {top: 170px; }
+                80% {top: 160px; }
+                90% {top: 170px;}
+                100% {top: 150px;}
+                }
+        
+                #box5{
+                    position:absolute;
+                    background-color:black;
+                    top:1300px;
+                    left:53vw;
+                    width:500px;
+                    height:200px;
+                    z-index: -1;
+                }
+            
+                #circle5{
+                    position:relative;
+                    top:80px;
+                    left:14vw;
+                    width:80px;
+                    z-index: -1;
+                    animation-name: circle5;
+                    animation-duration: 2s;
+                    animation-iteration-count: infinite;
+                    animation-delay: .1s;
+                    animation-timing-function: ease-in;
+                }
+            
+                @keyframes circle5 {
+                    0% {top: 70px; }
+                    20% {top: 80px; }
+                    40% {top: 70px; }
+                    60% {top: 80px; }
+                    80% {top: 70px; }
+                    90% {top: 80px;}
+                    100% {top: 70px;}
+                    }
+            
+                     #box5{
+                    position:absolute;
+                    background-color:black;
+                    top:1300px;
+                    left:53vw;
+                    width:500px;
+                    height:200px;
+                    z-index: -1;
+                }
+            
+                #circle5{
+                    position:relative;
+                    top:80px;
+                    left:14vw;
+                    width:80px;
+                    z-index: -1;
+                    animation-name: circle5;
+                    animation-duration: 2s;
+                    animation-iteration-count: infinite;
+                    animation-delay: .1s;
+                    animation-timing-function: ease-in;
+                }
+            
+                @keyframes circle5 {
+                    0% {top: 70px; }
+                    20% {top: 80px; }
+                    40% {top: 70px; }
+                    60% {top: 80px; }
+                    80% {top: 70px; }
+                    90% {top: 80px;}
+                    100% {top: 70px;}
+                    }
+
+                    #box6{
+                        position:absolute;
+                        background-color:black;
+                        top:1570px;
+                        left:12vw;
+                        width:1130px;
+                        height:200px;
+                        z-index: -1;
+                    }
+                
+                    #circle6{
+                        position:relative;
+                        top:50px;
+                        left:35vw;
+                        width:80px;
+                        z-index: -1;
+                        animation-name: circle6;
+                        animation-duration: 2s;
+                        animation-iteration-count: infinite;
+                        animation-delay: .1s;
+                        animation-timing-function: ease-in;
+                    }
+                
+                    @keyframes circle6 {
+                        0% {top: 50px; }
+                        20% {top: 60px; }
+                        40% {top: 50px; }
+                        60% {top: 60px; }
+                        80% {top: 50px; }
+                        90% {top: 60px;}
+                        100% {top: 50px;}
+                        }
+
+                        #box7{
+                            position:absolute;
+                            background-color:black;
+                            top:1830px;
+                            left:12vw;
+                            width:1130px;
+                            height:580px;
+                            z-index: -1;
+                        }
+                    
+                        #circle7{
+                            position:relative;
+                            top:250px;
+                            left:35vw;
+                            width:80px;
+                            z-index: -1;
+                            animation-name: circle7;
+                            animation-duration: 2s;
+                            animation-iteration-count: infinite;
+                            animation-delay: .1s;
+                            animation-timing-function: ease-in;
+                        }
+                    
+                        @keyframes circle7 {
+                            0% {top: 250px; }
+                            20% {top: 260px; }
+                            40% {top: 250px; }
+                            60% {top: 260px; }
+                            80% {top: 250px; }
+                            90% {top: 260px;}
+                            100% {top: 250px;}
+                            }
+    
+    #circle2,#circle3,#circle4,#circle5,#circle6,#circle7{
+        opacity:0;
+    }
+    
+    .p1{
+        margin-top:150px;
+        margin-left:12vw;
+        font-size:24px;
+        font-family: 'Chronicle', serif;
+        font-style: normal;
+        font-weight: 325;
+        font-size: 23px;
+        line-height: 27px;
+        width:500px;
+        color:black;
+        transition-duration: 0.2s;
+    }
+
+    .p2{
+        position:absolute;
+        top:105px;
+        left:53vw;
+        font-family: 'Chronicle', serif;
+        font-style: normal;
+        font-weight: 325;
+        font-size: 37px;
+        width:500px;
+    }
+
+    .p3{
+        position:absolute;
+        top:400px;
+        left:12vw;
+        font-family: 'Chronicle', serif;
+        font-style: normal;
+        font-weight: 325;
+        font-size: 30px;
+        width:500px;
+    }
+
+    .p4{
+        position:absolute;
+        top:900px;
+        left:53vw;
+        font-family: 'Chronicle', serif;
+        font-style: normal;
+        font-weight: 325;
+        font-size: 28px;
+        width:500px;
+    }
+
+    .p5{
+        position:absolute;
+        top:1300px;
+        left:53vw;
+        font-family: 'Chronicle', serif;
+        font-style: normal;
+        font-weight: 325;
+        font-size: 40px;
+        width:500px;
+    }
+    
+    .p6{
+        position:absolute;
+        top:1550px;
+        left:12vw;
+        font-family: 'Chronicle', serif;
+        font-style: normal;
+        font-weight: 325;
+        font-size: 30px;
+        width:1130px;
+    }
+
+      
+    .p7{
+        position:absolute;
+        top:1800px;
+        left:12vw;
+        font-family: 'Chronicle', serif;
+        font-style: normal;
+        font-weight: 325;
+        font-size: 38px;
+        width:1130px;
+    }
+
+    nav{
+        position:fixed;
+        top:10px;
+        margin-left:0;
+        width:100%;
+        background-color: white;
+        padding:0px 0px 0px 150px;
+        box-shadow: 5px 5px 9px rgba(0, 0, 0, 0.25);
+    }
+  
+    nav button{
+      outline: none;
+      border:none;
+      background-color:transparent;
+      font-size: 36px;
+      font-family: 'Landmark', serif;
+      font-weight: normal;
+      margin:20px 30px;
+      color:black;
+      transition-duration: 0.2s;
+    }
+  
+    nav button:hover{
+      text-shadow: 2px 2px black;
+  }
+  
+  #chapter5{
+      color:white;
+      background-color: black;
+  }
+
+#link{
+    text-decoration: underline;
+}
+
+#link:hover{
+    font-size: 45px;
+    color:#797979;
+}
+
+a{
+    position:absolute;
+    top:2450px;
+    left:41vw;
+    font-size:50px;
+    color:black;
+}
+
+a:hover{
+    font-size: 60px;
+    color:#797979;
+}

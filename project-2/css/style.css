@@ -1,0 +1,117 @@
+@font-face {
+  font-family: "Chronicle";
+  src: url("font/ChronicleTextG1-Roman.woff") format("woff");  
+}
+
+@font-face {
+    font-family: "Landmark";
+    src: url("font/Landmark-Regular.woff") format("woff");  
+  }
+
+  body{
+      height:2500px;
+      background: linear-gradient(180deg, white 40%,black 70%);
+  }
+
+  img{
+      position:fixed;
+      width:500px;
+      top:-100px;
+      z-index: -1;
+  }
+
+  h1{
+      position:fixed;
+      left:56vw;
+      margin:0;
+      padding: 0;
+      font-family: 'Chronicle', serif;
+      font-weight: 325;
+      font-size: 70px;
+  }
+
+  h2{
+      position:fixed;
+      left:70vw;
+      font-family: 'Chronicle', serif;
+      font-weight: 325;
+      font-size: 26px;
+      margin:90px 50px 0 0;
+      color: white;
+  }
+  
+  .square{
+      position:fixed;
+      top:33px;
+      width:30px;
+      height:30px;
+      left:3vw;
+      border:solid 2px black;
+      background-color:black;
+
+  }
+
+  h3{
+      position:fixed;
+      font-size: 30px;
+      font-family: 'Landmark', sans-serif;
+      font-weight: normal;
+      margin: 0;
+      padding: 0;
+      top:33px;
+      left:8vw;
+  }
+
+  .text-container{
+      margin:0 auto;
+      width:1000px;
+      height:100px;
+  }
+
+  p{
+      position:fixed;
+      top:150px;
+      font-size:24px;
+      font-family: 'Chronicle', serif;
+      width:1000px;
+      color:white;
+  }
+
+  .link{
+      font-size:36px;
+      text-decoration: none;
+      color:white;
+      font-family: 'Landmark', sans-serif;
+      transition-duration: 0.2s;
+  }
+
+  .link:hover{
+    text-shadow: 2px 2px white;
+  }
+
+  nav{
+      position:fixed;
+      top:650px;
+      left:12vw;
+  }
+
+  button{
+    outline: none;
+    border:none;
+    background-color:transparent;
+    font-size: 36px;
+    font-family: 'Landmark', serif;
+    font-weight: normal;
+    margin:0 30px;
+    color:white;
+    transition-duration: 0.2s;
+  }
+
+  button:hover{
+    text-shadow: 2px 2px white;
+}
+
+.chapter1{
+    color:black;
+    background-color: white;
+}
