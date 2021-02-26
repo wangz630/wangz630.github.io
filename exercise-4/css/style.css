@@ -1,0 +1,191 @@
+@font-face {
+    font-family: "Landmark";
+    src: url("font/Landmark-Regular.woff") format("woff");  
+  }
+
+body{
+    background-color:#ffd549;
+}
+
+h1{
+    position:relative;
+    font-family: 'Landmark', sans-serif;
+    font-size: 100px;
+    color:#ff8843;
+    animation-name: word;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-delay: .1s;
+    animation-timing-function: ease-out;
+}
+
+
+
+#block-container{
+    display: flex;
+}
+
+.block1{
+    position: relative;
+    width:400px;
+    height:80px;
+    top:50px;
+    background-color:#ff8843;
+    animation-name: word;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-delay: .5s;
+    animation-timing-function: ease-out;
+}
+
+.block2{
+    position: relative;
+    width:400px;
+    height:80px;
+    top:150px;
+    background-color:#ff8843;
+    animation-name: word;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-delay: .3s;
+    animation-timing-function: ease-out;
+}
+
+.block3{
+    position: relative;
+    width:400px;
+    height:80px;
+    top:250px;
+    background-color:#ff8843;
+    animation-name: word;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-delay: 1s;
+    animation-timing-function: ease-out;
+}
+
+@keyframes word {
+    0% {left: 100px; }
+    100% {left: 1500px; }
+    
+    }
+
+    @media only screen and (max-width:1200px){
+
+    body{
+    background-color:#c343ff;
+    margin:0;
+    padding:0;
+    }
+
+        h1{
+        font-size: 200px;
+        color:#439bff;
+        margin-top:-100px;
+        animation-name: word;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+        animation-delay: .1s;
+        animation-timing-function: ease-in;
+        }
+        
+        .block1,.block2, 
+        .block3{
+            background-color:#439bff;
+            animation-name: block;
+        }
+
+        @keyframes word {
+            0% {color:#5650b1;top: 0px; }
+            50% {color:#439bff;top: 400px; }
+            100% {color:#49ff8f; top: 800px; }
+            
+            }
+
+            @keyframes block {
+                0% {background-color:#50aeb1;top: 0px; }
+                50% {background-color:#439bff;top: 400px; }
+                100% {background-color:#49ff8f; top: 800px; }
+                
+                }
+
+    }
+
+    @media only screen and (max-width:900px){
+            body{
+                background-color: #770d0d;
+            }
+
+        h1{
+            position: relative;
+            margin-top:200px;
+            color:#f85555;
+            animation-name: word;
+            animation-duration: 3s;
+            animation-iteration-count: infinite;
+            animation-delay: .1s;
+            animation-timing-function: ease-in;
+        }
+
+        .block1,.block2,.block3{
+            background-color:#fca1a1 ;
+            margin:30px;
+            margin-top:-400px;
+            width:200px;
+            height:200px;
+            border-radius:100px;
+            animation-name: block;
+            animation-duration: 3s;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-in;
+            z-index: -1;
+        }
+
+        .block1{
+            animation-delay: .2s;
+        }
+
+        .block2{
+            animation-delay: .6s;
+        }
+
+        .block3{
+            animation-delay: 1s;
+        }
+
+        @keyframes word {
+            0% {font-size:20px; }
+            50% {font-size:200px; }
+            100% {font-size:20px;}
+            }
+
+            @keyframes block {
+                0% { top:0;}
+                20% { top:100px;}
+                40% {left:100px;}
+                60% {top:200px;}
+                80% {left:300px; }
+                100% {left:600px;border-radius:0% 25% 50% 75%;}
+                
+                }
+    }
+
+    @media only screen and (max-width:600px){
+            body{
+                background-color:#070255;
+            }
+
+            h1{
+                color:#5650b1;
+            }
+
+            #block-container div{
+                background-color: #f0c594;
+            }
+
+        @keyframes word {
+            0% {transform:rotate(90deg); }
+            50% {transform:rotate(180deg); }
+            100% {transform:rotate(90deg); }
+            }
+    }
