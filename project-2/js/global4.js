@@ -10,8 +10,10 @@ var chapter5 = document.getElementById("chapter5")
 // var chapter = document.getElementsByClassName('chapter')
 var chapter4 = document.getElementById("chapter4")
 var nav = document.getElementById("nav")
+var bar=document.getElementById('bar')
 
 function changeColor(){
+    if(window.width > 370){
     document.body.style.backgroundColor= 'black';
     text.style.color='white';
     button1.style.opacity=0;
@@ -24,9 +26,19 @@ function changeColor(){
     chapter5.style.color='black';
     chapter4.style.color='white';
     chapter4.style.backgroundColor='black';
+    }else{
+    document.body.style.backgroundColor= 'black';
+    text.style.color='white';
+    button1.style.display= 'none';
+    button2.style.display='block';
+    bar.style.backgroundColor="white";
+    bar.style.opacity="0.9";
+    button2.style.opacity=1;
+    }
 }
 
 function changeBack(){
+    if(window.width > 370){
     document.body.style.backgroundColor= 'white';
     text.style.color='rgb(165, 165, 165)';
     button1.style.opacity=1;
@@ -38,6 +50,15 @@ function changeBack(){
     chapter5.style.color='white';
     chapter4.style.color='black';
     chapter4.style.backgroundColor='white';
+    }else{
+    document.body.style.backgroundColor= 'white';
+    text.style.color='black';
+    button1.style.display= 'block';
+    button2.style.display='none';
+    bar.style.backgroundColor="black";
+    bar.style.opacity="0.8";
+    button2.style.opacity=0;
+    }
 }
 
 

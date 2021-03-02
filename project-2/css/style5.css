@@ -16,6 +16,15 @@
     height:2450px;
     }
   
+    h1{
+        position:absolute;
+        top:20px;
+        display: block;
+        left:40vw;
+        font-size: 30px;
+        font-family: "Landmark", sans-serif;
+        font-weight: 300;
+    }
 
     #box1{
         position:absolute;
@@ -35,7 +44,7 @@
         width:80px;
         z-index: -1;
         animation-name: circle1;
-        animation-duration: 2s;
+        animation-duration: 4s;
         animation-iteration-count: infinite;
         animation-delay: .11s;
         animation-timing-function: ease-in;
@@ -62,6 +71,7 @@
         width:500px;
         height:700px;
         z-index: -1;
+        transition-duration: 0.5s;
     }
 
     #circle2{
@@ -71,7 +81,7 @@
         width:80px;
         z-index: -1;
         animation-name: circle2;
-        animation-duration: 2s;
+        animation-duration: 4s;
         animation-iteration-count: infinite;
         animation-delay: .11s;
         animation-timing-function: ease-in;
@@ -95,6 +105,7 @@
             width:500px;
             height:1080px;
             z-index: -1;
+            transition-duration: 0.5s;
         }
     
         #circle3{
@@ -104,7 +115,7 @@
             width:80px;
             z-index: -1;
             animation-name: circle3;
-            animation-duration: 2s;
+            animation-duration: 4s;
             animation-iteration-count: infinite;
             animation-delay: .1s;
             animation-timing-function: ease-in;
@@ -127,30 +138,31 @@
                 left:53vw;
                 width:500px;
                 height:340px;
+                transition-duration: 0.5s;
                 z-index: -1;
             }
         
             #circle4{
                 position:relative;
-                top:150px;
+                top:120px;
                 left:14vw;
                 width:80px;
                 z-index: -1;
                 animation-name: circle4;
-                animation-duration: 2s;
+                animation-duration: 4s;
                 animation-iteration-count: infinite;
                 animation-delay: .1s;
                 animation-timing-function: ease-in;
             }
         
             @keyframes circle4 {
-                0% {top: 150px; }
-                20% {top: 160px; }
-                40% {top: 150px; }
-                60% {top: 170px; }
-                80% {top: 160px; }
-                90% {top: 170px;}
-                100% {top: 150px;}
+                0% {top: 120px; }
+                20% {top: 130px; }
+                40% {top: 120px; }
+                60% {top: 140px; }
+                80% {top: 130px; }
+                90% {top: 140px;}
+                100% {top: 120px;}
                 }
         
                 #box5{
@@ -160,30 +172,31 @@
                     left:53vw;
                     width:500px;
                     height:200px;
+                    transition-duration: 0.5s;
                     z-index: -1;
                 }
             
                 #circle5{
                     position:relative;
-                    top:80px;
-                    left:14vw;
+                    margin-left:20px;
+                    margin-top:-40px;
                     width:80px;
                     z-index: -1;
                     animation-name: circle5;
-                    animation-duration: 2s;
+                    animation-duration: 4s;
                     animation-iteration-count: infinite;
                     animation-delay: .1s;
                     animation-timing-function: ease-in;
                 }
             
                 @keyframes circle5 {
-                    0% {top: 70px; }
-                    20% {top: 80px; }
-                    40% {top: 70px; }
-                    60% {top: 80px; }
-                    80% {top: 70px; }
-                    90% {top: 80px;}
-                    100% {top: 70px;}
+                    0% {top: 10px; }
+                    20% {top: 20px; }
+                    40% {top: 10px; }
+                    60% {top: 20px; }
+                    80% {top: 10px; }
+                    90% {top: 20px;}
+                    100% {top: 10px;}
                     }
             
                      #box5{
@@ -193,17 +206,18 @@
                     left:53vw;
                     width:500px;
                     height:200px;
+                    transition-duration: 0.5s;
                     z-index: -1;
                 }
             
                 #circle5{
                     position:relative;
                     top:80px;
-                    left:14vw;
+                    left:10vw;
                     width:80px;
                     z-index: -1;
                     animation-name: circle5;
-                    animation-duration: 2s;
+                    animation-duration: 4s;
                     animation-iteration-count: infinite;
                     animation-delay: .1s;
                     animation-timing-function: ease-in;
@@ -226,17 +240,18 @@
                         left:12vw;
                         width:1130px;
                         height:200px;
+                        transition-duration: 0.5s;
                         z-index: -1;
                     }
                 
                     #circle6{
                         position:relative;
-                        top:50px;
-                        left:35vw;
+                        margin-top:-20px;
+                        margin-left:30vw;
                         width:80px;
                         z-index: -1;
                         animation-name: circle6;
-                        animation-duration: 2s;
+                        animation-duration: 4s;
                         animation-iteration-count: infinite;
                         animation-delay: .1s;
                         animation-timing-function: ease-in;
@@ -259,17 +274,18 @@
                             left:12vw;
                             width:1130px;
                             height:580px;
+                            transition-duration: 0.5s;
                             z-index: -1;
                         }
                     
                         #circle7{
                             position:relative;
                             top:250px;
-                            left:35vw;
+                            left:30vw;
                             width:80px;
                             z-index: -1;
                             animation-name: circle7;
-                            animation-duration: 2s;
+                            animation-duration: 4s;
                             animation-iteration-count: infinite;
                             animation-delay: .1s;
                             animation-timing-function: ease-in;
@@ -407,7 +423,7 @@
 
 #link:hover{
     font-size: 45px;
-    color:#797979;
+    text-shadow: 2px 2px black;
 }
 
 a{
@@ -415,10 +431,224 @@ a{
     top:2450px;
     left:41vw;
     font-size:50px;
+    font-family: "Landmark",sans-serif;
     color:black;
+    text-decoration: none;
+    transition-duration: 0.5s;
 }
 
 a:hover{
     font-size: 60px;
-    color:#797979;
+    text-shadow: 4px 4px black;
+}
+
+@media only screen and (max-width:360px){
+    body{
+        height:3900px;
+        }
+
+    h1{
+        position:fixed;
+        top:13px;
+        left:25vw;
+        font-size: 1em;
+        z-index: 2;
+    }
+  
+    #white-bar{
+      position:fixed;
+      width:100%;
+      height:20px;
+      top:21px;
+      background-color: white;
+      z-index: 1;
+    }
+
+    .p1{
+        margin-top:100px;
+        margin-left:10vw;
+        width:300px;
+        font-size:18px; 
+    }
+
+    .p2{
+        position:absolute;
+        top:350px;
+        left:10vw;
+        width:300px;
+        font-size:24px; 
+    }
+
+    .p3{
+        top:880px;
+        left:10vw;
+        font-size: 18px;
+        width:300px;
+    }
+
+    .p4{
+        top:1550px;
+        left:10vw;
+        font-size: 28px;
+        width:300px;
+        hyphens: auto;
+    }
+
+    .p5{
+        position:absolute;
+        top:2140px;
+        left:10vw;
+        font-size: 40px;
+        width:300px;
+    }
+    
+    .p6{
+        top:2450px;
+        left:10vw;
+        font-size: 20px;
+        width:300px;
+    }
+
+      
+    .p7{
+        top:2800px;
+        left:10vw;
+        font-size: 25px;
+        width:300px;
+    }
+
+    a{
+        position:absolute;
+        top:3820px;
+        left:25vw;
+        text-decoration: underline black 1px;
+    }
+
+    #box1{
+        position:absolute;
+        background-color:black;
+        top:100px;
+        left:10vw;
+        width:300px;
+        height:235px;
+    }
+
+    #circle1{
+        position:relative;
+        top:50px;
+        left:28vw;
+        width:80px;
+    }
+    
+    #box2{
+        top:350px;
+        left:10vw;
+        width:300px;
+        height:515px;
+    }
+
+    #circle2{
+        top:200px;
+        left:30vw;
+        width:80px;
+        z-index: -1;
+    }
+
+    
+    @keyframes circle2 {
+        0% {top: 200px; }
+        20% {top: 210px; }
+        40% {top: 200px; }
+        60% {top: 210px; }
+        80% {top: 200px; }
+        90% {top: 210px;}
+        100% {top: 200px;}
+        }
+
+    #box3{
+        top:880px;
+        left:10vw;
+        width:300px;
+        height:650px;
+    }
+
+    #circle3{
+        top:200px;
+        left:30vw;
+        width:80px;
+    }
+
+    @keyframes circle3 {
+        0% {top: 200px; }
+        20% {top: 210px; }
+        40% {top: 200px; }
+        60% {top: 210px; }
+        80% {top: 200px; }
+        90% {top: 210px;}
+        100% {top: 200px;}
+        }
+
+    #box4{
+        top:1550px;
+        left:10vw;
+        width:300px;
+        height:565px;
+    }
+
+    #circle4{
+        top:120px;
+        left:30vw;
+        width:80px;
+    }
+
+    #box5{
+        top:2140px;
+        left:10vw;
+        width:300px;
+        height:285px;
+    }
+
+    
+    #circle5{
+        margin-top:30px;
+        left:25vw;
+        width:80px;
+    }
+
+    @keyframes circle5 {
+        0% {top: 80px; }
+        20% {top: 90px; }
+        40% {top: 80px; }
+        60% {top: 90px; }
+        80% {top: 80px; }
+        90% {top: 90px;}
+        100% {top: 80px;}
+        }
+
+    #box6{
+        top:2450px;
+        left:10vw;
+        width:300px;
+        height:330px;
+    }
+
+    #circle6{
+        margin-top:40px;
+        margin-left:30vw;
+        width:80px;
+    }
+
+
+    #box7{
+        top:2800px;
+        left:10vw;
+        width:300px;
+        height:970px;
+    }
+
+    #circle7{
+        top:250px;
+        left:30vw;
+        width:80px;
+    }
 }

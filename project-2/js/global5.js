@@ -15,7 +15,6 @@ window.addEventListener("load", function() {
     
     function sizeBigger(){
         circle1.style.width='120px';
-        circle1.style.left="12vw";
     }
 
     text1.addEventListener('mouseover', sizeBigger);
@@ -65,7 +64,6 @@ window.addEventListener("load", function() {
         
         function sizeBigger2(){
             circle2.style.width='160px';
-            circle2.style.left="12vw";
         }
     
             text2.addEventListener('mouseover', sizeBigger2);
@@ -89,7 +87,6 @@ window.addEventListener("load", function() {
         
         function sizeBigger3(){
             circle3.style.width='160px';
-            circle3.style.left="12vw";
         }
     
             text3.addEventListener('mouseover', sizeBigger3);
@@ -113,7 +110,6 @@ window.addEventListener("load", function() {
             
             function sizeBigger4(){
                 circle4.style.width='160px';
-                circle4.style.left="12vw";
             }
         
                 text4.addEventListener('mouseover', sizeBigger4);
@@ -137,7 +133,6 @@ window.addEventListener("load", function() {
                 
                 function sizeBigger5(){
                     circle5.style.width='160px';
-                    circle5.style.left="12vw";
                 }
             
                     text5.addEventListener('mouseover', sizeBigger5);
@@ -161,7 +156,6 @@ window.addEventListener("load", function() {
                     
                     function sizeBigger6(){
                         circle6.style.width='160px';
-                        circle6.style.left="12vw";
                     }
                 
                         text6.addEventListener('mouseover', sizeBigger6);
@@ -185,7 +179,6 @@ window.addEventListener("load", function() {
                         
                         function sizeBigger7(){
                             circle7.style.width='160px';
-                            circle7.style.left="12vw";
                         }
                     
                             text7.addEventListener('mouseover', sizeBigger7);

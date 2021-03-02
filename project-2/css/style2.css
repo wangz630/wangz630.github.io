@@ -9,17 +9,23 @@
       src: url("font/Landmark-Regular.woff") format("woff");  
     }
   
-  
+  h1{
+    position:fixed;
+    font-size:20px;
+    font-family: "Landmark",sans-serif;
+    font-weight: 300;
+    top:0px;
+    left:1vw;
+  }
   
     .text-container{
         margin:0 auto;
         width:1000px;
-        height:2950px;
+        height:2500px;
     }
   
     p{
-        margin:50px;
-        font-size:24px;
+        margin-left:20px;
         font-family: 'Chronicle', serif;
         font-style: normal;
         font-weight: 325;
@@ -38,6 +44,10 @@
         80%  {color: rgb(37, 37, 37);}
         100% {color: rgb(0, 0, 0);}
       }
+
+      pre{
+        text-align: center;
+      }
   
       .hidden{
         color:white;
@@ -46,6 +56,7 @@
     
     .hidden:hover{
         background-color: black;
+        font-size: 36px;
     }
 
     nav{
@@ -80,14 +91,19 @@
 
 a{
   color:black;
-  margin-left:300px;
+  margin-left:250px;
   font-size: 3em;
-  font-family: 'Chronicle', serif;
+  font-family: 'Landmark', serif;
+  text-decoration: none;
   animation-name: text;
   animation-duration: 4s;
   animation-iteration-count: infinite;
   animation-timing-function: ease-out;
   z-index: -1;  
+}
+
+a:hover{
+  text-shadow: 2px 2px black;
 }
 
 @keyframes text {
@@ -102,4 +118,100 @@ a{
 .place-holder{
   width:100px;
   height:100px;
+}
+
+#link{
+  font-size: 34px;
+  font-family: "Landmark", sans-serif;
+  transition-duration: 0.5s;
+}
+
+#link:hover{
+  text-shadow: 2px 2px black;
+}
+
+#link1{
+  display: none;
+  font-size: 34px;
+  font-family: "Landmark", sans-serif;
+  transition-duration: 0.5s;
+}
+
+@media only screen and (max-width:360px){
+  #link{
+    display: none;
+  }
+
+  #link1{
+    display: inline;
+    font-size: 24px;
+    text-decoration: underline solid black 1px;
+  }
+
+  #link1:hover{
+    text-shadow: 2px 2px black;
+  }
+
+body{
+  width:360px;
+}
+
+  h1{
+    top:10px;
+    left:4vw;
+  }
+
+  .text-container{
+    width:360px;
+    height:2500px;
+    margin-top: 50px;
+}
+
+  p{
+    margin: 0 auto;
+    padding:0;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    font-size: 20px;
+    width:300px;
+    font-weight: 325;
+    font-size: 20px;
+    line-height: 35px;
+  }
+
+  pre{
+    font-size: 8px;
+    margin:20px 0;
+  }
+
+  .hidden{
+    color:white;
+    border:2px dotted black;
+    transition-duration: 0.2s;
+    animation-name: text;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-out;
+    
+}
+
+.hidden:hover{
+  background-color: black;
+  font-size: 20px;
+}
+
+@keyframes text {
+  0% {border: 2px dotted rgb(0, 0, 0); }
+  20% {border: 2px dotted rgb(107, 107, 107); }
+  40% {border: 2px dotted rgb(207, 207, 207); }
+  60% {border: 2px dotted rgb(158, 157, 157); }
+  80% {border: 2px dotted rgb(112, 112, 112); }
+  100% {border:2px dotted rgb(0, 0, 0); }
+  }
+
+#link{
+  font-size: 24px;
+  text-decoration: underline solid black 1px;
+}
+
 }

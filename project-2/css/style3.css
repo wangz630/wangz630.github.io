@@ -12,28 +12,38 @@
   
   h1{
       position:fixed;
-      left:47vw;
+      left:40vw;
+      top:10px;
       font-family: 'Landmark', sans-serif;
       font-weight: normal;
+      font-size: 2em;
+      z-index: 2;
+  }
+
+  #white-bar{
+    position:fixed;
+    width:100%;
+    height:32px;
+    top:34px;
+    background-color: white;
+    z-index: 1;
   }
   
     .text-container{
         margin:0 auto;
-        width:1000px;
-        height:1300px;
+        height:1750px;
     }
   
     p{
-        position:fixed;
-        top:150px;
-        margin:50px;
-        margin-left:80px;
-        font-size:24px;
+        margin:0 auto;
+        margin-top:400px;
+        padding-left:50px;
+        font-size:8px;
         font-family: 'Chronicle', serif;
         font-style: normal;
         font-weight: 325;
-        font-size: 34px;
-        width:1000px;
+        line-height: 45px;
+        width:300px;
         color:black;
     }
 
@@ -80,3 +90,51 @@ a{
 a:hover{
     text-shadow: 2px 2px black;
 }
+
+#link{
+    font-size: 40px;
+    font-family: "Landmark", sans-serif;
+    transition-duration: 0.5s;
+  }
+  
+  #link:hover{
+    text-shadow: 2px 2px black;
+  }
+
+  @media only screen and (max-width:360px){
+    h1{
+      position:fixed;
+      left:25vw;
+      font-size: 1em;
+  }
+
+  #white-bar{
+    position:fixed;
+    width:100%;
+    height:20px;
+    top:21px;
+    background-color: white;
+    z-index: 1;
+  }
+
+    p{
+      margin:0 auto;
+      margin-top:200px;
+      padding-left:0px;
+      font-size:17px;
+      font-family: 'Chronicle', serif;
+      font-style: normal;
+      font-weight: 325;
+      line-height: 25px;
+      width:300px;
+      color:black;
+  }
+
+  #link{
+    font-size: 40px;
+    line-height: 40px;
+    font-family: "Landmark", sans-serif;
+    transition-duration: 0.5s;
+    text-decoration: underline black 1px;
+  }
+  }

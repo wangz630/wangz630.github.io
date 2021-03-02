@@ -26,6 +26,7 @@
         margin-left:5vw;
         top:150px;
         border-radius:10px;
+        border:2px solid black;
         background-color:transparent;
         transition-duration: 0.2s;
     }
@@ -35,6 +36,15 @@
         color:white;
     }
 
+    h1{
+        position:fixed;
+        top:10px;
+        left:5vw;
+        font-size: 20px;
+        font-family: "Landmark", sans-serif;
+        font-weight: 300;
+    }
+
     #button2{
         position:fixed;
         font-size:26px;
@@ -42,9 +52,10 @@
         width:200px;
         padding:8px;
         margin-left:5vw;
-        top:400px;
+        top:500px;
         outline: none;
         border-radius:10px;
+        border: 2px solid white;
         background-color:transparent;
         transition-duration: 0.2s;
         color:white;
@@ -109,12 +120,16 @@
   }
 
 #link{
-    text-decoration: underline;
+    font-size: 34px;
+    font-family:"Landmark",sans-serif;
+    font-weight: 300;
+    transition: 0.5s;
 }
 
 #link:hover{
     font-size: 45px;
     color:#555555;
+    text-shadow: 2px 2px #555555;
 }
 /* #link{
 position:relative;
@@ -133,3 +148,63 @@ animation-timing-function: ease-in;
 80% {top: 10px; }
 100% {top: 0px;}
 } */
+@media only screen and (max-width:360px){
+    #bar{
+        position:fixed;
+        width:100%;
+        height:100px;
+        bottom:0px;
+        background-color: black;
+        opacity:0.8;
+    }
+
+    #button1{
+        position:fixed;
+        font-size:26px;
+        width:150px;
+        margin-left:30vw;
+        top:auto;
+        bottom:25px;
+        color:white;
+        border-radius:10px;
+        border: 2px solid white;
+    }
+    #button2{
+        position:fixed;
+        font-size:26px;
+        width:150px;
+        margin-left:30vw;
+        top:auto;
+        bottom:25px;
+        color:black;
+        border-radius:10px;
+        border: 2px solid black;
+        display:none;
+    }
+
+    .text-container{
+        margin:0 auto;
+        width:auto;
+        height:2000px;
+    }
+  
+    p{
+        margin:30px auto;
+        font-size: 20px;
+        line-height: 30px;
+        width:300px;
+        color:rgb(165, 165, 165);
+        transition-duration: 0.2s;
+    }
+
+    #link{
+        font-size: 29px;
+        text-decoration:underline 1px #555555;
+    }
+    
+    #link:hover{
+        font-size: 45px;
+        color:#555555;
+        text-shadow: 2px 2px #555555;
+    }
+}

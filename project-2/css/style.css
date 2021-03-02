@@ -10,15 +10,15 @@
 
   body{
       height:2500px;
-      background: linear-gradient(180deg, white 40%,black 70%);
+      background: linear-gradient(180deg, white 20%,black 70%);
   }
 
-  img{
+  /* img{
       position:fixed;
       width:500px;
       top:-100px;
       z-index: -1;
-  }
+  } */
 
   h1{
       position:fixed;
@@ -37,7 +37,7 @@
       font-weight: 325;
       font-size: 26px;
       margin:90px 50px 0 0;
-      color: white;
+      color: black;
   }
   
   .square{
@@ -114,4 +114,55 @@
 .chapter1{
     color:black;
     background-color: white;
+}
+
+@media only screen and (max-width:360px){
+    body{
+        height:1800px;
+        background: linear-gradient(180deg, #ffffff 10%, #a5a5a5 30%,#555555 40%,black 90%);
+    }
+
+    .text-container{
+        width:360px;
+    }
+
+h1,h2{
+    color:white
+}
+
+h1{
+    position:absolute;
+    font-size: 55px;
+    top:300px;
+    left:10vw;
+    width:300px;
+    text-align: right;
+}
+
+h2{
+    position:absolute;
+    left:10vw;
+    top:350px;
+    text-align: right;
+    color:white;
+    font-family: 'Chronicle', serif;
+    font-weight: 325;
+    font-size: 26px;
+    margin:90px 50px 0 0;
+}
+
+p{
+    position:absolute;
+    top:530px;
+    left:10vw;
+    font-size:18px;
+    font-family: 'Chronicle', serif;
+    width:300px;
+    color:white;
+}
+
+.link{
+    text-decoration: underline solid white 1px;
+}
+
 }
