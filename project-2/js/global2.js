@@ -20,11 +20,11 @@ window.addEventListener("load", function() {
         }
         
             hidden.forEach(function(x) {
-                if(window.width > 360){
-                    x.addEventListener('mousedown', sizeSmaller);
+                if(screen.width <= 360){
+                    x.addEventListener('mousedown', sizeSmaller1);
                     x.addEventListener('click', dropShadow);
             }else{
-                    x.addEventListener('mousedown', sizeSmaller1);
+                    x.addEventListener('mousedown', sizeSmaller);
                     x.addEventListener('click', dropShadow);
                 }
             })

@@ -13,7 +13,7 @@ var nav = document.getElementById("nav")
 var bar=document.getElementById('bar')
 
 function changeColor(){
-    if(window.width > 370){
+    if(screen.width > 360){
     document.body.style.backgroundColor= 'black';
     text.style.color='white';
     button1.style.opacity=0;
@@ -38,7 +38,7 @@ function changeColor(){
 }
 
 function changeBack(){
-    if(window.width > 370){
+    if(screen.width > 360){
     document.body.style.backgroundColor= 'white';
     text.style.color='rgb(165, 165, 165)';
     button1.style.opacity=1;
