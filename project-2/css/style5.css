@@ -528,28 +528,28 @@ a:hover{
         position:absolute;
         background-color:black;
         top:100px;
-        left:10vw;
-        width:300px;
-        height:235px;
+        left:7vw;
+        width:310px;
+        height:240px;
     }
 
     #circle1{
         position:relative;
         top:50px;
-        left:28vw;
+        left:30vw;
         width:80px;
     }
     
     #box2{
         top:350px;
-        left:10vw;
-        width:300px;
-        height:515px;
+        left:7vw;
+        width:310px;
+        height:520px;
     }
 
     #circle2{
         top:200px;
-        left:30vw;
+        left:32vw;
         width:80px;
         z-index: -1;
     }
@@ -567,14 +567,14 @@ a:hover{
 
     #box3{
         top:880px;
-        left:10vw;
-        width:300px;
-        height:650px;
+        left:7vw;
+        width:310px;
+        height:658px;
     }
 
     #circle3{
         top:200px;
-        left:30vw;
+        left:32vw;
         width:80px;
     }
 
@@ -590,28 +590,28 @@ a:hover{
 
     #box4{
         top:1550px;
-        left:10vw;
-        width:300px;
-        height:565px;
+        left:7vw;
+        width:310px;
+        height:577px;
     }
 
     #circle4{
         top:120px;
-        left:30vw;
+        left:32vw;
         width:80px;
     }
 
     #box5{
         top:2140px;
-        left:10vw;
-        width:300px;
-        height:285px;
+        left:7vw;
+        width:310px;
+        height:298px;
     }
 
     
     #circle5{
         margin-top:30px;
-        left:25vw;
+        left:26vw;
         width:80px;
     }
 
@@ -627,28 +627,28 @@ a:hover{
 
     #box6{
         top:2450px;
-        left:10vw;
-        width:300px;
-        height:330px;
+        left:7vw;
+        width:310px;
+        height:338px;
     }
 
     #circle6{
         margin-top:40px;
-        margin-left:30vw;
+        margin-left:32vw;
         width:80px;
     }
 
 
     #box7{
         top:2800px;
-        left:10vw;
-        width:300px;
+        left:7vw;
+        width:310px;
         height:970px;
     }
 
     #circle7{
         top:250px;
-        left:30vw;
+        left:32vw;
         width:80px;
     }
 }
