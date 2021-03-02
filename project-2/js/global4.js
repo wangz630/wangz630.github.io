@@ -18,6 +18,8 @@ function changeColor(){
     text.style.color='white';
     button1.style.opacity=0;
     button2.style.opacity=1;
+    button2.style.display='block';
+    button1.style.display='none';
     nav.style.backgroundColor='white';
     chapter1.style.color='black';
     // chapter.style.color='black';
@@ -43,6 +45,8 @@ function changeBack(){
     text.style.color='rgb(165, 165, 165)';
     button1.style.opacity=1;
     button2.style.opacity=0;
+    button1.style.display= 'block';
+    button2.style.display='none';
     nav.style.backgroundColor='black';
     chapter1.style.color='white';
     chapter2.style.color='white';
@@ -60,7 +64,6 @@ function changeBack(){
     button2.style.opacity=0;
     }
 }
-
 
 button1.addEventListener('click', changeColor);
 button2.addEventListener('click', changeBack);

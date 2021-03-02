@@ -24,6 +24,10 @@
         height:2500px;
     }
   
+    .first-paragraph{
+      margin-top:100px;
+    }
+
     p{
         margin-left:20px;
         font-family: 'Chronicle', serif;
@@ -121,7 +125,7 @@ a:hover{
 }
 
 #link{
-  font-size: 34px;
+  font-size: 40px;
   font-family: "Landmark", sans-serif;
   transition-duration: 0.5s;
 }
@@ -132,7 +136,7 @@ a:hover{
 
 #link1{
   display: none;
-  font-size: 34px;
+  font-size: 40px;
   font-family: "Landmark", sans-serif;
   transition-duration: 0.5s;
 }
