@@ -1,0 +1,233 @@
+@font-face {
+    font-family: "heldane";
+    src: url("font/heldane-text-test-regular.woff") format("woff");  
+  }
+  
+  @font-face {
+      font-family: "domaine";
+      src: url("font/domaine-display-test-regular.woff") format("woff");  
+    }
+
+
+body {
+   background: white;
+   font-size: 16px;
+   min-height: 100%;
+   margin-top:0;
+   
+}
+
+#open{
+    font-size: 2rem;
+    cursor:pointer;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+  
+  .aboutbtn,.chapter2btn,.chapter3btn{
+    padding: 15px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 35px;
+    font-family: "heldane";
+    color: #979797;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .aboutbtn:hover,.chapter2btn:hover,.chapter3btn:hover{
+    color: white;
+  }
+  
+  .sidenav .closebtn {
+    position: absolute;
+    color:#979797;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+
+  .sidenav .closebtn:hover{
+    color: white;
+  }
+
+  .chapter1btn{
+      color:black;
+      background-color: white;
+      padding: 15px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 35px;
+    font-family: "heldane";
+    display: block;
+    transition: 0.3s;
+  }
+
+  
+  #menu {
+    font-family: "domaine";
+    position:fixed;
+    top:0;
+    padding-top:10px;
+    padding-left:3vw;
+  }
+
+  .author-name{
+    position:fixed;
+    top:25px;
+    right: 20vw;
+  }
+
+  .book-name{
+    position:fixed;
+    top:25px;
+    right: 5vw;
+  }
+
+  nav{
+      background-color: white;
+      width:100%;
+  }
+  
+
+/* .header { background-color: #c43737 } */
+/* .image { background-color: #da904b }
+.text1 { background-color: #ddc53c }
+.text2 { background-color: #43ad3f } */
+
+.container {
+    /* border:10px solid yellow; */
+   margin:0;
+   display: grid;
+   grid-gap: 1rem;
+   grid-template-columns: 100%;
+   min-height: 100vh;
+   Grid-template-rows: 750px;
+}
+
+.box {
+   padding: 1rem;
+}
+
+.header { 
+    display:flex;
+    align-self: flex-end;
+    text-align: center;
+    font-family: "domaine";
+    font-size: 8rem;
+    padding:0 20vw 30px 20vw;
+    line-height: 150px;
+}
+
+.image{
+    text-align: left;
+    margin:50px auto;
+}
+
+img{
+    width:300px;
+}
+
+.text1,.text2,.text3{
+    font-family: "heldane",serif;
+    font-weight: 100;
+    font-size: 1.5rem;
+    padding:10px 10vw;
+    text-align: justify;
+}
+
+.link{
+    /* display: flex; */
+    text-align: right;
+    margin-bottom: 20px;
+    margin-top:40px;
+    margin-right: 10vw;
+}
+
+.link a{
+    color:black;
+    /* Flex-wrap:wrap; */
+    text-decoration: none;
+    font-size: 35px;
+    font-family: "heldane";
+}
+
+.link a:hover{
+    text-shadow: 1px 1px #646464;
+}
+
+@media only screen and (max-width:1024px){
+    .author-name{
+        top:20px;
+        right: 32vw;
+      }
+    
+      .book-name{
+        top:20px;
+        right: 2vw;
+      }
+
+      #open{
+        font-size: 1.7rem;
+    }
+}
+
+@media only screen and (max-width:500px){
+    .container {
+       Grid-template-rows: 650px;
+    }
+
+    .author-name{
+        top:15px;
+        margin-left:10vw;
+    }
+
+    .book-name{
+        display: none;
+    }
+
+    #open{
+        font-size: 1.3rem;
+    }
+
+    .sidenav a{
+        font-size:20px;
+    }
+
+    .sidenav .closebtn{
+        margin-right: -10px;
+    }
+
+    .header { 
+        font-size: 4rem;
+        padding:0 10vw 30px 10vw;
+        line-height: 80px;
+    }
+
+    
+    .image{
+        margin:20px auto;
+    }
+
+    .text1,.text2,.text3{
+        font-size: 1.2rem;
+    }
+    
+    
+    .link a{
+        font-size: 30px;
+
+    }
+    
+
+}

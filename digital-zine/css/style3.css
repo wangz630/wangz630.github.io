@@ -1,0 +1,299 @@
+@font-face {
+    font-family: "heldane";
+    src: url("font/heldane-text-test-regular.woff") format("woff");  
+  }
+  
+  @font-face {
+      font-family: "domaine";
+      src: url("font/domaine-display-test-regular.woff") format("woff");  
+    }
+
+
+body {
+   background: white;
+   font-size: 16px;
+   min-height: 100%;
+   margin:0;
+   
+}
+
+#open{
+    font-size: 2rem;
+    cursor:pointer;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+  
+  .aboutbtn,.chapter1btn,.chapter2btn{
+    padding: 15px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 35px;
+    font-family: "heldane";
+    color: #979797;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .aboutbtn:hover,.chapter1btn:hover,.chapter2btn:hover{
+    color: white;
+  }
+  
+  .sidenav .closebtn {
+    position: absolute;
+    color:#979797;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+
+  .sidenav .closebtn:hover{
+    color: white;
+  }
+
+  .chapter3btn{
+      color:black;
+      background-color: white;
+      padding: 15px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 35px;
+    font-family: "heldane";
+    display: block;
+    transition: 0.3s;
+  }
+
+  
+  #menu {
+    font-family: "domaine";
+    position:fixed;
+    top:0;
+    padding-top:10px;
+    padding-left:3vw;
+  }
+
+  .author-name{
+    position:fixed;
+    top:25px;
+    right: 20vw;
+  }
+
+  .book-name{
+    position:fixed;
+    top:25px;
+    right: 5vw;
+  }
+
+  nav{
+      background-color: white;
+      width:100%;
+  }
+  
+
+/* .image2 { background-color: #c43737 }
+.image1 { background-color: #da904b }
+.image3 { background-color: #da904b }
+.image4 { background-color: #da904b }
+.text1 { background-color: #ddc53c }
+.text2 { background-color: #43ad3f }
+.text3 { background-color: #43ad3f }
+.text4 { background-color: #43ad3f }
+.link { background-color: #43ad3f } */
+
+.container {
+    /* border:10px solid yellow; */
+   margin:0;
+   margin-top:250px;
+   display: grid;
+   grid-gap: 1rem;
+   grid-template-columns:1fr 1fr ;
+   min-height: 100vh;
+   Grid-template-rows:auto;
+}
+
+.box {
+   padding: 1rem;
+}
+
+.image1{
+    margin-top:100px;
+    margin-left: 11vw;
+}
+
+.image3{
+    margin-top:100px;
+    margin-left: 11vw;
+}
+
+.text1,.text2,.text3,.text4{
+    font-family: "heldane",serif;
+    font-size: 1.2rem;
+    margin-top:100px;
+    padding:10px 11vw 10px 2vw;
+    text-align: justify;
+}
+
+
+img{
+    height: 300px;
+    margin:0 50px;
+}
+
+.link{
+    grid-column:span 2/3;
+    text-align: center;
+    margin:40px 0 20px 0;
+}
+
+.link a:nth-child(1){
+    color:black;
+    text-decoration: none;
+    font-size: 35px;
+    font-family: "heldane";
+    margin-right:13vw;
+}
+
+.link a:nth-child(2){
+    color:black;
+    text-decoration: none;
+    font-size: 35px;
+    font-family: "heldane";
+    margin-left:13vw;
+}
+
+.link a:hover{
+    text-shadow: 1px 1px #646464;
+}
+
+@media only screen and (max-width:1024px){
+    .author-name{
+        top:20px;
+        right: 32vw;
+      }
+    
+      .book-name{
+        top:20px;
+        right: 2vw;
+      }
+
+    .container {
+       Grid-template-rows:auto;
+    }
+
+    #open{
+        font-size: 1.7rem;
+    }
+
+    .text1,.text2,.text3,.text4{
+        padding:0px 12vw 0px 12vw;
+        grid-column:span 2/3;
+        margin-top:20px;
+    }
+
+    .image1{
+        margin-top:100px;
+        margin-left: 11vw;
+    }
+    
+    .image3{
+        margin-top:50px;
+        margin-left: 11vw;
+    }
+
+    img{
+        width: 500px;
+        height:auto;
+        margin:0;
+    }
+
+}
+
+@media only screen and (max-width:500px){
+    .author-name{
+        top:15px;
+        margin-left:10vw;
+    }
+
+    .book-name{
+        display: none;
+    }   
+
+    #open{
+        font-size: 1.3rem;
+    }
+
+    .sidenav a{
+        font-size:20px;
+    }
+
+    .sidenav .closebtn{
+        margin-right: -10px;
+    }
+
+    .image1{
+        text-align: center;
+        margin-top:100px;
+
+    }
+    
+    .image3{
+        text-align: center;
+        margin-top:50px;
+    }
+
+    img{
+        width: 350px;
+        height:auto;
+        margin:0 auto;
+    }
+
+    .box{
+        font-size: 1.2rem;
+    }
+
+    .header { 
+        font-size: 2rem;
+        padding:60px 10vw 30px 10vw;
+        line-height: 40px;
+    }
+
+    .text1,.text2,.text3,.text4{
+        
+        padding:0px 8vw 0px 8vw;
+        margin-top:20px;
+    }
+
+    .text2{
+        margin-top:0px;
+    }
+    
+
+    .link{
+        margin:0 auto;
+    }
+
+    .link a{
+        font-size: 30px;
+        display: flex;
+    }
+    
+    
+.link a:nth-child(1){
+    margin:10px auto;
+}
+
+.link a:nth-child(2){
+    margin:0 auto;
+}
+
+}

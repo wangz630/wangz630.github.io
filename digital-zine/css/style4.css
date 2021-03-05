@@ -1,0 +1,288 @@
+@font-face {
+    font-family: "heldane";
+    src: url("font/heldane-text-test-regular.woff") format("woff");  
+  }
+  
+  @font-face {
+      font-family: "domaine";
+      src: url("font/domaine-display-test-regular.woff") format("woff");  
+    }
+
+
+body {
+   background: black;
+   font-size: 16px;
+   min-height: 100%;
+   margin:0;
+}
+
+#open{
+    font-size: 2rem;
+    cursor:pointer;
+    color:white;
+}
+
+.sidenav {
+    height: 100%;
+    width:0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: white;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+  
+  .chapter1btn,.chapter2btn,.chapter3btn{
+    padding: 15px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 35px;
+    font-family: "heldane";
+    color: #979797;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .chapter1btn:hover,.chapter2btn:hover,.chapter3btn:hover{
+    color: black;
+  }
+  
+  .sidenav .closebtn {
+    position: absolute;
+    color:#979797;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+
+  .sidenav .closebtn:hover{
+    color: black;
+  }
+
+  .aboutbtn{
+      color:white;
+      background-color: black;
+      padding: 15px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 35px;
+    font-family: "heldane";
+    display: block;
+    transition: 0.3s;
+  }
+
+  
+  #menu {
+    font-family: "domaine";
+    position:fixed;
+    top:0;
+    padding-top:10px;
+    padding-left:3vw;
+    color:white;
+  }
+
+  .author-name{
+    position:fixed;
+    top:25px;
+    right: 20vw;
+  }
+
+  .book-name{
+    position:fixed;
+    top:25px;
+    right: 5vw;
+  }
+
+  nav{
+      background-color: black;
+      width:100%;
+  }
+  
+
+/* .image2 { background-color: #c43737 }
+.image1 { background-color: #da904b }
+.image3 { background-color: #da904b }
+.image4 { background-color: #da904b }
+.text1 { background-color: #ddc53c }
+.text2 { background-color: #43ad3f }
+.text3 { background-color: #43ad3f }
+.text4 { background-color: #43ad3f }
+.link { background-color: #43ad3f } */
+
+.container {
+    /* border:10px solid yellow; */
+   margin:0;
+   margin-top:0px;
+   display: grid;
+   grid-gap: 1rem;
+   grid-template-columns:1fr 1fr ;
+   min-height: 100vh;
+   Grid-template-rows:auto;
+}
+
+.box {
+   padding: 1rem;
+}
+
+.image1{
+    margin-top:150px;
+    margin-left: 11vw;
+}
+
+.text1{
+    font-family: "heldane",serif;
+    font-size: 1.2rem;
+    margin-top:140px;
+    padding:60px 11vw 10px 0vw;
+    text-align: justify;
+    color:white;
+}
+
+
+img{
+    height: 350px;
+    margin:0 5vw;
+    padding-top:40px;
+}
+
+.link{
+    grid-column:span 2/3;
+    text-align: right;
+    margin:0;
+    height: 100px;
+}
+
+.link a:nth-child(1){
+    color:white;
+    text-decoration: none;
+    font-size: 35px;
+    font-family: "heldane";
+    margin-right:10vw;
+    
+}
+
+.link a:nth-child(2){
+    color:white;
+    text-decoration: none;
+    font-size: 35px;
+    font-family: "heldane";
+    margin-right:10vw;
+}
+
+.link a:hover{
+    text-shadow: 1px 1px white;
+}
+
+@media only screen and (max-width:1024px){
+    .author-name{
+        top:20px;
+        right: 32vw;
+      }
+    
+      .book-name{
+        top:20px;
+        right: 2vw;
+      }
+
+      .sidenav a{
+        font-size:25px;
+    }
+
+    .container {
+       Grid-template-rows:auto;
+       grid-template-columns: 1fr 2fr;
+    }
+
+    #open{
+        font-size: 1.7rem;
+    }
+
+    .text1{
+        font-family: "heldane",serif;
+        font-size: 1.2rem;
+        margin-top:140px;
+        padding:60px 8vw 10px 0vw;
+        text-align: justify;
+        color:white;
+    }
+
+    
+.image1{
+    margin-top:150px;
+    margin-left: 5vw;
+}
+
+    img{
+        height: 30vw;
+    }
+
+}
+
+@media only screen and (max-width:500px){
+    .author-name{
+        top:15px;
+        margin-left:10vw;
+    }
+
+    .book-name{
+        display: none;
+    }   
+
+    #open{
+        font-size: 1.3rem;
+    }
+
+    .sidenav a{
+        font-size:20px;
+    }
+
+    .sidenav .closebtn{
+        margin-right: -10px;
+    }
+
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        Flex-grow:1;
+        Width:100%;
+     }
+
+    .text1{
+        padding:20px 8vw 10px 8vw;
+        margin:0;
+    }
+
+    .image1{
+        Width:100%;
+        margin:0;
+        margin-top:50px;
+        text-align: center;
+    }
+    
+        img{
+            height: 300px;
+    
+        }
+    
+        .link{
+            margin:0 auto;
+            padding-bottom: 50px;
+        }
+    
+        .link a{
+            font-size: 30px;
+            display: flex;
+        }
+        
+        
+    .link a:nth-child(1){
+        margin:10px auto;
+    }
+    
+    .link a:nth-child(2){
+        margin:10px auto;
+    }
+
+}
