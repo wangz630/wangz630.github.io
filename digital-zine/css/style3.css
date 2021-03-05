@@ -190,6 +190,10 @@ img{
        Grid-template-rows:auto;
     }
 
+    .sidenav a{
+        font-size:25px;
+    }
+
     #open{
         font-size: 1.7rem;
     }
@@ -240,19 +244,25 @@ img{
         margin-right: -10px;
     }
 
+    .container{
+        grid-gap: 0;
+    }
+
     .image1{
-        text-align: center;
+        margin:0 auto;
         margin-top:100px;
+        margin-left:5vw;
 
     }
     
     .image3{
         text-align: center;
         margin-top:50px;
+        margin-left:5vw;
     }
 
     img{
-        width: 350px;
+        width: 80vw;
         height:auto;
         margin:0 auto;
     }

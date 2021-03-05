@@ -1,21 +1,24 @@
 window.addEventListener("load", function() {
 
-    function openNav() {
-        if(screen.width <=500){
-            document.getElementById("sidenav").style.width = "150px";
-            document.body.style.backgroundColor = "#979797";
-            document.getElementById("menu").style.backgroundColor = "#979797";
-        }
-        if(screen.width >500 && screen.width <= 1024){
-            document.getElementById("sidenav").style.width = "200px";
-            document.body.style.backgroundColor = "#979797";
-            document.getElementById("menu").style.backgroundColor = "#979797";
-        }else{
-        document.getElementById("sidenav").style.width = "250px";
+  var width = window.innerWidth;
+
+  function openNav() {
+    if(width <=500){
+        document.getElementById("sidenav").style.width = "150px";
         document.body.style.backgroundColor = "#979797";
         document.getElementById("menu").style.backgroundColor = "#979797";
-        }
-      }
+    }
+    else if(width >500 && width <= 1024){
+        document.getElementById("sidenav").style.width = "200px";
+        document.body.style.backgroundColor = "#979797";
+        document.getElementById("menu").style.backgroundColor = "#979797";
+    }
+    else if(width >1024){
+    document.getElementById("sidenav").style.width = "250px";
+    document.body.style.backgroundColor = "#979797";
+    document.getElementById("menu").style.backgroundColor = "#979797";
+    }
+  }
       
       function closeNav() {
         document.getElementById("sidenav").style.width = "0";

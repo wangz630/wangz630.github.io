@@ -180,6 +180,10 @@ img{
       #open{
         font-size: 1.7rem;
     }
+
+    .sidenav a{
+      font-size:25px;
+  }
 }
 
 @media only screen and (max-width:500px){

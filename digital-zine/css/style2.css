@@ -214,6 +214,10 @@ img{
         font-size: 1.7rem;
     }
 
+    .sidenav a{
+        font-size:25px;
+    }
+
     .text3,.text4,.text5{
         padding:10px 12vw 10px 12vw;
     }
