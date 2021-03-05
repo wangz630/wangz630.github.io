@@ -23,17 +23,16 @@ body {
 }
 
 .sidenav {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #111;
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-  }
+  height: 100%;
+  width:250px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: -250px;
+  background-color: black;
+  transition:0.5s;
+  padding-top: 60px;
+}
   
   .aboutbtn,.chapter2btn,.chapter3btn{
     padding: 15px 8px 8px 32px;
@@ -177,6 +176,19 @@ img{
         right: 2vw;
       }
 
+
+      .sidenav {
+        height: 100%;
+        width:200px;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: -200px;
+        background-color: black;
+        transition:0.5s;
+        padding-top: 60px;
+      }
+
       #open{
         font-size: 1.7rem;
     }
@@ -202,6 +214,18 @@ img{
 
     #open{
         font-size: 1.3rem;
+    }
+
+    .sidenav {
+      height: 100%;
+      width:150px;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: -150px;
+      background-color: black;
+      transition:0.5s;
+      padding-top: 60px;
     }
 
     .sidenav a{

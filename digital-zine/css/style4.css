@@ -24,14 +24,13 @@ body {
 
 .sidenav {
     height: 100%;
-    width:0;
+    width:250px;
     position: fixed;
     z-index: 1;
     top: 0;
-    left: 0;
+    left: -250px;
     background-color: white;
-    overflow-x: hidden;
-    transition: 0.5s;
+    transition:0.5s;
     padding-top: 60px;
   }
   
@@ -186,6 +185,18 @@ img{
         right: 2vw;
       }
 
+      .sidenav {
+        height: 100%;
+        width:200px;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: -200px;
+        background-color: white;
+        transition:0.5s;
+        padding-top: 60px;
+      }
+
       .sidenav a{
         font-size:25px;
     }
@@ -233,6 +244,20 @@ img{
     #open{
         font-size: 1.3rem;
     }
+
+    .sidenav {
+        height: 100%;
+        width:150px;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: -150px;
+        background-color: white;
+        transition:0.5s;
+        padding-top: 60px;
+      }
+
+
 
     .sidenav a{
         font-size:20px;

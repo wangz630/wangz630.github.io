@@ -14,7 +14,7 @@ window.addEventListener("load", function() {
         document.getElementById("menu").style.backgroundColor = "#979797";
     }
     else if(width >1024){
-    document.getElementById("sidenav").style.width = "250px";
+    document.getElementById("sidenav").style.display = "block";
     document.body.style.backgroundColor = "#979797";
     document.getElementById("menu").style.backgroundColor = "#979797";
     }
