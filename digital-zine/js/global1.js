@@ -1,6 +1,6 @@
 window.addEventListener("load", function() {
 
-  var width = window.innerWidth;
+  var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
   function openNav() {
     if(width <=500){
