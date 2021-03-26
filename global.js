@@ -47,7 +47,7 @@ window.addEventListener("load", function() { // make sure page is loaded
             }
     }) 
 
-    var container = document.querySelector('#ball-container') //get element from html
+        var container = document.querySelector('#ball-container') //get element from html
 
         for (let i = 0; i < 30; i++) {  // a 30-time loop
             let ball = document.createElement('div'); // create tag <div> in html
