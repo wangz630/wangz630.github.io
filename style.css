@@ -1,28 +1,166 @@
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani&family=Ramabhadra&family=Roboto&display=swap');
 
+@font-face {
+    font-family: "domaine";
+    src: url("font/domaine-display-test-regular.woff") format("woff"); 
+  }
+
+
 h1{
-    font-size:100px;
-    color:#9fa897;
+    font-family: 'domaine', serif;
+    font-size:160px;
+    color:#e6e19f;
     text-align: center;
+    z-index: 2;
+    margin-top:50px;
+    margin-bottom:0px;
+}
+
+h2{
+    margin-top:-30px;
+    margin-left:120px;
+    padding:0;
+    font-family: 'domaine', serif;
+    font-size:30px;
+    letter-spacing: 3px;
+    color:#e6e19f;
+    text-align: center;
+    z-index: 2;
 }
 
 body{
-    background-color: #FFFEFB;
+    background-color: #384161;
     margin:0;
+    min-height:100vh;
 
 }
 
 a{
     font-family: 'Rajdhani', sans-serif;
+    text-decoration: none;
     font-size: 30px;
-    color: #A6ABA2;
+    line-height: 50px;
+    color: #c5d4b8;
     transition-duration: 0.4s;
+    z-index: 2;
 }
 
 a:hover{
-    text-shadow: 2px 2px #A6ABA2;
+    border:2px solid #eaffd7;
 }
+
+ul{
+    padding:0;
+    text-align: center;
+}
+
 li{
     list-style-type: none;
     text-align: center;
+    animation-name: fadeIn;
+    animation-duration: .5s;
+    z-index: 2;
+    }
+    
+    @keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+    }
+   
+
+P{
+    font-family: 'domaine', serif;
+    font-size: 30px;
+    color: #A6ABA2;
+    text-align: center;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    z-index: 2;
+}
+
+#core-2-studio{
+    margin-top:80px;
+}
+
+#core-2-studio-name, #core-2-lab-name, #core-1-studio-project-name{
+    margin-bottom:10px;
+}
+
+#core-2-studio-project-container, #core-2-lab-project-container, #core-1-studio-project-container{
+    display: none;
+}
+
+#core-2-studio-project-container.open{
+    display:inline;
+    z-index: 2;
+}
+
+#core-2-lab-project-container.open{
+    display:inline;
+    z-index: 2;
+}
+
+#core-1-studio-project-container.open{
+    display:inline;
+    transition: 0.3s;
+    z-index: 2;
+}
+
+#core-1-studio-project-container{
+    width:auto;
+    height:500px;
+    margin-bottom: 20%;
+
+}
+
+span{
+    position:absolute;
+    padding-top:10px;
+    padding-left: 10px;
+    z-index: 2;
+}
+
+.upwards-arrow{
+    display: none;
+    position:absolute;
+    padding-top:0px;
+    margin-top:-13px;
+    z-index: 2;
+}
+
+p:hover{
+    color:#ffbc57;
+}
+
+.ball{
+    position:absolute;
+    border-radius:50%;
+    width:5rem;
+    height:5rem;
+    background: radial-gradient(50% 50% at 50% 50%, #fdfcef 0%, rgba(255, 242, 175, 0) 100%);
+    opacity:.7;
+    cursor:pointer;
+    animation-name:twinkle;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    z-index: -1;
+}
+
+@keyframes twinkle{
+    0% {opacity:.7;}
+    50% {opacity:.1;}
+    100%{opacity:.7;}
+}
+
+footer{
+    font-family: 'domaine', serif;
+    font-size: 18px;
+    color:#e3f0d9;
+    position:fixed;
+    bottom:6px;
+    left:0;
+    right:0;
+    margin:1% auto;
+    width:210px;
 }
