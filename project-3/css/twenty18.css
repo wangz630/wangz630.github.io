@@ -1,0 +1,193 @@
+@font-face {
+    font-family: "Boutique";
+    src: url("font/BoutiqueTRIAL-Regular.woff") format("woff");  
+  }
+  
+  
+  @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+  
+  
+  
+  body{
+    background-color: #6A9DA3;
+    color:#F6E0BD;
+    font-family: 'Nunito', sans-serif;
+    height:3000px;
+  }
+  
+  h1{
+  font-size: 1.5rem;
+  font-family: 'Nunito', sans-serif;
+  position:fixed;
+  bottom:10px;
+  left:50%;
+  transform: translateX(-50%);
+  
+  
+  }
+  
+  html, body {
+    height: 100%;
+    overflow: hidden;
+    margin: 0;
+  }
+  #content {
+    height: 100%;
+  }
+  
+  .container{
+    background-color:  #6D152B;
+    float: left;
+    width: 15%;
+    height: 100%;
+    overflow: auto;
+    box-sizing: border-box;
+    padding: 0.4em;
+  }
+  
+  #right-detail{
+    float: left;
+    width: 85%;
+    background: #d69f9f;
+    height: 150%;
+    overflow: auto;
+    box-sizing: border-box;
+    padding: 0.4em;
+  }
+  
+  /* width */
+  ::-webkit-scrollbar {
+    width: 3px;
+  }
+  
+  /* Track */
+  /* ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  } */
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #F6E0BD;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #fad394;
+  }
+  
+  
+  .map-container{
+    margin:20px;
+   
+  }
+  
+  h1{
+    font-size: 1rem;
+  }
+  
+  h2{
+    font-size: 2rem;
+    /* padding-top:100px; */
+  }
+  
+  p{
+    font-size: 1.5rem;
+    /* padding-top:100px; */
+  }
+  
+  img{
+    width:10vw;
+    height:10vw;
+    object-fit: cover;
+    margin-top:20px;
+  }
+  
+  
+  
+  .detail-image-container img{
+    height: auto;
+    display: none;
+  }
+  
+  img.active {
+    display: block;
+    position:fixed;
+    width:100px;
+    transition-property: width;
+    left:50%;
+    top:20%;
+  }
+  
+  img.active:hover{
+      width:300px;
+  }
+  
+  .location{
+    display: none;
+  }
+  
+  .location.active{
+    display: inline;
+    position:absolute;
+    font-family: "Boutique",serif;
+    font-size: 3rem;
+    color:#F6E0BD;
+    left:30%;
+    top:20%;
+  }
+  
+  .year{
+    display: none;
+  }
+  
+  .year.active{
+    display: inline;
+    position:absolute;
+    font-family: "Boutique",serif;
+    font-size: 2rem;
+    color:#F6E0BD;
+    left:30%;
+    top:16%;
+  }
+  
+  .functions{
+    display: none;
+  }
+  
+  .functions.active{
+    display: inline;
+    position:absolute;
+    font-family: "Boutique",serif;
+    font-size: 2rem;
+    color:#F6E0BD;
+    left:30%;
+    top:13%;
+  }
+  
+  .scale{
+    display: none;
+  }
+  
+  .scale.active{
+    display: inline;
+    position:absolute;
+    font-family: "Boutique",serif;
+    font-size: 2rem;
+    color:#F6E0BD;
+    left:30%;
+    top:10%;
+  }
+  
+  #back-nav{
+      font-family: 'Boutique',serif;
+      font-size: 2rem;
+      position:fixed;
+      bottom:4vw;
+      right:5vw;
+      text-decoration: none;
+      color:#F6E0BD;
+  }
+  
+  #back-nav:hover{
+      color:#FF7676;
+  }

@@ -1,0 +1,31 @@
+body{
+    background-color: rgb(33, 83, 83);
+    color:rgb(255, 254, 170);
+    /* text-align: center; */
+}
+
+.map-container{
+    border:3px solid rgb(255, 254, 170);
+    padding:1rem;
+    margin:30px;
+}
+
+h1{
+    font-size: 3rem;
+}
+
+h2{
+    font-size: 2rem;
+    /* padding-top:100px; */
+}
+
+p{
+    font-size: 1.5rem;
+    /* padding-top:100px; */
+}
+
+img{
+    width:30%;
+    height:auto;
+    margin-top:20px;
+}

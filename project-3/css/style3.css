@@ -1,0 +1,89 @@
+@font-face {
+    font-family: "Boutique";
+    src: url("font/BoutiqueTRIAL-Regular.woff") format("woff");  
+  }
+  
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+  
+
+
+body{
+    background-color: #61714D;
+    color:#F6E0BD;
+    font-family: 'Nunito', sans-serif;
+}
+
+ul{
+  font-size: 1.5rem;
+  display: flex;
+  
+  /* space-evenly/space-between/space-around/center */
+}
+
+li{
+  list-style: none;
+}
+
+.year-nav{
+    position:fixed;
+    left:10%;
+    font-family: 'Nunito', sans-serif;
+    text-decoration: none;
+    color:#F6E0BD;
+}
+
+.year-nav:hover{
+  text-shadow: 2px 2px 1px #FF7676;
+}
+
+.location-nav{
+    position:fixed;
+    left:50%;
+    transform: translateX(-50%);
+    font-family: 'Nunito', sans-serif;
+    text-decoration: none;
+    color:#F6E0BD;
+
+}
+
+.location-nav:hover{
+  text-shadow: 2px 2px 1px #FF7676;
+}
+
+.scale-nav{
+    position:fixed;
+    color:#FF7676;
+    left: 80%;
+    font-family: 'Nunito', sans-serif;
+    text-decoration: none;
+}
+
+h1{
+  font-size: 1.5rem;
+  font-family: 'Nunito', sans-serif;
+  position:fixed;
+  bottom:10px;
+  left:50%;
+  transform: translateX(-50%);
+  
+  
+}
+
+#scale-container{
+  display: flex;
+  flex-direction: column;
+  font-family: 'Boutique',serif;
+  font-size:2rem;
+  text-decoration: none;
+
+}
+
+.scale-name{
+  text-decoration: none;
+  color:#F6E0BD;
+}
+
+.scale-name:hover{
+    color:#FF7676;
+}

@@ -1,0 +1,220 @@
+@font-face {
+    font-family: "Boutique";
+    src: url("font/BoutiqueTRIAL-Regular.woff") format("woff");  
+  }
+  
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+  
+
+
+body{
+    background-color: #1E5056;
+    color:#F6E0BD;
+    font-family: 'Nunito', sans-serif;
+}
+
+ul{
+  display: flex;
+  Flex-wrap:wrap;
+  Justify-content:space-around;
+  font-size: 1.5rem;
+  /* space-evenly/space-between/space-around/center */
+}
+
+li{
+  list-style: none;
+}
+
+.year-nav{
+  position:fixed;
+  left:10%;
+  font-family: 'Nunito', sans-serif;
+  text-decoration: none;
+  color:#F6E0BD;
+}
+
+.year-nav:hover{
+  text-shadow: 2px 2px 1px #FF7676;
+}
+
+.location-nav{
+  position:fixed;
+  left:50%;
+  transform: translateX(-50%);
+  font-family: 'Nunito', sans-serif;
+  text-decoration: none;
+  color:#FF7676;
+
+}
+
+.scale-nav{
+  position:fixed;
+  color:#F6E0BD;
+  left: 80%;
+  font-family: 'Nunito', sans-serif;
+  text-decoration: none;
+}
+
+.scale-nav:hover{
+  text-shadow: 2px 2px 1px #FF7676;
+}
+
+h1{
+  font-size: 1.5rem;
+  font-family: 'Nunito', sans-serif;
+  position:fixed;
+  bottom:10px;
+  left:50%;
+  transform: translateX(-50%);
+  
+  
+}
+
+#location-container{
+  display: flex;
+  flex-direction: column;
+  font-family: 'Boutique',serif;
+  font-size:2rem;
+  color:#F6E0BD;
+  text-decoration: none;
+}
+
+.location-name{
+  color:#F6E0BD;
+  text-decoration: none;
+}
+
+/* #australia-nav{
+  position:absolute;
+  left:100px;
+  width:100px;
+  height:auto;
+  top:50px;
+} */
+
+.location-name:hover{
+  color:#FF7676;
+}
+
+.australia-image{
+  position:absolute;
+  width:180px;
+  height:100%;
+  object-fit: cover;
+  left:50%;
+  top:0%;
+  display: none;
+  opacity: 0.6;
+  z-index: -1;
+}
+
+.brazil-image{
+  position:absolute;
+  width:180px;
+  height:100%;
+  object-fit: cover;
+  left:30%;
+  top:0%;
+  display: none;
+  opacity: 0.6;
+  z-index: -1;
+}
+
+.china-image{
+  position:absolute;
+  width:180px;
+  height:100%;
+  object-fit: cover;
+  left:20%;
+  top:0%;
+  display: none;
+  opacity: 0.6;
+  z-index: -1;
+}
+
+.italy-image{
+  position:absolute;
+  width:180px;
+  height:100%;
+  object-fit: cover;
+  left:89%;
+  top:0%;
+  display: none;
+  opacity: 0.6;
+  z-index: -1;
+}
+
+.japan-image{
+  position:absolute;
+  width:180px;
+  height:100%;
+  object-fit: cover;
+  left:40%;
+  top:0%;
+  display: none;
+  opacity: 0.6;
+  z-index: -1;
+}
+
+.russia-image{
+  position:absolute;
+  width:180px;
+  height:100%;
+  object-fit: cover;
+  left:20%;
+  top:0%;
+  display: none;
+  opacity: 0.6;
+  z-index: -1;
+}
+
+.singapore-image{
+  position:absolute;
+  width:180px;
+  height:100%;
+  object-fit: cover;
+  left:10%;
+  top:0%;
+  display: none;
+  opacity: 0.6;
+  z-index: -1;
+}
+
+.southkorea-image{
+  position:absolute;
+  width:180px;
+  height:100%;
+  object-fit: cover;
+  left:50%;
+  top:0%;
+  display: none;
+  opacity: 0.6;
+  z-index: -1;
+}
+
+.uae-image{
+  position:absolute;
+  width:180px;
+  height:100%;
+  object-fit: cover;
+  left:30%;
+  top:0%;
+  display: none;
+  opacity: 0.6;
+  z-index: -1;
+}
+
+.usa-image{
+  position:absolute;
+  width:180px;
+  height:100%;
+  object-fit: cover;
+  left:70%;
+  top:0%;
+  display: none;
+  opacity: 0.6;
+  z-index: -1;
+}
+
+
