@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Airtable Collection</title>
+
+    <!-- add reset to create consistency between browsers and devices. -->
+    <link rel="stylesheet" type="text/css" href="./stylesheet/reset.css">
+
+    <link rel="stylesheet" type="text/css" href="./stylesheet/main.css">
+
+    <!-- add link to your javascript. be sure it includes "defer" -->
+    <script type="text/javascript" src="./airtable.browser.js" defer></script>
+    <script type="text/javascript" src="./script.js" defer></script>
+</head>
+
+<body>
+<div class="container">
+    <!-- <div class="menu">
+        <h1>PLACE</h1>
+        <h1><div class="photoContainer">PHOTOGRAPHER</h1>
+        <h1>TITLE</h1>
+    </div> -->
+
+    <aside class="filter">
+        <h2>PHOTOGRAPHER</h2>
+        <ul class="filter-list" data-category="photographer">
+            <li>
+                <button class="filter-item" data-value="alex">Alex Nail</button>
+            </li>
+            <li>
+                <button class="filter-item" data-value="andrew">Andrew Barnes</button>
+            </li>
+            <li>
+                <button class="filter-item" data-value="anton">Anton Gorlin</button>
+            </li>
+            <li>
+                <button class="filter-item" data-value="ben">Ben Babusis</button>
+            </li>
+            <li>
+                <button class="filter-item" data-value="daniel">Daniel Wretham</button>
+            </li>
+            <li>
+                <button class="filter-item" data-value="david">David Gibbeson</button>
+            </li>
+            <li>
+                <button class="filter-item" data-value="felix">Felix Inden</button>
+            </li>
+            <li>
+                <button class="filter-item" data-value="floris">Floris van Breugel</button>
+            </li>
+            <li>
+                <button class="filter-item" data-value="greg">Greg Molyneux</button>
+            </li>
+            <li>
+                <button class="filter-item" data-value="hans">Hans Kruse</button>
+            </li>
+            <li>
+                <button class="filter-item" data-value="jon">Jon Paul</button>
+            </li>
+            <li>
+                <button class="filter-item" data-value="jose">José Ramos</button>
+            </li>
+            <li>
+                <button class="filter-item" data-value="kirsten">Kirsten Hines</button>
+            </li>
+            <li>
+                <button class="filter-item" data-value="mats">Mats Brynolf</button>
+            </li>
+            <li>
+                <button class="filter-item" data-value="melvin">Melvin Nicholson</button>
+            </li>
+            <li>
+                <button class="filter-item" data-value="michael">Michael Russell</button>
+            </li>
+        </ul>
+    </aside>
+
+    <main class="photos"></main>
+</div>
+
+</body>
+</html>

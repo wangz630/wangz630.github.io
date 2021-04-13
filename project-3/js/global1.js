@@ -4,11 +4,11 @@ window.addEventListener("load", function() {
     var australiaImage = document.querySelector(".australia-image");
     
     function showAustralia () {
-        australiaImage.style.display="block";
+        australiaImage.style.opacity=".6";
     }
     
     function fadeAustralia () {
-        australiaImage.style.display="none";
+        australiaImage.style.opacity="0";
     }
     
     australiaName.addEventListener("mouseover", showAustralia);
@@ -19,11 +19,11 @@ window.addEventListener("load", function() {
     var brazilImage = document.querySelector(".brazil-image");
     
     function showBrazil () {
-        brazilImage.style.display="block";
+        brazilImage.style.opacity=".6";
     }
     
     function fadeBrazil () {
-        brazilImage.style.display="none";
+        brazilImage.style.opacity="0";
     }
     
     brazilName.addEventListener("mouseover", showBrazil);
@@ -34,11 +34,11 @@ window.addEventListener("load", function() {
     var chinaImage = document.querySelector(".china-image");
     
     function showChina () {
-        chinaImage.style.display="block";
+        chinaImage.style.opacity=".6";
     }
     
     function fadeChina() {
-        chinaImage.style.display="none";
+        chinaImage.style.opacity="0";
     }
     
     chinaName.addEventListener("mouseover", showChina);
@@ -49,11 +49,11 @@ window.addEventListener("load", function() {
     var italyImage = document.querySelector(".italy-image");
     
     function showItaly () {
-        italyImage.style.display="block";
+        italyImage.style.opacity=".6";
     }
     
     function fadeItaly() {
-        italyImage.style.display="none";
+        italyImage.style.opacity="0";
     }
     
     italyName.addEventListener("mouseover", showItaly);
@@ -64,11 +64,11 @@ window.addEventListener("load", function() {
     var japanImage = document.querySelector(".japan-image");
     
     function showJapan () {
-        japanImage.style.display="block";
+        japanImage.style.opacity=".6";
     }
     
     function fadeJapan() {
-        japanImage.style.display="none";
+        japanImage.style.opacity="0";
     }
     
     japanName.addEventListener("mouseover", showJapan);
@@ -79,11 +79,11 @@ window.addEventListener("load", function() {
     var russiaImage = document.querySelector(".russia-image");
     
     function showRussia () {
-        russiaImage.style.display="block";
+        russiaImage.style.opacity=".6";
     }
     
     function fadeRussia() {
-        russiaImage.style.display="none";
+        russiaImage.style.opacity="0";
     }
     
     russiaName.addEventListener("mouseover", showRussia);
@@ -94,11 +94,11 @@ window.addEventListener("load", function() {
     var singaporeImage = document.querySelector(".singapore-image");
     
     function showSingapore () {
-        singaporeImage.style.display="block";
+        singaporeImage.style.opacity=".6";
     }
     
     function fadeSingapore() {
-        singaporeImage.style.display="none";
+        singaporeImage.style.opacity="0";
     }
     
     singaporeName.addEventListener("mouseover", showSingapore);
@@ -109,11 +109,11 @@ window.addEventListener("load", function() {
     var southkoreaImage = document.querySelector(".southkorea-image");
     
     function showSouthkorea () {
-        southkoreaImage.style.display="block";
+        southkoreaImage.style.opacity=".6";
     }
     
     function fadeSouthkorea() {
-        southkoreaImage.style.display="none";
+        southkoreaImage.style.opacity="0";
     }
     
     southkoreaName.addEventListener("mouseover", showSouthkorea);
@@ -124,11 +124,11 @@ window.addEventListener("load", function() {
     var uaeImage = document.querySelector(".uae-image");
     
     function showUae() {
-        uaeImage.style.display="block";
+        uaeImage.style.opacity=".6";
     }
     
     function fadeUae() {
-        uaeImage.style.display="none";
+        uaeImage.style.opacity="0";
     }
     
     uaeName.addEventListener("mouseover", showUae);
@@ -140,11 +140,11 @@ window.addEventListener("load", function() {
     var usaImage = document.querySelector(".usa-image");
 
     function showUsa () {
-        usaImage.style.display="block";
+        usaImage.style.opacity=".6";
     }
 
     function fadeUsa () {
-        usaImage.style.display="none";
+        usaImage.style.opacity="0";
     }
 
     usaName.addEventListener("mouseover", showUsa);
