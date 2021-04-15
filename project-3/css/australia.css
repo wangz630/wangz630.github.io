@@ -361,7 +361,7 @@ z-index: 2;
 }
 
 
-@media only screen and (max-width:400px){
+@media only screen and (max-width:420px){
 
   ::-webkit-scrollbar {
     width: 0px;
@@ -373,8 +373,8 @@ z-index: 2;
 
   .container{
     width:200px;
-    height:470px;
-    margin-top:85px;
+    height:480px;
+    margin-top:95px;
     margin-left:80px;
     z-index: 4;
   }
