@@ -112,21 +112,14 @@ html, body {
   display: none;
 }
 
-/* .map-container{
-opacity: 0;
-} */
-
 
 
 h2{
   font-size: 2rem;
-
-  /* padding-top:100px; */
 }
 
 p{
   font-size: 1.5rem;
-  /* padding-top:100px; */
 }
 
 .image-left{
@@ -135,7 +128,6 @@ p{
   object-fit: cover;
   margin-left:2vw;
   margin-top:10px;
-  /* opacity:.4; */
 }
 
 .arrow1{
@@ -273,6 +265,7 @@ z-index: 2;
   overflow: hidden;
   left:45%;
   top:25%;
+  display: none;
   transition: 0.3s;
 }
 
@@ -311,11 +304,6 @@ z-index: 2;
   top:17%;
   z-index: 2;
 }
-
-/* .location-brief:hover{
-  color:#fff893;
-} */
-
 
 .year{
   display: none;
@@ -388,6 +376,7 @@ z-index: 2;
     height:470px;
     margin-top:85px;
     margin-left:80px;
+    z-index: 4;
   }
 
   
@@ -403,6 +392,7 @@ z-index: 2;
     width: 0%;
     height: 0%;
     padding: 0em;
+    z-index: -1;
   }
 
   h1{
@@ -451,43 +441,14 @@ z-index: 2;
       bottom:50px;
       }
       
-      .image-size-control1{
+      .image-size-control1, .image-size-control2, .image-size-control3{
         opacity: 0;
         width:0;
-      }
-      
-      .image-size-control1 span{
-        opacity: 0;
-        font-size: 0;
-      }
-      
-      
-      
-      .image-size-control2{
-        opacity: 0;
-        width:0;
-      }
-      
-      .image-size-control2 span{
-        opacity: 0;
-        font-size: 0;
-      }
-      
-      
-      .image-size-control3{
-        opacity: 0;
-        width:0;
-      }
-      
-      .image-size-control3 span{
-        opacity: 0;
-        width:0;
-        font-size: 0;
       }
        
       .image-container{
         width:300px;
-        height:300px;
+        height:260px;
         left:30px;
         top:180px;
         z-index: 2;
@@ -497,6 +458,7 @@ z-index: 2;
         font-size: 1.1rem;
         left:12vw;
         top:440px;
+        width:300px;
       }
       
       

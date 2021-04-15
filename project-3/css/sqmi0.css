@@ -273,6 +273,7 @@ z-index: 2;
   left:45%;
   top:25%;
   transition: 0.3s;
+  display: none;
 }
 
 .image-right {
@@ -371,4 +372,142 @@ z-index: 2;
 
 #back-nav:hover{
     color:#FF7676;
+}
+
+@media only screen and (max-width:400px){
+
+  ::-webkit-scrollbar {
+    width: 0px;
+  }
+
+  body{
+    height:100%;
+  }
+
+  .container{
+    width:200px;
+    height:470px;
+    margin-top:85px;
+    margin-left:80px;
+    z-index: 4;
+  }
+
+  
+  .left-block{
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  #right-detail{
+    float: left;
+    width: 0%;
+    height: 0%;
+    padding: 0em;
+    z-index: -1;
+  }
+
+  h1{
+    font-size: 1rem;
+    left:50%;
+    z-index: 2;
+    }
+    
+    h3{
+    font-size: 1rem;
+    left:50%;
+    z-index: 2;
+    }
+
+    .image-left{
+      width:35vw;
+      height:35vw;
+      margin-top:0px;
+    }
+    
+    .arrow1{
+    width:10vw;
+    top:60px;
+    left:160px;
+    }
+    
+    .arrow2{
+    width:10vw;
+    bottom:60px;
+    left:160px;
+    }
+
+    .close-button{
+      font-size: 3.2rem;
+      top:45px;
+      left:12vw;
+      }
+      
+      .line1{
+      height:.5px;
+      top:50px;
+      }
+      
+      .line2{
+      height:.5px;
+      bottom:50px;
+      }
+      
+      .image-size-control1, .image-size-control2, .image-size-control3{
+        opacity: 0;
+        width:0;
+      }
+       
+      .image-container{
+        width:300px;
+        height:260px;
+        left:30px;
+        top:180px;
+        z-index: 2;
+      }
+    
+      .location{
+        font-size: 1.1rem;
+        left:12vw;
+        top:440px;
+        width:300px;
+      }
+      
+      
+      .location-brief{
+        font-size: 3.5rem;
+        left:12vw;
+        top:50px;
+      }
+      
+      
+      .year{
+        font-size: 1.1rem;
+        left:12vw;
+        top:460px;
+      }
+      
+      
+      
+      .functions{
+        font-size: 1.1rem;
+        width:300px;
+        left:12vw;
+        top:517px;
+      }
+      
+      
+      .scale{
+        font-size: 1.1rem;
+        left:12vw;
+        top:485px;
+      }
+      
+      #back-nav{
+          font-size: 1.3rem;
+          bottom:18vw;
+          right:5vw;
+          z-index: 2;
+      }
 }

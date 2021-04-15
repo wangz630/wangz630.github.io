@@ -115,6 +115,7 @@ function showData() {
           scale.style.display = "inline";
           locationBrief.style.display = "inline";
           document.querySelector(".close-button").style.display = "block";
+          document.querySelector(".image-container").style.display = "block";
           document.querySelector(".image-size-control1").style.display = "block";
           document.querySelector(".image-size-control2").style.display = "block";
           document.querySelector(".image-size-control3").style.display = "block";
@@ -141,6 +142,7 @@ function showLeft(){
           functions.style.display = "none";
           scale.style.display = "none";
           locationBrief.style.display = "none";
+          document.querySelector(".image-container").style.display = "none";
           document.querySelector(".close-button").style.display = "none";
           document.querySelector(".image-size-control1").style.display = "none";
           document.querySelector(".image-size-control2").style.display = "none";
