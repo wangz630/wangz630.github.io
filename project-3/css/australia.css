@@ -376,3 +376,251 @@ z-index: 2;
 #back-nav:hover{
     color:#FF7676;
 }
+
+
+@media only screen and (max-width:400px){
+
+  body{
+    height:100%;
+  }
+
+  .container{
+    width:100%;
+    height:80%;
+    margin-top:40px;
+  }
+
+  h1{
+    font-size: 1rem;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 100;
+    position:fixed;
+    top:7px;
+    letter-spacing: .4px;
+    left:50%;
+    transform: translateX(-50%);
+    color:#F9C0A0;
+    }
+    
+    h3{
+    position:fixed;
+    font-size: 1rem;
+    font-family: 'Nunito', sans-serif;
+    text-align: center;
+    bottom:0px;
+    font-weight: 100;
+    letter-spacing: .4px;
+    left:50%;
+    transform: translateX(-50%);
+    color:#F9C0A0;
+    }
+
+    .image-left{
+      width:35vw;
+      height:35vw;
+      object-fit: cover;
+      margin-left:2vw;
+      margin-top:10px;
+      /* opacity:.4; */
+    }
+    
+    .arrow1{
+    position:fixed;
+    width:10vw;
+    height:auto;
+    margin-top:0px;
+    top:90px;
+    left:5.5vw;
+    }
+    
+    .arrow2{
+    position:fixed;
+    width:10vw;
+    height:auto;
+    bottom:90px;
+    margin-top:0px;
+    left:5.5vw;
+    }
+
+    .close-button{
+      position:fixed;
+      font-family: 'Nunito', sans-serif;
+      font-size: 3.5rem;
+      width:4vw;
+      height:auto;
+      top:80px;
+      left:12vw;
+      z-index: 2;
+      display: none;
+      cursor: pointer;
+      }
+      
+      .close-button:hover{
+        color:#fff893;
+      }
+      
+      .line1{
+      display: block;
+      position:fixed;
+      width:100%;
+      height:1.5px;
+      top:60px;
+      background-color:#F9C0A0;
+      z-index: 2;
+      }
+      
+      .line2{
+      display: block;
+      position:fixed;
+      width:100%;
+      height:2px;
+      bottom:60px;
+      background-color:#F9C0A0;
+      z-index: 2;
+      }
+      
+      
+      
+      .detail-image-container img{
+        height: auto;
+        display: none;
+      }
+      
+      /* .image-size-control1{
+        display: none;
+      }
+      
+      .image-size-control1 span{
+        display: none;
+      }
+      
+      
+      
+      .image-size-control2{
+        display: none;
+      }
+      
+      .image-size-control2 span{
+        display: none;
+      }
+      
+      
+      .image-size-control3{
+        display: none;
+      }
+      
+      .image-size-control3 span{
+        display: none;
+      }
+       */
+      
+      
+      .image-container{
+        position:absolute;
+        width:300px;
+        height:300px;
+        object-fit:cover;
+        overflow: hidden;
+        left:15%;
+        top:10%;
+        transition: 0.3s;
+      }
+      
+      .image-right {
+        position:relative;
+        display: none;
+        object-fit:cover;
+        width:100%;
+        height:100%;
+        /* position:fixed; */
+        /* width:350px; */
+        /* transition-property: width; */
+        /* left:50%;
+        top:23%; */
+      }
+      
+      
+      
+      .location{
+        display: none;
+        
+        position:absolute;
+        font-family: "Nunito",sans-serif;
+        font-weight: 100;
+        font-size: 1.5rem;
+        color:#F9C0A0;
+        left:9%;
+        top:48%;
+        width:20vw;
+        z-index: 2;
+      }
+      
+      
+      .location-brief{
+        display: none;
+        position:absolute;
+        font-family: "Boutique",serif;
+        font-size: 5rem;
+        color:#F6E0BD;
+        left:9%;
+        top:17%;
+        z-index: 2;
+      }
+      
+      /* .location-brief:hover{
+        color:#fff893;
+      } */
+      
+      
+      .year{
+        display: none;
+        position:absolute;
+        font-family: "Nunito",sans-serif;
+        font-weight: 100;
+        font-size: 1.5rem;
+        color:#F9C0A0;
+        left:9%;
+        top:38%;
+        z-index: 2;
+      }
+      
+      
+      
+      .functions{
+        display: none;
+        position:absolute;
+        font-family: "Nunito",sans-serif;
+        font-weight: 100;
+        font-size: 1.5rem;
+        color:#F9C0A0;
+        width:20vw;
+        left:9%;
+        top:52%;
+        line-height: 2vw;
+        z-index: 2;
+      }
+      
+      
+      .scale{
+        display: none;
+        position:absolute;
+        font-family: "Nunito",sans-serif;
+        font-weight: 100;
+        font-size: 1.5rem;
+        color:#F9C0A0;
+        left:9%;
+        top:43%;
+        z-index: 2;
+      }
+      
+      #back-nav{
+          font-family: 'Boutique',serif;
+          font-size: 2rem;
+          position:fixed;
+          bottom:5vw;
+          right:5vw;
+          text-decoration: none;
+          color:#F6E0BD;
+      }
+
+}

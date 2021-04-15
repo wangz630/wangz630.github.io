@@ -391,14 +391,14 @@ h1{
     transform: translateX(-50%);
     font-family: 'Nunito', sans-serif;
     text-decoration: none;
-    color:#FF7676;
+    color:#F6E0BD;
     z-index: 1;
   
   }
   
   .scale-nav{
     position:fixed;
-    color:#F6E0BD;
+    color:#FF7676;
     left: 83%;
     font-family: 'Nunito', sans-serif;
     text-decoration: none;
