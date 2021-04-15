@@ -137,7 +137,7 @@ function showData() {
             scale.style.display = "inline";
             locationBrief.style.display = "inline";
             // mapContainer.style.display = "block";
-            document.querySelector(".arrow3").style.display = "block";
+            document.querySelector(".close-button").style.display = "block";
             document.querySelector(".image-size-control1").style.display = "block";
             document.querySelector(".image-size-control2").style.display = "block";
             document.querySelector(".image-size-control3").style.display = "block";
@@ -181,7 +181,7 @@ function showData() {
             scale.style.display = "none";
             locationBrief.style.display = "none";
             // mapContainer.style.display = "none";
-            document.querySelector(".arrow3").style.display = "none";
+            document.querySelector(".close-button").style.display = "none";
             document.querySelector(".image-size-control1").style.display = "none";
             document.querySelector(".image-size-control2").style.display = "none";
             document.querySelector(".image-size-control3").style.display = "none";
@@ -192,34 +192,55 @@ function showData() {
     map.addEventListener("click", clearLeft);
   })
 
-  document.querySelector(".information-container").addEventListener("click", showLeft);
+  document.querySelector(".close-button").addEventListener("click", showLeft);
 
+  document.querySelector(".image-size-control2").style.backgroundColor = "#fff893";
+  document.querySelector(".image-size-control2 span").style.color = "#fff893";
+  
   document.querySelector(".image-size-control1").addEventListener("click", function () {
     document.querySelector(".image-container").style.width= "150px";
     document.querySelector(".image-container").style.width= "150px";
     document.querySelector(".image-container").style.left= "54%";
     document.querySelector(".image-container").style.top= "40%";
+    document.querySelector(".image-size-control1").style.backgroundColor = "#fff893";
+    document.querySelector(".image-size-control2").style.backgroundColor = "#F6E0BD";
+    document.querySelector(".image-size-control3").style.backgroundColor = "#F6E0BD";
+    document.querySelector(".image-size-control1 span").style.color = "#fff893";
+    document.querySelector(".image-size-control2 span").style.color = "#F6E0BD";
+    document.querySelector(".image-size-control3 span").style.color = "#F6E0BD";
   })
-
+  
   document.querySelector(".image-size-control2").addEventListener("click", function () {
     document.querySelector(".image-container").style.width= "400px";
     document.querySelector(".image-container").style.height= "400px";
     document.querySelector(".image-container").style.left= "45%";
     document.querySelector(".image-container").style.top= "25%";
+    document.querySelector(".image-size-control2").style.backgroundColor = "#fff893";
+    document.querySelector(".image-size-control1").style.backgroundColor = "#F6E0BD";
+    document.querySelector(".image-size-control3").style.backgroundColor = "#F6E0BD";
+    document.querySelector(".image-size-control2 span").style.color = "#fff893";
+    document.querySelector(".image-size-control1 span").style.color = "#F6E0BD";
+    document.querySelector(".image-size-control3 span").style.color = "#F6E0BD";
   })
- 
-
+  
+  
   document.querySelector(".image-size-control3").addEventListener("click", function () {
     document.querySelector(".image-container").style.width= "700px";
     document.querySelector(".image-container").style.height= "600px";
     document.querySelector(".image-container").style.left= "35%";
     document.querySelector(".image-container").style.top= "10%";
+    document.querySelector(".image-size-control3").style.backgroundColor = "#fff893";
+    document.querySelector(".image-size-control1").style.backgroundColor = "#F6E0BD";
+    document.querySelector(".image-size-control2").style.backgroundColor = "#F6E0BD";
+    document.querySelector(".image-size-control3 span").style.color = "#fff893";
+    document.querySelector(".image-size-control1 span").style.color = "#F6E0BD";
+    document.querySelector(".image-size-control2 span").style.color = "#F6E0BD";
   })
- 
- 
-
+  
+  
+  
     });
-}
+  }
 
 
 

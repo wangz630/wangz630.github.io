@@ -107,78 +107,99 @@ function showData() {
 
       
 
-      mapContainer.addEventListener("click", function(event) {
-            imageRight.style.display = "block";
-            location.style.display = "inline";
-            year.style.display = "inline";
-            functions.style.display = "inline";
-            scale.style.display = "inline";
-            locationBrief.style.display = "inline";
-            document.querySelector(".arrow3").style.display = "block";
-            document.querySelector(".image-size-control1").style.display = "block";
-            document.querySelector(".image-size-control2").style.display = "block";
-            document.querySelector(".image-size-control3").style.display = "block";
-    });
-    
-    function clearLeft(){
-      document.querySelector(".container").style.opacity ="0";
-      document.querySelector(".left-block").style.zIndex ="1";
-      document.querySelector(".left-block").style.backgroundColor ="#6A9DA3";
+        mapContainer.addEventListener("click", function(event) {
+          imageRight.style.display = "block";
+          location.style.display = "inline";
+          year.style.display = "inline";
+          functions.style.display = "inline";
+          scale.style.display = "inline";
+          locationBrief.style.display = "inline";
+          document.querySelector(".close-button").style.display = "block";
+          document.querySelector(".image-size-control1").style.display = "block";
+          document.querySelector(".image-size-control2").style.display = "block";
+          document.querySelector(".image-size-control3").style.display = "block";
+  });
+  
+  function clearLeft(){
+    document.querySelector(".container").style.opacity ="0";
+    document.querySelector(".left-block").style.zIndex ="1";
+    document.querySelector(".left-block").style.backgroundColor ="#6A9DA3";
+};
+
+function showLeft(){
+  if (mapContainer.classList.contains("japan")) {
+    mapContainer.style.display = "block";
+  } else {
+    mapContainer.style.display = "none";
   };
+  document.querySelector(".container").style.opacity ="1";
+  document.querySelector(".left-block").style.zIndex ="-1";
+  document.querySelector(".left-block").style.backgroundColor ="#597B80";
+  imageRight.style.display = "none";
+          location.style.display = "none";
+          year.style.display = "none";
+          functions.style.display = "none";
+          scale.style.display = "none";
+          locationBrief.style.display = "none";
+          document.querySelector(".close-button").style.display = "none";
+          document.querySelector(".image-size-control1").style.display = "none";
+          document.querySelector(".image-size-control2").style.display = "none";
+          document.querySelector(".image-size-control3").style.display = "none";
+};
 
-  function showLeft(){
-    if (mapContainer.classList.contains("japan")) {
-      mapContainer.style.display = "block";
-    } else {
-      mapContainer.style.display = "none";
-    };
-    document.querySelector(".container").style.opacity ="1";
-    document.querySelector(".left-block").style.zIndex ="-1";
-    document.querySelector(".left-block").style.backgroundColor ="#597B80";
-    imageRight.style.display = "none";
-            location.style.display = "none";
-            year.style.display = "none";
-            functions.style.display = "none";
-            scale.style.display = "none";
-            locationBrief.style.display = "none";
-            document.querySelector(".arrow3").style.display = "none";
-            document.querySelector(".image-size-control1").style.display = "none";
-            document.querySelector(".image-size-control2").style.display = "none";
-            document.querySelector(".image-size-control3").style.display = "none";
-  };
+var mapsAll = document.querySelectorAll(".map-container");
+mapsAll.forEach(function(map){
+  map.addEventListener("click", clearLeft);
+})
 
-  var mapsAll = document.querySelectorAll(".map-container");
-  mapsAll.forEach(function(map){
-    map.addEventListener("click", clearLeft);
-  })
+document.querySelector(".close-button").addEventListener("click", showLeft);
 
-  document.querySelector(".information-container").addEventListener("click", showLeft);
+document.querySelector(".image-size-control2").style.backgroundColor = "#fff893";
+document.querySelector(".image-size-control2 span").style.color = "#fff893";
 
-  document.querySelector(".image-size-control1").addEventListener("click", function () {
-    document.querySelector(".image-container").style.width= "150px";
-    document.querySelector(".image-container").style.width= "150px";
-    document.querySelector(".image-container").style.left= "54%";
-    document.querySelector(".image-container").style.top= "40%";
-  })
+document.querySelector(".image-size-control1").addEventListener("click", function () {
+  document.querySelector(".image-container").style.width= "150px";
+  document.querySelector(".image-container").style.width= "150px";
+  document.querySelector(".image-container").style.left= "54%";
+  document.querySelector(".image-container").style.top= "40%";
+  document.querySelector(".image-size-control1").style.backgroundColor = "#fff893";
+  document.querySelector(".image-size-control2").style.backgroundColor = "#F6E0BD";
+  document.querySelector(".image-size-control3").style.backgroundColor = "#F6E0BD";
+  document.querySelector(".image-size-control1 span").style.color = "#fff893";
+  document.querySelector(".image-size-control2 span").style.color = "#F6E0BD";
+  document.querySelector(".image-size-control3 span").style.color = "#F6E0BD";
+})
 
-  document.querySelector(".image-size-control2").addEventListener("click", function () {
-    document.querySelector(".image-container").style.width= "400px";
-    document.querySelector(".image-container").style.height= "400px";
-    document.querySelector(".image-container").style.left= "45%";
-    document.querySelector(".image-container").style.top= "25%";
-  })
- 
+document.querySelector(".image-size-control2").addEventListener("click", function () {
+  document.querySelector(".image-container").style.width= "400px";
+  document.querySelector(".image-container").style.height= "400px";
+  document.querySelector(".image-container").style.left= "45%";
+  document.querySelector(".image-container").style.top= "25%";
+  document.querySelector(".image-size-control2").style.backgroundColor = "#fff893";
+  document.querySelector(".image-size-control1").style.backgroundColor = "#F6E0BD";
+  document.querySelector(".image-size-control3").style.backgroundColor = "#F6E0BD";
+  document.querySelector(".image-size-control2 span").style.color = "#fff893";
+  document.querySelector(".image-size-control1 span").style.color = "#F6E0BD";
+  document.querySelector(".image-size-control3 span").style.color = "#F6E0BD";
+})
 
-  document.querySelector(".image-size-control3").addEventListener("click", function () {
-    document.querySelector(".image-container").style.width= "700px";
-    document.querySelector(".image-container").style.height= "600px";
-    document.querySelector(".image-container").style.left= "35%";
-    document.querySelector(".image-container").style.top= "10%";
-  })
- 
- 
 
-    });
+document.querySelector(".image-size-control3").addEventListener("click", function () {
+  document.querySelector(".image-container").style.width= "700px";
+  document.querySelector(".image-container").style.height= "600px";
+  document.querySelector(".image-container").style.left= "35%";
+  document.querySelector(".image-container").style.top= "10%";
+  document.querySelector(".image-size-control3").style.backgroundColor = "#fff893";
+  document.querySelector(".image-size-control1").style.backgroundColor = "#F6E0BD";
+  document.querySelector(".image-size-control2").style.backgroundColor = "#F6E0BD";
+  document.querySelector(".image-size-control3 span").style.color = "#fff893";
+  document.querySelector(".image-size-control1 span").style.color = "#F6E0BD";
+  document.querySelector(".image-size-control2 span").style.color = "#F6E0BD";
+})
+
+
+
+  });
 }
 
 

@@ -1,10 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
+
+
 @font-face {
     font-family: "Boutique";
     src: url("font/BoutiqueTRIAL-Regular.woff") format("woff");  
   }
-  
-
-@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
   
 
 
@@ -18,7 +21,7 @@ body{
 ul{
   font-size: 1.5rem;
   display: flex;
-  
+  margin-top: 25px;
   /* space-evenly/space-between/space-around/center */
 }
 
@@ -117,7 +120,7 @@ li{
 
 h1{
   font-size: 1.5rem;
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Dancing Script', cursive;
   font-weight: 100;
   position:fixed;
   bottom:10px;

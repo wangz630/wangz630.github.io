@@ -1,10 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
 @font-face {
     font-family: "Boutique";
     src: url("font/BoutiqueTRIAL-Regular.woff") format("woff");  
   }
-  
-
-@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
   
 
 
@@ -17,9 +18,8 @@ body{
 
 ul{
   display: flex;
-  Flex-wrap:wrap;
-  Justify-content:space-around;
   font-size: 1.5rem;
+  margin-top: 25px;
   /* space-evenly/space-between/space-around/center */
 }
 
@@ -63,7 +63,7 @@ li{
 
 h1{
   font-size: 1.5rem;
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Dancing Script', cursive;
   font-weight: 100;
   position:fixed;
   bottom:10px;
@@ -351,4 +351,190 @@ h1{
   transition: .2s;
 }
 
+@media only screen and (max-width:400px){
 
+  body{
+    height:100%;
+  }
+
+  .image-container{
+    display: none;
+  }
+
+  .line1{
+    position:fixed;
+    background-color: #F6E0BD;
+    width:.5px;
+    height:100%;
+    z-index: -1;
+    left:20px;
+    top:0;
+  }
+  
+  .line2{
+    position:fixed;
+    background-color: #F6E0BD;
+    width:.5px;
+    height:100%;
+    z-index: -1;
+    left:100px;
+    top:0;
+  }
+  
+  .line3{
+    position:fixed;
+    background-color: #F6E0BD;
+    width:.5px;
+    height:100%;
+    z-index: -1;
+    left:145px;
+    top:0;
+    display: none;
+  }
+  
+  .line4{
+    position:fixed;
+    background-color: #F6E0BD;
+    width:.5px;
+    height:100%;
+    z-index: -1;
+    left:180px;
+    top:0;
+  }
+  
+  .line5{
+    position:fixed;
+    background-color: #F6E0BD;
+    width:.5px;
+    height:100%;
+    z-index: -1;
+    left:260px;
+    top:0;
+    
+  }
+  
+  .line6{
+    position:fixed;
+    background-color: #F6E0BD;
+    width:.5px;
+    height:100%;
+    z-index: -1;
+    left:340px;
+    top:0;
+  }
+  
+  .line7{
+      display: none;
+  }
+  
+  .line8{
+      display: none;
+  }
+
+  ul{
+    display: flex;
+    font-size: 1.2rem;
+    margin-top: 15px;
+  }
+
+  .year-nav{
+    position:fixed;
+    left:5%;
+    font-family: 'Nunito', sans-serif;
+    text-decoration: none;
+    color:#F6E0BD;
+    z-index: 1;
+  }
+  
+  .location-nav{
+    position:fixed;
+    left:50%;
+    transform: translateX(-50%);
+    font-family: 'Nunito', sans-serif;
+    text-decoration: none;
+    color:#FF7676;
+    z-index: 1;
+  
+  }
+  
+  .scale-nav{
+    position:fixed;
+    color:#F6E0BD;
+    left: 83%;
+    font-family: 'Nunito', sans-serif;
+    text-decoration: none;
+    z-index: 1;
+  }
+
+  #location-container{
+    font-size:2rem;
+  }
+
+
+  #australia-nav{
+    position:absolute;
+    left:20px;
+    top:70px;
+  }
+  
+  #brazil-nav{
+    position:absolute;
+    left:250px;
+    top:110px;
+  }
+  
+  #china-nav{
+    position:absolute;
+    left:120px;
+    top:160px;
+  }
+  
+  #italy-nav{
+    position:absolute;
+    left:260px;
+    top:210px;
+  }
+  
+  #japan-nav{
+    position:absolute;
+    left:30px;
+    top:240px;
+  }
+  
+  #russia-nav{
+    position:absolute;
+    left:80px;
+    top:310px;
+  }
+  
+  #singapore-nav{
+    position:absolute;
+    left:180px;
+    top:370px;
+  }
+  
+  #southkorea-nav{
+    position:absolute;
+    left:50px;
+    top:440px;
+  }
+  
+  #uae-nav{
+    position:absolute;
+    left:150px;
+    top:510px;
+  }
+  
+  #usa-nav{
+    position:absolute;
+    left:260px;
+    top:560px;
+
+}
+
+h1{
+  font-size: .8rem;
+  left:50%;
+}
+
+}
