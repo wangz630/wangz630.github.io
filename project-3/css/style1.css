@@ -358,7 +358,7 @@ h1{
   }
 
   .image-container{
-    /* display: none; */
+    display: none;
   }
 
   .line1{
