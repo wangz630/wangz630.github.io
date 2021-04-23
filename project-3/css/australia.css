@@ -161,6 +161,12 @@ p{
   object-fit: cover;
   /* margin-left:16vw; */
   margin:0;
+  opacity:.7;
+  transition:.2s;
+}
+
+.image-left:hover{
+  opacity:1;
 }
 
 .arrow1{
