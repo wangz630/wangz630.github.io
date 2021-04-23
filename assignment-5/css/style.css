@@ -240,7 +240,7 @@ img{
     position:absolute;
     font-size:3rem;
     top:620px;
-    right:400px;
+    right:27vw;
     color:white;
     cursor:pointer;
     display: none;
@@ -249,5 +249,5 @@ img{
 .close-button:hover{
     font-size:4rem;
     top:610px;
-    right:410px;
+    right:26vw;
 }
