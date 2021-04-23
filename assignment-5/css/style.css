@@ -1,0 +1,253 @@
+@import url('https://fonts.googleapis.com/css2?family=Goudy+Bookletter+1911&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&display=swap');
+
+body{
+    width:100%;
+    height: 1024px;
+    margin:0;
+    padding:0;
+    font-family: 'Goudy Bookletter 1911', serif;
+    color:rgb(122, 50, 50);
+}
+
+#my-background{
+    position:fixed;
+    width:100%;
+    height: 1024px;
+    margin:0;
+    padding:0;
+}
+
+h1{
+    position:absolute;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size:3rem;
+    top:1%;
+    left:50%;
+    transform: translateX(-50%);
+    padding:0;
+    color:rgb(122, 50, 50);
+}
+
+h2, h3, h4{
+    font-size:1.5rem;
+    margin:30px 0;
+    margin-left:20px;
+}
+
+#recipe-container{
+    position:absolute;
+    width:900px;
+    height:300px;
+    left:50%;
+    transform: translateX(-50%);
+    top:20%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.recipe1{
+    background-color: white;
+    opacity: .7;
+    width:260px;
+    height:400px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.recipe1:hover{
+    box-shadow:5px 5px 5px rgb(253, 105, 105);
+    opacity:1;
+}
+
+.recipe1.active{
+    background-color:rgb(87, 45, 45);
+}
+
+.recipe2{
+    background-color: white;
+    opacity: .7;
+    width:260px;
+    height:400px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.recipe2:hover{
+    box-shadow:5px 5px 5px rgb(253, 105, 105);
+    opacity:1;
+}
+
+.recipe2.active{
+    background-color:rgb(87, 45, 45);
+}
+
+.recipe3{
+    background-color: white;
+    opacity: .7;
+    width:260px;
+    height:400px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.recipe3:hover{
+    box-shadow:5px 5px 5px rgb(253, 105, 105);
+    opacity:1;
+}
+
+.recipe3.active{
+    background-color:rgb(87, 45, 45);
+}
+
+img{
+    width: 260px;
+    height:200px;
+    object-fit: cover;
+}
+
+.ingredient1, .ingredient2, .ingredient3{
+    display: none;
+    font-size: 1.1rem;
+    font-family: 'Goudy Bookletter 1911', serif;
+    color:white;
+    
+    margin-left:20px;
+    height:200px;
+    width:200px;
+}
+
+
+.perspective1 {
+    display: none;
+    position:absolute;
+    perspective: 76em;
+    perspective-origin: 50% 50px;
+    width: 700px;
+    top:630px;
+    left:50%;
+    transform: translateX(-50%);
+    font-family: 'Goudy Bookletter 1911', serif;
+    font-weight: 100;
+    color: #fff;
+  }
+  input {
+    display: none;
+  }
+  .tab {
+    position: absolute;
+    width: 80px;
+    height: 70px;
+    background: pink;
+    right: 84px;
+    font-size: 1.5rem;
+    line-height: 70px;
+    text-align: center;
+    opacity:.7;
+    cursor: pointer;
+  }
+    .tab:hover{
+        opacity:1;
+    }
+    .tab:nth-child(1) { 
+      top: -5px;
+      background: #b67575;
+    }
+    .tab:nth-child(2) {
+      top: 69px;
+      background: #f1b65c;
+    }
+    .tab:nth-child(3) {
+      top: 69px;
+      right:0;
+      background: #df5273;
+    }
+    .tab:nth-child(4) {
+        top:142px;
+        right:0;
+        background: #350b15;
+      }
+  
+  
+  .cube {
+    position:absolute;
+    width: 350px;
+    height: 200px;
+    transform-origin: 0 100px;
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease-in;
+  }
+  .tab-content {
+    font-family: 'Goudy Bookletter 1911', serif;
+    width: 500px;
+    height: 200px;
+    position: absolute;
+  }
+    h5 {
+      margin:0;
+      margin-top:10px;
+      margin-left:20px;
+      font-size: 25px;
+      font-family: 'Goudy Bookletter 1911', serif;
+      letter-spacing: 1px;
+    }
+    p {
+      font-size: 1.2rem;
+      margin:5px 20px 0 20px;
+    }
+    .tab-content:nth-child(2) {
+      transform: rotateX(-90deg)
+                 translateY(100px);
+      transform-origin: bottom center;
+      background: #f1b65c;
+    }
+    .tab-content:nth-child(1) {
+        transform: translateZ(100px);
+        transform-origin: top left;
+        background: #b67575;
+      }
+    .tab-content:nth-child(3) {
+      transform: rotateX(180deg)
+                 translateZ(100px)
+                 translateY(200px);
+      transform-origin: bottom center;
+      background: #df5273;
+    }
+    .tab-content:nth-child(4) {
+        transform: rotateX(90deg)
+                   translateZ(200px)
+                   translateY(100px);
+        transform-origin: bottom center;
+        background: #58161b;
+      }  
+
+    #tab-step1:checked ~ .cube {
+        transform: rotateX(0deg);
+      }
+      #tab-step2:checked ~ .cube {
+        transform: rotateX(90deg);
+      }
+      #tab-step3:checked ~ .cube {
+        transform: rotateX(180deg);
+      }
+      #tab-step4:checked ~ .cube {
+        transform: rotateX(270deg);
+      }
+
+.close-button{
+    position:absolute;
+    font-size:3rem;
+    top:620px;
+    right:420px;
+    color:white;
+    cursor:pointer;
+    display: none;
+}
+
+.close-button:hover{
+    font-size:4rem;
+    top:610px;
+    right:410px;
+}

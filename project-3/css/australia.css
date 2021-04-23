@@ -27,6 +27,7 @@ letter-spacing: .4px;
 left:50%;
 transform: translateX(-50%);
 color:#F9C0A0;
+z-index: 2;
 }
 
 h3{
@@ -40,6 +41,7 @@ letter-spacing: .4px;
 left:50%;
 transform: translateX(-50%);
 color:#F9C0A0;
+z-index: 2;
 }
 
 html, body {
@@ -53,43 +55,73 @@ html, body {
 
 .container{
   background-color: #597B80;
-  float: left;
-  width: 15%;
-  height: 65%;
+  
   overflow: auto;
   box-sizing: border-box;
-  padding: 0.4em;
+  padding: 0em;
   padding-top:0px;
   padding-bottom:0px;
-  margin-top:130px;
+  margin-top:0px;
   cursor:pointer;
   transition: 0.3s;
+}
+
+.container{
+  position:fixed;
+  width: 350px;
+  height: 1200px;
+  top:24%;
+  left:0;
+  padding-top:230px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.container > div {
+  width: 17vw;
+  height: 17vw;
+  margin:50px 0 0 0;
+}
+
+.container{
+  z-index: 2;
+  transform: rotate(-90deg);
+  transform-origin: right top;
+}
+
+.container > div {
+  transform: rotate(90deg);
+  transform-origin: right top;
+}
+
+.container {
+  transform:rotate(-90deg) translateY(-180px);
 }
 
 .left-block{
   background-color: #597B80;
   position:fixed;
-  top:0;
+  top:0px;
   left:0;
-  width: 15%;
+  width: 100%;
   height: 100%;
   z-index: -1;
   /* display: none; */
 }
 
 #right-detail{
-  float: left;
-  width: 85%;
+  float: right;
+  width: 0%;
   background: #6A9DA3;
   height: 150%;
   overflow: auto;
   box-sizing: border-box;
-  padding: 0.4em;
+  padding: 0;
 }
 
 /* width */
 ::-webkit-scrollbar {
-  width: 3px;
+  width: 0px;
 }
 
 /* Track */
@@ -99,7 +131,7 @@ html, body {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #F6E0BD;
+  background: #fffbbe;
 }
 
 /* Handle on hover */
@@ -109,7 +141,7 @@ html, body {
 
 
 .map-container{
-  margin:20px;
+  
   display: none;
 }
 
@@ -124,29 +156,33 @@ p{
 }
 
 .image-left{
-  width:7vw;
-  height:7vw;
+  width:17vw;
+  height:17vw;
   object-fit: cover;
-  margin-left:2vw;
-  margin-top:10px;
+  /* margin-left:16vw; */
+  margin:0;
 }
 
 .arrow1{
 position:fixed;
-width:3vw;
+width:4vw;
 height:auto;
 margin-top:0px;
-top:90px;
-left:5.5vw;
+top:47%;
+left:4vw;
+z-index: 2;
+transform: rotate(-90deg);
 }
 
 .arrow2{
 position:fixed;
-width:3vw;
+width:4vw;
 height:auto;
-bottom:90px;
+top:47%;
 margin-top:0px;
-left:5.5vw;
+right:4vw;
+transform: rotate(-90deg);
+z-index: 2;
 }
 
 .close-button{
@@ -276,7 +312,10 @@ z-index: 2;
   object-fit:cover;
   width:100%;
   height:100%;
+  z-index: 2;
 }
+
+
 
 
 

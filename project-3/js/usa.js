@@ -114,25 +114,33 @@ function showData() {
           functions.style.display = "inline";
           scale.style.display = "inline";
           locationBrief.style.display = "inline";
+          // mapContainer.style.display = "block";
+          document.querySelector(".arrow1").style.display = "none";
+          document.querySelector(".arrow2").style.display = "none";
           document.querySelector(".image-container").style.display = "block";
           document.querySelector(".close-button").style.display = "block";
           document.querySelector(".image-size-control1").style.display = "block";
           document.querySelector(".image-size-control2").style.display = "block";
           document.querySelector(".image-size-control3").style.display = "block";
+
+    
   });
   
   function clearLeft(){
     document.querySelector(".container").style.opacity ="0";
+    document.querySelector(".container").style.zIndex ="-1";
     document.querySelector(".left-block").style.zIndex ="1";
     document.querySelector(".left-block").style.backgroundColor ="#6A9DA3";
 };
 
 function showLeft(){
-  if (mapContainer.classList.contains("USA")) {
+  if (mapContainer.classList.contains("usa")) {
     mapContainer.style.display = "block";
   } else {
     mapContainer.style.display = "none";
   };
+  document.querySelector(".image-container").style.display = "none";
+  document.querySelector(".container").style.zIndex ="2";
   document.querySelector(".container").style.opacity ="1";
   document.querySelector(".left-block").style.zIndex ="-1";
   document.querySelector(".left-block").style.backgroundColor ="#597B80";
@@ -142,7 +150,9 @@ function showLeft(){
           functions.style.display = "none";
           scale.style.display = "none";
           locationBrief.style.display = "none";
-          document.querySelector(".image-container").style.display = "none";
+          // mapContainer.style.display = "none";
+          document.querySelector(".arrow1").style.display = "block";
+          document.querySelector(".arrow2").style.display = "block";
           document.querySelector(".close-button").style.display = "none";
           document.querySelector(".image-size-control1").style.display = "none";
           document.querySelector(".image-size-control2").style.display = "none";

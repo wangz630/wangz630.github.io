@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>recipe</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.21/dist/vanta.fog.min.js"></script>
+    
+    <script src="js/global.js" defer></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="my-background"></div>
+    <h1>Chinese Food Recipes</h1>
+    
+    <div class="perspective1">
+        <label class="tab" for="tab-step1">step1</label>
+        <label class="tab" for="tab-step2">step2</label>
+        <label class="tab" for="tab-step3">step3</label>
+        <label class="tab" for="tab-step4">step4</label>
+        <input type="radio" name="tabs" id="tab-step1">
+        <input type="radio" name="tabs" id="tab-step2">
+        <input type="radio" name="tabs" id="tab-step3">
+        <input type="radio" name="tabs" id="tab-step4"> 
+
+        <div class="cube">
+            <div class="tab-content">
+              <h5 class="step1"></h5>
+              <p class="step-content1"></p>
+            </div>
+            <div class="tab-content">
+                <h5 class="step2"></h5>
+                <p class="step-content2"></p>
+              </div>
+              <div class="tab-content">
+                <h5 class="step3"></h5>
+                <p class="step-content3"></p>
+              </div>
+              <div class="tab-content">
+                <h5 class="step4"></h5>
+                <p class="step-content4"></p>
+              </div>
+            </div>
+
+          </div>
+          <span class="close-button">&#10006</span>
+          
+
+    <div id="recipe-container">
+        <div class="recipe1"> 
+            <h2>Meatball Ramen</h2>
+            <img class="recipe-image" src="image/recipe1.jpg" alt="Mongolian Meatball Ramen">
+            <pre class="ingredient1"></pre>
+        </div>
+        <div class="recipe2"> 
+            <h3>Baked Tofu</h3>
+            <img class="recipe-image" src="image/recipe2.jpg" alt="Baked Tofu">
+            <pre class="ingredient2"></pre>
+        </div>
+        <div class="recipe3"> 
+            <h4>Scallion Pancakes</h4>
+            <img class="recipe-image" src="image/recipe3.jpg" alt="Scallion Pancakes">
+            <pre class="ingredient3"></pre>
+        </div>
+    </div>
+
+    
+    
+    
+</body>
+</html>

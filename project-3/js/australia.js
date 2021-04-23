@@ -137,30 +137,20 @@ function showData() {
             scale.style.display = "inline";
             locationBrief.style.display = "inline";
             // mapContainer.style.display = "block";
+            document.querySelector(".arrow1").style.display = "none";
+            document.querySelector(".arrow2").style.display = "none";
             document.querySelector(".image-container").style.display = "block";
             document.querySelector(".close-button").style.display = "block";
             document.querySelector(".image-size-control1").style.display = "block";
             document.querySelector(".image-size-control2").style.display = "block";
             document.querySelector(".image-size-control3").style.display = "block";
 
-      // function clearMaps() {
-      //   image.classList.remove("active");
-      //   }
-
-      //   maps.forEach((map) => {
-      //     image.addEventListener("click", (event) => {
-      //   // remove all photos first
-      //       clearMaps();
-      //     });
-
-      //        mapContainer.addEventListener("click", function(event) {
-      //         image.classList.add("active");
-      //        })
       
     });
     
     function clearLeft(){
       document.querySelector(".container").style.opacity ="0";
+      document.querySelector(".container").style.zIndex ="-1";
       document.querySelector(".left-block").style.zIndex ="1";
       document.querySelector(".left-block").style.backgroundColor ="#6A9DA3";
   };
@@ -172,6 +162,7 @@ function showData() {
       mapContainer.style.display = "none";
     };
     document.querySelector(".image-container").style.display = "none";
+    document.querySelector(".container").style.zIndex ="2";
     document.querySelector(".container").style.opacity ="1";
     document.querySelector(".left-block").style.zIndex ="-1";
     document.querySelector(".left-block").style.backgroundColor ="#597B80";
@@ -182,6 +173,8 @@ function showData() {
             scale.style.display = "none";
             locationBrief.style.display = "none";
             // mapContainer.style.display = "none";
+            document.querySelector(".arrow1").style.display = "block";
+            document.querySelector(".arrow2").style.display = "block";
             document.querySelector(".close-button").style.display = "none";
             document.querySelector(".image-size-control1").style.display = "none";
             document.querySelector(".image-size-control2").style.display = "none";
