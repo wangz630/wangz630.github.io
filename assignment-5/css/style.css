@@ -23,7 +23,7 @@ h1{
     position:absolute;
     font-family: 'Josefin Sans', sans-serif;
     font-size:3rem;
-    top:1%;
+    top:3%;
     left:50%;
     transform: translateX(-50%);
     padding:0;
@@ -240,7 +240,7 @@ img{
     position:absolute;
     font-size:3rem;
     top:620px;
-    right:420px;
+    right:400px;
     color:white;
     cursor:pointer;
     display: none;
