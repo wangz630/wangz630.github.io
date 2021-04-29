@@ -105,8 +105,8 @@ body {
     width: 97%;
     height:75%;
     top:1vw;
-    left:50%;
-    transform: translateX(-50%);
+    left:0%;
+    /* transform: translateX(-50%); */
     z-index: -1;
 
   }
