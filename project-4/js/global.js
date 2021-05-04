@@ -1,3 +1,6 @@
+//music visualizer
+
+// keys & notes asset
 var keyMap = {
     'C4': {
       'keyboard': 'A',
@@ -291,7 +294,7 @@ var keyMap = {
 
   
  
-// Generate shapes for each note
+// Generate shapes for each note repeatedly
   var keys = document.querySelectorAll('.key');
   document.addEventListener("keypress", function(){
 
@@ -577,7 +580,9 @@ var keyMap = {
     });
     
   })
-  
+
+
+// remove all the shapes on the page  
   document.addEventListener("keydown", function(){
     
       if (event.key == "Enter"){
@@ -586,6 +591,21 @@ var keyMap = {
         document.querySelector("#note-indicator").classList.toggle("hide");
       }else if (event.keyCode == 8){
         console.log("backspace");
+        var randomColor = [];
+        index = 0;
+        randomColor[0] = '#63617B';
+        randomColor[1] = '#6A4D59';
+        randomColor[2] = '#667772';
+        randomColor[3] = '#736559';
+        randomColor[4] = '#6A446D';
+        randomColor[5] = '#762B42';
+        randomColor[6] = '#453747';
+        randomColor[7] = '#51657D';
+        
+        
+        index = Math.floor(Math.random() * randomColor.length);
+        console.log(randomColor.length);
+        document.querySelector('body').style.backgroundColor = ""+randomColor[index]+"";
         var removeC4 = document.querySelectorAll('.shapec4');
     removeC4.forEach((e)=>{
       e.remove();
@@ -654,6 +674,8 @@ var keyMap = {
     removeE5.forEach((e)=>{
       e.remove();
     })
+    // document.body.style.backgroundColor ="#6A4D59";
+    // document.querySelector('#note-indicator').style.backgroundColor = '#6A4D59';
       }
     })
   
