@@ -144,14 +144,33 @@ p {
   touch-action: none;
   user-select: none;
 }
-.emoji-container:active {
+/* .emoji-container:active {
   background-color: rgba(168, 218, 220, 1.00);
-}
+} */
 .emoji-container:hover {
   cursor: pointer;
   border-width: 20px;
 }
 
-
-
+.emoji1{
+  background-color: antiquewhite;
+}
+.emoji2{
+  background-color: rgb(240, 164, 65);
+}
+.emoji3{
+  background-color: rgb(24, 93, 139);
+}
+.emoji4{
+  background-color: rgb(44, 185, 74);
+}
+.emoji5{
+  background-color: rgb(211, 37, 133);
+}
+.emoji6{
+  background-color: rgb(87, 104, 88);
+}
+.emoji7{
+  background-color: rgb(199, 54, 54);
+}
 

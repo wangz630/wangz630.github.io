@@ -78,9 +78,9 @@ console.log("hello");
 // click anywhere on the page, emoji will shows up
 // the description also will shows up
 
-function randomEmoji() {
-return 'rgb(${Math.floor(Math.random()*256)}, ${Math.floor(Math.random()*256)},${Math.floor(Math.random()*256)})';
-}
+// function randomEmoji() {
+// return 'rgb(${Math.floor(Math.random()*256)}, ${Math.floor(Math.random()*256)},${Math.floor(Math.random()*256)})';
+// }
 
 // emoji description 
 // // array with initial values
@@ -203,7 +203,7 @@ const emojiList = [
 
 
 // });
-var clickable = document.querySelector('p');
+// var clickable = document.querySelector('p');
 // clickable.addEventListener("click", function(e) {
 // var emojiContainer = document.createElement("div");
 // emojiContainer.classList.add('emoji-container');
@@ -216,10 +216,34 @@ var emojiContainer = document.querySelectorAll(".emoji-container");
 emojiContainer.forEach((emoji)=>{
   emoji.style.left = (95*Math.random())+'%';
   emoji.style.top=(95*Math.random()) +'%';
+  emoji.style.display = "none";
 })
 
+// document.querySelectorAll(".emoji-container").style.display = "none";
+// document.addEventListener("click",function(){
+  // document.querySelector(".emoji1").style.display = "block";
+// })
 
-
+document.querySelector("p").addEventListener("click",showEmoji);
+        function showEmoji(){
+          var randomEmoji = [];
+        index = 0;
+        randomEmoji[0] = 'emoji1';
+        randomEmoji[1] = 'emoji2';
+        randomEmoji[2] = 'emoji3';
+        randomEmoji[3] = 'emoji4';
+        randomEmoji[4] = 'emoji5';
+        randomEmoji[5] = 'emoji6';
+        randomEmoji[6] = 'emoji7';
+        
+        
+        
+        index = Math.floor(Math.random() * randomEmoji.length);
+        console.log(randomEmoji.length);
+      
+          document.querySelector("."+randomEmoji[index]+"").style.display = "block";
+        }
+       
 
 // drag 
 var dragItems = document.querySelectorAll(".emoji-container");
