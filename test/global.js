@@ -1,67 +1,3 @@
-// var dragItem = document.querySelector("#item");
-// var container = document.querySelector("#container");
-
-// var active = false;
-// var currentX;
-// var currentY;
-// var initialX;
-// var initialY;
-// var xOffset = 0;
-// var yOffset = 0;
-
-// dragItem.addEventListener("touchstart", dragStart, false);
-// dragItem.addEventListener("touchend", dragEnd, false);
-// container.addEventListener("touchmove", drag, false);
-
-// dragItem.addEventListener("mousedown", dragStart, false);
-// dragItem.addEventListener("mouseup", dragEnd, false);
-// dragItem.addEventListener("mousemove", drag, false);
-
-// function dragStart(e) {
-//   if (e.type === "touchstart") {
-//     initialX = e.touches[0].clientX - xOffset;
-//     initialY = e.touches[0].clientY - yOffset;
-//   } else {
-//     initialX = e.clientX - xOffset;
-//     initialY = e.clientY - yOffset;
-//   }
-
-//   if (e.target === dragItem) {
-//     active = true;
-//   }
-// }
-
-// function dragEnd(e) {
-//   initialX = currentX;
-//   initialY = currentY;
-
-//   active = false;
-// }
-
-// function drag(e) {
-//   if (active) {
-  
-//     e.preventDefault();
-  
-//     if (e.type === "touchmove") {
-//       currentX = e.touches[0].clientX - initialX;
-//       currentY = e.touches[0].clientY - initialY;
-//     } else {
-//       currentX = e.clientX - initialX;
-//       currentY = e.clientY - initialY;
-//     }
-
-//     xOffset = currentX;
-//     yOffset = currentY;
-
-//     setTranslate(currentX, currentY, dragItem);
-//   }
-// }
-
-// function setTranslate(xPos, yPos, el) {
-//   el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
-// }
-
 // chinese font from adobe 
 (function(d) {
   var config = {
@@ -77,10 +13,6 @@ console.log("hello");
 
 // click anywhere on the page, emoji will shows up
 // the description also will shows up
-
-// function randomEmoji() {
-// return 'rgb(${Math.floor(Math.random()*256)}, ${Math.floor(Math.random()*256)},${Math.floor(Math.random()*256)})';
-// }
 
 // emoji description 
 // // array with initial values
@@ -169,91 +101,48 @@ const emojiList = [
 ];
 
 
-// var clickable = document.getElementById('container');
-// var clickable = document.querySelector('p');
-// clickable.addEventListener("click", function(e) {
-// var emojiContainer = document.createElement("div");
-// emojiContainer.classList.add('emoji-container');
-// document.querySelector(".emoji-box").append(emojiContainer);
-// var emoji = document.createElement('span');
-// var description = document.createElement('description');
-// var rand = Math.floor(Math.random() * emojiList.length);
-// emoji.append(emojiList[rand].emoji);
-// description.append(emojiList[rand].description);
-
-// emojiContainer.style.position = "absolute";
-
-// emojiContainer.style.emoji = randomEmoji();
-
-// emojiContainer.style.left = e.pageX + "px";
-// emojiContainer.style.top = e.pageY + "px";
-// emojiContainer.style.transition = "all 0.9s";
-
-// emojiContainer.append(emoji, description);
-
-// setTimeout(function() {
-//   emojiContainer.style.opacity = "1";
-//   emojiContainer.style.transform = "translateY(-50px) scale(1.8)";
-// }, 800);
-
-// setTimeout(function() {
-//   emojiContainer.style.opacity = "1";
-//   emojiContainer.style.transform = "translateY(-100px) scale(0.8)";
-// }, 800);
-
-
-// });
-// var clickable = document.querySelector('p');
-// clickable.addEventListener("click", function(e) {
-// var emojiContainer = document.createElement("div");
-// emojiContainer.classList.add('emoji-container');
-// document.querySelector(".emoji-box").append(emojiContainer);
-// emoji.style.left = (95*Math.random())+'%';
-//   emoji.style.top=(95*Math.random()) +'%';
-// })
-
 var emojiContainer = document.querySelectorAll(".emoji-container");
 emojiContainer.forEach((emoji)=>{
-  emoji.style.left = (95*Math.random())+'%';
-  emoji.style.top=(95*Math.random()) +'%';
+  emoji.style.left = (60*Math.random())+'%';
+  emoji.style.top=(60*Math.random()) +'%';//change the scale of where the emoji show up
   emoji.style.display = "none";
 })
 
-// document.querySelectorAll(".emoji-container").style.display = "none";
-// document.addEventListener("click",function(){
-  // document.querySelector(".emoji1").style.display = "block";
-// })
 
-document.querySelector("p").addEventListener("click",showEmoji);
-        function showEmoji(){
-          var randomEmoji = [];
-        index = 0;
-        randomEmoji[0] = 'emoji1';
-        randomEmoji[1] = 'emoji2';
-        randomEmoji[2] = 'emoji3';
-        randomEmoji[3] = 'emoji4';
-        randomEmoji[4] = 'emoji5';
-        randomEmoji[5] = 'emoji6';
-        randomEmoji[6] = 'emoji7';
-        
-        
-        
-        index = Math.floor(Math.random() * randomEmoji.length);
-        console.log(randomEmoji.length);
+var randomEmoji = [];
+index = 0;
+randomEmoji[0] = 'emoji1';
+randomEmoji[1] = 'emoji2';
+randomEmoji[2] = 'emoji3';
+randomEmoji[3] = 'emoji4';
+randomEmoji[4] = 'emoji5';
+randomEmoji[5] = 'emoji6';
+randomEmoji[6] = 'emoji7';
+randomEmoji[7] = 'emoji8';
+randomEmoji[8] = 'emoji9';
+randomEmoji[9] = 'emoji10';
+randomEmoji[10] = 'emoji11';
+//add more Emojis here
+
+
+document.querySelector('p').addEventListener("click",showEmoji); //change where to click to trigger the event
+
+function showEmoji(){       
+    
+    console.log(randomEmoji.length);
       
-          document.querySelector("."+randomEmoji[index]+"").style.display = "block";
-        }
-       
+    document.querySelector("."+randomEmoji[index]+"").style.display = "block";
+
+    // index = Math.floor(Math.random() * randomEmoji.length); if you want emoji randomly show up
+    index = index + 1;
+    
+    return index;
+}
 
 // drag 
 var dragItems = document.querySelectorAll(".emoji-container");
-
-
-
-
    var container = document.querySelector(".emoji-box");
     dragItems.forEach((dragItem)=>{
-      // if(dragItem.classList.contains("pressed")){
     var active = false;
     var currentX;
     var currentY;
@@ -318,34 +207,14 @@ var dragItems = document.querySelectorAll(".emoji-container");
   });
    
 
-//from bilibili-drag
-
-// var box = document.getElementById("box");
-// box.onmousedown = function(event) {
-//   var event = event;
-//   var pageX = event.pageX;
-//   var pageY = event.pageY;
-//   var boxX = pageX - box.offsetLeft;
-//   var boxY = pageY - box.offsetTop;
-
-//   document.onmousemove = function(event) {
-//     var event = event;
-  
-//     var pageX = event.pageX;
-//     var pageY = event.pageY;
-//     box.style.left = pageX - boxX + "px";
-//     box.style.top = pageY - boxY + "px";
-//   }
-// }
-//   document.onmouseup = function() {
-//     document.onmousemove = null;
-//   }
-
-
 
 // clear emoji button 
 function myFunction() {
-while (document.querySelectorAll('.emoji-container').length > 0) {
-  document.querySelector('.emoji-container').remove();
+if (emojiContainer.length > 0) {
+  emojiContainer.forEach((e)=>{
+    e.style.display = "none";
+    index = 0;
+  })
+
 }
 }
