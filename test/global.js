@@ -132,7 +132,6 @@ function showEmoji(){
     console.log(randomEmoji.length);
       
     document.querySelector("."+randomEmoji[index]+"").style.display = "block";
-
     // index = Math.floor(Math.random() * randomEmoji.length); if you want emoji randomly show up
     index = index + 1;
     

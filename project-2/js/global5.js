@@ -166,26 +166,5 @@ window.addEventListener("load", function() {
                        
                         text6.addEventListener('click', showImage);
 
-                        var box7=document.getElementById("box7");
-                        var text7=document.getElementById("text7");
-                    
-                    
-                        function blockFade7(){
-                            box7.style.opacity = 0;
-                        }
-                        function sizeSmaller7(){
-                            circle7.style.width='90px';
-                        }
-                        
-                        function sizeBigger7(){
-                            circle7.style.width='160px';
-                        }
-                    
-                            text7.addEventListener('mouseover', sizeBigger7);
-                            text7.addEventListener('mouseout', sizeSmaller7);
-                            text7.addEventListener('mousedown', sizeSmaller7);
-                            text7.addEventListener('mouseup', blockFade7);
-                
-                           
-                            text7.addEventListener('click', showImage);
+
 })

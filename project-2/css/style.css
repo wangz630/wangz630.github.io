@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@300&display=swap');
+
 @font-face {
   font-family: "Chronicle";
   src: url("font/ChronicleTextG1-Roman.woff") format("woff");  
@@ -54,7 +57,7 @@
   h3{
       position:fixed;
       font-size: 30px;
-      font-family: 'Landmark', sans-serif;
+      font-family: 'Alegreya Sans', sans-serif;
       font-weight: normal;
       margin: 0;
       padding: 0;
@@ -73,6 +76,7 @@
       top:150px;
       font-size:24px;
       font-family: 'Chronicle', serif;
+      line-height: 37px;
       width:1000px;
       color:white;
   }
@@ -81,7 +85,7 @@
       font-size:36px;
       text-decoration: none;
       color:white;
-      font-family: 'Landmark', sans-serif;
+      font-family: 'Alegreya Sans', sans-serif;
       transition-duration: 0.2s;
   }
 

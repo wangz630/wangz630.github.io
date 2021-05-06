@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@300&display=swap');
 
 @font-face {
     font-family: "Chronicle";
@@ -14,7 +14,7 @@
       position:fixed;
       left:40vw;
       top:10px;
-      font-family: 'Landmark', sans-serif;
+      font-family: 'Alegreya Sans', sans-serif;
       font-weight: normal;
       font-size: 2em;
       z-index: 2;
@@ -31,7 +31,7 @@
   
     .text-container{
         margin:0 auto;
-        height:1750px;
+        height:2600px;
     }
   
     p{
@@ -42,7 +42,7 @@
         font-family: 'Chronicle', serif;
         font-style: normal;
         font-weight: 325;
-        line-height: 45px;
+        line-height: 30px;
         width:300px;
         color:black;
     }
@@ -58,7 +58,7 @@
       border:none;
       background-color:transparent;
       font-size: 36px;
-      font-family: 'Landmark', serif;
+      font-family: 'Alegreya Sans', sans-serif;
       font-weight: normal;
       margin:20px 30px;
       color:black;
@@ -81,7 +81,7 @@ a{
     color:black;
     margin-left:300px;
     font-size: 2em;
-    font-family: 'Landmark', sans-serif;
+    font-family: 'Alegreya Sans', sans-serif;
     font-weight: normal;
     text-decoration: none;
     transition-duration: 0.2s;
@@ -92,9 +92,10 @@ a:hover{
 }
 
 #link{
-    font-size: 40px;
-    font-family: "Landmark", sans-serif;
+    font-size: 50px;
+    font-family: 'Alegreya Sans', sans-serif;
     transition-duration: 0.5s;
+    cursor: pointer;
   }
   
   #link:hover{
@@ -133,7 +134,7 @@ a:hover{
   #link{
     font-size: 40px;
     line-height: 40px;
-    font-family: "Landmark", sans-serif;
+    font-family: 'Alegreya Sans', sans-serif;
     transition-duration: 0.5s;
     text-decoration: underline black 1px;
   }

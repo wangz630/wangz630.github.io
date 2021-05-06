@@ -53,11 +53,13 @@ button {
 } */
 
 span {
-    text-align: center;
+    
     position: relative;
     user-select: none;
+    left:-3%;
+    
     font-size:10vw;
-    margin: auto;
+    margin: 0;
     z-index: -1;
 } 
 
@@ -96,7 +98,8 @@ p {
   width: 200px;
   height: 300px;
   background-color:white;
-  opacity:.5;
+  
+
 }
 
 

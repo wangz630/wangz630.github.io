@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@300&display=swap');
 
 @font-face {
     font-family: "Chronicle";
@@ -13,7 +13,7 @@
     body{
     margin:0;
     transition-duration: 0.2s;
-    height:2450px;
+    height:2350px;
     }
   
     h1{
@@ -22,7 +22,7 @@
         display: block;
         left:40vw;
         font-size: 30px;
-        font-family: "Landmark", sans-serif;
+        font-family: 'Alegreya Sans', sans-serif;
         font-weight: 300;
     }
 
@@ -31,16 +31,16 @@
         background-color:black;
         top:150px;
         left:12vw;
-        width:500px;
-        height:200px;
-        z-index: -1;
+        width:1140px;
+        height:160px;
         transition-duration: 0.5s;
+        z-index: -1;
     }
 
     #circle1{
         position:relative;
-        top:50px;
-        left:14vw;
+        top:30px;
+        left:32vw;
         width:80px;
         z-index: -1;
         animation-name: circle1;
@@ -51,13 +51,13 @@
     }
 
         @keyframes circle1 {
-        0% {top: 50px; }
-        20% {top: 60px; }
-        40% {top: 50px; }
-        60% {top: 60px; }
-        80% {top: 50px; }
-        90% {top: 60px;}
-        100% {top: 50px;}
+        0% {top: 30px; }
+        20% {top: 40px; }
+        40% {top: 30px; }
+        60% {top: 40px; }
+        80% {top: 30px; }
+        90% {top: 40px;}
+        100% {top: 30px;}
         }
 
    
@@ -66,325 +66,178 @@
     #box2{
         position:absolute;
         background-color:black;
-        top:150px;
-        left:53vw;
-        width:500px;
-        height:700px;
-        z-index: -1;
+        top:340px;
+        left:12vw;
+        width:1140px;
+        height:240px;
         transition-duration: 0.5s;
+        z-index: -1;
     }
 
     #circle2{
         position:relative;
-        top:300px;
-        left:14vw;
+        top:60px;
+        left:32vw;
         width:80px;
         z-index: -1;
         animation-name: circle2;
-        animation-duration: 4s;
+        animation-duration: 2s;
         animation-iteration-count: infinite;
-        animation-delay: .11s;
+        animation-delay: .1s;
         animation-timing-function: ease-in;
     }
 
     @keyframes circle2 {
-        0% {top: 300px; }
-        20% {top: 310px; }
-        40% {top: 320px; }
-        60% {top: 310px; }
-        80% {top: 300px; }
-        90% {top: 320px;}
-        100% {top: 300px;}
+        0% {top: 60px; }
+        50% {top: 70px; }
+        100% {top: 60px;}
         }
 
         #box3{
             position:absolute;
             background-color:black;
-            top:420px;
+            top:610px;
             left:12vw;
-            width:500px;
-            height:1080px;
-            z-index: -1;
+            width:1140px;
+            height:520px;
             transition-duration: 0.5s;
+            z-index: -1;
         }
     
         #circle3{
             position:relative;
-            top:600px;
-            left:14vw;
+            top:170px;
+            left:32vw;
             width:80px;
             z-index: -1;
             animation-name: circle3;
-            animation-duration: 4s;
+            animation-duration: 2s;
             animation-iteration-count: infinite;
             animation-delay: .1s;
             animation-timing-function: ease-in;
         }
     
         @keyframes circle3 {
-            0% {top: 600px; }
-            20% {top: 620px; }
-            40% {top: 610px; }
-            60% {top: 600px; }
-            80% {top: 610px; }
-            90% {top: 620px;}
-            100% {top: 600px;}
+            0% {top: 170px; }
+            50% {top: 180px; }
+            100% {top: 170px;}
             }
 
             #box4{
                 position:absolute;
                 background-color:black;
-                top:900px;
-                left:53vw;
-                width:500px;
-                height:340px;
+                top:1160px;
+                left:12vw;
+                width:1140px;
+                height:190px;
                 transition-duration: 0.5s;
                 z-index: -1;
             }
         
             #circle4{
                 position:relative;
-                top:120px;
-                left:14vw;
+                top:30px;
+                left:32vw;
                 width:80px;
                 z-index: -1;
                 animation-name: circle4;
-                animation-duration: 4s;
+                animation-duration: 2s;
                 animation-iteration-count: infinite;
                 animation-delay: .1s;
                 animation-timing-function: ease-in;
             }
         
             @keyframes circle4 {
-                0% {top: 120px; }
-                20% {top: 130px; }
-                40% {top: 120px; }
-                60% {top: 140px; }
-                80% {top: 130px; }
-                90% {top: 140px;}
-                100% {top: 120px;}
+                0% {top: 30px; }
+            50% {top: 40px; }
+            100% {top: 30px;}
                 }
         
                 #box5{
                     position:absolute;
                     background-color:black;
-                    top:1300px;
-                    left:53vw;
-                    width:500px;
-                    height:200px;
+                    top:1380px;
+                    left:12vw;
+                    width:1140px;
+                    height:250px;
                     transition-duration: 0.5s;
                     z-index: -1;
                 }
             
                 #circle5{
                     position:relative;
-                    margin-left:20px;
-                    margin-top:-40px;
+                    top:40px;
+                    left:32vw;
                     width:80px;
                     z-index: -1;
                     animation-name: circle5;
-                    animation-duration: 4s;
+                    animation-duration: 2s;
                     animation-iteration-count: infinite;
                     animation-delay: .1s;
                     animation-timing-function: ease-in;
                 }
             
                 @keyframes circle5 {
-                    0% {top: 10px; }
-                    20% {top: 20px; }
-                    40% {top: 10px; }
-                    60% {top: 20px; }
-                    80% {top: 10px; }
-                    90% {top: 20px;}
-                    100% {top: 10px;}
+                    0% {top: 40px; }
+                    50% {top: 50px; }
+                    100% {top: 40px;}
                     }
             
-                     #box5{
-                    position:absolute;
-                    background-color:black;
-                    top:1300px;
-                    left:53vw;
-                    width:500px;
-                    height:200px;
-                    transition-duration: 0.5s;
-                    z-index: -1;
-                }
-            
-                #circle5{
-                    position:relative;
-                    top:80px;
-                    left:10vw;
-                    width:80px;
-                    z-index: -1;
-                    animation-name: circle5;
-                    animation-duration: 4s;
-                    animation-iteration-count: infinite;
-                    animation-delay: .1s;
-                    animation-timing-function: ease-in;
-                }
-            
-                @keyframes circle5 {
-                    0% {top: 70px; }
-                    20% {top: 80px; }
-                    40% {top: 70px; }
-                    60% {top: 80px; }
-                    80% {top: 70px; }
-                    90% {top: 80px;}
-                    100% {top: 70px;}
-                    }
+                     
 
                     #box6{
                         position:absolute;
                         background-color:black;
-                        top:1570px;
+                        top:1660px;
                         left:12vw;
-                        width:1130px;
-                        height:200px;
+                        width:1140px;
+                        height:450px;
                         transition-duration: 0.5s;
                         z-index: -1;
                     }
                 
                     #circle6{
                         position:relative;
-                        margin-top:-20px;
-                        margin-left:30vw;
+                        top:160px;
+                        left:32vw;
                         width:80px;
                         z-index: -1;
                         animation-name: circle6;
-                        animation-duration: 4s;
+                        animation-duration: 2s;
                         animation-iteration-count: infinite;
                         animation-delay: .1s;
                         animation-timing-function: ease-in;
                     }
                 
                     @keyframes circle6 {
-                        0% {top: 50px; }
-                        20% {top: 60px; }
-                        40% {top: 50px; }
-                        60% {top: 60px; }
-                        80% {top: 50px; }
-                        90% {top: 60px;}
-                        100% {top: 50px;}
+                        0% {top: 160px; }
+                    50% {top: 170px; }
+                    100% {top: 160px;}
                         }
 
-                        #box7{
-                            position:absolute;
-                            background-color:black;
-                            top:1830px;
-                            left:12vw;
-                            width:1130px;
-                            height:580px;
-                            transition-duration: 0.5s;
-                            z-index: -1;
-                        }
-                    
-                        #circle7{
-                            position:relative;
-                            top:250px;
-                            left:30vw;
-                            width:80px;
-                            z-index: -1;
-                            animation-name: circle7;
-                            animation-duration: 4s;
-                            animation-iteration-count: infinite;
-                            animation-delay: .1s;
-                            animation-timing-function: ease-in;
-                        }
-                    
-                        @keyframes circle7 {
-                            0% {top: 250px; }
-                            20% {top: 260px; }
-                            40% {top: 250px; }
-                            60% {top: 260px; }
-                            80% {top: 250px; }
-                            90% {top: 260px;}
-                            100% {top: 250px;}
-                            }
-    
-    #circle2,#circle3,#circle4,#circle5,#circle6,#circle7{
+                        
+    #circle2,#circle3,#circle4,#circle5,#circle6{
         opacity:0;
     }
     
+
+    
+    p{
+        display: block;
+        margin:30px auto;
+        font-family: 'Chronicle', serif;
+        font-style: normal;
+        font-weight: 325;
+        line-height: 40px;
+        font-size: 30px;
+        width:1130px;
+    }
+
     .p1{
         margin-top:150px;
-        margin-left:12vw;
-        font-size:24px;
-        font-family: 'Chronicle', serif;
-        font-style: normal;
-        font-weight: 325;
-        font-size: 23px;
-        line-height: 27px;
-        width:500px;
-        color:black;
-        transition-duration: 0.2s;
     }
-
-    .p2{
-        position:absolute;
-        top:105px;
-        left:53vw;
-        font-family: 'Chronicle', serif;
-        font-style: normal;
-        font-weight: 325;
-        font-size: 37px;
-        width:500px;
-    }
-
-    .p3{
-        position:absolute;
-        top:400px;
-        left:12vw;
-        font-family: 'Chronicle', serif;
-        font-style: normal;
-        font-weight: 325;
-        font-size: 30px;
-        width:500px;
-    }
-
-    .p4{
-        position:absolute;
-        top:900px;
-        left:53vw;
-        font-family: 'Chronicle', serif;
-        font-style: normal;
-        font-weight: 325;
-        font-size: 28px;
-        width:500px;
-    }
-
-    .p5{
-        position:absolute;
-        top:1300px;
-        left:53vw;
-        font-family: 'Chronicle', serif;
-        font-style: normal;
-        font-weight: 325;
-        font-size: 40px;
-        width:500px;
-    }
-    
-    .p6{
-        position:absolute;
-        top:1550px;
-        left:12vw;
-        font-family: 'Chronicle', serif;
-        font-style: normal;
-        font-weight: 325;
-        font-size: 30px;
-        width:1130px;
-    }
-
       
-    .p7{
-        position:absolute;
-        top:1800px;
-        left:12vw;
-        font-family: 'Chronicle', serif;
-        font-style: normal;
-        font-weight: 325;
-        font-size: 38px;
-        width:1130px;
-    }
+
 
     nav{
         position:fixed;
@@ -428,10 +281,10 @@
 
 a{
     position:absolute;
-    top:2450px;
+    top:2250px;
     left:41vw;
     font-size:50px;
-    font-family: "Landmark",sans-serif;
+    font-family: 'Alegreya Sans', sans-serif;
     color:black;
     text-decoration: none;
     transition-duration: 0.5s;
@@ -464,56 +317,11 @@ a:hover{
       z-index: 1;
     }
 
-    .p1{
-        margin-top:100px;
-        margin-left:10vw;
-        width:300px;
-        font-size:18px; 
-    }
-
-    .p2{
-        position:absolute;
-        top:350px;
-        left:10vw;
-        width:300px;
-        font-size:24px; 
-    }
-
-    .p3{
-        top:880px;
-        left:10vw;
-        font-size: 18px;
-        width:300px;
-    }
-
-    .p4{
-        top:1550px;
-        left:10vw;
-        font-size: 28px;
-        width:300px;
-        hyphens: auto;
-    }
-
-    .p5{
-        position:absolute;
-        top:2140px;
-        left:10vw;
-        font-size: 40px;
-        width:300px;
-    }
     
-    .p6{
+    p{
         top:2450px;
         left:10vw;
         font-size: 20px;
-        width:300px;
-    }
-
-      
-    .p7{
-        top:2800px;
-        left:10vw;
-        font-size: 25px;
         width:300px;
     }
 

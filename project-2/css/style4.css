@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@300&display=swap');
 
 @font-face {
     font-family: "Chronicle";
@@ -18,8 +18,8 @@
 
     #button1{
         position:fixed;
-        font-size:26px;
-        font-family: "Landmark", sans-serif;
+        font-size:30px;
+        font-family: 'Alegreya Sans', sans-serif;
         width:200px;
         padding:8px;
         outline: none;
@@ -42,14 +42,14 @@
         top:10px;
         left:5vw;
         font-size: 20px;
-        font-family: "Landmark", sans-serif;
+        font-family: 'Alegreya Sans', sans-serif;
         font-weight: 300;
     }
 
     #button2{
         position:fixed;
-        font-size:26px;
-        font-family: "Landmark", sans-serif;
+        font-size:30px;
+        font-family: 'Alegreya Sans', sans-serif;
         width:200px;
         padding:8px;
         margin-left:5vw;
@@ -106,7 +106,7 @@
       border:none;
       background-color:transparent;
       font-size: 36px;
-      font-family: 'Landmark', serif;
+      font-family: 'Alegreya Sans', sans-serif;
       font-weight: normal;
       margin:20px 30px;
       color:white;
@@ -125,7 +125,7 @@
 
 #link{
     font-size: 40px;
-    font-family:"Landmark",sans-serif;
+    font-family: 'Alegreya Sans', sans-serif;
     font-weight: 300;
     transition: 0.5s;
 }
