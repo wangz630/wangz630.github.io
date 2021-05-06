@@ -45,7 +45,7 @@ body {
     border: 0;
     margin: 7px;
     /* border: 1px solid #FFE3B9;   */
-    
+    display: none;
     outline: none;
     position: relative;
   
@@ -118,13 +118,13 @@ body {
     background-color:#FFC773;
   }
 
-  .shapedb4{
-    width:30px;
-    height:30px;
-    border-radius:50% 50%;
-    position:absolute;
-    background-color:#fffd73;
-  }
+            .shapedb4{
+              width:30px;
+              height:30px;
+              border-radius:50% 50%;
+              position:absolute;
+              background-color:#fffd73;
+            }
 
   .shaped4{
     width:60px;
@@ -148,70 +148,80 @@ body {
     width:70px;
     height:70px;
     border: 2px solid #facb49;
-    border-radius:50% 50%;
+    /* border-radius:50% 50%; */
     position:absolute;
     /* background-color:#eb9e60; */
   }
 
   .shapef4{
-    width:70px;
-    height:70px;
+    width:60px;
+    height:50px;
     /* border: 2px solid #facb49; */
     /* border-radius:50% 50%; */
     position:absolute;
     background-color:#ec9378;
   }
 
-  .shapegb4{
-    width:100px;
-    height:3px;
-    /* border: 2px solid #facb49; */
-    /* border-radius:50% 50%; */
-    position:absolute;
-    background-color:#f0d479;
-  }
+                    .shapegh{
+                      width:100px;
+                      height:3px;
+                      /* border: 2px solid #facb49; */
+                      /* border-radius:50% 50%; */
+                      position:absolute;
+                      background-color:#f0d479;
+                    }
 
-  .shapeg4{
-    width:10px;
-    height:200px;
-    /* border: 2px solid #facb49; */
-    /* border-radius:50% 50%; */
-    position:absolute;
-    background-color:#f3df9e;
-  }
+                    .shapepc2{
+                      width:200px;
+                      height:5px;
+                      /* border: 2px solid #facb49; */
+                      /* border-radius:50% 50%; */
+                      position:absolute;
+                      background-color:#fc6969;
+                    }
 
-  .shapeab4{
-    width:300px;
-    height:5px;
-    border: 2px solid #f3926c;
-    /* border-radius:50% 50%; */
-    position:absolute;
-    /* background-color:#f3df9e; */
-  }
+                    .shapesrt{
+                      width:10px;
+                      height:10px;
+                      /* border: 2px solid #facb49; */
+                      border-radius:50% 50%;
+                      position:absolute;
+                      background-color:#f3df9e;
+                    }
+
+                    .shapegl{
+                      width:300px;
+                      height:5px;
+                      border: 2px solid #f3926c;
+                      /* border-radius:50% 50%; */
+                      position:absolute;
+                      /* background-color:#f3df9e; */
+                    }
   
   .shapea4{
-    width:70px;
-    height:70px;
+    width:80px;
+    height:80px;
     /* border: 2px solid #a4c58f; */
     /* border-radius:50% 50%; */
     position:absolute;
     background-color:#a4c58f;
   }
 
-  .shapebb4{
-    width:70px;
-    height:70px;
-    border: 2px solid #bbe0a4;
-    border-radius:50% 50%;
-    position:absolute;
-    /* background-color:#a4c58f; */
-  }
+                    .shapebrt{
+                      width:70px;
+                      height:70px;
+                      border: 2px solid #bbe0a4;
+                      border-radius:50% 50%;
+                      position:absolute;
+                      /* background-color:#a4c58f; */
+                    }
+  
 
   .shapeb4{
     width:200px;
     height:200px;
     border: 2px solid #757cda;
-    border-radius:50% 50%;
+    /* border-radius:50% 50%; */
     position:absolute;
     /* background-color:#a4c58f; */
   }
@@ -226,28 +236,28 @@ body {
   }
 
   .shapedb5{
-    width:1px;
+    width:50px;
     height:150px;
-    border: 2px solid #dba4e0;
+    border: 2px solid #FBCBFF;
     /* border-radius:50% 50%; */
     position:absolute;
     /* background-color:#9ddde5; */
   }
 
-  .shaped5{
-    width:150px;
-    height:1px;
-    border: 2px solid #e295a2;
-    /* border-radius:50% 50%; */
-    position:absolute;
-    /* background-color:#9ddde5; */
-  }
+                    .shaped5{
+                      width:150px;
+                      height:1px;
+                      border: 2px solid #e295a2;
+                      /* border-radius:50% 50%; */
+                      position:absolute;
+                      /* background-color:#9ddde5; */
+                    }
 
   .shapeeb5{
     width:5px;
     height:5px;
     border: 2px solid #95e2be;
-    border-radius:50% 50%;
+    /* border-radius:50% 50%; */
     position:absolute;
     /* background-color:#9ddde5; */
   }
@@ -256,7 +266,43 @@ body {
     width:60px;
     height:60px;
     /* border: 2px solid #95e2be; */
-    border-radius:50% 50%;
+    /* border-radius:50% 50%; */
     position:absolute;
     background-color:#f39eec;
   }
+
+                    .shapesn{
+                      width:150px;
+                      height:150px;
+                      border: 2px solid #ffb655;
+                      border-radius:50% 50%;
+                      position:absolute;
+                      /* background-color:#9ddde5; */
+                    }
+                    
+                    .shapeft{
+                      width:90px;
+                      height:90px;
+                      border: 2px solid #84cce9;
+                      border-radius:50% 50%;
+                      position:absolute;
+                      /* background-color:#9ddde5; */
+                    }
+
+                    .shapehhc{
+                      width:40px;
+                      height:40px;
+                      /* border: 2px solid #e98492; */
+                      border-radius:50% 50%;
+                      position:absolute;
+                      background-color:#e98492;
+                    }
+
+                    .shapehho{
+                      width:70px;
+                      height:70px;
+                      /* border: 2px solid #e98492; */
+                      border-radius:50% 50%;
+                      position:absolute;
+                      background-color:#bb76c2;
+                    }
