@@ -134,7 +134,7 @@ function showData() {
 };
 
 function showLeft(){
-  if (mapContainer.classList.contains("sqmi1000000")) {
+  if (mapContainer.classList.contains("sqmi100000")) {
     mapContainer.style.display = "block";
   } else {
     mapContainer.style.display = "none";
