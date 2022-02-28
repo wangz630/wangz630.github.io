@@ -9,7 +9,7 @@
 h1{
     font-family: 'domaine', serif;
     font-size:160px;
-    color:#e6e19f;
+    color:#ffffff;
     text-align: center;
     z-index: 2;
     margin-top:50px;
@@ -23,13 +23,13 @@ h2{
     font-family: 'domaine', serif;
     font-size:30px;
     letter-spacing: 3px;
-    color:#e6e19f;
+    color:#ffffff;
     text-align: center;
     z-index: 2;
 }
 
 body{
-    background-color: #384161;
+    background-color: #000000;
     margin:0;
     min-height:190vh;
 }
@@ -39,13 +39,13 @@ a{
     text-decoration: none;
     font-size: 30px;
     line-height: 50px;
-    color: #c5d4b8;
+    color: #ffffff;
     transition-duration: 0.4s;
     z-index: 2;
 }
 
 a:hover{
-    border:2px solid #eaffd7;
+    border:2px solid #8a5fb3;
 }
 
 ul{
@@ -67,10 +67,10 @@ li{
     }
    
 
-P{
+p{
     font-family: 'domaine', serif;
     font-size: 30px;
-    color: #A6ABA2;
+    color: #c0c2be;
     text-align: center;
     transition-duration: 0.4s;
     cursor: pointer;
@@ -128,7 +128,7 @@ span{
 }
 
 p:hover{
-    color:#ffbc57;
+    color:#c77fda;
 }
 
 .ball{
@@ -136,7 +136,7 @@ p:hover{
     border-radius:50%;
     width:5rem;
     height:5rem;
-    background: radial-gradient(50% 50% at 50% 50%, #fdfcef 0%, rgba(255, 242, 175, 0) 100%);
+    background: radial-gradient(50% 50% at 50% 50%, #ffffff 0%, rgba(255, 242, 175, 0) 100%);
     opacity:.7;
     cursor:pointer;
     animation-name:twinkle;
@@ -155,7 +155,7 @@ p:hover{
 footer{
     font-family: 'domaine', serif;
     font-size: 18px;
-    color:#e3f0d9;
+    color:#ffffff;
     position:fixed;
     bottom:6px;
     left:0;
