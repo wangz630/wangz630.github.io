@@ -97,9 +97,9 @@ function showOnTop(){
 
       photo.style.zIndex = "1";
       photo.style.width = "300px";
-      photo.style.height = "300px";
+      photo.style.height = "auto";
       photo.children[0].style.width = "300px";
-      photo.children[0].style.height = "300px";
+      photo.children[0].style.height = "auto";
       photo.children[1].style.display = "block";
    
 }
@@ -113,7 +113,7 @@ function showOnBottom(){
       photo.style.width = "150px";
       photo.style.height = "150px";
       photo.children[0].style.width = "150px";
-      photo.children[0].style.height = "150px";
+      photo.children[0].style.height = "auto";
       photo.children[1].style.display = "none";
    
 }
