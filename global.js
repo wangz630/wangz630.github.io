@@ -4,9 +4,11 @@ window.addEventListener("load", function() { // make sure page is loaded
     var listName1 = document.querySelector("#core-2-studio-name") //get element from html
     var listName2 = document.querySelector("#core-2-lab-name")
     var listName3 = document.querySelector("#core-1-studio-project-name")
+    var listName4 = document.querySelector("#thesis-name")
     var container1 = document.querySelector("#core-2-studio-project-container")
     var container2 = document.querySelector("#core-2-lab-project-container")
     var container3 = document.querySelector("#core-1-studio-project-container")
+    var container4 = document.querySelector("#thesis-project-container")
 
 
 
@@ -46,6 +48,18 @@ window.addEventListener("load", function() { // make sure page is loaded
             document.querySelectorAll('.downwards-arrow')[2].style.display="none";
             }
     }) 
+
+    listName4.addEventListener('click', function (){ // still repeate the previous code
+        if(container4.classList.contains("open")){
+            container4.classList.remove("open");
+            // document.querySelectorAll('.upwards-arrow')[3].style.display="none"; // the thrid element in class "upwards-arrow"
+            // document.querySelectorAll('.downwards-arrow')[3].style.display="inline";
+    }else{
+        container4.classList.add("open");
+        // document.querySelectorAll('.upwards-arrow')[3].style.display="inline";
+        // document.querySelectorAll('.downwards-arrow')[3].style.display="none";
+        }
+}) 
 
         var container = document.querySelector('#ball-container') //get element from html
 

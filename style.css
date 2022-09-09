@@ -77,16 +77,21 @@ p{
     z-index: 2;
 }
 
-#core-2-studio{
+#THESIS{
     margin-top:80px;
 }
 
-#core-2-studio-name, #core-2-lab-name, #core-1-studio-project-name{
+#thesis-name, #core-2-studio-name, #core-2-lab-name, #core-1-studio-project-name{
     margin-bottom:10px;
 }
 
-#core-2-studio-project-container, #core-2-lab-project-container, #core-1-studio-project-container{
+#thesis-project-container, #core-2-studio-project-container, #core-2-lab-project-container, #core-1-studio-project-container{
     display: none;
+}
+
+#thesis-project-container.open{
+    display:inline;
+    z-index: 2;
 }
 
 #core-2-studio-project-container.open{
