@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>256 images</title>
+
+    <!-- add reset to create consistency between browsers and devices. -->
+
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- add link to your javascript. be sure it includes "defer" -->
+    <script type="text/javascript" src="js/lib/airtable.browser.js" defer></script>
+    <script type="text/javascript" src="js/global.js" defer></script>
+</head>
+
+<body>
+<div class="container">
+    <!-- <div class="menu">
+        <h1>PLACE</h1>
+        <h1><div class="photoContainer">PHOTOGRAPHER</h1>
+        <h1>TITLE</h1>
+    </div> -->
+
+    <aside class="filter">
+        <h2>256 IMAGES</h2>
+        <ul class="filter-list" data-category="color">
+            <li>
+                <button class="filter-item" data-value="red"></button>
+            </li>
+            <li>
+                <button class="filter-item" data-value="yellow"></button>
+            </li>
+            <li>
+                <button class="filter-item" data-value="green"></button>
+            </li>
+            <li>
+                
+                <button class="filter-item" data-value="blue"></button>
+            </li>
+            <li>
+                <button class="filter-item" data-value="purple"></button>
+            </li>
+            <li>
+                <button class="filter-item" data-value="black"></button>
+            </li>
+
+        </ul>
+    </aside>
+
+    <main class="photos"></main>
+</div>
+
+</body>
+</html>
