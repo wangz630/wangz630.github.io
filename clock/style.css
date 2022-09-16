@@ -1,0 +1,145 @@
+*, *::after, *::before {
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+ }
+ 
+ :root {
+   --bkg: #1e1e1e;
+   --dark: #060606;
+   --purple: #b8c1ec;
+   --white:#fffffe;
+ }
+ 
+ body {
+   background-color: var(--bkg);
+   /* display: grid;
+   place-items: center; */
+   min-height: 100vh;
+   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+   font-size: 2rem;
+ }
+
+ .clock{
+   margin-top:11%;
+   position:absolute;
+   left: 50%;
+   transform: translate(-50%,-50%);
+   top:200px;
+ }
+
+ h1{
+  color: var(--white);
+  position:absolute;
+  bottom:3%;
+  margin:0 auto;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  font-size: 5rem;
+ }
+
+ 
+ 
+ .clockface {
+   filter: drop-shadow(2px 0px 5px var(--dark));
+ }
+ 
+ .ring--minutes {
+   fill: var(--bkg);
+   stroke: var(--white);
+   stroke-width: 5;
+   stroke-dasharray:.1 .9; stroke-dashoffset: .05;
+ }
+ 
+ .ring--hours {
+   fill: transparent;
+   stroke: var(--white);
+   stroke-width: 10;
+   stroke-dasharray:.05 .95; stroke-dashoffset: .025;
+ }
+ 
+ .ring--center {
+   fill: var(--white);
+   stroke: var(--white);
+   stroke-width: 2.5;
+ }
+ 
+ .hand {
+   stroke: var(--white);
+   stroke-linecap: round;
+ }
+ 
+ .hand--hour {
+   transform: rotate(45deg);
+   stroke-width: 5;
+   stroke: var(--white);
+ }
+ 
+ .hand--minute {
+   stroke: var(--white);
+   transform: rotate(93deg);
+   stroke-width: 5;
+ }
+ 
+ /* .date {
+   fill: var(--white);
+   font-size: 1.5rem;
+ } */
+ 
+ .am-pm {
+   fill: var(--white);
+   font-size: 1.2rem;
+   text-transform: uppercase;
+ }
+
+ .clock2, .clock3, .clock4, .clock5, .clock6, .clock7, .clock8, .clock9{
+  display: none;
+ }
+
+ h2{
+  /* position: absolute; */
+  font-size: 1.6rem;
+  color: var(--white);
+  margin:40px 30px 0 30px;
+ }
+
+ .name-container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  
+ }
+
+ .name-container :hover{
+  color: var(--purple);
+  
+ }
+
+ /* .name1{
+  top:3%;
+  left:20px;
+  cursor:pointer;
+ }
+
+ .name2{
+  top:3%;
+  left:200px;
+ }
+
+ .name3{
+  top:3%;
+  left:380px;
+ }
+
+ .name4{
+  top:3%;
+  left:540px;
+ }
+
+ .name4{
+  top:3%;
+  left:540px;
+ } */
+
+ 

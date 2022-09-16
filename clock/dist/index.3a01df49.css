@@ -1,0 +1,109 @@
+*, :after, :before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bkg: #1e1e1e;
+  --dark: #060606;
+  --purple: #b8c1ec;
+  --white: #fffffe;
+}
+
+body {
+  background-color: var(--bkg);
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif;
+  font-size: 2rem;
+}
+
+.clock {
+  margin-top: 11%;
+  position: absolute;
+  top: 200px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+h1 {
+  color: var(--white);
+  margin: 0 auto;
+  font-size: 5rem;
+  position: absolute;
+  bottom: 3%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.clockface {
+  filter: drop-shadow(2px 0px 5px var(--dark));
+}
+
+.ring--minutes {
+  fill: var(--bkg);
+  stroke: var(--white);
+  stroke-width: 5px;
+  stroke-dasharray: .1 .9;
+  stroke-dashoffset: .05px;
+}
+
+.ring--hours {
+  fill: #0000;
+  stroke: var(--white);
+  stroke-width: 10px;
+  stroke-dasharray: .05 .95;
+  stroke-dashoffset: .025px;
+}
+
+.ring--center {
+  fill: var(--white);
+  stroke: var(--white);
+  stroke-width: 2.5px;
+}
+
+.hand {
+  stroke: var(--white);
+  stroke-linecap: round;
+}
+
+.hand--hour {
+  stroke-width: 5px;
+  stroke: var(--white);
+  transform: rotate(45deg);
+}
+
+.hand--minute {
+  stroke: var(--white);
+  stroke-width: 5px;
+  transform: rotate(93deg);
+}
+
+.am-pm {
+  fill: var(--white);
+  text-transform: uppercase;
+  font-size: 1.2rem;
+}
+
+.clock2, .clock3, .clock4, .clock5, .clock6, .clock7, .clock8, .clock9 {
+  display: none;
+}
+
+h2 {
+  color: var(--white);
+  margin: 40px 30px 0;
+  font-size: 1.6rem;
+}
+
+.name-container {
+  width: 100%;
+  cursor: pointer;
+  justify-content: center;
+  display: flex;
+}
+
+.name-container :hover {
+  color: var(--purple);
+}
+
+/*# sourceMappingURL=index.3a01df49.css.map */
