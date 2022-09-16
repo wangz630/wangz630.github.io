@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>clock</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script type="module" src="global.js"></script>
+</head>
+
+<body>
+  <div class = "title-container">
+    <h1 class = "myClockText">MY CLOCK</h1>
+    <h1 class = "worldClockText">WORLD CLOCK</h1>
+  </div> 
+        <div class = "name-container">
+          <h2 class = "name name1">Drag Your Time</h2>
+        </div>
+        
+        <div class="container">
+          <div class="clock clock1">
+            <svg class="clockface" width="300" height="300" viewBox="-150 -150 300 300">     
+              <circle class="ring ring--minutes" r="145" pathlength="60"/>
+              <circle class="ring ring--hours" r="145" pathlength="12"/>
+              <circle class="ring ring--center" r="3" />
+               <!-- <text x="50" y="10" class="am-pm">AM</text> -->
+              <line class="hand hand--minute" x1="0" y1="2" x2="0" y2="-110" />
+              <line class="hand hand--hour" x1="0" y1="2" x2="0" y2="-60" />  
+              <line class="hand hand--second" x1="0" y1="12" x2="0" y2="-130" /> 
+            </svg>
+          </div>
+          <div class="clock myClock">
+            <svg class="clockface" width="300" height="300" viewBox="-150 -150 300 300">     
+              <circle class="ring ring--minutes" r="145" pathlength="60"/>
+              <circle class="ring ring--hours" r="145" pathlength="12"/>
+              <circle class="ring ring--center" r="3" />
+               <!-- <text x="50" y="10" class="am-pm">AM</text> -->
+              <line class="hand hand--minute1" x1="0" y1="2" x2="0" y2="-110" />
+              <line class="hand hand--hour1" x1="0" y1="2" x2="0" y2="-60" />  
+              <line class="hand hand--second1" x1="0" y1="12" x2="0" y2="-130" /> 
+            </svg>
+          </div>
+        </div>
+      
+</div>
+
+</body>
+</html>
