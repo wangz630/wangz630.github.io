@@ -1,3 +1,4 @@
+//galaxy background generator
 let scene, camera, renderer, stars, starGeo;
 
 function init() {
@@ -61,10 +62,10 @@ function animate() {
 }
 init();
 
-var swiper = document.body;
 
-
-function dragHand() {
+//background dragging interaction
+var draggingSpace = document.body;
+function drag() {
           
     var active = false;
     var currentX;
@@ -74,12 +75,12 @@ function dragHand() {
     var xOffset = 0;
     var yOffset = 0;
 
-    swiper.addEventListener("touchstart", dragStart, false);
-    swiper.addEventListener("touchend", dragEnd, false);
-    swiper.addEventListener("touchmove", drag, false);
-    swiper.addEventListener("mousedown", dragStart, false);
-    swiper.addEventListener("mouseup", dragEnd, false);
-    swiper.addEventListener("mousemove", drag, false);
+    draggingSpace.addEventListener("touchstart", dragStart, false);
+    draggingSpace.addEventListener("touchend", dragEnd, false);
+    draggingSpace.addEventListener("touchmove", drag, false);
+    draggingSpace.addEventListener("mousedown", dragStart, false);
+    draggingSpace.addEventListener("mouseup", dragEnd, false);
+    draggingSpace.addEventListener("mousemove", drag, false);
 
     function dragStart(e) {
       if (e.type === "touchstart") {
@@ -130,11 +131,11 @@ function dragHand() {
 
 }
 
-dragHand();
+drag();
 
 
 
-//NFT
+//NFT generator
 
 // let sentence = "SATELLITE";
 // let sentenceArray = [];
@@ -218,6 +219,8 @@ dragHand();
 
 // }
 
+
+//swiping gallery
 var swiper = new Swiper(".mySwiper", {
   effect: "coverflow",
   grabCursor: true,
@@ -263,10 +266,13 @@ slides.forEach((slide)=>{
 })
 
 var gallery = document.querySelector("#gallery-button");
+gallery.style.color = "#8a2be2";
 
 gallery.addEventListener("click", galleryview);
 
 function galleryview(){
+  gallery.style.color = "blueviolet";
+  explore.style.color = "white";
   document.querySelector(".image-box").style.display = "none";
   slides.forEach((slide)=>{
     slide.style.display = "block";
@@ -278,31 +284,19 @@ function galleryview(){
 }
 
 
+
+//explore
 var images = ["image-1.gif","image-2.gif","image-3.png","image-4.gif","image-5.svg","image-6.png","image-7.png","image-8.png","image-9.gif","image-10.png"]
 var names = ["0xy Utility Token #10","8OD","HALLOWEEN LOBBY","Kitaro World #1581","Level 13 at {46, 13}","MEDUSA GORGON LOBBY","Mint Pass #815","Skyblock Spawn - Organic","UNDW3 Lacoste","We All Survived Death #4475"];
 
 
- 
-
-
-// for (let i = 0; i < Infinity; i++) { 
-//   var image = images[0+9*Math.random()];
-//   images[0+9*Math.random()].style.width = (50+400*Math.random())+'px';
-//   images[i].style.height = images[i].style.width;
-//   images[i].style.opacity = "1";
-//   setTimeout(2000);
-//   images[i].style.opacity = "0";
-//   setTimeout(1000);
-// }
-
-
-
-
-
-
 var explore = document.querySelector("#explore-button");
+
 explore.addEventListener("click", exploreview);
+
 function exploreview(){
+  explore.style.color = "blueviolet";
+  gallery.style.color = "white";
   var slides = document.querySelectorAll(".swiper-slide");
   slides.forEach((slide)=>{
     slide.style.display = "none"
