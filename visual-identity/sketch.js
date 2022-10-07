@@ -216,7 +216,7 @@ setInterval(function(){
     let texts =["Sad?","Angry?","Neutral?","Happy?","Shocked?"]
     var num = Math.floor( Math.random() * texts.length)
     document.querySelector("h1").innerHTML = `${texts[num]}`;
-  },1000)
+  },500)
   
 
   
