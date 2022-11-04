@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap');
+
+
+
+/*body background css*/
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+body{
+    padding: 0;
+    margin: 0;
+    background-color:black;
+    transition-delay: 0.1s;
+    transition-duration: 10ms;
+    background-size: cover;
+    font-family: sans-serif;
+    overflow: hidden;
+    /* display: grid;
+    place-items:center;
+    height:100vh; */
+}
+
+/*rotate image-01 css*/
+.rotate_01{
+    display: block;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 150px;
+    height: 150px;
+    margin: -60px 0 0 -280px;
+    -webkit-transition: -webkit-transform 1s;
+}
+.rotate_01:hover{
+    -webkit-transform: rotate(360deg) translateZ(0);
+}
+
+/*rotate image-02 css*/
+.rotate_02{
+    display: block;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 150px;
+    height: 150px;
+    margin: -60px 0 0 -60px;
+}
+.rotate_02:hover{
+    -webkit-animation: spin 1s linear infinite;
+    -moz-animation: spin 1s linear infinite;
+    animation: spin 1s linear infinite;
+    width: 200px;
+    height: 200px;
+    /* box-shadow: 0px 0px 20px black; */
+    border-radius: 50%;
+    transition-duration: 100ms;
+}
+
+/*rotate image-03 css*/
+.rotate_03{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 150px;
+    height: 150px;
+    margin: -60px 0 0 150px;
+    -webkit-animation: spin 1s linear infinite;
+    -moz-animation: spin 1s linear infinite;
+    animation: spin 1s linear infinite;
+}
+
+/*use keyframes*/
+@-webkit-keyframes spin{
+    100%{-webkit-transform: rotate(360deg);}
+}
+@-moz-keyframes spin{
+    100%{-webkit-transform: rotate(360deg);}
+}
+@keyframes spin{
+    100%{-webkit-transform: rotate(360deg);}
+}
+
+
+h1{
+    display:none;
+    color:white;
+    font-size: 6vh;
+    font-weight: 100;
+    position:fixed;
+    margin: 0 auto;
+    left: 50%;
+    top:50%;
+    transform: translate(-50%,-50%);
+    font-family: 'Rubik Glitch', cursive;
+}
+
+.pixel{
+    display: none;
+    position: absolute;
+    background-color: transparent;
+    width:350px;
+    height:auto;
+    opacity: 0.2;
+}
+
+.face{
+    position:absolute;
+    background:url(images/smileColor.png);
+    pointer-events: none;
+    transform: translate(-50%,-50%);
+    width: 20px;
+    height: 20px;
+    background-size: cover;
+    animation: animate 2s linear infinite;
+}
+
+@keyframes animate
+{
+    0%
+    {
+        transform:translate(-50%,-50%);
+        opacity: 1;
+        filter: hue-rotate(0deg);
+    }100%
+    {
+        transform:translate(-50%,-1000%);
+        opacity: 0;
+        filter: hue-rotate(720deg);
+    }
+}
+
+.arrow{
+    display: none;
+    position:absolute;
+    height:auto;
+    right:10%;
+    margin-right:0;
+    top:50%;
+    transform: translate(0,-50%);
+    font-size: 50px;
+    color:white;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.rounded-text{
+    display: none;
+    height:160px;
+    font-size: 20px;
+    color:lime;
+    right:13%;
+    top:40%;
+    position:absolute;
+    transform: translate(0,-50%);
+    font-family: sans-serif;
+    animation: animate1 5s linear infinite;
+}
+@keyframes animate1 {
+    from{
+        transform: rotate(0deg); 
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+.text{
+    position:absolute;
+    font-family: sans-serif;
+    transform-origin: 0 100px;
+    color:white;
+}
+ 
+.box{
+    /* display:none; */
+    color:white;
+    font-size: 6vh;
+    position:fixed;
+    margin: 0 auto;
+    left: 50%;
+    top:50%;
+    transform: translate(-50%,-50%);
+    font-family: 'Rubik Glitch', cursive;
+} 
+
+/* .container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+
+/* .container .box{
+      transform-style: preserve-3d;
+}
+
+.container .box span{
+    position:absolute;
+    color:#fff;
+    font: 3.5em;
+    white-space:nowrap;
+    text-transform: uppercase;
+    font-weight: 100;
+    padding: 0 10px;
+    transform-style: preserve-3d;
+    text-shadow: 0 5px 15px rgba(0.0.0.0.25);
+    transform: translate(-50%,-50%) rotateX(calc(var(--i)*22.5deg)) translateZ(100px);
+
+}
+
+
+.container .box span i:nth-child(1){
+  font-style: initial;
+  color:#ff246f;
+}
+
+.container .box span i:nth-child(2){
+    font-style: initial;
+    color:#12b5ff ;
+  } */
+
+
+
+
+      

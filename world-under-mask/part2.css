@@ -1,0 +1,310 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Helvetica, Arial, sans-serif;
+    background-color: black;
+  }
+  
+  #note-indicator {
+    position:fixed;
+    display: block;
+    height: 2.8vw;
+    width:15vw;
+    bottom:0vw;
+    padding-top:1vw;
+    left:2vw;
+    text-align: center;
+    
+    font-size: 1.5rem;
+    background-color: transparent;
+    color:black;
+    border: 1px solid black;
+  }
+
+  #note-indicator.hide{
+    opacity: 0;
+  }
+  
+  .keyboard {
+    width: 60vw;
+    height: 10vw;
+    position:fixed;
+    left:55%;
+    transform: translateX(-50%);
+    bottom: -45px;
+    display: flex;
+    flex-direction: horizontal;
+  }
+  
+  .keyboard.hide{
+    opacity:0;
+  }
+
+  .key {
+    box-sizing: border-box;
+    border: 0;
+    margin: 7px;
+    /* border: 1px solid #FFE3B9;   */
+    display: none;
+    outline: none;
+    position: relative;
+  
+  }
+
+  .drum{
+    display: none;
+  }
+
+  .accompany{
+    display: none;
+  }
+  
+  .key.white {
+    height: 70%;
+    /* width: 12.5%; */
+    width: 10vw;
+    background-color: transparent;
+    z-index: 1;
+    color:#FFE3B9;
+    font-size: 2rem;
+  }
+  
+  .key.black {
+    height: 26%;
+    width: 4vw;
+    /* background-color: #FFE3B9; */
+    background-color: transparent;
+    z-index: 2;
+    color:#FFE3B9;
+    font-size: 1rem;
+  }
+  
+  .key.pressed {
+    color: #FFC773;
+  }
+  
+  /* .key {
+    margin-right: -1px;
+  }
+   */
+  /* .key.white + .key.black, .key.black + .key.white {
+    margin-left: -4.375%;
+  } */
+
+  #E4{
+    margin-right:4vw;
+  }
+
+  #B4{
+    margin-right:4vw;
+  }
+
+  .shape-container{
+    /* border:2px solid white; */
+    position:fixed;
+    width: 97%;
+    height:75%;
+    top:1vw;
+    left:0%;
+    /* transform: translateX(-50%); */
+    z-index: -1;
+
+  }
+
+  .shapec4{
+    width:20px;
+    height:20px;
+    position:absolute;
+    background-color:#FFC773;
+  }
+
+            .shapedb4{
+              width:30px;
+              height:30px;
+              border-radius:50% 50%;
+              position:absolute;
+              background-color:#fffd73;
+            }
+
+  .shaped4{
+    width:60px;
+    height:30px;
+    border: 2px solid #eb9e60;
+    /* border-radius:50% 50%; */
+    position:absolute;
+    /* background-color:#eb9e60; */
+  }
+
+  .shapeeb4{
+    width:10px;
+    height:60px;
+    border: 2px solid #e76161;
+    /* border-radius:50% 50%; */
+    position:absolute;
+    /* background-color:#eb9e60; */
+  }
+
+  .shapee4{
+    width:70px;
+    height:70px;
+    border: 2px solid #facb49;
+    /* border-radius:50% 50%; */
+    position:absolute;
+    /* background-color:#eb9e60; */
+  }
+
+  .shapef4{
+    width:60px;
+    height:50px;
+    /* border: 2px solid #facb49; */
+    /* border-radius:50% 50%; */
+    position:absolute;
+    background-color:#ec9378;
+  }
+
+                    .shapegh{
+                      width:100px;
+                      height:3px;
+                      /* border: 2px solid #facb49; */
+                      /* border-radius:50% 50%; */
+                      position:absolute;
+                      background-color:#f0d479;
+                    }
+
+                    .shapepc2{
+                      width:200px;
+                      height:5px;
+                      /* border: 2px solid #facb49; */
+                      /* border-radius:50% 50%; */
+                      position:absolute;
+                      background-color:#fc6969;
+                    }
+
+                    .shapesrt{
+                      width:10px;
+                      height:10px;
+                      /* border: 2px solid #facb49; */
+                      border-radius:50% 50%;
+                      position:absolute;
+                      background-color:#f3df9e;
+                    }
+
+                    .shapegl{
+                      width:300px;
+                      height:5px;
+                      border: 2px solid #f3926c;
+                      /* border-radius:50% 50%; */
+                      position:absolute;
+                      /* background-color:#f3df9e; */
+                    }
+  
+  .shapea4{
+    width:80px;
+    height:80px;
+    /* border: 2px solid #a4c58f; */
+    /* border-radius:50% 50%; */
+    position:absolute;
+    background-color:#a4c58f;
+  }
+
+                    .shapebrt{
+                      width:70px;
+                      height:70px;
+                      border: 2px solid #bbe0a4;
+                      border-radius:50% 50%;
+                      position:absolute;
+                      /* background-color:#a4c58f; */
+                    }
+  
+
+  .shapeb4{
+    width:200px;
+    height:200px;
+    border: 2px solid #757cda;
+    /* border-radius:50% 50%; */
+    position:absolute;
+    /* background-color:#a4c58f; */
+  }
+
+  .shapec5{
+    width:10px;
+    height:10px;
+    /* border: 2px solid #bbe0a4;
+    border-radius:50% 50%; */
+    position:absolute;
+    background-color:#9ddde5;
+  }
+
+  .shapedb5{
+    width:50px;
+    height:150px;
+    border: 2px solid #FBCBFF;
+    /* border-radius:50% 50%; */
+    position:absolute;
+    /* background-color:#9ddde5; */
+  }
+
+                    .shaped5{
+                      width:150px;
+                      height:1px;
+                      border: 2px solid #e295a2;
+                      /* border-radius:50% 50%; */
+                      position:absolute;
+                      /* background-color:#9ddde5; */
+                    }
+
+  .shapeeb5{
+    width:5px;
+    height:5px;
+    border: 2px solid #95e2be;
+    /* border-radius:50% 50%; */
+    position:absolute;
+    /* background-color:#9ddde5; */
+  }
+
+  .shapee5{
+    width:60px;
+    height:60px;
+    /* border: 2px solid #95e2be; */
+    /* border-radius:50% 50%; */
+    position:absolute;
+    background-color:#f39eec;
+  }
+
+                    .shapesn{
+                      width:150px;
+                      height:150px;
+                      border: 2px solid #ffb655;
+                      border-radius:50% 50%;
+                      position:absolute;
+                      /* background-color:#9ddde5; */
+                    }
+                    
+                    .shapeft{
+                      width:90px;
+                      height:90px;
+                      border: 2px solid #84cce9;
+                      border-radius:50% 50%;
+                      position:absolute;
+                      /* background-color:#9ddde5; */
+                    }
+
+                    .shapehhc{
+                      width:40px;
+                      height:40px;
+                      /* border: 2px solid #e98492; */
+                      border-radius:50% 50%;
+                      position:absolute;
+                      background-color:#e98492;
+                    }
+
+                    .shapehho{
+                      width:150px;
+                      height:150px;
+                      /* border: 2px solid #e98492; */
+                      border-radius:50% 50%;
+                      position:absolute;
+                      background-image: url(images/smile.png);
+                      background-size: cover;
+                    }
+    

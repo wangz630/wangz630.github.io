@@ -1,0 +1,41 @@
+body {
+    background-color: #000;
+    font-family: sans-serif;
+  }
+  
+  #canvas{
+    position:absolute;
+    top: 180px;
+    left: 400px;
+    z-index:1;
+    /* border: 3px #fff solid; */
+    border-radius: 10px;
+  }
+  
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  /* canvas {
+    display: block;
+  } */
+
+  h1{
+    color:white;
+    position:absolute;
+    top:40px; 
+  }
+
+  footer{
+    color:white;
+    position:absolute;
+    bottom: 30px;
+  }
+
+  #eyes{
+    display: none;
+  }
