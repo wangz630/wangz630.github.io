@@ -60,10 +60,17 @@ a:hover{
 }
 
 ul{
-    padding:0;
+    padding:100px;
+    width:100%;
+    margin:0 auto;
+    display:flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 li{
+    position: relative;
+    align-items: center;
     list-style-type: none;
     /* margin-left:50px; */
     text-align: center;
@@ -170,6 +177,11 @@ p:hover{
     100%{opacity:.7;}
 }
 
+li a.active{
+    color: transparent;
+    text-shadow: 0 0 5px rgba(255,255,255,0.8);
+}
+
 .image{
     position:absolute;
     overflow: hidden;
@@ -181,12 +193,12 @@ p:hover{
     transform: scale(0.6);
     opacity: 0;
     transition: opacity 0.3s ease,
-                transfrom 0.3s ease,
+                transform 0.3s ease,
                 visibility 0.3s ease;
 
 }
 
-.image img:active{
+.image.active{
     visibility: visible;
     transform: scale(1);
     opacity: 1;

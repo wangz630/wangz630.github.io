@@ -7,16 +7,35 @@ window.addEventListener("load", function() { // make sure page is loaded
 
     items.forEach(item =>{
 
-        const photo = item.querySelector('.image');
+        const photo = item.querySelector('.image'),
+              parent = item.parentElement;
 
         item.addEventListener("mousemove", function(event){
             photo.classList.add('active');
-        });
+            parent.classList.add('active');
 
-        item.addEventListener("mouseout", ()=>{
-            photo.classList.remove('active');
+            const cursorX = event.pageX,
+                  cursorY = event.pageY;
+
+      const itemLeft = item.getBoundingClientRect().left,
+            itemTop = item.getBoundingClientRect().top;
+
+      const photoPositionX = cursorX - itemLeft,
+            photoPositionY = cursorY - itemTop - window.scrollY;
+
+      if(photo.offsetHeight + 40 > event.clientY){
+          photo.style.top = `${photoPositionY + 20}px`;
+      }else{
+          photo.style.top = `${photoPositionY - photo.offsetHeight - 20}px`;
+      }
+      photo.style.left = `${photoPositionX + 10}px`;
+
         });
-    })
+        item.addEventListener("mouseout", function(event){
+            photo.classList.remove("active");
+            parent.classList.remove('active');
+        });
+    });
   
 
     var listName1 = document.querySelector("#core-2-studio-name") //get element from html
