@@ -42,10 +42,12 @@ window.addEventListener("load", function() { // make sure page is loaded
     var listName2 = document.querySelector("#core-2-lab-name")
     var listName3 = document.querySelector("#core-1-studio-project-name")
     var listName4 = document.querySelector("#thesis-name")
+    var listName5 = document.querySelector("#uiux-name")
     var container1 = document.querySelector("#core-2-studio-project-container")
     var container2 = document.querySelector("#core-2-lab-project-container")
     var container3 = document.querySelector("#core-1-studio-project-container")
     var container4 = document.querySelector("#thesis-project-container")
+    var container5 = document.querySelector("#uiux-project-container")
 
 
 
@@ -96,6 +98,14 @@ window.addEventListener("load", function() { // make sure page is loaded
         // document.querySelectorAll('.upwards-arrow')[3].style.display="inline";
         // document.querySelectorAll('.downwards-arrow')[3].style.display="none";
         }
+}) 
+
+listName5.addEventListener('click', function (){ 
+    if(container5.classList.contains("open")){
+        container5.classList.remove("open");
+}else{
+    container5.classList.add("open");
+    }
 }) 
 
         var container = document.querySelector('#ball-container') //get element from html
