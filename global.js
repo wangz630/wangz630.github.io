@@ -1,4 +1,22 @@
+
+
 window.addEventListener("load", function() { // make sure page is loaded
+    'use strict';
+
+    const items = document.querySelectorAll("li");
+
+    items.forEach(item =>{
+
+        const photo = item.querySelector('.image');
+
+        item.addEventListener("mousemove", function(event){
+            photo.classList.add('active');
+        });
+
+        item.addEventListener("mouseout", ()=>{
+            photo.classList.remove('active');
+        });
+    })
   
 
     var listName1 = document.querySelector("#core-2-studio-name") //get element from html

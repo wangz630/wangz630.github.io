@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani&family=Ramabhadra&family=Roboto&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;800&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text&family=Raleway:wght@400;800&display=swap');
+
 @font-face {
     font-family: "domaine";
     src: url("font/domaine-display-test-regular.woff") format("woff"); 
@@ -7,24 +12,27 @@
 
 
 h1{
-    font-family: 'domaine', serif;
-    font-size:160px;
+    font-family: 'Raleway', serif;
+    font-weight: 800;
+    font-size:15vh;
     color:#ffffff;
     text-align: center;
     z-index: 2;
-    margin-top:50px;
+    margin-top:70px;
+    /* margin-left:140px; */
     margin-bottom:0px;
 }
 
 h2{
-    margin-top:-30px;
-    margin-left:120px;
+    margin-top:0px;
+    text-align: center;
+    /* margin-left:140px; */
+    font-weight: 400;
     padding:0;
-    font-family: 'domaine', serif;
-    font-size:30px;
+    font-family: 'Raleway', serif;
+    font-size:3.5vh;
     letter-spacing: 3px;
     color:#ffffff;
-    text-align: center;
     z-index: 2;
 }
 
@@ -35,10 +43,13 @@ body{
 }
 
 a{
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Raleway', sans-serif;
     text-decoration: none;
-    font-size: 30px;
+    /* margin-left:70px; */
+    text-align: center;
+    font-size: 3vh;
     line-height: 50px;
+    font-weight: 400;
     color: #ffffff;
     transition-duration: 0.4s;
     z-index: 2;
@@ -50,11 +61,11 @@ a:hover{
 
 ul{
     padding:0;
-    text-align: center;
 }
 
 li{
     list-style-type: none;
+    /* margin-left:50px; */
     text-align: center;
     animation-name: fadeIn;
     animation-duration: .5s;
@@ -68,10 +79,12 @@ li{
    
 
 p{
-    font-family: 'domaine', serif;
-    font-size: 30px;
-    color: #c0c2be;
+    font-family: 'Crimson', serif;
+    font-size: 3.5vh;
+    letter-spacing: 1px;
+    color: #b4b5b2;
     text-align: center;
+    /* margin-left:140px; */
     transition-duration: 0.4s;
     cursor: pointer;
     z-index: 2;
@@ -157,14 +170,50 @@ p:hover{
     100%{opacity:.7;}
 }
 
+.image{
+    position:absolute;
+    overflow: hidden;
+    width:400px;
+    height:250px;
+    border-radius: 8px;
+    z-index: 100;
+    visibility: hidden;
+    transform: scale(0.6);
+    opacity: 0;
+    transition: opacity 0.3s ease,
+                transfrom 0.3s ease,
+                visibility 0.3s ease;
+
+}
+
+.image img:active{
+    visibility: visible;
+    transform: scale(1);
+    opacity: 1;
+}
+
+.image img{
+        position:absolute;
+        top:0;
+        left:0;
+        bottom:0;
+        right:0;
+        width:0;
+        height:0;
+        max-width: 100%;
+        min-width: 100%;
+        max-height: 100%;
+        min-height: 100%;
+}
+
+
 footer{
-    font-family: 'domaine', serif;
-    font-size: 18px;
+    font-family: 'Raleway', serif;
+    font-size: 2vh;
     color:#ffffff;
     position:fixed;
-    bottom:6px;
-    left:0;
-    right:0;
-    margin:1% auto;
-    width:210px;
+    bottom:10px;
+    left:50%;
+    transform: translate(-50%,-50%);
+    
 }
