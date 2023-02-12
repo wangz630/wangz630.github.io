@@ -16,6 +16,36 @@ body{
     height:1040px;
 }
 
+.home a{
+  position: fixed;
+  bottom: 5vh;
+  left:50%;
+  transform: translateX(-50%);
+  background-color: transparent;
+  font-size:15px;
+  width:100px;
+  outline: none;
+  border-radius:10px;
+  border:1px solid #F6E0BD;
+
+
+  font-family: korolev, sans-serif;
+  font-weight: 700;
+  text-decoration: none;
+  text-align: center;
+  line-height: 40px;
+  color:#F6E0BD;
+  transition-duration: 0.4s;
+  z-index: 2;
+}
+
+
+.home a:hover{
+  background-color: #F6E0BD;
+  border: 1px solid #F6E0BD;
+  color:#1E5056;
+}
+
 ul{
   display: flex;
   font-size: 1.5rem;

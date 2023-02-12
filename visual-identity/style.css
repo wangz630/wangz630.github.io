@@ -1,3 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani&family=Ramabhadra&family=Roboto&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;800&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text&family=Raleway:wght@400;800&display=swap');
+
+@font-face {
+    font-family: "domaine";
+    src: url("font/domaine-display-test-regular.woff") format("woff"); 
+  }
+
+
+
 body {
     background-color: #000;
     font-family: sans-serif;
@@ -39,3 +53,33 @@ body {
   #eyes{
     display: none;
   }
+
+  .home a{
+    position: fixed;
+    bottom: 5vh;
+    left:5vh;
+    background-color: transparent;
+    font-size:20px;
+    width:150px;
+    outline: none;
+    border-radius:10px;
+    border:1px solid white;
+
+
+    font-family: 'Raleway', sans-serif;
+    text-decoration: none;
+    text-align: center;
+    line-height: 50px;
+    font-weight: 400;
+    color:white;
+    transition-duration: 0.4s;
+    z-index: 2;
+  }
+
+
+.home a:hover{
+    background-color: white;
+    border: 1px solid white;
+    color:black;
+}
+

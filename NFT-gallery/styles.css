@@ -139,3 +139,33 @@ h1{
   opacity:1;
   transition-duration: 0.2s;
 }
+
+.home a{
+  position: fixed;
+  bottom: 4vh;
+  left:50%;
+  transform: translateX(-50%);
+  background-color: transparent;
+  font-size:15px;
+  width:100px;
+  outline: none;
+  border-radius:10px;
+  border:1px solid white;
+
+
+  font-family: sans-serif;
+  font-weight: 700;
+  text-decoration: none;
+  text-align: center;
+  line-height: 40px;
+  color:white;
+  transition-duration: 0.4s;
+  z-index: 2;
+}
+
+
+.home a:hover{
+  background-color: white;
+  border: 1px solid white;
+  color:black;
+}

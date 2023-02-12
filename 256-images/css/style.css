@@ -202,3 +202,33 @@ object-fit: contain;
     font-style: normal;
     color:white;
 }
+
+
+.home .a{
+   position: fixed;
+   bottom: 5vh;
+   left:5vh;
+   background-color: rgb(23, 22, 22);
+   font-size:15px;
+   width:100px;
+   outline: none;
+   border-radius:10px;
+   border:1px solid white;
+
+
+   font-family: korolev, sans-serif;
+   font-weight: 700;
+   text-decoration: none;
+   text-align: center;
+   line-height: 40px;
+   color:white;
+   transition-duration: 0.4s;
+   z-index: 2;
+ }
+
+
+.home a:hover{
+   background-color: white;
+   border: 1px solid white;
+   color:black;
+}

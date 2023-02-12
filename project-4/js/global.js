@@ -596,6 +596,8 @@ var keyMap = {
         console.log("enter");
         document.querySelector(".keyboard").classList.toggle("hide");
         document.querySelector("#note-indicator").classList.toggle("hide");
+        document.querySelector(".hint1").classList.toggle("hide");
+        document.querySelector(".hint2").classList.toggle("hide");
       }else if (event.keyCode == 8){
         console.log("backspace");
         document.querySelector("#note-indicator").innerText = "Press any keys";
