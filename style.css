@@ -144,15 +144,20 @@ p{
     margin-top:15vw;
 }
 
-#thesis-name, #uiux-name, #core-2-studio-name, #core-2-lab-name, #core-1-studio-project-name, #more-name{
+#thesis-name, #website-name, #uiux-name, #core-2-studio-name, #core-2-lab-name, #core-1-studio-project-name, #more-name{
     margin-bottom:10px;
 }
 
-#thesis-project-container, #uiux-project-container, #core-2-studio-project-container, #core-2-lab-project-container, #core-1-studio-project-container{
+#thesis-project-container,  #website-project-container,#uiux-project-container, #core-2-studio-project-container, #core-2-lab-project-container, #core-1-studio-project-container{
     display: none;
 }
 
 #thesis-project-container.open{
+    display:inline;
+    z-index: 2;
+}
+
+#website-project-container.open{
     display:inline;
     z-index: 2;
 }

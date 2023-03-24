@@ -41,13 +41,16 @@ window.addEventListener("load", function() { // make sure page is loaded
     var listName1 = document.querySelector("#core-2-studio-name") //get element from html
     var listName2 = document.querySelector("#core-2-lab-name")
     var listName3 = document.querySelector("#core-1-studio-project-name")
-    var listName4 = document.querySelector("#thesis-name")
+    var listName4 = document.querySelector("#website-name")
     var listName5 = document.querySelector("#uiux-name")
+    var listName6 = document.querySelector("#thesis-name")
+
     var container1 = document.querySelector("#core-2-studio-project-container")
     var container2 = document.querySelector("#core-2-lab-project-container")
     var container3 = document.querySelector("#core-1-studio-project-container")
-    var container4 = document.querySelector("#thesis-project-container")
+    var container4 = document.querySelector("#website-project-container")
     var container5 = document.querySelector("#uiux-project-container")
+    var container6 = document.querySelector("#thesis-project-container")
 
 
 
@@ -108,6 +111,14 @@ listName5.addEventListener('click', function (){
     }
 }) 
 
+listName6.addEventListener('click', function (){ 
+    if(container6.classList.contains("open")){
+        container6.classList.remove("open");
+}else{
+    container6.classList.add("open");
+    }
+}) 
+
         var container = document.querySelector('#ball-container') //get element from html
 
         for (let i = 0; i < 30; i++) {  // a 30-time loop
@@ -119,3 +130,4 @@ listName5.addEventListener('click', function (){
           }
 
     })
+    
