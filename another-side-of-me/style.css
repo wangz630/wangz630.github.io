@@ -280,4 +280,14 @@ body{
     color:black;
 }
   
-  
+footer{
+  font-family: 'Raleway', serif;
+  font-size: 2vh;
+  color:#ffffff;
+  position:relative;
+  bottom:20px;
+  width: 100%;
+  text-align: center;
+  margin-top:30px;
+  margin-bottom:30px;
+}
