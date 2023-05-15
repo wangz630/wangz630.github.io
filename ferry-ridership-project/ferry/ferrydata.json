@@ -1,0 +1,468 @@
+[
+    {
+        "date": "2021-01-07T05:00:00.000Z",
+        "route": "RW",
+        "stop": "Rockaway",
+        "boardings": 20,
+        "typeday": "Weekday",
+        "ferryNo": 840,
+        "no": 1,
+        "img":"./assets/images/ferry-ticket-1.png"
+    },
+    {
+        "date": "2021-01-07T05:00:00.000Z",
+        "route": "RW",
+        "stop": "Sunset Park/BAT",
+        "boardings": 3,
+        "typeday": "Weekday",
+        "ferryNo": "8873D",
+        "no": 2,
+        "img":"./assets/images/ferry-ticket-2.png"
+    },
+    {
+        "date": "2021-01-07T05:00:00.000Z",
+        "route": "SV",
+        "stop": "East 90th St",
+        "boardings": 0,
+        "typeday": "Weekday",
+        "ferryNo": 8014,
+        "no": 3,
+        "img":"./assets/images/ferry-ticket-3.png"
+    },
+    {
+        "date": "2021-01-07T05:00:00.000Z",
+        "route": "AS",
+        "stop": "Brooklyn Navy Yard",
+        "boardings": 7,
+        "typeday": "Weekday",
+        "ferryNo": 841,
+        "no": 4,
+        "img":"./assets/images/ferry-ticket-4.png"
+    },
+    {
+        "date": "2021-01-07T05:00:00.000Z",
+        "route": "AS",
+        "stop": "East 34th Street",
+        "boardings": 5,
+        "typeday": "Weekday",
+        "ferryNo": 8007,
+        "no": 5,
+        "img":"./assets/images/ferry-ticket-5.png"
+    },
+    {
+        "date": "2021-01-07T05:00:00.000Z",
+        "route": "SV",
+        "stop": "Soundview",
+        "boardings": 32,
+        "typeday": "Weekday",
+        "ferryNo": "802D",
+        "no": 6
+    },
+    {
+        "date": "2021-01-07T05:00:00.000Z",
+        "route": "AS",
+        "stop": "Long Island City",
+        "boardings": 1,
+        "typeday": "Weekday",
+        "ferryNo": 8008,
+        "no": 7
+    },
+    {
+        "date": "2021-02-07T05:00:00.000Z",
+        "route": "SB",
+        "stop": "Bay Ridge",
+        "boardings": 5,
+        "typeday": "Weekday",
+        "ferryNo": "8990D",
+        "no": 8
+    },
+    {
+        "date": "2021-02-07T05:00:00.000Z",
+        "route": "SB",
+        "stop": "Corlears Hook",
+        "boardings": 0,
+        "typeday": "Weekday",
+        "ferryNo": 866,
+        "no": 9
+    },
+    {
+        "date": "2021-02-07T05:00:00.000Z",
+        "route": "SB",
+        "stop": "Dumbo/BBP Pier 1",
+        "boardings": 0,
+        "typeday": "Weekday",
+        "ferryNo": 8009,
+        "no": 10
+    },
+    {
+        "date": "2021-02-07T05:00:00.000Z",
+        "route": "SB",
+        "stop": "Red Hook/Atlantic Basin",
+        "boardings": 7,
+        "typeday": "Weekday",
+        "ferryNo": "8864D",
+        "no": 11
+    },
+    {
+        "date": "2021-02-07T05:00:00.000Z",
+        "route": "SB",
+        "stop": "Sunset Park/BAT",
+        "boardings": 6,
+        "typeday": "Weekday",
+        "ferryNo": 855,
+        "no": 12
+    },
+    {
+        "date": "2021-02-07T05:00:00.000Z",
+        "route": "SB",
+        "stop": "Wall St/Pier 11",
+        "boardings": 0,
+        "typeday": "Weekday",
+        "ferryNo": 88941,
+        "no": 13
+    },
+    {
+        "date": "2021-02-07T05:00:00.000Z",
+        "route": "SB",
+        "stop": "Atlantic Ave/BBP Pier 6",
+        "boardings": 0,
+        "typeday": "Weekday",
+        "ferryNo": 862,
+        "no": 14
+    },
+    {
+        "date": "2021-02-07T05:00:00.000Z",
+        "route": "SB",
+        "stop": "Bay Ridge",
+        "boardings": 0,
+        "typeday": "Weekday",
+        "ferryNo": 844,
+        "no": 15
+    },
+    {
+        "date": "2021-02-07T05:00:00.000Z",
+        "route": "SB",
+        "stop": "Corlears Hook",
+        "boardings": 3,
+        "typeday": "Weekday",
+        "ferryNo": 855,
+        "no": 16
+    },
+    {
+        "date": "2021-02-07T05:00:00.000Z",
+        "route": "SV",
+        "stop": "Soundview",
+        "boardings": 0,
+        "typeday": "Weekday",
+        "ferryNo": 870,
+        "no": 17
+    },
+    {
+        "date": "2021-02-07T05:00:00.000Z",
+        "route": "SV",
+        "stop": "Stuyvesant Cove",
+        "boardings": 1,
+        "typeday": "Weekday",
+        "ferryNo": 815,
+        "no": 18
+    },
+    {
+        "date": "2021-02-07T05:00:00.000Z",
+        "route": "SV",
+        "stop": "Wall St/Pier 11",
+        "boardings": 3,
+        "typeday": "Weekday",
+        "ferryNo": "8947D",
+        "no": 19
+    },
+    {
+        "date": "2021-02-07T05:00:00.000Z",
+        "route": "SV",
+        "stop": "East 34th Street",
+        "boardings": 2,
+        "typeday": "Weekday",
+        "ferryNo": 8002,
+        "no": 20
+    },
+    {
+        "date": "2021-03-07T05:00:00.000Z",
+        "route": "ER",
+        "stop": "Hunters Point South",
+        "boardings": 0,
+        "typeday": "Weekend",
+        "ferryNo": 864,
+        "no": 21
+    },
+    {
+        "date": "2021-03-07T05:00:00.000Z",
+        "route": "ER",
+        "stop": "North Williamsburg",
+        "boardings": 11,
+        "typeday": "Weekend",
+        "ferryNo": 8009,
+        "no": 22
+    },
+    {
+        "date": "2021-03-07T05:00:00.000Z",
+        "route": "ER",
+        "stop": "Wall St/Pier 11",
+        "boardings": 33,
+        "typeday": "Weekend",
+        "ferryNo": "8933D",
+        "no": 23
+    },
+    {
+        "date": "2021-03-07T05:00:00.000Z",
+        "route": "ER",
+        "stop": "Dumbo/BBP Pier 1",
+        "boardings": 3,
+        "typeday": "Weekend",
+        "ferryNo": "116A",
+        "no": 24
+    },
+    {
+        "date": "2021-03-07T05:00:00.000Z",
+        "route": "ER",
+        "stop": "East 34th Street",
+        "boardings": 24,
+        "typeday": "Weekend",
+        "ferryNo": 899,
+        "no": 25
+    },
+    {
+        "date": "2021-03-07T05:00:00.000Z",
+        "route": "ER",
+        "stop": "Hunters Point South",
+        "boardings": 20,
+        "typeday": "Weekend",
+        "ferryNo": 888,
+        "no": 26
+    },
+    {
+        "date": "2021-03-07T05:00:00.000Z",
+        "route": "ER",
+        "stop": "North Williamsburg",
+        "boardings": 23,
+        "typeday": "Weekend",
+        "ferryNo": 2508,
+        "no": 27
+    },
+    {
+        "date": "2021-03-07T05:00:00.000Z",
+        "route": "ER",
+        "stop": "Wall St/Pier 11",
+        "boardings": 0,
+        "typeday": "Weekend",
+        "ferryNo": 2675,
+        "no": 28
+    },
+    {
+        "date": "2021-03-07T05:00:00.000Z",
+        "route": "GI",
+        "stop": "Gov. Island/Yankee Pier",
+        "boardings": 0,
+        "typeday": "Weekend",
+        "ferryNo": "8834D",
+        "no": 29
+    },
+    {
+        "date": "2021-03-07T05:00:00.000Z",
+        "route": "GI",
+        "stop": "Wall St/Pier 11",
+        "boardings": 0,
+        "typeday": "Weekend",
+        "ferryNo": "8847D",
+        "no": 30
+    },
+    {
+        "date": "2021-03-07T05:00:00.000Z",
+        "route": "GI",
+        "stop": "Gov. Island/Yankee Pier",
+        "boardings": 0,
+        "typeday": "Weekend",
+        "ferryNo": "8960D",
+        "no": 31
+    },
+    {
+        "date": "2021-03-07T05:00:00.000Z",
+        "route": "GI",
+        "stop": "Wall St/Pier 11",
+        "boardings": 5,
+        "typeday": "Weekend",
+        "ferryNo": 867,
+        "no": 32
+    },
+    {
+        "date": "2021-03-07T05:00:00.000Z",
+        "route": "RW",
+        "stop": "Rockaway",
+        "boardings": 30,
+        "typeday": "Weekend",
+        "ferryNo": "888A",
+        "no": 33,
+        "img":"./assets/images/ferry-ticket-1.png"
+    },
+    {
+        "date": "2021-03-07T05:00:00.000Z",
+        "route": "RW",
+        "stop": "Sunset Park/BAT",
+        "boardings": 2,
+        "typeday": "Weekend",
+        "ferryNo": "8834A",
+        "no": 34
+    },
+    {
+        "date": "2021-03-07T05:00:00.000Z",
+        "route": "RW",
+        "stop": "Wall St/Pier 11",
+        "boardings": 0,
+        "typeday": "Weekend",
+        "ferryNo": 865,
+        "no": 35
+    },
+    {
+        "date": "2021-03-07T05:00:00.000Z",
+        "route": "RW",
+        "stop": "Rockaway",
+        "boardings": 0,
+        "typeday": "Weekend",
+        "ferryNo": 878,
+        "no": 36,
+        "img":"./assets/images/ferry-ticket-2.png"
+    },
+    {
+        "date": "2021-03-07T05:00:00.000Z",
+        "route": "RW",
+        "stop": "Sunset Park/BAT",
+        "boardings": 1,
+        "typeday": "Weekend",
+        "ferryNo": "888D",
+        "no": 37
+    },
+    {
+        "date": "2021-03-07T05:00:00.000Z",
+        "route": "RW",
+        "stop": "Wall St/Pier 11",
+        "boardings": 19,
+        "typeday": "Weekend",
+        "ferryNo": "87D",
+        "no": 38
+    },
+    {
+        "date": "2021-03-07T05:00:00.000Z",
+        "route": "SB",
+        "stop": "Atlantic Ave/BBP Pier 6",
+        "boardings": 3,
+        "typeday": "Weekend",
+        "ferryNo": 864,
+        "no": 39
+    },
+    {
+        "date": "2021-03-07T05:00:00.000Z",
+        "route": "SB",
+        "stop": "Bay Ridge",
+        "boardings": 11,
+        "typeday": "Weekend",
+        "ferryNo": 813,
+        "no": 40
+    },
+    {
+        "date": "2021-03-07T05:00:00.000Z",
+        "route": "SB",
+        "stop": "Corlears Hook",
+        "boardings": 0,
+        "typeday": "Weekend",
+        "ferryNo": "8871D",
+        "no": 41
+    },
+    {
+        "date": "2021-04-07T04:00:00.000Z",
+        "route": "AS",
+        "stop": "East 90th St",
+        "boardings": 0,
+        "typeday": "Weekend",
+        "ferryNo": 873,
+        "no": 42
+    },
+    {
+        "date": "2021-04-07T04:00:00.000Z",
+        "route": "AS",
+        "stop": "Wall St/Pier 11",
+        "boardings": 76,
+        "typeday": "Weekend",
+        "ferryNo": "814D",
+        "no": 45
+    },
+    {
+        "date": "2021-04-07T04:00:00.000Z",
+        "route": "AS",
+        "stop": "Astoria",
+        "boardings": 148,
+        "typeday": "Weekend",
+        "ferryNo": "8947D",
+        "no": 46
+    },
+    {
+        "date": "2021-04-07T04:00:00.000Z",
+        "route": "AS",
+        "stop": "East 90th St",
+        "boardings": 140,
+        "typeday": "Weekend",
+        "ferryNo": 9863,
+        "no": 47
+    },
+    {
+        "date": "2021-04-07T04:00:00.000Z",
+        "route": "ER",
+        "stop": "Hunters Point South",
+        "boardings": 0,
+        "typeday": "Weekend",
+        "ferryNo": 820,
+        "no": 48
+    },
+    {
+        "date": "2021-04-07T04:00:00.000Z",
+        "route": "ER",
+        "stop": "North Williamsburg",
+        "boardings": 91,
+        "typeday": "Weekend",
+        "ferryNo": "8965D",
+        "no": 49
+    },
+    {
+        "date": "2021-04-07T04:00:00.000Z",
+        "route": "ER",
+        "stop": "Wall St/Pier 11",
+        "boardings": 204,
+        "typeday": "Weekend",
+        "ferryNo": 11526,
+        "no": 50
+    },
+    {
+        "date": "2021-04-07T04:00:00.000Z",
+        "route": "RW",
+        "stop": "Sunset Park/BAT",
+        "boardings": 22,
+        "typeday": "Weekend",
+        "ferryNo": 862,
+        "no": 51
+    },
+    {
+        "date": "2021-04-07T04:00:00.000Z",
+        "route": "RW",
+        "stop": "Sunset Park/BAT",
+        "boardings": 75,
+        "typeday": "Weekend",
+        "ferryNo": 56,
+        "no": 54
+    },
+    {
+        "date": "2021-04-07T04:00:00.000Z",
+        "route": "RW",
+        "stop": "Wall St/Pier 11",
+        "boardings": 123,
+        "typeday": "Weekend",
+        "ferryNo": 5609,
+        "no": 55
+    }
+]

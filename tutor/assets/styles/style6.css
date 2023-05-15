@@ -1,0 +1,39 @@
+:root {
+	--size-1: 80px;
+	--size-2: 50px;
+	--size-3: 30px;
+	--size-4: 16px;
+	--spacing: 2em;
+}
+
+body {
+	padding: var(--spacing);
+	background-color: rgb(0, 0, 0);
+	color: rgb(255, 255, 255);
+	min-height: 200vh;
+	font: 30px/1;
+	font-family: Arial, Helvetica, sans-serif;
+	margin: 0;
+}
+
+#narrative {
+	font-size: 150%;
+	position: relative;
+	text-align: left;
+	max-width: 1350px;
+	margin-bottom: 20px;
+}
+
+.wave-container {
+    padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+#myChart {
+	padding-top: 20px;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 130vh !important;
+	height: 70vh !important;
+}

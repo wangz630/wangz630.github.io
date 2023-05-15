@@ -1,0 +1,56 @@
+[
+  {
+    "order": 1,
+    "type": "RESIDENTIAL",
+    "number": "229,470",
+    "image": "assets/styles/complaints/complaints-01.png"
+  },
+  {
+    "order": 2,
+    "type": "STREET",
+    "number": "73,084",
+    "image": "assets/styles/complaints/complaints-02.png"
+  },
+  {
+    "order": 3,
+    "type": "NOISE",
+    "number": "60,121",
+    "image": "assets/styles/complaints/complaints-03.png"
+  },
+  {
+    "order": 4,
+    "type": "COMMERCIAL",
+    "number": "40,287",
+    "image": "assets/styles/complaints/complaints-04.png"
+  },
+  {
+    "order": 5,
+    "type": "VEHICLE",
+    "number": 29.402,
+    "image": "assets/styles/complaints/complaints-05.png"
+  },
+  {
+    "order": 6,
+    "type": "PARK",
+    "number": "4,676",
+    "image": "assets/styles/complaints/complaints-06.png"
+  },
+  {
+    "order": 7,
+    "type": "HELICOPTER",
+    "number": "1,063",
+    "image": "assets/styles/complaints/complaints-07.png"
+  },
+  {
+    "order": 8,
+    "type": "HOUSE OF WORSHIP",
+    "number": 904,
+    "image": "assets/styles/complaints/complaints-08.png"
+  },
+  {
+    "order": 9,
+    "type": "TRUCK",
+    "number": 236,
+    "image": "assets/styles/complaints/complaints-09.png"
+  }
+]

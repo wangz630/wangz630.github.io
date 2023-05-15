@@ -1,0 +1,120 @@
+ul {
+	padding-top: 10px;
+	display: grid;
+	gap: calc(0.2 * var(--spacing));
+	/* margin-top: calc(2 * var(--spacing)); */
+	grid-template-columns: repeat(8, 1fr);
+	grid-template-rows: repeat(auto);
+}
+
+li {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing);
+}
+
+img{
+	opacity:1;
+}
+
+li:hover img{
+	opacity:0;
+}
+
+.words {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 120%;
+	opacity: 0;
+	text-align: center;
+  }
+  
+
+li:hover .words {
+	opacity: 1;
+	color:rgb(255, 255, 255);
+}
+
+aside { 
+	margin-bottom: calc(4 * var(--spacing));
+ }
+
+em { 
+	font-size: 3vw;
+}
+
+
+/* not actual rows, but VISUAL rows */
+
+/* ROW 1 */
+
+/* RESIDENTIAL */
+li:nth-child(1) {
+grid-column: 1 / span 6;
+grid-row: 1 / span 2;
+}
+
+/* STREET */
+li:nth-child(2) {
+grid-column: span 4;
+grid-row: 3 / span 1;
+}
+
+/* NOISE */
+li:nth-child(3) {
+grid-column: span 4;
+grid-row: 3 / span 1;
+}
+
+/* ROW 2 */
+
+/* COMMERCIAL */
+li:nth-child(4) {
+grid-column: span 2;
+grid-row: 1 / span 1;
+} 
+
+/* VEHICLE */
+li:nth-child(5) {
+grid-column: span 2;
+grid-row: 2 / span 1;
+} 
+
+/* PARK */
+li:nth-child(6) {
+grid-column: span 2;
+grid-row: 4 / span 1;
+} 
+
+/* ROW 3 */
+li:nth-child(7) {
+grid-column: span 2;
+grid-row: 4 / span 2;
+} 
+
+li:nth-child(8) {
+grid-column: span 2;
+grid-row: 4 / span 2;
+} 
+
+li:nth-child(9) {
+grid-column: span 2;
+grid-row: 4 / span 2;
+} 
+
+li:nth-child(10) {
+grid-column: span 2;
+grid-row: 4 / span 2;
+} 
+
+@media (max-width: 375px) {
+	ul {
+		padding-top: 12=5vh;
+		gap: calc(1 * var(--spacing));
+		grid-template-rows: repeat(auto);
+	}
+
+}

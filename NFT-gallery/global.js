@@ -285,7 +285,6 @@ function galleryview(){
 
 
 
-//explore
 var images = ["image-1.gif","image-2.gif","image-3.png","image-4.gif","image-5.svg","image-6.png","image-7.png","image-8.png","image-9.gif","image-10.png"]
 var names = ["0xy Utility Token #10","8OD","HALLOWEEN LOBBY","Kitaro World #1581","Level 13 at {46, 13}","MEDUSA GORGON LOBBY","Mint Pass #815","Skyblock Spawn - Organic","UNDW3 Lacoste","We All Survived Death #4475"];
 

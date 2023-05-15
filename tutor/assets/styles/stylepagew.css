@@ -1,0 +1,67 @@
+:root {
+	--size-1: 80px;
+	--size-2: 50px;
+	--size-3: 30px;
+	--size-4: 16px;
+	--spacing: 2em;
+  }
+  
+  body {
+	padding: var(--spacing);
+	background-color: rgb(255, 255, 255);
+	color: rgb(0, 0, 0);
+	min-height: 200vh;
+	font: 30px/1;
+	font-family: Arial, Helvetica, sans-serif;
+	margin: 0;
+  }
+  
+  #narrative {
+	font-size: 150%;
+	position: relative;
+	text-align: left;
+	max-width: 1350px;
+	margin-bottom: 20px;
+  }
+  
+  ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+  }
+  
+  li {
+	padding: 8px;
+	font-weight: 400;
+	transition: font-size 0.2s ease-in-out;
+  }
+  
+  li.item-1 {
+	font-size: var(--size-1);
+	font-weight: bold;
+  }
+  
+  li.item-2 {
+	font-size: var(--size-2);
+  }
+  
+  li.item-3 {
+	font-size: var(--size-3);
+  }
+  
+  li.item-4 {
+	font-size: var(--size-4);
+  }
+  
+  li:hover {
+	font-size: calc(100% + 5%);
+  }
+  
+  #myChart {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 130vh !important;
+	height: 70vh !important;
+  }
+  

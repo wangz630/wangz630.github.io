@@ -1,0 +1,27 @@
+:root {
+	--size-1: 25px;
+	--spacing: 2em;
+}
+
+/* html {
+	cursor: none;
+} */
+
+body {
+	padding: var(--spacing);
+	background-color: rgb(255, 255, 255);
+	color: rgb(0, 0, 0);
+	min-height: 200vh;
+	font: 30px/1;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+#narrative {
+	font-size: 150%;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	text-align: left;
+  }
+  
