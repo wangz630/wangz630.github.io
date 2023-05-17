@@ -5,6 +5,13 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Crimson+Text&family=Raleway:wght@400;800&display=swap');
 
+/* Smooth scrolling IF user doesn't have a preference due to motion sensitivities */
+@media screen and (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
 @font-face {
     font-family: "domaine";
     src: url("font/domaine-display-test-regular.woff") format("woff"); 
@@ -45,11 +52,12 @@ color: #FFFFFF;
 
 .logo{
     position: fixed;
-width: 40px;
-left: 55px;
-top: 30px;
-cursor: pointer;
-z-index: 5;
+    width: 40px;
+    left: 55px;
+    top: 30px;
+    cursor: pointer;
+    transition-duration: 0.3s;
+    z-index: 5;
 }
 
 /* h2{
@@ -216,6 +224,7 @@ color: #FFFFFF;
 
 .first-page-container div{
     width:500px;
+    height:auto;
     color: white;
     font-family: 'Raleway', serif;
 font-style: normal;

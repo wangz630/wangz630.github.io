@@ -211,7 +211,9 @@ thesisImage.addEventListener("mouseover",function(){
 
 let logo = document.querySelector(".logo");
 logo.addEventListener("click", function(){
-    window.location.href = "https://wangz630.github.io/";
+    // window.location.href = "https://wangz630.github.io/";
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 
 });
 
