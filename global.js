@@ -225,14 +225,14 @@ function scrollFunction() {
   }
 }
 
-let description = document.querySelector(".description");
-let thesisImage = document.querySelector(".thesis-cover");
-thesisImage.addEventListener("mouseover",function(){
-    description.style.opacity ="1";
-    })
-    thesisImage.addEventListener("mouseout",function(){
-        description.style.opacity ="0";
-        })
+// let description = document.querySelector(".description");
+// let thesisImage = document.querySelector(".thesis-cover");
+// thesisImage.addEventListener("mouseover",function(){
+//     description.style.opacity ="1";
+//     })
+//     thesisImage.addEventListener("mouseout",function(){
+//         description.style.opacity ="0";
+//         })
 
 let logo = document.querySelector(".logo");
 logo.addEventListener("click", function(){

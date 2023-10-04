@@ -55,7 +55,7 @@ color: #FFFFFF;
     top: 40px;
     cursor: pointer;
     transition-duration: 0.3s;
-    z-index: 5;
+    z-index: 8;
 }
 
 /* h2{
@@ -107,7 +107,7 @@ line-height: 41px;
 
 
 color: #FFFFFF;
-z-index: 5;
+z-index: 7;
 }
 
 .arrow{
@@ -488,7 +488,6 @@ p:hover{
     height:1rem;
     background: radial-gradient(50% 50% at 50% 50%, #ffffff 0%, rgba(255, 242, 175, 0) 100%);
     opacity:.4;
-    cursor:pointer;
     animation-name:twinkle;
     animation-duration: 2s;
     animation-iteration-count: infinite;
