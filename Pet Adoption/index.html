@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <script src="p5.js"></script>
+  <script src="p5.sound.js"></script>
+
+</head>
+
+<body>
+  <div class="home">
+    <a href="https://wangz630.github.io/">Home</a>
+  </div>
+  <!--   homepage -->
+  <h1>Find Your New Best Friend Here</h1>
+  <button id="start-button">Start</button>
+  <div id="first-page-images">
+    <img id="first-page-dog" src="images/dog.png">
+    <img id="first-page-cat" src="images/cat.png">
+  </div>
+  <!-- second page -->
+  <div id="second-page">
+    <span id="filter-all">
+      <img id="filter-all-image" src="images/all.png">
+      <span id="filter-all-text">All</span>
+    </span>
+    <span id="filter-dog">
+      <img id="filter-dog-image" src="images/dog.png">
+      <span id="filter-dog-text">Dogs</span>
+    </span>
+    <span id="filter-cat">
+      <img id="filter-cat-image" src="images/cat.png">
+      <span id="filter-cat-text">Cats</span>
+    </span>
+    <div id="container">
+      <div id="cat-container"></div>
+      <div id="dog-container"></div>
+    </div>
+    <button id="refresh">Refresh</button>
+    <button id="dog-refresh">Refresh</button>
+    <button id="cat-refresh">Refresh</button>
+  </div>
+
+  <!-- The Modal -->
+  <div id="myModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="img01">
+    <button id="adopt-button">Adopt</button>
+  </div>
+
+  <!-- last matching page -->
+  <div id="match-page">
+    <form id="input_container">
+      <label for="name">Give Your Pet a Name</label>
+      <input type="text" id="name"><br>
+    </form>
+    <button id="enter-button" value="enter">Enter</button>
+    <img id="heart" src="images/heart.png">
+    <div id="result_container">
+      <p id="message"></p>
+      <p id="score"></p>
+    </div>
+    <button id="restart-button" value="restart">Restart</button>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

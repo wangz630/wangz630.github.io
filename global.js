@@ -1,5 +1,3 @@
-
-
 window.addEventListener("load", function() { // make sure page is loaded
     'use strict';
 
@@ -39,6 +37,11 @@ window.addEventListener("load", function() { // make sure page is loaded
   
 
     // var listName1 = document.querySelector("#core-2-studio-name") //get element from html
+    var waList = document.querySelector("#wa-name")
+    var vgaList = document.querySelector("#vga-name")
+    var typoList = document.querySelector("#typo-name")
+    var webexList = document.querySelector("#webex-name")
+    
     var listName2 = document.querySelector("#core-2-lab-name")
     var listName3 = document.querySelector("#core-1-studio-project-name")
     var listName4 = document.querySelector("#website-name")
@@ -47,6 +50,11 @@ window.addEventListener("load", function() { // make sure page is loaded
     var listName7 = document.querySelector("#typography-name")
 
     // var container1 = document.querySelector("#core-2-studio-project-container")
+    var waContainer = document.querySelector("#wa-container")
+    var vgaContainer = document.querySelector("#vga-container")
+    var typoContainer = document.querySelector("#typo-container")
+    var webexContainer = document.querySelector("#webex-container")
+
     var container2 = document.querySelector("#core-2-lab-project-container")
     var container3 = document.querySelector("#core-1-studio-project-container")
     var container4 = document.querySelector("#website-project-container")
@@ -54,19 +62,6 @@ window.addEventListener("load", function() { // make sure page is loaded
     var container6 = document.querySelector("#thesis-project-container")
     var container7 = document.querySelector("#typography-project-container")
 
-
-
-            // listName1.addEventListener('click', function (){ //attach a click event to listName1
-            //         if(container1.classList.contains("open")){ // examine if there is a class "open" in container1
-            //             container1.classList.remove("open"); // delete the class
-            //             document.querySelectorAll('.upwards-arrow')[0].style.display="none"; //remove the first upwards-arrow after clicking
-            //             document.querySelectorAll('.downwards-arrow')[0].style.display="inline"; // shows the first downwards-arrow
-            //     }else{
-            //         container1.classList.add("open");  // add class "open" to container1
-            //         document.querySelectorAll('.upwards-arrow')[0].style.display="inline";  // shows the upwards-arrow when the list is opened
-            //         document.querySelectorAll('.downwards-arrow')[0].style.display="none"; // removes the downwards-arrow
-            //         }
-            // })
 
             listName2.addEventListener('click', function (){  // just repeate the provious code but only change the variables
                 if(container2.classList.contains("open")){
@@ -127,7 +122,37 @@ listName7.addEventListener('click', function (){
 }else{
     container7.classList.add("open");
     }
-}) 
+})
+
+
+waList.addEventListener('click', function (){
+    if(waContainer.classList.contains("open")){
+        waContainer.classList.remove("open");
+}else{
+    waContainer.classList.add("open");
+    }
+})
+vgaList.addEventListener('click', function (){
+    if(vgaContainer.classList.contains("open")){
+        vgaContainer.classList.remove("open");
+}else{
+    vgaContainer.classList.add("open");
+    }
+})
+typoList.addEventListener('click', function (){
+    if(typoContainer.classList.contains("open")){
+        typoContainer.classList.remove("open");
+}else{
+    typoContainer.classList.add("open");
+    }
+})
+webexList.addEventListener('click', function (){
+    if(webexContainer.classList.contains("open")){
+        webexContainer.classList.remove("open");
+}else{
+    webexContainer.classList.add("open");
+    }
+})
 
         var container = document.querySelector('#ball-container') //get element from html
 
@@ -183,11 +208,11 @@ imageBox.style.opacity = "0";
 }
 
 
-  
+//scroll
 window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {
-  if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+  if (document.body.scrollTop > 1000 || document.documentElement.scrollTop > 1000) {
     document.getElementById("all-project-container").style.opacity = '1' ;
     document.querySelector(".arrow").style.opacity = '0' ;
     document.querySelector(".project").style.opacity = '0' ;

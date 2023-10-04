@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani&family=Ramabhadra&family=Roboto&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;800&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text&family=Raleway:wght@400;800&display=swap');
+
+/* Smooth scrolling IF user doesn't have a preference due to motion sensitivities */
+@media screen and (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+@font-face {
+    font-family: "domaine";
+    src: url("font/domaine-display-test-regular.woff") format("woff");
+  }
+
+  body{
+    background-color: #101010;
+    margin:0;
+    height:auto;
+    max-height:190vh;
+}
+
+pre{
+    position:absolute;
+    top:80px;
+    left:40px;
+    font-family: 'Avenir', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    color: #FFFFFF;
+}
+
+#experience{
+    position: absolute;
+    width: 500px;
+    height: auto;
+    top:210px;
+    left:650px;
+    font-family: 'Avenir', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    color: #FFFFFF;
+   padding-bottom: 50px;
+
+}
+
+span{
+    font-style: bold;
+    font-weight: 800;
+    font-size: 20px;
+}
+
+
+.logo{
+    position: fixed;
+    width: 40px;
+    left: 55px;
+    top: 30px;
+    cursor: pointer;
+    transition-duration: 0.3s;
+    z-index: 5;
+}
+
+footer{
+    font-family: 'Raleway', serif;
+    font-size: 2vh;
+    color:#ffffff;
+    position:fixed;
+    bottom:50px;
+    right:40px;
+}
+
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+  }
+  
+  @keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
+  }
+
+
+  .home a{
+    position: fixed;
+    display: block;
+    bottom: 4vh;
+    left:4vw;
+    background-color: transparent;
+    font-size:15px;
+    width:100px;
+    outline: none;
+    border-radius:7px;
+    border:1px solid white;
+
+    font-family: 'Raleway', sans-serif;
+    text-decoration: none;
+    text-align: center;
+    line-height: 40px;
+    font-weight: 400;
+    color:white;
+    transition-duration: 0.4s;
+    z-index: 2;
+  }
+
+
+.home a:hover{
+    background-color: white;
+    border: 1px solid white;
+    color:black;
+}

@@ -26,8 +26,6 @@
 
 h1{
    /* I‘m Zi Wang. */
-
-
 position: absolute;
 /* width: 514px;
 height: 82px; */
@@ -53,8 +51,8 @@ color: #FFFFFF;
 .logo{
     position: fixed;
     width: 40px;
-    left: 55px;
-    top: 30px;
+    left: 70px;
+    top: 40px;
     cursor: pointer;
     transition-duration: 0.3s;
     z-index: 5;
@@ -97,8 +95,8 @@ h2{
     position: fixed;
     width: 85px;
     height: 41px;
-    right:40px;
-    top: 30px;
+    right:70px;
+    top: 40px;
 
 font-family: 'Raleway', serif;
 font-style: normal;
@@ -109,6 +107,7 @@ line-height: 41px;
 
 
 color: #FFFFFF;
+z-index: 5;
 }
 
 .arrow{
@@ -116,6 +115,7 @@ position: fixed;
 width: 20px;
 left: 160px;
 bottom: 65px;
+display: none;
 }
 
 h3{
@@ -132,6 +132,7 @@ font-size: 20px;
 line-height: 41px;
 
 color: #FFFFFF;
+display: none;
 }
 
 .back-image{
@@ -211,42 +212,73 @@ color: #FFFFFF;
     opacity: 0;
 }
 
+#main-container{
+    position: absolute;
+    top: 100%;
+    left: 3%;
+    width: 100%;
+    padding-bottom: 100px;
+}
 
-.first-page-container{
-    position:absolute;
-    top:210%;
+h4{
+    position: relative;
+    padding-bottom:0px;
+    left:3%;
+    /* left:50%;
+    translate: translateX(-50%); */
+    text-align: left;
+    width:500px;
+    font-size: 40px;
+    font-family:  'Avenir', sans-serif;
+    color: white;
+    font-weight: 800;
+    line-height: auto;
+    cursor: pointer;
+    z-index: 1;
+}
+
+h4:hover{
+    color:#c77fda;
+}
+
+
+#wa-container, #vga-container, #typo-container{
+    position:relative;
+    top:220%;
     display: flex;
     flex-wrap: wrap;
     /* width: 100%; */
-    left:3%;
+    left:2vw;
     
 }
 
-.first-page-container div{
+#wa-container div, #vga-container div, #typo-container div{
     width:500px;
     height:auto;
     color: white;
     font-family: 'Raleway', serif;
-font-style: normal;
-font-weight: 400;
-font-size: 20px;
-margin-left:20px;
-margin-bottom:50px;
-cursor: pointer;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    margin-left:20px;
+    margin-bottom:50px;
+    padding-top:30px;
+    cursor: pointer;
 }
 
 
 
-.first-page-container div img{
+#wa-container div img, #vga-container div img, #typo-container div img{
     width:100%;
     height:100%;
     position: relative;
     object-fit: cover;
     cursor: pointer;
+    padding-bottom:10px;
     /* border-radius: 10px; */
 }
 
-.first-page-container div img:hover{
+#wa-container div img:hover, #vga-container div img:hover, #typo-container div img:hover{
   width:510px;
   transition-duration: 0.2s;
 }
@@ -282,6 +314,7 @@ cursor: pointer;
     transition-duration: 0.2s;
     height:90%;
     overflow: auto;
+    z-index: 6;
     
 }
 
@@ -347,48 +380,50 @@ p{
 
 #typography-name, #thesis-name, #website-name, #uiux-name, #core-2-studio-name, #core-2-lab-name, #core-1-studio-project-name, #more-name{
     margin-bottom:10px;
+    z-index: 5;
 }
 
 #typography-project-container, #thesis-project-container,  #website-project-container,#uiux-project-container, #core-2-studio-project-container, #core-2-lab-project-container, #core-1-studio-project-container{
     display: none;
+    z-index: 5;
 }
 
 
 
 #typography-project-container.open{
     display:inline;
-    z-index: 2;
+    z-index: 5;
 }
 
 #thesis-project-container.open{
     display:inline;
-    z-index: 2;
+    z-index: 5;
 }
 
 #website-project-container.open{
     display:inline;
-    z-index: 2;
+    z-index: 5;
 }
 
 #uiux-project-container.open{
     display:inline;
-    z-index: 2;
+    z-index: 5;
 }
 
 #core-2-studio-project-container.open{
     display:inline;
-    z-index: 2;
+    z-index: 5;
 }
 
 #core-2-lab-project-container.open{
     display:inline;
-    z-index: 2;
+    z-index: 5;
 }
 
 #core-1-studio-project-container.open{
     display:inline;
     transition: 0.3s;
-    z-index: 2;
+    z-index: 5;
 }
 
 #core-1-studio-project-container{
@@ -398,12 +433,41 @@ p{
 
 }
 
-/* span{
-    position:absolute;
-    padding-top:10px;
-    padding-left: 10px;
+#wa-name, #vga-name, #typo-name, #webex-name{
+    margin-bottom:10px;
+}
+
+#wa-container, #vga-container, #typo-container, #webex-container{
+    display: none;
+}
+
+#wa-container.open{
+    display: flex;
     z-index: 2;
-} */
+}
+
+#vga-container.open{
+    display: flex;
+    z-index: 2;
+}
+
+#typo-container.open{
+    display: flex;
+    z-index: 2;
+}
+
+#webex-container.open{
+    display: inline;
+    z-index: 2;
+}
+
+#webex-container a{
+    position: relative;
+    left:3%;
+}
+
+
+
 
 .upwards-arrow{
     display: none;
@@ -488,6 +552,6 @@ footer{
     color:#ffffff;
     position:fixed;
     bottom:50px;
-    right:40px;
+    right:70px;
     
 }

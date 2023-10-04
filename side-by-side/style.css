@@ -1,0 +1,271 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;800&display=swap');
+
+
+body{
+    background-color: #000;
+    margin: 0;
+    padding: 0;
+}
+
+#title{
+    position:absolute;
+    font-size: 60px;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    font-family: 'Raleway', sans-serif;
+    left: 50%;
+    top:40%;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+/* Style the video: 100% width and height to cover the entire window */
+#cover {
+    /* position: absolute; */
+    /* left:50%;
+    top:0;
+    transform: translateX(-50%); */
+    width: 100%; 
+    height: 100vh;
+    object-fit: cover;
+    opacity: 0.7;
+  }
+
+  /* body{
+    overflow-x: hidden;
+  } */
+/*   
+  .video-container{
+    width: 100vw;
+    height: 100vh;
+  }
+  
+   iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 100vh;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+  
+  
+  @media (min-aspect-ratio: 16/9) {
+    .video-container iframe {
+      height: 56.25vw;
+    }
+  }
+  @media (max-aspect-ratio: 16/9) {
+    .video-container iframe {
+      width: 177.78vh;
+    }
+  } */
+  
+  /* Add some content at the bottom of the video/page */
+  /* .content {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    color: #f1f1f1;
+    width: 100%;
+    padding: 20px;
+    font-family: 'Raleway', sans-serif;
+    z-index: 1;
+  } */
+  
+  
+
+  #arrow{
+    position:fixed;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width:30px;
+    z-index: 2;
+  }
+
+  #scroll{
+    position:fixed;
+    font-size: 15px;
+    color: #fff;
+    font-family: 'Raleway', sans-serif;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom:20px;
+    z-index: 2;
+  }
+
+  #text{
+    margin-top: 50px;
+    color: #fff;
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+  }
+
+  .text {
+    color: #f2f2f2;
+    font-family: 'Raleway', sans-serif;
+    font-size: 15px;
+    padding-bottom: 40px;
+    position: relative;
+    text-align: left;
+    bottom: 10px;
+    width: 80%;
+  }
+
+  .caption1{
+    padding:0 400px 0 400px;
+    margin-bottom:30px;
+    font-size: 30px;
+    line-height: 40px;
+    color: #fff;
+    
+  }
+
+  .caption2{
+    margin-top:60px;
+    font-size: 20px;
+    color: #fff;
+  }
+
+  .proposal{
+    font-size: 15px;
+    color: #fff;
+    padding:0 300px 0 300px;
+    line-height: 22px;
+  }
+
+  .background-image{
+    position: fixed;
+    width: 100%;
+    height: auto;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    opacity: 0.1;
+  }
+
+  #container {
+    width:90%;
+    margin:30px auto 100px auto;
+}
+
+#slides {
+    padding: 0 60px;
+    padding-top:0%;
+    max-width: 1000px;
+    position: relative;
+    margin: 0 auto;
+}
+
+#slides li {
+    list-style: none;
+}
+
+#slides img {
+    padding-bottom: 20px;
+    width:100%;
+}
+.numbertext{
+    color: #f2f2f2;
+    opacity:0.7;
+    font-family: 'Raleway', sans-serif;
+    font-size: 60px;
+    font-weight: bold;
+    position: absolute; 
+    top:10%;
+    left:-20%;
+    transform: rotate(90deg);
+  }
+  
+  /* Next & previous buttons */
+  .prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+    /* transition: 0.6s ease; */
+    border-radius: 3px;
+    user-select: none;
+  }
+  
+  /* Position the "next button" to the right */
+  .next{
+    right: 0;
+    border-radius: 3px;
+  }
+  
+  .prev{
+    left:0;
+  }
+  
+  
+  .prev:hover, .next:hover {
+    background-color: rgba(235, 235, 235, 0.35);
+  }
+  
+  
+  
+  /* Fading animation */
+  .fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+  }
+  
+  @keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
+  }
+
+
+  .home a{
+    position: relative;
+    display: block;
+    bottom: 5vh;
+    left:50%;
+    transform: translateX(-50%);
+    background-color: transparent;
+    font-size:15px;
+    width:100px;
+    outline: none;
+    border-radius:7px;
+    border:1px solid white;
+
+
+    font-family: 'Raleway', sans-serif;
+    text-decoration: none;
+    text-align: center;
+    line-height: 40px;
+    font-weight: 400;
+    color:white;
+    transition-duration: 0.4s;
+    z-index: 2;
+  }
+
+
+.home a:hover{
+    background-color: white;
+    border: 1px solid white;
+    color:black;
+}
+  
+footer{
+  font-family: 'Raleway', serif;
+  font-size: 2vh;
+  color:#ffffff;
+  position:relative;
+  bottom:20px;
+  width: 100%;
+  text-align: center;
+  margin-top:30px;
+  margin-bottom:30px;
+}
