@@ -166,7 +166,7 @@ webexList.addEventListener('click', function (){
 
 
 //explore
-var images = ["work1.jpg","work2.jpg","work3.gif","work4.jpg","work5.png","work6.jpg","work7.jpg","work8.jpg","work9.jpg","work10.jpg"]
+var images = ["work1.jpg","work2.jpg","work3.gif","work4.jpg","work5.png","work6.jpg","work7.jpg","work8.jpg","work9.jpg","work10.jpg", "work11.png", "work12.png", "work13.png"]
 
 
 
