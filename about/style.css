@@ -14,8 +14,9 @@
 
 @font-face {
     font-family: "domaine";
-    src: url("font/domaine-display-test-regular.woff") format("woff");
+    src: url("../font/domaine-display-test-regular.woff") format("woff");
   }
+
 
   body{
     background-color: #101010;
@@ -28,25 +29,27 @@ pre{
     position:absolute;
     top:80px;
     left:40px;
-    font-family: 'Avenir', sans-serif;
+    font-family: 'Raleway', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
     color: #FFFFFF;
+    line-height: 25px;
 }
 
 #experience{
     position: absolute;
     width: 500px;
     height: auto;
-    top:210px;
+    top:200px;
     left:650px;
-    font-family: 'Avenir', sans-serif;
+    font-family: 'Raleway', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
     color: #FFFFFF;
-   padding-bottom: 50px;
+    padding-bottom: 50px;
+    line-height: 20px;
 
 }
 
