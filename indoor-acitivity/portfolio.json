@@ -1,0 +1,11 @@
+{"portfolio":[
+    { "number":"1",
+      "image":"images/ia1.png",
+      "title":"Overview & Poster"},
+    { "number":"2",
+      "image":"images/ia2.png",
+      "title":"Web & App Design" },
+    { "number":"3",
+      "image":"images/ia3.png",
+      "title":"Web & App Interface" }
+]}
