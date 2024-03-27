@@ -39,11 +39,11 @@ document.addEventListener("DOMContentLoaded", function() {
     //trigger a function 
     showSlides(slideIndex);
 
-    autoplay(slideIndex);
-    function autoplay() {
-        plusSlides(1);
-        setTimeout(autoplay, 10000);
-    }
+    // autoplay(slideIndex);
+    // function autoplay() {
+    //     plusSlides(1);
+    //     setTimeout(autoplay, 10000);
+    // }
       
     //get two buttons from html  
     let prev = document.querySelector(".prev");

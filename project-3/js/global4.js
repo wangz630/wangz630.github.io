@@ -3,7 +3,11 @@ console.log("airtable practice");
 //load airtable lib
 
 var Airtable = require('airtable');
-var base = new Airtable({apiKey: 'keyLDUimLxPjXCkcF'}).base('appqjTjKVd77BifP9');
+Airtable.configure({
+    endpointUrl: 'https://api.airtable.com',
+    apiKey: 'patJOOUmGoixLpR8v.69e2ade11fbb6aa5ec159b0189695cf3b7aae774c641aabe1de3f0c7941154f4'
+});
+var base = Airtable.base('appqjTjKVd77BifP9');
 
 base('World').select({
     // Selecting the first 3 records in Grid view:

@@ -1,11 +1,18 @@
 
-var Airtable = require("airtable");
-console.log(Airtable);
+// var Airtable = require("airtable");
+// console.log(Airtable);
 
-// use airtable library, connect to our base using API key
-var base = new Airtable({ apiKey: "keyLDUimLxPjXCkcF" }).base(
-    "appuQXgjREzWskbnr"
-  );
+// // use airtable library, connect to our base using API key
+// var base = new Airtable({ apiKey: "keyLDUimLxPjXCkcF" }).base(
+//     "appuQXgjREzWskbnr"
+//   );
+
+var Airtable = require('airtable');
+Airtable.configure({
+    endpointUrl: 'https://api.airtable.com',
+    apiKey: 'patJOOUmGoixLpR8v.69e2ade11fbb6aa5ec159b0189695cf3b7aae774c641aabe1de3f0c7941154f4'
+});
+var base = Airtable.base('appuQXgjREzWskbnr');
 
 //get the "nature" table from the base, select ALL the records, and specify the functions that will receive the data
 base("inspiration").select({}).eachPage(gotPageOfPhotos, gotAllPhotos);
