@@ -109,10 +109,10 @@ body{
   }
 
   .proposal{
-    font-size: 15px;
+    font-size: 18px;
     color: #fff;
-    padding:0 300px 0 300px;
-    line-height: 22px;
+    padding:0 10vw 0 10vw;
+    line-height: 1.5;
   }
 
   .background-image{
