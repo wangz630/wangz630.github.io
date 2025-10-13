@@ -1,60 +1,52 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>256 Images</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
 
-    <title>256 images</title>
-
-    <!-- add reset to create consistency between browsers and devices. -->
-
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <!-- add link to your javascript. be sure it includes "defer" -->
-    <script type="text/javascript" src="js/lib/airtable.browser.js" defer></script>
-    <script type="text/javascript" src="js/global.js" defer></script>
 </head>
 
 <body>
-    <div class="home">
-        <a href="../index.html">Home</a>
-    </div>
+ <h1 id="title">256 Images</h1>
 
-<div class="container">
-    <!-- <div class="menu">
-        <h1>PLACE</h1>
-        <h1><div class="photoContainer">PHOTOGRAPHER</h1>
-        <h1>TITLE</h1>
-    </div> -->
-    
+  <img id="arrow" src = "images/arrow.png">
+  <p id="scroll">scroll</p>
 
-    <aside class="filter">
-        <h2>256 IMAGES</h2>
-        <ul class="filter-list" data-category="color">
-            <li>
-                <button class="filter-item" data-value="red"></button>
-            </li>
-            <li>
-                <button class="filter-item" data-value="yellow"></button>
-            </li>
-            <li>
-                <button class="filter-item" data-value="green"></button>
-            </li>
-            <li>
-                
-                <button class="filter-item" data-value="blue"></button>
-            </li>
-            <li>
-                <button class="filter-item" data-value="purple"></button>
-            </li>
-            <li>
-                <button class="filter-item" data-value="black"></button>
-            </li>
+  <!-- The video -->
+<img id = "cover" src = "images/cover.jpg">
 
-        </ul>
-    </aside>
 
-    <main class="photos"></main>
+<!-- Optional: some overlay text to describe the video -->
+<div class="content">
+  <h1>256 Images</h1>
+  <form action="256images/index.html" method="get" target="_blank">
+    <button id="myBtn" type="submit">Go view the site</button>
+ </form>
 </div>
 
+
+<!-- thesis proposal -->
+<div id="text">
+<h1 class="caption1">Overview</h1>
+<p class="proposal">This is an experimental website I created to mimic and visualize my brainstorming process. I used <strong>Airtable</strong> to build a custom API library and collected a total of <strong>256 images</strong> that I’ve used as inspiration over the years. All the images are stacked on the homepage, and users can freely drag them around the screen to reorganize—just like iterating on design ideas. The <strong>color dots</strong> on the right side serve as a simple filter: users can click on a color they like to display only the images that share that hue.</p>
+</div>
+
+  <div id="container">
+    <ul id="slides">
+      <img class = "image" src = "images/256images.gif">
+      <div class='text'>Website Overview</div>
+    </ul>
+</div>
+
+
+<div class="home">
+  <a href="../index.html">Home</a>
+</div>
+<footer>wangz630@newschool.edu</footer>
+  <script src="script.js"></script>
 </body>
+
 </html>

@@ -18,8 +18,8 @@
   }
 
 body{
-    background-color: #101010;
-    ;
+    /* background-color: #101010; */
+    background-color: #efefef;
     margin:0;
     height:auto;
     max-height:190vh;
@@ -41,11 +41,11 @@ line-height: 82px;
 /* identical to box height */
 
 
-color: #FFFFFF;
+/* color: #FFFFFF; */
+color: #181818;
 }
 
 .zi{
-
     font-weight: 800;
 }
 
@@ -58,6 +58,12 @@ color: #FFFFFF;
     transition-duration: 0.3s;
     z-index: 8;
 }
+
+.logo:hover {
+    filter: brightness(0.8) drop-shadow(0 0 4px rgba(0, 0, 0, 0.25));
+}
+
+
 
 /* h2{
     margin-top:70px;
@@ -88,7 +94,8 @@ h2{
     /* identical to box height */
     
     
-    color: #FFFFFF;
+    /* color: #FFFFFF; */
+    color: #181818;
     
 }
 
@@ -107,7 +114,8 @@ line-height: 41px;
 /* identical to box height */
 
 
-color: #FFFFFF;
+/* color: #FFFFFF; */
+color: #181818;
 z-index: 7;
 }
 
@@ -132,7 +140,8 @@ font-weight: 400;
 font-size: 20px;
 line-height: 41px;
 
-color: #FFFFFF;
+/* color: #FFFFFF; */
+color: #181818;
 display: none;
 }
 
@@ -193,7 +202,8 @@ display: none;
     left: 10%;
     font-size: 30px;
     font-family:  'Raleway', serif;
-    color: white;
+    /* color: white; */
+    color: #181818;
     font-weight: 800;
     cursor: pointer;
 }
@@ -205,7 +215,8 @@ display: none;
     width:400px;
     font-size: 12px;
     font-family:  'Raleway', serif;
-    color: white;
+    /* color: white; */
+    color: #181818;
     font-weight: 400;
     line-height: 18px;
     text-align: left;
@@ -231,7 +242,8 @@ h4{
     width:500px;
     font-size: 40px;
     font-family:  'Raleway', sans-serif;
-    color: white;
+    /* color: white; */
+    color: #181818;
     font-weight: 800;
     line-height: auto;
     cursor: pointer;
@@ -243,7 +255,7 @@ h4:hover{
 }
 
 
-#wa-container, #vga-container, #typo-container{
+#wa-container, #vga-container, #typo-container, #wc-container{
     position:relative;
     top:220%;
     display: flex;
@@ -253,10 +265,11 @@ h4:hover{
     
 }
 
-#wa-container div, #vga-container div, #typo-container div{
+#wa-container div, #vga-container div, #typo-container div, #wc-container div{
     width:500px;
     height:auto;
-    color: white;
+    /* color: white; */
+    color: #181818;
     font-family: 'Raleway', serif;
     font-style: normal;
     font-weight: 400;
@@ -268,7 +281,7 @@ h4:hover{
 
 
 
-#wa-container div img, #vga-container div img, #typo-container div img{
+#wa-container div img, #vga-container div img, #typo-container div img, #wc-container div img{
     width:100%;
     height:100%;
     position: relative;
@@ -278,7 +291,7 @@ h4:hover{
     /* border-radius: 10px; */
 }
 
-#wa-container div img:hover, #vga-container div img:hover, #typo-container div img:hover{
+#wa-container div img:hover, #vga-container div img:hover, #typo-container div img:hover, #wc-container div img:hover{
   width:510px;
   transition-duration: 0.2s;
 }
@@ -326,7 +339,8 @@ a{
     font-size: 2vh;
     line-height: 30px;
     font-weight: 400;
-    color: #ffffff;
+    /* color: #ffffff; */
+    color: #181818;
     transition-duration: 0.4s;
     z-index: 2;
 }
@@ -366,7 +380,8 @@ p{
     font-size: 2.5vh;
     letter-spacing: 1px;
     line-height: 70%;
-    color: #b4b5b2;
+    /* color: #b4b5b2; */
+    color: #8b8b8b;
     text-align: right;
     margin-right:40px;
     transition-duration: 0.4s;
@@ -437,7 +452,7 @@ p{
     margin-bottom:10px;
 }
 
-#wa-container, #vga-container, #typo-container, #webex-container{
+#wa-container, #vga-container, #typo-container, #webex-container, #wc-container{
     display: none;
 }
 
@@ -452,6 +467,11 @@ p{
 }
 
 #typo-container.open{
+    display: flex;
+    z-index: 2;
+}
+
+#wc-container.open{
     display: flex;
     z-index: 2;
 }
@@ -484,9 +504,9 @@ p:hover{
 .ball{
     position:absolute;
     border-radius:50%;
-    width:1rem;
-    height:1rem;
-    background: radial-gradient(50% 50% at 50% 50%, #ffffff 0%, rgba(255, 242, 175, 0) 100%);
+    width:0.5rem;
+    height:0.5rem;
+    background: radial-gradient(50% 50% at 50% 50%, #be1ea3 0%, rgba(255, 242, 175, 0) 100%);
     opacity:.4;
     animation-name:twinkle;
     animation-duration: 2s;
@@ -548,7 +568,8 @@ li a.active{
 footer{
     font-family: 'Raleway', serif;
     font-size: 2vh;
-    color:#ffffff;
+    /* color:#ffffff; */
+    color: #181818;
     position:fixed;
     bottom:50px;
     right:70px;

@@ -53,6 +53,7 @@ window.addEventListener("load", function() { // make sure page is loaded
     var waContainer = document.querySelector("#wa-container")
     var vgaContainer = document.querySelector("#vga-container")
     var typoContainer = document.querySelector("#typo-container")
+    var wcContainer = document.querySelector("#wc-container")
     var webexContainer = document.querySelector("#webex-container")
 
     var container2 = document.querySelector("#core-2-lab-project-container")
@@ -149,8 +150,10 @@ typoList.addEventListener('click', function (){
 webexList.addEventListener('click', function (){
     if(webexContainer.classList.contains("open")){
         webexContainer.classList.remove("open");
+        wcContainer.classList.remove("open");
 }else{
     webexContainer.classList.add("open");
+    wcContainer.classList.add("open");
     }
 })
 

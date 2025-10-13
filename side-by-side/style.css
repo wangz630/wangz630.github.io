@@ -103,7 +103,18 @@ body{
     margin-top: 50px;
     color: #fff;
     font-family: 'Raleway', sans-serif;
+    text-align: left;
+  }
+
+  .year-team-role{
+    font-size: 22px;
     text-align: center;
+    letter-spacing: 0.05em;
+    margin-bottom: 100px;
+  }
+
+  .divider{
+    margin: auto 5%;
   }
 
   .text {
