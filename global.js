@@ -42,12 +42,12 @@ window.addEventListener("load", function() { // make sure page is loaded
     var typoList = document.querySelector("#typo-name")
     var webexList = document.querySelector("#webex-name")
     
-    var listName2 = document.querySelector("#core-2-lab-name")
-    var listName3 = document.querySelector("#core-1-studio-project-name")
-    var listName4 = document.querySelector("#website-name")
-    var listName5 = document.querySelector("#uiux-name")
-    var listName6 = document.querySelector("#thesis-name")
-    var listName7 = document.querySelector("#typography-name")
+    // var listName2 = document.querySelector("#core-2-lab-name")
+    // var listName3 = document.querySelector("#core-1-studio-project-name")
+    // var listName4 = document.querySelector("#website-name")
+    // var listName5 = document.querySelector("#uiux-name")
+    // var listName6 = document.querySelector("#thesis-name")
+    // var listName7 = document.querySelector("#typography-name")
 
     // var container1 = document.querySelector("#core-2-studio-project-container")
     var waContainer = document.querySelector("#wa-container")
@@ -56,74 +56,74 @@ window.addEventListener("load", function() { // make sure page is loaded
     var wcContainer = document.querySelector("#wc-container")
     var webexContainer = document.querySelector("#webex-container")
 
-    var container2 = document.querySelector("#core-2-lab-project-container")
-    var container3 = document.querySelector("#core-1-studio-project-container")
-    var container4 = document.querySelector("#website-project-container")
-    var container5 = document.querySelector("#uiux-project-container")
-    var container6 = document.querySelector("#thesis-project-container")
-    var container7 = document.querySelector("#typography-project-container")
+    // var container2 = document.querySelector("#core-2-lab-project-container")
+    // var container3 = document.querySelector("#core-1-studio-project-container")
+    // var container4 = document.querySelector("#website-project-container")
+    // var container5 = document.querySelector("#uiux-project-container")
+    // var container6 = document.querySelector("#thesis-project-container")
+    // var container7 = document.querySelector("#typography-project-container")
 
 
-            listName2.addEventListener('click', function (){  // just repeate the provious code but only change the variables
-                if(container2.classList.contains("open")){
-                    container2.classList.remove("open");
-                    document.querySelectorAll('.upwards-arrow')[1].style.display="none"; // the second element in class "upwards-arrow"
-                    document.querySelectorAll('.downwards-arrow')[1].style.display="inline";
-            }else{
-                container2.classList.add("open");
-                document.querySelectorAll('.upwards-arrow')[1].style.display="inline";
-                document.querySelectorAll('.downwards-arrow')[1].style.display="none";
-                }
-        })
+//             listName2.addEventListener('click', function (){  // just repeate the provious code but only change the variables
+//                 if(container2.classList.contains("open")){
+//                     container2.classList.remove("open");
+//                     document.querySelectorAll('.upwards-arrow')[1].style.display="none"; // the second element in class "upwards-arrow"
+//                     document.querySelectorAll('.downwards-arrow')[1].style.display="inline";
+//             }else{
+//                 container2.classList.add("open");
+//                 document.querySelectorAll('.upwards-arrow')[1].style.display="inline";
+//                 document.querySelectorAll('.downwards-arrow')[1].style.display="none";
+//                 }
+//         })
 
         
-        listName3.addEventListener('click', function (){ // still repeate the previous code
-            if(container3.classList.contains("open")){
-                container3.classList.remove("open");
-                document.querySelectorAll('.upwards-arrow')[2].style.display="none"; // the thrid element in class "upwards-arrow"
-                document.querySelectorAll('.downwards-arrow')[2].style.display="inline";
-        }else{
-            container3.classList.add("open");
-            document.querySelectorAll('.upwards-arrow')[2].style.display="inline";
-            document.querySelectorAll('.downwards-arrow')[2].style.display="none";
-            }
-    }) 
+//         listName3.addEventListener('click', function (){ // still repeate the previous code
+//             if(container3.classList.contains("open")){
+//                 container3.classList.remove("open");
+//                 document.querySelectorAll('.upwards-arrow')[2].style.display="none"; // the thrid element in class "upwards-arrow"
+//                 document.querySelectorAll('.downwards-arrow')[2].style.display="inline";
+//         }else{
+//             container3.classList.add("open");
+//             document.querySelectorAll('.upwards-arrow')[2].style.display="inline";
+//             document.querySelectorAll('.downwards-arrow')[2].style.display="none";
+//             }
+//     }) 
 
-    listName4.addEventListener('click', function (){ // still repeate the previous code
-        if(container4.classList.contains("open")){
-            container4.classList.remove("open");
-            // document.querySelectorAll('.upwards-arrow')[3].style.display="none"; // the thrid element in class "upwards-arrow"
-            // document.querySelectorAll('.downwards-arrow')[3].style.display="inline";
-    }else{
-        container4.classList.add("open");
-        // document.querySelectorAll('.upwards-arrow')[3].style.display="inline";
-        // document.querySelectorAll('.downwards-arrow')[3].style.display="none";
-        }
-}) 
+//     listName4.addEventListener('click', function (){ // still repeate the previous code
+//         if(container4.classList.contains("open")){
+//             container4.classList.remove("open");
+//             // document.querySelectorAll('.upwards-arrow')[3].style.display="none"; // the thrid element in class "upwards-arrow"
+//             // document.querySelectorAll('.downwards-arrow')[3].style.display="inline";
+//     }else{
+//         container4.classList.add("open");
+//         // document.querySelectorAll('.upwards-arrow')[3].style.display="inline";
+//         // document.querySelectorAll('.downwards-arrow')[3].style.display="none";
+//         }
+// }) 
 
-listName5.addEventListener('click', function (){ 
-    if(container5.classList.contains("open")){
-        container5.classList.remove("open");
-}else{
-    container5.classList.add("open");
-    }
-}) 
+// listName5.addEventListener('click', function (){ 
+//     if(container5.classList.contains("open")){
+//         container5.classList.remove("open");
+// }else{
+//     container5.classList.add("open");
+//     }
+// }) 
 
-listName6.addEventListener('click', function (){ 
-    if(container6.classList.contains("open")){
-        container6.classList.remove("open");
-}else{
-    container6.classList.add("open");
-    }
-}) 
+// listName6.addEventListener('click', function (){ 
+//     if(container6.classList.contains("open")){
+//         container6.classList.remove("open");
+// }else{
+//     container6.classList.add("open");
+//     }
+// }) 
 
-listName7.addEventListener('click', function (){ 
-    if(container7.classList.contains("open")){
-        container7.classList.remove("open");
-}else{
-    container7.classList.add("open");
-    }
-})
+// listName7.addEventListener('click', function (){ 
+//     if(container7.classList.contains("open")){
+//         container7.classList.remove("open");
+// }else{
+//     container7.classList.add("open");
+//     }
+// })
 
 
 waList.addEventListener('click', function (){
@@ -212,21 +212,21 @@ imageBox.style.opacity = "0";
 
 
 //scroll
-window.onscroll = function() {scrollFunction()};
+// window.onscroll = function() {scrollFunction()};
 
-function scrollFunction() {
-  if (document.body.scrollTop > 1000 || document.documentElement.scrollTop > 1000) {
-    document.getElementById("all-project-container").style.opacity = '1' ;
-    document.querySelector(".arrow").style.opacity = '0' ;
-    document.querySelector(".project").style.opacity = '0' ;
+// function scrollFunction() {
+//   if (document.body.scrollTop > 1000 || document.documentElement.scrollTop > 1000) {
+//     document.getElementById("all-project-container").style.opacity = '1' ;
+//     document.querySelector(".arrow").style.opacity = '0' ;
+//     document.querySelector(".project").style.opacity = '0' ;
 
-  } else{
-    document.getElementById("all-project-container").style.opacity = '0' ;
-    document.querySelector(".arrow").style.opacity = '1' ;
-    document.querySelector(".project").style.opacity = '1' ;
+//   } else{
+//     document.getElementById("all-project-container").style.opacity = '0' ;
+//     document.querySelector(".arrow").style.opacity = '1' ;
+//     document.querySelector(".project").style.opacity = '1' ;
 
-  }
-}
+//   }
+// }
 
 // let description = document.querySelector(".description");
 // let thesisImage = document.querySelector(".thesis-cover");
