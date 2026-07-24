@@ -18,12 +18,26 @@
     <!--heading-->
     <img src="project-image/arrow.png" alt="img" class="arrow">
     <h3 class="project">Project</h3>
+    <!-- scroll-down hint (black, for the light home screen) -->
+    <div class="scroll-hint" id="scrollHint">
+        <span class="scroll-text">scroll</span>
+        <svg width="26" height="15" viewBox="0 0 26 15" fill="none" xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true">
+            <path d="M2 2 L13 12 L24 2" stroke="#181818" stroke-width="2.4" stroke-linecap="round"
+                stroke-linejoin="round" />
+        </svg>
+    </div>
     <!-- <span class="thesis2023">THESIS 2023</span> -->
     <!--main-->
     <div id="main-container">
         <!--website & application-->
         <h4 id="wa-name">Website & Application</h4>
-        <div id="wa-container">
+        <div id="wa-container" class="open">
+            <div class="homepage-app">
+                <a href="vicino/index.html"><img src="project-image/Vicino Cover Image.png" alt="img" class="app-image"
+                        class="home-image"></a>
+                <br><span>AI PRODUCT - Vicino (AI Creative Workflow)</span>
+            </div>
             <div class="homepage-app">
                 <a href="route-app/index.html"><img src="project-image/route-app.png" alt="img" class="app-image"
                         class="home-image"></a>

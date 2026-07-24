@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vicino</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+  <h1 id="title">Vicino</h1>
+
+  <img id="arrow" src="images/arrow.png">
+  <p id="scroll">scroll</p>
+
+  <div id="cover-container">
+    <img id="cover" src="../project-image/Vicino Cover Image.png">
+  </div>
+
+  <div id="text">
+    <div class="year-team-role">
+      <p><strong>Year:</strong> 2026 – Present <span class="divider">|</span> <strong>Type:</strong> Product Design Internship <span class="divider">|</span> <strong>Role:</strong> Product Designer <span class="divider">|</span> <strong>Tools:</strong> Figma, Claude</p>
+    </div>
+
+    <!-- ===================== OVERVIEW ===================== -->
+    <h1 class="caption1">Project Overview</h1>
+    <p class="proposal">
+      Vicino is a startup building <strong>AI-powered creative tools</strong> that help teams generate, manage, and ship content through node-based creative workflows. As a Product Designer, I worked across the company's <strong>AI creative workflow canvas</strong>, designing new features that make multi-step AI generation clearer, faster, and more controllable for both everyday creators and professional teams.
+      <br><br>
+      Everything shown below I <strong>owned end-to-end and individually</strong> — from the very first concept and interaction design, all the way through to the final handoff to the development team. My core toolkit was <strong>Figma and Claude</strong>: I used AI tools like Claude to rapidly build working prototypes and validate interaction ideas, then moved into Figma to refine the UI, states, and micro-interactions into a polished, developer-ready design.
+    </p>
+    <div class="tag-row">
+      <span class="tag">Chatbot (B2C &amp; B2B)</span>
+      <span class="tag">Sliding Panel</span>
+      <span class="tag">Audio Node</span>
+      <span class="tag">Pulse Onboarding</span>
+    </div>
+
+    <!-- ===================== 1. CHATBOT ===================== -->
+    <h1 class="caption1">1 &nbsp;·&nbsp; Chatbot Design (B2C &amp; B2B)</h1>
+    <p class="proposal">
+      Our AI creative workflow product needed a <strong>chatbot</strong> so users could drive generation through natural conversation. I designed the chatbot's UI and interaction model across two distinct audiences — <strong>B2C</strong> and <strong>B2B</strong> — each optimized for very different needs.
+      <br><br>
+      <strong>B2C</strong> prioritizes <strong>speed and simplicity</strong>. The interaction is streamlined so that most of what a user wants to generate can be completed in a single back-and-forth with the chatbot, keeping the experience light and conversational.
+    </p>
+    <div class="video-wrap">
+      <div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1212776327?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="2C Chatbot Example Flow"></iframe></div>
+    </div>
+    <p class="video-caption">B2C Chatbot — example flow</p>
+
+    <p class="proposal">
+      <strong>B2B</strong> prioritizes <strong>accuracy, complexity, and user control</strong>. Instead of generating in one shot, the chatbot first shows the user a <strong>generation plan</strong> — a main task plus a to-do list — for confirmation. Once approved, it builds out the workflow, and the user can inspect the status of <strong>every node</strong> at any point and adjust its properties, giving professional teams the precision and transparency they need.
+    </p>
+    <div class="video-wrap">
+      <div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1212776919?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479%2Fembed" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen="" frameborder="0" style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>
+    </div>
+    <p class="video-caption">B2B Chatbot — example flow</p>
+
+    <div class="image-container">
+      <a href="images/2C-chatbot.png" target="_blank"><img class="figma-shot" src="images/2C-chatbot.png" alt="B2C chatbot UI design"></a>
+    </div>
+    <p class="shot-caption">B2C chatbot — UI design (Figma)</p>
+    <div class="image-container">
+      <a href="images/2B-chatbot.png" target="_blank"><img class="figma-shot" src="images/2B-chatbot.png" alt="B2B chatbot UI design"></a>
+    </div>
+    <p class="shot-caption">B2B chatbot — UI design (Figma)</p>
+
+    <!-- ===================== 2. SLIDING PANEL ===================== -->
+    <h1 class="caption1">2 &nbsp;·&nbsp; Sliding Panel</h1>
+    <p class="proposal">
+      Our earlier product exposed a large number of adjustable properties for every generated output, and all of them lived in a single <strong>property panel on the right side</strong> of the canvas. Many controls were buried — users had to scroll for a long time before they could even find the setting they wanted.
+      <br><br>
+      To solve this, I designed a <strong>sliding panel</strong> that attaches directly to its corresponding node. I moved a curated set of the most-used property controls out of the right-side panel and into this sliding panel, so users can reach <strong>quick, in-context adjustments</strong> right where they're working on the generated content — no more hunting through a long list.
+    </p>
+    <div class="video-wrap">
+      <div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1212775633?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Sliding Panel Example Flow"></iframe></div>
+    </div>
+    <p class="video-caption">Sliding Panel — example flow</p>
+
+    <!-- ===================== 3. AUDIO NODE ===================== -->
+    <h1 class="caption1">3 &nbsp;·&nbsp; Audio Node</h1>
+    <p class="proposal">
+      I designed the <strong>Audio Node</strong> from start to finish — the entire interaction of how a user works with audio inside the workflow. This covers the full flow: <strong>entering a prompt, uploading audio, and finally generating the audio output</strong>, along with all the states and interactions in between.
+    </p>
+    <div class="video-wrap">
+      <div style="padding:55.28% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1212774824?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="AudioNode Demo Video"></iframe></div>
+    </div>
+    <p class="video-caption">Audio Node — demo</p>
+
+    <div class="image-container">
+      <a href="images/audionode-userflow.png" target="_blank"><img class="figma-shot" src="images/audionode-userflow.png" alt="Audio Node user flow"></a>
+    </div>
+    <p class="shot-caption">Audio Node — full user flow (Figma). Click to view full size.</p>
+
+    <!-- ===================== HANDOFF STATUS ===================== -->
+    <div class="status-note">
+      All of these designs have been successfully <strong>handed off to the development team</strong>. The <strong>Audio Node</strong> and <strong>Sliding Panel</strong> are already fully implemented and live in the product, while the <strong>Chatbot</strong> is currently in active development.
+    </div>
+
+    <!-- ===================== NOW: PULSE ===================== -->
+    <h1 class="caption1">Currently Working On &nbsp;·&nbsp; Pulse</h1>
+    <p class="proposal">
+      Everything above was work on our <strong>creative workflow canvas</strong>. I'm now designing <strong>Pulse — an AI-driven content lifecycle platform</strong> for strategy-driven content creation, lifecycle management, and performance analytics. My focus is the <strong>onboarding experience</strong>, guiding new users into the product from their very first session.
+    </p>
+    <div class="image-container">
+      <a href="Part One Onboarding.html" target="_blank" class="now-btn">Open the Pulse Onboarding Prototype →</a>
+    </div>
+    <div class="image-container">
+      <a href="images/onboarding-userflow.png" target="_blank"><img class="figma-shot" src="images/onboarding-userflow.png" alt="Pulse onboarding user flow"></a>
+    </div>
+    <p class="shot-caption">Pulse onboarding — user flow (Figma). Click to view full size.</p>
+
+  </div>
+
+  <div class="home">
+    <a href="../index.html">Home</a>
+  </div>
+  <footer>ziwang1247@gmail.com</footer>
+
+  <script src="https://player.vimeo.com/api/player.js"></script>
+  <script>
+    window.onscroll = function () {
+      var scrolled = document.body.scrollTop > 500 || document.documentElement.scrollTop > 500;
+      document.getElementById("arrow").style.display = scrolled ? "none" : "block";
+      document.getElementById("scroll").style.display = scrolled ? "none" : "block";
+    };
+  </script>
+</body>
+
+</html>

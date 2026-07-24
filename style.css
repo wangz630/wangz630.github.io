@@ -152,6 +152,45 @@ display: none;
     opacity: 0.2;
 }
 
+/* scroll-down hint on the home screen (black, fades out once scrolled) */
+.scroll-hint{
+    position: fixed;
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    z-index: 6;
+    pointer-events: none;
+    opacity: 0.85;
+    transition: opacity 0.5s ease;
+    animation: scrollBob 1.9s ease-in-out infinite;
+}
+
+.scroll-hint .scroll-text{
+    font-family: 'Raleway', sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.18em;
+    color: #181818;
+    text-align: center;
+    margin: 0;
+}
+
+.scroll-hint svg{
+    display: block;
+}
+
+.scroll-hint.hidden{
+    opacity: 0;
+}
+
+@keyframes scrollBob{
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50%      { transform: translateX(-50%) translateY(7px); }
+}
+
 .image-box {
     position: absolute;
     background-position: center;
@@ -287,13 +326,35 @@ h4:hover{
     position: relative;
     object-fit: cover;
     cursor: pointer;
-    padding-bottom:10px;
-    /* border-radius: 10px; */
+    margin-bottom:10px;
+    border-radius: 3px;
+    transform: translateZ(0);
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                filter 0.45s ease;
 }
 
 #wa-container div img:hover, #vga-container div img:hover, #typo-container div img:hover, #wc-container div img:hover{
-  width:510px;
-  transition-duration: 0.2s;
+  transform: scale(1.02);
+  box-shadow: 0 0 0 2px rgba(160, 111, 207, 0.95),
+              0 0 12px 2px rgba(138, 95, 179, 0.28);
+  filter: brightness(1.03);
+}
+
+/* caption follows the image: smooth purple accent instead of the hard border line */
+#wa-container div span, #vga-container div span, #typo-container div span, #wc-container div span{
+    display: inline-block;
+    transition: color 0.4s ease, letter-spacing 0.4s ease;
+}
+
+#wa-container div:hover span, #vga-container div:hover span, #typo-container div:hover span, #wc-container div:hover span{
+    color: #8a5fb3;
+    letter-spacing: 0.02em;
+}
+
+/* the card images are wrapped in <a>; suppress the global text-link border here */
+#wa-container div a:hover, #vga-container div a:hover, #typo-container div a:hover, #wc-container div a:hover{
+    border: none;
 }
 
 

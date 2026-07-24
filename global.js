@@ -168,8 +168,15 @@ webexList.addEventListener('click', function (){
           }
 
 
-//explore
-var images = ["work4.jpeg", "work12.jpg", "work13.jpg", "work14.jpg", "work15.jpg", "work16.jpg", "work17.jpg", "work19.jpg", "work21.jpeg", "work23.jpg"]
+//explore — thumbnails from the Website & Application and Typography sections
+var images = [
+    // Website & Application
+    "Vicino Cover Image.png", "route-app.png", "empower.png", "greatlake.png",
+    "puzzle.png", "work21.jpeg", "scene07.jpg", "work4.jpeg", "atomo.gif",
+    "work12.jpg", "work13.jpg", "kindle.png", "dating.png",
+    // Typography & Graphics
+    "sunawear1.jpg", "work16.jpg", "work17.jpg", "work19.jpg"
+]
 
 
 
@@ -244,6 +251,15 @@ logo.addEventListener("click", function(){
         document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 
 });
+
+// fade the scroll hint out once the user starts scrolling down
+let scrollHint = document.querySelector(".scroll-hint");
+if (scrollHint) {
+    window.addEventListener("scroll", function () {
+        let scrolled = document.body.scrollTop > 150 || document.documentElement.scrollTop > 150;
+        scrollHint.classList.toggle("hidden", scrolled);
+    });
+}
 
 
 
