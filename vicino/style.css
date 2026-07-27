@@ -312,7 +312,7 @@ footer{
   margin: 24px auto 8px auto;
   border-radius: 6px;
   box-shadow: 0 2px 16px rgba(0,0,0,0.14);
-  cursor: zoom-in;
+  cursor: default;
   transition: box-shadow 0.3s ease;
 }
 .figma-shot:hover{
@@ -345,7 +345,7 @@ footer{
 
 .now-btn{
   display: inline-block;
-  margin: 10px auto 40px auto;
+  margin: 10px auto 6px auto;
   padding: 12px 26px;
   border: 1px solid #181818;
   border-radius: 6px;
@@ -378,3 +378,6 @@ footer{
   background: #e4dcef;
   color: #5f3d82;
 }
+
+/* Pulse: pull the mockup image closer to the prototype button */
+.image-container:has(.now-btn){ margin-bottom: 4px; }

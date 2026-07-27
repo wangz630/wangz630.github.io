@@ -604,3 +604,6 @@
 /* Feature 1 single image: smaller */
 .cs-theme-blue .cs-split__media img.cs-phone{ max-width: 188px; }
 @media (max-width: 620px){ .cs-slide{ height: 300px; } }
+
+/* image wrappers are display-only (not clickable) */
+.cs-imgwrap{ cursor: default; display: inline-block; }

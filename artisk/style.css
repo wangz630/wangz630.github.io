@@ -312,7 +312,7 @@ footer{
   margin: 24px auto 8px auto;
   border-radius: 6px;
   box-shadow: 0 2px 16px rgba(0,0,0,0.14);
-  cursor: zoom-in;
+  cursor: default;
   transition: box-shadow 0.3s ease;
 }
 .figma-shot:hover{
