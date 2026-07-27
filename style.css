@@ -704,7 +704,7 @@ footer{
 /* ===================== top-right nav (About / Projects) ===================== */
 .nav-projects{
     position: fixed;
-    right: 138px;
+    right: 162px;
     top: 44px;
     font-family: 'Poppins', sans-serif;
     font-style: normal;
@@ -740,8 +740,8 @@ footer{
 .nav-link:hover::after{ transform: scaleX(1); }
 
 @media (max-width: 820px){
-    .nav-projects{ right: 80px; top: 26px; font-size: 17px; }
+    .nav-projects{ right: 92px; top: 26px; font-size: 17px; }
 }
 @media (max-width: 480px){
-    .nav-projects{ right: 74px; font-size: 16px; }
+    .nav-projects{ right: 84px; font-size: 16px; }
 }
