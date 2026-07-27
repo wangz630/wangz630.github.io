@@ -1,0 +1,606 @@
+/* =====================================================================
+   Shared case-study design system
+   Used by: Vicino, Route App, Artisk, Empower@Home
+   Loaded AFTER each project's own style.css (refines content below hero).
+   Hero (cover image + title) is intentionally left untouched.
+   ===================================================================== */
+
+:root{
+  --cs-accent: #8a5fb3;
+  --cs-accent-soft: #efeaf6;
+  --cs-ink: #1c1c1e;
+  --cs-muted: #6d6d73;
+  --cs-line: #e9e9ec;
+  --cs-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ---------- scroll reveal ---------- */
+.reveal{
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s var(--cs-ease), transform 0.8s var(--cs-ease);
+  will-change: opacity, transform;
+}
+.reveal.revealed{ opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce){
+  .reveal{ opacity: 1 !important; transform: none !important; transition: none; }
+}
+
+/* ---------- refined content rhythm & typography ---------- */
+/* lighter, more refined weights across the case-study content */
+#text{ font-weight: 400; }
+#text .proposal, #text .text-large, #text p{ font-weight: 300; }
+#text strong, .cs-split__text strong, .cs-callout strong{ font-weight: 600; }
+#text .caption1{
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin-top: 20px;
+}
+#text .proposal{
+  max-width: 820px;
+  margin-left: auto;
+  margin-right: auto;
+  color: #2b2b2e;
+  line-height: 1.72;
+}
+.cs-eyebrow{
+  display: block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--cs-accent);
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+/* ---------- split layout: text on one side, media on the other ---------- */
+.cs-split{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 52px;
+  align-items: center;
+  max-width: 1040px;
+  margin: 44px auto 88px auto;
+  padding: 0 6vw;
+  text-align: left;
+}
+/* generous separation where a new section begins (centered eyebrow) */
+#text > .cs-eyebrow{ margin-top: 76px; }
+#text > .cs-eyebrow:first-of-type{ margin-top: 24px; }
+/* keep the centered intro paragraph from hugging the block below it */
+#text > .caption1 + .proposal{ margin-bottom: 8px; }
+.cs-split__text{ align-self: center; min-width: 0; }
+.cs-split__text .cs-h{
+  font-family: 'Poppins', sans-serif;
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--cs-ink);
+  margin: 0 0 18px 0;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+.cs-split__text p{
+  font-family: 'Poppins', sans-serif;
+  font-size: 16.5px;
+  font-weight: 300;
+  line-height: 1.72;
+  color: #38383c;
+  margin: 0 0 16px 0;
+  text-align: left;
+  letter-spacing: 0.01em;
+}
+.cs-split__media{ width: 100%; min-width: 0; }
+.cs-split__media img{
+  display: block;
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 10px 34px rgba(0,0,0,0.12);
+}
+.cs-split__media .video-wrap,
+.cs-split__media .figma-shot,
+.cs-split__media .media-frame{
+  max-width: none;
+  width: 100%;
+  margin: 0;
+}
+.cs-split--reverse .cs-split__media{ order: -1; }
+
+/* media caption under split media */
+.cs-mediacap{
+  font-family: 'Poppins', sans-serif;
+  font-size: 12.5px;
+  letter-spacing: 0.04em;
+  color: #9a9a9e;
+  text-align: center;
+  margin: 12px 0 0 0;
+}
+
+/* ---------- highlighted callout for key content ---------- */
+.cs-callout{
+  max-width: 900px;
+  margin: 0 auto 92px auto;
+  padding: 34px 42px;
+  background: var(--cs-accent-soft);
+  border-left: 4px solid var(--cs-accent);
+  border-radius: 12px;
+  text-align: left;
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  line-height: 1.62;
+  color: #333;
+  letter-spacing: 0.01em;
+}
+.cs-callout strong{ color: var(--cs-accent); }
+.cs-callout .cs-callout__label{
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cs-accent);
+  margin-bottom: 10px;
+}
+
+/* ---------- stat / data block ---------- */
+.cs-stats{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 26px;
+  max-width: 1040px;
+  margin: 0 auto 92px auto;
+  padding: 0 6vw;
+}
+.cs-stat{
+  flex: 1 1 190px;
+  min-width: 175px;
+  background: #ffffff;
+  border: 1px solid var(--cs-line);
+  border-radius: 16px;
+  padding: 32px 22px 26px;
+  text-align: center;
+  box-shadow: 0 8px 26px rgba(0,0,0,0.05);
+  transition: transform 0.4s var(--cs-ease), box-shadow 0.4s var(--cs-ease);
+}
+.cs-stat:hover{
+  transform: translateY(-5px);
+  box-shadow: 0 16px 36px rgba(0,0,0,0.10);
+}
+.cs-stat__num{
+  font-family: 'Poppins', sans-serif;
+  font-size: 46px;
+  font-weight: 600;
+  color: var(--cs-accent);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.cs-stat__num .cs-unit{ font-size: 24px; font-weight: 600; }
+.cs-stat__label{
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  color: var(--cs-muted);
+  margin-top: 12px;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+}
+
+/* ---------- process / workflow visualization ---------- */
+.cs-process{
+  max-width: 1060px;
+  margin: 20px auto 92px auto;
+  padding: 0 5vw;
+}
+.cs-process__grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px 34px;
+  position: relative;
+}
+.cs-step{
+  position: relative;
+  background: #fff;
+  border: 1px solid var(--cs-line);
+  border-radius: 16px;
+  padding: 30px 24px 26px;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+}
+.cs-step__badge{
+  width: 40px;
+  height: 40px;
+  margin: 0 auto 14px auto;
+  border-radius: 50%;
+  background: var(--cs-accent-soft);
+  color: var(--cs-accent);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cs-step__title{
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--cs-ink);
+  margin: 0 0 8px 0;
+  line-height: 1.3;
+}
+.cs-step__desc{
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--cs-muted);
+  margin: 0;
+}
+.cs-step__tools{
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: center;
+}
+.cs-step__tools span{
+  font-family: 'Poppins', sans-serif;
+  font-size: 10.5px;
+  letter-spacing: 0.02em;
+  padding: 3px 9px;
+  border-radius: 20px;
+  background: var(--cs-accent-soft);
+  color: var(--cs-accent);
+}
+/* connector arrows between steps (only within a row of 3) */
+.cs-step::after{
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -22px;
+  width: 11px;
+  height: 11px;
+  border-top: 2px solid #d6cbe6;
+  border-right: 2px solid #d6cbe6;
+  transform: translateY(-50%) rotate(45deg);
+  z-index: 2;
+}
+.cs-step:nth-child(3n)::after,
+.cs-step:last-child::after{ display: none; }
+
+/* ---------- large clean video showcase (final result) ---------- */
+.cs-video{
+  max-width: 1000px;
+  margin: 34px auto 14px auto;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 14px 40px rgba(0,0,0,0.14);
+}
+.cs-video .video-wrap{ max-width: none; margin: 0; }
+
+/* ---------- clean outcome / result block ---------- */
+.cs-result{
+  max-width: 820px;
+  margin: 46px auto 72px auto;
+  padding: 42px 46px;
+  background: #fff;
+  border: 1px solid var(--cs-line);
+  border-radius: 18px;
+  box-shadow: 0 12px 34px rgba(0,0,0,0.06);
+  text-align: center;
+  position: relative;
+}
+.cs-result__label{
+  display: inline-block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--cs-accent);
+  margin-bottom: 16px;
+  padding: 5px 14px;
+  border-radius: 20px;
+  background: var(--cs-accent-soft);
+}
+.cs-result p{
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.64;
+  color: #2b2b2e;
+  margin: 0;
+}
+.cs-result strong{ font-weight: 600; color: var(--cs-ink); }
+@media (max-width: 700px){
+  .cs-result{ padding: 30px 24px; }
+  .cs-result p{ font-size: 16.5px; }
+}
+
+/* ---------- feature overview: scrollable contribution cards ---------- */
+.cs-overview{
+  display: flex;
+  gap: 20px;
+  max-width: 90vw;
+  margin: 26px auto 8px auto;
+  padding: 6px 2vw 20px 2vw;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+.cs-overview::-webkit-scrollbar{ height: 8px; }
+.cs-overview::-webkit-scrollbar-thumb{ background: var(--cs-accent); border-radius: 8px; opacity:.6; }
+.cs-fcard{
+  flex: 0 0 auto;
+  width: 230px;
+  scroll-snap-align: start;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  transition: transform 0.35s var(--cs-ease);
+  text-align: left;
+}
+.cs-fcard:hover{ transform: translateY(-5px); }
+.cs-fcard__thumb{
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  display: block;
+  background: #f0edf5;
+  border-radius: 14px;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.10);
+  transition: box-shadow 0.35s var(--cs-ease);
+}
+.cs-fcard:hover .cs-fcard__thumb{ box-shadow: 0 16px 34px rgba(0,0,0,0.16); }
+.cs-fcard__name{
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--cs-ink);
+  padding: 14px 2px 3px 2px;
+  margin: 0;
+}
+.cs-fcard__tag{
+  font-family: 'Poppins', sans-serif;
+  font-size: 11.5px;
+  letter-spacing: 0.03em;
+  color: var(--cs-muted);
+  padding: 0 2px;
+  margin: 0;
+}
+.cs-overview-hint{
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #a7a7a7;
+  text-align: center;
+  margin: 0 0 96px 0;
+}
+
+/* ---------- image ⇄ caption spacing: pull captions up to their media ---------- */
+#text .image-container + .shot-caption,
+#text .image-container + .video-caption,
+#text .img-pair + .shot-caption{
+  margin-top: -36px;
+}
+.cs-split__media .cs-mediacap{ margin-top: 10px; }
+
+/* ---------- responsiveness ---------- */
+@media (max-width: 860px){
+  .cs-split{ grid-template-columns: 1fr; gap: 26px; margin-bottom: 68px; }
+  .cs-split--reverse .cs-split__media{ order: 0; }
+  .cs-callout{ padding: 26px 24px; font-size: 16.5px; margin-bottom: 64px; }
+}
+@media (max-width: 700px){
+  .cs-process__grid{ grid-template-columns: 1fr 1fr; }
+  .cs-step:nth-child(3n)::after{ display: block; }
+  .cs-step:nth-child(2n)::after{ display: none; }
+  .cs-step:last-child::after{ display: none; }
+  .cs-stat__num{ font-size: 38px; }
+}
+
+/* ---------- per-project accent themes (set on <body>) ---------- */
+.cs-theme-blue{  --cs-accent:#3f72b0; --cs-accent-soft:#eaf1fa; }
+.cs-theme-green{ --cs-accent:#1eb980; --cs-accent-soft:#e4f6ee; }
+.cs-theme-teal{  --cs-accent:#3d9aa1; --cs-accent-soft:#e6f4f5; }
+
+/* ---------- hero summary labels (under the cover title) ---------- */
+.cs-hero-tags{
+  position: absolute;
+  top: calc(40% + 7.4rem);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  max-width: 86vw;
+}
+.cs-hero-tags span{
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  color: #fff;
+  background: rgba(0,0,0,0.34);
+  border: 1px solid rgba(255,255,255,0.22);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  padding: 7px 16px;
+  border-radius: 22px;
+  white-space: nowrap;
+}
+@media (max-width: 700px){
+  .cs-hero-tags{ top: auto; bottom: 84px; gap: 7px; }
+  .cs-hero-tags span{ font-size: 11.5px; padding: 6px 12px; }
+}
+
+/* ---------- floating back-to-home button (top-left) ---------- */
+.cs-back{
+  position: fixed;
+  top: 26px;
+  left: 26px;
+  z-index: 30;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.42);
+  border: 1px solid rgba(255,255,255,0.35);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #181818;
+  text-decoration: none;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: transform 0.25s var(--cs-ease), box-shadow 0.25s var(--cs-ease);
+}
+.cs-back:hover{
+  transform: translateX(-3px);
+  box-shadow: 0 7px 22px rgba(0,0,0,0.22);
+  border: 1px solid rgba(0,0,0,0.08);
+}
+.cs-back svg{ width: 19px; height: 19px; display: block; }
+
+/* ---------- media carousel: slow auto-scroll + drag / swipe to browse ---------- */
+.cs-carousel{
+  overflow-x: auto;
+  overflow-y: hidden;
+  width: 100%;
+  min-width: 0;
+  cursor: grab;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+.cs-carousel::-webkit-scrollbar{ display: none; }
+.cs-carousel.dragging{ cursor: grabbing; }
+.cs-carousel__track{
+  display: flex;
+  align-items: center;
+  width: max-content;
+}
+.cs-carousel__track img,
+.cs-split__media .cs-carousel__track img{
+  height: 300px;
+  width: auto;
+  margin: 0 16px 0 0;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  user-select: none;
+  -webkit-user-drag: none;
+}
+/* single constrained feature image inside a split */
+.cs-split__media img.cs-phone{
+  width: auto;
+  max-width: 230px;
+  margin: 0 auto;
+  border-radius: 14px;
+}
+
+/* ---------- Route App feature splits: give the media more room ---------- */
+.cs-theme-blue .cs-split{ grid-template-columns: 0.8fr 1.2fr; }
+.cs-theme-blue .cs-split--reverse{ grid-template-columns: 1.2fr 0.8fr; }
+.cs-theme-blue .cs-carousel__track img,
+.cs-theme-blue .cs-split__media .cs-carousel__track img{ height: 344px; }
+.cs-theme-blue .cs-split__media img.cs-phone{ max-width: 260px; }
+@media (max-width: 860px){
+  .cs-theme-blue .cs-split,
+  .cs-theme-blue .cs-split--reverse{ grid-template-columns: 1fr; }
+}
+
+/* ---------- dark-background project pages: use light text ---------- */
+.cs-dark #text .proposal,
+.cs-dark #text .text-large,
+.cs-dark #text .text,
+.cs-dark #text p,
+.cs-dark .cs-split__text p{ color: #d8d8dc; }
+.cs-dark #text .caption1,
+.cs-dark .cs-split__text .cs-h,
+.cs-dark #text h2{ color: #f4f4f6; }
+.cs-dark #text strong,
+.cs-dark .cs-split__text strong{ color: #ffffff; }
+.cs-dark .cs-mediacap,
+.cs-dark #text .shot-caption,
+.cs-dark #text .video-caption,
+.cs-dark #text .carousel-hint,
+.cs-dark #text .frame-hint{ color: #a6a6ae; }
+
+/* ---------- paged slideshow (one large image at a time; auto + manual) ---------- */
+.cs-slideshow{
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  background: #eeeef1;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+  touch-action: pan-y;
+}
+.cs-slides{
+  display: flex;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  cursor: grab;
+}
+.cs-slides.dragging{ transition: none; cursor: grabbing; }
+.cs-slide{
+  flex: 0 0 100%;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  box-sizing: border-box;
+}
+.cs-split__media .cs-slide img,
+.cs-slide img{
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 0;
+  box-shadow: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+.cs-slide-prev, .cs-slide-next{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.86);
+  border: none;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.18);
+  z-index: 3;
+  font-size: 22px; line-height: 1; color: #333;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.cs-slide-prev{ left: 12px; } .cs-slide-next{ right: 12px; }
+.cs-slide-prev:hover, .cs-slide-next:hover{ background: #fff; }
+.cs-slide-dots{
+  position: absolute;
+  bottom: 12px; left: 50%;
+  transform: translateX(-50%);
+  display: flex; gap: 7px;
+  z-index: 3;
+}
+.cs-slide-dots button{
+  width: 8px; height: 8px;
+  padding: 0; border: none; border-radius: 50%;
+  background: rgba(0,0,0,0.28);
+  cursor: pointer;
+  transition: width 0.25s ease, background 0.25s ease;
+}
+.cs-slide-dots button.active{ width: 20px; border-radius: 4px; background: var(--cs-accent); }
+
+/* Feature 1 single image: smaller */
+.cs-theme-blue .cs-split__media img.cs-phone{ max-width: 188px; }
+@media (max-width: 620px){ .cs-slide{ height: 300px; } }

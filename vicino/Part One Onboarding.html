@@ -1500,6 +1500,8 @@ body[data-repdesign="editorial"] > .rep-sec.sec-current{box-shadow:inset 3px 0 0
   .v3os-arm,.v3os-dot,.v3os::after,.signal-pill .core i{animation:none!important}
 }
 </style>
+<style>/* hide the floating style-picker boxes (locked to paper curl / card / full) */
+.fx-pick{ display:none !important; }</style>
 </head>
 <body>
 
@@ -4651,8 +4653,7 @@ function stackIn(el, backward, done){
 }
 
 /* transition-style registry — the switcher pill picks one */
-let PAGE_STYLE = 'curl';
-try{ PAGE_STYLE = localStorage.getItem('vicinoPageFx') || 'curl'; }catch(_){}
+let PAGE_STYLE = 'curl';  /* locked: paper curl */
 const PAGE_FX = {
   curl:    { full(sc, cur, nxt, backward, opts, finish){
                const reveal = ()=>{
@@ -4735,16 +4736,12 @@ if (!PAGE_FX[PAGE_STYLE]) PAGE_STYLE = 'curl';   // a stored choice may referenc
 
 /* brand-report design skin — pure CSS reskin keyed off a body attribute, so the
    DOM (and every page-turn animation) is identical across designs */
-let REP_DESIGN = 'card';
-try{ REP_DESIGN = localStorage.getItem('vicinoRepDesign') || 'card'; }catch(_){}
-if (!['card','canvas','editorial'].includes(REP_DESIGN)) REP_DESIGN = 'card';
+let REP_DESIGN = 'card';  /* locked: card */
 document.body.dataset.repdesign = REP_DESIGN;
 
 /* section content density — 'full' shows everything; 'fold' keeps each section
    to its primary block, with the rest behind a "Show more" expander */
-let REP_CONTENT = 'full';
-try{ REP_CONTENT = localStorage.getItem('vicinoRepContent') || 'full'; }catch(_){}
-if (!['full','fold','peek'].includes(REP_CONTENT)) REP_CONTENT = 'full';
+let REP_CONTENT = 'full';  /* locked: full */
 document.body.dataset.repcontent = REP_CONTENT;
 function showBrPage(sc, target, opts){
   opts = opts||{};

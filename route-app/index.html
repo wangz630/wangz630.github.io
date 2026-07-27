@@ -6,11 +6,19 @@
   <meta name="viewport" content="width=device-width">
   <title>Route App</title>
   <link href="style.css" rel="stylesheet" type="text/css" />
+  <link href="../case-study.css" rel="stylesheet" type="text/css" />
 
 </head>
 
-<body>
-  <h1 id="title">Ruote App</h1>
+<body class="cs-theme-blue">
+  <a class="cs-back" href="../index.html#p-route-app" aria-label="Back to home">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 5l-7 7 7 7" stroke="#181818" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+
+  <h1 id="title">Route App</h1>
+  <div class="cs-hero-tags">
+    <span>Mobile Navigation App</span><span>UX Research</span><span>Usability Testing</span><span>Accessibility</span>
+  </div>
 
   <img id="arrow" src="images/arrow.png">
   <p id="scroll">scroll</p>
@@ -69,46 +77,79 @@
     </p>
 
     <h1 class="caption1">App Features</h1>
-    <p class="proposal"> The app has a speicific focus on accessibility improvements as it is specialized for senior users. Following design guidelines of mobile apps for older adults, our app includes 5 core functions/sessions:<br><br>
+    <p class="proposal">The app is built specifically for senior users, following mobile accessibility guidelines for older adults. It centers on <strong>5 core features</strong>:</p>
 
-      1. Presets settings with the emphasis on <strong>text size adjustments</strong>. To better serve senior users, the very first thing users need to do is to adjust font size to their preference.<br><br>
-      <span class="image-container">
-      <img class="small-image" src="images/textadjustmentfeature.png" width="150px" style="border-radius: 10px;">
-      </span>
+    <!-- Feature 1: single image -->
+    <div class="cs-split">
+      <div class="cs-split__text">
+        <span class="cs-eyebrow" style="text-align:left;">Feature 1</span>
+        <h2 class="cs-h">Preset text-size settings</h2>
+        <p>To better serve senior users, the very first step is <strong>adjusting font size</strong> to their preference — putting readability first before anything else.</p>
+      </div>
+      <div class="cs-split__media" style="text-align:center;">
+        <img class="cs-phone" src="images/textadjustmentfeature.png" alt="Text size adjustment">
+      </div>
+    </div>
 
-      2. 5 older adults most interested <strong>POIs</strong> are displayed and able for filtering.<br><br>
-      <span class="image-container">
-        <img class="small-image" src="images/poi1.png" width="150px">
-        <img class="small-image" src="images/poi2.png" width="150px">
-      </span>
+    <!-- Feature 2: carousel -->
+    <div class="cs-split cs-split--reverse">
+      <div class="cs-split__text">
+        <span class="cs-eyebrow" style="text-align:left;">Feature 2</span>
+        <h2 class="cs-h">Senior-focused points of interest</h2>
+        <p>The five <strong>POIs</strong> most relevant to older adults are surfaced up front and can be filtered, so the places they care about are always one tap away.</p>
+      </div>
+      <div class="cs-split__media">
+        <div class="cs-carousel"><div class="cs-carousel__track">
+          <img src="images/poi1.png" alt="POIs"><img src="images/poi2.png" alt="POI filtering">
+          <img src="images/poi1.png" alt=""><img src="images/poi2.png" alt="">
+        </div></div>
+      </div>
+    </div>
 
-      3. Users could switch between <strong>two map modes(e.g., 2D and 3D views)</strong>  to better handle the surrounding. Meanwhile, <strong>sidewalk information is customized and highlighted</strong> on the map using Mapbox for better visibility.
-      In addition, voice guidance, text guidance, and haptic navigation will work together to help senior users follow navigation easier.<br><br>
-      <span class="image-container">
-        <img class="small-image" src="images/Map Redesign.png" width="60%">
-        <img class="small-image" src="images/mode1.png" width="150px">
-        <img class="small-image" src="images/mode2.png" width="150px">
-        <!-- <span class='text'>Mapbox Map Redesign (Highlighted Sidewalk)</span> -->
-      </span>
+    <!-- Feature 3: carousel -->
+    <div class="cs-split">
+      <div class="cs-split__text">
+        <span class="cs-eyebrow" style="text-align:left;">Feature 3</span>
+        <h2 class="cs-h">Clear map modes &amp; highlighted sidewalks</h2>
+        <p>Users can switch between <strong>2D and 3D map views</strong>, with <strong>sidewalk information customized and highlighted</strong> via Mapbox. Voice, text, and haptic guidance work together to make navigation easier to follow.</p>
+      </div>
+      <div class="cs-split__media">
+        <div class="cs-carousel"><div class="cs-carousel__track">
+          <img src="images/Map Redesign.png" alt="Map redesign"><img src="images/mode1.png" alt="2D mode"><img src="images/mode2.png" alt="3D mode">
+          <img src="images/Map Redesign.png" alt=""><img src="images/mode1.png" alt=""><img src="images/mode2.png" alt="">
+        </div></div>
+      </div>
+    </div>
 
-      4. Our team created our <strong>own optimal walking route recommendation algoritm</strong> and collect data to indicate street conditions such as surface condition, traffic safefy, crime safety, and thermal comfort.<br><br>
-      <span class="image-container">
-        <img class="small-image" src="images/stress1.png" width="150px">
-        <img class="small-image" src="images/shade1.png" width="150px">
-      </span>
-      <span class="image-container">
-        <img class="small-image" src="images/surfacecondition.png" width="50%" style="object-fit: contain;">
-        <img class="small-image" src="images/NetworkReference.png" width="40%">
-       </span>
+    <!-- Feature 4: carousel -->
+    <div class="cs-split cs-split--reverse">
+      <div class="cs-split__text">
+        <span class="cs-eyebrow" style="text-align:left;">Feature 4</span>
+        <h2 class="cs-h">Comfort-aware route recommendations</h2>
+        <p>Our team built a custom <strong>optimal walking-route algorithm</strong>, collecting data on <strong>surface condition, traffic and crime safety, and thermal comfort</strong> to recommend routes that feel right for older adults.</p>
+      </div>
+      <div class="cs-split__media">
+        <div class="cs-carousel"><div class="cs-carousel__track">
+          <img src="images/stress1.png" alt="Stress level"><img src="images/shade1.png" alt="Shade level"><img src="images/surfacecondition.png" alt="Surface condition"><img src="images/NetworkReference.png" alt="Network reference">
+          <img src="images/stress1.png" alt=""><img src="images/shade1.png" alt=""><img src="images/surfacecondition.png" alt=""><img src="images/NetworkReference.png" alt="">
+        </div></div>
+      </div>
+    </div>
 
-      5. <strong>Weekly walking records</strong> and in-app route survey are provided to help users track their walking activities and give feedbacks on the app usability and route conditions. We aim to motivate older adults to walk more often and improve their physical health.<br><br>
-      <span class="image-container">
-        <img class="small-image" src="images/routesurvey1.png" width="150px" style="border-radius: 10px;">
-        <img class="small-image" src="images/routesurvey2.png" width="150px" style="border-radius: 10px;">
-        <img class="small-image" src="images/routesurvey3.png" width="150px" style="border-radius: 10px;">
-        <img class="small-image" src="images/setting_FINAL.png" width="150px" style="border-radius: 10px;">
-      </span>
-    </p>
+    <!-- Feature 5: carousel -->
+    <div class="cs-split">
+      <div class="cs-split__text">
+        <span class="cs-eyebrow" style="text-align:left;">Feature 5</span>
+        <h2 class="cs-h">Weekly records &amp; in-app route survey</h2>
+        <p><strong>Weekly walking records</strong> and an in-app survey help users track their activity and give feedback on usability and route conditions — motivating older adults to walk more and improve their health.</p>
+      </div>
+      <div class="cs-split__media">
+        <div class="cs-carousel"><div class="cs-carousel__track">
+          <img src="images/routesurvey1.png" alt="Route survey"><img src="images/routesurvey2.png" alt="Route survey"><img src="images/routesurvey3.png" alt="Route survey"><img src="images/setting_FINAL.png" alt="Settings">
+          <img src="images/routesurvey1.png" alt=""><img src="images/routesurvey2.png" alt=""><img src="images/routesurvey3.png" alt=""><img src="images/setting_FINAL.png" alt="">
+        </div></div>
+      </div>
+    </div>
 
     <h1 class="caption1">App User Flow</h1>
     <p class="proposal">
@@ -121,6 +162,12 @@
     </div>
 
         <h1 class="caption1">Usability Test</h1>
+    <div class="cs-stats">
+      <div class="cs-stat"><div class="cs-stat__num">10</div><div class="cs-stat__label">Older-adult participants</div></div>
+      <div class="cs-stat"><div class="cs-stat__num">85<span class="cs-unit">%</span></div><div class="cs-stat__label">Task success rate</div></div>
+      <div class="cs-stat"><div class="cs-stat__num">85.6</div><div class="cs-stat__label">SUS score / 100 (excellent)</div></div>
+      <div class="cs-stat"><div class="cs-stat__num">14.95</div><div class="cs-stat__label">NASA-TLX load / 100 (low)</div></div>
+    </div>
     <p class="proposal">
     I conducted <strong>usability tests with 10 older adult participants</strong> to evaluate the app's design and functionality. The tests focused on assessing the ease of use, accessibility features, and overall user experience. Participants were asked to complete a series of tasks using the app, including adjusting settings, searching for destinations, navigating using different map modes, filling out route surveys, and checking walking records.<br><br>
     <span class="image-container">
@@ -166,10 +213,11 @@
 
 
   <div class="home">
-    <a href="../index.html">Home</a>
+    <a href="../index.html#p-route-app">Home</a>
   </div>
   <footer>ziwang1247@gmail.com</footer>
   <script src="script.js"></script>
+  <script src="../case-study.js"></script>
 </body>
 
 </html>

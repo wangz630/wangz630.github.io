@@ -6,11 +6,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vicino</title>
   <link href="style.css" rel="stylesheet" type="text/css" />
+  <link href="../case-study.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
 
+  <a class="cs-back" href="../index.html#p-vicino" aria-label="Back to home">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 5l-7 7 7 7" stroke="#181818" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+
   <h1 id="title">Vicino</h1>
+  <div class="cs-hero-tags">
+    <span>Chatbot</span><span>Sliding Panel</span><span>Image Editor</span><span>Audio Node</span><span>Pulse Onboarding</span>
+  </div>
 
   <img id="arrow" src="images/arrow.png">
   <p id="scroll">scroll</p>
@@ -31,72 +39,187 @@
       <br><br>
       Everything shown below I <strong>owned end-to-end and individually</strong> — from the very first concept and interaction design, all the way through to the final handoff to the development team. My core toolkit was <strong>Figma and Claude</strong>: I used AI tools like Claude to rapidly build working prototypes and validate interaction ideas, then moved into Figma to refine the UI, states, and micro-interactions into a polished, developer-ready design.
     </p>
-    <div class="tag-row">
-      <span class="tag">Chatbot (B2C &amp; B2B)</span>
-      <span class="tag">Sliding Panel</span>
-      <span class="tag">Audio Node</span>
-      <span class="tag">Pulse Onboarding</span>
+    <!-- ===================== MY CONTRIBUTIONS OVERVIEW ===================== -->
+    <span class="cs-eyebrow">What I Owned</span>
+    <h1 class="caption1">Features I Designed</h1>
+    <p class="proposal" style="text-align:center;">These are the parts of the product I personally owned end-to-end at Vicino — each designed from scratch and handed off to engineering. Here's a quick look at what they are:</p>
+    <div class="cs-overview">
+      <div class="cs-fcard"><img class="cs-fcard__thumb" src="images/2C-chatbot.png" alt="Chatbot preview"><p class="cs-fcard__name">Chatbot — B2C &amp; B2B</p><p class="cs-fcard__tag">Conversational generation</p></div>
+      <div class="cs-fcard"><img class="cs-fcard__thumb" src="images/sliding-panel-thumb.jpg" alt="Sliding Panel preview"><p class="cs-fcard__name">Sliding Panel</p><p class="cs-fcard__tag">Quick in-context controls</p></div>
+      <div class="cs-fcard"><img class="cs-fcard__thumb" src="images/imageeditor-components.png" alt="Image Editor preview"><p class="cs-fcard__name">Image Editor Node</p><p class="cs-fcard__tag">Advanced image refinement</p></div>
+      <div class="cs-fcard"><img class="cs-fcard__thumb" src="images/audio-node-thumb.jpg" alt="Audio Node preview"><p class="cs-fcard__name">Audio Node</p><p class="cs-fcard__tag">Prompt-to-audio flow</p></div>
+      <div class="cs-fcard"><img class="cs-fcard__thumb" src="images/onboarding-userflow.png" alt="Pulse Onboarding preview"><p class="cs-fcard__name">Pulse Onboarding</p><p class="cs-fcard__tag">New-user onboarding</p></div>
+    </div>
+    <p class="cs-overview-hint">← scroll to browse the features I owned →</p>
+
+    <!-- ===================== DESIGN PROCESS ===================== -->
+    <span class="cs-eyebrow">How I Work</span>
+    <h1 class="caption1">My Design Process</h1>
+    <p class="proposal" style="text-align:center;">A consistent end-to-end flow sits behind every feature below — from understanding the requirement to handing engineering a build-ready design.</p>
+    <div class="cs-process">
+      <div class="cs-process__grid">
+        <div class="cs-step">
+          <div class="cs-step__badge">1</div>
+          <p class="cs-step__title">Receive PRD</p>
+          <p class="cs-step__desc">Read the PRD to understand the design requirements and constraints.</p>
+        </div>
+        <div class="cs-step">
+          <div class="cs-step__badge">2</div>
+          <p class="cs-step__title">Draft &amp; Align</p>
+          <p class="cs-step__desc">Sketch early drafts, then meet with the team to lock the design direction.</p>
+        </div>
+        <div class="cs-step">
+          <div class="cs-step__badge">3</div>
+          <p class="cs-step__title">Rapid Iteration</p>
+          <p class="cs-step__desc">Prototype and iterate fast with AI-assisted tooling.</p>
+          <div class="cs-step__tools"><span>Claude</span><span>MCP</span><span>Figma</span></div>
+        </div>
+        <div class="cs-step">
+          <div class="cs-step__badge">4</div>
+          <p class="cs-step__title">Standup Share</p>
+          <p class="cs-step__desc">Share progress with other designers at standup and gather feedback.</p>
+        </div>
+        <div class="cs-step">
+          <div class="cs-step__badge">5</div>
+          <p class="cs-step__title">Finalize</p>
+          <p class="cs-step__desc">Refine toward a polished, production-ready final design.</p>
+        </div>
+        <div class="cs-step">
+          <div class="cs-step__badge">6</div>
+          <p class="cs-step__title">Handoff</p>
+          <p class="cs-step__desc">Deliver detailed handoff docs, user flows, and an HTML prototype for motion.</p>
+        </div>
+      </div>
     </div>
 
     <!-- ===================== 1. CHATBOT ===================== -->
-    <h1 class="caption1">1 &nbsp;·&nbsp; Chatbot Design (B2C &amp; B2B)</h1>
+    <span class="cs-eyebrow">Node 1</span>
+    <h1 class="caption1">Chatbot Design — B2C &amp; B2B</h1>
     <p class="proposal">
       Our AI creative workflow product needed a <strong>chatbot</strong> so users could drive generation through natural conversation. I designed the chatbot's UI and interaction model across two distinct audiences — <strong>B2C</strong> and <strong>B2B</strong> — each optimized for very different needs.
-      <br><br>
-      <strong>B2C</strong> prioritizes <strong>speed and simplicity</strong>. The interaction is streamlined so that most of what a user wants to generate can be completed in a single back-and-forth with the chatbot, keeping the experience light and conversational.
     </p>
-    <div class="video-wrap">
-      <div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1212776327?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="2C Chatbot Example Flow"></iframe></div>
-    </div>
-    <p class="video-caption">B2C Chatbot — example flow</p>
 
-    <p class="proposal">
-      <strong>B2B</strong> prioritizes <strong>accuracy, complexity, and user control</strong>. Instead of generating in one shot, the chatbot first shows the user a <strong>generation plan</strong> — a main task plus a to-do list — for confirmation. Once approved, it builds out the workflow, and the user can inspect the status of <strong>every node</strong> at any point and adjust its properties, giving professional teams the precision and transparency they need.
-    </p>
-    <div class="video-wrap">
-      <div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1212776919?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479%2Fembed" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen="" frameborder="0" style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>
+    <!-- B2C: process design (left) + UI (right) -->
+    <div class="cs-split">
+      <div class="cs-split__text">
+        <span class="cs-eyebrow" style="text-align:left;">B2C</span>
+        <h2 class="cs-h">Speed &amp; simplicity</h2>
+        <p>The B2C interaction is streamlined so that <strong>most of what a user wants to generate can be completed in a single back-and-forth</strong> with the chatbot — keeping the experience light and conversational.</p>
+      </div>
+      <div class="cs-split__media">
+        <a href="images/2C-chatbot.png" target="_blank"><img src="images/2C-chatbot.png" alt="B2C chatbot UI design"></a>
+        <p class="cs-mediacap">B2C chatbot — UI design (Figma)</p>
+      </div>
     </div>
-    <p class="video-caption">B2B Chatbot — example flow</p>
+    <!-- B2C: final result video -->
+    <div class="cs-video">
+      <div class="video-wrap">
+        <div style="padding:62.5% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1212776327?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="2C Chatbot Example Flow"></iframe></div>
+      </div>
+    </div>
+    <p class="video-caption">B2C Chatbot — final result</p>
 
-    <div class="image-container">
-      <a href="images/2C-chatbot.png" target="_blank"><img class="figma-shot" src="images/2C-chatbot.png" alt="B2C chatbot UI design"></a>
+    <!-- B2B: UI (left) + process design (right) -->
+    <div class="cs-split cs-split--reverse">
+      <div class="cs-split__text">
+        <span class="cs-eyebrow" style="text-align:left;">B2B</span>
+        <h2 class="cs-h">Accuracy &amp; control</h2>
+        <p>Instead of generating in one shot, the B2B chatbot first shows the user a <strong>generation plan</strong> — a main task plus a to-do list — for confirmation. Once approved, it builds out the workflow, and the user can inspect the status of <strong>every node</strong> and adjust its properties, giving professional teams the precision and transparency they need.</p>
+      </div>
+      <div class="cs-split__media">
+        <a href="images/2B-chatbot.png" target="_blank"><img src="images/2B-chatbot.png" alt="B2B chatbot UI design"></a>
+        <p class="cs-mediacap">B2B chatbot — UI design (Figma)</p>
+      </div>
     </div>
-    <p class="shot-caption">B2C chatbot — UI design (Figma)</p>
-    <div class="image-container">
-      <a href="images/2B-chatbot.png" target="_blank"><img class="figma-shot" src="images/2B-chatbot.png" alt="B2B chatbot UI design"></a>
+    <!-- B2B: final result video -->
+    <div class="cs-video">
+      <div class="video-wrap">
+        <div style="padding:50.7% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1212776919?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479%2Fembed" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen="" frameborder="0" style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>
+      </div>
     </div>
-    <p class="shot-caption">B2B chatbot — UI design (Figma)</p>
+    <p class="video-caption">B2B Chatbot — final result</p>
 
     <!-- ===================== 2. SLIDING PANEL ===================== -->
-    <h1 class="caption1">2 &nbsp;·&nbsp; Sliding Panel</h1>
+    <span class="cs-eyebrow">Node 2</span>
+    <h1 class="caption1">Sliding Panel</h1>
     <p class="proposal">
-      Our earlier product exposed a large number of adjustable properties for every generated output, and all of them lived in a single <strong>property panel on the right side</strong> of the canvas. Many controls were buried — users had to scroll for a long time before they could even find the setting they wanted.
-      <br><br>
-      To solve this, I designed a <strong>sliding panel</strong> that attaches directly to its corresponding node. I moved a curated set of the most-used property controls out of the right-side panel and into this sliding panel, so users can reach <strong>quick, in-context adjustments</strong> right where they're working on the generated content — no more hunting through a long list.
+      Our earlier product exposed a large number of adjustable properties, all buried in a single <strong>property panel on the right side</strong> of the canvas — users had to scroll a long way to find the setting they wanted. To fix this, I designed a <strong>sliding panel</strong> that attaches directly to its node, surfacing the most-used controls for <strong>quick, in-context adjustments</strong> right where the user is working.
     </p>
-    <div class="video-wrap">
-      <div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1212775633?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Sliding Panel Example Flow"></iframe></div>
+    <div class="cs-video">
+      <div class="video-wrap">
+        <div style="padding:62.5% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1212775633?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Sliding Panel Example Flow"></iframe></div>
+      </div>
     </div>
-    <p class="video-caption">Sliding Panel — example flow</p>
+    <p class="video-caption">Sliding Panel — final result</p>
 
-    <!-- ===================== 3. AUDIO NODE ===================== -->
-    <h1 class="caption1">3 &nbsp;·&nbsp; Audio Node</h1>
+    <!-- ===================== 3. IMAGE EDITOR NODE ===================== -->
+    <span class="cs-eyebrow">Node 3</span>
+    <h1 class="caption1">Image Editor Node</h1>
     <p class="proposal">
-      I designed the <strong>Audio Node</strong> from start to finish — the entire interaction of how a user works with audio inside the workflow. This covers the full flow: <strong>entering a prompt, uploading audio, and finally generating the audio output</strong>, along with all the states and interactions in between.
+      Because Vicino is <strong>B2B-facing</strong>, users need precise control over the product images they generate. So we proposed an <strong>Image Editor node</strong> — a standalone node for the <strong>manual, advanced refinement of AI-generated images</strong>. I owned it end-to-end, studying <strong>Lightroom and Photoshop</strong> alongside the <strong>marketing team's PRD</strong> to design its full feature set, UI, and component system from scratch.
     </p>
-    <div class="video-wrap">
-      <div style="padding:55.28% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1212774824?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="AudioNode Demo Video"></iframe></div>
-    </div>
-    <p class="video-caption">Audio Node — demo</p>
 
-    <div class="image-container">
-      <a href="images/audionode-userflow.png" target="_blank"><img class="figma-shot" src="images/audionode-userflow.png" alt="Audio Node user flow"></a>
+    <!-- process: interface & components -->
+    <div class="cs-split">
+      <div class="cs-split__text">
+        <span class="cs-eyebrow" style="text-align:left;">Interface &amp; Components</span>
+        <h2 class="cs-h">A Lightroom-style workspace</h2>
+        <p>The interface centers on a <strong>main canvas</strong> for real-time preview, a <strong>right-side panel</strong> for parameter controls, a <strong>side toolbar</strong> for switching modules, and a <strong>bottom bar</strong> for zoom, pan, opacity, and before/after comparison.</p>
+      </div>
+      <div class="cs-split__media">
+        <a href="images/imageeditor-components.png" target="_blank"><img src="images/imageeditor-components.png" alt="Image Editor components"></a>
+        <p class="cs-mediacap">Intro &amp; component system (Figma)</p>
+      </div>
     </div>
-    <p class="shot-caption">Audio Node — full user flow (Figma). Click to view full size.</p>
+
+    <!-- process: modules & flow -->
+    <div class="cs-split cs-split--reverse">
+      <div class="cs-split__text">
+        <span class="cs-eyebrow" style="text-align:left;">Modules &amp; Flow</span>
+        <h2 class="cs-h">Basic to advanced editing</h2>
+        <p>I designed modules covering both basic and advanced needs — <strong>Crop &amp; Transform, Basic &amp; Advanced Adjustment (HSL, Color Grading, Curves, Levels), Filters, Masking, Lens effects, Image Style transfer, Shooting Studio</strong>, and an <strong>AI Chatbot</strong> for natural-language editing.</p>
+      </div>
+      <div class="cs-split__media">
+        <a href="images/imageeditor-userflow.png" target="_blank"><img src="images/imageeditor-userflow.png" alt="Image Editor user flow"></a>
+        <p class="cs-mediacap">Full user flow (Figma)</p>
+      </div>
+    </div>
+
+    <!-- final result video -->
+    <div class="cs-video">
+      <div class="video-wrap">
+        <div style="padding:62.5% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1213108066?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Image Editor"></iframe></div>
+      </div>
+    </div>
+    <p class="video-caption">Image Editor Node — final result</p>
+
+    <!-- ===================== 4. AUDIO NODE ===================== -->
+    <span class="cs-eyebrow">Node 4</span>
+    <h1 class="caption1">Audio Node</h1>
+    <!-- process: user flow + text -->
+    <div class="cs-split">
+      <div class="cs-split__text">
+        <span class="cs-eyebrow" style="text-align:left;">End-to-end flow</span>
+        <h2 class="cs-h">From prompt to generated audio</h2>
+        <p>I designed the Audio Node from start to finish — the full flow of <strong>entering a prompt, uploading audio, and generating the final output</strong>, along with every state and interaction in between.</p>
+      </div>
+      <div class="cs-split__media">
+        <a href="images/audionode-userflow.png" target="_blank"><img src="images/audionode-userflow.png" alt="Audio Node user flow"></a>
+        <p class="cs-mediacap">Full user flow (Figma)</p>
+      </div>
+    </div>
+    <!-- final result video -->
+    <div class="cs-video">
+      <div class="video-wrap">
+        <div style="padding:55.28% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1212774824?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="AudioNode Demo Video"></iframe></div>
+      </div>
+    </div>
+    <p class="video-caption">Audio Node — final result</p>
 
     <!-- ===================== HANDOFF STATUS ===================== -->
-    <div class="status-note">
-      All of these designs have been successfully <strong>handed off to the development team</strong>. The <strong>Audio Node</strong> and <strong>Sliding Panel</strong> are already fully implemented and live in the product, while the <strong>Chatbot</strong> is currently in active development.
+    <div class="cs-result">
+      <span class="cs-result__label">Handoff Status</span>
+      <p>All of these designs were successfully <strong>handed off to the development team</strong>. The <strong>Audio Node</strong> and <strong>Sliding Panel</strong> are already fully implemented and live in the product, while the <strong>Chatbot</strong> is currently in active development.</p>
     </div>
 
     <!-- ===================== NOW: PULSE ===================== -->
@@ -115,7 +238,7 @@
   </div>
 
   <div class="home">
-    <a href="../index.html">Home</a>
+    <a href="../index.html#p-vicino">Home</a>
   </div>
   <footer>ziwang1247@gmail.com</footer>
 
@@ -127,6 +250,7 @@
       document.getElementById("scroll").style.display = scrolled ? "none" : "block";
     };
   </script>
+  <script src="../case-study.js"></script>
 </body>
 
 </html>
