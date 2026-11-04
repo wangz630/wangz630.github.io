@@ -54,7 +54,7 @@ color: #181818;
 .logo{
     position: fixed;
     width: 40px;
-    left: 40px;
+    left: 24px;
     top: 24px;
     cursor: pointer;
     transition-duration: 0.3s;
