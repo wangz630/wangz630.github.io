@@ -313,11 +313,8 @@ footer{
   border-radius: 6px;
   box-shadow: 0 2px 16px rgba(0,0,0,0.14);
   cursor: default;
-  transition: box-shadow 0.3s ease;
 }
-.figma-shot:hover{
-  box-shadow: 0 4px 26px rgba(0,0,0,0.22);
-}
+/* non-clickable image — no hover effect */
 .shot-caption{
   font-family: 'Poppins', sans-serif;
   font-size: 13px;
@@ -441,12 +438,8 @@ footer{
   display:block; width:100%;
   border-radius: 8px;
   box-shadow: 0 6px 24px rgba(0,0,0,0.12);
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
-.carousel-item img:hover{
-  transform: translateY(-4px);
-  box-shadow: 0 14px 34px rgba(30,185,128,0.22);
-}
+/* non-clickable showcase images — no hover lift/glow (the track still pauses on hover) */
 .carousel-hint{
   font-family:'Poppins',sans-serif; font-size:12px; letter-spacing:0.08em;
   color:#a7a7a7; text-align:center; margin: 0 0 55px 0; text-transform: uppercase;
@@ -543,12 +536,8 @@ footer{
   width: 100%;
   border-radius: 8px;
   box-shadow: 0 8px 28px rgba(0,0,0,0.13);
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
-.img-pair a:hover img{
-  transform: translateY(-4px);
-  box-shadow: 0 16px 38px rgba(30,185,128,0.22);
-}
+/* these showcase images aren't clickable, so no hover lift/glow */
 @media (max-width: 700px){
   .img-pair{ max-width: 92vw; }
 }
