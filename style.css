@@ -54,7 +54,7 @@ color: #181818;
 .logo{
     position: fixed;
     width: 40px;
-    left: 70px;
+    left: 40px;
     top: 24px;
     cursor: pointer;
     transition-duration: 0.3s;
@@ -105,7 +105,7 @@ h2{
     position: fixed;
     width: auto;
     height: 41px;
-    right:70px;
+    right:40px;
     top: 26px;
 
 font-family: 'Poppins', serif;
@@ -642,7 +642,7 @@ footer{
     color: #181818;
     position:fixed;
     bottom:22px;
-    right:70px;
+    right:40px;
 
 }
 /* ===================== scroll-reveal fade-up ===================== */
@@ -709,7 +709,7 @@ footer{
 /* ===================== top-right nav (About / Projects) ===================== */
 .nav-projects{
     position: fixed;
-    right: 162px;
+    right: 132px;
     top: 26px;
     font-family: 'Poppins', sans-serif;
     font-style: normal;
