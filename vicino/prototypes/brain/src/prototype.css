@@ -1,0 +1,5117 @@
+/* Brain prototype - shared layer.
+
+   1. The version switcher and toast (prototype chrome, not product UI).
+   2. `bx-*` atoms every proposed version composes from. They restate the design
+      system's own components - Button, StatusPill, SegmentedTabs, Field - on DS
+      tokens (design-system/handoff/components/tokens.css; app.css defines every one
+      of them with the canonical values), so D/E/F differ in layout and reading
+      model, never in their buttons or labels.
+      Two round-2 departures, both on request: labels carry no outline (the DS
+      StatusPill is outlined), and radii step down to 8 / 6 / 4 (the DS scale
+      starts at --r-sm 8; 6 and 4 are token candidates, declared once below).
+   3. The page frame for D/E/F: the product's own - 32px at the sides and the
+      content capped at 1120 and centred, as .v4-section-inner does.
+
+   Nothing here styles the "Now" version - that one is app.css alone. */
+
+/* ------------------------------------------------------------------------ frame */
+
+/* the top gutter lives on the content, not the scroller: a sticky bar then sits
+   flush with the top edge instead of leaving a strip for rows to show through */
+.brain-main--d,
+.brain-main--e,
+.brain-main--f {
+  padding: 0 32px calc(140px + var(--chat-dock-safe-area, 0px));
+  font-family: var(--font-sans);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+}
+
+.brain-main--f > #brain-root {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding-top: 28px;
+}
+
+/* radius steps: cards stay at --r-sm; controls and labels are pills again
+   (6 and 4 are token candidates, used only inside cards) */
+.pulse-ds {
+  --bx-r-card: var(--r-md); /* white cards and floating surfaces */
+  --bx-r-inner: 9px; /* blocks inside a card: quotes, confirms, list rows */
+  --bx-r-pill: var(--r-full); /* controls, tabs, labels, chips */
+  --bx-r-tag: 4px; /* data marks: matrix cells */
+
+  /* a card stands off the page by its shadow, not by a ring: the stroke is there
+     for the edge case (a card on a white ground), at a fraction of its weight */
+  --bx-soft:
+    0 0 0 1px rgba(29, 29, 31, 0.028), 0 1px 2px rgba(15, 23, 42, 0.04),
+    0 6px 16px -10px rgba(15, 23, 42, 0.16);
+  --bx-soft-2:
+    0 0 0 1px rgba(29, 29, 31, 0.035), 0 2px 4px rgba(15, 23, 42, 0.05),
+    0 12px 24px -12px rgba(15, 23, 42, 0.2);
+  --bx-soft-3:
+    0 0 0 1px rgba(29, 29, 31, 0.04), 0 4px 8px rgba(15, 23, 42, 0.05),
+    0 18px 34px -14px rgba(15, 23, 42, 0.24);
+  --bx-line: var(--surface-edge);
+
+  /* confidence: violet for Direct from source, bright cyan for Supported by evidence
+     (picked in review; the label fill and text are mixed from the hue) */
+  --bx-direct: var(--cal-violet);
+  --bx-supported: var(--chart-1-line);
+  --bx-direct-dot: var(--bx-direct);
+  --bx-direct-bg: color-mix(in srgb, var(--bx-direct) 14%, transparent);
+  --bx-direct-fg: color-mix(in srgb, var(--bx-direct) 52%, var(--ink-900));
+  --bx-supported-dot: var(--bx-supported);
+  --bx-supported-bg: color-mix(in srgb, var(--bx-supported) 14%, transparent);
+  --bx-supported-fg: color-mix(in srgb, var(--bx-supported) 52%, var(--ink-900));
+  --bx-supported-mark: var(--bx-supported);
+
+  /* the four states a field can be in, at the lightness the Knowledge coverage
+     bars are drawn at: a light green for confirmed, and the violet the rest of the
+     prototype already reads as "quoted from a page" */
+  --bx-st-confirmed: #5cc98d;
+  --bx-st-direct: #8b7cf0;
+  --bx-st-inferred: var(--amber-400, #f3a93e);
+  --bx-st-missing: #d7dbe0;
+
+  /* The plan reads the same wherever it is drawn - the card on the overview and
+     the full roadmap inside it: a phase that is done is teal, the one running is
+     violet, and the ones ahead are that violet hatched on white. */
+  --rm-done: #4fbfb6;
+  --rm-now: #8b5cf6;
+  --rm-next: #a78bfa;
+
+  /* a phase that has not started: a neutral grey (picked in review) */
+  --bx-upc-bg: var(--ink-soft);
+  --bx-upc-rail: var(--ink-line);
+}
+
+.bx-page {
+  max-width: 1128px;
+  margin: 0 auto;
+  font-family: var(--font-sans);
+  font-size: var(--fs-5);
+  line-height: var(--lh-normal);
+  color: var(--text);
+}
+
+.bx-page *,
+.bx-page *::before,
+.bx-page *::after {
+  box-sizing: border-box;
+}
+
+.bx-page h1,
+.bx-page h2,
+.bx-page h3,
+.bx-page h4,
+.bx-page p {
+  margin: 0;
+}
+
+.bx-page button {
+  font-family: inherit;
+}
+
+.bx-icon {
+  flex: none;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.bx-num {
+  font-variant-numeric: tabular-nums;
+}
+
+/* visually hidden, still reachable */
+.bx-sr {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  border: 0;
+  white-space: nowrap;
+}
+
+.bx-visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (max-width: 1100px) {
+  .brain-main--d,
+  .brain-main--e,
+  .brain-main--f {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+
+@media (max-width: 760px) {
+  .brain-main--d,
+  .brain-main--e,
+  .brain-main--f {
+    padding: 0 16px calc(120px + var(--chat-dock-safe-area, 0px));
+  }
+
+  .brain-main--f > #brain-root {
+    padding-top: 72px;
+  }
+}
+
+/* ---------------------------------------------------------------------- buttons */
+
+.bx-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--control-gap);
+  height: var(--control-height-sm);
+  padding: 0 var(--control-pad-x-sm);
+  border: 0;
+  border-radius: var(--bx-r-pill);
+  background: transparent;
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: var(--fs-3);
+  font-weight: var(--fw-semibold);
+  line-height: 1;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  transition:
+    background var(--dur-2) var(--ease),
+    color var(--dur-2) var(--ease),
+    box-shadow var(--dur-2) var(--ease),
+    transform var(--dur-1) var(--ease);
+}
+
+.bx-btn:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.bx-btn:active {
+  transform: scale(0.97);
+}
+
+.bx-btn:disabled,
+.bx-btn[aria-disabled='true'] {
+  opacity: 0.42;
+  pointer-events: none;
+}
+
+.bx-btn--primary {
+  background: var(--button-dark);
+  color: #fff;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.bx-btn--primary:hover {
+  background: var(--button-dark-hover);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1),
+    var(--button-shadow-hover);
+}
+
+.bx-btn--secondary {
+  background: var(--button-glass);
+  box-shadow:
+    inset 0 0 0 1px var(--surface-edge),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+.bx-btn--secondary:hover {
+  background: #fff;
+  box-shadow:
+    inset 0 0 0 1px var(--surface-edge-strong),
+    var(--button-shadow-hover);
+}
+
+.bx-btn--ghost {
+  color: var(--text-3);
+}
+
+.bx-btn--ghost:hover {
+  color: var(--text);
+  background: var(--ink-soft);
+}
+
+.bx-btn--warning {
+  background: var(--amber-50);
+  color: var(--amber-700);
+  box-shadow: inset 0 0 0 1px var(--amber-200);
+}
+
+.bx-btn--warning:hover {
+  background: var(--amber-100);
+}
+
+.bx-btn--xs {
+  height: 28px;
+  padding: 0 10px;
+  font-size: var(--fs-2);
+  gap: 5px;
+}
+
+.bx-btn--icon {
+  width: var(--control-height-sm);
+  padding: 0;
+}
+
+.bx-btn--icon.bx-btn--xs {
+  width: 28px;
+}
+
+.bx-btn.is-busy {
+  pointer-events: none;
+  color: var(--text-3);
+}
+
+.bx-spinner {
+  width: 13px;
+  height: 13px;
+  flex: 0 0 13px;
+  border-radius: 50%;
+  background: conic-gradient(from 45deg, transparent 0 24%, var(--pulse-cyan) 24% 100%);
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 0);
+  mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 0);
+  animation: bx-spin 0.72s linear infinite;
+}
+
+@keyframes bx-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.bx-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--text-2);
+  font: inherit;
+  font-weight: var(--fw-semibold);
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: var(--bx-r-tag);
+}
+
+.bx-link:hover {
+  color: var(--text);
+}
+
+.bx-link:hover .bx-icon {
+  transform: translateX(1px);
+}
+
+.bx-link .bx-icon {
+  transition: transform var(--dur-1) var(--ease);
+}
+
+.bx-link:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.bx-link--quiet {
+  color: var(--text-3);
+  font-weight: var(--fw-medium);
+}
+
+/* ------------------------------------------------------------------ status pills */
+
+.bx-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 22px;
+  padding: 0 8px;
+  border: 0;
+  border-radius: var(--bx-r-pill);
+  background: var(--status-neutral-soft);
+  color: var(--text-3);
+  font-size: var(--fs-1);
+  font-weight: var(--fw-semibold);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.bx-pill::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  flex: none;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.bx-pill--plain::before {
+  display: none;
+}
+
+/* confidence tiers wear the palette picked in Versions; inferred stays amber (risk) */
+.bx-pill--direct {
+  background: var(--bx-direct-bg);
+  color: var(--bx-direct-fg);
+}
+
+.bx-pill--direct::before {
+  background: var(--bx-direct-dot);
+}
+
+.bx-pill--supported {
+  background: var(--bx-supported-bg);
+  color: var(--bx-supported-fg);
+}
+
+.bx-pill--supported::before {
+  background: var(--bx-supported-mark);
+}
+
+/* status keeps the product's meaning: done / live green, scheduled blue */
+.bx-pill--done,
+.bx-pill--live {
+  background: var(--success-50);
+  color: var(--success-700);
+}
+
+.bx-pill--scheduled {
+  background: var(--blue-50);
+  color: var(--blue-700);
+}
+
+.bx-pill--inferred,
+.bx-pill--attention {
+  background: var(--amber-50);
+  color: var(--amber-700);
+}
+
+.bx-pill--quiet {
+  background: var(--surface);
+  color: var(--text-3);
+}
+
+.bx-pill--quiet::before {
+  background: var(--success-500);
+}
+
+.bx-pill--building {
+  background: var(--indigo-50);
+  color: var(--indigo-600);
+}
+
+.bx-pill--ready {
+  background: var(--cyan-50);
+  color: var(--cyan-700);
+}
+
+.bx-pill--ink {
+  background: var(--ink-900);
+  color: #fff;
+}
+
+.bx-pill--ink::before {
+  background: var(--pulse-cyan);
+}
+
+.bx-pill--compact {
+  min-height: 20px;
+  padding: 0 7px;
+  gap: 5px;
+}
+
+.bx-pill--compact::before {
+  width: 5px;
+  height: 5px;
+}
+
+.bx-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--text-5);
+}
+
+.bx-dot--direct {
+  background: var(--bx-direct-dot);
+}
+
+.bx-dot--supported {
+  background: var(--bx-supported-dot);
+}
+
+.bx-dot--inferred {
+  background: var(--amber-500);
+}
+
+.bx-dot--building {
+  background: var(--indigo-500);
+}
+
+.bx-dot--done {
+  background: var(--success-500);
+}
+
+/* --------------------------------------------------------------- chips + tags */
+
+.bx-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 30px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: var(--bx-r-pill);
+  background: rgba(18, 31, 45, 0.045);
+  color: var(--text-2);
+  font-family: var(--font-sans);
+  font-size: var(--fs-3);
+  font-weight: var(--fw-semibold);
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background var(--dur-1) var(--ease),
+    color var(--dur-1) var(--ease),
+    box-shadow var(--dur-1) var(--ease);
+}
+
+.bx-chip:hover {
+  background: rgba(18, 31, 45, 0.08);
+  color: var(--text);
+}
+
+.bx-chip:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.bx-chip[aria-pressed='true'],
+.bx-chip.is-on {
+  background: var(--ink-900);
+  box-shadow: none;
+  color: #fff;
+}
+
+.bx-chip__count {
+  color: var(--text-4);
+  font-size: var(--fs-2);
+  font-weight: var(--fw-semibold);
+  font-variant-numeric: tabular-nums;
+}
+
+.bx-chip[aria-pressed='true'] .bx-chip__count,
+.bx-chip.is-on .bx-chip__count {
+  color: rgba(255, 255, 255, 0.64);
+}
+
+.bx-chip--sm {
+  height: 26px;
+  padding: 0 10px;
+  font-size: var(--fs-2);
+}
+
+/* a filter that says something is wrong reads as amber even before you press it -
+   it is the one chip on the bar worth noticing */
+.bx-chip--warn {
+  background: color-mix(in srgb, var(--amber-500) 15%, transparent);
+  color: color-mix(in srgb, var(--amber-500) 62%, var(--ink-900));
+}
+
+.bx-chip--warn .bx-icon {
+  color: inherit;
+}
+
+.bx-chip--warn .bx-chip__count {
+  background: color-mix(in srgb, var(--amber-500) 22%, transparent);
+  color: inherit;
+}
+
+.bx-chip--warn:hover {
+  background: color-mix(in srgb, var(--amber-500) 24%, transparent);
+}
+
+.bx-chip--warn[aria-pressed='true'] {
+  background: color-mix(in srgb, var(--amber-500) 78%, transparent);
+  color: #fff;
+}
+
+.bx-chip--warn[aria-pressed='true'] .bx-chip__count {
+  background: rgba(255, 255, 255, 0.24);
+}
+
+/* removable "applied filter" chip - the selected-state region beside a filter */
+.bx-applied {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 26px;
+  padding: 0 3px 0 8px;
+  border-radius: var(--bx-r-pill);
+  background: var(--cyan-100);
+  color: var(--cyan-800);
+  font-size: var(--fs-2);
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+}
+
+.bx-applied button {
+  display: inline-grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--cyan-700);
+  cursor: pointer;
+}
+
+.bx-applied button:hover {
+  background: rgba(13, 118, 133, 0.12);
+}
+
+.bx-tag {
+  display: inline-flex;
+  align-items: center;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: var(--bx-r-pill);
+  background: var(--surface-2);
+  color: var(--text-3);
+  font-size: var(--fs-1);
+  font-weight: var(--fw-semibold);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* ------------------------------------------------------------- segmented tabs */
+
+.bx-seg {
+  position: relative;
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  max-width: 100%;
+  padding: 3px;
+  border-radius: var(--bx-r-pill);
+  background: rgba(18, 31, 45, 0.05);
+}
+
+.bx-seg__item {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 30px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: var(--bx-r-pill);
+  background: transparent;
+  color: var(--text-3);
+  font-family: var(--font-sans);
+  font-size: var(--fs-3);
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    color var(--dur-1) var(--ease),
+    background-color var(--dur-2) var(--ease-out),
+    box-shadow var(--dur-2) var(--ease-out);
+}
+
+.bx-seg__item:hover {
+  color: var(--text);
+  background: rgba(18, 31, 45, 0.04);
+}
+
+.bx-seg__item:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+/* white thumb = page / view switcher (PageNavTabs) */
+.bx-seg__item[aria-selected='true'],
+.bx-seg__item.is-on {
+  background: #fff;
+  color: var(--text);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.78),
+    0 1px 2px rgba(18, 31, 45, 0.06);
+}
+
+/* ink thumb = in-section mode toggle (ReportRangeTabs / AnalyticsSubtabs) */
+.bx-seg--ink .bx-seg__item[aria-selected='true'],
+.bx-seg--ink .bx-seg__item.is-on {
+  background: var(--ink-900);
+  color: #fff;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 1px 2px rgba(18, 31, 45, 0.08);
+}
+
+.bx-seg__count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: var(--bx-r-pill);
+  background: rgba(18, 31, 45, 0.07);
+  color: var(--text-3);
+  font-size: var(--fs-1);
+  font-weight: var(--fw-semibold);
+  font-variant-numeric: tabular-nums;
+}
+
+.bx-seg--ink .bx-seg__item[aria-selected='true'] .bx-seg__count,
+.bx-seg--ink .bx-seg__item.is-on .bx-seg__count {
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+}
+
+.bx-seg--sm .bx-seg__item {
+  min-height: 26px;
+  padding: 0 10px;
+  font-size: var(--fs-2);
+}
+
+/* ----------------------------------------------------------------------- fields */
+
+.bx-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.bx-search > .bx-icon {
+  position: absolute;
+  left: 12px;
+  color: var(--text-4);
+  pointer-events: none;
+}
+
+.bx-search input {
+  width: 100%;
+  height: var(--control-height-md);
+  padding: 0 34px 0 34px;
+  border: 0;
+  border-radius: var(--bx-r-pill);
+  background: var(--canvas);
+  box-shadow:
+    inset 0 0 0 1px var(--surface-edge-strong),
+    var(--shadow-1);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: var(--fs-3);
+  transition: box-shadow var(--dur-2) var(--ease);
+}
+
+.bx-search input::placeholder {
+  color: var(--text-4);
+}
+
+.bx-search input:focus {
+  outline: none;
+  box-shadow:
+    inset 0 0 0 1px var(--cyan-300),
+    var(--focus-ring);
+}
+
+.bx-search input::-webkit-search-cancel-button {
+  display: none;
+}
+
+.bx-search__clear {
+  position: absolute;
+  right: 6px;
+  display: inline-grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-4);
+  cursor: pointer;
+}
+
+.bx-search__clear:hover {
+  background: var(--ink-soft);
+  color: var(--text);
+}
+
+.bx-select {
+  height: var(--control-height-sm);
+  padding: 0 30px 0 12px;
+  border: 0;
+  border-radius: var(--bx-r-pill);
+  background: var(--canvas)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238a8e95' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")
+    no-repeat right 11px center;
+  box-shadow: inset 0 0 0 1px var(--surface-edge-strong);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: var(--fs-3);
+  font-weight: var(--fw-semibold);
+  appearance: none;
+  cursor: pointer;
+}
+
+.bx-select:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.bx-textarea {
+  width: 100%;
+  min-height: 88px;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: var(--r-sm);
+  background: var(--canvas);
+  box-shadow: inset 0 0 0 1px var(--surface-edge-strong);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: var(--fs-4);
+  line-height: var(--lh-normal);
+  resize: vertical;
+}
+
+.bx-textarea:focus {
+  outline: none;
+  box-shadow:
+    inset 0 0 0 1px var(--cyan-300),
+    var(--focus-ring);
+}
+
+.bx-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-2);
+  font-size: var(--fs-3);
+  font-weight: var(--fw-medium);
+  cursor: pointer;
+  user-select: none;
+}
+
+.bx-check input {
+  width: 15px;
+  height: 15px;
+  margin: 0;
+  accent-color: var(--ink-900);
+  cursor: pointer;
+}
+
+/* --------------------------------------------------------- evidence + meters */
+
+.bx-mark {
+  padding: 1px 2px;
+  border-radius: 2px;
+  background: var(--cyan-100);
+  color: var(--text);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.bx-quote {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: var(--bx-r-inner);
+  background: var(--surface);
+  color: var(--text-3);
+  font-size: var(--fs-3);
+  line-height: var(--lh-relaxed);
+  overflow-wrap: anywhere;
+}
+
+.bx-quote--unlocated {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: var(--surface);
+  color: var(--text-3);
+}
+
+.bx-quote--unlocated > .bx-icon {
+  margin-top: 2px;
+  color: var(--text-4);
+}
+
+/* confidence as length - one cyan series, the exact figure beside it */
+.bx-meter {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  font-size: var(--fs-2);
+  font-weight: var(--fw-semibold);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-2);
+}
+
+.bx-meter__track {
+  position: relative;
+  width: 44px;
+  height: 4px;
+  flex: none;
+  overflow: hidden;
+  border-radius: 2px;
+  background: var(--surface-2);
+}
+
+.bx-meter__track::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--v, 0%);
+  border-radius: inherit;
+  background: var(--chart-1);
+}
+
+.bx-meter.is-low {
+  color: var(--amber-700);
+}
+
+.bx-meter.is-low .bx-meter__track::before {
+  background: var(--amber-400);
+}
+
+/* flat share strip - chiclet segments with 2px surface gaps (charts canon) */
+.bx-share {
+  display: flex;
+  gap: 2px;
+  height: 10px;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.bx-share__seg {
+  display: block;
+  min-width: 3px;
+  height: 100%;
+  border: 0;
+  padding: 0;
+  background: var(--chart-1);
+}
+
+.bx-share__seg:first-child {
+  border-radius: 2px 0 0 2px;
+}
+
+.bx-share__seg:last-child {
+  border-radius: 0 2px 2px 0;
+}
+
+.bx-progress {
+  position: relative;
+  height: 4px;
+  overflow: hidden;
+  border-radius: 2px;
+  background: var(--surface-2);
+}
+
+.bx-progress > span {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--v, 0%);
+  border-radius: inherit;
+  background: var(--success-500);
+  transition: width var(--dur-3) var(--ease-out);
+}
+
+/* ------------------------------------------------------------------- disclosure */
+
+.bx-disclose {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows var(--dur-disclosure) var(--ease-disclosure),
+    opacity var(--dur-2) var(--ease);
+}
+
+.bx-disclose > * {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.bx-disclose.is-open {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+/* source glyph - page vs image, never a text code */
+.bx-glyph {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  flex: none;
+  border-radius: var(--r-sm);
+  background: var(--surface-2);
+  color: var(--text-3);
+}
+
+.bx-glyph--decision {
+  background: var(--success-50);
+  color: var(--success-700);
+}
+
+.bx-glyph--answer {
+  background: var(--cyan-100);
+  color: var(--cyan-700);
+}
+
+.bx-glyph--image {
+  background: var(--indigo-50);
+  color: var(--indigo-500);
+}
+
+.bx-glyph--sm {
+  width: 22px;
+  height: 22px;
+  border-radius: var(--bx-r-inner);
+}
+
+.bx-kbd,
+.bx-sw kbd {
+  display: inline-grid;
+  place-items: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  border-radius: 5px;
+  background: var(--surface-2);
+  box-shadow: inset 0 -1px 0 rgba(18, 31, 45, 0.08);
+  color: var(--text-3);
+  font-family: var(--font-sans);
+  font-size: var(--fs-1);
+  font-weight: var(--fw-semibold);
+}
+
+.bx-empty {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  padding: 40px 16px;
+  color: var(--text-3);
+  font-size: var(--fs-4);
+  text-align: center;
+}
+
+.bx-empty .bx-icon {
+  color: var(--text-4);
+}
+
+.bx-illustrative {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--text-4);
+  font-size: var(--fs-1);
+  font-weight: var(--fw-semibold);
+}
+
+/* focus flash when a cross-link lands on a fact */
+.is-flash,
+.is-flash > td {
+  animation: bx-flash 1.6s var(--ease-out);
+}
+
+@keyframes bx-flash {
+  0%,
+  35% {
+    background-color: var(--cyan-100);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+/* cite popover */
+.bx-pop {
+  position: fixed;
+  /* above a drawer, so a citation in one still previews */
+  z-index: 1200;
+  width: min(380px, calc(100vw - 32px));
+  padding: 12px 14px;
+  border-radius: var(--bx-r-card);
+  background: var(--canvas);
+  box-shadow:
+    inset 0 0 0 1px var(--surface-edge),
+    var(--shadow-3);
+  color: var(--text);
+  font-family: var(--font-sans);
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(4px);
+  transition:
+    opacity var(--dur-2) var(--ease),
+    transform var(--dur-2) var(--ease-out);
+}
+
+.bx-pop.is-on {
+  opacity: 1;
+  transform: none;
+}
+
+.bx-pop__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: var(--fs-3);
+  font-weight: var(--fw-semibold);
+}
+
+.bx-pop__head span:last-child {
+  margin-left: auto;
+  color: var(--text-4);
+  font-size: var(--fs-1);
+  font-weight: var(--fw-semibold);
+}
+
+.bx-pop p {
+  margin: 0;
+  color: var(--text-3);
+  font-size: var(--fs-2);
+  line-height: var(--lh-normal);
+}
+
+.bx-pop__hint {
+  margin-top: 8px !important;
+  color: var(--text-4) !important;
+}
+
+/* ------------------------------------------------------ Ask + Index map (A/B/C) */
+
+.bx-page .brain-search__label,
+.bx-page .brain-map__model,
+.bx-page .brain-hit__chip,
+.bx-page .brain-search__column-title {
+  font-family: var(--font-sans);
+  font-size: var(--fs-1);
+}
+
+.bx-page .brain-search__field {
+  max-width: 640px;
+}
+
+.bx-page .brain-search__input {
+  height: var(--control-height-lg);
+  padding: 0 16px;
+  border: 0;
+  border-radius: var(--bx-r-pill);
+  box-shadow:
+    inset 0 0 0 1px var(--surface-edge-strong),
+    var(--shadow-1);
+  font-family: var(--font-sans);
+  font-size: var(--fs-4);
+}
+
+.bx-page .brain-search__input:focus {
+  outline: none;
+  box-shadow:
+    inset 0 0 0 1px var(--cyan-300),
+    var(--focus-ring);
+}
+
+.bx-page .brain-search__submit {
+  height: var(--control-height-lg);
+  padding: 0 22px;
+  border-radius: var(--bx-r-pill);
+  font-family: var(--font-sans);
+  font-size: var(--fs-4);
+  font-weight: var(--fw-semibold);
+}
+
+.bx-page .brain-search__prompt {
+  max-width: 640px;
+  margin-top: 10px;
+  color: var(--text-3);
+  font-size: var(--fs-3);
+  line-height: var(--lh-normal);
+}
+
+.bx-ask-suggest {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.bx-page .brain-answer {
+  margin-top: 24px;
+  padding: 20px;
+  border: 0;
+  border-radius: var(--bx-r-card);
+  background: var(--canvas);
+  box-shadow:
+    inset 0 0 0 1px var(--bx-line),
+    var(--shadow-1);
+}
+
+.bx-page .brain-answer__question {
+  font-size: var(--fs-6);
+  font-weight: var(--fw-semibold);
+}
+
+.bx-page .brain-answer__when,
+.bx-page .brain-answer__meta {
+  color: var(--text-4);
+  font-size: var(--fs-2);
+}
+
+.bx-page .brain-field__answer p {
+  font-size: var(--fs-5);
+  line-height: var(--lh-relaxed);
+}
+
+.bx-page .brain-hit {
+  border: 0;
+  border-radius: var(--bx-r-card);
+  box-shadow:
+    inset 0 0 0 1px var(--bx-line),
+    var(--shadow-1);
+}
+
+.bx-page .brain-hit__title {
+  font-size: var(--fs-3);
+}
+
+.bx-page .brain-hit__chip {
+  border-radius: var(--bx-r-pill);
+  font-family: var(--font-sans);
+  font-size: var(--fs-1);
+}
+
+.bx-page .brain-map__space,
+.bx-page .brain-map__legend-item {
+  border: 0;
+  border-radius: var(--bx-r-pill);
+  background: rgba(18, 31, 45, 0.045);
+  color: var(--text-2);
+}
+
+.bx-page .brain-map__space.is-active {
+  background: var(--ink-900);
+  color: #fff;
+}
+
+.bx-page .brain-hit__score-fill {
+  background: var(--chart-1);
+}
+
+.bx-link-chip {
+  border: 0;
+  border-radius: var(--bx-r-pill) !important;
+  background: var(--cyan-50) !important;
+  color: var(--cyan-700) !important;
+  cursor: pointer;
+}
+
+.bx-page .brain-map__space {
+  height: 30px;
+  font-family: var(--font-sans);
+  font-size: var(--fs-3);
+}
+
+.bx-page .brain-map__plot-wrap {
+  border: 0;
+  border-radius: var(--bx-r-card);
+  box-shadow:
+    inset 0 0 0 1px var(--bx-line),
+    var(--shadow-1);
+}
+
+.bx-page .brain-map__stage {
+  min-height: 420px;
+}
+
+/* the index tab's own head: what it is, then the numbers behind it on a band of
+   their own - the figure first, its name under it, and what it means under that */
+.bx-page .brain-map__head {
+  display: grid;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.bx-page .brain-map__title {
+  font-size: var(--type-h4);
+  font-weight: var(--fw-semibold);
+  line-height: 1.2;
+}
+
+.bx-page .brain-map__lede {
+  margin-top: 4px;
+  color: var(--text-3);
+  font-size: var(--fs-3);
+}
+
+.bx-page .brain-map__lede .bx-sep {
+  margin: 0 7px;
+}
+
+.bx-page .brain-map__stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  margin: 0;
+  padding: 14px 4px;
+  border-radius: var(--bx-r-card);
+  background: var(--canvas);
+  box-shadow: var(--bx-soft);
+}
+
+.bx-page .brain-map__stats > div {
+  display: grid;
+  gap: 1px;
+  padding: 0 18px;
+}
+
+.bx-page .brain-map__stats > div + div {
+  box-shadow: inset 1px 0 0 var(--bx-line);
+}
+
+.bx-page .brain-map__stats dd {
+  margin: 0;
+  color: var(--text);
+  font-size: var(--fs-8);
+  font-weight: var(--fw-heavy);
+  line-height: 1.1;
+}
+
+.bx-page .brain-map__stats dt {
+  margin-top: 3px;
+  color: var(--text-2);
+  font-size: var(--fs-3);
+  font-weight: var(--fw-semibold);
+}
+
+.bx-page .brain-map__stats small {
+  color: var(--text-4);
+  font-size: var(--fs-1);
+  line-height: 1.4;
+}
+
+@container bxpanel (max-width: 860px) {
+  .bx-page .brain-map__stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px 0;
+    width: 100%;
+  }
+
+  .bx-page .brain-map__stats > div {
+    padding: 0 12px;
+  }
+
+  .bx-page .brain-map__stats > div:nth-child(3n + 1) {
+    padding-left: 0;
+    box-shadow: none;
+  }
+}
+
+/* placeholder for a caption source whose image was not in the capture */
+.bx-thumb-missing {
+  display: inline-grid;
+  place-items: center;
+  background: var(--surface-2);
+  color: var(--text-4);
+}
+
+/* ------------------------------------------------------------------------- toast */
+
+.app-shell > .bx-toast.bx-toast {
+  padding: 10px 16px 10px 12px;
+}
+
+.bx-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 96px;
+  z-index: 1200;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px 10px 12px;
+  border-radius: var(--bx-r-pill);
+  background: var(--ink-900);
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: var(--fs-3);
+  font-weight: var(--fw-semibold);
+  box-shadow: var(--shadow-3);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 8px);
+  transition:
+    opacity var(--dur-2) var(--ease),
+    transform var(--dur-3) var(--ease-out);
+}
+
+.bx-toast .bx-icon {
+  color: var(--pulse-cyan);
+}
+
+.bx-toast.is-on {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* ------------------------------------------------------------------ drawer */
+
+/* a side sheet over the page: F opens a fact in it, E a report field, Library an asset */
+.bx-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 1150;
+}
+
+/* a light veil - the page stays readable behind it; the sheet's own shadow sets it
+   apart */
+.bx-drawer__scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(18, 20, 24, 0.09);
+}
+
+.bx-drawer__sheet {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  bottom: 12px;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  width: min(440px, calc(100vw - 24px));
+  overflow: hidden;
+  border-radius: var(--r-md);
+  background: var(--canvas);
+  box-shadow:
+    inset 0 0 0 1px var(--surface-edge),
+    var(--shadow-3),
+    0 24px 60px -24px rgba(15, 23, 42, 0.28);
+}
+
+.bx-drawer__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px 12px 20px;
+  border-bottom: 1px solid var(--bx-line);
+}
+
+.bx-drawer__pos {
+  margin-left: 8px;
+  color: var(--text-4);
+  font-weight: var(--fw-medium);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.bx-drawer__nav {
+  display: flex;
+  gap: 2px;
+}
+
+.bx-drawer__body {
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  padding: 18px 20px 20px;
+  overflow-y: auto;
+  /* the sheet reflows its tables like the panel does */
+  container: bxpanel / inline-size;
+}
+
+.bx-drawer__foot {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 12px 20px;
+  border-top: 1px solid var(--bx-line);
+  background: var(--surface);
+}
+
+/* ------------------------------------------------------------ what is Brain */
+
+/* A small hollow badge beside the title: one colour for the ring and the glyph, so
+   the two never disagree - quiet grey, tinting on hover and filling while its
+   bubble is open. */
+.bx-what {
+  --wi: var(--text-4);
+  --wi-on: var(--text-2);
+  display: inline-grid;
+  place-items: center;
+  width: 14px;
+  height: 14px;
+  margin-left: 7px;
+  padding: 0;
+  border: 1px solid var(--wi);
+  border-radius: 50%;
+  background: var(--canvas);
+  color: var(--wi);
+  font-size: 8.5px;
+  font-weight: var(--fw-bold);
+  line-height: 1;
+  vertical-align: middle;
+  cursor: pointer;
+  transition:
+    border-color var(--dur-1) var(--ease),
+    background var(--dur-1) var(--ease),
+    color var(--dur-1) var(--ease);
+}
+
+.bx-what:hover {
+  --wi: var(--wi-on);
+  background: color-mix(in srgb, var(--wi-on) 10%, transparent);
+}
+
+.bx-what[aria-expanded='true'] {
+  --wi: var(--wi-on);
+  background: var(--wi-on);
+  color: var(--canvas);
+}
+
+.bx-what:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+/* the bubble, dark: near-black and a little see-through, the page blurred behind it */
+.bx-what__pop {
+  position: absolute;
+  z-index: 81;
+  display: grid;
+  gap: 12px;
+  width: min(460px, calc(100vw - 48px));
+  margin-top: 10px;
+  padding: 16px 18px 18px;
+  border-radius: var(--r-md);
+  background: rgba(14, 14, 16, 0.84);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 22px 48px -18px rgba(0, 0, 0, 0.5);
+  color: #fff;
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
+  backdrop-filter: blur(16px) saturate(1.2);
+}
+
+.bx-what__pop[hidden] {
+  display: none;
+}
+
+.bx-what__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.bx-what__head .bx-label {
+  color: rgba(255, 255, 255, 0.56);
+}
+
+.bx-what__head .bx-btn--ghost {
+  color: rgba(255, 255, 255, 0.64);
+}
+
+.bx-what__head .bx-btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.bx-what__lede {
+  color: rgba(255, 255, 255, 0.94);
+  font-size: var(--fs-4);
+  line-height: var(--lh-relaxed);
+  text-wrap: pretty;
+}
+
+.bx-what__list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bx-what__list li,
+.bx-what__rule {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr);
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: var(--fs-3);
+  line-height: var(--lh-normal);
+}
+
+.bx-what__list .bx-icon,
+.bx-what__rule .bx-icon {
+  margin-top: 2px;
+  color: var(--cyan-300);
+}
+
+.bx-what__list b {
+  color: #fff;
+  font-weight: var(--fw-semibold);
+}
+
+.bx-what__rule {
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.56);
+  font-size: var(--fs-2);
+}
+
+.bx-what__rule .bx-icon {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* the goal, three ways (Versions → Goal style) - sized in em, so it reads the same
+   in the banner, the Spine's head and the sources sheet; its words a little apart */
+.bx-rmg {
+  word-spacing: 0.08em;
+}
+
+.bx-rmg__fig {
+  color: var(--text);
+  font-size: 1.9em;
+  font-weight: var(--fw-semibold);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.bx-rmg__line {
+  color: var(--text-3);
+  font-size: 0.7em;
+  font-weight: var(--fw-regular);
+  line-height: 1.4;
+  text-wrap: balance;
+}
+
+.bx-rmg__line b {
+  color: var(--text);
+  font-weight: var(--fw-semibold);
+}
+
+.bx-rmt__meta .bx-sep,
+.bx-rms__sum .bx-sep {
+  color: var(--text-4);
+}
+
+.bx-drawer__sheet.bx-rms {
+  width: min(480px, calc(100vw - 24px));
+}
+
+.bx-rms__body {
+  gap: 20px;
+  padding-top: 20px;
+}
+
+.bx-rms__top {
+  display: grid;
+  gap: 8px;
+  padding: 16px 16px 14px;
+  border-radius: var(--bx-r-card);
+  background:
+    radial-gradient(70% 160% at 100% 0%, rgba(139, 92, 246, 0.08), transparent 70%),
+    radial-gradient(60% 140% at 0% 0%, rgba(14, 165, 184, 0.09), transparent 70%), var(--surface);
+}
+
+.bx-rms__goal {
+  color: var(--text);
+  font-size: var(--fs-6);
+  font-weight: var(--fw-medium);
+  line-height: 1.4;
+  text-wrap: pretty;
+}
+
+.bx-rms__sum {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 6px;
+  color: var(--text-3);
+  font-size: var(--fs-2);
+}
+
+.bx-rms__chain {
+  position: relative;
+  display: grid;
+  gap: 22px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* the line the chain hangs on */
+.bx-rms__chain::before {
+  content: '';
+  position: absolute;
+  top: 12px;
+  bottom: 12px;
+  left: 11px;
+  width: 2px;
+  border-radius: 2px;
+  background: linear-gradient(
+    var(--success-100),
+    rgba(14, 165, 184, 0.35) 30%,
+    rgba(139, 92, 246, 0.3) 70%,
+    rgba(79, 70, 229, 0.25)
+  );
+}
+
+.bx-rms__step {
+  --hue: var(--text-3);
+  position: relative;
+  display: grid;
+  gap: 10px;
+  padding-left: 38px;
+  scroll-margin-top: 16px;
+}
+
+.bx-rms__step--decision {
+  --hue: var(--success-600);
+}
+
+.bx-rms__step--answer {
+  --hue: var(--cyan-700);
+}
+
+.bx-rms__node {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--canvas);
+  box-shadow:
+    0 0 0 3px var(--canvas),
+    inset 0 0 0 1.5px var(--hue);
+  color: var(--hue);
+  font-size: var(--fs-1);
+  font-weight: var(--fw-semibold);
+}
+
+.bx-rms__step--phase.is-current .bx-rms__node,
+.bx-rms__step.is-focus .bx-rms__node {
+  background: var(--hue);
+  box-shadow:
+    0 0 0 3px var(--canvas),
+    0 0 0 6px color-mix(in srgb, var(--hue) 18%, transparent);
+  color: #fff;
+}
+
+.bx-rms__shead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 10px;
+  min-height: 22px;
+}
+
+.bx-rms__shead b {
+  color: var(--text);
+  font-size: var(--fs-4);
+  font-weight: var(--fw-semibold);
+}
+
+.bx-rms__step--phase .bx-rms__shead b {
+  color: color-mix(in srgb, var(--hue) 78%, var(--ink-900));
+}
+
+.bx-rms__when {
+  color: var(--text-4);
+  font-size: var(--fs-2);
+}
+
+.bx-rms__card {
+  display: grid;
+  gap: 8px;
+  padding: 12px 14px;
+  border-radius: var(--bx-r-inner);
+  background: var(--canvas);
+  box-shadow: inset 0 0 0 1px var(--bx-line);
+}
+
+.bx-rms__who {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bx-rms__who p {
+  display: grid;
+  gap: 1px;
+  line-height: 1.3;
+}
+
+.bx-rms__who b {
+  font-size: var(--fs-3);
+  font-weight: var(--fw-semibold);
+}
+
+.bx-rms__who small {
+  color: var(--text-3);
+  font-size: var(--fs-1);
+}
+
+.bx-rms__note {
+  color: var(--text-2);
+  font-size: var(--fs-3);
+  line-height: 1.5;
+}
+
+.bx-rms__quote {
+  margin: 0;
+  padding: 10px 14px;
+  border-left: 2px solid rgba(14, 165, 184, 0.5);
+  border-radius: 0 var(--bx-r-inner) var(--bx-r-inner) 0;
+  background: color-mix(in srgb, var(--cyan-50) 70%, var(--canvas));
+  color: var(--text);
+  font-size: var(--fs-4);
+  line-height: 1.5;
+}
+
+.bx-rms__facts {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bx-rms__fact {
+  display: grid;
+  gap: 8px;
+  padding: 11px 14px;
+  border-radius: var(--bx-r-inner);
+  background: var(--canvas);
+  box-shadow: inset 0 0 0 1px var(--bx-line);
+  transition: box-shadow var(--dur-2) var(--ease);
+}
+
+.bx-rms__fact:hover {
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--hue) 40%, var(--bx-line));
+}
+
+.bx-rms__fact > p {
+  color: var(--text);
+  font-size: var(--fs-3);
+  line-height: 1.5;
+}
+
+.bx-rms__fmeta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px 12px;
+  min-width: 0;
+}
+
+.bx-rms__open {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 0;
+  border: 0;
+  background: none;
+  color: var(--text-3);
+  font-family: var(--font-sans);
+  font-size: var(--fs-2);
+  font-weight: var(--fw-medium);
+  cursor: pointer;
+}
+
+.bx-rms__open:hover {
+  color: color-mix(in srgb, var(--hue) 80%, var(--ink-900));
+}
+
+.bx-rms__open .bx-icon {
+  transition: transform var(--dur-1) var(--ease);
+}
+
+.bx-rms__open:hover .bx-icon {
+  transform: translateX(2px);
+}
+
+.bx-rms__open:focus-visible {
+  outline: none;
+  border-radius: 4px;
+  box-shadow: var(--focus-ring);
+}
+
+/* the phase it was opened from, lit for a moment */
+.bx-rms__step.is-focus .bx-rms__fact {
+  animation: bx-rms-focus 1.6s var(--ease-out) 0.2s both;
+}
+
+@keyframes bx-rms-focus {
+  from {
+    box-shadow:
+      inset 0 0 0 1px color-mix(in srgb, var(--hue) 55%, transparent),
+      0 0 0 4px color-mix(in srgb, var(--hue) 12%, transparent);
+  }
+  to {
+    box-shadow: inset 0 0 0 1px var(--bx-line);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bx-rms__step.is-focus .bx-rms__fact {
+    animation: none;
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--hue) 45%, var(--bx-line));
+  }
+}
+
+/* ---------------------------------------------------------- roadmap host */
+
+/* whichever report is showing hosts the roadmap design picked in Versions */
+.bx-rmsec {
+  display: grid;
+  min-width: 0;
+}
+
+.bx-rmsec__note {
+  display: flex;
+  margin-top: 10px !important;
+}
+
+/* above the shipped report, the roadmap keeps the report's width and rhythm */
+.bx-rmhost,
+.bx-rmhost > * {
+  min-width: 0;
+}
+
+.bx-rmhost-current {
+  margin-bottom: 32px;
+}
+
+.bx-rmhost--pane {
+  border-top: 1px solid var(--bx-line);
+}
+
+.bx-rmsec__note--pane {
+  padding: 12px 24px 18px;
+  margin-top: 0 !important;
+}
+
+/* a plan's dated axis: a tick and a date where each phase starts and where the plan
+   ends, a small tick each week */
+.bx-axis {
+  position: relative;
+  height: 28px;
+  border-top: 1px solid var(--border-strong);
+}
+
+.bx-axis__minor {
+  position: absolute;
+  top: 0;
+  width: 1px;
+  height: 4px;
+  background: var(--border-strong);
+}
+
+.bx-axis__major {
+  position: absolute;
+  top: 0;
+  display: grid;
+  justify-items: center;
+  transform: translateX(-50%);
+}
+
+.bx-axis__major::before {
+  content: '';
+  width: 1px;
+  height: 7px;
+  background: var(--text-4);
+}
+
+.bx-axis__major b {
+  margin-top: 3px;
+  color: var(--text-3);
+  font-size: var(--fs-2);
+  font-weight: var(--fw-medium);
+  white-space: nowrap;
+}
+
+.bx-axis__major.is-start {
+  justify-items: start;
+  transform: none;
+}
+
+.bx-axis__major.is-end {
+  justify-items: end;
+  transform: translateX(-100%);
+}
+
+/* ---------------------------------------------------------------- ask / chat */
+
+/* the message bar takes the question: it is an input, not a button */
+.chat-dock__launcher-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  font-family: var(--font-sans);
+  outline: none;
+}
+
+.chat-dock__launcher-input::placeholder {
+  color: var(--text-3);
+}
+
+/* the bar takes focus without a square ring around its input: the pill itself
+   carries a soft round one, and the nudge from "Ask Brain" is a pulse of it */
+.chat-dock__launcher-input:focus,
+.chat-dock__launcher-input:focus-visible {
+  outline: none !important;
+}
+
+.chat-dock__launcher:focus-within {
+  border-color: transparent;
+  box-shadow:
+    var(--shadow-dock),
+    0 0 0 3px color-mix(in srgb, var(--cyan-500) 30%, transparent);
+}
+
+.chat-dock__launcher.is-flash {
+  animation:
+    bx-askflash 0.66s var(--ease-out) 3,
+    bx-asklift 0.66s var(--ease-out);
+}
+
+/* the ring goes out three times, each beat starting solid at the pill's edge and
+   travelling away from it, with the bar itself washing cyan on the first beat */
+@keyframes bx-askflash {
+  0% {
+    background: color-mix(in srgb, var(--cyan-500) 14%, var(--canvas));
+    box-shadow:
+      var(--shadow-dock),
+      0 0 0 0 color-mix(in srgb, var(--cyan-500) 85%, transparent);
+  }
+
+  45% {
+    background: color-mix(in srgb, var(--cyan-500) 5%, var(--canvas));
+    box-shadow:
+      var(--shadow-dock),
+      0 0 0 10px color-mix(in srgb, var(--cyan-500) 26%, transparent);
+  }
+
+  75% {
+    background: var(--canvas);
+    box-shadow:
+      var(--shadow-dock),
+      0 0 0 16px color-mix(in srgb, var(--cyan-500) 0%, transparent);
+  }
+
+  100% {
+    background: var(--canvas);
+    box-shadow:
+      var(--shadow-dock),
+      0 0 0 3px color-mix(in srgb, var(--cyan-500) 34%, transparent);
+  }
+}
+
+/* and it rises to meet the first beat, so the eye has movement to catch as well
+   as colour - the bar is at the foot of the page, furthest from where you looked */
+@keyframes bx-asklift {
+  0% {
+    transform: translateY(0);
+  }
+
+  38% {
+    transform: translateY(-6px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chat-dock__launcher.is-flash {
+    animation: none;
+  }
+}
+
+/* a first-visit nudge, since Ask no longer has a tab of its own */
+/* ---------------------------------------------------- how people find the bar
+
+   Whatever design is picked sits in one slot just above the message bar, inside
+   the dock, so it travels with it when the sidebar collapses. */
+.bx-askw {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.bx-askw > * {
+  width: min(720px, 100%);
+  pointer-events: auto;
+}
+
+/* The sheet that rises over the bar: the bar's own width, a title line, and one
+   row of questions - no kinds named, no colour per group, nothing to read twice.
+   Its foot reaches down to the bar so the pointer can travel to it. */
+/* the sheet is the bar's own width and, like the bar, carries no stroke */
+.bx-askw__sheet {
+  position: relative;
+  display: grid;
+  gap: 7px;
+  width: min(720px, 100%);
+  padding: 11px 14px 13px;
+  border: 0;
+  border-radius: var(--r-lg);
+  background: var(--canvas);
+  box-shadow: var(--shadow-dock);
+}
+
+/* the sheet is one line: the title, the questions and the two buttons */
+.bx-askw__sheet--v2 {
+  padding: 8px 8px 8px 14px;
+}
+
+.bx-askw__line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.bx-askw__line .bx-askw__intro {
+  flex: none;
+}
+
+.bx-askw__line .bx-askw__qs {
+  flex: 1 1 auto;
+  justify-content: flex-end;
+}
+
+.bx-askw__sheet::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  height: 12px;
+}
+
+.bx-askw__sheet[hidden] {
+  display: none;
+}
+
+.bx-askw__shead {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bx-askw__mark {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+}
+
+.bx-askw__intro {
+  flex: 1;
+  min-width: 0;
+  margin: 0 !important;
+  color: var(--text-3);
+  font-size: var(--fs-2);
+}
+
+/* the title sits on the same left edge as the questions under it */
+.bx-askw__shead {
+  padding: 0 2px;
+}
+
+.bx-askw__intro b {
+  color: var(--text);
+  font-weight: var(--fw-semibold);
+}
+
+.bx-askw__more {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-4);
+  font-family: var(--font-sans);
+  cursor: pointer;
+}
+
+.bx-askw__more:hover {
+  background: var(--surface);
+  color: var(--text-2);
+}
+
+.bx-askw__x {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-4);
+  cursor: pointer;
+}
+
+.bx-askw__x:hover {
+  background: var(--surface-2);
+  color: var(--text);
+}
+
+.bx-askw__more:focus-visible,
+.bx-askw__x:focus-visible,
+.bx-askw__q:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+/* the questions: one row of quiet pills, with the way to other ones at its end */
+.bx-askw__row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.bx-askw__qs {
+  display: flex;
+  flex: 0 1 auto;
+  gap: 6px;
+  min-width: 0;
+}
+
+.bx-askw__q {
+  flex: 0 1 auto;
+  min-width: 0;
+  padding: 7px 13px;
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--bx-r-pill);
+  background: var(--surface);
+  color: var(--text-2);
+  font-family: var(--font-sans);
+  font-size: var(--fs-2);
+  line-height: 1.3;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background var(--dur-1) var(--ease),
+    color var(--dur-1) var(--ease);
+}
+
+.bx-askw__q:hover {
+  background: var(--surface-2);
+  color: var(--text);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bx-askw__q {
+    transition: none;
+  }
+}
+
+/* what Vicino says back */
+.bx-chat__pending {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-3);
+  font-size: var(--fs-3);
+}
+
+.bx-chat__dots {
+  display: inline-flex;
+  gap: 3px;
+}
+
+.bx-chat__dots i {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--text-5);
+  animation: bx-chat-dot 1s infinite ease-in-out;
+}
+
+.bx-chat__dots i:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.bx-chat__dots i:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes bx-chat-dot {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.bx-chat__note {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px !important;
+  color: var(--text-4);
+  font-size: var(--fs-1);
+}
+
+.bx-chat__hits {
+  display: grid;
+  gap: 8px;
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bx-chat__hit {
+  display: grid;
+  gap: 6px;
+  padding: 10px 12px;
+  border-radius: var(--bx-r-inner);
+  background: var(--surface);
+}
+
+.bx-chat__stmt {
+  color: var(--text);
+  font-size: var(--fs-3);
+  line-height: var(--lh-normal);
+}
+
+.bx-chat__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 8px;
+  color: var(--text-3);
+  font-size: var(--fs-2);
+}
+
+.bx-chat__rel {
+  position: relative;
+  width: 44px;
+  height: 4px;
+  overflow: hidden;
+  border-radius: var(--bx-r-pill);
+  background: var(--surface-3);
+}
+
+.bx-chat__rel i {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: var(--chart-1);
+}
+
+.bx-chat__cite {
+  vertical-align: baseline;
+}
+
+/* the page's own way in */
+.bx-askbtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 32px;
+  padding: 0 14px 0 11px;
+  border: 0;
+  border-radius: var(--bx-r-pill);
+  background: var(--ink-900);
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: var(--fs-3);
+  font-weight: var(--fw-semibold);
+  cursor: pointer;
+  transition: transform var(--dur-1) var(--ease);
+}
+
+.bx-askbtn:hover {
+  transform: translateY(-1px);
+}
+
+.bx-askbtn:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bx-chat__dots i {
+    animation: none;
+  }
+}
+
+/* --------------------------------------------------------------------- switcher */
+
+/* mounted inside .app-shell (tokens are scoped to .pulse-ds); the id beats the
+   shell's `> :not(...)` nav-toggle clearance padding */
+#bx-switcher.bx-sw,
+.app-shell > .bx-toast,
+.app-shell > .bx-pop,
+.app-shell > .bx-drawer {
+  padding-top: 0;
+}
+
+/* the prototype's own control steps aside while Vicino is open */
+.app-shell:has(.chat-dock.is-open) .bx-sw {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Over everything the prototype puts on the screen, notices and their scrims
+   included: the panel switches designs that are drawn inside them, and a control
+   you cannot reach without dismissing the thing it draws is no control. */
+/* bottom left, under the sidebar, rather than bottom right: open on the right
+   it sat over the page's own right-hand column, which is where most of what
+   these switches change actually is */
+.bx-sw {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 1300;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-start;
+  gap: 10px;
+  font-family: var(--font-sans);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+.bx-sw *,
+.bx-sw *::before,
+.bx-sw *::after {
+  box-sizing: border-box;
+}
+
+.bx-sw__tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 12px 0 14px;
+  border: 0;
+  border-radius: var(--bx-r-pill);
+  background: var(--ink-900);
+  color: #fff;
+  font-family: inherit;
+  font-size: var(--fs-3);
+  font-weight: var(--fw-semibold);
+  box-shadow:
+    0 2px 6px rgba(15, 23, 42, 0.12),
+    0 14px 30px rgba(15, 23, 42, 0.16);
+  cursor: pointer;
+  transition:
+    background var(--dur-2) var(--ease),
+    transform var(--dur-1) var(--ease);
+}
+
+.bx-sw__tab:hover {
+  background: var(--ink-700);
+}
+
+.bx-sw__tab:active {
+  transform: scale(0.97);
+}
+
+.bx-sw__tab:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.bx-sw__tab .bx-icon:first-child {
+  color: var(--pulse-cyan);
+}
+
+.bx-sw__tab-codes {
+  display: inline-flex;
+  gap: 3px;
+}
+
+.bx-sw__tab-codes b {
+  display: inline-grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--bx-r-pill);
+  background: rgba(255, 255, 255, 0.14);
+  font-size: var(--fs-1);
+  font-weight: var(--fw-bold);
+}
+
+.bx-sw__panel {
+  width: 348px;
+  max-height: calc(100vh - 90px);
+  overflow-y: auto;
+  padding: 16px;
+  border-radius: var(--r-md);
+  background: var(--canvas);
+  box-shadow:
+    inset 0 0 0 1px var(--surface-edge),
+    0 2px 6px rgba(15, 23, 42, 0.06),
+    0 24px 48px rgba(15, 23, 42, 0.14);
+  scrollbar-width: none;
+}
+
+.bx-sw__panel[hidden] {
+  display: none;
+}
+
+/* the title and what is still open, then the one link there is */
+.bx-sw__head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding-bottom: 12px;
+}
+
+.bx-sw__title {
+  margin: 0;
+  font-size: var(--fs-5);
+  font-weight: var(--fw-semibold);
+}
+
+.bx-sw__hint {
+  margin: 3px 0 0;
+  color: var(--text-4);
+  font-size: var(--fs-2);
+}
+
+.bx-sw__sync {
+  display: inline-flex;
+  white-space: nowrap;
+  align-items: center;
+  gap: 8px;
+  padding-top: 2px;
+  color: var(--text-2);
+  font-size: var(--fs-2);
+  font-weight: var(--fw-semibold);
+  line-height: 1.15;
+  cursor: pointer;
+  user-select: none;
+}
+
+.bx-sw__sync input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.bx-sw__switch {
+  position: relative;
+  width: 30px;
+  height: 18px;
+  flex: none;
+  border-radius: var(--r-full);
+  background: var(--surface-3);
+  transition: background var(--dur-2) var(--ease);
+}
+
+.bx-sw__switch::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.2);
+  transition: transform var(--dur-2) var(--ease-out);
+}
+
+.bx-sw__sync input:checked + .bx-sw__switch {
+  background: var(--ink-900);
+}
+
+.bx-sw__sync input:checked + .bx-sw__switch::after {
+  transform: translateX(12px);
+}
+
+.bx-sw__sync input:focus-visible + .bx-sw__switch {
+  box-shadow: var(--focus-ring);
+}
+
+.bx-sw__row {
+  padding: 10px 0;
+  border-top: 1px solid var(--surface-edge);
+}
+
+.bx-sw__row-head {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.bx-sw__label {
+  font-size: var(--fs-3);
+  font-weight: var(--fw-semibold);
+}
+
+/* a row whose drawing is not on this page says where it is */
+.bx-sw__where {
+  margin-left: auto;
+  padding: 1px 7px;
+  border-radius: var(--bx-r-pill);
+  background: var(--surface-2);
+  color: var(--text-4);
+  font-size: var(--fs-0);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+/* A row of four fits a grid of four. A row of eleven does not, and the fixed
+   columns were cutting every label to a quarter of the panel and stacking the
+   overflow on top of itself. The options size to their own words and wrap. */
+.bx-sw__seg {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 3px;
+  border-radius: 16px;
+  background: rgba(18, 31, 45, 0.05);
+  gap: 2px;
+}
+
+.bx-sw__opt {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 28px;
+  padding: 0 11px;
+  border: 0;
+  border-radius: var(--bx-r-pill);
+  white-space: nowrap;
+  background: transparent;
+  color: var(--text-3);
+  font-family: inherit;
+  font-size: var(--fs-3);
+  font-weight: var(--fw-semibold);
+  cursor: pointer;
+  transition:
+    background var(--dur-2) var(--ease-out),
+    color var(--dur-1) var(--ease);
+}
+
+.bx-sw__opt:hover {
+  color: var(--text);
+  background: rgba(18, 31, 45, 0.05);
+}
+
+.bx-sw__opt.is-on {
+  background: var(--ink-900);
+  color: #fff;
+}
+
+.bx-sw__opt:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.bx-sw__desc {
+  margin: 6px 0 0;
+  color: var(--text-3);
+  font-size: var(--fs-2);
+  line-height: var(--lh-normal);
+}
+
+.bx-sw__date {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.bx-sw__date input[type='range'] {
+  flex: 1;
+  height: 18px;
+  margin: 0;
+  background: transparent;
+  appearance: none;
+  cursor: pointer;
+}
+
+.bx-sw__date input[type='range']::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: var(--r-full);
+  background: linear-gradient(
+    to right,
+    var(--ink-900) var(--pct, 0%),
+    var(--surface-3) var(--pct, 0%)
+  );
+}
+
+.bx-sw__date input[type='range']::-webkit-slider-thumb {
+  width: 16px;
+  height: 16px;
+  margin-top: -6px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow:
+    inset 0 0 0 1px var(--surface-edge-strong),
+    0 1px 3px rgba(15, 23, 42, 0.2);
+  appearance: none;
+}
+
+.bx-sw__date input[type='range']::-moz-range-track {
+  height: 4px;
+  border-radius: var(--r-full);
+  background: var(--surface-3);
+}
+
+.bx-sw__date input[type='range']::-moz-range-progress {
+  height: 4px;
+  border-radius: var(--r-full);
+  background: var(--ink-900);
+}
+
+.bx-sw__date input[type='range']:focus-visible {
+  outline: none;
+}
+
+.bx-sw__date input[type='range']:focus-visible::-webkit-slider-thumb {
+  box-shadow: var(--focus-ring);
+}
+
+.bx-sw__date output {
+  min-width: 92px;
+  color: var(--text);
+  font-size: var(--fs-3);
+  font-weight: var(--fw-semibold);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.bx-sw__reset {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--cyan-700);
+  font: inherit;
+  font-weight: var(--fw-semibold);
+  cursor: pointer;
+}
+
+.bx-sw__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 4px;
+  padding-top: 10px;
+  border-top: 1px solid var(--surface-edge);
+}
+
+.bx-sw__sub {
+  display: grid;
+  gap: 6px;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: var(--r-sm);
+  background: var(--surface);
+}
+
+.bx-sw__sub > .bx-sw__label {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: var(--fs-2);
+}
+
+.bx-sw__seg--sub {
+  background: rgba(18, 31, 45, 0.06);
+}
+
+.bx-sw__seg--sub .bx-sw__opt {
+  height: 26px;
+  font-size: var(--fs-2);
+}
+
+.bx-sw__sub .bx-sw__desc {
+  margin-top: 0;
+}
+
+.bx-sw__keys {
+  margin: 0;
+  color: var(--text-4);
+  font-size: var(--fs-1);
+}
+
+.bx-sw__round {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-3);
+  font-size: var(--fs-1);
+  font-weight: var(--fw-semibold);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.bx-sw__round:hover {
+  color: var(--text);
+}
+
+@media (max-width: 760px) {
+  .bx-sw {
+    right: 12px;
+    bottom: 84px;
+  }
+
+  .bx-sw__panel {
+    width: calc(100vw - 24px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bx-disclose,
+  .bx-progress > span,
+  .bx-toast,
+  .bx-pop,
+  .bx-sw__switch::after {
+    transition: none;
+  }
+
+  .is-flash,
+  .is-flash > td {
+    animation: none;
+  }
+
+  .brain-main--d,
+  .brain-main--e,
+  .brain-main--f {
+    scroll-behavior: auto;
+  }
+}
+
+/* ======================================================= shared renderers (BX) */
+
+.bx-view {
+  font-family: var(--font-sans);
+  font-size: var(--fs-4);
+  line-height: var(--lh-normal);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+.bx-view *,
+.bx-view *::before,
+.bx-view *::after {
+  box-sizing: border-box;
+}
+
+.bx-view h2,
+.bx-view h3,
+.bx-view h4,
+.bx-view p,
+.bx-view dl,
+.bx-view dd,
+.bx-view blockquote {
+  margin: 0;
+}
+
+[data-slot='panel'] {
+  container-type: inline-size;
+  container-name: bxpanel;
+}
+
+.bx-label {
+  font-size: var(--fs-1);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-label);
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: var(--text-4);
+}
+
+/* one white surface on the stage: hairline edge + the resting lift */
+.bx-card {
+  border-radius: var(--bx-r-card);
+  background: var(--canvas);
+  box-shadow: var(--bx-soft);
+}
+
+/* section head: title (+ one line of context) left, actions right */
+.bx-sechead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px 16px;
+  margin-bottom: 12px;
+}
+
+.bx-sechead__title {
+  font-size: var(--type-h4);
+  font-weight: var(--fw-medium);
+  line-height: 1.3;
+  color: var(--text);
+}
+
+.bx-sechead__sub {
+  margin-top: 4px !important;
+  color: var(--text-3);
+  font-size: var(--fs-3);
+}
+
+.bx-sechead__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+/* answer prose - the product's own paragraphs at one reading size */
+.bx-answer {
+  color: var(--text-2);
+  font-size: var(--fs-4);
+  line-height: var(--lh-relaxed);
+  text-wrap: pretty;
+}
+
+.bx-answer p + p {
+  margin-top: 10px !important;
+}
+
+/* long answers fold to --lines, as the shipped report does */
+.bx-clamp.is-clamped {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: var(--lines, 3);
+  -webkit-box-orient: vertical;
+}
+
+.bx-more {
+  justify-self: start;
+}
+
+.bx-q {
+  quotes: '“' '”';
+  color: inherit;
+}
+
+/* citations keep the shipped look (.brain-prose__cite) and add a hover state */
+.bx-cite.brain-prose__cite {
+  border: 0;
+  line-height: inherit;
+  cursor: pointer;
+  transition:
+    background var(--dur-1) var(--ease),
+    color var(--dur-1) var(--ease);
+}
+
+.bx-cite.brain-prose__cite:hover {
+  background: var(--surface-3);
+  color: var(--text);
+}
+
+.bx-cite.brain-prose__cite:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+/* hovering a citation shows what that fact says, in a white bubble over the
+   paragraph; clicking it jumps to the source */
+.bx-quotepop {
+  position: fixed;
+  z-index: 92;
+  display: grid;
+  gap: 6px;
+  width: min(320px, calc(100vw - 32px));
+  padding: 11px 13px 12px;
+  border-radius: var(--bx-r-card);
+  background: var(--canvas);
+  box-shadow: var(--bx-soft-3);
+  pointer-events: none;
+}
+
+.bx-quotepop[hidden] {
+  display: none;
+}
+
+.bx-quotepop b {
+  color: var(--text);
+  font-size: var(--fs-2);
+  font-weight: var(--fw-regular);
+  line-height: 1.5;
+}
+
+.bx-quotepop small {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-4);
+  font-size: var(--fs-1);
+}
+
+.bx-quotepop small::before {
+  content: '';
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--bx-st-direct);
+}
+
+.bx-quotepop::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: var(--ax, 24px);
+  width: 10px;
+  height: 10px;
+  transform: rotate(45deg);
+  border-radius: 2px;
+  background: var(--canvas);
+}
+
+.bx-quotepop.is-under::after {
+  top: -5px;
+  bottom: auto;
+}
+
+/* a report field's icon, on a light, see-through wash of its source type's colour -
+   the colour of the label beside its name */
+.bx-ficon {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--r-sm);
+  background: color-mix(in srgb, var(--fi, var(--text-4)) 12%, transparent);
+  color: color-mix(in srgb, var(--fi, var(--text-3)) 74%, var(--ink-900));
+}
+
+.bx-ficon--direct {
+  --fi: var(--bx-direct-dot);
+}
+
+.bx-ficon--supported {
+  --fi: var(--bx-supported-dot);
+}
+
+.bx-ficon--inferred {
+  --fi: var(--amber-500);
+}
+
+/* evidence at a glance: a square per source, a ring per gap */
+.bx-squares,
+.bx-rings {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 3px;
+}
+
+.bx-squares i {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--chart-3);
+}
+
+.bx-squares i.is-fact {
+  background: var(--chart-1);
+}
+
+.bx-squares i.is-image {
+  background: var(--chart-muted);
+}
+
+.bx-squares i.is-off {
+  background: var(--surface-3);
+}
+
+.bx-rings i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 2px var(--amber-500);
+}
+
+/* roadmap: the four record types keep one heading style and icon everywhere */
+.bx-rmh {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  margin: 0;
+  color: var(--text);
+  font-size: var(--fs-5);
+  font-weight: var(--fw-semibold);
+  line-height: 1.3;
+}
+
+.bx-rmh__icon {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--surface-2);
+  color: var(--text-2);
+}
+
+.bx-rmh__icon--marketing {
+  background: var(--cyan-100);
+  color: var(--cyan-700);
+}
+
+.bx-rmh__icon--kpis {
+  background: var(--blue-50);
+  color: var(--blue-700);
+}
+
+.bx-rmh__icon--phases {
+  background: var(--indigo-50);
+  color: var(--indigo-600);
+}
+
+.bx-rmh__icon--strategy {
+  background: var(--success-50);
+  color: var(--success-700);
+}
+
+.bx-key {
+  padding: 1px 8px;
+  border-radius: var(--bx-r-pill);
+  background: var(--surface-2);
+  color: var(--text-3);
+  font-size: var(--fs-1);
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.01em;
+}
+
+/* numbered phase marker - the same circle on a phase and on the KPI it leads */
+.bx-pm {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--canvas);
+  box-shadow: inset 0 0 0 1.5px var(--text-4);
+  color: var(--text-2);
+  font-size: var(--fs-1);
+  font-weight: var(--fw-semibold);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.bx-pm--current {
+  background: var(--indigo-500);
+  box-shadow: none;
+  color: #fff;
+}
+
+.bx-pm--done {
+  background: var(--success-500);
+  box-shadow: none;
+  color: #fff;
+}
+
+.bx-pm--sm {
+  width: 16px;
+  height: 16px;
+  font-size: 10px;
+}
+
+/* the person who approved, with their picture */
+.bx-avatar {
+  flex: none;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 0 2px var(--canvas);
+}
+
+.bx-approver {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.bx-approver__text {
+  display: grid;
+  gap: 1px;
+  min-width: 0;
+  line-height: 1.25;
+}
+
+.bx-approver__text b {
+  color: var(--text);
+  font-size: var(--fs-3);
+  font-weight: var(--fw-semibold);
+}
+
+.bx-approver__text small {
+  color: var(--text-3);
+  font-size: var(--fs-2);
+  white-space: nowrap;
+}
+
+/* sources: one quiet table, excerpts open in the row */
+.bx-srcs {
+  display: grid;
+}
+
+.bx-srcs__head,
+.bx-srcs__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 140px 96px 16px;
+  gap: 16px;
+  align-items: center;
+}
+
+.bx-srcs__head {
+  padding: 0 8px 8px;
+  border-bottom: 1px solid var(--bx-line);
+  color: var(--text-4);
+  font-size: var(--fs-1);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+.bx-srcs__item {
+  border-bottom: 1px solid var(--bx-line);
+}
+
+.bx-srcs__item:last-child {
+  border-bottom: 0;
+}
+
+.bx-srcs__row {
+  width: 100%;
+  min-height: 40px;
+  padding: 6px 8px;
+  border: 0;
+  border-radius: var(--bx-r-inner);
+  background: transparent;
+  color: var(--text);
+  font-family: var(--font-sans);
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--dur-1) var(--ease);
+}
+
+.bx-srcs__row:hover {
+  background: var(--surface);
+}
+
+.bx-srcs__row:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.bx-srcs__name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.bx-srcs__name b {
+  overflow: hidden;
+  font-size: var(--fs-3);
+  font-weight: var(--fw-semibold);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bx-srcs__name small {
+  flex: none;
+  color: var(--text-4);
+  font-size: var(--fs-2);
+}
+
+.bx-srcs__type {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  color: var(--text-3);
+  font-size: var(--fs-3);
+  white-space: nowrap;
+}
+
+.bx-srcs__cites {
+  overflow: hidden;
+  color: var(--text-3);
+  font-size: var(--fs-3);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bx-srcs__chev {
+  display: inline-grid;
+  color: var(--text-4);
+  transition: transform var(--dur-3) var(--ease-out);
+}
+
+.bx-srcs__item.is-open .bx-srcs__chev {
+  transform: rotate(180deg);
+}
+
+.bx-srcs__item.is-excluded .bx-srcs__name b,
+.bx-srcs__item.is-excluded .bx-srcs__cites {
+  color: var(--text-4);
+}
+
+.bx-srcs__detail {
+  display: grid;
+  gap: 12px;
+  padding: 4px 8px 16px 40px;
+}
+
+.bx-srcs__note {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-4);
+  font-size: var(--fs-2);
+}
+
+.bx-srcs__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-left: -10px;
+}
+
+.bx-srcs__actions .bx-confirm,
+.bx-srcs__actions .bx-excluded {
+  margin-left: 10px;
+  flex: 1 1 100%;
+}
+
+/* excerpts */
+.bx-excerpts {
+  display: grid;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bx-excerpt {
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  gap: 10px;
+  border-radius: var(--bx-r-inner);
+}
+
+.bx-excerpt__n {
+  display: inline-grid;
+  place-items: center;
+  height: 18px;
+  border-radius: var(--bx-r-pill);
+  background: var(--surface-2);
+  color: var(--text-3);
+  font-size: var(--fs-1);
+  font-weight: var(--fw-semibold);
+}
+
+.bx-excerpt__body {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.bx-excerpt__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-3);
+  font-size: var(--fs-2);
+  font-weight: var(--fw-semibold);
+}
+
+.bx-excerpt__snip {
+  display: -webkit-box;
+  overflow: hidden;
+  color: var(--text);
+  font-size: var(--fs-3);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.bx-excerpt .bx-quote {
+  font-size: var(--fs-2);
+  line-height: 1.55;
+}
+
+.bx-excerpt__fact {
+  justify-self: start;
+  font-size: var(--fs-2);
+  color: var(--cyan-700);
+}
+
+.bx-excerpt__fact:hover {
+  color: var(--cyan-800);
+}
+
+/* exclude / confirm */
+.bx-confirm {
+  display: grid;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: var(--bx-r-inner);
+  background: var(--amber-50);
+  color: var(--text);
+  font-size: var(--fs-3);
+  line-height: 1.5;
+}
+
+.bx-confirm__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.bx-confirm--inline {
+  grid-template-columns: auto auto;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 6px 6px 12px;
+}
+
+.bx-excluded {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: var(--bx-r-inner);
+  background: var(--surface-2);
+  color: var(--text-3);
+  font-size: var(--fs-3);
+}
+
+.bx-excluded .bx-link {
+  margin-left: auto;
+}
+
+/* gaps + notes - a plain list; the amber mark on each gap is the only colour */
+.bx-gaps {
+  display: grid;
+  gap: 12px;
+}
+
+.bx-gaps__list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bx-gaps__list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  color: var(--text-2);
+  font-size: var(--fs-3);
+  line-height: 1.45;
+}
+
+.bx-gaps__list .bx-icon {
+  margin-top: 2px;
+  color: var(--amber-600);
+}
+
+.bx-gaps__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-3);
+  font-size: var(--fs-3);
+}
+
+.bx-gaps__actions > span {
+  margin-right: 4px;
+}
+
+.bx-note {
+  display: grid;
+  gap: 8px;
+}
+
+.bx-note__actions {
+  display: flex;
+  gap: 6px;
+}
+
+.bx-note--saved {
+  padding: 10px 12px;
+  border-radius: var(--bx-r-inner);
+  background: var(--surface);
+}
+
+.bx-note__saved-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bx-note--saved p {
+  color: var(--text);
+  font-size: var(--fs-3);
+  line-height: 1.55;
+  white-space: pre-wrap;
+}
+
+/* regenerate */
+.bx-running {
+  display: grid;
+  gap: 6px;
+  min-width: 180px;
+  max-width: 360px;
+}
+
+.bx-running__text {
+  color: var(--indigo-600);
+  font-size: var(--fs-2);
+  font-weight: var(--fw-semibold);
+}
+
+.bx-running__track {
+  display: block;
+  height: 3px;
+  overflow: hidden;
+  border-radius: 2px;
+  background: var(--indigo-50);
+}
+
+.bx-running__track > span {
+  display: block;
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--indigo-500);
+}
+
+.is-running .bx-answer {
+  opacity: 0.42;
+  transition: opacity var(--dur-2) var(--ease);
+}
+
+.bx-regenerated {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--success-700);
+  font-size: var(--fs-2);
+  font-weight: var(--fw-semibold);
+}
+
+/* knowledge: evidence status, confidence figure, the record under a row */
+.bx-evi {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-4);
+  font-size: var(--fs-2);
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+}
+
+.bx-evi--missing {
+  color: var(--amber-700);
+}
+
+.bx-evi--replaced {
+  color: var(--text-3);
+}
+
+.bx-conf {
+  color: var(--text-2);
+  font-size: var(--fs-3);
+  font-weight: var(--fw-semibold);
+}
+
+.bx-conf.is-low {
+  color: var(--text-4);
+}
+
+.bx-fact {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 320px);
+  gap: 12px 32px;
+}
+
+.bx-fact__evidence {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  min-width: 0;
+}
+
+.bx-kv {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  margin: 0;
+}
+
+.bx-kv > div {
+  display: grid;
+  grid-template-columns: 84px minmax(0, 1fr);
+  gap: 12px;
+  align-items: baseline;
+}
+
+.bx-kv dt {
+  color: var(--text-4);
+  font-size: var(--fs-2);
+  font-weight: var(--fw-medium);
+}
+
+.bx-kv dd {
+  min-width: 0;
+  margin: 0;
+  color: var(--text-2);
+  font-size: var(--fs-3);
+  overflow-wrap: anywhere;
+}
+
+.bx-kv__path,
+.bx-kv__hint {
+  margin-left: 6px;
+  color: var(--text-4);
+  font-weight: var(--fw-medium);
+}
+
+.bx-link--cyan {
+  color: var(--cyan-700);
+}
+
+.bx-link--cyan:hover {
+  color: var(--cyan-800);
+}
+
+.bx-sep {
+  color: var(--text-4);
+}
+
+.bx-from {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-4);
+  font-size: var(--fs-2);
+  font-weight: var(--fw-medium);
+  white-space: nowrap;
+}
+
+/* tables: sortable header cells + pager */
+.bx-th {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--text-4);
+  font-family: var(--font-sans);
+  font-size: var(--fs-1);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-label);
+  line-height: 1;
+  text-align: left;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.bx-th--sort {
+  border-radius: var(--bx-r-tag);
+  cursor: pointer;
+}
+
+.bx-th--sort .bx-icon {
+  opacity: 0;
+  transition: opacity var(--dur-1) var(--ease);
+}
+
+.bx-th--sort:hover,
+.bx-th.is-sorted {
+  color: var(--text-2);
+}
+
+.bx-th--sort:hover .bx-icon,
+.bx-th.is-sorted .bx-icon {
+  opacity: 1;
+}
+
+.bx-th--sort:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.bx-th--end {
+  justify-self: end;
+  justify-content: flex-end;
+}
+
+/* knowledge tables: a kind's icon, confidence as a bar or a ring */
+/* A fact's kind, as a mark. Kinds are categories, so each takes its own hue -
+   none grey, never the confidence pair (violet / cyan), never green, and amber
+   stays with gaps. */
+.pulse-ds {
+  --k-product: #0369a1;
+  --k-product-soft: color-mix(in srgb, var(--k-product) 7%, transparent);
+  --k-claim: #4338ca;
+  --k-claim-soft: color-mix(in srgb, var(--k-claim) 7%, transparent);
+  --k-pricing: #be185d;
+  --k-pricing-soft: color-mix(in srgb, var(--k-pricing) 7%, transparent);
+  --k-identity: #7e22ce;
+  --k-identity-soft: color-mix(in srgb, var(--k-identity) 7%, transparent);
+  --k-audience: #0f766e;
+  --k-audience-soft: color-mix(in srgb, var(--k-audience) 7%, transparent);
+  --k-contact: #9a3412;
+  --k-contact-soft: color-mix(in srgb, var(--k-contact) 7%, transparent);
+  /* the same six, bright - for coverage, where a kind is an area, not a word */
+  --k-product-bright: #38bdf8;
+  --k-claim-bright: #818cf8;
+  --k-pricing-bright: #f472b6;
+  --k-identity-bright: #c084fc;
+  --k-audience-bright: #2dd4bf;
+  --k-contact-bright: #fb923c;
+}
+
+.bx-kav {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--kav-soft, var(--surface-2));
+  color: var(--kav-ink, var(--text-2));
+}
+
+.bx-kav--product,
+.bx-ktag--product,
+.bx-kmark--product,
+.bx-gtag--product {
+  --kav-ink: var(--k-product);
+  --kav-soft: var(--k-product-soft);
+  --kav-bright: var(--k-product-bright);
+}
+
+.bx-kav--claim,
+.bx-ktag--claim,
+.bx-kmark--claim,
+.bx-gtag--claim {
+  --kav-ink: var(--k-claim);
+  --kav-soft: var(--k-claim-soft);
+  --kav-bright: var(--k-claim-bright);
+}
+
+.bx-kav--pricing,
+.bx-ktag--pricing,
+.bx-kmark--pricing,
+.bx-gtag--pricing {
+  --kav-ink: var(--k-pricing);
+  --kav-soft: var(--k-pricing-soft);
+  --kav-bright: var(--k-pricing-bright);
+}
+
+.bx-kav--identity,
+.bx-ktag--identity,
+.bx-kmark--identity,
+.bx-gtag--identity {
+  --kav-ink: var(--k-identity);
+  --kav-soft: var(--k-identity-soft);
+  --kav-bright: var(--k-identity-bright);
+}
+
+.bx-kav--audience,
+.bx-ktag--audience,
+.bx-kmark--audience,
+.bx-gtag--audience {
+  --kav-ink: var(--k-audience);
+  --kav-soft: var(--k-audience-soft);
+  --kav-bright: var(--k-audience-bright);
+}
+
+.bx-kav--contact,
+.bx-ktag--contact,
+.bx-kmark--contact,
+.bx-gtag--contact {
+  --kav-ink: var(--k-contact);
+  --kav-soft: var(--k-contact-soft);
+  --kav-bright: var(--k-contact-bright);
+}
+
+/* the kind as a tag: its hue as a dot, on a tint of itself */
+.bx-ktag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 100%;
+  padding: 2px 9px 2px 7px;
+  overflow: hidden;
+  border-radius: var(--bx-r-pill);
+  background: var(--kav-soft);
+  color: var(--kav-ink);
+  font-size: var(--fs-2);
+  font-weight: var(--fw-medium);
+  white-space: nowrap;
+}
+
+.bx-ktag i {
+  width: 6px;
+  height: 6px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--kav-ink);
+}
+
+/* the same six hues as a dot, for the tables that mark kind that way */
+.bx-kmark {
+  display: inline-block;
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--kav-ink, var(--text-4));
+}
+
+.bx-meter {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bx-meter__track {
+  position: relative;
+  width: 44px;
+  height: 6px;
+  overflow: hidden;
+  border-radius: var(--bx-r-pill);
+  background: var(--surface-2);
+}
+
+.bx-meter__track i {
+  position: absolute;
+  inset: 0 auto 0 0;
+  border-radius: inherit;
+  background: var(--chart-1);
+}
+
+.bx-meter b {
+  color: var(--text);
+  font-size: var(--fs-3);
+  font-weight: var(--fw-semibold);
+}
+
+.bx-meter.is-low .bx-meter__track i {
+  background: var(--amber-400);
+}
+
+.bx-meter.is-low b {
+  color: var(--text-3);
+}
+
+.bx-ring {
+  display: inline-grid;
+  flex: none;
+}
+
+.bx-ring svg {
+  display: block;
+}
+
+.bx-ring__track {
+  fill: none;
+  stroke: var(--surface-3);
+  stroke-width: 2.4;
+}
+
+.bx-ring__arc {
+  fill: none;
+  stroke: var(--cyan-600);
+  stroke-linecap: round;
+  stroke-width: 2.4;
+}
+
+.bx-ring.is-low .bx-ring__arc {
+  stroke: var(--amber-500);
+}
+
+.bx-pager {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 12px;
+  padding: 8px 12px 8px 16px;
+  border-top: 1px solid var(--bx-line);
+}
+
+.bx-pager__range {
+  color: var(--text-3);
+  font-size: var(--fs-2);
+}
+
+.bx-pager__pages {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.bx-pager__btn {
+  display: inline-grid;
+  place-items: center;
+  min-width: 28px;
+  height: 28px;
+  padding: 0 6px;
+  border: 0;
+  border-radius: var(--bx-r-pill);
+  background: transparent;
+  color: var(--text-3);
+  font-family: var(--font-sans);
+  font-size: var(--fs-2);
+  font-weight: var(--fw-semibold);
+  cursor: pointer;
+}
+
+.bx-pager__btn:hover:not(:disabled) {
+  background: var(--surface-2);
+  color: var(--text);
+}
+
+.bx-pager__btn.is-on {
+  background: var(--surface-2);
+  color: var(--text);
+}
+
+.bx-pager__btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.bx-pager__btn:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+/* a labelled pager: "Showing 1-20 of 129 facts", numbered pages, Previous / Next */
+.bx-pager--labelled {
+  padding: 14px 16px 16px;
+}
+
+.bx-pager--labelled .bx-pager__range {
+  color: var(--text-3);
+  font-size: var(--fs-3);
+}
+
+.bx-pager--labelled .bx-pager__range b {
+  color: var(--text);
+  font-weight: var(--fw-semibold);
+}
+
+.bx-pager--labelled .bx-pager__pages {
+  gap: 6px;
+}
+
+.bx-pager--labelled .bx-pager__btn {
+  min-width: 34px;
+  height: 34px;
+  background: var(--canvas);
+  box-shadow: inset 0 0 0 1px var(--bx-line);
+  color: var(--text);
+  font-size: var(--fs-3);
+}
+
+.bx-pager--labelled .bx-pager__btn.is-on {
+  background: var(--ink-900);
+  box-shadow: none;
+  color: #fff;
+}
+
+.bx-pager--labelled .bx-pager__btn:disabled {
+  opacity: 0.45;
+}
+
+.bx-pager__btn--step {
+  display: inline-flex;
+  gap: 4px;
+  padding: 0 12px 0 10px;
+}
+
+.bx-pager__btn--step:last-child {
+  padding: 0 10px 0 12px;
+}
+
+.bx-pager__gap {
+  padding: 0 4px;
+  color: var(--text-4);
+  font-size: var(--fs-2);
+}
+
+.bx-illustrative {
+  color: var(--text-4);
+}
+
+@container bxpanel (max-width: 720px) {
+  .bx-fact {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@container bxpanel (max-width: 620px) {
+  .bx-gaps__list {
+    grid-template-columns: 1fr;
+  }
+
+  .bx-from {
+    white-space: normal;
+  }
+
+  .bx-srcs__head {
+    display: none;
+  }
+
+  .bx-srcs__row {
+    grid-template-columns: minmax(0, 1fr) 16px;
+  }
+
+  .bx-srcs__type,
+  .bx-srcs__cites {
+    display: none;
+  }
+
+  .bx-srcs__detail {
+    padding-left: 8px;
+  }
+
+  .bx-kv > div {
+    grid-template-columns: 76px minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bx-srcs__chev {
+    transition: none;
+  }
+}
+
+/* narrow screens: the ask slot clears the prototype's own Versions tab, the sheet
+   stacks its groups, and the rail keeps only what fits */
+@media (max-width: 820px) {
+  .bx-askw {
+    bottom: calc(100% + 58px);
+  }
+
+  .bx-askw__sheet {
+    max-height: 54vh;
+    overflow-y: auto;
+  }
+}
+
+and looks like a way to it */ .bx-srclink {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  max-width: 100%;
+  min-width: 0;
+  color: var(--blue-700);
+  font-size: var(--fs-3);
+  font-weight: var(--fw-medium);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--blue-600) 35%, transparent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition:
+    color var(--dur-1) var(--ease),
+    text-decoration-color var(--dur-1) var(--ease);
+}
+
+.bx-srclink__name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bx-srclink .bx-icon {
+  flex: none;
+  opacity: 0.55;
+}
+
+.bx-srclink:hover {
+  color: var(--blue-800);
+  text-decoration-color: currentColor;
+}
+
+.bx-srclink:hover .bx-icon {
+  opacity: 1;
+}
+
+.bx-srclink:focus-visible {
+  outline: none;
+  border-radius: 3px;
+  box-shadow: var(--focus-ring);
+}
+
+/* the page, as a small browser window: no edge - a soft lift off what it sits on;
+   a slim Mac bar in a quiet grey (the three coloured dots, the address, a way
+   out), the page, and the wording check at the foot, each part told apart by tone.
+   Kept small: a glance at where the wording sits, not a second page to read */
+.bx-browser {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 10px;
+  background: var(--canvas);
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.06),
+    0 6px 14px -6px rgba(15, 23, 42, 0.12),
+    0 20px 38px -22px rgba(15, 23, 42, 0.28);
+}
+
+.bx-browser__bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 30px;
+  padding: 0 8px 0 11px;
+  background: linear-gradient(#f6f7f8, #eff1f3);
+}
+
+.bx-browser__dots {
+  display: inline-flex;
+  flex: none;
+  gap: 5px;
+}
+
+.bx-browser__dots i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.16);
+}
+
+.bx-browser__dots i:nth-child(1) {
+  background: #ff5f57;
+}
+
+.bx-browser__dots i:nth-child(2) {
+  background: #febc2e;
+}
+
+.bx-browser__dots i:nth-child(3) {
+  background: #28c840;
+}
+
+.bx-browser__url {
+  display: inline-flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  min-width: 0;
+  height: 20px;
+  padding: 0 8px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 1px 1px rgba(15, 23, 42, 0.05);
+  color: var(--text-4);
+  font-size: var(--fs-1);
+}
+
+.bx-browser__url .bx-icon {
+  flex: none;
+}
+
+.bx-browser__url > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bx-browser__url b {
+  color: var(--text-2);
+  font-weight: var(--fw-medium);
+}
+
+.bx-browser__open {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  color: var(--text-3);
+}
+
+.bx-browser__open:hover {
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--text);
+}
+
+.bx-browser__open:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.bx-browser__page {
+  display: grid;
+  min-height: var(--page-h, 0);
+  overflow-wrap: anywhere;
+}
+
+/* the wording, marked softly where it sits */
+.bx-browser__mark {
+  padding: 1px 2px;
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--pulse-cyan) 24%, transparent);
+  color: var(--text);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.bx-browser__missing {
+  display: grid;
+  gap: 6px;
+}
+
+.bx-browser__ghost {
+  display: block;
+  height: 6px;
+  border-radius: var(--bx-r-pill);
+  background: var(--surface-2);
+}
+
+.bx-browser__missing p {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin: 3px 0 !important;
+  color: var(--text-2);
+  font-size: var(--fs-2);
+  line-height: 1.5;
+}
+
+.bx-browser__missing .bx-icon {
+  flex: none;
+  margin-top: 2px;
+  color: var(--amber-600);
+}
+
+.bx-browser__missing q {
+  color: var(--text);
+  text-decoration: underline dashed var(--amber-500);
+  text-underline-offset: 3px;
+}
+
+/* the wording check, at the foot of the page - a tint, no rule */
+.bx-browser__status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 11px;
+  background: color-mix(in srgb, var(--success-500) 8%, transparent);
+  color: var(--success-700);
+  font-size: var(--fs-1);
+  font-weight: var(--fw-medium);
+}
+
+.bx-browser.is-missing .bx-browser__status {
+  background: color-mix(in srgb, var(--amber-500) 9%, transparent);
+  color: var(--amber-800);
+}
+
+.bx-browser.is-replaced .bx-browser__status {
+  background: color-mix(in srgb, var(--indigo-500) 8%, transparent);
+  color: var(--indigo-700);
+}
+
+/* ------------------------------------------ the page itself (Versions → Captured page)
+
+   Small, like a page seen in a thumbnail: rebuilt from the passage the index kept -
+   its shouting lines as headings, the rest as text. The site's own look - black and
+   white, bold capitals - dresses it lightly, so it reads as the brand's page and not
+   as Vicino; its buttons are not drawn, since none could be pressed. */
+.bx-pg {
+  --pg-ink: #0b0c0e;
+  position: relative;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  min-width: 0;
+}
+
+.bx-pg__body {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  min-width: 0;
+  padding: 12px 14px 14px;
+}
+
+.pulse-ds .bx-pg p {
+  margin: 0;
+}
+
+.bx-pg__title {
+  color: var(--pg-ink);
+  font-size: var(--fs-4);
+  font-weight: var(--fw-bold);
+  line-height: 1.25;
+}
+
+.bx-pg__kicker {
+  color: var(--text-4);
+  font-size: 9px;
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.1em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.bx-pg__kicker + .bx-pg__h {
+  margin-top: -4px !important;
+}
+
+.bx-pg__h {
+  color: var(--pg-ink);
+  font-size: 10.5px;
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.04em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.bx-pg__p {
+  color: var(--text-3);
+  font-size: 11.5px;
+  line-height: 1.6;
+}
+
+.bx-pg__logo {
+  flex: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  object-fit: cover;
+}
+
+/* 2 · Hero - a short band of the brand's own imagery, its heading over it */
+.bx-pg__hero {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  align-content: end;
+  min-height: 64px;
+  padding: 8px 14px;
+  overflow: hidden;
+  background: var(--pg-ink);
+}
+
+.bx-pg__img {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 45%;
+}
+
+.bx-pg__hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(8, 10, 14, 0.2) 0%, rgba(8, 10, 14, 0.78) 100%);
+}
+
+.bx-pg__brand {
+  position: absolute;
+  top: 8px;
+  left: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #fff;
+  font-size: 9.5px;
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.02em;
+}
+
+.bx-pg--hero .bx-pg__title {
+  color: #fff;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.35);
+}
+
+.bx-pg .bx-browser__missing {
+  padding-top: 2px;
+}
+
+/* the page runs on past the passage - a sketch of the lines around it, fading */
+.bx-pg__more {
+  display: grid;
+  gap: 7px;
+  padding-top: 4px;
+  -webkit-mask: linear-gradient(180deg, #000, transparent);
+  mask: linear-gradient(180deg, #000, transparent);
+}
+
+.bx-pg__more i {
+  display: block;
+  width: 94%;
+  height: 5px;
+  border-radius: 3px;
+  background: var(--surface-2);
+}
+
+.bx-pg__more i:nth-child(2) {
+  width: 86%;
+}
+
+.bx-pg__more i:nth-child(3) {
+  width: 60%;
+}
+
+/* the record: a quiet list - kind, confidence, source, learned, cited - and the page */
+.bx-rec {
+  display: grid;
+  gap: 16px;
+  min-width: 0;
+}
+
+.bx-rec__none {
+  color: var(--text-4);
+}
+
+.bx-props {
+  display: grid;
+  align-content: start;
+  gap: 2px;
+  margin: 0;
+}
+
+.bx-props > div {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  min-height: 34px;
+}
+
+.bx-props dt {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-4);
+  font-size: var(--fs-3);
+}
+
+.bx-props dt .bx-icon {
+  color: var(--text-5);
+}
+
+.bx-props dd {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 8px;
+  min-width: 0;
+  margin: 0;
+  color: var(--text-2);
+  font-size: var(--fs-3);
+}
+
+.bx-rec--props.is-split {
+  grid-template-columns: minmax(250px, 300px) minmax(0, 1fr);
+  align-items: start;
+  gap: 28px;
+}
+
+@container bxpanel (max-width: 700px) {
+  .bx-rec--props.is-split {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ------------------------------------------------ the message bar, round 11
+
+   While Vicino's panel is open the bar steps away - the panel has its own
+   composer. Under the prompt sheet, a light runs round the bar's edge until the
+   pointer or the focus reaches it, so the bar is found. */
+
+.chat-dock.is-open .chat-dock__launcher,
+.chat-dock.is-open .bx-askw {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+  transition:
+    opacity var(--dur-2) var(--ease),
+    transform var(--dur-2) var(--ease);
+}
+
+/* neither the bar nor its sheet carries a stroke - the shadow alone lifts them */
+.pulse-ds .chat-dock__launcher,
+.pulse-ds .chat-dock__launcher:hover {
+  border-color: transparent;
+}
+
+.pulse-ds .chat-dock__launcher:hover {
+  box-shadow:
+    var(--shadow-dock),
+    0 10px 28px -16px rgba(15, 23, 42, 0.4);
+}
+
+.chat-dock__launcher {
+  transition:
+    opacity var(--dur-2) var(--ease),
+    transform var(--dur-2) var(--ease),
+    border-color var(--dur-1) var(--ease),
+    box-shadow var(--dur-1) var(--ease);
+}
+
+@property --bx-flow {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.chat-dock.is-ask-sheet .chat-dock__launcher::before {
+  content: '';
+  position: absolute;
+  inset: -1.5px;
+  z-index: 0;
+  padding: 1.5px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from var(--bx-flow),
+    transparent 0deg,
+    color-mix(in srgb, var(--pulse-cyan) 95%, transparent) 50deg,
+    color-mix(in srgb, var(--bx-direct) 90%, transparent) 110deg,
+    transparent 170deg,
+    transparent 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box exclude,
+    linear-gradient(#000 0 0);
+  animation: bx-flow 3.2s linear infinite;
+  pointer-events: none;
+  transition: opacity var(--dur-2) var(--ease);
+}
+
+/* a soft glow follows the light */
+.chat-dock.is-ask-sheet .chat-dock__launcher {
+  box-shadow:
+    var(--shadow-dock),
+    0 0 22px -8px color-mix(in srgb, var(--pulse-cyan) 55%, transparent);
+}
+
+.chat-dock.is-ask-sheet .chat-dock__launcher > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* once the bar is reached, the light has done its work */
+.chat-dock.is-ask-sheet .chat-dock__launcher:hover::before,
+.chat-dock.is-ask-sheet .chat-dock__launcher:focus-within::before {
+  opacity: 0;
+}
+
+.chat-dock.is-ask-sheet .chat-dock__launcher:hover,
+.chat-dock.is-ask-sheet .chat-dock__launcher:focus-within {
+  box-shadow: var(--shadow-dock);
+}
+
+@keyframes bx-flow {
+  to {
+    --bx-flow: 360deg;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chat-dock.is-ask-sheet .chat-dock__launcher::before {
+    animation: none;
+    background: linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--pulse-cyan) 80%, transparent),
+      color-mix(in srgb, var(--bx-direct) 70%, transparent)
+    );
+  }
+}
+
+/* ---------------------------------------------- knowledge cells, round 12 */
+
+/* the kind: icon and name on a light, see-through wash of its hue */
+.bx-klabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  max-width: 100%;
+  padding: 2px 8px 2px 6px;
+  overflow: hidden;
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--kav-ink) 7%, transparent);
+  color: color-mix(in srgb, var(--kav-ink) 88%, var(--ink));
+  font-size: var(--fs-2);
+  font-weight: var(--fw-medium);
+  white-space: nowrap;
+}
+
+.bx-klabel .bx-icon {
+  flex: none;
+  color: var(--kav-ink);
+  opacity: 0.85;
+}
+
+/* the source, as a pill */
+.bx-sc {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  max-width: 100%;
+  min-width: 0;
+  color: var(--text);
+  font-size: var(--fs-3);
+  text-decoration: none;
+}
+
+.bx-sc__name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bx-sc__fav {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.bx-sc:focus-visible {
+  outline: none;
+  border-radius: 6px;
+  box-shadow: var(--focus-ring);
+}
+
+/* the page as a soft pill with the site's icon */
+.bx-sc--pill {
+  gap: 6px;
+  padding: 3px 10px 3px 4px;
+  border-radius: var(--bx-r-pill);
+  background: var(--canvas);
+  box-shadow: inset 0 0 0 1px var(--border);
+  color: var(--text-2);
+  font-size: var(--fs-2);
+  font-weight: var(--fw-medium);
+  transition:
+    background var(--dur-1) var(--ease),
+    box-shadow var(--dur-1) var(--ease),
+    color var(--dur-1) var(--ease);
+}
+
+.bx-sc--pill .bx-sc__fav {
+  border-radius: 50%;
+}
+
+.bx-sc--pill:hover {
+  background: var(--surface);
+  box-shadow: inset 0 0 0 1px var(--border-strong);
+  color: var(--text);
+}
+
+/* ------------------------------------------------ confidence cell, round 14 */
+.bx-cc {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.bx-cc b {
+  color: var(--text);
+  font-size: var(--fs-3);
+  font-weight: var(--fw-semibold);
+}
+
+.bx-cc.is-medium b {
+  color: var(--text-2);
+}
+
+.bx-cc.is-low b {
+  color: var(--amber-700);
+}
+
+/* three rising bars, filled to the band */
+.bx-cc__sig {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 12px;
+}
+
+.bx-cc__sig i {
+  width: 3px;
+  border-radius: 1px;
+  background: var(--surface-3);
+}
+
+.bx-cc__sig i:nth-child(1) {
+  height: 5px;
+}
+
+.bx-cc__sig i:nth-child(2) {
+  height: 8px;
+}
+
+.bx-cc__sig i:nth-child(3) {
+  height: 12px;
+}
+
+.bx-cc--sig.is-high .bx-cc__sig i {
+  background: var(--cyan-600);
+}
+
+.bx-cc--sig.is-medium .bx-cc__sig i:nth-child(-n + 2) {
+  background: var(--cyan-400);
+}
+
+.bx-cc--sig.is-low .bx-cc__sig i:nth-child(1) {
+  background: var(--amber-500);
+}
+
+/* H: the switcher off the screen until H again */
+.bx-sw.is-gone {
+  display: none;
+}
+
+/* ------------------------------------------------- the words that carry it
+
+   Who it is for, what it costs, who it names, how to reach the brand - each on a
+   light wash of its kind's hue with an underline, and a bubble on hover. In
+   Knowledge F and D (filters folded) and in the report's answers. */
+.bx-ent {
+  margin: 0 -1px;
+  padding: 0 2px;
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--kav-ink) 9%, transparent);
+  box-shadow: inset 0 -1.5px 0 color-mix(in srgb, var(--kav-ink) 45%, transparent);
+  color: inherit;
+  cursor: help;
+  transition: background var(--dur-1) var(--ease);
+}
+
+.bx-ent:hover {
+  background: color-mix(in srgb, var(--kav-ink) 17%, transparent);
+}
+
+.bx-entip {
+  position: fixed;
+  z-index: 1300;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px 7px 8px;
+  border-radius: 10px;
+  background: var(--canvas);
+  box-shadow:
+    0 0 0 1px var(--bx-line),
+    0 10px 24px -12px rgba(15, 23, 42, 0.35);
+  font-family: var(--font-sans);
+  pointer-events: none;
+}
+
+.bx-entip[hidden] {
+  display: none;
+}
+
+/* the tail points at the word */
+.bx-entip::after {
+  content: '';
+  position: absolute;
+  left: calc(var(--tail, 50%) - 5px);
+  width: 10px;
+  height: 10px;
+  background: var(--canvas);
+  box-shadow: 1px 1px 0 var(--bx-line);
+  transform: rotate(45deg);
+}
+
+.bx-entip[data-side='above']::after {
+  bottom: -5px;
+}
+
+.bx-entip[data-side='below']::after {
+  top: -5px;
+  box-shadow: -1px -1px 0 var(--bx-line);
+}
+
+.bx-entip__icon {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 7px;
+  background: color-mix(in srgb, var(--kav-ink) 12%, transparent);
+  color: var(--kav-ink);
+}
+
+.bx-entip__text {
+  display: grid;
+  line-height: 1.25;
+}
+
+.bx-entip__text b {
+  color: color-mix(in srgb, var(--kav-ink) 80%, var(--ink));
+  font-size: var(--fs-2);
+  font-weight: var(--fw-semibold);
+}
+
+.bx-entip__text small {
+  color: var(--text-3);
+  font-size: var(--fs-1);
+}
+
+/* the key to the marks, in the list's bar */
+/* the key: a sample mark, and that a hover names each one */
+.bx-entkey {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0 6px 0 0 !important;
+  color: var(--text-4);
+  font-size: var(--fs-2);
+  white-space: nowrap;
+}
+
+/* the switch beside the key: the marks are on to start with, and this puts them
+   away - the same thing J does */
+.bx-entkey__off {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-4);
+  cursor: pointer;
+  transition:
+    background var(--dur-1) var(--ease),
+    color var(--dur-1) var(--ease);
+}
+
+.bx-entkey__off:hover {
+  background: color-mix(in srgb, var(--ink-900) 7%, transparent);
+  color: var(--text);
+}
+
+.bx-entkey__off[aria-pressed='false'] {
+  background: color-mix(in srgb, var(--ink-900) 8%, transparent);
+  color: var(--text-2);
+}
+
+.bx-entkey__sample {
+  padding: 0 4px;
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--text-3) 10%, transparent);
+  box-shadow: inset 0 -1.5px 0 color-mix(in srgb, var(--text-3) 40%, transparent);
+  color: var(--text-2);
+}
+
+@container bxpanel (max-width: 1060px) {
+  .bx-entkey {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bx-ent {
+    transition: none;
+  }
+}
+
+/* J: the Knowledge tables' statements without their marks - and a fact's own
+   statement in its drawer too; the report fields' heads without their icons. The key
+   itself stays wherever it is, with its switch showing the marks are off, because it
+   is the way back to them (J is the other). */
+.bx-marks-off .bx-kd__stmt .bx-ent,
+.bx-marks-off .bx-kf__stmt .bx-ent,
+.bx-marks-off .bx-drawer__stmt .bx-ent,
+.bx-marks-off .bx-bf .bx-ent {
+  background: none;
+  box-shadow: none;
+  pointer-events: none;
+}
+
+/* the key in Knowledge D's bar, while the filters are folded */
+.bx-kd__key:empty {
+  display: none;
+}
+
+.bx-kd__key .bx-entkey {
+  margin: 0 !important;
+}
+
+/* a field's own icon in the colour of its source type (the dot's colour, a
+   little deeper so a thin stroke still reads) */
+.bx-cicon {
+  display: inline-grid;
+  place-items: center;
+  color: var(--text-3);
+}
+
+.bx-cicon--direct {
+  color: color-mix(in srgb, var(--bx-direct-dot) 88%, var(--ink-900));
+}
+
+.bx-cicon--supported {
+  color: color-mix(in srgb, var(--bx-supported-dot) 72%, var(--ink-900));
+}
+
+.bx-cicon--inferred {
+  color: var(--amber-600);
+}
+
+/* the bubble that names a rail item */
+.bx-tip {
+  position: fixed;
+  z-index: 1300;
+  display: grid;
+  gap: 1px;
+  width: max-content;
+  max-width: min(260px, 40vw);
+  padding: 7px 11px;
+  border-radius: 8px;
+  background: var(--ink-900);
+  box-shadow: 0 8px 20px -10px rgba(15, 23, 42, 0.45);
+  color: #fff;
+  font-family: var(--font-sans);
+  line-height: 1.3;
+  pointer-events: none;
+}
+
+.bx-tip[hidden] {
+  display: none;
+}
+
+.bx-tip b {
+  font-size: var(--fs-2);
+  font-weight: var(--fw-semibold);
+}
+
+.bx-tip small {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: var(--fs-1);
+}
+
+/* the tail points back at the item, on whichever side it stands */
+.bx-tip.is-left::before {
+  right: -4px;
+  left: auto;
+}
+
+.bx-tip::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -4px;
+  width: 8px;
+  height: 8px;
+  margin-top: -4px;
+  border-radius: 1px;
+  background: var(--ink-900);
+  transform: rotate(45deg);
+}
+
+/* ------------------------------------------------------------ asking first
+
+   Two moves are worth a beat of thought: confirming every field in a section at
+   once, and taking a section out of the report. Both are asked in the middle of
+   the screen over a scrim, so the page behind is plainly on hold. Esc, the scrim
+   and Cancel are all No. */
+.bx-ask {
+  position: fixed;
+  z-index: 2400;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: color-mix(in srgb, var(--ink-900) 34%, transparent);
+  backdrop-filter: blur(3px);
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-2) var(--ease);
+}
+
+.bx-ask.is-on {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.bx-ask__box {
+  display: grid;
+  width: min(420px, 100%);
+  padding: 20px 22px 18px;
+  border-radius: var(--bx-r-card);
+  background: var(--canvas);
+  box-shadow: var(--shadow-3);
+  gap: 8px;
+}
+
+.bx-ask__mark {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  margin-bottom: 4px;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--bx-st-confirmed) 20%, transparent);
+  color: #12866a;
+}
+
+.bx-ask__box.is-danger .bx-ask__mark {
+  background: color-mix(in srgb, var(--red-600, #dc2626) 12%, transparent);
+  color: var(--red-600, #dc2626);
+}
+
+.pulse-ds .bx-ask__t {
+  margin: 0;
+  color: var(--text);
+  font-size: var(--fs-5);
+  font-weight: var(--fw-semibold);
+  line-height: 1.3;
+}
+
+.pulse-ds .bx-ask__b {
+  margin: 0;
+  color: var(--text-3);
+  font-size: var(--fs-3);
+  line-height: 1.5;
+}
+
+.bx-ask__b b {
+  color: var(--text-2);
+  font-weight: var(--fw-semibold);
+}
+
+.bx-ask__acts {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+  gap: 8px;
+}
+
+.bx-ask__acts .bx-btn--danger {
+  border: 0;
+  background: var(--red-600, #dc2626);
+  color: #fff;
+}
+
+.bx-ask__acts .bx-btn--danger:hover {
+  background: var(--red-700, #b91c1c);
+}
+
+/* Confirm section reads at the size the row's own Confirm does - it is the same
+   move, said once for the whole section */
+.bx-rf__dactions [data-bf-act='confirm-all'] {
+  height: 26px;
+  padding: 0 13px 0 10px;
+  font-size: var(--fs-1);
+}
+
+/* ------------------------------------------------ landing on the right row
+
+   A move from Needs your review is about one field, not a section. The page it
+   opens scrolls to that row and the row says so for a beat, on a light wash of the
+   brand's own cyan, so the eye finds it without anything on the page moving. */
+@keyframes bx-found {
+  0% {
+    background-color: color-mix(in srgb, var(--pulse-cyan) 22%, transparent);
+  }
+
+  55% {
+    background-color: color-mix(in srgb, var(--pulse-cyan) 12%, transparent);
+  }
+
+  100% {
+    background-color: transparent;
+  }
+}
+
+.is-found {
+  animation: bx-found 2s var(--ease-out);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .is-found {
+    animation: none;
+    box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--pulse-cyan) 45%, transparent);
+  }
+}

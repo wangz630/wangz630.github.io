@@ -1,0 +1,153 @@
+/* The three answer layouts (Versions → Answer layout), and the three block styles
+   under Panels (Versions → Panel blocks).
+
+   One rule runs through all of them: there is one main thing and it looks like
+   it. The secondary text is the report's own body size (13 / 1.62), in the
+   secondary ink, three lines before Show more, and never marked. */
+
+.bx-ans {
+  display: grid;
+  gap: 10px;
+}
+
+/* the secondary text, shared */
+.bx-ans__rest,
+.bx-ans__body {
+  color: var(--text-2);
+  font-size: var(--fs-3);
+  line-height: 1.62;
+}
+
+.bx-ans__body {
+  color: var(--text);
+}
+
+.bx-ans__rest p + p,
+.bx-ans__body p + p {
+  margin-top: 6px;
+}
+
+.bx-ans .bx-more {
+  justify-self: start;
+  margin-top: -4px;
+}
+
+/* the phrase the main sentence turns on - a marker, not a box */
+.bx-hl {
+  padding: 0 1px;
+  background: linear-gradient(
+    to top,
+    color-mix(in srgb, var(--bx-direct) 22%, transparent) 0 0.42em,
+    transparent 0.42em
+  );
+  color: inherit;
+  font-weight: var(--fw-semibold);
+}
+
+/* -------------------------------------------------------------- 3 · Panels */
+
+.bx-glc {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.bx-glc__cell {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: 4px;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.bx-glc__mark {
+  display: inline-grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: var(--bx-r-inner);
+  background: var(--gl-soft);
+  color: var(--gl-ink);
+}
+
+.bx-glc__label {
+  margin: 2px 0 0 !important;
+  color: var(--text-3);
+  font-size: var(--fs-1);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+.bx-glc__value {
+  margin: 0 !important;
+  color: var(--text);
+  font-size: var(--fs-2);
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+.bx-glc__n {
+  display: none;
+}
+
+/* tones */
+.bx-glc--a {
+  --gl-ink: #0e7490;
+  --gl-soft: #e0f7fa;
+}
+
+.bx-glc--b {
+  --gl-ink: var(--indigo-600);
+  --gl-soft: var(--indigo-50);
+}
+
+.bx-glc--c {
+  --gl-ink: var(--blue-600);
+  --gl-soft: var(--blue-50);
+}
+
+.bx-glc--d {
+  --gl-ink: #0f766e;
+  --gl-soft: #e6f6f4;
+}
+
+/* a gap is the one thing that takes amber */
+.bx-glc--gap {
+  --gl-ink: var(--amber-700);
+  --gl-soft: var(--amber-50);
+}
+
+.bx-glc--gap .bx-glc__value {
+  color: var(--text-2);
+}
+
+/* the blocks: four separate cells on a faint wash of their own hue */
+.bx-glc--style-a .bx-glc__cell {
+  padding: 12px 12px 14px;
+  border-radius: var(--bx-r-inner);
+  background: color-mix(in srgb, var(--gl-soft) 55%, var(--canvas));
+}
+
+.bx-glc--style-a .bx-glc__mark {
+  background: var(--canvas);
+}
+
+@container bxpanel (max-width: 760px) {
+  .bx-glc {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@container bxpanel (max-width: 520px) {
+  .bx-glc {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Panels: the blocks lead, the note sits under them, then the answer */
+.bx-ans--panels .bx-glc {
+  margin-top: 0;
+}

@@ -1,0 +1,4811 @@
+/* ──────────────────────────────────────────────────────────────────────────
+   Main chat and side chats — the Recent chats block of the sidebar
+
+   The page is the captured Brain screen (src/captured.css, production CSS
+   purged to what the page uses). This first part styles one thing: the
+   `.sidebar-recent-chat` section, in three proposed drawings, and what the
+   folded rail shows for it. The second part, further down, is the chat
+   window; the prototype's own switcher closes the file.
+
+   The brief (2026-10-22): one main chat — the long-running thread with
+   Vicino — and side chats spun off for a topic, as Muse has them. The sidebar
+   is already full, so no section titles with lists folded under them: the
+   main chat is told apart by where it sits and what it wears, and the side
+   chats keep the rows the product already draws.
+
+   Round 10 (2026-10-23): the rows themselves are drawn again — neutral greys
+   in place of the product's green-grey, a quieter head, more even spacing —
+   and the drawings are Tint, Card, Inset, Shelf, Launcher and Ink. No
+   strokes.
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* ── Shared ────────────────────────────────────────────────────────────── */
+
+/* The orb at row size: the product draws it at 28px in the dock, here it is
+   a mark, not a face. */
+.sc-orb {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+}
+
+.sc-orb .vorb {
+  width: 14px;
+  height: 14px;
+}
+
+/* At row size the orb's pastel core washes out on a light fill: it keeps
+   its light and gains a firmer cyan shadow underneath, so it reads as a mark. */
+.sc-orb .vorb__core {
+  box-shadow:
+    inset 0 0 4px rgba(255, 255, 255, 0.7),
+    0 0 0 1px rgba(14, 165, 184, 0.3),
+    0 1px 3px rgba(14, 165, 184, 0.55);
+}
+
+/* A row's menu — Rename, Pin, Archive, Delete — behind three dots at the
+   right, shown on hover and focus. The list reads as titles until a row is
+   looked at. */
+.sc-rowmore {
+  display: inline-grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  margin: -2px -4px -2px auto;
+  border-radius: 6px;
+  color: var(--text-4);
+  opacity: 0;
+  transition:
+    opacity var(--dur-1) var(--ease),
+    background var(--dur-1) var(--ease),
+    color var(--dur-1) var(--ease);
+}
+
+.sidebar-recent-chat__item:hover .sc-rowmore,
+.sidebar-recent-chat__item:focus-within .sc-rowmore,
+.sc-rowmore[aria-expanded='true'] {
+  opacity: 1;
+}
+
+.sc-rowmore:hover,
+.sc-rowmore[aria-expanded='true'] {
+  background: rgba(29, 29, 31, 0.07);
+  color: var(--text);
+}
+
+.sc-rowmore:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.sc-time {
+  display: none;
+}
+
+/* No unread dot in the list (round 12): the history carries that state. */
+.sidebar-recent-chat.is-sc .sidebar-recent-chat__unread {
+  display: none;
+}
+
+/* ── The rows, drawn again ─────────────────────────────────────────────
+   The product's hover and open fills are its green-grey surfaces; here
+   they are neutral ink at 4% and 7%, so the list sits quietly on the white.
+   Rows are 30px, 8px of side padding, 2px apart; titles 12px semibold. */
+.sidebar-recent-chat.is-sc {
+  --sc-hover: rgba(29, 29, 31, 0.035);
+  --sc-open: rgba(29, 29, 31, 0.042);
+  --sc-open-hover: rgba(29, 29, 31, 0.06);
+  gap: 0;
+  padding: 8px 0 8px;
+}
+
+.sidebar-recent-chat.is-sc .sidebar-recent-chat__head {
+  margin-bottom: 8px;
+  padding: 0 4px 0 8px;
+  color: var(--text-4);
+  font-size: 10px;
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.08em;
+}
+
+.sidebar-recent-chat.is-sc .sidebar-recent-chat__action-btn {
+  width: 22px;
+  height: 22px;
+  color: var(--text-4);
+}
+
+.sidebar-recent-chat.is-sc .sidebar-recent-chat__action-btn:hover {
+  background: var(--sc-hover);
+  color: var(--text);
+}
+
+.sidebar-recent-chat.is-sc .sidebar-recent-chat__list {
+  gap: 2px;
+}
+
+.sidebar-recent-chat.is-sc .sidebar-recent-chat__item {
+  width: auto;
+  min-height: 30px;
+  padding: 5px 8px;
+  border-radius: 8px;
+  color: var(--text-2);
+  transition:
+    background var(--dur-1) var(--ease),
+    color var(--dur-1) var(--ease);
+}
+
+.sidebar-recent-chat.is-sc .sidebar-recent-chat__title {
+  font-size: 12px;
+  font-weight: var(--fw-medium);
+  letter-spacing: 0;
+}
+
+.sidebar-recent-chat.is-sc .sidebar-recent-chat__item:hover:not(:disabled) {
+  background: var(--sc-hover);
+  color: var(--text);
+}
+
+.sidebar-recent-chat.is-sc .sidebar-recent-chat__item.active {
+  background: var(--sc-open);
+  color: color-mix(in srgb, var(--text) 72%, var(--text-2));
+}
+
+.sidebar-recent-chat.is-sc .sidebar-recent-chat__item.active .sidebar-recent-chat__title {
+  font-weight: var(--fw-medium);
+}
+
+.sidebar-recent-chat.is-sc .sidebar-recent-chat__item.active:hover:not(:disabled) {
+  background: var(--sc-open-hover);
+}
+
+.sidebar-recent-chat.is-sc .sidebar-recent-chat__item:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+/* ── The pinned bar ────────────────────────────────────────────────────
+   One line, the height of a row and no more: the orb, the name, the time on
+   hover. It sits above the list and never scrolls with it. The three
+   drawings differ in how the bar is told apart from the rows under it. */
+.sc-main {
+  flex: 0 0 auto;
+  min-height: 32px;
+  padding: 5px 8px;
+  gap: 8px;
+  color: var(--text);
+}
+
+.sc-main .sidebar-recent-chat__title {
+  font-weight: var(--fw-semibold);
+}
+
+/* The rule between the bar and the side chats under it. */
+.sc-rule {
+  flex: 0 0 auto;
+  height: 1px;
+  margin: 6px 4px 5px;
+  background: rgba(29, 29, 31, 0.06);
+}
+
+/* D drops the rule under the bar (Tint, Shelf, Launcher); the list keeps a
+   little room where it was. */
+.sc-norule .sc-rule {
+  display: none;
+}
+
+.sc-norule .sidebar-recent-chat__list {
+  margin-top: 6px;
+}
+
+/* ── A · Tint ──────────────────────────────────────────────────────────
+   A fill: cyan mixed into the canvas, the Brain card's, so it never reads
+   as the grey the side chats use for hover and open. Refined: the fill a
+   shade lighter, 10px corners, the orb a step larger, a rule in the same
+   cyan under it. */
+.sc-a .sc-main {
+  margin: 0 4px;
+  border-radius: 9px;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--cyan-600) 6%, rgba(255, 255, 255, 0.35)),
+    color-mix(in srgb, var(--cyan-600) 8.5%, rgba(255, 255, 255, 0.3))
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.12),
+    0 0 0 1px color-mix(in srgb, var(--cyan-600) 8%, transparent),
+    0 1px 2px rgba(15, 23, 42, 0.02),
+    0 3px 8px -6px rgba(15, 23, 42, 0.07);
+  transition:
+    box-shadow var(--dur-1) var(--ease),
+    background var(--dur-1) var(--ease);
+}
+
+.sc-a .sc-main .sc-orb {
+  width: 16px;
+  height: 16px;
+}
+
+.sc-a .sc-main .sc-orb .vorb {
+  width: 14px;
+  height: 14px;
+}
+
+.sc-a .sc-main:hover:not(:disabled) {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--cyan-600) 8%, rgba(255, 255, 255, 0.4)),
+    color-mix(in srgb, var(--cyan-600) 11%, rgba(255, 255, 255, 0.35))
+  );
+}
+
+.sc-a .sc-main.active {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--cyan-600) 7%, rgba(255, 255, 255, 0.35)),
+    color-mix(in srgb, var(--cyan-600) 10%, rgba(255, 255, 255, 0.3))
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.12),
+    0 0 0 1px color-mix(in srgb, var(--cyan-600) 18%, transparent),
+    0 1px 2px rgba(15, 23, 42, 0.03);
+}
+
+.sc-a .sc-main.active:hover:not(:disabled) {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--cyan-600) 8%, rgba(255, 255, 255, 0.4)),
+    color-mix(in srgb, var(--cyan-600) 12%, rgba(255, 255, 255, 0.35))
+  );
+}
+
+.sc-a .sc-rule {
+  margin: 8px 10px 6px;
+  background: color-mix(in srgb, var(--cyan-600) 10%, transparent);
+}
+
+.sc-a .sidebar-recent-chat__list {
+  padding: 0 4px;
+}
+
+/* ── B · Section ───────────────────────────────────────────────────────
+   The main chat first, under the sidebar's own rule, with no title over it;
+   then "Side chats" as a titled section with Manage and New beside the
+   title — those act on side chats only. No rule between: the eyebrow is
+   the break. */
+.sc-b .sc-main {
+  margin: 0 4px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--cyan-600) 5%, var(--canvas));
+  transition: background var(--dur-1) var(--ease);
+}
+
+.sc-b .sc-main .sc-orb {
+  width: 16px;
+  height: 16px;
+}
+
+.sc-b .sc-main .sc-orb .vorb {
+  width: 14px;
+  height: 14px;
+}
+
+.sc-b .sc-main:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--cyan-600) 8%, var(--canvas));
+}
+
+.sc-b .sc-main.active {
+  background: color-mix(in srgb, var(--cyan-600) 11%, var(--canvas));
+}
+
+.sidebar-recent-chat.is-sc.sc-b .sidebar-recent-chat__head {
+  min-height: 22px;
+  margin: 8px 0 2px;
+}
+
+.sc-b .sidebar-recent-chat__list {
+  padding: 0 4px;
+}
+
+/* ── C · Inset ─────────────────────────────────────────────────────────
+   The whole block sinks into a soft grey well; inside it the main chat is a
+   white pill standing proud, and the side chats are rows on the grey. One
+   container says "chats", the white says "the main one". */
+.sidebar-recent-chat.sc-c {
+  --sc-gap: 4px;
+  margin: 2px 8px 0;
+  padding: 8px 0 var(--sc-gap);
+  border-radius: 13px;
+  background: rgba(29, 29, 31, 0.028);
+  border-top: 0;
+  border-bottom: 0;
+}
+
+.sc-c .sidebar-recent-chat__head {
+  padding: 2px 8px 0 12px;
+}
+
+.sidebar-recent-chat.sc-c .sc-main {
+  margin: 0 var(--sc-gap);
+  border-radius: 9px;
+  background: var(--canvas);
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.04),
+    0 2px 6px -3px rgba(15, 23, 42, 0.1);
+}
+
+.sc-c .sc-main:hover:not(:disabled) {
+  background: var(--canvas);
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.06),
+    0 4px 10px -5px rgba(15, 23, 42, 0.18);
+}
+
+.sidebar-recent-chat.is-sc.sc-c .sc-main.active,
+.sidebar-recent-chat.is-sc.sc-c .sc-main.active:hover:not(:disabled) {
+  background: var(--canvas);
+  box-shadow:
+    0 0 0 1.5px color-mix(in srgb, var(--cyan-600) 40%, transparent),
+    0 3px 8px -4px rgba(15, 23, 42, 0.16);
+}
+
+.sidebar-recent-chat.is-sc.sc-c .sidebar-recent-chat__list {
+  margin-top: var(--sc-gap);
+  padding: 0 var(--sc-gap);
+  gap: var(--sc-gap);
+}
+
+.sidebar-recent-chat.is-sc.sc-c .sidebar-recent-chat__item:not(.sc-main) {
+  margin: 0;
+}
+
+/* The rules above the bottom block go in every drawing (Now keeps the
+   product's): the bottom block's own, and the chats section's bottom border
+   that the capture draws just above it. Inset's well parts the chats from
+   it, the others let the air do it. */
+.app-sidebar:has(.sidebar-recent-chat.is-sc) .sidebar-bottom {
+  border-top: 0;
+}
+
+.sidebar-recent-chat.is-sc {
+  border-bottom: 0;
+}
+
+.sidebar-recent-chat.sc-c {
+  margin-bottom: 6px;
+}
+
+/* ── D · Shelf ─────────────────────────────────────────────────────────
+   A flat bar at the head of the block, the orb on it: cyan fading to white
+   left to right, lifted just enough that the paler right end still reads as
+   a card on the white sidebar — a hairline shadow and a soft one under it,
+   no stroke. A rule under the bar (D hides it), then the side chats. */
+.sc-d .sc-main {
+  margin: 0 4px;
+  border-radius: 9px;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--cyan-600) 12%, #fff) 0%,
+    color-mix(in srgb, var(--cyan-600) 6.5%, #fff) 55%,
+    color-mix(in srgb, var(--cyan-600) 4.5%, #fff) 100%
+  );
+  box-shadow:
+    0 0 0 0.5px rgba(15, 23, 42, 0.03),
+    0 1px 2px rgba(15, 23, 42, 0.045);
+  transition:
+    background var(--dur-1) var(--ease),
+    box-shadow var(--dur-1) var(--ease);
+}
+
+.sc-d .sc-main:hover:not(:disabled) {
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--cyan-600) 16%, #fff) 0%,
+    color-mix(in srgb, var(--cyan-600) 9%, #fff) 55%,
+    color-mix(in srgb, var(--cyan-600) 6%, #fff) 100%
+  );
+  box-shadow:
+    0 0 0 0.5px rgba(15, 23, 42, 0.04),
+    0 1px 2px rgba(15, 23, 42, 0.06);
+}
+
+.sc-d .sc-main.active {
+  background: color-mix(in srgb, var(--cyan-600) 10%, var(--canvas));
+}
+
+.sc-d .sc-rule {
+  margin: 8px 10px 6px;
+  background: rgba(29, 29, 31, 0.07);
+}
+
+.sc-d .sidebar-recent-chat__list {
+  padding: 0 4px;
+}
+
+/* ── E · Launcher ──────────────────────────────────────────────────────
+   The main chat drawn as an action: a pill with the orb at its left and an
+   arrow at its right, the dock's launcher in small. */
+.sc-e .sc-main {
+  min-height: 32px;
+  margin: 0 4px;
+  padding: 4px 10px 4px 6px;
+  border-radius: var(--r-full);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.75), rgba(29, 29, 31, 0.035));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.55),
+    0 0 0 1px rgba(29, 29, 31, 0.06),
+    0 1px 2px rgba(15, 23, 42, 0.04),
+    0 4px 10px -6px rgba(15, 23, 42, 0.14);
+  transition:
+    box-shadow var(--dur-1) var(--ease),
+    background var(--dur-1) var(--ease);
+}
+
+.sc-e .sc-main .sc-orb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--cyan-600) 10%, var(--canvas));
+}
+
+.sc-e .sc-main .sidebar-recent-chat__title {
+  font-weight: var(--fw-semibold);
+}
+
+.sc-e .sc-main:hover:not(:disabled) {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(29, 29, 31, 0.03));
+  box-shadow:
+    inset 0 1px 0 #fff,
+    inset 0 0 0 1px rgba(255, 255, 255, 0.6),
+    0 0 0 1px rgba(29, 29, 31, 0.08),
+    0 2px 4px rgba(15, 23, 42, 0.05),
+    0 8px 16px -8px rgba(15, 23, 42, 0.2);
+}
+
+.sc-e .sc-main.active {
+  background: color-mix(in srgb, var(--cyan-600) 10%, var(--canvas));
+}
+
+.sc-e .sc-rule {
+  margin: 8px 10px 6px;
+  background: rgba(29, 29, 31, 0.07);
+}
+
+.sc-e .sidebar-recent-chat__list {
+  padding: 0 4px;
+}
+
+/* ── F · Ink ───────────────────────────────────────────────────────────
+   The main chat as the one dark thing in the sidebar: a pill of black
+   glass, white name, the orb on it. The side chats stay light under it. */
+.sc-f .sc-main {
+  margin: 0 4px;
+  padding: 4px 10px 4px 7px;
+  border-radius: var(--r-full);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.01) 55%),
+    color-mix(in srgb, var(--ink-900) 84%, transparent);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  color: #fff;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 1px 2px rgba(0, 0, 0, 0.16),
+    0 6px 14px -8px rgba(0, 0, 0, 0.35);
+  transition: background var(--dur-1) var(--ease);
+}
+
+.sc-f .sc-main .sidebar-recent-chat__title {
+  color: #fff;
+}
+
+.sc-f .sc-main:hover:not(:disabled) {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.04) 55%),
+    color-mix(in srgb, var(--ink-900) 90%, transparent);
+  color: #fff;
+}
+
+.sc-f .sc-main.active {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 0 0 2px var(--canvas),
+    0 0 0 3.5px color-mix(in srgb, var(--cyan-600) 45%, transparent);
+}
+
+.sc-f .sc-rule {
+  margin: 8px 10px 6px;
+  background: rgba(29, 29, 31, 0.07);
+}
+
+.sc-f .sidebar-recent-chat__list {
+  padding: 0 4px;
+}
+
+/* ── The folded rail ──────────────────────────────────────────────────
+   Folded, the product draws a grey dot per chat — a string nobody can read.
+   Three drawings instead, a class on the section (`sc-col-a/b/c`); the rail
+   is 56px wide. Six drawings, each standing on the orb and folding the side
+   chats into one legible thing: a mark, a stack, a capsule, a badge, a tab,
+   a bubble. No dot (round 18). */
+.sc-glyph,
+.sc-cap,
+.sc-n,
+.sc-dot {
+  display: none;
+}
+
+.app-sidebar.is-collapsed .sc-rule,
+.app-sidebar.is-collapsed .sc-time,
+.app-sidebar.is-collapsed .sc-card__sub,
+.app-sidebar.is-collapsed .sidebar-recent-chat__list {
+  display: none;
+}
+
+/* folded, the Card's orb is a tile under the Brain card */
+.app-sidebar.is-collapsed .sidebar-brain .sc-card {
+  width: 32px;
+  min-height: 32px;
+  margin: 6px auto 0;
+  padding: 0;
+  justify-content: center;
+  border-radius: 10px;
+}
+
+.app-sidebar.is-collapsed .sidebar-brain .sc-card .sc-orb {
+  width: 20px;
+  height: 20px;
+  background: transparent;
+}
+
+.app-sidebar.is-collapsed .sidebar-brain .sc-card .sidebar-recent-chat__copy {
+  display: none;
+}
+
+.app-sidebar.is-collapsed .sidebar-recent-chat,
+.app-sidebar.is-collapsed .sc-b {
+  gap: 6px;
+  margin: 6px 8px;
+  padding: 6px 0;
+  border-top: 0;
+  border-bottom: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.app-sidebar.is-collapsed .sc-main {
+  position: relative;
+  width: 32px;
+  min-height: 32px;
+  height: 32px;
+  margin: 0 auto;
+  padding: 0;
+  justify-content: center;
+  border-radius: 10px;
+  background: transparent;
+  box-shadow: none;
+}
+
+.app-sidebar.is-collapsed .sc-main::before {
+  display: none;
+}
+
+.app-sidebar.is-collapsed .sc-main .sc-orb {
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  box-shadow: none;
+}
+
+.app-sidebar.is-collapsed .sc-main .sc-orb .vorb {
+  width: 18px;
+  height: 18px;
+}
+
+.app-sidebar.is-collapsed .sc-main:hover:not(:disabled) {
+  background: rgba(29, 29, 31, 0.05);
+}
+
+.app-sidebar.is-collapsed .sc-main.active {
+  background: color-mix(in srgb, var(--cyan-600) 12%, var(--canvas));
+  box-shadow: none;
+}
+
+/* A · Mark: the orb alone, in a soft tile, is the whole of it; the dot says
+   something is unread. Click for the history. */
+.app-sidebar.is-collapsed .sc-col-a .sc-main {
+  background: rgba(29, 29, 31, 0.04);
+}
+
+.app-sidebar.is-collapsed .sc-col-a .sc-main:hover:not(:disabled) {
+  background: rgba(29, 29, 31, 0.08);
+}
+
+/* B · Stack: the orb is the top card of a small stack — two more cards
+   show behind it, offset down and right — so the one mark says "and the
+   rest". Hover fans the stack a little; the dot says something is unread. */
+.app-sidebar.is-collapsed .sc-col-b .sc-main {
+  background: var(--canvas);
+  box-shadow:
+    0 0 0 1px rgba(29, 29, 31, 0.08),
+    3px 3px 0 -1px var(--canvas),
+    3px 3px 0 0 rgba(29, 29, 31, 0.08),
+    6px 6px 0 -2px var(--canvas),
+    6px 6px 0 -1px rgba(29, 29, 31, 0.06);
+  transition:
+    box-shadow var(--dur-2) var(--ease-out),
+    background var(--dur-1) var(--ease);
+}
+
+.app-sidebar.is-collapsed .sc-col-b .sc-main:hover:not(:disabled) {
+  background: var(--canvas);
+  box-shadow:
+    0 0 0 1px rgba(29, 29, 31, 0.1),
+    4px 4px 0 -1px var(--canvas),
+    4px 4px 0 0 rgba(29, 29, 31, 0.1),
+    8px 8px 0 -2px var(--canvas),
+    8px 8px 0 -1px rgba(29, 29, 31, 0.07);
+}
+
+.app-sidebar.is-collapsed .sc-col-b .sc-main.active {
+  background: color-mix(in srgb, var(--cyan-600) 10%, var(--canvas));
+}
+
+.app-sidebar.is-collapsed .sc-col-b {
+  padding-right: 6px;
+  padding-bottom: 12px;
+}
+
+/* C · Capsule: the block itself becomes one capsule — the orb at the top,
+   the count at the foot — two targets on one soft shape: the main chat and
+   the rest. */
+.app-sidebar.is-collapsed .sc-col-c {
+  width: 32px;
+  margin: 6px auto;
+  padding: 2px;
+  border-radius: 16px;
+  background: rgba(29, 29, 31, 0.045);
+  gap: 0;
+}
+
+.app-sidebar.is-collapsed .sc-col-c .sc-main {
+  width: 28px;
+  min-height: 28px;
+  height: 28px;
+  border-radius: 14px;
+}
+
+.app-sidebar.is-collapsed .sc-col-c .sc-main.active {
+  background: var(--canvas);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+}
+
+.app-sidebar.is-collapsed .sc-col-c .sc-cap {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  margin: 2px auto 0;
+  padding: 0;
+  border: 0;
+  border-radius: 14px;
+  background: transparent;
+  color: var(--text-3);
+  font-family: inherit;
+  font-size: 10.5px;
+  font-weight: var(--fw-heavy);
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+  transition:
+    background var(--dur-1) var(--ease),
+    color var(--dur-1) var(--ease);
+}
+
+.app-sidebar.is-collapsed .sc-col-c .sc-cap:hover {
+  background: var(--canvas);
+  color: var(--text);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+}
+
+.app-sidebar.is-collapsed .sc-col-c .sc-cap:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.app-sidebar.is-collapsed .sc-col-c .sc-cap.is-unread {
+  color: var(--cyan-700);
+}
+
+/* D · Badge: the orb with the count on its corner, the way an app icon
+   wears one. */
+.app-sidebar.is-collapsed .sc-col-d .sc-main {
+  overflow: visible;
+  background: rgba(29, 29, 31, 0.04);
+}
+
+.app-sidebar.is-collapsed .sc-col-d .sc-main:hover:not(:disabled) {
+  background: rgba(29, 29, 31, 0.08);
+}
+
+.app-sidebar.is-collapsed .sc-col-d {
+  position: relative;
+}
+
+.app-sidebar.is-collapsed .sc-col-d .sc-n {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  z-index: 1;
+  display: inline-grid;
+  place-items: center;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: var(--r-full);
+  background: var(--ink-900);
+  color: #fff;
+  font-size: 9px;
+  font-weight: var(--fw-heavy);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  box-shadow: 0 0 0 2px var(--canvas);
+  pointer-events: none;
+}
+
+/* E · Nav: no orb — chats become one more item in the rail's row of
+   icons, a chat glyph at the weight of Home and Signal, lit like them. */
+.app-sidebar.is-collapsed .sc-col-e .sc-main {
+  width: 36px;
+  min-height: 36px;
+  height: 36px;
+  border-radius: var(--r-sm);
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235f6369' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7.9 20A9 9 0 1 0 4 16.1L2 22Z'/%3E%3C/svg%3E")
+    center / 15px 15px no-repeat;
+}
+
+.app-sidebar.is-collapsed .sc-col-e .sc-main .sc-orb {
+  display: none;
+}
+
+.app-sidebar.is-collapsed .sc-col-e .sc-main:hover:not(:disabled) {
+  background-color: var(--surface-2);
+}
+
+.app-sidebar.is-collapsed .sc-col-e .sc-main.active {
+  background-color: var(--surface);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231d1d1f' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7.9 20A9 9 0 1 0 4 16.1L2 22Z'/%3E%3C/svg%3E");
+}
+
+/* F · Spark: an ink disc with Vicino's sparkle in white. */
+.app-sidebar.is-collapsed .sc-col-f .sc-main {
+  width: 28px;
+  min-height: 28px;
+  height: 28px;
+  margin: 2px auto;
+  border-radius: 50%;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 13 13' fill='%23ffffff'%3E%3Cpath d='M6.5 1.625C6.7925 4.16 8.1575 5.525 10.725 5.85 8.1575 6.1425 6.7925 7.5075 6.5 10.075 6.2075 7.5075 4.8425 6.1425 2.275 5.85 4.8425 5.5575 6.2075 4.1925 6.5 1.625Z'/%3E%3Cpath d='M10.53 1.625c.0845.78.52 1.2155 1.3 1.3-.78.0845-1.2155.52-1.3 1.3-.0845-.78-.52-1.2155-1.3-1.3.78-.0845 1.2155-.52 1.3-1.3Z'/%3E%3C/svg%3E")
+      center / 14px 14px no-repeat,
+    var(--ink-900);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.2);
+}
+
+.app-sidebar.is-collapsed .sc-col-f .sc-main .sc-orb {
+  display: none;
+}
+
+.app-sidebar.is-collapsed .sc-col-f .sc-main:hover:not(:disabled) {
+  background-color: var(--ink-700, #2a2c30);
+}
+
+.app-sidebar.is-collapsed .sc-col-f .sc-main.active {
+  box-shadow:
+    0 0 0 2px var(--canvas),
+    0 0 0 3.5px color-mix(in srgb, var(--cyan-600) 50%, transparent);
+}
+
+/* The captured drawing, folded: the product's own dots. */
+.app-sidebar.is-collapsed .sc-col-now .sidebar-recent-chat__list {
+  display: flex;
+}
+
+.app-sidebar.is-collapsed .sc-col-now .sc-main {
+  width: 18px;
+  min-height: 18px;
+  height: 18px;
+  border-radius: 50%;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   The chat window
+
+   The dock's panel, as captured, is a white card: 22px corners, a stroke, a
+   69px header under a line, bubbles that each carry a shadow, a pill composer.
+   The brief, over four rounds (2026-10-22): corners a step above the Brain
+   cards' 12px; a header and a composer that sit with the rest of the product;
+   a frosted-glass ground with the sheen and the lit edge of glass; the tour
+   strip gone; attachments above the words; "Editing" drawn with some nerve;
+   fullscreen tidy and open, the same material as the side pane; and the
+   history — Chats / Documents — redrawn with search, context, states and a
+   menu on each row.
+
+   Six drawings, each a class on `.chat-dock` (`cw-a` … `cw-f`), all on one
+   set of tokens declared on `.cw` and re-tuned per drawing: the glass
+   (`--cw-glass`, `--cw-alpha`, `--cw-blur`), the ink it carries, the fills,
+   the field, the send. The conversation, the empty state, the history and
+   fullscreen are all drawn from those tokens, so a drawing holds together
+   across every state of the window.
+
+   Round 11 (2026-10-23): Paper is the base of all six, and all six are
+   light. They differ in the glass, its tint and its frame:
+
+   A Mist    near-white, a sheet of paper; no bubbles at all
+   B Frost   thin cold glass, replies in frosted cards
+   C Paper   the one built on: light glass with room in it
+   D Linen   the same pane on warm paper
+   E Pearl   white glass with a pearl's sheen along the top
+   F Drawer  hung from the top edge, a toolbar header, an ink band
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* The fullscreen toggle is in the markup and hidden by the current build; the
+   prototype shows it, with the rules the build keeps for it. */
+.chat-dock__header-button.chat-dock__fullscreen-toggle {
+  display: inline-flex;
+}
+
+/* What the glass windows add is hidden until a drawing asks for it. */
+.sc-tg,
+.sc-tray,
+.sc-when {
+  display: none;
+}
+
+/* ── Tokens ────────────────────────────────────────────────────────────── */
+.cw {
+  --cw-glass: 255, 255, 255;
+  --cw-alpha: 0.6;
+  --cw-blur: 28px;
+  --cw-sat: 1.5;
+  --cw-radius: var(--r-lg);
+  --cw-ink: var(--text);
+  --cw-ink-2: var(--text-2);
+  --cw-ink-3: var(--text-3);
+  --cw-ink-4: var(--text-4);
+  --cw-fill: rgba(29, 29, 31, 0.045);
+  --cw-fill-2: rgba(29, 29, 31, 0.08);
+  --cw-line: rgba(29, 29, 31, 0.07);
+  --cw-field: rgba(29, 29, 31, 0.055);
+  --cw-field-focus: #fff;
+  --cw-ring: rgba(29, 29, 31, 0.09);
+  --cw-ring-focus: rgba(29, 29, 31, 0.16);
+  --cw-send: var(--ink-900);
+  --cw-send-ink: #fff;
+  --cw-edge: rgba(255, 255, 255, 0.95);
+  --cw-edge-2: rgba(255, 255, 255, 0.35);
+  --cw-shadow: rgba(15, 23, 42, 0.18);
+  --cw-accent: var(--cyan-600);
+  --cw-accent-ink: var(--cyan-700);
+  --cw-pad-x: 18px;
+  --cw-pad-y: 12px;
+  --cw-gap: 18px;
+}
+
+/* ── The pane ──────────────────────────────────────────────────────────── */
+.cw .chat-dock__panel {
+  border: 0;
+  border-radius: var(--cw-radius);
+  background: rgba(var(--cw-glass), var(--cw-alpha));
+  -webkit-backdrop-filter: blur(var(--cw-blur)) saturate(var(--cw-sat));
+  backdrop-filter: blur(var(--cw-blur)) saturate(var(--cw-sat));
+  color: var(--cw-ink);
+  box-shadow:
+    0 0 0 1px rgba(29, 29, 31, 0.05),
+    0 2px 6px rgba(15, 23, 42, 0.035),
+    0 32px 64px -20px var(--cw-shadow);
+}
+
+/* The sheen: light caught across the top-left and pooling in the corners,
+   the way it is on frosted glass, drawn over the ground and under everything
+   else. */
+.cw .chat-dock__panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background:
+    linear-gradient(
+      160deg,
+      rgba(var(--cw-glass), 0.7) 0%,
+      rgba(var(--cw-glass), 0.26) 26%,
+      rgba(var(--cw-glass), 0) 52%,
+      rgba(var(--cw-glass), 0.14) 100%
+    ),
+    radial-gradient(120% 60% at 100% 0%, rgba(73, 224, 245, 0.05), transparent 60%);
+  pointer-events: none;
+}
+
+/* The lit edge: a one-pixel stroke that is itself a gradient, bright where
+   the light falls and faint where it does not — the reflection on the rim
+   of the glass. Drawn with a mask so only the rim is painted. */
+.cw .chat-dock__panel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(
+    160deg,
+    var(--cw-edge) 0%,
+    var(--cw-edge-2) 28%,
+    rgba(255, 255, 255, 0.08) 55%,
+    var(--cw-edge-2) 80%,
+    var(--cw-edge) 100%
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.cw .chat-dock__panel > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* The header sits above the body, so its tooltips are never painted over by
+   a turn's pictures. */
+.cw .chat-dock__panel > .chat-dock__header {
+  z-index: 2;
+}
+
+/* ── Header ────────────────────────────────────────────────────────────── */
+.cw .chat-dock__header {
+  min-height: 56px;
+  padding: 12px 14px 8px 14px;
+  border-bottom: 0;
+  gap: var(--space-2);
+}
+
+.cw .chat-dock__mark {
+  width: 28px;
+  height: 28px;
+}
+
+.cw .chat-dock__mark .vorb {
+  width: 24px !important;
+  height: 24px !important;
+}
+
+.cw .chat-dock__title {
+  color: var(--cw-ink);
+  font-size: var(--fs-3);
+}
+
+.cw .chat-dock__subtitle {
+  color: var(--cw-ink-3);
+  font-weight: var(--fw-regular);
+}
+
+.cw .chat-dock__title-group {
+  gap: 2px;
+}
+
+.cw .chat-dock__header-button {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  color: var(--cw-ink-3);
+}
+
+.cw .chat-dock__header-button:hover {
+  background: var(--cw-fill);
+  color: var(--cw-ink);
+}
+
+.cw .chat-dock__compact {
+  width: 28px;
+  height: 28px;
+  min-height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke-width='2.4'%3E%3Ccircle cx='12' cy='12' r='8' stroke='%235f6369' stroke-opacity='.26'/%3E%3Ccircle cx='12' cy='12' r='8' stroke='%235f6369' stroke-linecap='round' stroke-dasharray='34 51' transform='rotate(-90 12 12)'/%3E%3C/svg%3E")
+    center / 15px 15px no-repeat;
+  color: transparent;
+  font-size: 0;
+  box-shadow: none;
+  transition: background-color var(--dur-1) var(--ease);
+}
+
+.cw .chat-dock__compact:hover,
+.cw .chat-dock__compact.btn--secondary:hover {
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke-width='2.4'%3E%3Ccircle cx='12' cy='12' r='8' stroke='%231d1d1f' stroke-opacity='.26'/%3E%3Ccircle cx='12' cy='12' r='8' stroke='%231d1d1f' stroke-linecap='round' stroke-dasharray='34 51' transform='rotate(-90 12 12)'/%3E%3C/svg%3E")
+      center / 15px 15px no-repeat,
+    var(--cw-fill);
+  color: transparent;
+  box-shadow: none;
+  transform: none;
+}
+
+/* Every header icon button carries the product's tooltip (Compact chat's):
+   ink, small, under the button. The buttons near the
+   pane's right edge anchor theirs to the right so they are never cut. */
+.chat-dock__header-button[data-tip] {
+  position: relative;
+}
+
+:is(.chat-dock__header-button, .sc-h-icon, .sc-h-new)[data-tip]::after {
+  content: attr(data-tip);
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%;
+  z-index: 50;
+  width: max-content;
+  max-width: 16rem;
+  padding: 0.35rem 0.55rem;
+  border-radius: 0.4rem;
+  background: var(--ink-900, #1f2937);
+  color: #fff;
+  font-size: var(--fs-1);
+  font-weight: var(--fw-regular);
+  line-height: 1.35;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%);
+  transition: opacity 0.12s;
+}
+
+:is(.chat-dock__header-button, .sc-h-icon, .sc-h-new)[data-tip]:hover::after,
+:is(.chat-dock__header-button, .sc-h-icon, .sc-h-new)[data-tip]:focus-visible::after {
+  opacity: 1;
+}
+
+.chat-dock__fullscreen-toggle[data-tip]::after,
+.sc-h-new[data-tip]::after,
+.chat-dock__header-button[aria-label='Close Vicino'][data-tip]::after {
+  right: 0;
+  left: auto;
+  transform: none;
+}
+
+.cw .chat-dock__tour-strip {
+  display: none;
+}
+
+/* ── Body and composer ─────────────────────────────────────────────────── */
+.cw .chat-dock__body {
+  padding: var(--cw-pad-y) var(--cw-pad-x) 20px;
+  gap: var(--cw-gap);
+}
+
+.cw .chat-dock__compose {
+  border-top: 0;
+  background: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+.cw .chat-dock__composer {
+  position: relative;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 8px 8px 14px;
+  border: 0;
+  border-radius: 14px;
+  background: var(--cw-field);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.22),
+    0 1px 2px rgba(15, 23, 42, 0.03),
+    0 6px 16px -12px rgba(15, 23, 42, 0.18);
+  transition:
+    background var(--dur-2) var(--ease),
+    box-shadow var(--dur-2) var(--ease);
+}
+
+.cw .chat-dock__composer:focus-within {
+  border: 0;
+  background: var(--cw-field-focus);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.28),
+    0 0 0 1px color-mix(in srgb, var(--cw-accent) 22%, transparent),
+    0 0 10px color-mix(in srgb, var(--cw-accent) 12%, transparent),
+    0 8px 20px -12px rgba(15, 23, 42, 0.2);
+}
+
+.cw .chat-dock__composer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.26), rgba(255, 255, 255, 0) 55%);
+  pointer-events: none;
+}
+
+.cw .chat-dock__composer > * {
+  position: relative;
+  z-index: 1;
+}
+
+.cw .chat-dock__composer .chat-dock__icon {
+  display: none;
+}
+
+.cw .chat-dock__input {
+  flex: 1 1 100%;
+  height: auto;
+  min-height: 24px;
+  padding: 2px 0 8px;
+  color: var(--cw-ink);
+  font-size: var(--fs-3);
+}
+
+.cw .chat-dock__input::placeholder {
+  color: var(--cw-ink-4);
+}
+
+.cw .chat-dock__tool {
+  width: 32px;
+  height: 32px;
+  margin-left: auto;
+  border-radius: 50%;
+  color: var(--cw-ink-3);
+}
+
+.cw .chat-dock__send:disabled {
+  opacity: 0.38;
+  box-shadow: none;
+}
+
+.cw .chat-dock__tool svg {
+  stroke-width: 1.6;
+}
+
+.cw .chat-dock__tool:hover:not(:disabled) {
+  background: var(--cw-fill);
+  color: var(--cw-ink);
+}
+
+.cw .chat-dock__send {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0.02) 55%),
+    var(--cw-send);
+  color: var(--cw-send-ink);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.32),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.09),
+    0 1px 2px rgba(0, 0, 0, 0.25),
+    0 7px 14px -7px rgba(0, 0, 0, 0.45);
+}
+
+.cw .chat-dock__send svg {
+  width: 14px;
+  height: 14px;
+}
+
+.cw .chat-dock__send:hover:not(:disabled) {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0.06) 55%),
+    var(--cw-send);
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+/* ── A turn ────────────────────────────────────────────────────────────
+   The body of a message becomes a column so its parts can be ordered: the
+   sender, then what was attached, then the words, then what came of them.
+   The bubble's own stroke and shadow go everywhere; the copy control shows
+   only when the turn is looked at. */
+.cw .chat-dock__message-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.cw .chat-dock__message.is-user .chat-dock__message-body {
+  align-items: flex-end;
+}
+
+.cw .chat-dock__message-attachments {
+  order: 1;
+  margin: 0;
+}
+
+.cw .chat-dock__message-text {
+  order: 2;
+  border: 0;
+  box-shadow: none;
+  color: var(--cw-ink);
+}
+
+.cw .chat-dock__message.is-user .chat-dock__message-text {
+  color: var(--cw-ink);
+}
+
+.cw .chat-dock__message-text strong {
+  color: inherit;
+}
+
+.cw .chat-dock__message-actions {
+  order: 3;
+  margin: 0;
+  opacity: 0;
+  transition: opacity var(--dur-1) var(--ease);
+}
+
+.cw .chat-dock__message:hover .chat-dock__message-actions,
+.cw .chat-dock__message:focus-within .chat-dock__message-actions {
+  opacity: 1;
+}
+
+/* The time, small and quiet, after Copy. */
+.cw .chat-dock__message-actions .sc-when {
+  display: inline-flex;
+  align-items: center;
+  align-self: center;
+  margin-left: 2px;
+  color: var(--cw-ink-4);
+  font-size: 11px;
+  font-weight: var(--fw-regular);
+  letter-spacing: 0;
+  line-height: 1;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity var(--dur-1) var(--ease);
+}
+
+.cw .chat-dock__message:hover .chat-dock__message-actions .sc-when,
+.cw .chat-dock__message:focus-within .chat-dock__message-actions .sc-when {
+  opacity: 1;
+}
+
+.cw .chat-dock__resolved-action,
+.cw .chat-dock__document-cards {
+  order: 4;
+  margin: 0;
+}
+
+.cw .chat-dock__copy {
+  min-height: 22px;
+  padding: 2px 7px;
+  border: 0;
+  color: var(--cw-ink-4);
+}
+
+.cw .chat-dock__copy:hover {
+  background: var(--cw-fill);
+  color: var(--cw-ink);
+}
+
+.cw .chat-dock__avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 7px;
+}
+
+.cw .chat-dock__avatar.is-orb .vorb {
+  width: 22px !important;
+  height: 22px !important;
+}
+
+/* An attachment: a square glass tile — the picture is the whole of it, with
+   the sheen and the lit rim of the panel on a smaller scale. Its name, its
+   standing in Brain and the Save control sit on a dark veil that rises only
+   when the tile is looked at. Several sit in one row and scroll sideways. */
+.cw .chat-dock__message-attachments {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+  max-width: 100%;
+  padding: 4px 2px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.cw .chat-dock__message-attachments::-webkit-scrollbar {
+  display: none;
+}
+
+.cw .chat-dock__message.is-user .chat-dock__message-attachments {
+  direction: rtl;
+}
+
+.cw .chat-dock__message.is-user .chat-dock__file-card {
+  direction: ltr;
+}
+
+.cw .chat-dock__file-card,
+.cw .sc-file {
+  position: relative;
+  flex: 0 0 auto;
+  width: var(--cw-tile, 64px);
+  height: var(--cw-tile, 64px);
+  gap: 0;
+  overflow: hidden;
+  border-radius: 10px;
+  background: rgba(var(--cw-glass), 0.6);
+  box-shadow:
+    0 0 0 1px rgba(29, 29, 31, 0.05),
+    0 1px 2px rgba(15, 23, 42, 0.04),
+    0 6px 16px -4px rgba(15, 23, 42, 0.1);
+}
+
+.cw .chat-dock__file-card::after,
+.cw .sc-file::after,
+.sc-att__item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0) 46%);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  pointer-events: none;
+}
+
+.cw .chat-dock__attachment-thumb {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  object-fit: cover;
+}
+
+.cw .chat-dock__file-card .media-preview-keyboard {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0;
+}
+
+/* a file that is not a picture: a glyph and its kind on the glass */
+.cw .sc-file {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 4px;
+  color: var(--cw-ink-3);
+}
+
+.cw .sc-file > svg {
+  width: 16px;
+  height: 16px;
+}
+
+.sc-file__kind {
+  padding: 1px 6px;
+  border-radius: var(--r-full);
+  background: var(--cw-fill-2);
+  color: var(--cw-ink-2);
+  font-size: var(--fs-0);
+  font-weight: var(--fw-heavy);
+  letter-spacing: 0.05em;
+}
+
+/* the veil: name, standing, Save — on hover and focus */
+.cw .chat-dock__attachment-row,
+.cw .sc-file__veil {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 18px 6px 5px;
+  gap: 3px;
+  background: linear-gradient(
+    to top,
+    rgba(18, 20, 24, 0.85),
+    rgba(18, 20, 24, 0.55) 55%,
+    rgba(18, 20, 24, 0)
+  );
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity var(--dur-1) var(--ease),
+    transform var(--dur-2) var(--ease-out);
+}
+
+.cw .chat-dock__file-card:hover .chat-dock__attachment-row,
+.cw .chat-dock__file-card:focus-within .chat-dock__attachment-row,
+.cw .sc-file:hover .sc-file__veil,
+.cw .sc-file:focus-within .sc-file__veil {
+  opacity: 1;
+  transform: none;
+}
+
+.cw .chat-dock__message-attachment {
+  max-width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  font-size: 9px;
+  font-weight: var(--fw-semibold);
+}
+
+.cw .chat-dock__message-attachment svg {
+  display: none;
+}
+
+.cw .chat-dock__attachment-status,
+.cw .chat-dock__attachment-save {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 18px;
+  padding: 0 6px;
+  border: 0;
+  border-radius: var(--r-full);
+  font-size: 9px;
+  font-weight: var(--fw-heavy);
+  line-height: 1;
+}
+
+.cw .chat-dock__attachment-status {
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+}
+
+.cw .chat-dock__attachment-status svg {
+  width: 11px;
+  height: 11px;
+}
+
+.cw .chat-dock__attachment-save {
+  background: #fff;
+  color: var(--ink-900);
+  cursor: pointer;
+}
+
+.cw .chat-dock__attachment-save:hover:not(:disabled) {
+  background: #fff;
+  border: 0;
+  opacity: 0.9;
+}
+
+/* ── Attaching: the row above the words in the composer ───────────────
+   The attach control adds files; each is the same square tile, 56px, with
+   its name on hover and a clear at its corner. The row scrolls sideways. */
+.cw .chat-dock__composer.has-att {
+  flex-wrap: wrap;
+  padding-top: 4px;
+}
+
+.sc-att {
+  display: none;
+  order: -1;
+  flex: 1 1 100%;
+  gap: 8px;
+  padding: 8px 10px 8px 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.sc-att::-webkit-scrollbar {
+  display: none;
+}
+
+.cw .chat-dock__composer.has-att .sc-att {
+  display: flex;
+}
+
+.sc-att__item {
+  position: relative;
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  align-content: center;
+  gap: 4px;
+  width: 56px;
+  height: 56px;
+  overflow: visible;
+  border-radius: 10px;
+  background: rgba(var(--cw-glass), 0.6);
+  color: var(--cw-ink-3);
+  box-shadow:
+    0 0 0 1px rgba(29, 29, 31, 0.05),
+    0 1px 2px rgba(15, 23, 42, 0.04),
+    0 5px 14px -4px rgba(15, 23, 42, 0.1);
+}
+
+.sc-att__item img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  object-fit: cover;
+}
+
+.sc-att__item .sc-file__kind {
+  font-size: 9px;
+}
+
+.sc-att__x {
+  position: absolute;
+  top: -7px;
+  right: -7px;
+  z-index: 2;
+  display: inline-grid;
+  place-items: center;
+  width: 17px;
+  height: 17px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(18, 20, 24, 0.6);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  box-shadow:
+    0 0 0 1.5px rgba(255, 255, 255, 0.85),
+    0 1px 3px rgba(15, 23, 42, 0.18);
+  color: #fff;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity var(--dur-1) var(--ease);
+}
+
+.sc-att__item:hover .sc-att__x,
+.sc-att__x:focus-visible {
+  opacity: 1;
+}
+
+.sc-att__name {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  padding: 14px 6px 4px;
+  overflow: hidden;
+  border-radius: 0 0 10px 10px;
+  background: linear-gradient(to top, rgba(18, 20, 24, 0.8), rgba(18, 20, 24, 0));
+  color: #fff;
+  font-size: 9px;
+  font-weight: var(--fw-semibold);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity var(--dur-1) var(--ease);
+}
+
+.sc-att__item:hover .sc-att__name {
+  opacity: 1;
+}
+
+.cw .chat-dock__tool.is-on {
+  background: var(--cw-fill-2);
+  color: var(--cw-ink);
+}
+
+/* What came of a turn: the approval line and the document card lose their
+   strokes and sit on a tint. */
+.cw .chat-dock__resolved-action {
+  padding: 5px 9px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--cw-fill);
+  color: var(--cw-ink-3);
+}
+
+.cw .chat-dock__resolved-action-title {
+  color: var(--cw-ink);
+}
+
+.cw .chat-dock__document-card {
+  border: 0;
+  border-radius: 10px;
+  background: rgba(var(--cw-glass), 0.72);
+  box-shadow: 0 0 0 1px var(--cw-ring);
+}
+
+.cw .chat-dock__document-card:hover {
+  box-shadow: 0 0 0 1px var(--cw-accent);
+}
+
+.cw .chat-dock__document-card-title {
+  color: var(--cw-ink);
+}
+
+.cw .chat-dock__document-card-meta,
+.cw .chat-dock__document-card-cause {
+  color: var(--cw-ink-3);
+}
+
+/* ── The empty state: a new chat ───────────────────────────────────────
+   The product's "Ask Vicino": the orb, the line, the three prompts. */
+.cw .sc-empty {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 0;
+  padding: 24px var(--cw-pad-x) 32px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.sc-empty__glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 260px;
+  height: 260px;
+  transform: translate(-50%, -78%);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(73, 224, 245, 0.22),
+    rgba(139, 124, 240, 0.1) 40%,
+    transparent 68%
+  );
+  pointer-events: none;
+}
+
+.sc-empty__orb {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.sc-empty__orb .vorb {
+  width: 52px;
+  height: 52px;
+}
+
+.sc-empty__title {
+  position: relative;
+  margin: 0;
+  color: var(--cw-ink);
+  font-size: 22px;
+  font-weight: var(--fw-heavy);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.sc-empty__lede {
+  position: relative;
+  max-width: 300px;
+  margin: 0 0 10px;
+  color: var(--cw-ink-3);
+  font-size: var(--fs-3);
+  line-height: 1.5;
+}
+
+.sc-empty__chips {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+}
+
+.sc-empty__chip {
+  height: 30px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: var(--r-full);
+  background: rgba(var(--cw-glass), 0.7);
+  box-shadow: 0 0 0 1px var(--cw-ring);
+  color: var(--cw-ink-2);
+  font: inherit;
+  font-size: var(--fs-2);
+  font-weight: var(--fw-semibold);
+  cursor: pointer;
+  transition:
+    background var(--dur-1) var(--ease),
+    color var(--dur-1) var(--ease);
+}
+
+.sc-empty__chip:hover {
+  background: var(--cw-fill-2);
+  color: var(--cw-ink);
+}
+
+/* ── The history, three ways ───────────────────────────────────────────
+   Shared: one quiet bar — the tabs, search, a round New chat — then the
+   list. A row says only what tells chats apart; the time and the menu
+   wait for hover. hv-a Quiet, hv-b Dated, hv-c Main first. */
+.cw .sc-hist {
+  gap: 8px;
+  padding: 4px var(--cw-pad-x) 20px;
+}
+
+.sc-h-bar {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 4px;
+  min-height: 32px;
+}
+
+.sc-h-tabs {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-right: auto;
+  padding-left: 8px;
+}
+
+.sc-h-tab {
+  padding: 4px 0;
+  border: 0;
+  background: none;
+  color: var(--cw-ink-4);
+  font: inherit;
+  font-size: var(--fs-3);
+  font-weight: var(--fw-medium);
+  cursor: pointer;
+  transition: color var(--dur-1) var(--ease);
+}
+
+.sc-h-tab:hover {
+  color: var(--cw-ink-2);
+}
+
+.sc-h-tab.is-on {
+  color: var(--cw-ink);
+  font-weight: var(--fw-semibold);
+}
+
+.sc-h-tab:focus-visible {
+  outline: none;
+  border-radius: 6px;
+  box-shadow: var(--focus-ring);
+}
+
+.sc-h-icon,
+.sc-h-new {
+  position: relative;
+  display: inline-grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  transition:
+    background var(--dur-1) var(--ease),
+    color var(--dur-1) var(--ease),
+    opacity var(--dur-1) var(--ease);
+}
+
+.sc-h-icon {
+  background: transparent;
+  color: var(--cw-ink-3);
+}
+
+.sc-h-icon:hover {
+  background: var(--cw-fill);
+  color: var(--cw-ink);
+}
+
+.sc-h-icon.is-small {
+  width: 22px;
+  height: 22px;
+}
+
+/* New chat: a plain round button, ink like the send button. */
+.sc-h-new {
+  background: var(--cw-send);
+  color: var(--cw-send-ink);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
+}
+
+/* Hover by colour, not opacity: opacity would trap the tooltip under
+   the card below. */
+.sc-h-new:hover {
+  background: color-mix(in srgb, var(--cw-send) 82%, #fff);
+}
+
+/* Search: a pill that fills only while it is in use. */
+.sc-h-find {
+  display: flex;
+  flex: 1 1 0%;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  height: 32px;
+  padding: 0 4px 0 10px;
+  border-radius: var(--r-full);
+  background: var(--cw-field);
+  color: var(--cw-ink-4);
+  transition: background var(--dur-1) var(--ease);
+}
+
+.sc-h-find input {
+  flex: 1 1 0%;
+  min-width: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--cw-ink);
+  font: inherit;
+  font-size: var(--fs-3);
+}
+
+.sc-h-find input:focus,
+.sc-h-find input:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+.sc-h-find:focus-within {
+  background: color-mix(in srgb, #fff 55%, var(--cw-field));
+}
+
+.sc-h-find input::placeholder {
+  color: var(--cw-ink-4);
+}
+
+.sc-h-find input::-webkit-search-cancel-button {
+  display: none;
+}
+
+.sc-h-find.is-quiet {
+  flex: 0 0 auto;
+  background: transparent;
+}
+
+.sc-h-find.is-quiet:hover {
+  background: var(--cw-field);
+}
+
+.sc-h-find.is-quiet:focus-within {
+  background: color-mix(in srgb, #fff 55%, var(--cw-field));
+}
+
+.sc-h-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.sc-h-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.sc-h-eyebrow {
+  padding: 16px 12px 6px;
+  color: var(--cw-ink-4);
+  font-size: var(--fs-1);
+  font-weight: var(--fw-semibold);
+}
+
+.sc-h-row,
+.sc-h-main {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--cw-ink);
+  cursor: pointer;
+  transition: background var(--dur-1) var(--ease);
+}
+
+.sc-h-row {
+  min-height: 36px;
+  padding: 6px 6px 6px 12px;
+  border-radius: 10px;
+}
+
+.sc-h-row:hover {
+  background: rgba(29, 29, 31, 0.03);
+}
+
+.sc-h-row.is-open {
+  background: var(--cw-fill);
+}
+
+.sc-h-row:focus-visible,
+.sc-h-main:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.sc-h-copy {
+  display: flex;
+  flex: 1 1 0%;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.sc-h-title {
+  overflow: hidden;
+  font-size: var(--fs-3);
+  font-weight: var(--fw-medium);
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sc-h-row.is-unread .sc-h-title {
+  font-weight: var(--fw-bold);
+}
+
+.sc-h-pin {
+  display: inline-flex;
+  margin-left: 5px;
+  color: var(--cw-ink-4);
+  vertical-align: -1px;
+}
+
+.sc-h-ctx {
+  overflow: hidden;
+  color: var(--cw-ink-4);
+  font-size: var(--fs-1);
+  line-height: 1.3;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sc-h-end {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 4px;
+  min-height: 24px;
+}
+
+.sc-h-mark {
+  display: inline-grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  color: var(--indigo-600, #4f46e5);
+}
+
+.sc-h-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--cw-accent);
+}
+
+.sc-h-time {
+  color: var(--cw-ink-4);
+  font-size: var(--fs-1);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.sc-h-more {
+  display: inline-grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--cw-ink-3);
+  cursor: pointer;
+}
+
+.sc-h-more:hover,
+.sc-h-more[aria-expanded='true'] {
+  background: var(--cw-fill-2);
+  color: var(--cw-ink);
+}
+
+/* At rest a row shows its state only; on hover, the time and the menu. */
+:is(.sc-h-row, .sc-h-main) .sc-h-time,
+:is(.sc-h-row, .sc-h-main) .sc-h-more {
+  display: none;
+}
+
+:is(.sc-h-row, .sc-h-main):is(:hover, :focus-within, :has([aria-expanded='true'])) .sc-h-time {
+  display: inline;
+}
+
+:is(.sc-h-row, .sc-h-main):is(:hover, :focus-within, :has([aria-expanded='true'])) .sc-h-more {
+  display: inline-grid;
+}
+
+:is(.sc-h-row, .sc-h-main):is(:hover, :focus-within) .sc-h-mark {
+  display: none;
+}
+
+.sc-h-none {
+  margin: 0;
+  padding: 24px 8px;
+  color: var(--cw-ink-4);
+  font-size: var(--fs-2);
+  text-align: center;
+}
+
+.sc-spin {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: conic-gradient(from 45deg, transparent 0 24%, currentColor 24% 100%);
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 1.8px), #000 0);
+  mask: radial-gradient(farthest-side, transparent calc(100% - 1.8px), #000 0);
+  animation: scSpin 0.72s linear infinite;
+}
+
+@keyframes scSpin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+/* The main chat, a card of its own at the top of all three. */
+.sc-h-main {
+  gap: 12px;
+  margin: 4px 0 2px;
+  padding: 12px 8px 12px 12px;
+  border-radius: 14px;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--cyan-600) 12%, #fff) 0%,
+    color-mix(in srgb, var(--cyan-600) 6.5%, #fff) 55%,
+    color-mix(in srgb, var(--cyan-600) 4.5%, #fff) 100%
+  );
+  box-shadow:
+    0 0 0 0.5px rgba(15, 23, 42, 0.03),
+    0 1px 2px rgba(15, 23, 42, 0.045);
+  transition:
+    background var(--dur-1) var(--ease),
+    box-shadow var(--dur-1) var(--ease);
+}
+
+.sc-h-main:hover,
+.sc-h-main.is-open {
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--cyan-600) 16%, #fff) 0%,
+    color-mix(in srgb, var(--cyan-600) 9%, #fff) 55%,
+    color-mix(in srgb, var(--cyan-600) 6%, #fff) 100%
+  );
+  box-shadow:
+    0 0 0 0.5px rgba(15, 23, 42, 0.04),
+    0 1px 2px rgba(15, 23, 42, 0.06);
+}
+
+.sc-h-main__orb {
+  display: inline-grid;
+  flex: 0 0 auto;
+  place-items: center;
+}
+
+.sc-h-main__orb .sc-orb {
+  width: 30px;
+  height: 30px;
+}
+
+.sc-h-main__orb .sc-orb .vorb {
+  width: 28px;
+  height: 28px;
+}
+
+.sc-h-main .sc-h-title {
+  font-weight: var(--fw-semibold);
+}
+
+/* Fold: one list with hairlines between, the five latest, the rest
+   folded under a quiet "Show n more". */
+.sc-fold {
+  display: flex;
+  flex-direction: column;
+  padding-top: 8px;
+}
+
+.sc-fold .sc-h-row {
+  min-height: 40px;
+}
+
+.sc-fold .sc-h-row + .sc-h-row::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 12px;
+  left: 12px;
+  height: 1px;
+  background: rgba(29, 29, 31, 0.06);
+}
+
+.sc-fold .sc-h-row:hover::after,
+.sc-fold .sc-h-row:hover + .sc-h-row::after,
+.sc-fold .sc-h-row.is-open::after,
+.sc-fold .sc-h-row.is-open + .sc-h-row::after {
+  opacity: 0;
+}
+
+.sc-fold__more {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  gap: 4px;
+  margin-top: 4px;
+  padding: 6px 12px;
+  border: 0;
+  border-radius: var(--r-full);
+  background: transparent;
+  color: var(--cw-ink-3);
+  font: inherit;
+  font-size: var(--fs-2);
+  font-weight: var(--fw-medium);
+  cursor: pointer;
+}
+
+.sc-fold__more:hover {
+  background: var(--cw-fill);
+  color: var(--cw-ink);
+}
+
+/* A side chat's glyph, the same small bubble on every row (I hides it).
+   It stands where the main chat's orb starts. */
+.sc-h-glyph {
+  display: inline-grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  margin-right: -2px;
+  color: var(--cw-ink-4);
+}
+
+.sc-h-glyph svg {
+  width: 14px;
+  height: 14px;
+}
+
+.no-icons .sc-h-glyph {
+  display: none;
+}
+
+/* Dated: three ways to set the day headings, none with a filled block.
+   The headings are shared by Chats and Documents; the day's chats sit
+   close: 32px rows, no gap. */
+.hv-b .sc-h-group.is-day {
+  gap: 0;
+}
+
+.hv-b .is-day .sc-h-row {
+  min-height: 32px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+/* Rule: a small-capital heading, a hairline running on to the right. */
+.hd-rule.hv-b .sc-h-group .sc-h-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 12px 4px;
+  color: var(--cw-ink-4);
+  font-size: 10px;
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hd-rule .is-day .sc-h-title,
+.hd-divider .is-day .sc-h-title {
+  font-weight: var(--fw-regular);
+}
+
+.hd-rule.hv-b .sc-h-group .sc-h-eyebrow::after {
+  content: '';
+  flex: 1 1 0%;
+  height: 1px;
+  background: rgba(29, 29, 31, 0.07);
+}
+
+/* Weight: the day small, regular and grey; the chats under it a size
+   larger in dark regular. */
+.hd-weight.hv-b .sc-h-group .sc-h-eyebrow {
+  padding: 16px 12px 3px;
+  color: var(--cw-ink-4);
+  font-size: var(--fs-1);
+  font-weight: var(--fw-regular);
+}
+
+.hd-weight .is-day .sc-h-title {
+  color: var(--cw-ink);
+  font-size: var(--fs-3);
+  font-weight: var(--fw-regular);
+}
+
+/* Divider: a full-width hairline between days, a quiet heading under it. */
+.hd-divider.hv-b .sc-h-group .sc-h-eyebrow {
+  position: relative;
+  padding: 12px 12px 4px;
+  color: var(--cw-ink-4);
+  font-size: var(--fs-1);
+  font-weight: var(--fw-regular);
+}
+
+.hd-divider.hv-b .sc-h-group + .sc-h-group {
+  margin-top: 8px;
+}
+
+.hd-divider.hv-b .sc-h-group + .sc-h-group .sc-h-eyebrow {
+  padding-top: 14px;
+}
+
+.hd-divider.hv-b .sc-h-group + .sc-h-group .sc-h-eyebrow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 1px;
+  background: rgba(29, 29, 31, 0.08);
+}
+
+/* Main first and Dated: the side chats as plain lists under their
+   heading, the rows a touch apart. */
+.hv-b .sc-h-group,
+.hv-c .sc-h-group {
+  gap: 2px;
+}
+
+/* ── Documents ─────────────────────────────────────────────────────────
+   Each kind its own colour and glyph on a small page with a folded
+   corner; a picture is its own face. */
+.sc-doc {
+  --doc: var(--blue-500, #3987f3);
+  position: relative;
+  display: inline-grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 30px;
+  height: 36px;
+  border-radius: 6px;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--doc) 9%, #fff),
+    color-mix(in srgb, var(--doc) 15%, #fff)
+  );
+  color: var(--doc);
+  clip-path: polygon(0 0, calc(100% - 9px) 0, 100% 9px, 100% 100%, 0 100%);
+}
+
+.sc-doc::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 9px;
+  height: 9px;
+  border-bottom-left-radius: 3px;
+  background: color-mix(in srgb, var(--doc) 32%, #fff);
+}
+
+.sc-doc.is-deck {
+  --doc: var(--amber-600, #cc7f06);
+}
+
+.sc-doc.is-sheet {
+  --doc: var(--success-600, #2e9d40);
+}
+
+.sc-doc.is-notes {
+  --doc: var(--indigo-500, #6366f1);
+}
+
+.sc-doc.is-pdf {
+  --doc: var(--red-600, #dc2626);
+}
+
+.sc-doc__glyph {
+  display: inline-grid;
+  place-items: center;
+  margin-top: 3px;
+}
+
+.sc-doc__word {
+  font-size: 8px;
+  font-weight: var(--fw-heavy);
+  letter-spacing: 0.02em;
+}
+
+.sc-doc.is-image {
+  width: 36px;
+  height: 36px;
+  overflow: hidden;
+  border-radius: 8px;
+  background: var(--cw-fill);
+  clip-path: none;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+}
+
+.sc-doc.is-image::after {
+  display: none;
+}
+
+.sc-doc.is-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sc-h-row.is-doc {
+  gap: 12px;
+  min-height: 52px;
+  padding: 8px 6px 8px 8px;
+}
+
+.sc-h-row.is-doc .sc-doc:not(.is-image) {
+  margin: 0 3px;
+}
+
+/* Main first: a list with hairlines between, set in from the page. */
+.sc-docs-list {
+  display: flex;
+  flex-direction: column;
+  padding-top: 4px;
+}
+
+.sc-docs-list .sc-h-row + .sc-h-row::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 8px;
+  left: 56px;
+  height: 1px;
+  background: rgba(29, 29, 31, 0.06);
+}
+
+.sc-docs-list .sc-h-row:hover::after,
+.sc-docs-list .sc-h-row:hover + .sc-h-row::after {
+  opacity: 0;
+}
+
+/* Thread: cards two to a row, each with a preview of what it is. */
+.sc-docs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  padding-top: 6px;
+}
+
+.sc-docc {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  padding: 6px 6px 10px;
+  border-radius: 14px;
+  color: var(--cw-ink);
+  cursor: pointer;
+  transition: background var(--dur-1) var(--ease);
+}
+
+.sc-docc:hover {
+  background: rgba(29, 29, 31, 0.03);
+}
+
+.sc-docc:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.sc-docc__face {
+  --doc: var(--blue-500, #3987f3);
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: 92px;
+  margin-bottom: 6px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--doc) 7%, rgba(255, 255, 255, 0.7));
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.04),
+    0 6px 16px -10px rgba(15, 23, 42, 0.18);
+}
+
+.sc-docc__face.is-deck {
+  --doc: var(--amber-600, #cc7f06);
+}
+
+.sc-docc__face.is-sheet {
+  --doc: var(--success-600, #2e9d40);
+}
+
+.sc-docc__face.is-notes {
+  --doc: var(--indigo-500, #6366f1);
+}
+
+.sc-docc__face.is-pdf {
+  --doc: var(--red-600, #dc2626);
+}
+
+/* The big page: a sheet standing in the preview, lines of text on it and
+   the kind's glyph in its corner. */
+.sc-doc.is-big {
+  --doc: inherit;
+  width: 54px;
+  height: 66px;
+  margin-top: 18px;
+  border-radius: 7px;
+  background: #fff;
+  box-shadow: none;
+  filter: drop-shadow(0 4px 8px rgba(15, 23, 42, 0.1));
+  clip-path: polygon(0 0, calc(100% - 13px) 0, 100% 13px, 100% 100%, 0 100%);
+}
+
+.sc-doc.is-big::after {
+  width: 13px;
+  height: 13px;
+  border-bottom-left-radius: 4px;
+  background: color-mix(in srgb, var(--doc) 22%, #fff);
+}
+
+.sc-doc.is-big .sc-doc__glyph {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  margin: 0;
+}
+
+.sc-doc__lines {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  left: 8px;
+  height: 22px;
+  background: repeating-linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--doc) 22%, #fff) 0 2px,
+    transparent 2px 6px
+  );
+  border-radius: 1px;
+}
+
+.sc-doc.is-image.is-big {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border-radius: 0;
+  filter: none;
+}
+
+.sc-docc__face .sc-h-more {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  display: none;
+  background: rgba(255, 255, 255, 0.85);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.sc-docc:hover .sc-docc__face .sc-h-more,
+.sc-docc:focus-within .sc-docc__face .sc-h-more {
+  display: inline-grid;
+}
+
+.sc-docc__title {
+  overflow: hidden;
+  padding: 0 2px;
+  font-size: var(--fs-2);
+  font-weight: var(--fw-medium);
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sc-docc__meta {
+  overflow: hidden;
+  padding: 0 2px;
+  color: var(--cw-ink-4);
+  font-size: var(--fs-1);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* The row menu, on the page. */
+.sc-menu {
+  position: fixed;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  padding: 4px;
+  border-radius: 10px;
+  background: var(--canvas);
+  box-shadow:
+    0 0 0 1px rgba(29, 29, 31, 0.07),
+    0 2px 6px rgba(15, 23, 42, 0.06),
+    0 16px 32px -10px rgba(15, 23, 42, 0.24);
+  font-family: var(--font-sans);
+}
+
+.sc-menu button {
+  height: 30px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--text-2);
+  font: inherit;
+  font-size: var(--fs-2);
+  font-weight: var(--fw-semibold);
+  text-align: left;
+  cursor: pointer;
+}
+
+.sc-menu button:hover {
+  background: var(--surface-2);
+  color: var(--text);
+}
+
+.sc-menu button.is-danger:hover {
+  background: rgba(210, 63, 63, 0.08);
+  color: var(--severity-critical-text);
+}
+
+/* ── "Editing a post" — the chip over the composer ────────────────────
+   The capture's chip is a grey pill with one line of small text. For the
+   glass windows it is replaced by `.sc-tg`, written by the script: a tile
+   with a carousel glyph, a kicker, the post's name and a clear. */
+.cw .chat-dock__target {
+  display: none;
+}
+
+.cw .sc-tg {
+  position: absolute;
+  top: 0;
+  left: 10px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  max-width: calc(100% - 20px);
+  padding: 5px 6px 5px 5px;
+  border-radius: 11px;
+  background: linear-gradient(
+    160deg,
+    rgba(255, 255, 255, 0.88) 0%,
+    rgba(255, 255, 255, 0.7) 55%,
+    color-mix(in srgb, var(--cyan-600) 5%, rgba(255, 255, 255, 0.66)) 100%
+  );
+  -webkit-backdrop-filter: blur(12px) saturate(1.3);
+  backdrop-filter: blur(12px) saturate(1.3);
+  color: var(--text);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.5),
+    0 0 0 1px color-mix(in srgb, var(--cyan-600) 16%, transparent),
+    0 1px 2px rgba(15, 23, 42, 0.04),
+    0 8px 20px -12px rgba(15, 23, 42, 0.26);
+  transition: box-shadow var(--dur-2) var(--ease);
+}
+
+.cw .sc-tg:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.6),
+    0 0 0 1px color-mix(in srgb, var(--cyan-600) 24%, transparent),
+    0 1px 2px rgba(15, 23, 42, 0.05),
+    0 10px 22px -12px rgba(15, 23, 42, 0.3);
+}
+
+.sc-tg__tile {
+  display: inline-grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+}
+
+.sc-tg__text {
+  display: flex;
+  flex: 1 1 0%;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.sc-tg__kicker {
+  font-size: var(--fs-0);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.02em;
+}
+
+.sc-tg__kicker b {
+  font-weight: var(--fw-heavy);
+}
+
+.sc-tg__name {
+  overflow: hidden;
+  font-size: var(--fs-2);
+  font-weight: var(--fw-heavy);
+  line-height: 1.3;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sc-tg__clear {
+  display: inline-grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.sc-tg__clear:hover {
+  opacity: 1;
+  background: rgba(29, 29, 31, 0.08);
+}
+
+.sc-tg__clear:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+/* ── Float: the Editing card, narrower and taller, hovering ───────────
+   The picture stands up on top, tilted, a second sheet peeking from behind
+   it; under it the kicker and the name. It sits half on the field, half
+   above it, the way a pinned file does over a composer. */
+.cw.tg-float .chat-dock__form:has(.sc-tg) {
+  padding-top: 34px;
+}
+
+.cw.tg-float .sc-tg {
+  top: 0;
+  left: 12px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  width: max-content;
+  max-width: 170px;
+  padding: 6px 8px 6px;
+  border-radius: 10px;
+}
+
+.cw.tg-float .sc-tg__tile {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  margin: 1px 0 0 2px;
+  border-radius: 5px;
+  transform: rotate(-5deg);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.5),
+    3px -2px 0 -1px var(--canvas),
+    3px -2px 0 0 rgba(29, 29, 31, 0.1),
+    0 3px 8px -4px rgba(15, 23, 42, 0.3);
+}
+
+.cw.tg-float .sc-tg__text {
+  flex: 0 0 auto;
+  width: 100%;
+  gap: 1px;
+}
+
+.cw.tg-float .sc-tg__kicker {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.cw.tg-float .sc-tg__name {
+  max-width: 150px;
+  font-size: var(--fs-1);
+}
+
+.cw.tg-float .sc-tg__clear {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 18px;
+  height: 18px;
+}
+
+.cw.tg-float .sc-tg + .chat-dock__composer {
+  padding-top: 48px;
+}
+
+.cw.tg-float .chat-dock__panel.is-fullscreen .sc-tg + .chat-dock__composer {
+  padding-top: 52px;
+}
+
+/* ── An approved change, and when it fails ──────────────────────────────
+   One card for the whole life of an approval: what was approved (the new
+   story structure, kept), its head's chip saying where it stands (Not
+   applied, Applying, Applied), and one plain line under the frames with Why?
+   and Retry. A failure is said once, there; no red card and no second
+   message repeating it. Fill and shadow, no stroke. */
+
+/* Now is the product as it is today, so the redrawn turn is not in it. */
+.chat-dock:not(.cw) .sc-ap-turn {
+  display: none;
+}
+.cw .sc-ap-turn .chat-dock__message-body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.cw .sc-ap {
+  display: grid;
+  order: 2;
+  align-self: stretch;
+  gap: 10px;
+}
+
+.cw .sc-ap__card {
+  overflow: hidden;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow:
+    0 0 0 0.5px rgba(15, 23, 42, 0.04),
+    0 1px 2px rgba(15, 23, 42, 0.04),
+    0 8px 20px -12px rgba(15, 23, 42, 0.16);
+}
+
+.sc-ap__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 14px 0;
+}
+
+.sc-ap__icon {
+  display: inline-grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 7px;
+  background: color-mix(in srgb, var(--cyan-600) 10%, #fff);
+  color: var(--cyan-700);
+}
+
+.sc-ap__title {
+  flex: 1 1 auto;
+  min-width: 0;
+  color: var(--cw-ink);
+  font-size: var(--fs-3);
+  font-weight: var(--fw-semibold);
+}
+
+.sc-ap__chip {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 8px 2px 6px;
+  border-radius: var(--r-full);
+  background: var(--cw-fill);
+  color: var(--cw-ink-3);
+  font-size: var(--fs-1);
+  font-weight: var(--fw-medium);
+}
+
+.sc-ap__field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 14px 14px 12px;
+  color: var(--cw-ink-4);
+  font-size: 10px;
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* The heading over the version — "Proposed", "The chosen version" — as a
+   section break (the Rule design, kept 2026-10-29 over Title and Tag): its
+   words in small capitals, then a hairline to the card's edge, the same
+   line as the divider over the buttons. */
+.sc-ap__field {
+  justify-content: flex-start;
+  gap: 10px;
+  /* lighter than the part labels under it: this page's greys run dark, so
+     the quietest one is lifted toward white */
+  color: color-mix(in srgb, var(--text-4) 70%, #fff);
+}
+
+.sc-ap__field::after {
+  content: '';
+  flex: 1 1 auto;
+  order: 1;
+  height: 1px;
+  background: var(--cw-line);
+}
+
+.sc-ap__field .sc-ap__pager {
+  order: 2;
+}
+
+.sc-ap__frames {
+  display: grid;
+  gap: 8px;
+  margin: 0 0 14px;
+  padding: 0 14px;
+  color: var(--cw-ink-2);
+  font-size: var(--fs-2);
+  line-height: 1.45;
+  list-style: none;
+}
+
+.sc-ap__frames li {
+  display: grid;
+  grid-template-columns: 14px 1fr;
+  gap: 6px;
+}
+
+.sc-ap__n {
+  padding-top: 1px;
+  color: var(--cw-ink-4);
+  font-size: var(--fs-1);
+  font-weight: var(--fw-semibold);
+  font-variant-numeric: tabular-nums;
+}
+
+.sc-ap__msg {
+  flex: 1 1 150px;
+  min-width: 0;
+}
+
+.sc-ap__msg b {
+  color: var(--cw-ink);
+  font-weight: var(--fw-semibold);
+}
+
+.sc-ap__why,
+.sc-ap__retry {
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+  border: 0;
+  font: inherit;
+  font-size: var(--fs-2);
+  cursor: pointer;
+  transition:
+    background var(--dur-1) var(--ease),
+    color var(--dur-1) var(--ease);
+}
+
+.sc-ap__why {
+  padding: 0 8px;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--cw-ink-3);
+  font-weight: var(--fw-medium);
+}
+
+.sc-ap__why:hover,
+.sc-ap__why[aria-expanded='true'] {
+  background: rgba(29, 29, 31, 0.06);
+  color: var(--cw-ink);
+}
+
+/* Retry is the one thing to do, so it wears the send button's ink */
+.sc-ap__retry {
+  gap: 5px;
+  padding: 0 11px 0 9px;
+  border-radius: var(--r-full);
+  background: var(--cw-send);
+  color: var(--cw-send-ink);
+  font-weight: var(--fw-semibold);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.18);
+}
+
+.sc-ap__retry:hover {
+  background: var(--ink-700);
+}
+
+.sc-ap__why:focus-visible,
+.sc-ap__retry:focus-visible,
+.sc-tg__note:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.sc-ap__detail {
+  flex: 1 1 100%;
+  margin: 4px 0 0;
+  color: var(--cw-ink-3);
+  font-size: var(--fs-2);
+  line-height: 1.45;
+}
+
+.sc-ap__spin {
+  flex: 0 0 auto;
+  width: 13px;
+  height: 13px;
+  margin: 0 1px;
+  border-radius: 50%;
+  background: conic-gradient(var(--cw-accent) 0 30%, rgba(29, 29, 31, 0.1) 30% 100%);
+  -webkit-mask: radial-gradient(circle, transparent 4.2px, #000 4.6px);
+  mask: radial-gradient(circle, transparent 4.2px, #000 4.6px);
+  animation: sc-ap-spin 0.8s linear infinite;
+}
+
+@keyframes sc-ap-spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+/* the chip is the outcome */
+.sc-ap__chip.is-failed {
+  background: color-mix(in srgb, var(--red-500) 9%, #fff);
+  color: var(--red-700);
+}
+
+.sc-ap__chip.is-applied {
+  background: color-mix(in srgb, var(--success-500) 12%, #fff);
+  color: var(--success-700);
+}
+
+.sc-ap__chip svg {
+  width: 11px;
+  height: 11px;
+}
+
+.sc-ap__chip .sc-ap__spin {
+  width: 10px;
+  height: 10px;
+  -webkit-mask: radial-gradient(circle, transparent 3px, #000 3.4px);
+  mask: radial-gradient(circle, transparent 3px, #000 3.4px);
+}
+
+/* with nothing between the head and the line (stopped before a draft was
+   ready), the line keeps a full step from the head instead of touching it */
+.sc-ap__head + .sc-ap__line {
+  margin-top: 14px;
+}
+
+/* one plain line under the frames: a divider, not a tint */
+.sc-ap__line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 8px;
+  margin: 0 14px;
+  padding: 12px 0 14px;
+  color: var(--cw-ink-3);
+  font-size: var(--fs-2);
+  line-height: 1.4;
+  background: linear-gradient(var(--cw-line), var(--cw-line)) top / 100% 1px no-repeat;
+}
+
+.sc-ap__line .sc-ap__msg {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px;
+}
+
+.sc-ap__line .sc-ap__why {
+  height: 22px;
+  padding: 0 6px;
+}
+
+.sc-ap__line .sc-ap__retry {
+  margin-left: auto;
+}
+
+/* ── The run: Vicino updating the post ─────────────────────────────────
+   draft/brain-generation's rolling log, cut to one quiet line: the step
+   being taken, in the card's grey, with a typed
+   ellipsis. The next step glides up and carries it out of the window. No
+   checks. Stop is the composer's send button (`.is-stop`). */
+.sc-ring {
+  display: inline-block;
+  flex: 0 0 auto;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: conic-gradient(from 45deg, transparent 0 24%, currentColor 24% 100%);
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 0);
+  mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 0);
+  animation: sc-ring-spin 0.72s linear infinite;
+}
+
+@keyframes sc-ring-spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+.sc-ap__run {
+  padding-top: 7px;
+  padding-bottom: 8px;
+}
+
+.sc-ap__log {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 22px;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 6px);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 6px);
+}
+
+.sc-ap__log::-webkit-scrollbar {
+  display: none;
+}
+
+.sc-ap__log ol {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sc-log__row {
+  display: flex;
+  flex: 0 0 22px;
+  align-items: center;
+  gap: 7px;
+  height: 22px;
+  color: var(--cw-ink-3);
+  font-size: var(--fs-2);
+  white-space: nowrap;
+}
+
+.sc-log__dots {
+  display: inline-flex;
+  gap: 2px;
+  margin-left: 4px;
+}
+
+.sc-log__dots i {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--cw-ink-4);
+  animation: sc-log-dot 1.2s ease-in-out infinite;
+}
+
+.sc-log__dots i:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.sc-log__dots i:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes sc-log-dot {
+  0%,
+  60%,
+  100% {
+    opacity: 0.25;
+  }
+  30% {
+    opacity: 1;
+  }
+}
+
+/* Stop, in the send button's place: the same ink circle, a square glyph */
+.cw .chat-dock__send.is-stop svg {
+  width: 11px;
+  height: 11px;
+}
+
+.sc-ap__chip.is-applying {
+  gap: 5px;
+  background: color-mix(in srgb, var(--cyan-600) 11%, #fff);
+  color: var(--cyan-700);
+}
+
+.sc-ap__chip .sc-ring {
+  width: 10px;
+  height: 10px;
+}
+
+.sc-ap__chip.is-stopped {
+  padding: 2px 8px;
+}
+
+.sc-tg__note .sc-ring {
+  width: 10px;
+  height: 10px;
+}
+
+.cw .sc-tg.is-applying .sc-tg__note {
+  color: var(--cyan-700);
+}
+
+.sc-pd-flag.is-applying {
+  gap: 6px;
+  background: color-mix(in srgb, var(--cyan-600) 10%, #fff);
+  color: var(--cyan-700);
+}
+
+.sc-pd-flag.is-stopped {
+  background: rgba(29, 29, 31, 0.05);
+  color: var(--text-3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sc-ring,
+  .sc-log__dots i {
+    animation: none;
+  }
+
+  .sc-log__dots i {
+    opacity: 0.6;
+  }
+}
+
+/* ── Writing and reviewing a version ───────────────────────────────────
+   Nothing of a version shows until it is whole: while Vicino writes, the
+   card holds four quiet grey lines that shimmer — the same for any change,
+   a story, a brief, an image — and the step line under them. Then the
+   version comes in all together. In review every frame and the caption are
+   shown, versions are paged, and the choices sit at the card's foot:
+   Compare with the post, Try another, and the one ink button, Apply to
+   post. */
+.sc-ap__ghostblock {
+  gap: 8px;
+  margin: 16px 14px 14px;
+  padding-top: 0;
+}
+
+.sc-ap__ghostblock i:nth-child(2) {
+  width: 88%;
+}
+
+.sc-ap__ghostblock i:nth-child(3) {
+  width: 94%;
+}
+
+.sc-ap__frames li.sc-ap__cap {
+  grid-template-columns: 1fr;
+  gap: 3px;
+  margin-top: 6px;
+}
+
+.sc-ap__cap .sc-ap__n {
+  padding: 0;
+  font-size: 10px;
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sc-ap__ghost {
+  display: grid;
+  gap: 6px;
+  padding-top: 5px;
+}
+
+.sc-ap__ghost i {
+  display: block;
+  height: 8px;
+  border-radius: 4px;
+  background: linear-gradient(
+    90deg,
+    rgba(29, 29, 31, 0.05) 0%,
+    rgba(29, 29, 31, 0.09) 50%,
+    rgba(29, 29, 31, 0.05) 100%
+  );
+  background-size: 200% 100%;
+  animation: sc-ghost 1.4s ease-in-out infinite;
+}
+
+.sc-ap__ghost i:last-child {
+  width: 62%;
+}
+
+@keyframes sc-ghost {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: -100% 0;
+  }
+}
+
+/* "‹ Version 2 of 3 ›" */
+.sc-ap__pager {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  color: var(--cw-ink-3);
+  font-size: var(--fs-1);
+  font-weight: var(--fw-medium);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.sc-ap__pg {
+  display: inline-grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--cw-ink-3);
+  cursor: pointer;
+}
+
+.sc-ap__pg:hover:not(:disabled) {
+  background: rgba(29, 29, 31, 0.06);
+  color: var(--cw-ink);
+}
+
+.sc-ap__pg:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.sc-ap__pg:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.sc-ap__chip.is-review {
+  background: rgba(29, 29, 31, 0.06);
+  color: var(--cw-ink-2);
+}
+
+/* the choices: three buttons of one size and one shape on a single row —
+   two quiet ones that take a soft grey only on hover, and the one ink,
+   Apply to post */
+.sc-ap__choose {
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.sc-ap__acts2 {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sc-ap__btn {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 6px;
+  height: 30px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: var(--r-full);
+  background: transparent;
+  color: var(--cw-ink-2);
+  font: inherit;
+  font-size: var(--fs-2);
+  font-weight: var(--fw-semibold);
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background var(--dur-1) var(--ease),
+    color var(--dur-1) var(--ease);
+}
+
+.sc-ap__btn:hover {
+  background: rgba(29, 29, 31, 0.06);
+  color: var(--cw-ink);
+}
+
+.sc-ap__btn.is-ink {
+  padding: 0 12px 0 14px;
+  background: var(--cw-send);
+  color: var(--cw-send-ink);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.18);
+}
+
+.sc-ap__btn.is-ink:hover {
+  background: var(--ink-700);
+  color: var(--cw-send-ink);
+}
+
+.sc-ap__btn svg {
+  flex: 0 0 auto;
+}
+
+.sc-ap__btn:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.sc-ap__frames--in {
+  margin: 2px 0 0;
+  padding: 0;
+  gap: 6px;
+}
+
+/* In the drawer: a version waiting in the chat is never shown here — the
+   drawer shows only what is on the post. Its label says a new version is in
+   the chat; "Compare with the post" brings that part in with a light pulse
+   ("focus"), lighter and shorter than the wash a landed change gets. For a
+   change to the whole brief the label sits at the top of the brief card and
+   both marks cover the whole card. */
+.sc-pd-flag.is-review {
+  background: rgba(29, 29, 31, 0.05);
+  color: var(--text-2);
+}
+
+.sc-pd-story.is-focus {
+  animation: sc-pd-focus 1.8s var(--ease) both;
+}
+
+.sc-pd-target {
+  position: relative;
+}
+
+.sc-pd-target::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.sc-pd-target.is-wash::after {
+  animation: sc-pd-wash 2.8s var(--ease) both;
+}
+
+.sc-pd-target.is-focus::after {
+  animation: sc-pd-focus 1.8s var(--ease) both;
+}
+
+.sc-pd-briefflags {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 14px;
+}
+
+@keyframes sc-pd-focus {
+  0% {
+    background: color-mix(in srgb, var(--cyan-500) 0%, transparent);
+  }
+  25% {
+    background: color-mix(in srgb, var(--cyan-500) 6%, transparent);
+  }
+  100% {
+    background: color-mix(in srgb, var(--cyan-500) 0%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sc-pd-story.is-focus,
+  .sc-pd-target::after {
+    animation: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sc-ap__ghost i {
+    animation: none;
+  }
+}
+
+/* ── The version in its window ─────────────────────────────────────────
+   The version keeps under a ceiling and scrolls inside the card, the same
+   at every stage that shows it; the buttons stay under it. Once chosen
+   (updating, not applied, stopped) the ceiling is lower. */
+.sc-rv.is-chosen .sc-rv__scroll {
+  max-height: 196px;
+}
+
+.sc-rv {
+  position: relative;
+  margin: 0 14px 14px;
+}
+
+.sc-rv__scroll {
+  max-height: 264px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(29, 29, 31, 0.18) transparent;
+}
+
+.sc-rv__part + .sc-rv__part {
+  margin-top: 12px;
+}
+
+.sc-rv__k {
+  margin: 0 0 3px;
+  color: var(--cw-ink-4);
+  font-size: 10px;
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sc-rv__part p {
+  margin: 0;
+  color: var(--cw-ink-2);
+  font-size: var(--fs-2);
+  line-height: 1.45;
+}
+
+.sc-rv__part .sc-rv__lead {
+  color: var(--cw-ink);
+  font-size: var(--fs-3);
+  font-weight: var(--fw-semibold);
+  line-height: 1.4;
+}
+
+.sc-rv__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.sc-rv__chips span {
+  padding: 2px 8px;
+  border-radius: var(--r-full);
+  background: rgba(29, 29, 31, 0.05);
+  color: var(--cw-ink-2);
+  font-size: var(--fs-1);
+}
+
+.sc-rv .sc-ap__frames--in {
+  margin: 2px 0 0;
+  padding: 0;
+}
+
+/* the edges that have more fade; "Show all" sits under the window */
+.sc-rv.is-long:not(.at-end) .sc-rv__scroll {
+  -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 40px), transparent);
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 40px), transparent);
+}
+
+.sc-rv.is-long:not(.at-top):not(.at-end) .sc-rv__scroll {
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 22px,
+    #000 calc(100% - 40px),
+    transparent
+  );
+  mask-image: linear-gradient(to bottom, transparent, #000 22px, #000 calc(100% - 40px), transparent);
+}
+
+.sc-rv.is-long.at-end:not(.at-top) .sc-rv__scroll {
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 22px);
+  mask-image: linear-gradient(to bottom, transparent, #000 22px);
+}
+
+.sc-rv__cue {
+  display: none;
+  align-items: center;
+  gap: 3px;
+  width: max-content;
+  height: 22px;
+  margin: 10px auto 0;
+  padding: 0 9px 0 10px;
+  border: 0;
+  border-radius: var(--r-full);
+  /* the white pill the window's "More" cue was: lifted on a soft shadow */
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow:
+    0 0 0 0.5px rgba(15, 23, 42, 0.06),
+    0 2px 6px rgba(15, 23, 42, 0.1);
+  color: var(--cw-ink-3);
+  font: inherit;
+  font-size: var(--fs-1);
+  font-weight: var(--fw-semibold);
+  cursor: pointer;
+  transition:
+    background var(--dur-1) var(--ease),
+    color var(--dur-1) var(--ease);
+}
+
+.sc-rv.is-long .sc-rv__cue,
+.sc-rv.is-open .sc-rv__cue {
+  display: flex;
+}
+
+/* folded, the pill rides up onto the window's faded foot, overlapping
+   the last line's edge a little, the way the "More" cue did */
+.sc-rv.is-long:not(.is-open) .sc-rv__cue {
+  position: relative;
+  z-index: 1;
+  margin-top: -14px;
+}
+
+.sc-rv__cue:hover {
+  background: #fff;
+  color: var(--cw-ink);
+}
+
+/* Show all: the window opens to the version's full length and its fades
+   go; the same quiet button under it now reads Show less */
+.sc-rv.is-open .sc-rv__scroll {
+  max-height: none;
+  overflow: visible;
+}
+
+.sc-rv__cue:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+/* ── When a message can't be sent ──────────────────────────────────────
+   As Claude draws it: the message in the thread as typed, greyed until it
+   goes, and under it, at the reply's place, one quiet notice — a soft grey
+   slip, the alert in red, what happened, and Retry at its end. No red
+   field, no red text. */
+.cw .sc-sf-turn.is-unsent .chat-dock__message-text {
+  opacity: 0.5;
+}
+
+.sc-sf {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 2px 0 4px;
+  padding: 7px 7px 7px 11px;
+  border-radius: 10px;
+  background: var(--cw-fill);
+  color: var(--cw-ink-2);
+  font-size: var(--fs-2);
+  line-height: 1.4;
+}
+
+.sc-sf__icon {
+  display: inline-grid;
+  flex: 0 0 auto;
+  place-items: center;
+  color: var(--red-600);
+}
+
+.sc-sf__text {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.sc-sf__text b {
+  color: var(--cw-ink);
+  font-weight: var(--fw-semibold);
+}
+
+.sc-sf.is-sending {
+  color: var(--cw-ink-3);
+}
+
+/* Retry as Claude has it: a plain button on the slip, not the ink pill */
+.sc-sf__retry {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 5px;
+  height: 26px;
+  padding: 0 10px 0 9px;
+  border: 0;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--cw-ink);
+  font: inherit;
+  font-size: var(--fs-2);
+  font-weight: var(--fw-semibold);
+  box-shadow:
+    0 0 0 0.5px rgba(15, 23, 42, 0.06),
+    0 1px 2px rgba(15, 23, 42, 0.08);
+  cursor: pointer;
+  transition: background var(--dur-1) var(--ease);
+}
+
+.sc-sf__retry:hover {
+  background: #fff;
+}
+
+.sc-sf__retry:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.chat-dock:not(.cw) .sc-sf-wrap {
+  display: none;
+}
+
+/* The post's side of it: the Editing card names the section the outcome
+   touched — "not updated" while it failed, "updated" for a moment after. */
+.sc-tg__note {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 3px;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  background: none;
+  color: var(--red-700);
+  font: inherit;
+  font-size: 10px;
+  font-weight: var(--fw-medium);
+  line-height: 1.3;
+  text-align: left;
+  cursor: pointer;
+}
+
+.sc-tg__note[hidden] {
+  display: none;
+}
+
+.sc-tg__note {
+  max-width: 100%;
+}
+
+.sc-tg__note > span:last-child {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sc-tg__note b {
+  font-weight: var(--fw-heavy);
+}
+
+.sc-tg__note svg {
+  flex: 0 0 auto;
+  width: 11px;
+  height: 11px;
+}
+
+.cw .sc-tg.is-applied .sc-tg__note {
+  color: var(--success-700);
+}
+
+.cw .sc-tg.is-failed {
+  background: linear-gradient(
+    160deg,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 255, 255, 0.74) 55%,
+    color-mix(in srgb, var(--red-500) 7%, rgba(255, 255, 255, 0.7)) 100%
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.5),
+    0 0 0 1px color-mix(in srgb, var(--red-500) 16%, transparent),
+    0 1px 2px rgba(15, 23, 42, 0.04),
+    0 8px 20px -12px rgba(15, 23, 42, 0.26);
+}
+
+/* the note makes the Float card a line taller, so the field keeps its words clear */
+.cw.tg-float .sc-tg:has(.sc-tg__note:not([hidden])) + .chat-dock__composer {
+  padding-top: 62px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sc-ap__spin {
+    animation: none;
+  }
+}
+
+/* ── The post drawer, and how an update shows on it ─────────────────────
+   draft/campaign-drawer's default drawer (src/drawer/), mounted on its own
+   fixed layer under the chat. With the chat open it fills the page beside
+   the chat, the way the product sizes it; closed, it takes its own width.
+   The Editing card opens it; so do "View changes" and the card's note. */
+.sc-post {
+  position: fixed;
+  inset: 0;
+  z-index: 58;
+  pointer-events: none;
+}
+
+.sc-post > * {
+  pointer-events: auto;
+}
+
+body:has(.chat-dock.is-open) .sc-post .post-drawer {
+  /* the rail, the chat with its 12px either side, and 12px at the right */
+  --post-drawer-width: calc(100vw - 56px - var(--sc-chat-w) - 36px);
+}
+
+/* beside the chat the drawer already covers the page, so its scrim would
+   only grey the chat's glass: it stays, clear, to close the drawer */
+body:has(.chat-dock.is-open) .sc-post .post-drawer__scrim {
+  background: transparent;
+}
+
+/* the backdrop lets clicks through to the page and the chat behind it, so
+   a click outside the drawer never closes it */
+.sc-post .post-drawer__scrim {
+  pointer-events: none;
+}
+
+/* the drawer is written again on each change: play its slide-in once */
+.sc-post .post-drawer.is-settled .post-drawer__panel,
+.sc-post .post-drawer.is-settled .post-drawer__scrim {
+  animation: none;
+}
+
+/* Beside the open chat the drawer is about 840px, where the default
+   footer runs past its edge (it does in draft/campaign-drawer too): the
+   making menu keeps its icon and "Uses credits" and drops its label. */
+@container post-drawer (max-width: 900px) {
+  .sc-post .cd-modemenu__btn > span:not(.cd-credit) {
+    display: none;
+  }
+}
+
+.cw .sc-tg.is-link {
+  cursor: pointer;
+}
+
+/* The Story row: where an update lands. It keeps the same box in every
+   state, so nothing moves when the flag comes or goes. */
+.sc-pd-story {
+  margin: -8px -10px;
+  padding: 8px 10px;
+  border-radius: 10px;
+}
+
+.sc-pd-flags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 10px;
+  margin: 0 0 8px;
+}
+
+/* an outcome's label fades away after a few seconds */
+.sc-pd-flags.is-leaving {
+  opacity: 0;
+  transition: opacity 0.3s var(--ease);
+}
+
+.sc-pd-flag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 22px;
+  padding: 0 9px 0 7px;
+  border-radius: var(--r-full);
+  font-size: var(--fs-1);
+  font-weight: var(--fw-semibold);
+}
+
+.sc-pd-flag.is-updated {
+  background: color-mix(in srgb, var(--cyan-600) 12%, #fff);
+  color: var(--cyan-700);
+}
+
+.sc-pd-flag.is-failed {
+  background: color-mix(in srgb, var(--red-500) 9%, #fff);
+  color: var(--red-700);
+}
+
+.sc-pd-flag .sc-ring {
+  width: 10px;
+  height: 10px;
+}
+
+.sc-pd-story.is-failed {
+  background: color-mix(in srgb, var(--red-500) 3.5%, transparent);
+}
+
+.sc-pd-story.is-applying .cdb-full__beats {
+  opacity: 0.55;
+}
+
+/* The wash: the row lights cyan as the scroll brings it in, holds, and
+   fades; its lines come up one after another, so the eye goes from the
+   chat's "View changes" straight to what changed. */
+.sc-pd-story.is-wash {
+  animation: sc-pd-wash 2.8s var(--ease) both;
+}
+
+.sc-pd-story.is-wash .cdb-full__beats li {
+  animation: sc-pd-line 0.5s var(--ease-out) both;
+  animation-delay: calc(var(--i, 0) * 70ms + 120ms);
+}
+
+@keyframes sc-pd-wash {
+  0% {
+    background: color-mix(in srgb, var(--cyan-500) 0%, transparent);
+  }
+  14% {
+    background: color-mix(in srgb, var(--cyan-500) 9%, transparent);
+  }
+  55% {
+    background: color-mix(in srgb, var(--cyan-500) 6.5%, transparent);
+  }
+  100% {
+    background: color-mix(in srgb, var(--cyan-500) 0%, transparent);
+  }
+}
+
+@keyframes sc-pd-line {
+  from {
+    opacity: 0.35;
+    transform: translateY(3px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* folded details: a dot on "More brief details" says something inside changed */
+.sc-pd-dot {
+  width: 6px;
+  height: 6px;
+  margin-left: 2px;
+  border-radius: 50%;
+  background: var(--cyan-600);
+}
+
+.sc-pd-dot.is-failed {
+  background: var(--red-500);
+}
+
+.sc-pd-dot.is-applying {
+  background: var(--text-5);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sc-pd-story.is-wash,
+  .sc-pd-story.is-wash .cdb-full__beats li {
+    animation: none;
+  }
+}
+
+/* In the chat: once the update lands, the card says what changed and where
+   to see it, and "View changes" takes you there. */
+.sc-ap__sum {
+  margin: 10px 14px 14px;
+  color: var(--cw-ink-2);
+  font-size: var(--fs-2);
+  line-height: 1.45;
+}
+
+.sc-ap__view {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 5px;
+  height: 26px;
+  margin-left: auto;
+  padding: 0 9px 0 10px;
+  border: 0;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--cw-ink);
+  font: inherit;
+  font-size: var(--fs-2);
+  font-weight: var(--fw-semibold);
+  box-shadow:
+    0 0 0 0.5px rgba(15, 23, 42, 0.06),
+    0 1px 2px rgba(15, 23, 42, 0.08);
+  cursor: pointer;
+  transition: background var(--dur-1) var(--ease);
+}
+
+.sc-ap__view:hover {
+  background: #fff;
+}
+
+.sc-ap__view:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+/* ── Chat and post when there isn't room for both ───────────────────────
+   They never overlap. Wide, side by side with the chat at 510px; from
+   1241px down, the chat narrows to 420px while the post is open, so the
+   post keeps 640px or more; below 1152px (`body.sc-one`, set by the
+   script), one at a time, each taking the room beside the rail, with a
+   Chat · Post switch in its head. */
+body {
+  --sc-chat-w: 510px;
+}
+
+@media (max-width: 1241px) {
+  body.sc-post-open {
+    --sc-chat-w: 420px;
+  }
+}
+
+body.sc-post-open .cw .chat-dock__panel:not(.is-fullscreen) {
+  width: min(var(--sc-chat-w), calc(100vw - 24px));
+}
+
+/* Below 820px the product makes the chat a full-height sheet on the right,
+   off the screen until it is open. Opening the chat folds the sidebar, and
+   the product's off-screen rule for a folded sidebar outranks its own
+   "open" rule — so an open chat stayed off the screen. An open chat is on
+   the screen until it is closed. (The same rule is in production CSS; the
+   live product has this bug too.) */
+@media (max-width: 820px) {
+  .app-shell:has(.app-sidebar.is-collapsed) .chat-dock__panel.is-open,
+  .app-shell .chat-dock__panel.is-open {
+    transform: none;
+  }
+
+  /* No rail here: the post takes the whole window, edge to edge, as the
+     product's drawer does at this size. It covers the menu button (☰),
+     which comes back when the post is closed. */
+  html body .sc-post .post-drawer,
+  html body.sc-one:has(.chat-dock.is-open) .sc-post .post-drawer {
+    --post-drawer-inset: 0px;
+    --post-drawer-width: 100vw;
+  }
+
+  .sc-post .post-drawer__panel {
+    border-radius: 0;
+  }
+}
+
+/* one at a time: the post takes the chat's room too */
+body.sc-one:has(.chat-dock.is-open) .sc-post .post-drawer {
+  --post-drawer-width: calc(100vw - 56px - 24px);
+}
+
+body.sc-one.sc-post-open {
+  --sc-chat-w: 510px;
+}
+
+body.sc-one[data-pane='post'] .chat-dock .chat-dock__panel.is-open {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+body.sc-one[data-pane='chat'] .sc-post {
+  visibility: hidden;
+}
+
+body.sc-one[data-pane='chat'] .sc-post > * {
+  pointer-events: none;
+}
+
+/* The switch: two segments on a soft grey track, the one showing raised in
+   white — the drawer's own step bar, in small. Its marks are the other
+   side's news. */
+.sc-pane-host {
+  display: contents;
+}
+
+.sc-pane {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 2px;
+  height: 28px;
+  margin: 0 6px 0 auto;
+  padding: 2px;
+  border-radius: var(--r-full);
+  background: rgba(29, 29, 31, 0.055);
+}
+
+.sc-pd-headx .sc-pane {
+  margin: 0 4px 0 0;
+}
+
+.sc-pane__seg {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 24px;
+  padding: 0 11px;
+  border: 0;
+  border-radius: var(--r-full);
+  background: transparent;
+  color: var(--text-3);
+  font: inherit;
+  font-size: var(--fs-2);
+  font-weight: var(--fw-semibold);
+  cursor: pointer;
+  transition:
+    background var(--dur-1) var(--ease),
+    color var(--dur-1) var(--ease);
+}
+
+.sc-pane__seg:hover {
+  color: var(--text);
+}
+
+.sc-pane__seg.is-on {
+  background: #fff;
+  color: var(--text);
+  box-shadow:
+    0 0 0 0.5px rgba(15, 23, 42, 0.05),
+    0 1px 2px rgba(15, 23, 42, 0.08);
+}
+
+.sc-pane__seg:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.sc-pane__seg .sc-ring {
+  width: 9px;
+  height: 9px;
+  color: var(--cyan-600);
+}
+
+.sc-pane__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--cyan-600);
+}
+
+.sc-pane__dot.is-failed {
+  background: var(--red-500);
+}
+
+/* with the switch in it, the chat's header lets its title give way */
+body.sc-one .chat-dock__header .chat-dock__title-group {
+  min-width: 0;
+}
+
+body.sc-one .chat-dock__compact-wrap {
+  display: none;
+}
+
+/* The drawer's footer, narrow: below 820px its controls take two rows —
+   who approves and when on the first, how it is made and the one ink button
+   on the second, at the right — instead of running past the edge. */
+@container post-drawer (max-width: 820px) {
+  .sc-post .cd-foot__bar {
+    flex-wrap: wrap;
+    row-gap: 8px;
+  }
+
+  .sc-post .cd-foot__grow {
+    display: none;
+  }
+
+  .sc-post .cd-foot__acts {
+    flex: 1 1 100%;
+    justify-content: flex-end;
+    margin-left: 0;
+  }
+}
+
+/* ── Fullscreen, shared ────────────────────────────────────────────────
+   The same material, opened up: one reading column of 760px set in the
+   middle, the header's controls at the edges, air around everything. The
+   build's own fullscreen rules (width, the fade in) stay. */
+.cw .chat-dock__panel.is-fullscreen {
+  top: 12px;
+  right: 12px;
+  bottom: 12px;
+}
+
+.cw .chat-dock__panel.is-fullscreen .chat-dock__header {
+  min-height: 60px;
+  padding: 14px 20px 10px 16px;
+}
+
+.cw .chat-dock__panel.is-fullscreen {
+  --cw-full-pad: 40px;
+}
+
+.cw .chat-dock__panel.is-fullscreen .chat-dock__body {
+  padding: 32px var(--cw-full-pad) 28px;
+  gap: 24px;
+}
+
+/* One column: every turn, the history, the empty state and the field share
+   it, 720px wide, so the field's edges are the conversation's edges. */
+.cw .chat-dock__panel.is-fullscreen .chat-dock__body > *,
+.cw .chat-dock__panel.is-fullscreen .chat-dock__compose,
+.cw .chat-dock__panel.is-fullscreen .sc-hist,
+.cw .chat-dock__panel.is-fullscreen .sc-empty > * {
+  width: 100%;
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+.cw .chat-dock__panel.is-fullscreen .chat-dock__message-body {
+  max-width: 100%;
+}
+
+.cw .chat-dock__panel.is-fullscreen .chat-dock__message.is-user .chat-dock__message-body {
+  max-width: 72%;
+}
+
+.cw .chat-dock__panel.is-fullscreen .chat-dock__message-text {
+  font-size: var(--fs-3);
+}
+
+.cw .chat-dock__panel.is-fullscreen {
+  --cw-tile: 88px;
+}
+
+/* The field is as wide as the column: the compose bar keeps no side padding
+   of its own and takes the column's width. */
+.cw .chat-dock__panel.is-fullscreen .chat-dock__compose {
+  width: min(720px, 100% - 2 * var(--cw-full-pad));
+  padding: 8px 0 20px;
+}
+
+.cw .chat-dock__panel.is-fullscreen .chat-dock__composer {
+  padding: 12px 10px 10px 18px;
+  border-radius: 16px;
+}
+
+.cw .chat-dock__panel.is-fullscreen .chat-dock__composer.has-att {
+  padding-top: 6px;
+}
+
+.cw .chat-dock__panel.is-fullscreen .chat-dock__input {
+  font-size: var(--fs-4);
+}
+
+.cw .chat-dock__panel.is-fullscreen .sc-hist {
+  padding: 16px 40px 28px;
+}
+
+.cw .chat-dock__panel.is-fullscreen .sc-empty__orb .vorb {
+  width: 72px;
+  height: 72px;
+}
+
+.cw .chat-dock__panel.is-fullscreen .sc-empty__title {
+  font-size: 28px;
+}
+
+.cw .chat-dock__panel.is-fullscreen .sc-empty__lede {
+  max-width: 420px;
+  font-size: var(--fs-4);
+}
+
+.cw .chat-dock__panel.is-fullscreen .sc-empty__glow {
+  width: 420px;
+  height: 420px;
+}
+
+/* ── The thread, shared (rounds 11 and 16) ───────────────────────────
+   Every window reads a turn the same way: no avatars and no names — the
+   side a turn sits on says whose it is. Vicino's words straight on the
+   ground, left; yours in a bubble, right, with room in it. The windows
+   vary the ground, the tint and the card. All of them are light. */
+.cw .chat-dock__avatar,
+.cw .chat-dock__sender {
+  display: none;
+}
+
+.cw .chat-dock__message-body {
+  max-width: min(440px, 100%);
+}
+
+.cw .chat-dock__message-text {
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  line-height: 1.6;
+}
+
+.cw .chat-dock__message.is-user .chat-dock__message-text {
+  padding: 11px 15px;
+  border-radius: 14px;
+  background: var(--cw-tint, var(--cw-fill));
+  text-align: left;
+}
+
+.cw .chat-dock__message-actions {
+  opacity: 0.7;
+}
+
+/* The field and the card, shared: the composer 14px from the pane's sides,
+   the same as from its foot; the "Editing" card clipped to the field's
+   top-left corner, no stroke, and the field's top padding only while the
+   card is there. */
+.cw .chat-dock__compose {
+  padding: 8px 14px 14px;
+}
+
+.cw .chat-dock__form {
+  position: relative;
+  gap: 0;
+}
+
+.cw .chat-dock__form:has(.sc-tg) {
+  padding-top: 22px;
+}
+
+.cw .sc-tg__tile {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--surface-2) url('../assets/2e6de4c8-556f-4edb-a708-f5f39d6d9abd.jpg') center /
+    cover;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+  color: var(--text-2);
+}
+
+.cw .sc-tg__tile svg {
+  display: none;
+}
+
+.cw .sc-tg__kicker {
+  color: var(--cyan-700);
+}
+
+.cw .sc-tg + .chat-dock__composer {
+  padding-top: 30px;
+}
+
+.cw .chat-dock__panel.is-fullscreen .sc-tg + .chat-dock__composer {
+  padding-top: 34px;
+}
+
+/* ── C · Paper ─────────────────────────────────────────────────────────
+   The one Zi chose to build on: light glass with room in it — 26px at the
+   sides, more between turns — a trace of cyan at the top, a one-line header
+   (the orb, Vicino, the chat's name after a dot). The field a shade deeper
+   than the ground; the card and the field ringed in cyan while editing. */
+.cw-c {
+  --cw-alpha: 0.84;
+  --cw-blur: 18px;
+  --cw-pad-x: 26px;
+  --cw-pad-y: 20px;
+  --cw-gap: 22px;
+  --cw-field: rgba(29, 29, 31, 0.055);
+  --cw-tile: 64px;
+}
+
+.cw-c .chat-dock__panel {
+  top: 12px;
+  bottom: 12px;
+}
+
+.cw-c .chat-dock__panel::before {
+  background:
+    radial-gradient(
+      52% 32% at 74% -6%,
+      color-mix(in srgb, var(--cyan-600) 8%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      36% 26% at 100% 20%,
+      color-mix(in srgb, var(--cyan-600) 4%, transparent),
+      transparent 70%
+    ),
+    linear-gradient(
+      160deg,
+      rgba(255, 255, 255, 0.7) 0%,
+      rgba(255, 255, 255, 0.2) 30%,
+      rgba(255, 255, 255, 0) 55%,
+      rgba(255, 255, 255, 0.14) 100%
+    );
+}
+
+.cw-c .chat-dock__header {
+  min-height: 52px;
+  padding: 12px 16px 8px 14px;
+}
+
+.cw-c .chat-dock__mark {
+  width: 22px;
+  height: 22px;
+}
+
+.cw-c .chat-dock__mark .vorb {
+  width: 20px !important;
+  height: 20px !important;
+}
+
+.cw-c .chat-dock__title-group {
+  flex-direction: row;
+  align-items: baseline;
+  gap: 6px;
+  overflow: hidden;
+}
+
+.cw-c .chat-dock__subtitle::before {
+  content: '· ';
+  color: var(--cw-ink-4);
+}
+
+.cw-c .chat-dock__subtitle {
+  font-weight: var(--fw-regular);
+}
+
+.cw-c .chat-dock__panel.is-fullscreen {
+  --cw-full-pad: 48px;
+}
+
+.cw-c .chat-dock__panel.is-fullscreen .chat-dock__body {
+  padding: 40px var(--cw-full-pad) 32px;
+  gap: 28px;
+}
+
+.cw-a .chat-dock__panel.is-fullscreen,
+.cw-c .chat-dock__panel.is-fullscreen {
+  top: 12px;
+  bottom: 12px;
+}
+
+/* W: the focused field stays a lighter grey instead of going white. */
+.cw.cw-greyfocus {
+  --cw-field-focus: color-mix(in srgb, #fff 28%, var(--cw-field));
+}
+
+/* Paper's and Mist's user bubble is a cyan-washed white; B swaps it for
+   the grey the other windows use, and back. */
+.cw-c:not(.cw-greybubble),
+.cw-a:not(.cw-greybubble) {
+  --cw-tint: color-mix(in srgb, var(--cyan-600) 7%, rgba(255, 255, 255, 0.55));
+}
+
+.cw-a:not(.cw-greybubble) .chat-dock__message.is-user .chat-dock__message-text {
+  background: var(--cw-tint);
+}
+
+/* ── A · Mist ──────────────────────────────────────────────────────────
+   The lightest: near-white glass, a short blur, the faintest shadow — a
+   sheet of paper rather than a pane. No bubbles at all: your turns are
+   plain text too, right-aligned, the name "You" above them. The field is
+   the only tonal thing on it. */
+.cw-a {
+  --cw-alpha: 0.93;
+  --cw-blur: 10px;
+  --cw-sat: 1.1;
+  --cw-pad-x: 26px;
+  --cw-pad-y: 20px;
+  --cw-gap: 24px;
+  --cw-field: rgba(29, 29, 31, 0.05);
+  --cw-shadow: rgba(15, 23, 42, 0.12);
+}
+
+.cw-a .chat-dock__panel {
+  top: 12px;
+  bottom: 12px;
+}
+
+.cw-a .chat-dock__panel::before {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 30%);
+}
+
+.cw-a .chat-dock__message.is-user .chat-dock__message-text {
+  background: rgba(29, 29, 31, 0.04);
+}
+
+/* ── B · Frost ─────────────────────────────────────────────────────────
+   Thin, cold glass: the page shows through at 60%, blurred hard and
+   saturated, the rim lit strongest. Vicino's replies sit in frosted white
+   cards; yours on a cyan tint; the field is frosted too. */
+.cw-b {
+  --cw-alpha: 0.6;
+  --cw-blur: 36px;
+  --cw-sat: 1.8;
+  --cw-pad-x: 22px;
+  --cw-pad-y: 16px;
+  --cw-gap: 18px;
+  --cw-edge: rgba(255, 255, 255, 1);
+  --cw-edge-2: rgba(255, 255, 255, 0.5);
+  --cw-field: rgba(255, 255, 255, 0.42);
+  --cw-tint: color-mix(in srgb, var(--cyan-600) 10%, rgba(255, 255, 255, 0.5));
+}
+
+.cw-b .chat-dock__message:not(.is-user) .chat-dock__message-text {
+  padding: 10px 13px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.66);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 6px 16px -12px rgba(15, 23, 42, 0.25);
+}
+
+.cw-b .chat-dock__message.is-user .chat-dock__message-text {
+  border-radius: 12px 4px 12px 12px;
+}
+
+/* ── D · Haze ──────────────────────────────────────────────────────────
+   No colour at all: white glass that thins from the top down — 92% at the
+   head to 78% at the foot — so the pane reads as mist settling, lightest
+   where the words start. Everything on it is grey or ink. */
+.cw-d {
+  --cw-alpha: 0.86;
+  --cw-blur: 24px;
+  --cw-sat: 1.1;
+  --cw-pad-x: 26px;
+  --cw-pad-y: 20px;
+  --cw-gap: 22px;
+  --cw-field: rgba(29, 29, 31, 0.06);
+  --cw-tint: rgba(29, 29, 31, 0.05);
+}
+
+.cw-d .chat-dock__panel {
+  top: 12px;
+  bottom: 12px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.78));
+}
+
+.cw-d .chat-dock__panel::before {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 40%);
+}
+
+.cw-d .chat-dock__panel::after {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0.15) 100%
+  );
+}
+
+/* ── E · Round ─────────────────────────────────────────────────────────
+   The same light glass, drawn rounder: 22px corners on the pane, both
+   sides of the conversation in bubbles — Vicino's white, yours tinted —
+   and a field and a card to match. Softer by geometry, not by colour. */
+.cw-e {
+  --cw-alpha: 0.82;
+  --cw-blur: 20px;
+  --cw-sat: 1.2;
+  --cw-radius: 22px;
+  --cw-pad-x: 22px;
+  --cw-pad-y: 18px;
+  --cw-gap: 16px;
+  --cw-field: rgba(29, 29, 31, 0.065);
+  --cw-tint: rgba(29, 29, 31, 0.055);
+}
+
+.cw-e .chat-dock__panel {
+  top: 12px;
+  bottom: 12px;
+}
+
+.cw-e .chat-dock__message:not(.is-user) .chat-dock__message-text {
+  padding: 10px 14px;
+  border-radius: 16px 16px 16px 4px;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 4px 12px -10px rgba(15, 23, 42, 0.2);
+}
+
+.cw-e .chat-dock__message.is-user .chat-dock__message-text {
+  padding: 10px 14px;
+  border-radius: 16px 16px 4px 16px;
+}
+
+.cw-e .chat-dock__composer {
+  border-radius: 20px;
+  padding: 12px 10px 10px 16px;
+}
+
+.cw-e .sc-tg {
+  border-radius: 14px;
+}
+
+.cw-e .sc-tg__tile {
+  border-radius: 10px;
+}
+
+.cw-e .sc-tg + .chat-dock__composer {
+  padding-top: 32px;
+}
+
+/* ── F · Drawer ────────────────────────────────────────────────────────
+   Hung from the top edge: flush to the top of the page and to the sidebar,
+   corners only at the foot, a toolbar header under a hairline. The one
+   with a frame. Your turns on an ink tint; "Editing" an ink band joined to
+   the field. */
+.cw-f {
+  --cw-alpha: 0.9;
+  --cw-blur: 16px;
+  --cw-sat: 1.1;
+  --cw-pad-x: 24px;
+  --cw-pad-y: 18px;
+  --cw-gap: 20px;
+  --cw-radius: 0;
+  --cw-field: rgba(29, 29, 31, 0.075);
+  --cw-tint: rgba(29, 29, 31, 0.065);
+}
+
+.cw-f .chat-dock__panel {
+  top: 0;
+  bottom: 0;
+  left: 220px;
+}
+
+.app-shell:has(.app-sidebar.is-collapsed) .cw-f .chat-dock__panel {
+  left: 56px;
+}
+
+.cw-f .chat-dock__panel.is-fullscreen {
+  top: 0;
+  right: 12px;
+  bottom: 0;
+}
+
+.cw-f .chat-dock__panel::before {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 24%);
+}
+
+.cw-f .chat-dock__header {
+  min-height: 52px;
+  padding: 10px 14px 10px 16px;
+  border-bottom: 1px solid var(--cw-line);
+}
+
+/* ── Reduced motion ──────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .cw .chat-dock__panel,
+  .cw .chat-dock__message-actions {
+    transition: none;
+  }
+
+  .sc-spin {
+    animation: none;
+  }
+}
+
+/* ── Prototype switcher (not part of the product surface) ───────────────
+   The brain prototype's panel, mirrored to the bottom-right corner. */
+.sc-sw {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 1300;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-end;
+  gap: 10px;
+  font-family: var(--font-sans);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+.sc-sw *,
+.sc-sw *::before,
+.sc-sw *::after {
+  box-sizing: border-box;
+}
+
+.sc-sw__tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 12px 0 14px;
+  border: 0;
+  border-radius: var(--r-full);
+  background: var(--ink-900);
+  color: #fff;
+  font-family: inherit;
+  font-size: var(--fs-3);
+  font-weight: var(--fw-semibold);
+  box-shadow:
+    0 2px 6px rgba(15, 23, 42, 0.12),
+    0 14px 30px rgba(15, 23, 42, 0.16);
+  cursor: pointer;
+  transition:
+    background var(--dur-2) var(--ease),
+    transform var(--dur-1) var(--ease);
+}
+
+.sc-sw__tab:hover {
+  background: var(--ink-700);
+}
+
+.sc-sw__tab:active {
+  transform: scale(0.97);
+}
+
+.sc-sw__tab:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.sc-sw__tab svg:first-child {
+  color: var(--cyan-500);
+}
+
+.sc-sw__tab b + b {
+  margin-left: -4px;
+}
+
+.sc-sw__tab b {
+  display: inline-grid;
+  place-items: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: var(--r-full);
+  background: rgba(255, 255, 255, 0.14);
+  font-size: var(--fs-1);
+  font-weight: var(--fw-bold);
+}
+
+.sc-sw__panel {
+  width: 336px;
+  max-height: calc(100vh - 90px);
+  overflow-y: auto;
+  padding: 16px;
+  border-radius: var(--r-md);
+  background: var(--canvas);
+  box-shadow:
+    inset 0 0 0 1px var(--surface-edge),
+    0 2px 6px rgba(15, 23, 42, 0.06),
+    0 24px 48px rgba(15, 23, 42, 0.14);
+  scrollbar-width: none;
+}
+
+.sc-sw__panel[hidden] {
+  display: none;
+}
+
+.sc-sw__title {
+  margin: 0;
+  font-size: var(--fs-5);
+  font-weight: var(--fw-semibold);
+}
+
+.sc-sw__hint {
+  margin: 3px 0 12px;
+  color: var(--text-4);
+  font-size: var(--fs-2);
+  line-height: var(--lh-normal);
+}
+
+.sc-sw__row {
+  padding: 10px 0 0;
+  border-top: 1px solid var(--surface-edge);
+}
+
+.sc-sw__label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: var(--fs-3);
+  font-weight: var(--fw-semibold);
+}
+
+.sc-sw__seg {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  padding: 3px;
+  border-radius: 16px;
+  background: rgba(18, 31, 45, 0.05);
+}
+
+.sc-sw__opt {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 28px;
+  padding: 0 11px;
+  border: 0;
+  border-radius: var(--r-full);
+  background: transparent;
+  color: var(--text-3);
+  font-family: inherit;
+  font-size: var(--fs-3);
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background var(--dur-2) var(--ease-out),
+    color var(--dur-1) var(--ease);
+}
+
+.sc-sw__opt:hover {
+  color: var(--text);
+  background: rgba(18, 31, 45, 0.05);
+}
+
+.sc-sw__opt.is-on {
+  background: var(--ink-900);
+  color: #fff;
+}
+
+.sc-sw__opt:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.sc-sw__desc {
+  margin: 8px 0 0;
+  color: var(--text-3);
+  font-size: var(--fs-2);
+  line-height: var(--lh-normal);
+}
+
+.sc-sw__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 8px 0 0;
+}
+
+.sc-sw__links button {
+  height: 24px;
+  padding: 0 9px;
+  border: 0;
+  border-radius: var(--r-full);
+  background: var(--surface-2);
+  color: var(--text-2);
+  font-family: inherit;
+  font-size: var(--fs-1);
+  font-weight: var(--fw-semibold);
+  cursor: pointer;
+}
+
+.sc-sw__links button:hover {
+  background: var(--surface-3);
+  color: var(--text);
+}
+
+.sc-sw__keys {
+  margin: 12px 0 0;
+  color: var(--text-4);
+  font-size: var(--fs-1);
+  line-height: var(--lh-normal);
+}
+
+.sc-sw__keys kbd {
+  display: inline-grid;
+  place-items: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 5px;
+  background: var(--surface-2);
+  color: var(--text-2);
+  font-family: inherit;
+  font-size: var(--fs-0);
+  font-weight: var(--fw-bold);
+}
+
+/* The dock launcher sits centred over the page; the switcher sits at the
+   corner, under it in z, so the two never meet. */
+.sc-sw.is-gone {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sc-time,
+  .sc-sw__tab,
+  .sc-sw__opt,
+  .sc-main {
+    transition: none;
+  }
+}

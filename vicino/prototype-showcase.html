@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pulse · Feature Showcase</title>
+<style>
+  :root{
+    --accent:#8a5fb3;
+    --ink:#1b1b1f;
+    --muted:#8b8b93;
+    --line:#ececec;
+    --ease:cubic-bezier(0.22,1,0.36,1);
+  }
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; height:100%; background:#f6f6f6;
+    font-family:'Poppins','Helvetica Neue',Arial,sans-serif; color:var(--ink); overflow:hidden; }
+
+  /* two separate blocks on the page background */
+  .vs{ display:grid; grid-template-columns:206px 1fr; gap:18px; height:100vh; width:100vw; background:transparent; }
+  /* ---------- switcher (no card — a clean list on the page) ---------- */
+  .vs-tabs{
+    padding:8px 20px 8px 2px; display:flex; flex-direction:column; gap:8px; justify-content:center; overflow:hidden;
+  }
+  .vs-tabs__eyebrow{ font-size:10px; font-weight:600; letter-spacing:0.26em; text-transform:uppercase; color:var(--accent); margin:2px 0 5px 18px; }
+  .vs-tabs__title{ font-size:16px; font-weight:600; color:var(--ink); margin:0 0 24px 18px; line-height:1.3; }
+  .vs-tab{
+    position:relative; display:flex; flex-direction:column; gap:3px; text-align:left;
+    background:transparent; border:none; outline:none; color:#9a9aa2;
+    padding:11px 10px 11px 18px; cursor:pointer; font-family:inherit;
+    transition:color .35s var(--ease);
+  }
+  .vs-tab:hover{ color:#5c5c64; }
+  .vs-tab.active{ color:var(--ink); }
+  .vs-tab__name{ font-size:14.5px; font-weight:500; letter-spacing:0.004em; }
+  .vs-tab__desc{ font-size:11px; font-weight:300; color:#b4b4bb; transition:color .35s var(--ease); }
+  .vs-tab.active .vs-tab__desc{ color:#a98fc6; }
+  .vs-tab__bar{
+    position:absolute; left:0; top:50%; width:2.5px; height:0; border-radius:3px;
+    background:var(--accent); transform:translateY(-50%); transition:height 0.4s var(--ease);
+  }
+  .vs-tab.active .vs-tab__bar{ height:calc(100% - 20px); }
+  .vs-tabs__hint{ margin-top:26px; font-size:10.5px; font-weight:300; color:#bdbdc4; line-height:1.5; padding:0 18px; }
+
+  /* ---------- stage (video card) ---------- */
+  .vs-stage{ position:relative; background:#fff; border:1px solid var(--line); border-radius:14px; box-shadow:0 10px 30px rgba(0,0,0,0.05); overflow:hidden; }
+  .vs-video{
+    position:absolute; inset:0; width:100%; height:100%;
+    object-fit:cover; object-position:center top; background:#fff;
+    opacity:0; transition:opacity .45s var(--ease);
+  }
+  .vs-video.on{ opacity:1; }
+
+  /* light title card */
+  .vs-title{
+    position:absolute; inset:0; z-index:5; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; text-align:center; padding:0 8%;
+    background:rgba(255,255,255,0.975);
+    opacity:0; visibility:hidden; transition:opacity .5s var(--ease), visibility .5s var(--ease);
+  }
+  .vs-title.show{ opacity:1; visibility:visible; }
+  .vs-tc-eyebrow{ font-size:11px; font-weight:600; letter-spacing:0.26em; text-transform:uppercase; color:var(--accent); margin-bottom:13px; opacity:0; transform:translateY(10px); }
+  .vs-tc-name{ font-size:clamp(28px,4.2vw,46px); font-weight:600; letter-spacing:-0.01em; margin:0; color:var(--ink); opacity:0; transform:translateY(12px); }
+  .vs-tc-sub{ font-size:clamp(12.5px,1.25vw,15px); font-weight:300; color:var(--muted); margin-top:13px; max-width:520px; line-height:1.5; opacity:0; transform:translateY(12px); }
+  .vs-title.in .vs-tc-eyebrow{ transition:opacity .5s var(--ease) .04s, transform .5s var(--ease) .04s; opacity:1; transform:none; }
+  .vs-title.in .vs-tc-name{ transition:opacity .55s var(--ease) .13s, transform .55s var(--ease) .13s; opacity:1; transform:none; }
+  .vs-title.in .vs-tc-sub{ transition:opacity .55s var(--ease) .24s, transform .55s var(--ease) .24s; opacity:1; transform:none; }
+
+  /* progress bar */
+  .vs-progress{ position:absolute; left:0; bottom:0; height:3px; width:100%; background:rgba(0,0,0,0.05); z-index:6; }
+  .vs-progress__fill{ height:100%; width:0; background:var(--accent); }
+
+  @media (max-width:640px){
+    .vs{ grid-template-columns:1fr; grid-template-rows:auto 1fr; }
+    .vs-tabs{ flex-direction:row; overflow-x:auto; border-right:none; border-bottom:1px solid var(--line); padding:10px; gap:6px; align-items:center; }
+    .vs-tabs__eyebrow, .vs-tabs__title, .vs-tabs__hint{ display:none; }
+    .vs-tab{ flex:0 0 auto; }
+    .vs-tab__bar{ display:none; }
+  }
+</style>
+</head>
+<body>
+  <div class="vs">
+    <nav class="vs-tabs" id="tabs">
+      <div class="vs-tabs__eyebrow">Pulse</div>
+      <div class="vs-tabs__title">Feature walkthrough</div>
+      <!-- tabs injected -->
+      <div class="vs-tabs__hint" id="hint">Auto-playing · click a feature to jump.</div>
+    </nav>
+    <div class="vs-stage" id="stage">
+      <!-- videos injected -->
+      <div class="vs-title" id="title">
+        <div class="vs-tc-eyebrow">Pulse · Prototype</div>
+        <h2 class="vs-tc-name" id="tcName">Side Chats</h2>
+        <p class="vs-tc-sub" id="tcSub"></p>
+      </div>
+      <div class="vs-progress"><div class="vs-progress__fill" id="progress"></div></div>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    "use strict";
+    var FEATURES = [
+      { id:'brain',           name:'Brain',           desc:'Brand intelligence',  sub:'A living brand report — snapshot fields and the full knowledge table.' },
+      { id:'campaign-drawer', name:'Campaign Drawer', desc:'Brief & scheduling',  sub:'The brief surface — message, audience, proof points, and look, tone & voice.' },
+      { id:'side-chats',      name:'Side Chats',      desc:'In-context briefs',   sub:'A side-chat window that regenerates a whole brief in place.' }
+    ];
+
+    var tabsEl = document.getElementById('tabs');
+    var hintEl = document.getElementById('hint');
+    var stage = document.getElementById('stage');
+    var titleEl = document.getElementById('title');
+    var tcName = document.getElementById('tcName');
+    var tcSub = document.getElementById('tcSub');
+    var progress = document.getElementById('progress');
+
+    /* build tabs + videos */
+    var tabs = [], vids = [];
+    FEATURES.forEach(function(f, i){
+      var b = document.createElement('button');
+      b.className = 'vs-tab' + (i===0?' active':'');
+      b.innerHTML = '<span class="vs-tab__bar"></span><span class="vs-tab__name">'+f.name+'</span><span class="vs-tab__desc">'+f.desc+'</span>';
+      b.addEventListener('click', function(){ userJump(i); });
+      tabsEl.insertBefore(b, hintEl);
+      tabs.push(b);
+
+      var v = document.createElement('video');
+      v.className = 'vs-video' + (i===0?' on':'');
+      v.muted = true; v.playsInline = true; v.setAttribute('playsinline',''); v.preload = 'auto';
+      v.innerHTML = '<source src="videos/'+f.id+'.mp4" type="video/mp4">';
+      v.addEventListener('ended', function(){ if(v === vids[current]) advance(); });
+      stage.insertBefore(v, titleEl);
+      vids.push(v);
+    });
+
+    var current = -1;
+    var titleTimer = null;
+
+    /* smooth, continuous progress bar driven every frame */
+    (function tickProgress(){
+      var v = vids[current];
+      if(v && v.duration && !titleEl.classList.contains('show')){
+        progress.style.width = (v.currentTime / v.duration * 100) + '%';
+      }
+      requestAnimationFrame(tickProgress);
+    })();
+
+    function setActiveTab(i){ tabs.forEach(function(t,k){ t.classList.toggle('active', k===i); }); }
+
+    function showTitle(f){
+      tcName.textContent = f.name; tcSub.textContent = f.sub;
+      titleEl.classList.add('show'); void titleEl.offsetWidth; titleEl.classList.add('in');
+    }
+    function hideTitle(){ titleEl.classList.remove('in'); titleEl.classList.remove('show'); }
+
+    function go(i){
+      if(titleTimer){ clearTimeout(titleTimer); titleTimer = null; }
+      // fade videos
+      vids.forEach(function(v,k){
+        if(k===i){ v.classList.add('on'); }
+        else { v.classList.remove('on'); try{ v.pause(); v.currentTime = 0; }catch(e){} }
+      });
+      var cur = vids[i];
+      try{ cur.pause(); cur.currentTime = 0; }catch(e){}
+      progress.style.width = '0%';
+      current = i;
+      setActiveTab(i);
+      showTitle(FEATURES[i]);
+      titleTimer = setTimeout(function(){
+        hideTitle();
+        cur.play().catch(function(){});
+      }, 1500);
+    }
+
+    function advance(){ go((current + 1) % FEATURES.length); }
+
+    function userJump(i){ go(i); }
+
+    // start
+    go(0);
+  })();
+  </script>
+</body>
+</html>

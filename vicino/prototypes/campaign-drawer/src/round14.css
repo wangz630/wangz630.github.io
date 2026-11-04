@@ -1,0 +1,7104 @@
+/* Round 14 — the brief made plainer and tidier, the plan step, the footer.
+
+   Zi's notes: plain labels; Look, tone and voice in one tidy fold; Brief
+   details gone in favour of a "Full brief text" link; edit forms drawn in each
+   layout's own style; the storyboard and To confirm cards read at a glance in
+   every state; a step to plan the storyboard with a choice about previews;
+   "Draft" as the status; no version number; a tidier footer; and a version
+   with the header and the footer on their own floating cards. */
+
+/* ---------------------------------------------------------------- status */
+
+.cd-state--draft {
+  background: rgba(29, 29, 31, 0.06);
+  color: var(--text-3);
+}
+
+/* ------------------------------------------------------- full brief link */
+
+.cdb-fulllink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 26px;
+  padding: 0 10px 0 8px;
+  border: 0;
+  border-radius: var(--r-full);
+  background: none;
+  color: var(--text-3);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: var(--fw-medium);
+  transition:
+    background var(--dur-2) var(--ease),
+    color var(--dur-2) var(--ease);
+}
+
+.cdb-fulllink svg:last-child {
+  color: var(--text-5);
+  transition: transform var(--dur-2) var(--ease);
+}
+
+.cdb-fulllink:hover {
+  background: rgba(29, 29, 31, 0.045);
+  color: var(--text);
+}
+
+.cdb-fulllink:hover svg:last-child {
+  transform: translateX(2px);
+}
+
+.cdb-sheet__foot,
+.cdb-clean__foot {
+  display: flex;
+  margin-top: 4px;
+}
+
+.cdb-sheet__foot {
+  margin: 10px 0 0 -8px;
+}
+
+.cdb-clean__foot {
+  padding: 0 20px 14px;
+}
+
+.cdb-page__foot {
+  display: flex;
+  justify-content: flex-end;
+  padding: 4px 16px 12px;
+}
+
+/* the opening scene runs the full width of C's and D's grid */
+.cdb-grid__cell--wide {
+  grid-column: 1 / -1;
+}
+
+.cdb-grid__cell--wide:nth-child(odd) {
+  padding-right: 0;
+}
+
+/* ------------------------------------------------------------ edit forms */
+
+.cdb-form {
+  display: grid;
+  gap: 16px;
+}
+
+.cdb-f {
+  display: grid;
+  gap: 6px;
+}
+
+.cdb-f__lab {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: var(--fw-semibold);
+  color: var(--text-2);
+}
+
+.cdb-f__lab small {
+  font-size: 11.5px;
+  font-weight: var(--fw-regular);
+  color: var(--text-4);
+}
+
+.cdb-f__ta {
+  width: 100%;
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+
+.cdb-editfoot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.cdb-editfoot span {
+  margin-left: auto;
+  font-size: 11.5px;
+  color: var(--text-4);
+}
+
+.cdb-sheet.is-editing .cdb-form {
+  margin-top: 14px;
+}
+
+.cdb-page__form {
+  padding: 4px 28px 20px calc(var(--m) + 20px);
+}
+
+.cdb-page__form .cdb-f {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.cdb-clean__form {
+  padding: 12px 28px 24px;
+}
+
+/* ---------------------------------------------- Look, tone and voice fold */
+
+.cdb-style {
+  border-radius: 14px;
+  background: var(--canvas);
+  box-shadow: var(--cd-soft);
+}
+
+.cdb-style__sum {
+  display: grid;
+  grid-template-columns: 28px auto minmax(0, 1fr) 28px;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 52px;
+  padding: 10px 12px 10px 14px;
+  border: 0;
+  border-radius: 14px;
+  background: none;
+  color: var(--text);
+  font-family: inherit;
+  text-align: left;
+}
+
+.cdb-style__ico {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: rgba(29, 29, 31, 0.05);
+  color: var(--text-3);
+}
+
+.cdb-style__sum b {
+  font-size: 13.5px;
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+}
+
+.cdb-style__sub {
+  overflow: hidden;
+  font-size: 12.5px;
+  color: var(--text-4);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.cdb-style__chev {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  color: var(--text-4);
+  transition:
+    background var(--dur-2) var(--ease),
+    transform var(--dur-3) var(--ease-disclosure);
+}
+
+.cdb-style__sum:hover .cdb-style__chev {
+  background: rgba(29, 29, 31, 0.05);
+  color: var(--text-2);
+}
+
+.cdb-style.is-open .cdb-style__chev {
+  transform: rotate(180deg);
+}
+
+.cdb-style__body {
+  padding: 4px 22px 18px 54px;
+}
+
+/* the rows: one label column, one value column, room between them */
+.cdb-st {
+  display: grid;
+  gap: 16px;
+}
+
+.cdb-st__row {
+  display: grid;
+  grid-template-columns: 88px minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.cdb-st__row dt {
+  padding-top: 1px;
+  font-size: 12px;
+  font-weight: var(--fw-medium);
+  color: var(--text-4);
+}
+
+.cdb-st__row dd p {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--text-2);
+}
+
+.cdb-st__row dd b {
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+}
+
+.cdb-st__why {
+  display: block;
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--text-4);
+}
+
+.cdb-style__acts {
+  display: flex;
+  justify-content: flex-end;
+  gap: 4px;
+  margin-top: 14px;
+}
+
+/* references: small square tiles with what each one shows */
+.cdb-refs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.cdb-ref {
+  position: relative;
+  display: grid;
+  gap: 5px;
+  width: 76px;
+  margin: 0;
+}
+
+.cdb-ref__img {
+  display: block;
+  width: 76px;
+  height: 76px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: var(--surface-2);
+}
+
+.cdb-ref__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cdb-ref figcaption {
+  overflow: hidden;
+  font-size: 11px;
+  line-height: 1.3;
+  color: var(--text-3);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.cdb-ref__x {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.86);
+  color: var(--text-2);
+  opacity: 0;
+  transition: opacity var(--dur-2) var(--ease);
+}
+
+.cdb-ref:hover .cdb-ref__x {
+  opacity: 1;
+}
+
+.cdb-ref--add {
+  place-content: center;
+  justify-items: center;
+  height: 76px;
+  border: 0;
+  border-radius: 10px;
+  background: rgba(29, 29, 31, 0.04);
+  color: var(--text-4);
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: var(--fw-medium);
+}
+
+.cdb-ref--add:hover {
+  background: var(--cd-live-soft);
+  color: var(--cd-live);
+}
+
+/* in B the fold is part of the sheet */
+.cdb-style--sheet {
+  margin: 4px 0 0;
+  border-radius: 0;
+  background: rgba(56, 110, 160, 0.03);
+  box-shadow: none;
+}
+
+.cdb-style--sheet .cdb-style__sum {
+  grid-template-columns: auto minmax(0, 1fr) 28px;
+  border-radius: 0;
+  padding-left: calc(var(--m) + 20px);
+}
+
+.cdb-style--sheet .cdb-style__ico {
+  display: none;
+}
+
+.cdb-style--sheet .cdb-style__body {
+  padding-left: calc(var(--m) + 20px);
+}
+
+/* ------------------------------------- storyboard and to-confirm cards */
+
+.cdb-c {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+}
+
+.cdb-c__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 20px;
+}
+
+.cdb-c__head .cdb-pill,
+.cdb-c__head .cdb-count {
+  margin-left: auto;
+}
+
+.cdb-pill {
+  display: inline-flex;
+  align-items: center;
+  height: 20px;
+  padding: 0 8px;
+  border-radius: var(--r-full);
+  background: rgba(29, 29, 31, 0.055);
+  color: var(--text-3);
+  font-size: 11px;
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+}
+
+.cdb-pill.is-ok {
+  background: var(--cd-ok-soft);
+  color: var(--cd-ok);
+}
+
+.cdb-pill.is-warn {
+  background: var(--cd-warn-soft);
+  color: var(--cd-warn);
+}
+
+.cdb-pill.is-live {
+  background: var(--cd-make-soft);
+  color: var(--cd-make);
+}
+
+.cdb-count.is-open {
+  background: var(--cd-warn-soft);
+  color: var(--cd-warn);
+}
+
+.cdb-count.is-done {
+  background: var(--cd-ok-soft);
+  color: var(--cd-ok);
+}
+
+.cdb-c__lead {
+  font-size: 13.5px;
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+}
+
+.cdb-c__say {
+  margin-top: -4px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--text-3);
+}
+
+.cdb-c__row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.cdb-c__facts {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+  line-height: 1.35;
+}
+
+.cdb-c__facts b {
+  font-size: 13px;
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+}
+
+.cdb-c__facts span {
+  font-size: 12px;
+  color: var(--text-3);
+}
+
+.cdb-c__bar {
+  display: block;
+  height: 4px;
+  overflow: hidden;
+  border-radius: 4px;
+  background: var(--cd-make-soft);
+}
+
+.cdb-c__bar i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--cd-make);
+  transition: width var(--dur-3) var(--ease-out);
+}
+
+.cdb-c__acts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 12px;
+}
+
+/* a card's own button: plainly a button, quieter than the footer's */
+.cdb-cbtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 30px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: var(--r-full);
+  background: rgba(29, 29, 31, 0.055);
+  box-shadow: none;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+  transition:
+    background var(--dur-2) var(--ease),
+    box-shadow var(--dur-2) var(--ease);
+}
+
+.cdb-cbtn:hover {
+  background: rgba(29, 29, 31, 0.09);
+}
+
+.cdb-cbtn svg {
+  color: var(--text-4);
+}
+
+.cdb-cbtn--main {
+  background: var(--ink-900);
+  box-shadow: none;
+  color: #fff;
+}
+
+.cdb-cbtn--main svg {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.cdb-cbtn--main:hover {
+  background: var(--ink-700);
+  box-shadow: none;
+}
+
+.cdb-cbtn--text {
+  height: auto;
+  padding: 0;
+  background: none;
+  box-shadow: none;
+  color: var(--text-3);
+  font-weight: var(--fw-medium);
+  text-decoration: underline;
+  text-decoration-color: rgba(29, 29, 31, 0.2);
+  text-underline-offset: 3px;
+}
+
+.cdb-cbtn--text:hover {
+  background: none;
+  box-shadow: none;
+  color: var(--text);
+}
+
+/* to confirm: a tile per item — the thing, why, and its button */
+.cdb-tl {
+  display: grid;
+  gap: 6px;
+}
+
+.cdb-ti {
+  display: grid;
+  grid-template-columns: 8px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px 9px 12px;
+  border-radius: 10px;
+  background: rgba(29, 29, 31, 0.035);
+}
+
+.cdb-ti__mark {
+  align-self: start;
+  width: 7px;
+  height: 7px;
+  margin-top: 5px;
+  border-radius: 50%;
+  background: var(--amber-500);
+}
+
+.cdb-ti--fix .cdb-ti__mark {
+  background: var(--cd-warn);
+}
+
+.cdb-ti--note .cdb-ti__mark {
+  background: var(--text-5);
+}
+
+.cdb-ti__txt {
+  display: grid;
+  gap: 1px;
+  min-width: 0;
+  line-height: 1.35;
+}
+
+.cdb-ti__txt b {
+  font-size: 12.5px;
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+}
+
+.cdb-ti__txt small {
+  font-size: 11.5px;
+  color: var(--text-4);
+}
+
+.cdb-ti--note .cdb-ti__txt b {
+  font-weight: var(--fw-medium);
+  color: var(--text-2);
+}
+
+.cdb-ti__btn {
+  height: 26px;
+  padding: 0 11px;
+  border: 0;
+  border-radius: var(--r-full);
+  background: var(--cyan-100);
+  box-shadow: none;
+  color: var(--cyan-800);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+  transition: background var(--dur-2) var(--ease);
+}
+
+.cdb-ti__btn:hover {
+  background: var(--cyan-200);
+}
+
+/* in a slim card the button goes under its words */
+.cdb-tl.is-slim .cdb-ti {
+  grid-template-columns: 8px minmax(0, 1fr);
+  row-gap: 8px;
+}
+
+.cdb-tl.is-slim .cdb-ti__btn {
+  grid-column: 2;
+  justify-self: start;
+}
+
+.cdb-empty {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--cd-ok-soft);
+}
+
+.cdb-empty__ico {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--cd-ok);
+  color: #fff;
+}
+
+.cdb-empty > span:last-child {
+  display: grid;
+  gap: 1px;
+  line-height: 1.35;
+}
+
+.cdb-empty b {
+  font-size: 12.5px;
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+}
+
+.cdb-empty small {
+  font-size: 11.5px;
+  color: var(--text-3);
+}
+
+/* the shells around the cards: no tape, one quiet header */
+.cdb-mini.cdb-c,
+.cdb-slip.cdb-c,
+.cdb-sidecard.cdb-c {
+  gap: 10px;
+}
+
+.cdb-mini.cdb-c {
+  padding: 14px 16px 16px;
+}
+
+.cdb-slip--todo.cdb-c {
+  background: var(--canvas);
+  box-shadow: var(--cd-soft);
+}
+
+.cdb-slip--todo.cdb-c::before {
+  display: none;
+}
+
+.cdb-slips {
+  padding-top: 0;
+}
+
+.cdb-pair {
+  align-items: stretch;
+}
+
+/* C's band: the storyboard state as one button, the count beside it */
+.cdb-band__ico {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: var(--ink-900);
+  color: #fff;
+}
+
+.cdb-band__say {
+  display: grid;
+  gap: 1px;
+}
+
+.cdb-band__say b {
+  font-weight: var(--fw-semibold);
+}
+
+.cdb-band__say > span em {
+  font-style: normal;
+  color: var(--cd-warn);
+}
+
+.cdb-band__list {
+  padding: 0 22px 16px;
+}
+
+.cdb-band__list .cdb-tl {
+  padding: 0;
+  background: none;
+}
+
+/* ----------------------------------------------------------- B · margin */
+
+.cdb-page {
+  --m: 132px;
+}
+
+/* ------------------------------------------- plan the storyboard dialog */
+
+.cd-modal__card--wide {
+  width: min(600px, 100%);
+}
+
+.cd-modal .cdb-pm__lab {
+  margin: 18px 0 8px;
+  font-size: 10.5px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cyan-700);
+}
+
+.cdb-pm {
+  display: grid;
+  gap: 8px;
+}
+
+.cdb-pm__opt {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 0;
+  border-radius: 12px;
+  background: rgba(29, 29, 31, 0.035);
+  font-family: inherit;
+  text-align: left;
+  transition:
+    background var(--dur-2) var(--ease),
+    box-shadow var(--dur-2) var(--ease);
+}
+
+.cdb-pm__opt:hover {
+  background: rgba(29, 29, 31, 0.055);
+}
+
+.cdb-pm__opt.is-on {
+  background: var(--cyan-50);
+  box-shadow: none;
+}
+
+.cdb-pm__opt .cd-slot__radio {
+  margin-top: 1px;
+}
+
+.cdb-pm__opt.is-on .cd-slot__radio {
+  background: radial-gradient(circle, #fff 0 3px, var(--cyan-600) 3.5px);
+}
+
+.cdb-pm__say {
+  display: grid;
+  gap: 3px;
+}
+
+.cdb-pm__say b {
+  font-size: 13.5px;
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+}
+
+.cdb-pm__say small {
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--text-3);
+}
+
+.cdb-pm__cost {
+  padding-top: 1px;
+  font-size: 11.5px;
+  font-weight: var(--fw-semibold);
+  color: var(--text-4);
+  white-space: nowrap;
+}
+
+.cdb-pm__opt.is-on .cdb-pm__cost {
+  color: var(--cyan-700);
+}
+
+/* ------------------------------------------------- full brief text */
+
+.cd-modal .cdb-full {
+  display: grid;
+  gap: 18px;
+  max-height: min(56vh, 520px);
+  margin-top: 18px;
+  overflow-y: auto;
+}
+
+.cdb-full__sec h4 {
+  margin-bottom: 5px;
+  font-size: 13px;
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+}
+
+.cdb-full__sec p {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--text-2);
+}
+
+.cdb-full__beats {
+  display: grid;
+  gap: 8px;
+  padding: 0;
+  list-style: none;
+}
+
+.cdb-full__beats li {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  gap: 12px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--text-2);
+}
+
+.cdb-full__beats b {
+  font-size: 12px;
+  font-weight: var(--fw-semibold);
+  line-height: 1.85;
+  color: var(--text-4);
+}
+
+/* ------------------------------------------------------------- footer */
+
+.cd .post-drawer__panel {
+  grid-template-rows: auto minmax(0, 1fr) auto;
+}
+
+.cd-top {
+  position: relative;
+  z-index: 2;
+}
+
+.cd-foot {
+  gap: 8px;
+  padding: 8px 14px 10px;
+}
+
+.cd-foot__bar {
+  gap: 6px;
+}
+
+.cd-fchip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 10px 0 4px;
+  border: 0;
+  border-radius: var(--r-full);
+  background: none;
+  color: var(--text-2);
+  font-family: inherit;
+  white-space: nowrap;
+  transition: background var(--dur-2) var(--ease);
+}
+
+.cd-fchip:hover {
+  background: rgba(29, 29, 31, 0.045);
+}
+
+.cd-fchip .cd-gate__avatar {
+  width: 28px;
+  height: 28px;
+  font-size: 12px;
+}
+
+.cd-fchip .cd-gate__avatar i {
+  width: 8px;
+  height: 8px;
+}
+
+.cd-fchip__txt {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  font-size: 12.5px;
+}
+
+.cd-fchip__txt > span {
+  color: var(--text-4);
+}
+
+.cd-fchip__txt b {
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+}
+
+.cd-fchip--when {
+  padding: 0 10px 0 12px;
+  color: var(--text-4);
+}
+
+.cd-fchip--when .cd-fchip__txt b {
+  font-weight: var(--fw-medium);
+}
+
+.cd-fchip__ib {
+  width: 32px;
+  height: 32px;
+}
+
+.cd-cta {
+  gap: 12px;
+}
+
+.cd-cta .cd-cta__cost {
+  max-width: 220px;
+  font-size: 11.5px;
+  line-height: 1.35;
+  color: var(--text-4);
+  text-align: right;
+}
+
+.cd-cta__btn {
+  height: 38px;
+  padding: 0 6px 0 16px;
+  font-size: 13px;
+}
+
+.cd-cta__arrow {
+  width: 24px;
+  height: 24px;
+}
+
+.cd-cta.is-off .cd-cta__cost {
+  color: var(--cd-warn);
+}
+
+/* ------------------------------------ B · header and footer as cards */
+
+.cd[data-chrome='float'] .post-drawer__panel {
+  gap: 0;
+}
+
+.cd[data-chrome='float'] .cd-top,
+.cd[data-chrome='float'] .cd-foot,
+.cd[data-surface][data-chrome='float'] .cd-top,
+.cd[data-surface][data-chrome='float'] .cd-foot {
+  margin: 10px 10px 0;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.78);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  backdrop-filter: blur(18px) saturate(1.4);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 1px 2px rgba(15, 23, 42, 0.04),
+    0 10px 26px -14px rgba(15, 23, 42, 0.22);
+}
+
+.cd[data-chrome='float'] .cd-top {
+  padding-bottom: 2px;
+}
+
+.cd[data-chrome='float'] .cd-foot,
+.cd[data-surface][data-chrome='float'] .cd-foot {
+  margin: 0 10px 10px;
+  padding: 8px 10px 8px;
+}
+
+.cd[data-chrome='float'] .cd-head {
+  padding: 14px 14px 0 16px;
+}
+
+.cd[data-chrome='float'] .cd-steps,
+.cd[data-surface][data-chrome='float'] .cd-steps:not(.cd-steps--line) {
+  margin-top: 4px;
+  padding: 0 16px;
+  box-shadow: none;
+}
+
+.cd[data-chrome='float'] .cd-body {
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 12px, #000 calc(100% - 14px), transparent 100%);
+  mask-image: linear-gradient(180deg, transparent 0, #000 12px, #000 calc(100% - 14px), transparent 100%);
+}
+
+.cd[data-chrome='float'] .cd-body > .cd-view {
+  padding-top: 18px;
+}
+
+/* a slim card stacks the facts under the thumbnails */
+.cdb-c__row--stack {
+  display: grid;
+  justify-items: start;
+  gap: 8px;
+}
+
+/* round 16 · Zi: the floating header and footer lift too much and look solid.
+   They are now thin glass with a soft lift, and the drawer keeps its colour. */
+.cd[data-chrome='float'] .cd-top,
+.cd[data-chrome='float'] .cd-foot,
+.cd[data-surface][data-chrome='float'] .cd-top,
+.cd[data-surface][data-chrome='float'] .cd-foot {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.42));
+  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+  backdrop-filter: blur(20px) saturate(1.5);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.85),
+    0 1px 2px rgba(15, 23, 42, 0.03),
+    0 6px 16px -10px rgba(15, 23, 42, 0.12);
+}
+
+.cdb-grid .cdb-grid__cell--wide,
+.cdb-grid .cdb-grid__cell--wide:nth-child(even) {
+  padding: 16px 0;
+  box-shadow: inset 0 1px 0 var(--surface-edge);
+}
+
+/* a slim card stacks the facts under the thumbnails */
+.cdb-c__row--stack {
+  display: grid;
+  justify-items: start;
+  gap: 8px;
+}
+
+/* ======================================================== round 16
+   Zi: Proof points were missing from the brief card; the rest of the brief
+   should open in the card, not in a dialog, under plain titles, and be
+   called "More brief details". */
+
+/* proof points, A · Labels: a soft cyan-grey label per claim, no ring */
+.cdb-proofs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding-top: 3px;
+}
+
+.cdb-proofs span {
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  padding: 0 10px;
+  border-radius: 7px;
+  background: rgba(29, 29, 31, 0.035);
+  font-size: 12px;
+  font-weight: var(--fw-medium);
+  line-height: 1;
+  color: var(--text-2);
+  white-space: nowrap;
+}
+
+.cdb-fico--proof {
+  background: #e8f1fe;
+  color: #1f6fe0;
+}
+
+/* the rest of the brief, opened inside the card */
+.cdb-more {
+  margin-top: 10px;
+  padding: 16px 18px;
+  border-radius: 14px;
+  background: rgba(29, 29, 31, 0.03);
+}
+
+.cdb-clean .cdb-more {
+  margin: 4px 28px 8px;
+}
+
+.cdb-more .cdb-st {
+  gap: 14px;
+}
+
+.cdb-more .cdb-st__row {
+  grid-template-columns: 128px minmax(0, 1fr);
+}
+
+.cdb-more .cdb-st__row dt {
+  font-weight: var(--fw-semibold);
+  color: var(--text-3);
+}
+
+.cdb-more .cdb-full__beats li,
+.cdb-lines--more .cdb-full__beats li {
+  grid-template-columns: 64px minmax(0, 1fr);
+  font-size: 13px;
+}
+
+/* in B the rest of the brief is more ruled lines, labels in the margin */
+.cdb-lines--more {
+  margin-top: 4px;
+  padding-top: 14px;
+}
+
+.cdb-lines--more dd p,
+.cdb-lines--more dd .cdb-full__beats {
+  margin: 0;
+}
+
+.cdb-lines--more .cdb-full__beats {
+  gap: 0;
+}
+
+.cdb-lines--more .cdb-full__beats li,
+.cdb-lines--more .cdb-full__beats b {
+  line-height: var(--lh);
+}
+
+/* ======================================================== round 18
+   Zi: Proof points and Opening scene are new ideas to most people, so each
+   label has a small (i) that opens a plain explanation. Fill and shadow only. */
+
+.cdb-hl {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.cdb-help {
+  display: inline-grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: var(--text-5);
+  opacity: 0.6;
+  cursor: pointer;
+  transition:
+    background var(--dur-2) var(--ease),
+    color var(--dur-2) var(--ease);
+}
+
+.cdb-help:hover,
+.cdb-help.is-open {
+  color: var(--text-3);
+  opacity: 1;
+}
+
+.cdb-helppop {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: -6px;
+  z-index: 30;
+  display: flex;
+  gap: 10px;
+  width: 280px;
+  padding: 11px 13px 12px 11px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.97);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  backdrop-filter: blur(16px) saturate(1.4);
+  box-shadow:
+    0 4px 10px rgba(15, 23, 42, 0.07),
+    0 18px 36px -14px rgba(15, 23, 42, 0.3);
+  color: var(--text);
+  font-size: 12px;
+  font-weight: var(--fw-regular);
+  letter-spacing: 0;
+  line-height: 1.45;
+  text-align: left;
+  text-transform: none;
+  white-space: normal;
+  animation: cdb-helpin var(--dur-2) var(--ease-out);
+}
+
+@keyframes cdb-helpin {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+
+/* the clean card clips its children; let the explanation spill over */
+.cdb-clean,
+.cdb-sheet,
+.cdb-page {
+  overflow: visible;
+}
+
+/* the approver is a person: a photo in the avatar, the status dot on top */
+.cd-gate__avatar,
+.cd-avatar {
+  overflow: visible;
+}
+
+.cd-gate__avatar img,
+.cd-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.cd-gate__avatar i {
+  z-index: 1;
+}
+
+/* ======================================================== round 20
+   Zi: the edit view must look like the layout it edits, not a generic form;
+   the waiting button explains itself only when you reach for it; the header
+   reads tidier; the proof labels are quieter. */
+
+/* ---- edit in place: the value turns into a soft field where it stands */
+.cdb-ie.cd-ta {
+  display: block;
+  width: calc(100% + 16px);
+  min-height: 0;
+  margin: -4px -8px;
+  padding: 4px 8px;
+  border: 0;
+  border-radius: 9px;
+  background: rgba(13, 118, 133, 0.05);
+  box-shadow: none;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  resize: none;
+  field-sizing: content;
+  transition:
+    background var(--dur-2) var(--ease),
+    box-shadow var(--dur-2) var(--ease);
+}
+
+.cdb-ie.cd-ta:hover {
+  background: rgba(13, 118, 133, 0.075);
+}
+
+.cdb-ie.cd-ta:focus {
+  outline: none;
+  background: #fff;
+  box-shadow: 0 2px 12px -3px rgba(13, 118, 133, 0.3);
+}
+
+.cdb-ie.cd-ta::placeholder {
+  color: var(--text-5);
+}
+
+.cdb-keys__val .cdb-ie,
+.cdb-grid dd .cdb-ie {
+  font-size: inherit;
+}
+
+.cdb-ie__ro {
+  display: block;
+  color: var(--text-3);
+}
+
+.cdb-ie__note {
+  display: inline-flex;
+  margin-top: 6px;
+  font-size: 11.5px;
+  color: var(--text-4);
+}
+
+/* the opening scene is not edited here, so it steps back */
+.is-editing .cdb-ie__ro .cdb-jump {
+  display: none;
+}
+
+.cdb-keys.is-editing .cdb-keys__row,
+.cdb-grid.is-editing .cdb-grid__cell {
+  row-gap: 8px;
+}
+
+.cdb-keys.is-editing .cdb-keys__txt {
+  gap: 8px;
+}
+
+.cdb-grid.is-editing .cdb-grid__txt {
+  gap: 8px;
+}
+
+.cdb-editing {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 20px;
+  margin-left: auto;
+  padding: 0 8px;
+  border-radius: var(--r-full);
+  background: var(--cd-live-soft);
+  color: var(--cyan-700);
+  font-size: 11px;
+  font-weight: var(--fw-semibold);
+}
+
+.cdb-editing::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--cyan-600);
+  animation: cd-pulse 1.4s ease-in-out infinite;
+}
+
+/* the lead and the statement keep their own size while edited */
+.cdb-lead .cdb-ie,
+.cdb-statement .cdb-ie {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.cdb-statement .cdb-ie.cd-ta {
+  margin: -6px -10px;
+  padding: 6px 10px;
+  width: calc(100% + 20px);
+}
+
+/* B: the text stays on the ruled lines */
+.cdb-lines.is-editing .cdb-ie.cd-ta {
+  margin: 0 -6px;
+  padding: 0 6px;
+  width: calc(100% + 12px);
+  border-radius: 6px;
+  background: rgba(56, 110, 160, 0.05);
+  line-height: var(--lh);
+}
+
+.cdb-lines.is-editing .cdb-ie.cd-ta:focus {
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.cdb-lines.is-editing .cdb-ie__note {
+  margin-top: 0;
+  line-height: var(--lh);
+}
+
+.cdb-lines.is-editing .cdb-pe {
+  padding: 2px 0;
+  min-height: var(--lh);
+}
+
+.cdb-page__editfoot {
+  padding: 4px 28px 18px calc(var(--m) + 20px);
+}
+
+.cdb-clean__editfoot {
+  padding: 4px 28px 22px;
+}
+
+.cdb-sheet.is-editing .cdb-editfoot {
+  margin-top: 16px;
+}
+
+/* proof points stay labels while edited */
+.cdb-pe__chip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+  padding: 0 4px 0 10px;
+  border-radius: 7px;
+  background: rgba(13, 118, 133, 0.06);
+  transition: background var(--dur-2) var(--ease);
+}
+
+.cdb-proofs.cdb-pe span.cdb-pe__chip {
+  height: 26px;
+  padding: 0 4px 0 10px;
+  background: rgba(13, 118, 133, 0.06);
+}
+
+.cdb-pe__chip:focus-within {
+  background: #fff;
+  box-shadow: 0 2px 10px -3px rgba(13, 118, 133, 0.3);
+}
+
+.cdb-pe__in {
+  min-width: 60px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: var(--fw-medium);
+  field-sizing: content;
+}
+
+.cdb-pe__in:focus {
+  outline: none;
+}
+
+.cdb-pe__x {
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  margin-left: 2px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: var(--text-4);
+}
+
+.cdb-pe__x:hover {
+  background: rgba(29, 29, 31, 0.07);
+  color: var(--text);
+}
+
+.cdb-pe__add {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 26px;
+  padding: 0 10px 0 8px;
+  border: 0;
+  border-radius: 7px;
+  background: none;
+  color: var(--cyan-700);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: var(--fw-semibold);
+}
+
+.cdb-pe__add:hover {
+  background: var(--cd-live-soft);
+}
+
+/* ---- the waiting button: it looks ready to wait, and explains on reach */
+.cd-cta__btn.is-blocked {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.cd-cta__btn.is-blocked:hover {
+  background: var(--cd-primary);
+}
+
+.cd-flash {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px 10px 10px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.94);
+  -webkit-backdrop-filter: blur(18px) saturate(1.5);
+  backdrop-filter: blur(18px) saturate(1.5);
+  box-shadow:
+    0 4px 12px rgba(15, 23, 42, 0.08),
+    0 20px 40px -16px rgba(15, 23, 42, 0.3);
+  opacity: 0;
+  transform: translate(-50%, -8px);
+  transition:
+    opacity var(--dur-3) var(--ease-out),
+    transform var(--dur-3) var(--ease-out);
+  pointer-events: none;
+}
+
+.cd-flash.is-in {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.cd-flash__ico {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 9px;
+  background: var(--cd-warn-soft);
+  color: var(--cd-warn);
+}
+
+.cd-flash > span:last-child {
+  display: grid;
+  gap: 1px;
+  line-height: 1.35;
+}
+
+.cd-flash b {
+  font-size: 13px;
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.cd-flash small {
+  font-size: 12px;
+  color: var(--text-3);
+  white-space: nowrap;
+}
+
+/* the Save row glows to say "here" */
+.cdb-editfoot.is-attn {
+  border-radius: 12px;
+  animation: cdb-attn-row 1.6s var(--ease-out);
+}
+
+.cdb-editfoot.is-attn [data-act^='save'] {
+  animation: cdb-attn 0.8s var(--ease-out) 2;
+}
+
+[data-act='save-scene'].is-attn {
+  animation: cdb-attn 0.8s var(--ease-out) 2;
+}
+
+@keyframes cdb-attn {
+  0% {
+    box-shadow: 0 0 0 0 rgba(73, 224, 245, 0.7);
+  }
+  100% {
+    box-shadow: 0 0 0 12px rgba(73, 224, 245, 0);
+  }
+}
+
+@keyframes cdb-attn-row {
+  0%,
+  60% {
+    background: rgba(73, 224, 245, 0.12);
+    box-shadow: 0 0 0 8px rgba(73, 224, 245, 0.12);
+  }
+  100% {
+    background: transparent;
+    box-shadow: 0 0 0 8px rgba(73, 224, 245, 0);
+  }
+}
+
+/* ---- the header: a smaller title, a clear gap, one quiet meta row */
+.cd-head {
+  padding-top: 18px;
+}
+
+.cd-head__title {
+  font-size: 16.5px;
+  line-height: 1.3;
+  letter-spacing: -0.012em;
+}
+
+.cd-head__meta {
+  gap: 10px;
+  margin-top: 9px;
+  font-size: 12px;
+}
+
+.cd-head__meta .cd-state {
+  height: 20px;
+  padding: 0 8px 0 7px;
+  font-size: 11px;
+}
+
+.cd-head__facts {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-4);
+}
+
+.cd-head__ch {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--text-3);
+  font-weight: var(--fw-medium);
+}
+
+
+.cd-head + .cd-steps,
+.cd-top .cd-steps {
+  margin-top: 12px;
+}
+
+/* ======================================================== round 22
+   Zi: C's little draft card looked rough before anything is made. It now
+   carries the post's own first words in small type, and each format has a
+   designed placeholder: a quiet video frame with a play mark and the scenes
+   to come as ticks, two numbered slides with a page indicator, or the text
+   post alone. */
+
+.cdb-art__card {
+  gap: 7px;
+  width: 150px;
+  padding: 10px 10px 11px;
+}
+
+.cdb-art__who {
+  gap: 5px;
+}
+
+.cdb-art__av {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #95bf47;
+  color: #fff;
+  font-size: 8px;
+  font-weight: var(--fw-bold);
+}
+
+.cdb-art__name {
+  display: grid;
+  min-width: 0;
+  line-height: 1.1;
+}
+
+.cdb-art .cdb-art__name b {
+  display: block;
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  background: none;
+  font-size: 8.5px;
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+}
+
+.cdb-art__name small {
+  font-size: 7.5px;
+  color: var(--text-4);
+}
+
+.cdb-art__x {
+  display: grid;
+  place-items: center;
+  width: 12px;
+  height: 12px;
+  margin-left: auto;
+  border-radius: 3px;
+  background: var(--ink-900);
+  color: #fff;
+}
+
+.cdb-art .cdb-art__txt {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 8px;
+  line-height: 1.45;
+  color: var(--text-2);
+}
+
+.cdb-art--text .cdb-art__txt {
+  -webkit-line-clamp: 6;
+  font-size: 9px;
+}
+
+/* the video before it is planned */
+.cdb-art__media--video {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: 118px;
+  background:
+    radial-gradient(90% 70% at 80% 10%, rgba(73, 224, 245, 0.22), transparent 70%),
+    linear-gradient(165deg, #eef8fa, #f3f6f9 55%, #edf1f6);
+}
+
+.cdb-art__media--video > b {
+  top: 6px;
+  right: 6px;
+  bottom: auto;
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--text-3);
+  font-size: 8px;
+}
+
+.cdb-art__play {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  padding-left: 2px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 4px 10px -4px rgba(13, 80, 100, 0.3);
+  color: var(--cyan-700);
+}
+
+/* the scenes to come, as ticks along the bottom */
+.cdb-art__ticks {
+  position: absolute;
+  right: 7px;
+  bottom: 7px;
+  left: 7px;
+  display: flex;
+  gap: 2px;
+}
+
+.cdb-art__ticks i {
+  flex: 1;
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 1px 2px rgba(13, 80, 100, 0.12);
+}
+
+/* the carousel: numbered slides and a page indicator */
+.cdb-art__slides {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 4px;
+  height: 104px;
+}
+
+.cdb-art__slide {
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  background:
+    radial-gradient(90% 70% at 70% 10%, rgba(73, 224, 245, 0.2), transparent 70%),
+    linear-gradient(165deg, #eef8fa, #f2f5f8);
+}
+
+.cdb-art__slide + .cdb-art__slide {
+  background: linear-gradient(165deg, #f3f6f8, #edf1f4);
+}
+
+.cdb-art__slide em {
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--text-3);
+  font-size: 8.5px;
+  font-style: normal;
+  font-weight: var(--fw-semibold);
+}
+
+.cdb-art__dots {
+  display: flex;
+  justify-content: center;
+  gap: 3px;
+  margin-top: -2px;
+}
+
+.cdb-art__dots i {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(29, 29, 31, 0.15);
+}
+
+.cdb-art__dots i.is-on {
+  background: var(--cyan-600);
+}
+
+/* the text post: a second sheet is enough, the card holds only words */
+.cdb-art--text .cdb-art__card {
+  min-height: 120px;
+}
+
+/* round 23 · Look and tone share one row: the pictures, then the words */
+.cdb-st__row dd .cdb-st__then {
+  margin-top: 6px;
+}
+
+/* ======================================================== round 24
+   Zi: the draft card must not carry real copy or a platform; one style for
+   every post. Only its picture changes: the video frame, a carousel picture
+   with arrows and dots, or hand-drawn strokes and a pen for a text post. */
+
+.cdb-art .cdb-art__who {
+  gap: 6px;
+}
+
+.cdb-art .cdb-art__who i {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: linear-gradient(140deg, #d6f3f7, #e8eef2);
+}
+
+.cdb-art .cdb-art__who b,
+.cdb-art .cdb-art__lines b {
+  display: block;
+  height: 5px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #e6eef0, #f0f4f5);
+}
+
+.cdb-art .cdb-art__who b {
+  width: 44px;
+}
+
+.cdb-art__lines {
+  display: grid;
+  gap: 5px;
+  padding: 2px 0 1px;
+}
+
+.cdb-art__lines b:last-child {
+  width: 68%;
+}
+
+/* carousel: one picture, arrows, dots */
+.cdb-art__media--carousel {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: 112px;
+  background:
+    radial-gradient(90% 70% at 75% 15%, rgba(73, 224, 245, 0.2), transparent 70%),
+    linear-gradient(165deg, #eef8fa, #f3f6f9 55%, #edf1f6);
+}
+
+.cdb-art__pic {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.7);
+  color: var(--cyan-700);
+}
+
+.cdb-art__arrow {
+  position: absolute;
+  top: 50%;
+  display: grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  margin-top: -8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 2px 6px -2px rgba(13, 80, 100, 0.3);
+  color: var(--text-3);
+}
+
+.cdb-art__arrow.is-l {
+  left: 5px;
+}
+
+.cdb-art__arrow.is-r {
+  right: 5px;
+}
+
+.cdb-art__media--carousel .cdb-art__dots {
+  position: absolute;
+  right: 0;
+  bottom: 7px;
+  left: 0;
+  margin: 0;
+}
+
+.cdb-art__media--carousel .cdb-art__dots i {
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.cdb-art__media--carousel .cdb-art__dots i.is-on {
+  width: 10px;
+  border-radius: 2px;
+  background: var(--cyan-600);
+}
+
+/* text: hand-drawn strokes and a pen */
+.cdb-art__media--text {
+  position: relative;
+  display: block;
+  height: 86px;
+  padding: 8px 6px;
+  background: linear-gradient(165deg, #f4fbfc, #f2f5f8);
+}
+
+.cdb-art__media--text svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: var(--cyan-600);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.75;
+}
+
+.cdb-art__media--text svg .is-loop {
+  stroke: var(--cyan-700);
+}
+
+.cdb-art__pen {
+  position: absolute;
+  left: 68%;
+  bottom: 18px;
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 3px 8px -3px rgba(13, 80, 100, 0.35);
+  color: var(--cyan-700);
+  transform: rotate(-8deg);
+}
+
+.cdb-art--text .cdb-art__card {
+  min-height: 0;
+}
+
+/* round 25 · the status sits after the title, centred on it */
+.cd-head__titlerow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.cd-head__titlerow .cd-head__title {
+  min-width: 0;
+}
+
+.cd-head__titlerow .cd-state {
+  flex: none;
+  height: 20px;
+  padding: 0 8px 0 7px;
+  font-size: 11px;
+}
+
+/* round 26 · fewer, finer strokes; a quill with no backing; a quieter picture icon */
+.cdb-art__media--text svg {
+  stroke: var(--cyan-500);
+  stroke-width: 1.4;
+  opacity: 0.55;
+}
+
+.cdb-art__pen {
+  left: 64%;
+  bottom: 26px;
+  width: auto;
+  height: auto;
+  background: none;
+  box-shadow: none;
+  color: var(--cyan-600);
+  opacity: 0.7;
+  transform: rotate(4deg);
+}
+
+.cdb-art__pic {
+  width: auto;
+  height: auto;
+  background: none;
+  color: var(--cyan-600);
+  opacity: 0.5;
+}
+
+
+/* ======================================================== round 28
+   Zi: To confirm was too big and too grey, its cyan buttons looked off, and
+   in C it sat at the bottom beside the storyboard, as if the storyboard were
+   the thing to confirm. Items now wear a faint, translucent amber; their
+   action is a quiet ink link with an arrow; the list scrolls inside a capped
+   card; and C carries one slim confirm bar near the top that stays in view. */
+
+/* the list scrolls inside the card, a soft fade at its foot */
+.cdb-tlwrap {
+  max-height: 232px;
+  margin-right: -6px;
+  padding-right: 6px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(29, 29, 31, 0.14) transparent;
+  -webkit-mask-image: linear-gradient(180deg, #000 calc(100% - 14px), transparent 100%);
+  mask-image: linear-gradient(180deg, #000 calc(100% - 14px), transparent 100%);
+}
+
+.cdb-tl {
+  gap: 5px;
+  padding-bottom: 8px;
+}
+
+.cdb-ti {
+  gap: 8px 10px;
+  padding: 8px 8px 8px 11px;
+  border-radius: 10px;
+  background: rgba(241, 154, 8, 0.075);
+}
+
+.cdb-ti--note {
+  background: rgba(29, 29, 31, 0.03);
+}
+
+.cdb-ti__mark {
+  width: 6px;
+  height: 6px;
+  margin-top: 6px;
+  background: var(--amber-500);
+}
+
+.cdb-ti__txt b {
+  font-size: 12.5px;
+  line-height: 1.35;
+}
+
+.cdb-ti__txt small {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 11.5px;
+  line-height: 1.4;
+}
+
+/* the action: ink text and an arrow, no pill */
+.cdb-ti__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 24px;
+  padding: 0 7px;
+  border-radius: 7px;
+  background: none;
+  color: var(--text);
+  font-size: 12px;
+  font-weight: var(--fw-semibold);
+  transition:
+    background var(--dur-2) var(--ease),
+    color var(--dur-2) var(--ease);
+}
+
+.cdb-ti__btn svg {
+  color: var(--text-4);
+  transition: transform var(--dur-2) var(--ease);
+}
+
+.cdb-ti__btn:hover {
+  background: rgba(29, 29, 31, 0.05);
+}
+
+.cdb-ti__btn:hover svg {
+  transform: translateX(2px);
+}
+
+.cdb-tl.is-slim .cdb-ti {
+  row-gap: 4px;
+}
+
+.cdb-tl.is-slim .cdb-ti__btn {
+  margin-left: -7px;
+}
+
+/* ---- C · the confirm bar */
+.cdb-cbar {
+  position: sticky;
+  top: 6px;
+  z-index: 8;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  background: rgba(253, 243, 223, 0.82);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  backdrop-filter: blur(14px) saturate(1.4);
+  box-shadow: 0 6px 18px -12px rgba(120, 80, 10, 0.35);
+}
+
+.cdb-cbar__sum {
+  display: grid;
+  grid-template-columns: 20px auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 38px;
+  padding: 6px 10px 6px 12px;
+  border: 0;
+  border-radius: 12px;
+  background: none;
+  color: var(--text);
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.cdb-cbar__ico {
+  display: grid;
+  place-items: center;
+  color: var(--cd-warn);
+}
+
+.cdb-cbar__sum b {
+  font-size: 12.5px;
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+}
+
+.cdb-cbar__list {
+  overflow: hidden;
+  font-size: 12px;
+  color: var(--text-3);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.cdb-cbar__go {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 26px;
+  padding: 0 8px 0 10px;
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 12px;
+  font-weight: var(--fw-semibold);
+  transition: background var(--dur-2) var(--ease);
+}
+
+.cdb-cbar__sum:hover .cdb-cbar__go {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.cdb-cbar__panel {
+  padding: 2px 10px 10px;
+}
+
+.cdb-cbar__panel .cdb-ti {
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.cdb-cbar__panel .cdb-ti--note {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+/* a sticky child cannot move inside a grid row, so C's column is a flex
+   column with the same gap, and the bar keeps to the top as you scroll */
+.cdb--clean {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.cdb--clean > .cdb-cbar {
+  margin-bottom: 0;
+}
+
+/* ======================================================== round 29
+   Zi: more room between Look and tone, Voice and References; references keep
+   every tool the product has (upload, from Library, notes, what it is,
+   remove) in this prototype's own style; and "Edit with Vicino" sits beside
+   Edit on the main card, both coming with the pointer. */
+
+/* the fold's sections stand further apart */
+.cdb-style .cdb-st {
+  gap: 26px;
+}
+
+/* ---- references */
+.cdb-refsec {
+  display: grid;
+  gap: 12px;
+}
+
+.cdb-refsec__head {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.cdb-refsec__head > span:first-child {
+  flex: 1;
+  padding-top: 5px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--text-4);
+}
+
+.cdb-refsec__acts {
+  display: inline-flex;
+  flex: none;
+  gap: 4px;
+}
+
+.cdb-refbtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 28px;
+  padding: 0 11px 0 9px;
+  border: 0;
+  border-radius: 8px;
+  background: rgba(29, 29, 31, 0.05);
+  color: var(--text-2);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: var(--fw-semibold);
+  transition: background var(--dur-2) var(--ease);
+}
+
+.cdb-refbtn:hover {
+  background: rgba(29, 29, 31, 0.09);
+}
+
+.cdb-refbtn svg {
+  color: var(--text-4);
+}
+
+.cdb-refs {
+  gap: 14px;
+}
+
+.cdb-ref {
+  gap: 6px;
+  width: 88px;
+}
+
+.cdb-ref__img {
+  position: relative;
+  width: 88px;
+  height: 88px;
+  border-radius: 12px;
+}
+
+.cdb-ref__img.is-dark {
+  background: #1d1d1f;
+}
+
+.cdb-ref__img img {
+  transition: transform var(--dur-3) var(--ease-out);
+}
+
+.cdb-ref:hover .cdb-ref__img img {
+  transform: scale(1.04);
+}
+
+/* the tools come with the pointer, on glass */
+.cdb-ref__tools {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  display: inline-flex;
+  gap: 3px;
+  opacity: 0;
+  transform: translateY(-2px);
+  transition:
+    opacity var(--dur-2) var(--ease),
+    transform var(--dur-2) var(--ease);
+}
+
+.cdb-ref:hover .cdb-ref__tools,
+.cdb-ref:focus-within .cdb-ref__tools {
+  opacity: 1;
+  transform: none;
+}
+
+.cdb-ref__tool {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 0;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.85);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 6px -2px rgba(15, 23, 42, 0.3);
+  color: var(--text-2);
+}
+
+.cdb-ref__tool:hover {
+  background: #fff;
+  color: var(--text);
+}
+
+.cdb-ref__noted {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--cyan-700);
+}
+
+/* what it is: a small dropdown under the picture */
+.cdb-ref__role {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  width: 100%;
+  height: 24px;
+  padding: 0 6px 0 8px;
+  border: 0;
+  border-radius: 7px;
+  background: rgba(29, 29, 31, 0.045);
+  color: var(--text-2);
+  font-family: inherit;
+  font-size: 11.5px;
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+  transition: background var(--dur-2) var(--ease);
+}
+
+.cdb-ref__role:hover,
+.cdb-ref.is-menu .cdb-ref__role {
+  background: rgba(29, 29, 31, 0.08);
+}
+
+.cdb-ref__role.is-unset {
+  background: rgba(241, 154, 8, 0.09);
+  color: var(--cd-warn);
+}
+
+.cdb-ref__role svg {
+  flex: none;
+  color: currentColor;
+  opacity: 0.6;
+}
+
+.cdb-ref figcaption {
+  font-size: 10.5px;
+  color: var(--text-5);
+}
+
+.cdb-ref--add {
+  height: 88px;
+  border-radius: 12px;
+}
+
+.cdb-refmenu {
+  position: absolute;
+  top: calc(88px + 32px);
+  left: 0;
+  z-index: 30;
+  display: grid;
+  gap: 2px;
+  width: 290px;
+  padding: 6px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.97);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  backdrop-filter: blur(16px) saturate(1.4);
+  box-shadow:
+    0 4px 10px rgba(15, 23, 42, 0.07),
+    0 18px 36px -14px rgba(15, 23, 42, 0.3);
+  animation: cdb-helpin var(--dur-2) var(--ease-out);
+}
+
+.cdb-refmenu__opt {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+  padding: 9px 10px;
+  border: 0;
+  border-radius: 10px;
+  background: none;
+  font-family: inherit;
+  text-align: left;
+}
+
+.cdb-refmenu__opt:hover {
+  background: rgba(29, 29, 31, 0.04);
+}
+
+.cdb-refmenu__opt.is-on {
+  background: var(--cyan-50);
+}
+
+.cdb-refmenu__opt.is-on .cd-slot__radio {
+  background: radial-gradient(circle, #fff 0 3px, var(--cyan-600) 3.5px);
+}
+
+.cdb-refmenu__opt span {
+  display: grid;
+  gap: 2px;
+}
+
+.cdb-refmenu__opt b {
+  font-size: 12.5px;
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+}
+
+.cdb-refmenu__opt small {
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: var(--text-3);
+}
+
+/* notes dialog */
+.cdb-rnote {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 16px 0 12px;
+  padding: 8px;
+  border-radius: 12px;
+  background: rgba(29, 29, 31, 0.035);
+}
+
+.cdb-rnote img {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 9px;
+  object-fit: cover;
+}
+
+.cdb-rnote span {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.cdb-rnote b {
+  overflow: hidden;
+  font-size: 12.5px;
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.cdb-rnote small {
+  font-size: 11.5px;
+  color: var(--text-4);
+}
+
+.cdb-rnote__ta {
+  width: 100%;
+}
+
+/* library picker */
+.cd-modal .cdb-lib {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  max-height: 340px;
+  margin-top: 16px;
+  overflow-y: auto;
+}
+
+.cdb-lib__item {
+  display: grid;
+  gap: 6px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-family: inherit;
+  text-align: left;
+}
+
+.cdb-lib__item b {
+  overflow: hidden;
+  font-size: 11.5px;
+  font-weight: var(--fw-medium);
+  color: var(--text-3);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.cdb-lib__img,
+.cdb-lib__doc {
+  position: relative;
+  display: block;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 12px;
+  background: var(--surface-2);
+  transition: box-shadow var(--dur-2) var(--ease);
+}
+
+.cdb-lib__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cdb-lib__tick {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  color: transparent;
+}
+
+.cdb-lib__item.is-on .cdb-lib__img {
+  box-shadow: 0 0 0 3px var(--cyan-500);
+}
+
+.cdb-lib__item.is-on .cdb-lib__tick {
+  background: var(--cyan-600);
+  color: #fff;
+}
+
+.cdb-lib__item.is-used {
+  cursor: default;
+  opacity: 0.55;
+}
+
+.cdb-lib__img em {
+  position: absolute;
+  bottom: 6px;
+  left: 6px;
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--text-3);
+  font-size: 10px;
+  font-style: normal;
+  font-weight: var(--fw-semibold);
+}
+
+.cdb-lib__doc {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 6px;
+  color: var(--text-5);
+}
+
+.cdb-lib__doc small {
+  font-size: 10.5px;
+}
+
+.cdb-lib__item.is-off b {
+  color: var(--text-5);
+}
+
+/* ---- the two ways to edit, together on the card */
+.cdb-editacts {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  margin-left: auto;
+}
+
+.cdb-editacts .cd-qbtn {
+  margin-left: 0;
+}
+
+/* ---- Edit with Vicino: a glass chat beside the drawer */
+.cd-vchat {
+  position: fixed;
+  top: 16px;
+  bottom: 16px;
+  left: 16px;
+  z-index: 60;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  width: min(360px, calc(100vw - 32px));
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.86);
+  -webkit-backdrop-filter: blur(22px) saturate(1.5);
+  backdrop-filter: blur(22px) saturate(1.5);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 2px 6px rgba(15, 23, 42, 0.04),
+    0 32px 64px -20px rgba(15, 23, 42, 0.3);
+  animation: cd-vchat-in var(--dur-3) var(--ease-out);
+}
+
+@keyframes cd-vchat-in {
+  from {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+}
+
+.cd-vchat__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 12px 10px 16px;
+}
+
+.cd-vchat__orb {
+  flex: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff, var(--cyan-200) 45%, var(--cyan-500));
+  box-shadow: 0 4px 10px -4px rgba(14, 165, 184, 0.6);
+}
+
+.cd-vchat__who {
+  display: grid;
+  flex: 1;
+  line-height: 1.25;
+}
+
+.cd-vchat__who b {
+  font-size: 13.5px;
+  font-weight: var(--fw-semibold);
+}
+
+.cd-vchat__who small {
+  font-size: 11.5px;
+  color: var(--text-4);
+}
+
+.cd-vchat__log {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 6px 16px 12px;
+  overflow-y: auto;
+}
+
+.cd-vmsg {
+  max-width: 92%;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.cd-vmsg.is-v {
+  align-self: flex-start;
+  color: var(--text-2);
+}
+
+.cd-vmsg.is-u {
+  align-self: flex-end;
+  padding: 8px 12px;
+  border-radius: 14px 14px 4px 14px;
+  background: var(--ink-900);
+  color: #fff;
+}
+
+.cd-vmsg.is-typing {
+  display: inline-flex;
+  gap: 4px;
+  padding: 10px 2px;
+}
+
+.cd-vmsg.is-typing i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--cyan-500);
+  animation: cd-pulse 1s ease-in-out infinite;
+}
+
+.cd-vmsg.is-typing i:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.cd-vmsg.is-typing i:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+/* a proposed change: before, after, and the two answers */
+.cd-vprop {
+  display: grid;
+  gap: 6px;
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05), 0 10px 22px -14px rgba(15, 23, 42, 0.25);
+}
+
+.cd-vprop__k {
+  font-size: 10.5px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--cyan-700);
+}
+
+.cd-vprop__from {
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--text-4);
+  text-decoration: line-through;
+  text-decoration-color: rgba(29, 29, 31, 0.25);
+}
+
+.cd-vprop__to {
+  font-size: 13px;
+  font-weight: var(--fw-medium);
+  line-height: 1.45;
+  color: var(--text);
+}
+
+.cd-vprop__acts {
+  display: flex;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.cd-vprop__done {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 2px;
+  font-size: 12px;
+  font-weight: var(--fw-semibold);
+  color: var(--cyan-700);
+}
+
+.cd-vprop.is-kept .cd-vprop__done {
+  color: var(--text-4);
+}
+
+.cd-vprop.is-applied .cd-vprop__from {
+  display: none;
+}
+
+.cd-vchat__foot {
+  display: grid;
+  gap: 8px;
+  padding: 10px 12px 12px;
+}
+
+.cd-vchat__asks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.cd-vchat__ask {
+  height: 28px;
+  padding: 0 11px;
+  border: 0;
+  border-radius: var(--r-full);
+  background: var(--cd-live-soft);
+  color: var(--cyan-800);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: var(--fw-medium);
+  transition: background var(--dur-2) var(--ease);
+}
+
+.cd-vchat__ask:hover {
+  background: var(--cyan-200);
+}
+
+.cd-vchat__ctx {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  justify-self: start;
+  max-width: 100%;
+  height: 24px;
+  padding: 0 9px;
+  overflow: hidden;
+  border-radius: 7px;
+  background: rgba(29, 29, 31, 0.045);
+  color: var(--text-3);
+  font-size: 11.5px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.cd-vchat__box {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  padding: 6px 6px 6px 12px;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05), 0 8px 20px -12px rgba(15, 23, 42, 0.2);
+}
+
+.cd-vchat__box .cd-ta {
+  flex: 1;
+  min-height: 0;
+  max-height: 120px;
+  padding: 6px 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+  font-size: 13px;
+  resize: none;
+  field-sizing: content;
+}
+
+.cd-vchat__box .cd-ta:focus {
+  outline: none;
+}
+
+.cd-vchat__send {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 30px;
+  height: 30px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--ink-900);
+  color: #fff;
+}
+
+/* clear the prototype's own control pill at the bottom left */
+.cd-vchat {
+  bottom: 72px;
+}
+
+/* ======================================================== round 30
+   Zi: To confirm is hidden unless asked for (switcher, or the C key); no dot
+   before an alert, an icon instead; alerts layered, on glass; C's opened list
+   tidier. */
+
+.cdb-pair.is-single {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* an alert: a tinted glass card fading to white, its icon in a white disc */
+.cdb-tl {
+  gap: 8px;
+}
+
+.cdb-ti {
+  grid-template-columns: 28px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 4px 11px;
+  padding: 10px 10px 10px 10px;
+  border-radius: 13px;
+  background: linear-gradient(
+    180deg,
+    rgba(254, 236, 204, 0.62) 0%,
+    rgba(255, 246, 232, 0.5) 60%,
+    rgba(255, 255, 255, 0.55) 100%
+  );
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.85),
+    0 1px 2px rgba(150, 95, 10, 0.06),
+    0 8px 18px -12px rgba(150, 95, 10, 0.32);
+}
+
+.cdb-ti--note {
+  background: linear-gradient(180deg, rgba(234, 240, 246, 0.75) 0%, rgba(255, 255, 255, 0.6) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.85),
+    0 1px 2px rgba(15, 23, 42, 0.04),
+    0 8px 18px -12px rgba(15, 23, 42, 0.18);
+}
+
+.cdb-ti__ico {
+  display: grid;
+  place-items: center;
+  align-self: start;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 3px 8px -2px rgba(180, 110, 10, 0.3);
+  color: var(--amber-600);
+}
+
+.cdb-ti--note .cdb-ti__ico {
+  box-shadow: 0 3px 8px -2px rgba(15, 23, 42, 0.16);
+  color: var(--text-4);
+}
+
+.cdb-ti__txt {
+  align-self: center;
+}
+
+.cdb-tl.is-slim .cdb-ti {
+  grid-template-columns: 28px minmax(0, 1fr);
+}
+
+.cdb-tl.is-slim .cdb-ti__btn {
+  grid-column: 2;
+  margin-left: -7px;
+}
+
+/* ---- C's bar: amber glass, its icon in a white disc */
+.cdb-cbar {
+  background: linear-gradient(180deg, rgba(254, 238, 208, 0.86), rgba(255, 247, 235, 0.8));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    0 8px 20px -14px rgba(150, 95, 10, 0.4);
+}
+
+.cdb-cbar__sum {
+  grid-template-columns: 24px auto minmax(0, 1fr) auto;
+}
+
+.cdb-cbar__ico {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 2px 6px -2px rgba(180, 110, 10, 0.35);
+  color: var(--amber-600);
+}
+
+/* opened, the list floats under the bar as its own glass card */
+.cdb-cbar__panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  left: 0;
+  padding: 12px 12px 4px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.9);
+  -webkit-backdrop-filter: blur(22px) saturate(1.5);
+  backdrop-filter: blur(22px) saturate(1.5);
+  box-shadow:
+    inset 0 1px 0 #fff,
+    0 4px 12px rgba(15, 23, 42, 0.06),
+    0 26px 50px -18px rgba(15, 23, 42, 0.3);
+  animation: cdb-helpin var(--dur-2) var(--ease-out);
+}
+
+.cdb-cbar__panel .cdb-tlwrap {
+  max-height: 320px;
+}
+
+.cdb-cbar__panel .cdb-ti {
+  background: linear-gradient(
+    180deg,
+    rgba(254, 236, 204, 0.62) 0%,
+    rgba(255, 246, 232, 0.5) 60%,
+    rgba(255, 255, 255, 0.55) 100%
+  );
+}
+
+.cdb-cbar__panel .cdb-ti--note {
+  background: linear-gradient(180deg, rgba(234, 240, 246, 0.75) 0%, rgba(255, 255, 255, 0.6) 100%);
+}
+
+/* summary chips: an icon, no dot */
+.cds-chip svg {
+  flex: none;
+}
+
+/* a blurred parent stops its child from blurring what is behind it: while the
+   list is open, the bar gives up its own blur so the list can have one */
+.cdb-cbar.is-open {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  background: linear-gradient(180deg, rgb(254, 240, 214), rgb(255, 248, 238));
+}
+
+.cdb-cbar.is-open .cdb-cbar__panel {
+  background: rgba(255, 255, 255, 0.94);
+}
+
+/* ======================================================== round 31
+   Zi: the Channels card ended short; channels can be added and edited on
+   hover; and at every step the user can use their own video or images
+   instead of what Vicino makes, before or after it is made. */
+
+/* Context: cards in a row share a height; the channel card fills it */
+.cd-ctx {
+  align-items: stretch;
+}
+
+.cd-ctx__card--chan {
+  display: flex;
+  flex-direction: column;
+}
+
+.cd-ctx__chan {
+  position: relative;
+}
+
+.cd-ctx__edit {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  margin-left: 2px;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: none;
+  color: var(--text-4);
+  opacity: 0;
+  transition:
+    opacity var(--dur-2) var(--ease),
+    background var(--dur-2) var(--ease);
+}
+
+.cd-ctx__chan:hover .cd-ctx__edit,
+.cd-ctx__edit:focus-visible {
+  opacity: 1;
+}
+
+.cd-ctx__edit:hover {
+  background: rgba(29, 29, 31, 0.06);
+  color: var(--text);
+}
+
+.cd-ctx__add {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  height: 40px;
+  margin-top: auto;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 12px;
+  background: rgba(29, 29, 31, 0.03);
+  color: var(--text-4);
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: var(--fw-semibold);
+  opacity: 0.0;
+  transition:
+    opacity var(--dur-2) var(--ease),
+    background var(--dur-2) var(--ease),
+    color var(--dur-2) var(--ease);
+}
+
+.cd-ctx__card--chan:hover .cd-ctx__add,
+.cd-ctx__add:focus-visible {
+  opacity: 1;
+}
+
+.cd-ctx__add:hover {
+  background: var(--cd-live-soft);
+  color: var(--cyan-700);
+}
+
+.cd-ctx__card--chan .cd-rows {
+  margin-bottom: 14px;
+}
+
+/* your own asset: the thumbnail in the cards and band */
+.cdb-thumb--own {
+  width: 30px;
+  height: 40px;
+}
+
+.cdb-thumb--own img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* the third way in the plan dialog */
+.cd-modal .cdb-pm__own {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  padding: 6px 8px;
+  border: 0;
+  border-radius: 8px;
+  background: none;
+  color: var(--text-3);
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: var(--fw-medium);
+}
+
+.cd-modal .cdb-pm__own:hover {
+  background: rgba(29, 29, 31, 0.045);
+  color: var(--text);
+}
+
+.cdb-lib__item--up .cdb-lib__doc {
+  background: var(--cd-live-soft);
+  color: var(--cyan-700);
+}
+
+/* the storyboard tab when your own video is used */
+.cds-own {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: 24px;
+  align-items: center;
+  max-width: 720px;
+  margin: 24px auto;
+  padding: 18px;
+  border-radius: 20px;
+  background: var(--canvas);
+  box-shadow: var(--cd-soft);
+}
+
+.cds-own__img {
+  display: block;
+  aspect-ratio: 9 / 14;
+  overflow: hidden;
+  border-radius: 14px;
+  background: var(--surface-2);
+}
+
+.cds-own__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cds-own__say {
+  display: grid;
+  gap: 8px;
+}
+
+.cds-own__say b {
+  font-size: 16px;
+  font-weight: var(--fw-semibold);
+}
+
+.cds-own__say p {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--text-3);
+}
+
+.cds-own__say .cdb-c__acts {
+  margin-top: 6px;
+}
+
+.cdr-row--quiet .cdr-row__say b {
+  font-weight: var(--fw-medium);
+  color: var(--text-3);
+}
+
+/* ======================================================== round 32
+   Zi: the brief no longer repeats the storyboard (the step bar and the next
+   step lead there); a spinner while previews draw; the next-step button
+   hovers like draft/brain's Confirm; and the way this post is made is chosen
+   at the button, not in a dialog: Vicino plans it (previews right away or when
+   asked, with their credits) or you use your own, side by side. */
+
+.cdb-paper.is-solo,
+.cdb-split.is-solo {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* the next-step button: brain's Confirm hover, cyan 600 and a soft lift */
+.cd-cta__btn:not(:disabled):not(.is-blocked):hover {
+  background: var(--cyan-600);
+  box-shadow:
+    0 2px 4px rgba(15, 23, 42, 0.06),
+    0 8px 18px -8px rgba(14, 165, 184, 0.55);
+  color: #fff;
+}
+
+.cd-cta__btn:not(:disabled):not(.is-blocked):hover .cd-cta__arrow {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* a spinner beside "previews are still drawing" */
+.cd-cta__spin {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin: 0 6px -2px 0;
+  border-radius: 50%;
+  background: conic-gradient(var(--cd-make) 0 28%, rgba(99, 102, 241, 0.16) 28% 100%);
+  -webkit-mask: radial-gradient(circle, transparent 3.5px, #000 4px);
+  mask: radial-gradient(circle, transparent 3.5px, #000 4px);
+  animation: cd-spin 0.9s linear infinite;
+}
+
+.cd-cta.is-off .cd-cta__cost .cd-cta__spin {
+  vertical-align: middle;
+}
+
+/* ---- the chooser */
+.cd-chooser {
+  display: grid;
+  gap: 8px;
+}
+
+.cd-chooser.is-beside {
+  grid-template-columns: minmax(0, 1.55fr) auto minmax(0, 1fr);
+  align-items: stretch;
+}
+
+.cd-chooser__or {
+  align-self: center;
+  font-size: 11.5px;
+  font-weight: var(--fw-medium);
+  color: var(--text-5);
+}
+
+.cd-pick {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  padding: 9px 10px 10px;
+  border-radius: 13px;
+  background: rgba(29, 29, 31, 0.035);
+  transition:
+    background var(--dur-2) var(--ease),
+    box-shadow var(--dur-2) var(--ease);
+}
+
+.cd-pick.is-on {
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow:
+    inset 0 1px 0 #fff,
+    0 1px 2px rgba(15, 23, 42, 0.05),
+    0 8px 18px -12px rgba(13, 118, 133, 0.35);
+}
+
+.cd-pick__main {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr);
+  align-items: start;
+  gap: 10px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.cd-pick__main .cd-slot__radio {
+  margin-top: 1px;
+}
+
+.cd-pick.is-on .cd-slot__radio {
+  background: radial-gradient(circle, #fff 0 3px, var(--cyan-600) 3.5px);
+}
+
+.cd-pick__say {
+  display: grid;
+  gap: 1px;
+  min-width: 0;
+}
+
+.cd-pick__say b {
+  font-size: 12.5px;
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+}
+
+.cd-pick__say small {
+  overflow: hidden;
+  font-size: 11.5px;
+  color: var(--text-4);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* the two preview modes, each with its credits */
+.cd-pick__modes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px;
+  margin-left: 28px;
+  padding: 3px;
+  border-radius: 10px;
+  background: rgba(29, 29, 31, 0.045);
+}
+
+.cd-pick:not(.is-on) .cd-pick__modes {
+  opacity: 0.55;
+}
+
+.cd-pick__mode {
+  display: grid;
+  gap: 1px;
+  padding: 5px 8px;
+  border: 0;
+  border-radius: 8px;
+  background: none;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background var(--dur-2) var(--ease),
+    box-shadow var(--dur-2) var(--ease);
+}
+
+.cd-pick__mode span {
+  font-size: 11.5px;
+  font-weight: var(--fw-semibold);
+  color: var(--text-3);
+  white-space: nowrap;
+}
+
+.cd-pick__mode em {
+  font-size: 10.5px;
+  font-style: normal;
+  color: var(--text-4);
+  white-space: nowrap;
+}
+
+.cd-pick__mode.is-on {
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06), 0 3px 8px -4px rgba(15, 23, 42, 0.18);
+}
+
+.cd-pick__mode.is-on span {
+  color: var(--text);
+}
+
+.cd-pick__mode.is-on em {
+  color: var(--cyan-700);
+}
+
+/* B · On hover: the same choices open above the button */
+.cd-cta.has-pop {
+  position: relative;
+}
+
+.cd-nextpop {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 12px);
+  z-index: 30;
+  width: 380px;
+  padding: 12px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.94);
+  -webkit-backdrop-filter: blur(22px) saturate(1.5);
+  backdrop-filter: blur(22px) saturate(1.5);
+  box-shadow:
+    inset 0 1px 0 #fff,
+    0 4px 12px rgba(15, 23, 42, 0.07),
+    0 26px 50px -18px rgba(15, 23, 42, 0.32);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  transition:
+    opacity var(--dur-2) var(--ease),
+    transform var(--dur-2) var(--ease),
+    visibility 0s linear var(--dur-2);
+}
+
+/* a bridge so the pointer can travel from the button into the card */
+.cd-nextpop::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: -14px;
+  left: 0;
+  height: 14px;
+}
+
+.cd-cta.has-pop:hover .cd-nextpop,
+.cd-cta.has-pop:focus-within .cd-nextpop {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition:
+    opacity var(--dur-2) var(--ease) 0.08s,
+    transform var(--dur-2) var(--ease) 0.08s,
+    visibility 0s linear 0.08s;
+}
+
+.cd-nextpop__k {
+  margin: 0 0 8px 2px;
+  font-size: 10.5px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-4);
+}
+
+.cd-chooser.is-pop .cd-chooser__or {
+  justify-self: center;
+}
+
+.cd-chooser.is-pop .cd-pick__say small {
+  white-space: normal;
+}
+
+/* your own asset, in the footer */
+.cd-ownbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 8px 6px 6px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+}
+
+.cd-ownbar__img {
+  flex: none;
+  width: 28px;
+  height: 36px;
+  overflow: hidden;
+  border-radius: 7px;
+  background: var(--surface-2);
+}
+
+.cd-ownbar__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cd-ownbar__say {
+  display: grid;
+  flex: 1;
+  min-width: 0;
+  line-height: 1.3;
+}
+
+.cd-ownbar__say b {
+  font-size: 12.5px;
+  font-weight: var(--fw-semibold);
+}
+
+.cd-ownbar__say small {
+  overflow: hidden;
+  font-size: 11.5px;
+  color: var(--text-4);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* ======================================================== round 33
+   Zi: "beside the button" means a small menu at the button's left, not a row
+   above the footer; the hover card lists the three ways on, one per row, and
+   stays open while you choose; and its shadow never darkens the button. */
+
+/* ---- A · the menu by the button */
+.cd-modemenu {
+  position: relative;
+}
+
+.cd-modemenu__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 32px;
+  padding: 0 9px 0 10px;
+  border: 0;
+  border-radius: 10px;
+  background: rgba(29, 29, 31, 0.045);
+  color: var(--text-2);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+  transition: background var(--dur-2) var(--ease);
+}
+
+.cd-modemenu__btn:hover,
+.cd-modemenu.is-open .cd-modemenu__btn {
+  background: rgba(29, 29, 31, 0.08);
+}
+
+.cd-modemenu__btn > svg:first-child {
+  color: var(--cyan-700);
+}
+
+.cd-modemenu__btn > svg:last-child {
+  color: var(--text-4);
+}
+
+.cd-modemenu__btn em {
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: var(--cd-live-soft);
+  color: var(--cyan-800);
+  font-size: 11px;
+  font-style: normal;
+  font-weight: var(--fw-semibold);
+}
+
+.cd-modemenu__btn em.is-free {
+  background: rgba(29, 29, 31, 0.05);
+  color: var(--text-3);
+}
+
+.cd-modemenu__pop {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 12px);
+  z-index: 30;
+  width: 372px;
+  padding: 12px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.96);
+  -webkit-backdrop-filter: blur(22px) saturate(1.5);
+  backdrop-filter: blur(22px) saturate(1.5);
+  box-shadow:
+    inset 0 1px 0 #fff,
+    0 -2px 10px rgba(15, 23, 42, 0.05),
+    0 -18px 40px -20px rgba(15, 23, 42, 0.28);
+  animation: cdb-helpin var(--dur-2) var(--ease-out);
+}
+
+/* ---- the rows, shared by the menu and the hover card */
+.cd-modes {
+  display: grid;
+  gap: 4px;
+}
+
+.cd-mode {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr) auto 16px;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px 9px 9px;
+  border: 0;
+  border-radius: 12px;
+  background: none;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--dur-2) var(--ease);
+}
+
+.cd-mode:hover {
+  background: rgba(29, 29, 31, 0.035);
+}
+
+.cd-mode.is-on {
+  background: var(--cyan-50);
+}
+
+/* using your own is the other road: a little room before it */
+.cd-mode.is-own {
+  margin-top: 6px;
+}
+
+.cd-mode__ico {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: rgba(29, 29, 31, 0.05);
+  color: var(--text-3);
+}
+
+.cd-mode.is-on .cd-mode__ico {
+  background: #fff;
+  box-shadow: 0 2px 6px -2px rgba(13, 118, 133, 0.35);
+  color: var(--cyan-700);
+}
+
+.cd-mode__say {
+  display: grid;
+  gap: 1px;
+  min-width: 0;
+}
+
+.cd-mode__say b {
+  font-size: 12.5px;
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+}
+
+.cd-mode__say small {
+  font-size: 11.5px;
+  line-height: 1.35;
+  color: var(--text-4);
+}
+
+.cd-mode__cost {
+  padding: 2px 7px;
+  border-radius: 6px;
+  background: var(--cd-live-soft);
+  color: var(--cyan-800);
+  font-size: 11px;
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+}
+
+.cd-mode__cost.is-free {
+  background: rgba(29, 29, 31, 0.05);
+  color: var(--text-3);
+}
+
+.cd-mode__tick {
+  display: grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  color: var(--cyan-700);
+}
+
+/* ---- B · the hover card: held open by the page, its shadow kept above */
+.cd-nextpop {
+  bottom: calc(100% + 14px);
+  width: 392px;
+  padding: 12px;
+  box-shadow:
+    inset 0 1px 0 #fff,
+    0 -2px 10px rgba(15, 23, 42, 0.05),
+    0 -18px 40px -20px rgba(15, 23, 42, 0.28);
+}
+
+.cd-nextpop::after {
+  bottom: -16px;
+  height: 16px;
+}
+
+.cd-cta.has-pop:hover .cd-nextpop {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.cd-cta.has-pop.is-popped .cd-nextpop,
+.cd-cta.has-pop:focus-within .cd-nextpop {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition:
+    opacity var(--dur-2) var(--ease),
+    transform var(--dur-2) var(--ease),
+    visibility 0s;
+}
+
+/* ======================================================== round 34
+   Zi: no planning dialog or toast, the button says it is on its way; credits
+   easy to see; Save and Cancel take the next step's place while editing;
+   confirm alerts calmer, in the drawer surface's own gradient; C the width
+   and shape of D, its preview smaller and without a tag. */
+
+/* the button, on its way */
+.cd-cta__arrow.is-loading {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.cd-cta__arrow.is-loading .cd-cta__spin {
+  margin: 0;
+  background: conic-gradient(#fff 0 30%, rgba(255, 255, 255, 0.22) 30% 100%);
+}
+
+.cd-cta.is-loading .cd-cta__cost,
+.cd-cta.is-off.is-loading .cd-cta__cost {
+  color: var(--text-4);
+}
+
+.cd-cta.is-off.is-loading .cd-cta__btn {
+  opacity: 0.85;
+}
+
+/* credits: a coin and a tinted tag, easy to find */
+.cd-credit {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 20px;
+  padding: 0 7px 0 6px;
+  border-radius: 6px;
+  background: var(--cyan-100);
+  color: var(--cyan-800);
+  font-size: 11px;
+  font-style: normal;
+  font-weight: var(--fw-bold);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.cd-credit svg {
+  color: var(--cyan-700);
+}
+
+.cd-cta__cost .cd-credit {
+  font-size: 11.5px;
+}
+
+.cd-mode .cd-credit,
+.cd-modemenu__btn .cd-credit {
+  height: 20px;
+}
+
+/* editing: Save and Cancel where the next step was */
+.cd-cta--edit {
+  gap: 8px;
+}
+
+.cd-cta--edit .cd-cta__btn {
+  padding: 0 18px;
+}
+
+.cd-cta__cancel {
+  height: 38px;
+  padding: 0 14px;
+}
+
+.cdb-page__editfoot:empty,
+.cdb-clean__editfoot:empty {
+  display: none;
+}
+
+/* confirm alerts: the surface's soft diagonal sheen, in a faint orange */
+.cdb-ti,
+.cdb-cbar__panel .cdb-ti {
+  background: linear-gradient(
+    160deg,
+    rgba(254, 241, 218, 0.62) 0%,
+    rgba(255, 247, 235, 0.4) 46%,
+    rgba(255, 250, 244, 0.32) 100%
+  );
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  box-shadow: 0 1px 2px rgba(150, 95, 10, 0.04);
+}
+
+.cdb-ti--note,
+.cdb-cbar__panel .cdb-ti--note {
+  background: linear-gradient(160deg, rgba(238, 242, 246, 0.7) 0%, rgba(247, 249, 251, 0.45) 100%);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+}
+
+.cdb-ti__ico {
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: none;
+}
+
+.cdb-ti--note .cdb-ti__ico {
+  box-shadow: none;
+}
+
+.cdb-cbar {
+  background: linear-gradient(160deg, rgba(254, 241, 218, 0.82), rgba(255, 249, 240, 0.72));
+  box-shadow: 0 4px 14px -12px rgba(150, 95, 10, 0.35);
+}
+
+.cdb-cbar__ico {
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: none;
+}
+
+/* ---- C, the width and shape of D */
+.cdb--clean {
+  max-width: none;
+}
+
+.cdb-clean__head {
+  padding: 24px 28px 0;
+}
+
+.cdb-clean__top {
+  grid-template-columns: minmax(0, 1fr) 134px;
+  gap: 24px;
+  padding-right: 28px;
+}
+
+.cdb-clean__top .cdb-statement {
+  padding-top: 10px;
+}
+
+/* the preview: smaller, no tag; the card is barely taller than D's */
+.cdb-art {
+  margin: 4px 0 12px;
+}
+
+.cdb-art__card {
+  gap: 6px;
+  width: 120px;
+  padding: 8px;
+  border-radius: 12px;
+}
+
+.cdb-art::before {
+  top: 5px;
+  width: 112px;
+  height: calc(100% - 6px);
+  margin-left: -58px;
+  border-radius: 12px;
+}
+
+.cdb-art .cdb-art__who i {
+  width: 13px;
+  height: 13px;
+}
+
+.cdb-art .cdb-art__who b {
+  width: 36px;
+  height: 4px;
+}
+
+.cdb-art .cdb-art__lines {
+  gap: 4px;
+  padding: 0;
+}
+
+.cdb-art .cdb-art__lines b {
+  height: 4px;
+}
+
+.cdb-art .cdb-art__media,
+.cdb-art .cdb-art__media--video,
+.cdb-art .cdb-art__media--carousel {
+  height: 74px;
+  border-radius: 8px;
+}
+
+.cdb-art .cdb-art__media--text {
+  height: 56px;
+  padding: 4px;
+}
+
+.cdb-art .cdb-art__play {
+  width: 22px;
+  height: 22px;
+}
+
+.cdb-art .cdb-art__media--video > b {
+  top: 4px;
+  right: 4px;
+  font-size: 7.5px;
+}
+
+.cdb-art .cdb-art__arrow {
+  width: 14px;
+  height: 14px;
+  margin-top: -7px;
+}
+
+.cdb-art .cdb-art__pen {
+  bottom: 14px;
+}
+
+/* ======================================================== round 36
+   Zi: the credit tag lighter, see-through; the three parts of the Look
+   summary set apart; C's preview larger and level with the main message,
+   its edits at the card's foot as in Look, tone and voice; one next-step
+   version, the menu by the button, drawn more carefully; a scene being
+   edited is an edit mode like the brief's. */
+
+/* credits: a faint cyan wash, the coin in a small white disc */
+.cd-credit {
+  gap: 5px;
+  height: 20px;
+  padding: 0 8px 0 2px;
+  border-radius: var(--r-full);
+  background: linear-gradient(100deg, rgba(73, 224, 245, 0.14), rgba(14, 165, 184, 0.07));
+  color: var(--cyan-800);
+  font-weight: var(--fw-semibold);
+}
+
+.cd-credit__ico {
+  display: grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 1px 2px rgba(13, 118, 133, 0.14);
+}
+
+.cd-credit__ico svg {
+  color: var(--cyan-700);
+}
+
+.cd-cta__cost .cd-credit {
+  height: 22px;
+  font-size: 12px;
+}
+
+.cd-cta__cost .cd-credit__ico {
+  width: 18px;
+  height: 18px;
+}
+
+/* Look, tone and voice: three parts, apart, a short divider between */
+.cdb-style__sub {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  min-width: 0;
+}
+
+.cdb-style__sub > span {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+}
+
+.cdb-style__sub > span:first-child {
+  flex: 0 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+}
+
+.cdb-style__sub > span + span::before {
+  content: '';
+  width: 1px;
+  height: 12px;
+  margin: 0 16px;
+  background: rgba(29, 29, 31, 0.12);
+}
+
+/* ---- C: the preview beside the label and the main message, a little larger */
+.cdb--clean .cdb-clean__top {
+  grid-template-columns: minmax(0, 1fr) 168px;
+  align-items: center;
+  min-height: 193px;
+}
+
+.cdb--clean .cdb-clean__say {
+  align-self: start;
+}
+
+.cdb--clean .cdb-art {
+  margin: 12px 0 4px;
+}
+
+.cdb--clean .cdb-art__card {
+  gap: 7px;
+  width: 148px;
+  padding: 9px;
+}
+
+.cdb--clean .cdb-art::before {
+  width: 140px;
+  margin-left: -72px;
+}
+
+.cdb--clean .cdb-art .cdb-art__media,
+.cdb--clean .cdb-art .cdb-art__media--video,
+.cdb--clean .cdb-art .cdb-art__media--carousel {
+  height: 94px;
+}
+
+.cdb--clean .cdb-art .cdb-art__media--text {
+  height: 72px;
+}
+
+/* its two edits at the card's foot, at the right, always there */
+.cdb-clean__foot {
+  align-items: center;
+}
+
+.cdb-clean__foot .cdb-editacts {
+  gap: 4px;
+}
+
+/* ---- the menu by the button, drawn with more care */
+.cd-modemenu__btn {
+  gap: 8px;
+  height: 34px;
+  padding: 0 10px 0 6px;
+  border-radius: var(--r-full);
+  background: rgba(29, 29, 31, 0.04);
+  font-weight: var(--fw-medium);
+}
+
+.cd-modemenu__btn > svg:first-child {
+  box-sizing: content-box;
+  padding: 5px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(13, 118, 133, 0.16);
+}
+
+.cd-modemenu__btn span {
+  color: var(--text);
+}
+
+.cd-modemenu__btn em.is-free {
+  padding: 0 8px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--r-full);
+}
+
+.cd-modemenu__pop {
+  width: 360px;
+  padding: 8px;
+  border-radius: 18px;
+}
+
+.cd-modemenu__pop .cd-nextpop__k {
+  padding: 6px 10px 6px;
+  font-size: 11px;
+  font-weight: var(--fw-medium);
+  color: var(--text-4);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.cd-modes.is-menu .cd-mode {
+  grid-template-columns: 32px minmax(0, 1fr) auto 14px;
+  padding: 10px;
+}
+
+/* your own is the other road: a short divider before it, off the edges */
+.cd-modes.is-menu .cd-mode.is-own {
+  position: relative;
+  margin-top: 9px;
+}
+
+.cd-modes.is-menu .cd-mode.is-own::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  right: 12px;
+  left: 12px;
+  height: 1px;
+  background: rgba(29, 29, 31, 0.07);
+}
+
+.cd-modes.is-menu .cd-mode__ico {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+}
+
+.cd-modes.is-menu .cd-mode__cost.is-free {
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 8px;
+  border-radius: var(--r-full);
+}
+
+/* ---- a scene being edited says so, next to its name */
+.cd-scenehead .cdb-editing {
+  margin-left: 2px;
+}
+
+/* ======================================================== round 37
+   Zi: the role menu must be readable without scrolling; one way to add a
+   reference; notices in cyan, at the top, on the drawer's Paper glass; the
+   dialogs finer, on the same glass, with a coloured mark in the head and
+   more room between their parts; a picked picture glassy, never cut off. */
+
+/* ---- references: the role menu opens where it fits */
+.cdb-ref.is-up .cdb-refmenu {
+  top: auto;
+  bottom: calc(100% + 6px);
+  transform-origin: bottom left;
+}
+
+/* the one place to add: the tile after the last, split in two */
+.cdb-ref--add {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 3px;
+  width: 88px;
+  height: 88px;
+  padding: 0;
+  overflow: hidden;
+  background: none;
+}
+
+.cdb-ref__addbtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 0;
+  background: rgba(29, 29, 31, 0.04);
+  color: var(--text-3);
+  font-family: inherit;
+  font-size: 11.5px;
+  font-weight: var(--fw-medium);
+  cursor: pointer;
+  transition:
+    background var(--dur-2) var(--ease),
+    color var(--dur-2) var(--ease);
+}
+
+.cdb-ref__addbtn:first-child {
+  border-radius: 12px 12px 4px 4px;
+}
+
+.cdb-ref__addbtn:last-child {
+  border-radius: 4px 4px 12px 12px;
+}
+
+.cdb-ref__addbtn svg {
+  color: var(--text-4);
+}
+
+.cdb-ref__addbtn:hover {
+  background: var(--cd-live-soft);
+  color: var(--cyan-800);
+}
+
+.cdb-ref__addbtn:hover svg {
+  color: var(--cyan-700);
+}
+
+/* ---- notices: top centre, Paper glass, a cyan check */
+.cd .cd-toast {
+  top: 16px;
+  bottom: auto;
+  z-index: 40;
+  gap: 10px;
+  padding: 8px 10px 8px 9px;
+  background:
+    radial-gradient(120% 140% at 100% 0%, rgba(73, 224, 245, 0.12), transparent 60%),
+    linear-gradient(160deg, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.8));
+  -webkit-backdrop-filter: blur(20px) saturate(1.6);
+  backdrop-filter: blur(20px) saturate(1.6);
+  box-shadow:
+    inset 0 1px 0 #fff,
+    0 2px 6px rgba(15, 23, 42, 0.05),
+    0 16px 36px -14px rgba(15, 40, 60, 0.3);
+  color: var(--text-2);
+  font-size: 12.5px;
+}
+
+.cd .cd-toast b {
+  color: var(--text);
+}
+
+.cd-toast__ico {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #5fe3f4, var(--cyan-600));
+  box-shadow: 0 2px 6px -2px rgba(13, 118, 133, 0.5);
+}
+
+.cd .cd-toast .cd-toast__ico svg {
+  color: #fff;
+}
+
+.cd .cd-toast .cd-link {
+  color: var(--cyan-700);
+  font-size: 12.5px;
+  font-weight: var(--fw-semibold);
+}
+
+.cd .cd-toast .cd-link--quiet {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+}
+
+.cd .cd-toast .cd-link--quiet svg {
+  color: var(--text-4);
+}
+
+.cd .cd-toast .cd-link--quiet:hover {
+  background: rgba(29, 29, 31, 0.05);
+}
+
+/* ---- dialogs: Paper glass, a coloured mark, room between the parts */
+.cd .cd-modal {
+  background: rgba(20, 20, 22, 0.12);
+  -webkit-backdrop-filter: blur(8px) saturate(1.2);
+  backdrop-filter: blur(8px) saturate(1.2);
+}
+
+.cd .cd-modal__card {
+  position: relative;
+  padding: 26px 28px 22px;
+  border-radius: 22px;
+  background:
+    radial-gradient(90% 60% at 100% 0%, rgba(73, 224, 245, 0.1), transparent 62%),
+    linear-gradient(160deg, rgba(255, 255, 255, 0.97) 0%, rgba(255, 255, 255, 0.9) 46%, rgba(250, 253, 254, 0.88) 100%);
+  -webkit-backdrop-filter: blur(24px) saturate(1.5);
+  backdrop-filter: blur(24px) saturate(1.5);
+  box-shadow:
+    inset 0 1px 0 #fff,
+    0 2px 8px rgba(15, 23, 42, 0.05),
+    0 40px 80px -28px rgba(11, 20, 40, 0.34);
+}
+
+.cd-modal__head {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+}
+
+.cd-modal__ico {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 13px;
+  color: #fff;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    0 6px 14px -6px var(--ico-glow, rgba(13, 118, 133, 0.55));
+}
+
+.cd-modal__ico.is-cyan {
+  background: linear-gradient(140deg, #6ae6f6 0%, var(--cyan-600) 100%);
+}
+
+.cd-modal__ico.is-violet {
+  --ico-glow: rgba(91, 80, 220, 0.5);
+  background: linear-gradient(140deg, #a9a2ff 0%, #6156e8 100%);
+}
+
+.cd-modal__ico.is-amber {
+  --ico-glow: rgba(190, 120, 10, 0.5);
+  background: linear-gradient(140deg, #fcd27a 0%, #e09a1a 100%);
+}
+
+.cd-modal__ico.is-red {
+  --ico-glow: rgba(190, 40, 40, 0.45);
+  background: linear-gradient(140deg, #ff9d94 0%, #d9443a 100%);
+}
+
+.cd-modal__titles {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+  padding-top: 1px;
+}
+
+.cd .cd-modal__title {
+  font-size: 17px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+.cd .cd-modal__head .cd-modal__say {
+  margin: 0;
+  max-width: 56ch;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--text-3);
+}
+
+/* the parts after the head, well apart */
+.cd .cd-modal__card > :not(.cd-modal__head):not(.cd-modal__foot) {
+  margin-top: 20px;
+}
+
+.cd .cd-modal__card > .cd-modal__say {
+  font-size: 12.5px;
+  color: var(--text-3);
+}
+
+.cd .cd-modal__list {
+  gap: 8px;
+}
+
+.cd .cd-modal__list li {
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(29, 29, 31, 0.035);
+}
+
+.cd .cd-modal__foot {
+  gap: 10px;
+  margin-top: 26px;
+}
+
+.cd .cd-modal__cost {
+  font-size: 12px;
+  color: var(--text-4);
+}
+
+/* the approvals dialog */
+.cd-gate {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: rgba(29, 29, 31, 0.035);
+}
+
+.cd-gate .cd-avatar {
+  width: 36px;
+  height: 36px;
+}
+
+.cd-gate__say {
+  display: grid;
+  gap: 1px;
+}
+
+.cd-gate__say b {
+  font-size: 13px;
+  font-weight: var(--fw-semibold);
+}
+
+.cd-gate__say small {
+  font-size: 12px;
+  color: var(--text-4);
+}
+
+.cd-gate__state {
+  height: 22px;
+  padding: 0 9px;
+  border-radius: var(--r-full);
+  background: rgba(29, 29, 31, 0.05);
+  color: var(--text-3);
+  font-size: 11.5px;
+  font-weight: var(--fw-semibold);
+  line-height: 22px;
+}
+
+.cd .cd-gate__note {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--text-4);
+}
+
+.cd-gate__note svg {
+  flex: none;
+  color: var(--text-4);
+}
+
+/* ---- the Library: picked pictures turn glassy, nothing is cut off */
+.cd .cd-modal .cdb-lib {
+  gap: 14px 12px;
+  margin-right: -6px;
+  margin-left: -6px;
+  padding: 6px;
+}
+
+.cdb-lib__item {
+  cursor: pointer;
+}
+
+.cdb-lib__img,
+.cdb-lib__doc {
+  border-radius: 14px;
+  transition:
+    background var(--dur-2) var(--ease),
+    box-shadow var(--dur-2) var(--ease),
+    transform var(--dur-2) var(--ease);
+}
+
+.cdb-lib__img img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 14px;
+  transition:
+    top var(--dur-2) var(--ease-out),
+    left var(--dur-2) var(--ease-out),
+    width var(--dur-2) var(--ease-out),
+    height var(--dur-2) var(--ease-out),
+    border-radius var(--dur-2) var(--ease-out),
+    filter var(--dur-2) var(--ease);
+}
+
+.cdb-lib__item:not(.is-used):not(.is-off):hover .cdb-lib__img {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px -14px rgba(15, 40, 60, 0.4);
+}
+
+/* the tick: frosted glass until picked */
+.cdb-lib__tick {
+  top: 8px;
+  right: 8px;
+  z-index: 2;
+  width: 22px;
+  height: 22px;
+  background: rgba(255, 255, 255, 0.4);
+  -webkit-backdrop-filter: blur(10px) saturate(1.6);
+  backdrop-filter: blur(10px) saturate(1.6);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    0 2px 8px -3px rgba(15, 23, 42, 0.35);
+}
+
+/* picked: the picture draws in, a frosted cyan frame of fill shows round it */
+.cdb-lib__item.is-on .cdb-lib__img {
+  background: linear-gradient(140deg, rgba(103, 232, 249, 0.55), rgba(14, 165, 184, 0.32));
+  box-shadow: 0 10px 22px -14px rgba(13, 118, 133, 0.55);
+}
+
+.cdb-lib__item.is-on .cdb-lib__img img {
+  top: 5px;
+  left: 5px;
+  width: calc(100% - 10px);
+  height: calc(100% - 10px);
+  border-radius: 10px;
+}
+
+.cdb-lib__item.is-on .cdb-lib__img::after {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0) 45%);
+  pointer-events: none;
+}
+
+.cdb-lib__item.is-on .cdb-lib__tick {
+  background: rgba(14, 165, 184, 0.78);
+  color: #fff;
+}
+
+.cdb-lib__item.is-on b {
+  color: var(--text);
+}
+
+/* ======================================================== round 38
+   Zi: a C version whose preview breaks out over the card's top edge; the
+   menu's shadow even, not heavy on top; a first-visit tip that shows the
+   own-video choice lives in the menu by the button, and the next step
+   hopping now and then as the main action; C's edits back on hover, with
+   a little more room above the card's foot. */
+
+/* ---- C · B: the preview breaks out over the top edge; the card stays put */
+.cdb-clean.is-artout {
+  overflow: visible;
+}
+
+.cdb-clean.is-artout .cdb-art {
+  z-index: 3;
+  transform: translate(10px, -64px);
+}
+
+.cdb-clean.is-artout .cdb-art__card {
+  box-shadow:
+    0 2px 4px rgba(15, 23, 42, 0.05),
+    0 22px 40px -18px rgba(15, 60, 80, 0.38);
+}
+
+/* ---- the menu's card: one even, soft shadow that stops before the button */
+.cd-modemenu__pop {
+  box-shadow:
+    inset 0 1px 0 #fff,
+    0 1px 3px rgba(15, 23, 42, 0.05),
+    0 6px 26px -10px rgba(15, 23, 42, 0.2);
+}
+
+/* ---- the first-visit tip */
+.cd-modemenu.is-coached .cd-modemenu__btn {
+  position: relative;
+  background: var(--cd-live-soft);
+  animation: cd-coachglow 1.8s var(--ease) 3;
+}
+
+@keyframes cd-coachglow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(73, 224, 245, 0);
+  }
+
+  50% {
+    box-shadow: 0 0 22px 2px rgba(73, 224, 245, 0.45);
+  }
+}
+
+.cd-coach {
+  position: absolute;
+  right: -8px;
+  bottom: calc(100% + 14px);
+  z-index: 31;
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 10px 12px;
+  width: 300px;
+  padding: 14px 14px 12px;
+  border-radius: 18px;
+  background:
+    radial-gradient(110% 80% at 100% 0%, rgba(73, 224, 245, 0.14), transparent 60%),
+    linear-gradient(160deg, rgba(255, 255, 255, 0.97), rgba(255, 255, 255, 0.9));
+  -webkit-backdrop-filter: blur(22px) saturate(1.5);
+  backdrop-filter: blur(22px) saturate(1.5);
+  box-shadow:
+    inset 0 1px 0 #fff,
+    0 1px 3px rgba(15, 23, 42, 0.05),
+    0 6px 26px -10px rgba(15, 23, 42, 0.22);
+}
+
+.cd-coach__ico {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 11px;
+  background: linear-gradient(140deg, #6ae6f6 0%, var(--cyan-600) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    0 6px 14px -6px rgba(13, 118, 133, 0.55);
+  color: #fff;
+}
+
+.cd-coach__say {
+  display: grid;
+  gap: 3px;
+  padding-top: 1px;
+}
+
+.cd-coach__say b {
+  font-size: 13px;
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+}
+
+.cd-coach__say small {
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--text-3);
+}
+
+.cd-coach__acts {
+  display: flex;
+  grid-column: 2;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.cd-coach__try,
+.cd-coach__ok {
+  height: 28px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: var(--r-full);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: var(--fw-semibold);
+  cursor: pointer;
+  transition: background var(--dur-2) var(--ease);
+}
+
+.cd-coach__try {
+  background: none;
+  color: var(--cyan-700);
+}
+
+.cd-coach__try:hover {
+  background: var(--cd-live-soft);
+}
+
+.cd-coach__ok {
+  background: rgba(29, 29, 31, 0.06);
+  color: var(--text);
+}
+
+.cd-coach__ok:hover {
+  background: rgba(29, 29, 31, 0.1);
+}
+
+/* the arrow down to the menu, the card's own glass */
+.cd-coach__arrow {
+  position: absolute;
+  right: 56px;
+  bottom: -6px;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.93);
+  transform: rotate(45deg);
+  box-shadow: 3px 3px 6px -3px rgba(15, 23, 42, 0.12);
+}
+
+/* ---- the main action hops now and then; a render restarts the wait,
+   so the hop sits at the end of the cycle, never on a click */
+.cd-cta__btn.is-beat {
+  animation: cd-beat 7s var(--ease) infinite;
+}
+
+@keyframes cd-beat {
+  0%,
+  86%,
+  100% {
+    translate: 0 0;
+  }
+
+  87.8% {
+    translate: 0 -6px;
+  }
+
+  89.6% {
+    translate: 0 0;
+  }
+
+  91.4% {
+    translate: 0 -4px;
+  }
+
+  93.2% {
+    translate: 0 0;
+  }
+}
+
+.cd-cta__btn.is-beat:hover {
+  animation: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cd-cta__btn.is-beat,
+  .cd-modemenu.is-coached .cd-modemenu__btn {
+    animation: none;
+  }
+}
+
+/* ---- C: a little more room above the card's foot */
+.cdb--clean .cdb-clean__foot {
+  margin-top: 10px;
+  padding-bottom: 16px;
+}
+
+/* ---- the add tile: one soft tile, Upload over Library, a short divider
+   between; each half fills its width (an older rule centred them small) */
+.cdb-ref--add {
+  position: relative;
+  place-content: stretch;
+  justify-items: stretch;
+  gap: 0;
+  padding: 3px;
+  border-radius: 12px;
+  background: rgba(29, 29, 31, 0.035);
+}
+
+.cdb-ref--add::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  left: 14px;
+  height: 1px;
+  background: rgba(29, 29, 31, 0.07);
+}
+
+.cdb-ref__addbtn,
+.cdb-ref__addbtn:first-child,
+.cdb-ref__addbtn:last-child {
+  position: relative;
+  justify-content: flex-start;
+  gap: 7px;
+  width: 100%;
+  padding: 0 10px;
+  border-radius: 9px;
+  background: none;
+  font-size: 11.5px;
+}
+
+.cdb-ref__addbtn:hover {
+  z-index: 1;
+  background: #fff;
+  box-shadow: 0 2px 8px -3px rgba(15, 23, 42, 0.16);
+}
+
+/* ---- Look, tone and voice: a light pink mark, apart from the grey ones */
+.cdb-style__ico {
+  background: rgba(236, 72, 153, 0.09);
+  color: #d63f8c;
+}
+
+/* ---- round 38b: dialogs centred on the whole page, over a plain dim (no
+   blur); the Library and other wide ones wider; a tighter icon corner and
+   a smaller line under the title */
+.cd .cd-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  background: rgba(20, 20, 22, 0.16);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+.cd .cd-modal__card {
+  width: min(560px, 100%);
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+}
+
+.cd .cd-modal__card--wide {
+  width: min(780px, 100%);
+}
+
+.cd .cd-modal .cdb-lib {
+  max-height: 460px;
+}
+
+.cd-modal__ico {
+  border-radius: 10px;
+}
+
+.cd .cd-modal__head .cd-modal__say {
+  max-width: 64ch;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* ---- round 39: a reference's note, on the picture while you point at it
+   (the Library tiles in draft/onboarding: a dark fade from the foot, the
+   name in white, a quieter line under it) */
+.cdb-ref__img {
+  overflow: hidden;
+}
+
+.cdb-ref__hover {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 2px;
+  padding: 26px 7px 7px;
+  background: linear-gradient(0deg, rgba(15, 15, 17, 0.86) 0%, rgba(15, 15, 17, 0.55) 55%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.18s var(--ease);
+  pointer-events: none;
+}
+
+.cdb-ref:hover .cdb-ref__hover,
+.cdb-ref:focus-within .cdb-ref__hover {
+  opacity: 1;
+}
+
+.cdb-ref .cdb-ref__hover b {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 10px;
+  font-weight: var(--fw-semibold);
+  line-height: 1.3;
+  color: #fff;
+}
+
+.cdb-ref .cdb-ref__hover small {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  overflow: hidden;
+  font-size: 9.5px;
+  line-height: 1.3;
+  color: rgba(255, 255, 255, 0.78);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.cdb-ref__hover small svg {
+  flex: none;
+}
+
+/* the tools stay above the fade; the notes mark gives way to the words */
+.cdb-ref__tools {
+  z-index: 2;
+}
+
+.cdb-ref:hover .cdb-ref__noted {
+  opacity: 0;
+}
+
+/* ======================================================== round 40
+   Zi: three ways to lay out adding a reference; the Look card's edits on
+   hover; a roomier edit form with the references editable in it; and the
+   voice picker without its grey bar: the chosen one on a white card, the
+   rest plain. */
+
+/* ---- B · one Add tile, its menu beside it */
+.cdb-ref--addmenu {
+  position: relative;
+  display: block;
+  padding: 0;
+  overflow: visible;
+}
+
+.cdb-ref--addmenu::before {
+  display: none;
+}
+
+.cdb-ref__addone {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 6px;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 12px;
+  background: none;
+  color: var(--text-3);
+  font-family: inherit;
+  font-size: 11.5px;
+  font-weight: var(--fw-medium);
+  cursor: pointer;
+  transition:
+    background var(--dur-2) var(--ease),
+    color var(--dur-2) var(--ease);
+}
+
+.cdb-ref__addone svg {
+  color: var(--text-4);
+}
+
+.cdb-ref__addone:hover,
+.cdb-ref--addmenu.is-open .cdb-ref__addone {
+  background: var(--cd-live-soft);
+  color: var(--cyan-800);
+}
+
+.cdb-ref__addone:hover svg,
+.cdb-ref--addmenu.is-open .cdb-ref__addone svg {
+  color: var(--cyan-700);
+}
+
+.cdb-addmenu {
+  position: absolute;
+  top: 0;
+  left: calc(100% + 8px);
+  z-index: 30;
+  display: grid;
+  gap: 2px;
+  width: 220px;
+  padding: 6px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.97);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  backdrop-filter: blur(16px) saturate(1.4);
+  box-shadow:
+    inset 0 1px 0 #fff,
+    0 1px 3px rgba(15, 23, 42, 0.05),
+    0 8px 26px -10px rgba(15, 23, 42, 0.22);
+  animation: cdb-helpin var(--dur-2) var(--ease-out);
+}
+
+.cdb-addmenu .cdb-ref__addbtn,
+.cdb-addmenu .cdb-ref__addbtn:first-child,
+.cdb-addmenu .cdb-ref__addbtn:last-child {
+  align-items: center;
+  gap: 10px;
+  height: auto;
+  padding: 9px 10px;
+  border-radius: 10px;
+  box-shadow: none;
+  text-align: left;
+}
+
+.cdb-addmenu .cdb-ref__addbtn:hover {
+  background: rgba(29, 29, 31, 0.04);
+}
+
+.cdb-addmenu .cdb-ref__addbtn > svg {
+  flex: none;
+  box-sizing: content-box;
+  padding: 7px;
+  border-radius: 9px;
+  background: rgba(29, 29, 31, 0.05);
+  color: var(--text-3);
+}
+
+.cdb-addmenu .cdb-ref__addbtn > span {
+  display: grid;
+  gap: 1px;
+}
+
+.cdb-addmenu b {
+  font-size: 12.5px;
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+}
+
+.cdb-addmenu small {
+  font-size: 11px;
+  color: var(--text-4);
+}
+
+/* ---- C · a wide tile filling the rest of the row */
+.cdb-ref--addwide {
+  display: flex;
+  flex: 1 1 260px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  width: auto;
+  min-width: 260px;
+  max-width: 420px;
+  padding: 0 16px;
+}
+
+.cdb-ref--addwide::before {
+  display: none;
+}
+
+.cdb-ref__addsay {
+  display: grid;
+  gap: 1px;
+}
+
+.cdb-ref__addsay b {
+  font-size: 12.5px;
+  font-weight: var(--fw-semibold);
+  color: var(--text-2);
+}
+
+.cdb-ref__addsay small {
+  font-size: 11px;
+  color: var(--text-4);
+}
+
+.cdb-ref__addacts {
+  display: flex;
+  gap: 6px;
+}
+
+.cdb-ref--addwide .cdb-ref__addbtn,
+.cdb-ref--addwide .cdb-ref__addbtn:first-child,
+.cdb-ref--addwide .cdb-ref__addbtn:last-child {
+  width: auto;
+  height: 30px;
+  padding: 0 12px 0 10px;
+  border-radius: var(--r-full);
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+  color: var(--text-2);
+}
+
+.cdb-ref--addwide .cdb-ref__addbtn:hover {
+  background: #fff;
+  box-shadow: 0 3px 10px -4px rgba(15, 23, 42, 0.22);
+  color: var(--cyan-800);
+}
+
+/* ---- the edit form: more room, bigger boxes */
+.cdb-style .cdb-form {
+  gap: 22px;
+}
+
+.cdb-style .cdb-f {
+  gap: 8px;
+}
+
+.cdb-style .cdb-f__lab {
+  font-size: 12.5px;
+}
+
+.cdb-form .cdb-f__ta {
+  min-height: 84px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+
+.cdb-f--refs .cdb-refsec__head {
+  display: none;
+}
+
+/* ---- the voice picker: no bar; the chosen one on a white card */
+.cd-vpick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.cd-vpick__opt {
+  position: relative;
+  border: 0;
+  border-radius: 12px;
+  background: none;
+  color: var(--text-3);
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background var(--dur-2) var(--ease),
+    box-shadow var(--dur-2) var(--ease),
+    color var(--dur-2) var(--ease);
+}
+
+.cd-vpick__opt b {
+  font-size: 13px;
+  font-weight: var(--fw-semibold);
+}
+
+.cd-vpick__opt:hover {
+  background: rgba(29, 29, 31, 0.035);
+  color: var(--text);
+}
+
+.cd-vpick__opt.is-on {
+  background: #fff;
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.06),
+    0 8px 20px -10px rgba(15, 40, 60, 0.28);
+  color: var(--text);
+}
+
+/* B · words with a line */
+.cd-vpick--lines {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 6px;
+}
+
+.cd-vpick--lines .cd-vpick__opt {
+  display: grid;
+  gap: 3px;
+  padding: 12px 34px 12px 14px;
+}
+
+.cd-vpick--lines small {
+  font-size: 11.5px;
+  line-height: 1.4;
+  color: var(--text-4);
+}
+
+.cd-vpick__tick {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: linear-gradient(140deg, #6ae6f6, var(--cyan-600));
+  color: #fff;
+}
+
+/* ---- round 41: C's preview tilted further, its back sheet showing more
+   (Zi's sketch); Inside stays within the card, Breaking out only pokes
+   its top-left corner over the edge */
+.cdb--clean .cdb-art__card {
+  transform: rotate(11deg);
+}
+
+.cdb--clean .cdb-art::before {
+  top: 14px;
+  margin-left: -86px;
+  background: #e9f1f3;
+  transform: rotate(5deg);
+}
+
+.cdb-clean.is-artout .cdb-art {
+  transform: translate(-24px, -30px);
+}
+
+/* ======================================================== round 42
+   Zi: Edit with Vicino in the default window of draft/side-chats (C ·
+   Paper): light glass with a sheen and a lit rim, 16px corners, a one-line
+   header, room in the log (26px sides), Vicino's replies as text, your turns
+   on a faint cyan tint, and a tonal composer: the post being edited as a
+   small glass card, the words, the ink send disc at the right. */
+.cd-vchat {
+  top: 12px;
+  left: 12px;
+  isolation: isolate;
+  width: min(440px, calc(100vw - 24px));
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.84);
+  -webkit-backdrop-filter: blur(18px) saturate(1.5);
+  backdrop-filter: blur(18px) saturate(1.5);
+  box-shadow:
+    0 2px 6px rgba(15, 23, 42, 0.035),
+    0 32px 64px -20px rgba(15, 23, 42, 0.18);
+}
+
+/* the sheen, with a trace of cyan at the top */
+.cd-vchat::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background:
+    radial-gradient(52% 32% at 74% -6%, rgba(14, 165, 184, 0.08), transparent 70%),
+    radial-gradient(36% 26% at 100% 20%, rgba(14, 165, 184, 0.04), transparent 70%),
+    linear-gradient(
+      160deg,
+      rgba(255, 255, 255, 0.7) 0%,
+      rgba(255, 255, 255, 0.2) 30%,
+      rgba(255, 255, 255, 0) 55%,
+      rgba(255, 255, 255, 0.14) 100%
+    );
+  pointer-events: none;
+}
+
+/* the lit rim */
+.cd-vchat::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(
+    160deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 255, 255, 0.35) 28%,
+    rgba(255, 255, 255, 0.08) 55%,
+    rgba(255, 255, 255, 0.35) 80%,
+    rgba(255, 255, 255, 0.95) 100%
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* one-line header: the orb, Vicino, what this chat is for */
+.cd-vchat__head {
+  gap: 8px;
+  padding: 12px 16px 8px 14px;
+}
+
+.cd-vchat__orb {
+  width: 22px;
+  height: 22px;
+}
+
+.cd-vchat__who {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.cd-vchat__who b {
+  font-size: 13px;
+  font-weight: var(--fw-bold);
+}
+
+.cd-vchat__who small {
+  font-size: 11px;
+  color: #5f6369;
+}
+
+.cd-vchat__head .cd-ibtn {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+}
+
+/* the log: room at the sides, replies as text, your turns tinted */
+.cd-vchat__log {
+  gap: 22px;
+  padding: 20px 26px;
+}
+
+.cd-vmsg {
+  max-width: 100%;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.cd-vmsg.is-v {
+  padding: 0;
+  background: none;
+  color: var(--text);
+}
+
+.cd-vmsg.is-u {
+  max-width: 86%;
+  padding: 11px 15px;
+  border-radius: 14px;
+  background: rgba(226, 244, 246, 0.58);
+  box-shadow: none;
+  color: var(--text);
+}
+
+/* the composer */
+.cd-vchat__foot {
+  gap: 10px;
+  padding: 8px 14px 14px;
+}
+
+.cd-vchat__ask {
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 1px 2px rgba(15, 23, 42, 0.05);
+  color: var(--text-2);
+}
+
+.cd-vchat__ask:hover {
+  background: #fff;
+  color: var(--cyan-800);
+}
+
+.cd-vchat__box {
+  display: grid;
+  gap: 6px;
+  padding: 10px 8px 8px 14px;
+  border-radius: 14px;
+  background: rgba(29, 29, 31, 0.055);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    0 1px 2px rgba(15, 23, 42, 0.03),
+    0 6px 16px -12px rgba(15, 23, 42, 0.18);
+}
+
+.cd-vchat__box .cd-ta {
+  padding: 2px 6px 8px 0;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+/* what is being edited: a small glass card at the top of the field */
+.cd-vchat__ctx {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-self: start;
+  width: auto;
+  max-width: 230px;
+  height: auto;
+  padding: 6px 10px 6px 6px;
+  border-radius: 10px;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0.7) 55%, rgba(237, 248, 250, 0.68) 100%);
+  -webkit-backdrop-filter: blur(12px) saturate(1.3);
+  backdrop-filter: blur(12px) saturate(1.3);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 1px 2px rgba(15, 23, 42, 0.04),
+    0 8px 20px -12px rgba(15, 23, 42, 0.26);
+  color: var(--text);
+  white-space: normal;
+}
+
+.cd-vchat__ctxico {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  background: var(--cd-live-soft);
+  color: var(--cyan-700);
+}
+
+.cd-vchat__ctxsay {
+  display: grid;
+  min-width: 0;
+  line-height: 1.3;
+}
+
+.cd-vchat__ctxsay small {
+  font-size: 9.5px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--cyan-700);
+}
+
+.cd-vchat__ctxsay b {
+  overflow: hidden;
+  font-size: 11.5px;
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.cd-vchat__row {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* the send: an ink glass disc */
+.cd-vchat__send {
+  background: linear-gradient(rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0.02) 55%), rgb(20, 20, 22);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.32),
+    0 1px 2px rgba(0, 0, 0, 0.25),
+    0 7px 14px -7px rgba(0, 0, 0, 0.45);
+}
+
+/* ---- round 43: the gradient marks flatter (a lighter glow, a fainter top
+   light); the sheet behind C's preview fainter */
+.cd-modal__ico,
+.cd-coach__ico {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    0 2px 6px -3px var(--ico-glow, rgba(13, 118, 133, 0.32));
+}
+
+.cd-modal__ico.is-violet {
+  --ico-glow: rgba(91, 80, 220, 0.3);
+}
+
+.cd-modal__ico.is-amber {
+  --ico-glow: rgba(190, 120, 10, 0.3);
+}
+
+.cd-modal__ico.is-red {
+  --ico-glow: rgba(190, 40, 40, 0.28);
+}
+
+.cd-toast__ico {
+  box-shadow: 0 1px 3px -1px rgba(13, 118, 133, 0.28);
+}
+
+.cdb--clean .cdb-art::before {
+  background: rgba(214, 230, 235, 0.42);
+}
+
+/* ---- round 45: the opened confirm bar one flat warm orange, its edge lit
+   like glass; the list under it on Paper glass; the item buttons on a white
+   glass chip instead of grey */
+.cdb-cbar.is-open {
+  background: rgb(254, 236, 206);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.85),
+    inset 0 0 0 1.5px rgba(255, 255, 255, 0.45),
+    inset 0 -6px 14px -10px rgba(255, 255, 255, 0.8),
+    0 6px 16px -12px rgba(150, 95, 10, 0.38);
+}
+
+.cdb-cbar.is-open .cdb-cbar__go {
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.cdb-cbar.is-open .cdb-cbar__panel {
+  isolation: isolate;
+  background:
+    radial-gradient(60% 40% at 100% 0%, rgba(73, 224, 245, 0.06), transparent 70%),
+    linear-gradient(160deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.76) 50%, rgba(255, 255, 255, 0.82) 100%);
+  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+  backdrop-filter: blur(20px) saturate(1.5);
+  box-shadow:
+    inset 0 1px 0 #fff,
+    0 2px 6px rgba(15, 23, 42, 0.04),
+    0 26px 50px -20px rgba(15, 23, 42, 0.26);
+}
+
+.cdb-ti__btn {
+  height: 26px;
+  padding: 0 9px 0 10px;
+  border-radius: var(--r-full);
+}
+
+.cdb-ti__btn:hover {
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow:
+    inset 0 1px 0 #fff,
+    0 1px 2px rgba(150, 95, 10, 0.08),
+    0 4px 10px -6px rgba(150, 95, 10, 0.3);
+  color: var(--text);
+}
+
+.cdb-ti--note .cdb-ti__btn:hover {
+  box-shadow:
+    inset 0 1px 0 #fff,
+    0 1px 2px rgba(15, 23, 42, 0.06),
+    0 4px 10px -6px rgba(15, 23, 42, 0.22);
+}
+
+/* ---- the timeline, opened: its two tools stack down its left side */
+.cd-tl.is-open .cd-tl__tools {
+  flex-direction: column;
+}
+
+/* ======================================================== round 46
+   Zi: the side chat sized to the room beside the drawer, never over it, and
+   as tall as the page (the Prototype menu floats over everything on its
+   own); its Editing card the side-chats one (Float); its field white with a
+   cyan light when focused, never a ring on the words; voice picker B flatter,
+   on paper glass; the references bigger, their notes under them, their
+   source marked, three ways to lay them out. */
+
+/* ---- the side chat */
+.cd-vchat {
+  top: 12px;
+  bottom: 12px;
+  width: max(300px, min(440px, calc(100vw - var(--post-drawer-width, 1040px) - var(--post-drawer-inset, 12px) * 3)));
+}
+
+.cd-vchat__form {
+  position: relative;
+}
+
+.cd-vchat__form.has-tg {
+  padding-top: 34px;
+}
+
+.cd-vchat__form.has-tg .cd-vchat__box {
+  padding-top: 48px;
+}
+
+/* the Editing card: a small picture tilted on a second sheet, the kicker,
+   the name, a clear; half on the field, half above it */
+.cd-vchat__tg {
+  position: absolute;
+  top: 0;
+  left: 12px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  width: max-content;
+  max-width: 170px;
+  padding: 6px 8px;
+  border-radius: 10px;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0.7) 55%, rgba(236, 248, 250, 0.66) 100%);
+  -webkit-backdrop-filter: blur(12px) saturate(1.3);
+  backdrop-filter: blur(12px) saturate(1.3);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.5),
+    0 0 0 1px rgba(14, 165, 184, 0.16),
+    0 1px 2px rgba(15, 23, 42, 0.04),
+    0 8px 20px -12px rgba(15, 23, 42, 0.26);
+}
+
+.cd-vchat__tile {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  margin: 1px 0 0 2px;
+  border-radius: 5px;
+  background: var(--surface-2) center / cover no-repeat;
+  transform: rotate(-5deg);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.5),
+    3px -2px 0 -1px var(--canvas),
+    3px -2px 0 0 rgba(29, 29, 31, 0.1),
+    0 3px 8px -4px rgba(15, 23, 42, 0.3);
+}
+
+.cd-vchat__tgtext {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  width: 100%;
+  min-width: 0;
+}
+
+.cd-vchat__kicker {
+  font-size: 9px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--cyan-700);
+}
+
+.cd-vchat__name {
+  max-width: 150px;
+  overflow: hidden;
+  font-size: 11px;
+  font-weight: var(--fw-bold);
+  line-height: 1.3;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.cd-vchat__tgx {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  color: var(--text);
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.cd-vchat__tgx:hover {
+  background: rgba(29, 29, 31, 0.08);
+  opacity: 1;
+}
+
+/* the field: white and lit cyan when you write in it; the words carry no ring */
+.cd-vchat__box {
+  position: relative;
+  transition:
+    background var(--dur-2) var(--ease),
+    box-shadow var(--dur-2) var(--ease);
+}
+
+.cd-vchat__box:focus-within {
+  background: #fff;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.28),
+    0 0 0 1px rgba(14, 165, 184, 0.22),
+    0 0 10px rgba(14, 165, 184, 0.12),
+    0 8px 20px -12px rgba(15, 23, 42, 0.2);
+}
+
+.cd-vchat .cd-vchat__box .cd-ta,
+.cd-vchat .cd-vchat__box .cd-ta:hover,
+.cd-vchat .cd-vchat__box .cd-ta:focus,
+.cd-vchat .cd-vchat__box .cd-ta:focus-visible {
+  border: 0;
+  outline: none;
+  background: none;
+  box-shadow: none;
+}
+
+/* ---- voice picker B: flat, on paper glass */
+.cd-vpick--lines .cd-vpick__opt {
+  background: linear-gradient(160deg, rgba(29, 29, 31, 0.035), rgba(29, 29, 31, 0.018));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.cd-vpick--lines .cd-vpick__opt:hover {
+  background: linear-gradient(160deg, rgba(29, 29, 31, 0.055), rgba(29, 29, 31, 0.03));
+}
+
+.cd-vpick--lines .cd-vpick__opt.is-on {
+  background: linear-gradient(160deg, rgba(220, 247, 251, 0.9), rgba(236, 250, 252, 0.6));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.cd-vpick--lines .cd-vpick__opt.is-on b {
+  color: var(--cyan-800);
+}
+
+.cd-vpick--lines .cd-vpick__tick {
+  background: var(--cyan-600);
+  box-shadow: none;
+}
+
+/* ---- references: shared parts */
+.cdb-refs--cards,
+.cdb-refs--wide,
+.cdb-refs--list {
+  gap: 16px 14px;
+}
+
+.cdb-ref--cards,
+.cdb-ref--wide,
+.cdb-ref--list {
+  width: auto;
+}
+
+.cdb-ref__picwrap {
+  position: relative;
+  display: block;
+}
+
+.cdb-ref__rolewrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.cdb-ref__rolewrap .cdb-refmenu {
+  top: calc(100% + 6px);
+  left: 0;
+}
+
+.cdb-ref.is-up .cdb-ref__rolewrap .cdb-refmenu {
+  top: auto;
+  bottom: calc(100% + 6px);
+}
+
+.cdb-ref .cdb-ref__hover {
+  padding: 20px 10px 9px;
+}
+
+.cdb-ref .cdb-ref__hover b {
+  -webkit-line-clamp: 2;
+  font-size: 11.5px;
+}
+
+.cdb-ref__note {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin: 0;
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: var(--text-3);
+}
+
+.cdb-ref__note.is-yours {
+  color: var(--text-2);
+}
+
+.cdb-ref__noteadd {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  justify-self: start;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--cyan-700);
+  font-family: inherit;
+  font-size: 11.5px;
+  font-weight: var(--fw-semibold);
+  cursor: pointer;
+}
+
+/* the source: a small glass mark (Vicino / You) */
+.cdb-ref__src {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10.5px;
+  font-weight: var(--fw-semibold);
+  color: var(--cyan-800);
+  white-space: nowrap;
+}
+
+.cdb-ref__src.is-mine {
+  color: #6b4fc8;
+}
+
+.cdb-ref__img .cdb-ref__src {
+  position: absolute;
+  top: 7px;
+  left: 7px;
+  z-index: 2;
+  height: 20px;
+  padding: 0 7px 0 5px;
+  border-radius: var(--r-full);
+  background: rgba(255, 255, 255, 0.78);
+  -webkit-backdrop-filter: blur(10px) saturate(1.4);
+  backdrop-filter: blur(10px) saturate(1.4);
+  box-shadow: 0 2px 6px -3px rgba(15, 23, 42, 0.3);
+}
+
+.cdb-ref__name {
+  overflow: hidden;
+  font-size: 12.5px;
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* ---- A · cards */
+.cdb-ref--cards {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  width: 168px;
+}
+
+.cdb-ref--cards .cdb-ref__img {
+  width: 168px;
+  height: 120px;
+}
+
+.cdb-ref--cards .cdb-ref__rolewrap {
+  justify-self: start;
+}
+
+.cdb-refs--cards .cdb-ref--add {
+  width: 168px;
+  height: 120px;
+}
+
+/* ---- B · list: a row each */
+.cdb-refs--list {
+  display: grid;
+  gap: 6px;
+}
+
+.cdb-ref--list {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: center;
+  padding: 8px 10px 8px 8px;
+  border-radius: 14px;
+  background: rgba(29, 29, 31, 0.03);
+}
+
+.cdb-ref--list .cdb-ref__img {
+  width: 64px;
+  height: 64px;
+  border-radius: 10px;
+}
+
+.cdb-ref--list .cdb-ref__hover {
+  display: none;
+}
+
+.cdb-ref__info {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.cdb-ref--list .cdb-ref__note {
+  -webkit-line-clamp: 1;
+}
+
+.cdb-ref__acts {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cdb-ref--list .cdb-ref__rolewrap .cdb-refmenu {
+  right: 0;
+  left: auto;
+}
+
+.cdb-ref__textbtn {
+  height: 28px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: var(--r-full);
+  background: none;
+  color: var(--text-2);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: var(--fw-semibold);
+  cursor: pointer;
+}
+
+.cdb-ref__textbtn:hover {
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+}
+
+.cdb-ref__x {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: var(--text-4);
+  cursor: pointer;
+}
+
+.cdb-ref__x:hover {
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--text);
+}
+
+/* the add control as a row of its own */
+.cdb-refs--list .cdb-ref--add {
+  width: auto;
+  height: 52px;
+  grid-template-rows: none;
+  grid-template-columns: 1fr 1fr;
+}
+
+.cdb-refs--list .cdb-ref--add::before {
+  top: 14px;
+  bottom: 14px;
+  left: 50%;
+  right: auto;
+  width: 1px;
+  height: auto;
+}
+
+.cdb-refs--list .cdb-ref--add .cdb-ref__addbtn {
+  justify-content: center;
+}
+
+.cdb-refs--list .cdb-ref--addmenu,
+.cdb-refs--list .cdb-ref--addwide {
+  display: flex;
+  max-width: none;
+}
+
+.cdb-refs--list .cdb-ref--addmenu .cdb-ref__addone {
+  grid-auto-flow: column;
+}
+
+.cdb-refs--list .cdb-addmenu {
+  top: calc(100% + 6px);
+  left: 0;
+}
+
+.cdb-refs--list .cdb-ref--addwide {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ---- C · wide cards, two to a row */
+.cdb-refs--wide {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.cdb-ref--wide {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  gap: 12px;
+  padding: 8px;
+  border-radius: 16px;
+  background: rgba(29, 29, 31, 0.03);
+}
+
+.cdb-ref--wide .cdb-ref__img {
+  width: 112px;
+  height: 112px;
+}
+
+.cdb-ref--wide .cdb-ref__info {
+  align-content: start;
+  gap: 6px;
+  padding: 4px 4px 2px 0;
+}
+
+.cdb-ref__top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.cdb-ref--wide .cdb-ref__note {
+  -webkit-line-clamp: 3;
+}
+
+.cdb-ref--wide .cdb-ref__rolewrap {
+  justify-self: start;
+}
+
+.cdb-refs--wide .cdb-ref--add {
+  width: auto;
+  height: auto;
+  min-height: 128px;
+  max-width: none;
+}
+
+/* the list's remove sits in the row's actions (an older tile rule floated it) */
+.cdb-ref--list .cdb-ref__x {
+  position: static;
+  opacity: 1;
+  transform: none;
+}
+
+/* ---- round 47: the draft card's carousel arrows see-through; the text
+   draft's quill redrawn and heavier, its strokes and lines a shade deeper */
+.cdb-art .cdb-art__arrow {
+  background: rgba(255, 255, 255, 0.42);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  box-shadow: none;
+  color: rgba(29, 29, 31, 0.5);
+}
+
+.cdb-art__media--text svg {
+  stroke: var(--cyan-600);
+  stroke-width: 1.9;
+  opacity: 0.9;
+}
+
+.cdb-art .cdb-art__pen {
+  opacity: 1;
+  color: var(--cyan-700);
+}
+
+.cdb-art__pen svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 1;
+}
+
+.cdb-art__pen svg .is-vane {
+  fill: rgba(14, 165, 184, 0.16);
+}
+
+/* ---- round 48: the quill drawn in the lines' own SVG, filled in their colour */
+.cdb-art__quill .is-vane,
+.cdb-art__quill .is-nib {
+  fill: var(--cyan-600);
+  stroke: none;
+}
+
+.cdb-art__quill .is-shaft {
+  stroke: var(--cyan-600);
+  stroke-width: 1.3;
+}
+
+/* the split down the spine, in the card's own light */
+.cdb-art__quill .is-spine {
+  stroke: #f2f9fb;
+  stroke-width: 0.7;
+}
+
+/* ---- round 49: the reference notes a size smaller (and above the Look
+   rows' own paragraph size, which was winning) */
+.cdb-ref .cdb-ref__note,
+.cdb-st__row dd .cdb-ref__note {
+  font-size: 10.5px;
+  line-height: 1.45;
+}
+
+.cdb-ref__noteadd {
+  font-size: 10.5px;
+}
+
+/* ---- round 50: room between the open Look card's header and its rows */
+.cdb .cdb-style.is-open > .cdb-style__body {
+  padding-top: 18px;
+}
+
+/* ======================================================== round 51
+   Zi: the fold is the plan for the video that will be made; say so, and
+   show the plan scene by scene before look, tone and voice: one line for
+   the whole, then a sentence a scene, numbered, no lengths. A · in the
+   fold, B · a card of its own, C · the scenes side by side. */
+
+/* ---- shared: the plan line, the numbered scenes, the foot */
+.cdb-plan__line,
+.cdb-st__row dd .cdb-plan__line {
+  margin: 0;
+  font-size: 13px;
+  font-weight: var(--fw-medium);
+  line-height: 1.55;
+  color: var(--text);
+}
+
+.cdb-plan__list {
+  display: grid;
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cdb-plan__list li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  gap: 12px;
+  align-items: center;
+  padding: 9px 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-2);
+}
+
+/* a short divider between scenes, off the edges */
+.cdb-plan__list li + li::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 42px;
+  height: 1px;
+  background: rgba(29, 29, 31, 0.06);
+}
+
+.cdb-plan__n {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 24px;
+  border-radius: 7px;
+  background: rgba(29, 29, 31, 0.05);
+  color: var(--text-3);
+  font-size: 11px;
+  font-weight: var(--fw-semibold);
+  font-variant-numeric: tabular-nums;
+}
+
+.cdb-plan__foot,
+.cdb-st__row dd .cdb-plan__foot {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 8px 0 0;
+  font-size: 11.5px;
+  color: var(--text-4);
+}
+
+.cdb-plan__go {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--cyan-700);
+  font-family: inherit;
+  font-size: 11.5px;
+  font-weight: var(--fw-semibold);
+  cursor: pointer;
+}
+
+/* ---- B and C: the plan's own card, never folded */
+.cdb-plancard {
+  padding: 14px 22px 16px 14px;
+  border-radius: 14px;
+  background: var(--canvas);
+  box-shadow: var(--cd-soft);
+}
+
+.cdb-plancard__head {
+  display: grid;
+  grid-template-columns: 28px auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.cdb-plancard__ico {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: var(--cd-live-soft);
+  color: var(--cyan-700);
+}
+
+.cdb-plancard__head b {
+  font-size: 13.5px;
+  font-weight: var(--fw-semibold);
+}
+
+.cdb-plancard__sub {
+  overflow: hidden;
+  font-size: 12.5px;
+  color: var(--text-4);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.cdb-plancard .cdb-plan__line,
+.cdb-plancard .cdb-plan__list,
+.cdb-plancard .cdb-plan__strip,
+.cdb-plancard .cdb-plan__foot {
+  margin-left: 40px;
+}
+
+/* the gap between the plan card and the Look fold under it */
+.cdb-plancard + .cdb-style {
+  margin-top: 12px;
+}
+
+/* ---- C: the scenes side by side, in the order they play */
+.cdb-plan__strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 8px;
+  margin-top: 12px;
+  padding: 0;
+  list-style: none;
+}
+
+.cdb-plan__strip li {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  padding: 10px 12px 12px;
+  border-radius: 12px;
+  background: rgba(29, 29, 31, 0.03);
+}
+
+.cdb-plan__tk {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: var(--fw-semibold);
+  color: var(--text-4);
+}
+
+.cdb-plan__strip .cdb-plan__n {
+  width: 26px;
+  height: 22px;
+  background: var(--cd-live-soft);
+  color: var(--cyan-800);
+}
+
+.cdb-plan__tt {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--text-2);
+}
+
+/* ---- A: inside the fold, the first row */
+.cdb-plan--inside {
+  padding-bottom: 4px;
+}
+
+/* ---- edit: a field a scene, its number at its left */
+.cdb-f--beats {
+  gap: 8px;
+}
+
+.cdb-beatf {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+}
+
+.cdb-beatf .cdb-plan__n {
+  margin-top: 10px;
+}
+
+.cdb-form .cdb-beatf .cdb-f__ta {
+  min-height: 0;
+  padding: 10px 14px;
+}
+
+/* ---- round 52: the opened confirm bar a lighter orange; the list under it
+   more see-through; each item a target of its own, deepening on hover */
+.cdb-cbar.is-open {
+  background: rgb(255, 243, 224);
+}
+
+.cdb-cbar.is-open .cdb-cbar__panel {
+  background:
+    radial-gradient(60% 40% at 100% 0%, rgba(73, 224, 245, 0.05), transparent 70%),
+    linear-gradient(160deg, rgba(255, 255, 255, 0.74) 0%, rgba(255, 255, 255, 0.58) 50%, rgba(255, 255, 255, 0.66) 100%);
+  -webkit-backdrop-filter: blur(24px) saturate(1.6);
+  backdrop-filter: blur(24px) saturate(1.6);
+}
+
+.cdb-ti.is-go {
+  cursor: pointer;
+  transition:
+    background var(--dur-2) var(--ease),
+    box-shadow var(--dur-2) var(--ease);
+}
+
+.cdb-ti.is-go:hover,
+.cdb-ti.is-go:focus-visible,
+.cdb-cbar__panel .cdb-ti.is-go:hover {
+  outline: none;
+  background: linear-gradient(160deg, rgba(253, 228, 186, 0.78) 0%, rgba(254, 238, 212, 0.6) 46%, rgba(255, 244, 228, 0.5) 100%);
+  box-shadow: 0 2px 8px -4px rgba(150, 95, 10, 0.22);
+}
+
+.cdb-ti--note.is-go:hover,
+.cdb-ti--note.is-go:focus-visible,
+.cdb-cbar__panel .cdb-ti--note.is-go:hover {
+  background: linear-gradient(160deg, rgba(226, 233, 240, 0.85) 0%, rgba(238, 242, 246, 0.6) 100%);
+  box-shadow: 0 2px 8px -4px rgba(15, 23, 42, 0.16);
+}
+
+/* the item's own button follows the row's hover */
+.cdb-ti.is-go:hover .cdb-ti__btn svg {
+  transform: translateX(2px);
+}
+
+/* ======================================================== round 53
+   Zi: the plan's card finer and less like the sketch; the one line apart
+   from the scenes; Rewrite with Vicino beside Edit; the Look card closer;
+   and B, the Look fold inside the plan's card, folded, on no card. */
+
+.cdb-plancard {
+  padding: 14px 20px 18px 14px;
+}
+
+.cdb-plancard__head {
+  grid-template-columns: 28px auto minmax(0, 1fr) auto;
+  margin-bottom: 4px;
+}
+
+.cdb-plancard__sub {
+  font-size: 12px;
+}
+
+.cdb-plan__body {
+  display: grid;
+  gap: 18px;
+  padding: 10px 0 0 40px;
+}
+
+/* a small plain label over each part */
+.cdb-plan__k {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 11px;
+  font-weight: var(--fw-medium);
+  color: var(--text-4);
+}
+
+/* the idea in one line: a soft cyan wash of its own */
+.cdb-plan__idea {
+  padding: 12px 16px 13px;
+  border-radius: 12px;
+  background: linear-gradient(160deg, rgba(213, 245, 250, 0.6) 0%, rgba(236, 250, 252, 0.4) 60%, rgba(255, 255, 255, 0.2) 100%);
+}
+
+.cdb-plan__idea .cdb-plan__k {
+  color: var(--cyan-700);
+}
+
+.cdb-plancard .cdb-plan__line {
+  margin: 0;
+  font-size: 14px;
+  font-weight: var(--fw-medium);
+  line-height: 1.55;
+  letter-spacing: -0.005em;
+  color: var(--text);
+}
+
+.cdb-plan__scenes .cdb-plan__k {
+  margin-bottom: 4px;
+}
+
+/* the scenes as steps on a thin thread */
+.cdb-plan__steps {
+  position: relative;
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cdb-plan__steps li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+  padding: 7px 0;
+}
+
+/* the thread: from one number to the next */
+.cdb-plan__steps li + li::before {
+  content: '';
+  position: absolute;
+  top: -9px;
+  left: 10.5px;
+  width: 1px;
+  height: 18px;
+  background: rgba(14, 165, 184, 0.22);
+}
+
+.cdb-plan__dot {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.06),
+    0 3px 8px -4px rgba(13, 118, 133, 0.35);
+  color: var(--cyan-700);
+  font-size: 11px;
+  font-weight: var(--fw-semibold);
+  font-variant-numeric: tabular-nums;
+}
+
+.cdb-plan__st {
+  padding-top: 2px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-2);
+}
+
+.cdb-plancard .cdb-plan__foot {
+  margin: 8px 0 0 36px;
+  margin-left: 36px;
+}
+
+/* A: the Look card close under the plan's */
+.cdb-plancard + .cdb-style {
+  margin-top: -4px;
+}
+
+/* B: the Look fold in the plan card's foot, on no card of its own */
+.cdb-plancard.has-look {
+  padding-bottom: 6px;
+}
+
+.cdb-style--inplan {
+  position: relative;
+  margin: 16px -20px 0 -14px;
+  border-radius: 0 0 14px 14px;
+  background: none;
+  box-shadow: none;
+}
+
+/* a divider over it, off the card's edges */
+.cdb-style--inplan::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 20px;
+  left: 54px;
+  height: 1px;
+  background: rgba(29, 29, 31, 0.07);
+}
+
+.cdb .cdb-style--inplan.is-open > .cdb-style__body {
+  padding-top: 12px;
+}
+
+/* ---- round 54: the opened confirm list a frosted grey glass (over the white
+   brief, a white glass only read as white) */
+.cdb-cbar.is-open .cdb-cbar__panel {
+  background:
+    radial-gradient(60% 40% at 100% 0%, rgba(73, 224, 245, 0.06), transparent 70%),
+    linear-gradient(160deg, rgba(244, 246, 249, 0.72) 0%, rgba(232, 236, 241, 0.58) 55%, rgba(238, 241, 245, 0.66) 100%);
+  -webkit-backdrop-filter: blur(26px) saturate(1.6);
+  backdrop-filter: blur(26px) saturate(1.6);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.85),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.35),
+    0 2px 6px rgba(15, 23, 42, 0.05),
+    0 26px 50px -20px rgba(15, 23, 42, 0.3);
+}
+
+/* ---- round 55: the plan card's foot, as the other cards': its note under
+   "Scene by scene", Rewrite with Vicino and Edit at the bottom right */
+.cdb-plan__footrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: -6px;
+}
+
+.cdb-plancard .cdb-plan__footrow .cdb-plan__foot {
+  flex: 1;
+  margin: 0;
+}
+
+.cdb-plan__footrow .cdb-editacts {
+  margin-left: auto;
+}
+
+/* ---- round 56: the confirm bar with a crisp, even edge (its fading fill
+   made the eye start it at its icon, not at its edge, so it read as out of
+   line with the words under it) and smaller corners; the list's items more
+   solid, the note item near white */
+.cdb-cbar {
+  border-radius: 8px;
+  background: rgb(255, 245, 229);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    0 3px 10px -8px rgba(150, 95, 10, 0.3);
+}
+
+.cdb-cbar.is-open {
+  border-radius: 8px;
+}
+
+.cdb-cbar.is-open .cdb-cbar__panel {
+  border-radius: 10px;
+}
+
+.cdb-cbar__panel .cdb-ti,
+.cdb-cbar__panel .cdb-ti.is-go {
+  border-radius: 8px;
+  background: linear-gradient(160deg, rgba(255, 239, 212, 0.94) 0%, rgba(255, 246, 232, 0.9) 100%);
+}
+
+.cdb-cbar__panel .cdb-ti--note,
+.cdb-cbar__panel .cdb-ti--note.is-go {
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.cdb-cbar__panel .cdb-ti.is-go:hover {
+  background: linear-gradient(160deg, rgba(253, 228, 186, 0.98) 0%, rgba(254, 238, 210, 0.95) 100%);
+}
+
+.cdb-cbar__panel .cdb-ti--note.is-go:hover {
+  background: #fff;
+  box-shadow: 0 2px 8px -4px rgba(15, 23, 42, 0.18);
+}
+
+/* ---- round 57: pinned at the top, the confirm bar lifts off what scrolls
+   under it: a soft light glow round it that hides the content's edges right
+   by it, and a warm shadow below */
+.cdb-cbar {
+  transition: box-shadow var(--dur-2) var(--ease);
+}
+
+.cdb-cbar.is-stuck {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    0 0 0 5px rgba(249, 250, 251, 0.92),
+    0 0 18px 8px rgba(249, 250, 251, 0.85),
+    0 16px 30px -12px rgba(120, 80, 20, 0.32);
+}
+
+/* ======================================================== round 58
+   Zi: the pinned bar's orange shadow and white ring did nothing; the list
+   under it on the drawer's Paper glass, its items redrawn. */
+
+/* ---- the band the bar pins in: frosted only while pinned */
+.cdb-cbarwrap {
+  position: sticky;
+  top: 0;
+  z-index: 8;
+  margin: 0 -12px;
+  padding: 6px 12px 0;
+}
+
+.cdb-cbarwrap .cdb-cbar {
+  position: relative;
+  top: auto;
+  z-index: auto;
+  margin-bottom: 0;
+}
+
+/* no ring, no orange cast */
+.cdb-cbar.is-stuck,
+.cdb-cbarwrap .cdb-cbar {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+/* the frost: the drawer's own pale ground, blurring what scrolls under it,
+   fading out a little below the bar */
+.cdb-cbarwrap::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 -18px;
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(248, 249, 251, 0.9) 0%, rgba(248, 249, 251, 0.82) 70%, rgba(248, 249, 251, 0) 100%);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 72%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 0%, #000 72%, transparent 100%);
+  opacity: 0;
+  transition: opacity var(--dur-2) var(--ease);
+  pointer-events: none;
+}
+
+.cdb-cbarwrap.is-stuck::before {
+  opacity: 1;
+}
+
+/* pinned, the bar itself casts a quiet neutral shadow */
+.cdb-cbarwrap.is-stuck .cdb-cbar {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    0 1px 2px rgba(15, 23, 42, 0.05),
+    0 8px 18px -12px rgba(15, 23, 42, 0.3);
+}
+
+/* ---- the list: the drawer's Paper glass */
+.cdb-cbar.is-open .cdb-cbar__panel {
+  padding: 8px;
+  background:
+    radial-gradient(120% 50% at 100% 0%, rgba(73, 224, 245, 0.08), transparent 60%),
+    radial-gradient(90% 40% at 0% 100%, rgba(73, 224, 245, 0.04), transparent 70%),
+    linear-gradient(160deg, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.8) 40%, rgba(255, 255, 255, 0.84) 100%);
+  -webkit-backdrop-filter: blur(18px) saturate(1.5);
+  backdrop-filter: blur(18px) saturate(1.5);
+  box-shadow:
+    0 2px 6px rgba(15, 23, 42, 0.035),
+    0 28px 56px -22px rgba(11, 20, 40, 0.26);
+}
+
+/* its lit rim */
+.cdb-cbar.is-open .cdb-cbar__panel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(170deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.35) 45%, rgba(255, 255, 255, 0.6));
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ---- each item: a light row; the kind told by a tinted mark and a faint
+   warm wash from its left, not by a filled band */
+.cdb-cbar__panel .cdb-tl {
+  gap: 4px;
+}
+
+.cdb-cbar__panel .cdb-ti,
+.cdb-cbar__panel .cdb-ti.is-go {
+  grid-template-columns: 30px minmax(0, 1fr) auto;
+  gap: 12px;
+  padding: 10px 10px 10px 10px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, rgba(255, 238, 208, 0.7) 0%, rgba(255, 246, 232, 0.35) 38%, rgba(255, 255, 255, 0.5) 100%);
+  box-shadow: none;
+}
+
+.cdb-cbar__panel .cdb-ti--note,
+.cdb-cbar__panel .cdb-ti--note.is-go {
+  background: rgba(29, 29, 31, 0.025);
+  box-shadow: none;
+}
+
+.cdb-cbar__panel .cdb-ti__ico {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: rgba(245, 158, 11, 0.14);
+  box-shadow: none;
+  color: var(--amber-600);
+}
+
+.cdb-cbar__panel .cdb-ti--note .cdb-ti__ico {
+  background: rgba(29, 29, 31, 0.05);
+  color: var(--text-3);
+}
+
+.cdb-cbar__panel .cdb-ti__txt b {
+  font-size: 13px;
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+}
+
+.cdb-cbar__panel .cdb-ti--note .cdb-ti__txt b {
+  font-weight: var(--fw-medium);
+}
+
+.cdb-cbar__panel .cdb-ti__txt small {
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--text-3);
+}
+
+/* hover: the row comes up white, its wash a little stronger */
+.cdb-cbar__panel .cdb-ti.is-go:hover {
+  background: linear-gradient(90deg, rgba(255, 232, 196, 0.85) 0%, rgba(255, 244, 228, 0.7) 38%, #fff 100%);
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.04),
+    0 6px 16px -10px rgba(15, 23, 42, 0.22);
+}
+
+.cdb-cbar__panel .cdb-ti--note.is-go:hover {
+  background: #fff;
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.04),
+    0 6px 16px -10px rgba(15, 23, 42, 0.2);
+}
+
+.cdb-cbar__panel .cdb-ti__btn {
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+}
+
+.cdb-cbar__panel .cdb-ti.is-go:hover .cdb-ti__btn {
+  background: #fff;
+}
+
+/* ---- round 59: the list's Paper glass warmed (amber traces, not cyan);
+   the note row a clearer grey; items as far apart as they are from the
+   card's sides */
+.cdb-cbar.is-open .cdb-cbar__panel {
+  padding: 10px;
+  background:
+    radial-gradient(120% 50% at 100% 0%, rgba(251, 191, 36, 0.1), transparent 60%),
+    radial-gradient(90% 40% at 0% 100%, rgba(251, 191, 36, 0.06), transparent 70%),
+    linear-gradient(160deg, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.8) 40%, rgba(255, 253, 249, 0.84) 100%);
+}
+
+.cdb-cbar__panel .cdb-tl {
+  gap: 10px;
+}
+
+.cdb-cbar__panel .cdb-ti--note,
+.cdb-cbar__panel .cdb-ti--note.is-go {
+  background: rgba(29, 29, 31, 0.055);
+}
+
+.cdb-cbar__panel .cdb-ti--note .cdb-ti__ico {
+  background: rgba(29, 29, 31, 0.075);
+  color: var(--text-2);
+}
+
+/* ---- round 60: the open list on Frost (the drawer's Frost surface: cool,
+   clearer glass, blurred hard, a white light at the top); its rows sit on it
+   as frosted white, the note row a quieter white that still holds its own
+   when pointed at */
+.cdb-cbar.is-open .cdb-cbar__panel {
+  background:
+    radial-gradient(110% 45% at 100% 0%, rgba(255, 255, 255, 0.4), transparent 65%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0) 28%),
+    rgba(228, 238, 242, 0.62);
+  -webkit-backdrop-filter: blur(36px) saturate(1.8);
+  backdrop-filter: blur(36px) saturate(1.8);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 2px 6px rgba(15, 23, 42, 0.05),
+    0 28px 56px -22px rgba(11, 20, 40, 0.28);
+}
+
+.cdb-cbar__panel .cdb-ti,
+.cdb-cbar__panel .cdb-ti.is-go {
+  background: linear-gradient(90deg, rgba(255, 236, 204, 0.92) 0%, rgba(255, 245, 230, 0.82) 40%, rgba(255, 255, 255, 0.72) 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.cdb-cbar__panel .cdb-ti--note,
+.cdb-cbar__panel .cdb-ti--note.is-go {
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.cdb-cbar__panel .cdb-ti.is-go:hover {
+  background: linear-gradient(90deg, rgba(255, 228, 186, 0.98) 0%, rgba(255, 241, 220, 0.94) 40%, rgba(255, 255, 255, 0.92) 100%);
+  box-shadow:
+    inset 0 1px 0 #fff,
+    0 6px 16px -10px rgba(15, 23, 42, 0.25);
+}
+
+.cdb-cbar__panel .cdb-ti--note.is-go:hover {
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow:
+    inset 0 1px 0 #fff,
+    0 6px 16px -10px rgba(15, 23, 42, 0.22);
+}
+
+.cdb-cbar__panel .cdb-ti--note .cdb-ti__ico {
+  background: rgba(29, 29, 31, 0.06);
+}
+
+/* ---- round 61: the list's Frost toned down: less glass (a lighter blur,
+   barely saturated, more opaque) and neutral, not blue */
+.cdb-cbar.is-open .cdb-cbar__panel {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0) 30%),
+    rgba(241, 241, 242, 0.86);
+  -webkit-backdrop-filter: blur(16px) saturate(1.05);
+  backdrop-filter: blur(16px) saturate(1.05);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.85),
+    0 2px 6px rgba(15, 23, 42, 0.05),
+    0 24px 48px -22px rgba(15, 15, 20, 0.26);
+}
+
+.cdb-cbar.is-open .cdb-cbar__panel::after {
+  background: linear-gradient(170deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.25) 45%, rgba(255, 255, 255, 0.45));
+}
+
+/* ---- round 62: the open list whiter; its last item keeps a clean edge, and
+   only a list of more than three fades, after a glimpse of the fourth */
+.cdb-cbar.is-open .cdb-cbar__panel {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0) 30%),
+    rgba(250, 250, 251, 0.92);
+}
+
+.cdb-cbar__panel .cdb-tlwrap {
+  max-height: none;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+.cdb-cbar__panel .cdb-tlwrap.is-more {
+  overflow-y: auto;
+  -webkit-mask-image: linear-gradient(180deg, #000 calc(100% - 30px), transparent 100%);
+  mask-image: linear-gradient(180deg, #000 calc(100% - 30px), transparent 100%);
+}
+
+/* ---- round 63: the note row grey, and still grey (a shade deeper) on hover */
+.cdb-cbar__panel .cdb-ti--note,
+.cdb-cbar__panel .cdb-ti--note.is-go {
+  background: rgba(29, 29, 31, 0.06);
+  box-shadow: none;
+}
+
+.cdb-cbar__panel .cdb-ti--note.is-go:hover {
+  background: rgba(29, 29, 31, 0.095);
+  box-shadow: none;
+}
+
+.cdb-cbar__panel .cdb-ti--note .cdb-ti__ico {
+  background: rgba(255, 255, 255, 0.75);
+}
+
+/* ---- round 64: in a notice, room after a headline sentence */
+.cd-toast__gap {
+  display: inline-block;
+  width: 8px;
+}
+
+/* ======================================================== round 65
+   Zi: the own-video and Library pickers were heavy: the picked frame too
+   thick, Upload cyan, the corners too round. Light tiles now: the picture
+   alone; name, size and date on hover, as on the references; the pick
+   circle with the pointer, staying once picked; a clip's play mark. */
+
+.cd .cd-modal__card {
+  border-radius: 16px;
+}
+
+.cd .cd-modal .cdb-lib {
+  gap: 12px;
+}
+
+.cdb-lib__item {
+  position: relative;
+  gap: 0;
+}
+
+/* the tile: the picture, its own corners, a soft shadow */
+.cdb-lib__img,
+.cdb-lib__doc {
+  border-radius: 12px;
+  background: rgba(29, 29, 31, 0.04);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+}
+
+.cdb-lib__img img,
+.cdb-lib__item.is-on .cdb-lib__img img {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+}
+
+.cdb-lib__item.is-on .cdb-lib__img::after {
+  display: none;
+}
+
+/* picked: no frame; the tile lifts a little on a cyan-tinted shadow */
+.cdb-lib__item.is-on .cdb-lib__img {
+  background: rgba(29, 29, 31, 0.04);
+  transform: translateY(-2px);
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.06),
+    0 14px 26px -14px rgba(13, 118, 133, 0.55);
+}
+
+/* the pick circle: with the pointer, and kept once picked */
+.cdb-lib__tick {
+  opacity: 0;
+  transition:
+    opacity var(--dur-2) var(--ease),
+    background var(--dur-2) var(--ease);
+}
+
+.cdb-lib__item:not(.is-used):hover .cdb-lib__tick,
+.cdb-lib__item:focus-visible .cdb-lib__tick,
+.cdb-lib__item.is-on .cdb-lib__tick {
+  opacity: 1;
+}
+
+.cdb-lib__item.is-on .cdb-lib__tick {
+  background: var(--cyan-600);
+  box-shadow: 0 2px 6px -2px rgba(13, 118, 133, 0.5);
+  color: #fff;
+}
+
+/* name, size and date: on hover, a fade from the foot */
+.cdb-lib__hover {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 1px;
+  padding: 26px 10px 9px;
+  border-radius: 12px;
+  background: linear-gradient(0deg, rgba(15, 15, 17, 0.78) 0%, rgba(15, 15, 17, 0.4) 50%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.18s var(--ease);
+  pointer-events: none;
+}
+
+.cdb-lib__item:hover .cdb-lib__hover,
+.cdb-lib__item:focus-visible .cdb-lib__hover {
+  opacity: 1;
+}
+
+.cd .cdb-lib__hover b {
+  overflow: hidden;
+  font-size: 11.5px;
+  font-weight: var(--fw-semibold);
+  color: #fff;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.cd .cdb-lib__hover small {
+  font-size: 10.5px;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.cdb-lib__tick,
+.cdb-lib__img em {
+  z-index: 2;
+}
+
+/* a clip: a light glass play mark in the middle, its length at the top left */
+.cdb-lib__play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.72);
+  -webkit-backdrop-filter: blur(10px) saturate(1.4);
+  backdrop-filter: blur(10px) saturate(1.4);
+  box-shadow: 0 4px 12px -4px rgba(15, 23, 42, 0.35);
+  color: var(--text);
+  transition: opacity var(--dur-2) var(--ease);
+}
+
+.cdb-lib__play svg {
+  margin-left: 2px;
+}
+
+.cdb-lib__item:hover .cdb-lib__play {
+  opacity: 0.85;
+}
+
+.cdb-lib__dur {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 1;
+  height: 20px;
+  padding: 0 7px;
+  border-radius: var(--r-full);
+  background: rgba(255, 255, 255, 0.78);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  color: var(--text);
+  font-size: 10.5px;
+  font-weight: var(--fw-semibold);
+  line-height: 20px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Upload: grey like an empty tile, its words inside it */
+.cdb-lib__item--up .cdb-lib__doc,
+.cdb-lib__doc {
+  gap: 4px;
+  background: rgba(29, 29, 31, 0.045);
+  color: var(--text-3);
+}
+
+.cdb-lib__item--up:hover .cdb-lib__doc {
+  background: rgba(29, 29, 31, 0.075);
+  color: var(--text);
+}
+
+.cd .cdb-lib__doc b {
+  font-size: 12px;
+  font-weight: var(--fw-semibold);
+  color: var(--text-2);
+  white-space: normal;
+}
+
+.cd .cdb-lib__doc small {
+  font-size: 11px;
+  color: var(--text-4);
+}
+
+.cdb-lib__item.is-off .cdb-lib__doc {
+  padding: 10px;
+  text-align: center;
+}
+
+/* ---- round 66: the picker dialogs larger, with more room between head,
+   tiles and foot; the tiles smaller, five to a row */
+.cd .cd-modal__card--wide {
+  width: min(900px, 100%);
+  padding: 34px 38px 30px;
+}
+
+.cd .cd-modal .cd-modal__card--wide > .cdb-lib.cdb-lib {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+  max-height: min(520px, calc(100vh - 300px));
+  margin-top: 24px;
+}
+
+.cd .cd-modal__card--wide > .cd-modal__foot {
+  margin-top: 34px;
+}
+
+@media (max-width: 760px) {
+  .cd .cd-modal .cd-modal__card--wide > .cdb-lib.cdb-lib {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* the picker dialogs stand taller; the tiles' area takes the room */
+.cd .cd-modal .cd-modal__card--wide {
+  display: flex;
+  flex-direction: column;
+  min-height: min(660px, calc(100vh - 96px));
+}
+
+.cd .cd-modal .cd-modal__card--wide > .cdb-lib.cdb-lib {
+  flex: 1 1 auto;
+  align-content: start;
+}
+
+/* ---- round 67: the picker tiles' corners smaller */
+.cd .cd-modal .cdb-lib__img,
+.cd .cd-modal .cdb-lib__doc,
+.cd .cd-modal .cdb-lib__img img,
+.cd .cd-modal .cdb-lib__hover {
+  border-radius: 8px;
+}
+
+/* ---- round 68: a dialog's secondary buttons (Cancel, Keep reviewing…) as the
+   edit footer's Cancel: no fill until pointed at, then a light neutral grey */
+.cd .cd-modal__foot .cd-btn:not(.cd-btn--primary) {
+  background: transparent;
+  box-shadow: none;
+  color: var(--text-2);
+}
+
+.cd .cd-modal__foot .cd-btn:not(.cd-btn--primary):hover {
+  background: rgba(29, 29, 31, 0.055);
+  color: var(--text);
+}
+
+/* ---- round 69: the video plan's title carries the same small (i) as the
+   proof points, its note opening under it */
+.cdb-plancard__title {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cdb-plancard__title b {
+  font-size: 13.5px;
+  font-weight: var(--fw-semibold);
+}
+
+.cdb-plancard__title .cdb-helppop {
+  left: 0;
+  width: 300px;
+}
+
+/* ---- round 70: while the brief card is edited, "Editing" floats at the
+   card's top right, over its content, taking no room in the layout */
+.cdb-clean.is-editing {
+  position: relative;
+}
+
+.cdb-clean.is-editing .cdb-clean__head .cdb-editing {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  z-index: 5;
+  margin: 0;
+  box-shadow: 0 2px 8px -4px rgba(13, 118, 133, 0.35);
+}
+
+/* ======================================================== round 117
+   Campaigns are gone: tags in the head and on Context, and a post past its
+   time says so above every tab. */
+
+.cd-head__tags,
+.cd-ctx__tags {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+}
+
+.cd-ctx__tags {
+  display: flex;
+  padding-top: 2px;
+}
+
+.cd-htag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 20px;
+  padding: 0 7px;
+  border: 0;
+  border-radius: var(--r-full);
+  background: rgba(29, 29, 31, 0.05);
+  font-family: inherit;
+  font-size: 11px;
+  color: var(--text-2);
+  white-space: nowrap;
+}
+
+.cd-htag__mark {
+  flex: none;
+  display: block;
+}
+
+.cd-htag__x {
+  display: inline-grid;
+  place-items: center;
+  width: 0;
+  height: 14px;
+  margin-left: -5px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: var(--text-4);
+  overflow: hidden;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.cd-htag:hover,
+.cd-htag:focus-within {
+  padding-right: 3px;
+}
+
+.cd-htag:hover .cd-htag__x,
+.cd-htag__x:focus-visible {
+  width: 14px;
+  margin-left: 0;
+  opacity: 1;
+}
+
+.cd-htag__x:hover {
+  background: rgba(29, 29, 31, 0.08);
+  color: var(--text);
+}
+
+.cd-htag--add {
+  gap: 3px;
+  padding: 0 6px;
+  background: transparent;
+  color: var(--text-4);
+  cursor: pointer;
+  transition:
+    background var(--dur-1) var(--ease),
+    color var(--dur-1) var(--ease);
+}
+
+.cd-htag--add:hover {
+  background: rgba(29, 29, 31, 0.06);
+  color: var(--text-2);
+}
+
+.cd-missed {
+  margin: 16px 24px 0;
+}
+
+.cd-missed + .cd-view {
+  padding-top: 12px;
+}
+
+.cd-missed .cdb-cbar__sum {
+  cursor: default;
+}
+
+.cd-missed__acts {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.cd-missed__act {
+  height: 26px;
+  padding: 0 9px;
+  border: 0;
+  border-radius: 8px;
+  background: none;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background var(--dur-2) var(--ease);
+}
+
+.cd-missed__act:hover {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.cd-missed__act.is-quiet {
+  font-weight: var(--fw-medium);
+  color: var(--text-3);
+}

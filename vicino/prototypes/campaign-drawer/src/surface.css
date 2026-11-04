@@ -1,0 +1,222 @@
+/* The drawer surface — round 11.
+
+   Zi: make the drawer one piece, a little see-through, like the Paper chat
+   window in draft/side-chats. Header, step bar, body and footer share one
+   glass panel; nothing paints its own band. A sheen and a lit rim finish the
+   edge, and the scrim is lighter so the page shows through the blur.
+
+   A · Paper  the side-chats Paper glass: 84% white, a faint cyan breath, and no
+              divider lines: space, soft fills and fades do that work
+   B · Frost  clearer glass, more of the page through it; cards frosted too
+   C · Pearl  white at the top fading to a cool pearl, cyan light at the top right;
+              no divider lines, like Paper
+   Solid      the drawer as before, for comparison */
+
+.cd[data-surface='paper'] {
+  --ds-glass: rgba(255, 255, 255, 0.84);
+  --ds-tint:
+    radial-gradient(120% 50% at 100% 0%, rgba(73, 224, 245, 0.08), transparent 60%),
+    radial-gradient(90% 40% at 0% 100%, rgba(73, 224, 245, 0.04), transparent 70%);
+  --ds-blur: 18px;
+  --ds-sat: 1.5;
+  --ds-scrim: rgba(20, 20, 22, 0.16);
+  --ds-card: #ffffff;
+  --ds-card-hi: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.cd[data-surface='frost'] {
+  --ds-glass: rgba(228, 238, 242, 0.56);
+  --ds-tint:
+    radial-gradient(110% 45% at 100% 0%, rgba(255, 255, 255, 0.4), transparent 65%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0) 28%);
+  --ds-blur: 36px;
+  --ds-sat: 1.8;
+  --ds-scrim: rgba(20, 20, 22, 0.05);
+  --ds-card: rgba(255, 255, 255, 0.78);
+  --ds-card-hi: inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+.cd[data-surface='pearl'] {
+  --ds-glass: rgba(255, 255, 255, 0.88);
+  --ds-tint:
+    radial-gradient(64% 36% at 100% 0%, rgba(73, 224, 245, 0.13), transparent 72%),
+    radial-gradient(60% 30% at 0% 0%, rgba(255, 255, 255, 0.6), transparent 70%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, rgba(248, 252, 253, 0.4) 100%);
+  --ds-blur: 26px;
+  --ds-sat: 1.6;
+  --ds-scrim: rgba(20, 20, 22, 0.05);
+  --ds-card: rgba(255, 255, 255, 0.97);
+  --ds-card-hi: inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+/* the panel: one glass surface ------------------------------------------------ */
+
+.cd[data-surface]:not([data-surface='solid']) .post-drawer__scrim {
+  background: var(--ds-scrim);
+}
+
+.cd[data-surface]:not([data-surface='solid']) .post-drawer__panel {
+  /* the wells and hairlines inside turn see-through with it */
+  --surface: rgba(29, 29, 31, 0.032);
+  --surface-2: rgba(29, 29, 31, 0.055);
+  --surface-3: rgba(29, 29, 31, 0.09);
+  isolation: isolate;
+  border-radius: 18px;
+  background: var(--ds-glass);
+  -webkit-backdrop-filter: blur(var(--ds-blur)) saturate(var(--ds-sat));
+  backdrop-filter: blur(var(--ds-blur)) saturate(var(--ds-sat));
+  box-shadow:
+    0 2px 6px rgba(15, 23, 42, 0.035),
+    0 40px 80px -24px rgba(11, 20, 40, 0.28);
+}
+
+/* sheen: light from the top left, the tint of each version */
+.cd[data-surface]:not([data-surface='solid']) .post-drawer__panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background:
+    linear-gradient(
+      160deg,
+      rgba(255, 255, 255, 0.7) 0%,
+      rgba(255, 255, 255, 0.26) 26%,
+      rgba(255, 255, 255, 0) 52%,
+      rgba(255, 255, 255, 0.14) 100%
+    ),
+    var(--ds-tint);
+  pointer-events: none;
+}
+
+/* the lit rim */
+.cd[data-surface]:not([data-surface='solid']) .post-drawer__panel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(170deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.35) 45%, rgba(255, 255, 255, 0.6));
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* no part paints its own band */
+.cd[data-surface]:not([data-surface='solid']) :is(.cd-head, .cd-steps, .cd-body, .cd-foot) {
+  background: transparent;
+}
+
+.cd[data-surface='frost'] .cd-foot {
+  box-shadow: inset 0 1px 0 rgba(29, 29, 31, 0.06);
+}
+
+.cd[data-surface='frost'] .cd-steps:not(.cd-steps--line) {
+  box-shadow: inset 0 -1px 0 rgba(29, 29, 31, 0.06);
+}
+
+/* cards sit on the glass: white (Paper) or frosted (Frost, Pearl) */
+.cd[data-surface]:not([data-surface='solid'])
+  :is(
+    .cd-card,
+    .cd-note,
+    .cd-scene,
+    .cd-pane,
+    .cdb-phone__card,
+    .cdb-sheet,
+    .cdb-mini,
+    .cdb-slip,
+    .cdb-sidecard,
+    .cdb-style,
+    .cdb-clean,
+    .cdb-foldrow,
+    .cdg-stage,
+    .cdg-tweet,
+    .cdg-status,
+    .cdr-chan,
+    .cdr-card,
+    .cdr-fold,
+    .cdsum,
+    .cdb-mini
+  ) {
+  background: var(--ds-card);
+}
+
+.cd[data-surface='frost']
+  :is(.cd-card, .cdb-sheet, .cdb-clean, .cdb-sidecard, .cdg-stage, .cdr-card, .cdsum) {
+  -webkit-backdrop-filter: blur(12px) saturate(1.4);
+  backdrop-filter: blur(12px) saturate(1.4);
+  box-shadow:
+    var(--ds-card-hi),
+    0 1px 2px rgba(15, 23, 42, 0.04),
+    0 10px 28px -14px rgba(15, 23, 42, 0.16);
+}
+
+.cd[data-surface='pearl'] :is(.cd-card, .cdsum, .cdr-card, .cdg-stage) {
+  box-shadow:
+    var(--ds-card-hi),
+    0 1px 2px rgba(15, 23, 42, 0.035),
+    0 12px 30px -16px rgba(20, 90, 110, 0.16);
+}
+
+/* Paper and Pearl: no divider lines -----------------------------------------------
+   Zi: separate the content without lines. Every hairline in the drawer is
+   drawn with --surface-edge, so both surfaces clear it; what the lines did is
+   done by space, a soft fill, or the body fading out under the head and foot. */
+
+.cd:is([data-surface='paper'], [data-surface='pearl']) .post-drawer__panel {
+  --surface-edge: transparent;
+}
+
+/* popovers and dialogs are their own white sheets and keep their lines */
+.cd:is([data-surface='paper'], [data-surface='pearl']) :is(.cd-pop, .cd-modal__card, .cd-cal) {
+  --surface-edge: rgba(29, 29, 31, 0.068);
+}
+
+.cd:is([data-surface='paper'], [data-surface='pearl']) :is(.cd-foot, .cd-steps) {
+  box-shadow: none;
+}
+
+.cd:is([data-surface='paper'], [data-surface='pearl']) .cd-path {
+  border-bottom-color: transparent;
+}
+
+/* the body dissolves into the glass at its top and bottom edges */
+.cd:is([data-surface='paper'], [data-surface='pearl']) .cd-body {
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 14px, #000 calc(100% - 22px), transparent 100%);
+  mask-image: linear-gradient(180deg, transparent 0, #000 14px, #000 calc(100% - 22px), transparent 100%);
+}
+
+.cd:is([data-surface='paper'], [data-surface='pearl']) .cd-foot {
+  padding-top: 6px;
+}
+
+/* B's folded extras are part of the sheet, not a card on the glass */
+.cd[data-surface] .cdb-page .cd-fold {
+  background: rgba(56, 110, 160, 0.025);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  box-shadow: none;
+}
+
+/* Look, tone and voice inside B's sheet is part of the sheet */
+.cd[data-surface] .cdb-page .cdb-style {
+  background: rgba(56, 110, 160, 0.03);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  box-shadow: none;
+}
+
+/* the panel keeps its rounded corners when it goes full width */
+@media (max-width: 760px) {
+  .cd[data-surface]:not([data-surface='solid']) .post-drawer__panel {
+    border-radius: 0;
+  }
+}

@@ -1,0 +1,406 @@
+/* The step bar — round 17.
+
+   Zi: the bar must be small, clear and tidy, with no rings and no round
+   buttons, in the same language as draft/brain and draft/side-chats. Done is
+   the design system's cyan, never green.
+
+   A · Tabs   text tabs: the step you are on in ink, others grey; a cyan check
+              on a done step; small chevrons between
+   B · Glass  one frosted track; the step you are on lifted out of it in white
+   C · Bars   a short bar above each name fills in as the post moves on */
+
+.cd-steps {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  margin-top: 8px;
+  padding: 0 24px;
+  box-shadow: inset 0 -1px 0 var(--surface-edge);
+}
+
+.cd-steps button {
+  font-family: inherit;
+}
+
+.cd-steps__ctx {
+  margin-left: auto;
+}
+
+.cd-steps__ctx svg {
+  color: var(--text-4);
+}
+
+.is-locked {
+  cursor: default;
+}
+
+/* the glyph before a name: a check, a number, a spinner or a warning */
+.cd-sg {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  min-width: 14px;
+  height: 14px;
+  font-size: 11px;
+  font-weight: var(--fw-semibold);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  color: var(--text-5);
+}
+
+.is-now .cd-sg,
+.is-active .cd-sg {
+  color: var(--text);
+}
+
+.cd-sg.is-done {
+  color: var(--cyan-600);
+}
+
+.cd-sg.is-warn {
+  color: var(--cd-warn);
+}
+
+.cd-sg.is-live {
+  color: var(--cd-make);
+}
+
+/* A · Tabs ---------------------------------------------------------------------- */
+
+.cd-steps--tabs {
+  gap: 4px;
+  height: 44px;
+}
+
+.cd-tabs__tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 30px;
+  padding: 0 8px;
+  border: 0;
+  border-radius: 8px;
+  background: none;
+  color: var(--text-4);
+  font-size: var(--fs-3);
+  font-weight: var(--fw-medium);
+  white-space: nowrap;
+  transition:
+    color var(--dur-2) var(--ease),
+    background var(--dur-2) var(--ease);
+}
+
+.cd-tabs__tab:first-child {
+  margin-left: -8px;
+}
+
+.cd-tabs__tab:not(.is-locked):hover {
+  background: rgba(29, 29, 31, 0.04);
+  color: var(--text-2);
+}
+
+.cd-tabs__tab.is-done {
+  color: var(--text-3);
+}
+
+.cd-tabs__tab.is-active {
+  color: var(--text);
+  font-weight: var(--fw-semibold);
+}
+
+.cd-tabs__tab.is-locked {
+  color: var(--text-5);
+}
+
+.cd-tabs__sep {
+  display: inline-grid;
+  place-items: center;
+  color: var(--text-5);
+}
+
+.cd-steps--tabs .cd-steps__ctx {
+  gap: 6px;
+  margin-right: -8px;
+}
+
+/* B · Glass (round 19) ----------------------------------------------------------
+   A frosted groove holding the three steps; the step you are on is lifted out
+   of it in white. A 6px dot before each name says where the post is. */
+
+.cd-steps--glass {
+  height: 50px;
+}
+
+.cd-glass__track {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  border-radius: 12px;
+  background: rgba(29, 29, 31, 0.04);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.05);
+}
+
+.cd-glass__seg {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 30px;
+  padding: 0 14px 0 12px;
+  border: 0;
+  border-radius: 9px;
+  background: none;
+  color: var(--text-4);
+  font-size: var(--fs-3);
+  font-weight: var(--fw-medium);
+  letter-spacing: -0.003em;
+  white-space: nowrap;
+  transition:
+    background var(--dur-2) var(--ease),
+    box-shadow var(--dur-2) var(--ease),
+    color var(--dur-2) var(--ease);
+}
+
+.cd-glass__seg:not(.is-locked):not(.is-active):hover {
+  color: var(--text-2);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.cd-glass__seg.is-done {
+  color: var(--text-3);
+}
+
+.cd-glass__seg.is-active {
+  background: #fff;
+  box-shadow:
+    inset 0 1px 0 #fff,
+    0 1px 2px rgba(15, 23, 42, 0.06),
+    0 3px 8px -3px rgba(15, 23, 42, 0.14);
+  color: var(--text);
+  font-weight: var(--fw-semibold);
+}
+
+.cd-glass__seg.is-locked {
+  color: var(--text-5);
+}
+
+.cd-gdot {
+  flex: none;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(29, 29, 31, 0.16);
+  transition: background var(--dur-2) var(--ease);
+}
+
+.is-done > .cd-gdot {
+  background: var(--cyan-500);
+}
+
+.is-now > .cd-gdot {
+  background: var(--ink-900);
+}
+
+.is-warn > .cd-gdot {
+  background: var(--amber-500);
+}
+
+.is-live > .cd-gdot {
+  background: var(--cd-make);
+  animation: cd-pulse 1.2s ease-in-out infinite;
+}
+
+.cd-glass__ctx {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 30px;
+  margin-left: auto;
+  margin-right: -8px;
+  padding: 0 8px;
+  border: 0;
+  border-radius: 8px;
+  background: none;
+  color: var(--text-4);
+  font-size: var(--fs-3);
+  font-weight: var(--fw-medium);
+}
+
+.cd-glass__ctx:hover,
+.cd-glass__ctx.is-active {
+  color: var(--text);
+}
+
+.cd-glass__ctx:hover {
+  background: rgba(29, 29, 31, 0.04);
+}
+
+/* C · Pager (round 19) -----------------------------------------------------------
+   Only the step you are on is named; small marks beside it show all three,
+   the current one drawn long, done ones cyan. Marks name themselves on hover. */
+
+.cd-steps--pager {
+  gap: 14px;
+  height: 48px;
+}
+
+.cd-pager__marks {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.cd-pager__mark {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  height: 24px;
+  padding: 0 3px;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.cd-pager__mark::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 4px;
+  background: rgba(29, 29, 31, 0.14);
+  transition:
+    width var(--dur-3) var(--ease-out),
+    background var(--dur-2) var(--ease);
+}
+
+.cd-pager__mark.is-done::before {
+  background: var(--cyan-500);
+}
+
+.cd-pager__mark.is-warn::before {
+  background: var(--amber-500);
+}
+
+.cd-pager__mark.is-live::before {
+  background: var(--cd-make);
+}
+
+.cd-pager__mark.is-active::before {
+  width: 22px;
+  background: var(--ink-900);
+}
+
+.cd-pager__mark.is-active.is-done::before {
+  background: var(--cyan-600);
+}
+
+.cd-pager__mark:not(.is-locked):not(.is-active):hover::before {
+  background: rgba(29, 29, 31, 0.3);
+}
+
+.cd-pager__mark.is-done:not(.is-active):hover::before {
+  background: var(--cyan-600);
+}
+
+.cd-pager__mark.is-locked {
+  cursor: default;
+}
+
+/* the mark's own name, on hover */
+.cd-pager__lab {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 50%;
+  z-index: 5;
+  padding: 4px 8px;
+  border-radius: 7px;
+  background: rgba(20, 20, 22, 0.86);
+  color: #fff;
+  font-size: 11px;
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+  opacity: 0;
+  transform: translate(-50%, -2px);
+  pointer-events: none;
+  transition:
+    opacity var(--dur-2) var(--ease),
+    transform var(--dur-2) var(--ease);
+}
+
+.cd-pager__mark:hover .cd-pager__lab {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.cd-pager__now {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+  min-width: 0;
+}
+
+.cd-pager__now b {
+  font-size: 14px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+.cd-pager__now span {
+  overflow: hidden;
+  font-size: 12px;
+  color: var(--text-4);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* round 21 · Zi: no dots as icons, and a lower bar. Glass is 40px tall; each
+   step carries its number, coloured by progress. */
+.cd-steps--glass {
+  height: 42px;
+}
+
+.cd-glass__track {
+  padding: 2px;
+  border-radius: 10px;
+}
+
+.cd-glass__seg {
+  gap: 6px;
+  height: 26px;
+  padding: 0 11px 0 9px;
+  border-radius: 8px;
+  font-size: 12.5px;
+}
+
+.cd-gno {
+  min-width: 8px;
+  font-size: 11px;
+  font-weight: var(--fw-semibold);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-5);
+  transition: color var(--dur-2) var(--ease);
+}
+
+.is-done > .cd-gno {
+  color: var(--cyan-600);
+}
+
+.is-now > .cd-gno,
+.is-active > .cd-gno {
+  color: var(--text);
+}
+
+.is-warn > .cd-gno {
+  color: var(--cd-warn);
+}
+
+.is-live > .cd-gno {
+  color: var(--cd-make);
+}
+
+.cd-glass__ctx {
+  height: 26px;
+  font-size: 12.5px;
+}

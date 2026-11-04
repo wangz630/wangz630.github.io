@@ -1,0 +1,256 @@
+/* Library tab - the brand's assets as a grid, the way the Library page shows
+   them: filter tabs and the two add buttons on one line, a search, the connected
+   sources strip, then the thumbnails. */
+
+.bx-lb {
+  display: grid;
+  gap: 14px;
+}
+
+.bx-lb__top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 16px;
+}
+
+.bx-lb__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.bx-lb__disclosure {
+  max-width: 78ch;
+  margin-top: -4px !important;
+  color: var(--text-3);
+  font-size: var(--fs-3);
+  line-height: var(--lh-normal);
+}
+
+.bx-lb__search {
+  width: 100%;
+}
+
+.bx-lb__sources {
+  display: grid;
+  gap: 8px;
+  padding: 14px 16px;
+}
+
+.bx-lb__sourceshead {
+  color: var(--text);
+  font-size: var(--fs-3);
+  font-weight: var(--fw-semibold);
+}
+
+.bx-lb__sources ul {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bx-lb__sources li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+}
+
+.bx-lb__src {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 3px 10px 3px 8px;
+  border-radius: var(--bx-r-pill);
+  background: var(--surface);
+  color: var(--text-2);
+  font-size: var(--fs-3);
+  font-weight: var(--fw-medium);
+}
+
+.bx-lb__srcmeta {
+  color: var(--text-3);
+  font-size: var(--fs-2);
+}
+
+.bx-lb__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 14px;
+}
+
+.bx-lb__card {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  font-family: var(--font-sans);
+  text-align: left;
+  cursor: pointer;
+}
+
+.bx-lb__thumb {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: var(--r-sm);
+  background: var(--surface-2);
+  box-shadow: inset 0 0 0 1px var(--bx-line);
+  transition: box-shadow var(--dur-2) var(--ease);
+}
+
+.bx-lb__thumb img {
+  display: block;
+  width: 100%;
+  height: 132px;
+  object-fit: cover;
+}
+
+.bx-lb__card:hover .bx-lb__thumb {
+  box-shadow: inset 0 0 0 1px var(--border-strong);
+}
+
+.bx-lb__card:focus-visible {
+  outline: none;
+}
+
+.bx-lb__card:focus-visible .bx-lb__thumb {
+  box-shadow: var(--focus-ring);
+}
+
+/* where the asset came from, on the thumbnail */
+.bx-lb__badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(20, 20, 22, 0.62);
+  color: #fff;
+}
+
+.bx-lb__play {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  display: inline-grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(20, 20, 22, 0.72);
+  color: #fff;
+}
+
+.bx-lb__name {
+  overflow: hidden;
+  color: var(--text);
+  font-size: var(--fs-3);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bx-lb__meta {
+  color: var(--text-4);
+  font-size: var(--fs-2);
+}
+
+/* one asset, in the shared drawer */
+.bx-drawer__sheet--asset {
+  width: min(520px, calc(100vw - 24px));
+}
+
+.bx-lb__preview {
+  overflow: hidden;
+  border-radius: var(--r-sm);
+  background: var(--surface-2);
+}
+
+.bx-lb__preview img {
+  display: block;
+  width: 100%;
+  max-height: 340px;
+  object-fit: contain;
+}
+
+.bx-lb__title {
+  color: var(--text);
+  font-size: var(--type-h4);
+  font-weight: var(--fw-semibold);
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+@container bxpanel (max-width: 620px) {
+  .bx-lb__grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 10px;
+  }
+
+  .bx-lb__thumb img {
+    height: 104px;
+  }
+
+  .bx-lb__top {
+    align-items: flex-start;
+  }
+}
+
+/* ---------------------------------------------------- the head's two controls
+
+   The sections read the way a section's filters do - no track drawn round them,
+   and the one in use is a white card carrying the grid under it - only larger,
+   because this is the whole tab rather than a bar inside a card. */
+.bx-lb__seg {
+  gap: 4px;
+  padding: 0;
+  border-radius: 0;
+  background: none;
+}
+
+.bx-lb__seg .bx-seg__item {
+  min-height: 40px;
+  padding: 0 16px;
+  border-radius: 11px;
+  font-size: var(--fs-4);
+}
+
+.bx-lb__seg .bx-seg__item[aria-selected='true'] {
+  background: var(--canvas);
+  box-shadow: var(--bx-soft);
+  color: var(--text);
+}
+
+.bx-lb__seg .bx-seg__count {
+  min-width: 0;
+  height: auto;
+  padding: 0;
+  border-radius: 0;
+  background: none;
+  color: var(--text-4);
+  font-size: var(--fs-3);
+  font-weight: var(--fw-semibold);
+}
+
+.bx-lb__seg .bx-seg__item[aria-selected='true'] .bx-seg__count {
+  color: var(--text-3);
+}
+
+/* the two ways to add: squared off with a soft corner, at a size worth pressing */
+.bx-lb__actions .bx-btn {
+  height: 34px;
+  padding: 0 14px;
+  border-radius: 10px;
+  font-size: var(--fs-3);
+}

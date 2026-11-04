@@ -1,0 +1,1093 @@
+/* Storyboard tab — round 10.
+
+   Zi on round 9: the bar over the frames should be simpler, on a card, flat;
+   the notices restyled and moved; B and C looked muddy, untidy and plain next
+   to draft/brain; A's dark stage had to go (only the timeline stays dark) and
+   A needed a new design. So:
+
+   - a summary bar in three drawings, each one 46px card (?sm=)
+   - the notices where they apply: a scene that needs a decision says so on
+     its own frame with the two answers; the reference notes open from an ⓘ
+     at the end of the bar, as a popover over the page
+   - three light layouts on white, cool neutrals and one accent (?sl=):
+     A Sequence (white cards in order), B Sheet (one sheet, a column a scene,
+     rows lined up), C Script (a row a scene)
+
+   Surfaces are told apart by fill and soft shadow, never a ring; hairlines
+   only between rows. `cds-` storyboard, `cdsum-` the bar. */
+
+.cds {
+  display: grid;
+  gap: 14px;
+}
+
+/* ------------------------------------------------------------- summary bar */
+
+.cdsum {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  height: 46px;
+  padding: 0 8px 0 16px;
+  border-radius: 12px;
+  background: var(--canvas);
+  box-shadow: var(--cd-soft);
+  font-size: 12.5px;
+  color: var(--text-2);
+  white-space: nowrap;
+}
+
+/* A · Facts */
+.cdsum__fact {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-weight: var(--fw-medium);
+}
+
+.cdsum__fact:first-child {
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+}
+
+.cdsum__ico {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 7px;
+  background: #f1f5f5;
+  color: var(--text-3);
+}
+
+/* B · Stats */
+.cdsum--stats {
+  gap: 0;
+  padding-left: 0;
+}
+
+.cdsum__cell {
+  display: grid;
+  gap: 1px;
+  padding: 0 18px;
+  line-height: 1.25;
+  box-shadow: inset -1px 0 0 var(--surface-edge);
+}
+
+.cdsum__cell small {
+  font-size: 9.5px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--text-4);
+}
+
+.cdsum__cell b {
+  font-size: 12.5px;
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+}
+
+.cdsum__flag {
+  padding-left: 16px;
+}
+
+/* C · Line */
+.cdsum__len {
+  font-size: var(--fs-4);
+  font-weight: var(--fw-bold);
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+.cdsum__bar {
+  display: flex;
+  gap: 3px;
+  width: 220px;
+}
+
+.cdsum__seg {
+  display: grid;
+  place-items: center;
+  height: 18px;
+  padding: 0;
+  border: 0;
+  border-radius: 5px;
+  background: var(--surface-3);
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 10px;
+  font-weight: var(--fw-bold);
+  transition:
+    filter var(--dur-2) var(--ease),
+    transform var(--dur-2) var(--ease);
+}
+
+.cdsum__seg:hover {
+  filter: brightness(0.95);
+  transform: translateY(-1px);
+}
+
+.cdsum__seg.is-used {
+  background: #5cc98d;
+}
+
+.cdsum__seg.is-unused {
+  background: var(--amber-400, #f3a93e);
+}
+
+.cdsum__seg.is-drawing {
+  background:
+    linear-gradient(
+        100deg,
+        rgba(255, 255, 255, 0) 30%,
+        rgba(255, 255, 255, 0.6) 50%,
+        rgba(255, 255, 255, 0) 70%
+      )
+      0 0 / 60% 100% no-repeat,
+    #8b8ff5;
+  animation: cd-sweep 1.4s linear infinite;
+}
+
+.cdsum__seg.is-none {
+  color: var(--text-4);
+}
+
+.cdsum__meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-3);
+}
+
+.cdsum__meta i {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--text-5);
+}
+
+/* the tail: actions on hover, the version, the notes */
+.cdsum__tail {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+}
+
+.cdsum__acts {
+  display: inline-flex;
+  gap: 2px;
+}
+
+.cdsum__ver {
+  height: 22px;
+  padding: 0 7px;
+  border-radius: 6px;
+  background: #f1f5f5;
+  color: var(--text-4);
+  font-size: 10.5px;
+  font-weight: var(--fw-semibold);
+  line-height: 22px;
+  font-variant-numeric: tabular-nums;
+}
+
+.cdsum__notes {
+  position: relative;
+}
+
+.cdsum__nb {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 30px;
+  padding: 0 9px 0 8px;
+  border: 0;
+  border-radius: var(--r-full);
+  background: none;
+  color: var(--text-3);
+  transition:
+    background var(--dur-2) var(--ease),
+    color var(--dur-2) var(--ease);
+}
+
+.cdsum__nb b {
+  display: inline-grid;
+  place-items: center;
+  min-width: 17px;
+  height: 17px;
+  padding: 0 5px;
+  border-radius: var(--r-full);
+  background: var(--cd-warn-soft);
+  color: var(--cd-warn);
+  font-size: 10px;
+  font-weight: var(--fw-bold);
+}
+
+.cdsum__nb:hover,
+.cdsum__nb.is-on {
+  background: #f1f5f5;
+  color: var(--text);
+}
+
+.cdsum__pop {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: -8px;
+  width: 360px;
+  padding: 14px 14px 8px;
+  border-radius: 14px;
+  background: var(--canvas);
+  box-shadow: var(--cd-soft-3);
+  white-space: normal;
+}
+
+.cdsum__pop header {
+  display: grid;
+  gap: 3px;
+  padding: 0 2px 10px;
+}
+
+.cdsum__pop header b {
+  font-size: var(--fs-3);
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+}
+
+.cdsum__pop header span {
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: var(--text-4);
+}
+
+.cdsum__pop li {
+  display: grid;
+  grid-template-columns: 6px minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: start;
+  padding: 10px 2px;
+  box-shadow: inset 0 1px 0 var(--surface-edge);
+}
+
+.cdsum__pop li > i {
+  width: 6px;
+  height: 6px;
+  margin-top: 6px;
+  border-radius: 50%;
+  background: var(--amber-500);
+}
+
+.cdsum__pop li b {
+  font-size: 12.5px;
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+}
+
+.cdsum__pop li p {
+  margin-top: 2px;
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: var(--text-3);
+}
+
+/* chips (the one thing that needs you) */
+.cds-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 24px;
+  padding: 0 9px;
+  border: 0;
+  border-radius: var(--r-full);
+  background: #f1f5f5;
+  color: var(--text-3);
+  font-size: 11.5px;
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+}
+
+.cds-chip__dot {
+  flex: none;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.cds-chip--warn {
+  background: var(--cd-warn-soft);
+  color: var(--cd-warn);
+}
+
+button.cds-chip--warn:hover {
+  background: #fbe9c6;
+}
+
+.cds-chip--live {
+  background: var(--cd-make-soft);
+  color: var(--cd-make);
+}
+
+.cds-chip--ok {
+  background: var(--cd-ok-soft);
+  color: var(--cd-ok);
+}
+
+/* nothing in the bar may widen the page */
+.cds {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.cdsum {
+  min-width: 0;
+}
+
+.cdsum__fact,
+.cdsum__cell,
+.cdsum__meta {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cdsum__ib {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: var(--text-4);
+  transition:
+    background var(--dur-2) var(--ease),
+    color var(--dur-2) var(--ease);
+}
+
+.cdsum__ib:hover {
+  background: #f1f5f5;
+  color: var(--text);
+}
+
+.cdsum__ib--ai:hover {
+  color: var(--cd-live);
+}
+
+/* ============================================================ round 15
+   Zi: the layouts still read as busy and the spoken line looked rough; frames
+   could be glass; adding a scene must never shrink the cards; the summary
+   bar's buttons need real tooltips; and a pencil should come with the pointer.
+
+   Every card is one size, whatever the number of scenes:
+   A · Strip  tall cards in a row that scrolls sideways
+   B · Board  wide cards that wrap onto new rows
+   C · List   one card, a row per scene
+   Each scene is a full-bleed picture, then one info block: the scene and its
+   time, the shot, and the spoken line as its own small panel. */
+
+/* the picture ---------------------------------------------------------------- */
+
+.sbx-pic {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  background: #eef3f4;
+  cursor: pointer;
+}
+
+.sbx-pic img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition:
+    transform 0.6s var(--ease-out),
+    filter var(--dur-3) var(--ease);
+}
+
+.sbx-card:hover .sbx-pic img,
+.sbx-row:hover .sbx-pic img {
+  transform: scale(1.03);
+}
+
+.sbx-pic.is-stale img {
+  filter: saturate(0.35) brightness(1.06);
+}
+
+.sbx-none {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 4px;
+  padding: 10px;
+  background: linear-gradient(160deg, #f4f8f9, #e9eff0);
+  color: var(--text-4);
+  text-align: center;
+}
+
+.sbx-none svg {
+  margin-bottom: 4px;
+}
+
+.sbx-none b {
+  font-size: 12.5px;
+  font-weight: var(--fw-semibold);
+  color: var(--text-3);
+}
+
+.sbx-none small {
+  font-size: 11px;
+  color: var(--text-4);
+}
+
+.sbx-pic:hover .sbx-none b {
+  color: var(--cd-live);
+}
+
+.sbx-none.is-drawing {
+  background:
+    linear-gradient(100deg, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 0.75) 50%, rgba(255, 255, 255, 0) 70%)
+      0 0 / 60% 100% no-repeat,
+    linear-gradient(160deg, #f0f1fc, #e6e8f9);
+  animation: cd-sweep 1.6s linear infinite;
+  color: var(--cd-make);
+  font-size: 12px;
+  font-weight: var(--fw-medium);
+}
+
+/* the one label a picture may carry: glass */
+.sbx-glass {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 24px;
+  padding: 0 10px 0 8px;
+  border-radius: var(--r-full);
+  background: rgba(255, 255, 255, 0.62);
+  -webkit-backdrop-filter: blur(14px) saturate(1.6);
+  backdrop-filter: blur(14px) saturate(1.6);
+  box-shadow: 0 4px 14px -6px rgba(15, 23, 42, 0.25);
+  color: var(--text);
+  font-size: 11px;
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.sbx-glass i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--text-4);
+}
+
+.sbx-glass.is-unused i {
+  background: var(--amber-500);
+}
+
+.sbx-glass.is-drawing i {
+  background: var(--cd-make);
+  animation: cd-pulse 1.2s ease-in-out infinite;
+}
+
+/* the card: glass, one size ---------------------------------------------------- */
+
+.sbx-card {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.6);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  backdrop-filter: blur(16px) saturate(1.4);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 1px 2px rgba(15, 23, 42, 0.05),
+    0 14px 30px -18px rgba(15, 40, 60, 0.28);
+  cursor: pointer;
+  transition:
+    box-shadow var(--dur-2) var(--ease),
+    transform var(--dur-2) var(--ease);
+}
+
+.sbx-card:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 2px 4px rgba(15, 23, 42, 0.05),
+    0 20px 40px -18px rgba(15, 40, 60, 0.34);
+}
+
+.sbx-info {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  padding: 12px 14px 14px;
+}
+
+.sbx-head {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.sbx-head b {
+  font-size: 13px;
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+}
+
+.sbx-head span {
+  font-size: 11.5px;
+  color: var(--text-4);
+  font-variant-numeric: tabular-nums;
+}
+
+.sbx-head em {
+  margin-left: auto;
+  padding: 1px 7px;
+  border-radius: var(--r-full);
+  background: rgba(29, 29, 31, 0.05);
+  font-size: 11px;
+  font-style: normal;
+  font-weight: var(--fw-semibold);
+  color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.sbx-shot {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: calc(12.5px * 1.5 * 2);
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--text-3);
+}
+
+/* the spoken line: its own small panel at the foot of the card */
+.sbx-say {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  width: 100%;
+  min-height: 74px;
+  margin-top: auto;
+  padding: 10px 12px 11px;
+  border: 0;
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(229, 251, 255, 0.95), rgba(240, 253, 255, 0.75));
+  box-shadow: none;
+  color: var(--text);
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background var(--dur-2) var(--ease),
+    box-shadow var(--dur-2) var(--ease);
+}
+
+.sbx-say__top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.sbx-say__k {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10.5px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--cyan-700);
+  white-space: nowrap;
+}
+
+.sbx-say__fit {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  font-size: 10.5px;
+  font-weight: var(--fw-medium);
+  color: var(--text-4);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+/* how much of the scene's time the words fill */
+.sbx-say__fit i {
+  position: relative;
+  width: 26px;
+  height: 3px;
+  overflow: hidden;
+  border-radius: 3px;
+  background: rgba(13, 118, 133, 0.14);
+}
+
+.sbx-say__fit i::after {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--f);
+  border-radius: inherit;
+  background: var(--cyan-600);
+}
+
+.sbx-say.is-over .sbx-say__fit {
+  color: var(--cd-warn);
+}
+
+.sbx-say.is-over .sbx-say__fit i::after {
+  background: var(--amber-500);
+}
+
+.sbx-say__q {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 13.5px;
+  font-weight: var(--fw-medium);
+  line-height: 1.4;
+  letter-spacing: -0.005em;
+  color: var(--text);
+}
+
+button.sbx-say:hover {
+  background: linear-gradient(180deg, rgba(204, 246, 252, 0.95), rgba(229, 251, 255, 0.8));
+}
+
+.sbx-say.is-empty {
+  background: rgba(29, 29, 31, 0.03);
+  box-shadow: none;
+}
+
+.sbx-say.is-empty .sbx-say__k {
+  color: var(--text-4);
+}
+
+.sbx-say__add {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  font-weight: var(--fw-medium);
+  color: var(--text-3);
+}
+
+.sbx-say.is-empty:hover {
+  background: var(--cd-live-soft);
+}
+
+.sbx-say.is-empty:hover .sbx-say__add {
+  color: var(--cd-live);
+}
+
+.sbx-say.is-none {
+  background: rgba(29, 29, 31, 0.03);
+  box-shadow: none;
+  cursor: default;
+}
+
+.sbx-say.is-none .sbx-say__k {
+  color: var(--text-4);
+}
+
+.sbx-say.is-none .sbx-say__q {
+  font-size: 12.5px;
+  font-weight: var(--fw-regular);
+  color: var(--text-4);
+}
+
+/* the pencil that comes with the pointer */
+.sbx-edit {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 28px;
+  padding: 0 11px 0 9px;
+  border: 0;
+  border-radius: var(--r-full);
+  background: rgba(255, 255, 255, 0.82);
+  -webkit-backdrop-filter: blur(12px) saturate(1.5);
+  backdrop-filter: blur(12px) saturate(1.5);
+  box-shadow: 0 4px 14px -6px rgba(15, 23, 42, 0.35);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 11.5px;
+  font-weight: var(--fw-semibold);
+  opacity: 0;
+  transform: translateY(-3px);
+  transition:
+    opacity var(--dur-2) var(--ease),
+    transform var(--dur-2) var(--ease),
+    background var(--dur-2) var(--ease);
+}
+
+.sbx-card:hover .sbx-edit,
+.sbx-row:hover .sbx-edit,
+.sbx-edit:focus-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.sbx-edit:hover {
+  background: #fff;
+}
+
+/* add a scene: a tile of the card's own size --------------------------------- */
+
+.sbx-add {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 12px;
+  border: 0;
+  border-radius: 18px;
+  background: rgba(13, 118, 133, 0.045);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: none;
+  color: var(--text-3);
+  font-family: inherit;
+  text-align: center;
+  cursor: pointer;
+  transition:
+    background var(--dur-2) var(--ease),
+    box-shadow var(--dur-2) var(--ease);
+}
+
+.sbx-add__ico {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--canvas);
+  box-shadow: var(--cd-soft);
+  color: var(--cyan-700);
+  transition: transform var(--dur-2) var(--ease);
+}
+
+.sbx-add__say {
+  display: grid;
+  gap: 2px;
+}
+
+.sbx-add__say b {
+  font-size: 13px;
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+}
+
+.sbx-add__say small {
+  font-size: 11.5px;
+  color: var(--text-4);
+}
+
+.sbx-add:hover {
+  background: rgba(14, 165, 184, 0.1);
+}
+
+.sbx-add:hover .sbx-add__ico {
+  transform: scale(1.06);
+}
+
+/* A · Strip: one size, a row that scrolls sideways ---------------------------- */
+
+.sbx-strip {
+  margin: 0 -24px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  scroll-padding: 0 24px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(29, 29, 31, 0.16) transparent;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
+}
+
+.sbx-strip__track {
+  display: flex;
+  gap: 14px;
+  width: max-content;
+  padding: 4px 24px 16px;
+}
+
+.sbx-card--tall {
+  flex: 0 0 256px;
+  flex-direction: column;
+  scroll-snap-align: start;
+}
+
+.sbx-pic--tall {
+  flex: none;
+  height: 288px;
+}
+
+.sbx-add--tall {
+  flex: 0 0 168px;
+  scroll-snap-align: start;
+}
+
+/* B · Board: one size, wraps onto new rows ----------------------------------- */
+
+.sbx-board {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 14px;
+}
+
+.sbx-card--wide {
+  flex-direction: row;
+  min-height: 216px;
+}
+
+.sbx-pic--wide {
+  flex: 0 0 136px;
+  height: auto;
+}
+
+.sbx-card--wide .sbx-info {
+  padding: 14px 16px 14px;
+}
+
+.sbx-card--wide .sbx-shot {
+  -webkit-line-clamp: 3;
+  min-height: calc(12.5px * 1.5 * 3);
+}
+
+.sbx-card--wide .sbx-edit {
+  top: auto;
+  right: auto;
+  bottom: 10px;
+  left: 10px;
+}
+
+.sbx-add--wide {
+  grid-auto-flow: column;
+  justify-content: center;
+  min-height: 216px;
+  text-align: left;
+}
+
+/* C · List: one card, a row per scene ---------------------------------------- */
+
+.sbx-list {
+  overflow: hidden;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.6);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  backdrop-filter: blur(16px) saturate(1.4);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 1px 2px rgba(15, 23, 42, 0.05),
+    0 14px 30px -18px rgba(15, 40, 60, 0.28);
+}
+
+.sbx-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr) minmax(250px, 36%);
+  gap: 20px;
+  align-items: center;
+  min-height: 136px;
+  padding-right: 18px;
+  cursor: pointer;
+  transition: background var(--dur-2) var(--ease);
+}
+
+.sbx-row + .sbx-row {
+  margin-top: 4px;
+}
+
+.sbx-row:hover {
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.sbx-pic--row {
+  align-self: stretch;
+  height: 100%;
+  min-height: 136px;
+}
+
+.sbx-pic--row .sbx-glass {
+  top: 6px;
+  left: 6px;
+  height: 20px;
+  padding: 0 7px 0 6px;
+  font-size: 10px;
+}
+
+.sbx-row__info {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+  padding: 14px 0;
+}
+
+.sbx-row__line .sbx-say {
+  min-height: 0;
+}
+
+.sbx-row .sbx-edit {
+  top: 10px;
+  right: 12px;
+}
+
+.sbx-row .sbx-head {
+  padding-right: 72px;
+}
+
+.sbx-add--row {
+  grid-auto-flow: column;
+  justify-content: start;
+  gap: 12px;
+  width: calc(100% - 16px);
+  min-height: 60px;
+  margin: 8px;
+  padding: 0 16px;
+  border-radius: 12px;
+  text-align: left;
+}
+
+.sbx-add--row .sbx-add__ico {
+  width: 30px;
+  height: 30px;
+}
+
+.cds-chip__go {
+  margin-left: 2px;
+  padding-left: 7px;
+  box-shadow: inset 1px 0 0 rgba(161, 100, 11, 0.25);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* designed tooltips ----------------------------------------------------------- */
+
+.cd-has-tip {
+  position: relative;
+}
+
+.cd-tip {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: -8px;
+  z-index: 20;
+  display: flex;
+  gap: 10px;
+  width: 268px;
+  padding: 11px 13px 12px 11px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.96);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  backdrop-filter: blur(16px) saturate(1.4);
+  box-shadow:
+    0 4px 10px rgba(15, 23, 42, 0.07),
+    0 18px 36px -14px rgba(15, 23, 42, 0.3);
+  color: var(--text);
+  text-align: left;
+  white-space: normal;
+  opacity: 0;
+  transform: translateY(-4px);
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity var(--dur-2) var(--ease),
+    transform var(--dur-2) var(--ease),
+    visibility 0s linear var(--dur-2);
+}
+
+/* the notch, pointing at the button */
+.cd-tip::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  right: 17px;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background: inherit;
+  box-shadow: none;
+  transform: rotate(45deg);
+}
+
+.cd-has-tip:hover .cd-tip,
+.cd-has-tip:focus-visible .cd-tip {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+  transition:
+    opacity var(--dur-2) var(--ease) 0.25s,
+    transform var(--dur-2) var(--ease) 0.25s,
+    visibility 0s linear 0.25s;
+}
+
+.cd-tip__ico {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  background: var(--cd-live-soft);
+  color: var(--cyan-700);
+}
+
+.cd-tip__txt {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.cd-tip__txt b {
+  font-size: 12.5px;
+  font-weight: var(--fw-semibold);
+  line-height: 1.3;
+}
+
+.cd-tip__txt span {
+  font-size: 12px;
+  font-weight: var(--fw-regular);
+  line-height: 1.45;
+  color: var(--text-3);
+}
+
+@media (max-width: 760px) {
+  .sbx-board {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sbx-row {
+    grid-template-columns: 104px minmax(0, 1fr);
+  }
+
+  .sbx-row__line {
+    grid-column: 1 / -1;
+    margin: 0 12px 12px;
+  }
+}

@@ -1,0 +1,1212 @@
+/* Timeline: the chart first, then the same dates down the page. */
+
+.tl {
+  gap: 12px;
+}
+
+.tl-chart {
+  margin-top: 8px;
+  padding: 20px 22px 16px;
+}
+
+.tl-plot {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 176px;
+  gap: 14px;
+}
+
+.tl-lane {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  align-items: center;
+  height: 48px;
+  border-top: 1px solid var(--surface-edge);
+}
+
+.tl-lane__name {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-3);
+  font-size: var(--fs-3);
+}
+
+.tl-lane__track {
+  position: relative;
+  height: 100%;
+}
+
+/* a finding, by who it's about */
+.tl-dot {
+  position: absolute;
+  top: 50%;
+  display: block;
+  width: 28px;
+  height: 28px;
+  margin: -14px 0 0 -14px;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: none;
+  cursor: pointer;
+  transition: transform var(--dur-2) var(--ease-out);
+}
+
+.tl-dot:hover {
+  z-index: 20 !important;
+  transform: translateY(-2px) scale(1.08);
+}
+
+.tl-dot .sg-logo {
+  box-shadow: 0 0 0 1.5px var(--canvas), 0 2px 5px rgba(15, 23, 42, 0.14);
+}
+
+.tl-dot > i {
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1.5px var(--canvas);
+}
+
+.tl-dot > i.is-green,
+.tl-key i.is-green {
+  background: var(--sg-green);
+}
+
+.tl-dot > i.is-amber,
+.tl-key i.is-amber {
+  background: var(--sg-amber);
+}
+
+/* its headline, on the way past */
+.tl-dot::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  right: -6px;
+  width: max-content;
+  max-width: 260px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: var(--ink-900);
+  color: #fff;
+  font-size: var(--fs-2);
+  line-height: 1.35;
+  text-align: left;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-1) var(--ease);
+}
+
+.tl-dot:hover::after,
+.tl-dot:focus-visible::after {
+  opacity: 1;
+}
+
+.tl-axis {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  height: 24px;
+  border-top: 1px solid var(--surface-edge);
+}
+
+.tl-axis__ticks {
+  position: relative;
+}
+
+.tl-axis__ticks span {
+  position: absolute;
+  top: 6px;
+  color: var(--text-4);
+  font-size: var(--fs-2);
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+/* the stretch with nothing in it, and the way to end it */
+.tl-plot__gap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  margin-bottom: 24px;
+  padding: 10px;
+  border-radius: 12px;
+  background: repeating-linear-gradient(135deg, rgba(18, 31, 45, 0.045) 0 6px, transparent 6px 12px), var(--surface);
+  text-align: center;
+}
+
+.tl-plot__gap b {
+  font-size: var(--fs-7);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--tracking-title);
+}
+
+.tl-plot__gap small {
+  margin-bottom: 8px;
+  color: var(--text-3);
+  font-size: var(--fs-2);
+}
+
+.tl-plot__gap .sg-run {
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tl-plot__gap .sg-credits {
+  background: none;
+}
+
+.tl-key {
+  display: flex;
+  gap: 14px;
+  margin-top: 4px;
+  color: var(--text-4);
+  font-size: var(--fs-2);
+}
+
+.tl-key span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.tl-key i {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--surface-3);
+}
+
+.tl-sec {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-top: 8px;
+  padding: 0 2px;
+}
+
+.tl-sec h2 {
+  font-size: var(--sg-title);
+  font-weight: var(--sg-title-weight);
+  line-height: 1.25;
+}
+
+.tl-sec > span {
+  color: var(--text-4);
+  font-size: var(--fs-3);
+}
+
+.tl-sec small {
+  margin-left: auto;
+  color: var(--text-4);
+  font-size: var(--fs-3);
+}
+
+.tl-sec__tool {
+  margin-left: auto;
+}
+
+/* the river: the date stands in its own gutter, the line runs down it */
+.tl-river {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tl-day {
+  position: relative;
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
+  gap: 0 22px;
+}
+
+.tl-day::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: -8px;
+  left: 102px;
+  width: 2px;
+  background: var(--surface-3);
+}
+
+.tl-day:last-child::before {
+  bottom: 0;
+}
+
+.tl-day::after {
+  content: '';
+  position: absolute;
+  top: 18px;
+  left: 98px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--cyan-600, #0ea5b8);
+  box-shadow: 0 0 0 3px var(--bg);
+}
+
+.tl-day__when {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding-top: 12px;
+  text-align: right;
+}
+
+.tl-day__when b {
+  font-size: var(--fs-4);
+  font-weight: var(--fw-medium);
+}
+
+.tl-day__when small {
+  color: var(--text-4);
+  font-size: var(--fs-2);
+}
+
+.tl-day__rows {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.tl-row {
+  border-top: 1px solid var(--surface-edge);
+}
+
+.tl-row:first-child {
+  border-top: 0;
+}
+
+.tl-row__bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 56px;
+  padding: 10px 14px;
+  border: 0;
+  background: none;
+  color: var(--text-4);
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--dur-2) var(--ease);
+}
+
+.tl-row__bar:hover {
+  background: var(--surface);
+}
+
+.tl-row__text {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.tl-row__text b {
+  color: var(--text);
+  font-size: var(--fs-5);
+  font-weight: var(--fw-regular);
+  letter-spacing: var(--tracking-title);
+  line-height: 1.35;
+}
+
+.tl-row__text small {
+  color: var(--text-4);
+  font-size: var(--fs-2);
+}
+
+.tl-open {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 2px 16px 16px 54px;
+}
+
+.tl-open__acts {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tl-context {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+  padding: 12px;
+  border-radius: var(--r-lg);
+  background: var(--canvas);
+  box-shadow: var(--sg-soft);
+}
+
+/* ------------------------------------------------------------------ sentiment */
+
+/* Every Sentiment card has the same padding and starts with the same head, so the titles
+   line up down the page. --head-gap is what the card's own gap adds under the head; the
+   head makes up the rest, so a title always sits 16px over what it names. */
+.tl.is-sentiment {
+  gap: 16px;
+}
+
+.tl.is-sentiment .tl-chart {
+  margin-top: 4px;
+}
+
+.tl-chart.has-head,
+.tl-read,
+.tl-rv,
+.tl-th {
+  padding: 20px 22px;
+}
+
+.tl-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 12px;
+  margin-bottom: calc(16px - var(--head-gap, 0px));
+}
+
+.tl-head:last-child {
+  margin-bottom: 0;
+}
+
+.tl-head__text {
+  flex: 1 1 320px;
+  min-width: 0;
+}
+
+.tl .sg-basisrow__bar {
+  padding-left: 22px;
+}
+
+.tl-head__line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px 10px;
+}
+
+.tl-head h2 {
+  font-size: var(--sg-title);
+  font-weight: var(--sg-title-weight);
+  line-height: 1.25;
+}
+
+.tl-head p {
+  margin-top: 3px;
+  color: var(--text-3);
+  font-size: var(--fs-3);
+  line-height: 1.4;
+}
+
+.tl-head__side {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 10px;
+  min-height: 26px;
+}
+
+.tl-head__side small {
+  color: var(--text-4);
+  font-size: var(--fs-2);
+}
+
+.tl-head__side .sg-link {
+  font-size: var(--fs-3);
+}
+
+.tl-stat {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+}
+
+.tl-stat + .tl-stat {
+  margin-left: 10px;
+}
+
+.tl-stat b {
+  font-size: var(--fs-7);
+  font-weight: var(--fw-medium);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+
+.tl-head__side .tl-stat small {
+  color: var(--text-3);
+  font-size: var(--fs-3);
+}
+
+/* the chart: tabs for the periods, a line with a fading wash, the risk posts under it */
+.tl-sc {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding-left: 30px;
+}
+
+.tl-tabs {
+  display: flex;
+}
+
+.tl-tab {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 7px 10px 8px;
+  border: 0;
+  border-radius: var(--radius-small) var(--radius-small) 0 0;
+  background: none;
+  color: var(--text-3);
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--motion-control) var(--ease);
+}
+
+.tl-tab:hover {
+  background: var(--surface);
+}
+
+.tl-tab.is-on {
+  background: var(--cyan-50);
+}
+
+.tl-tab b {
+  overflow: hidden;
+  color: var(--text);
+  font-size: var(--fs-3);
+  font-weight: var(--fw-medium);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tl-tab small {
+  overflow: hidden;
+  color: var(--text-3);
+  font-size: var(--fs-2);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tl-area {
+  position: relative;
+  height: 176px;
+}
+
+.tl-area svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.tl-band {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
+.tl-band.is-on {
+  background: var(--cyan-50);
+}
+
+.tl-grid {
+  position: absolute;
+  right: 0;
+  left: 0;
+  height: 1px;
+  background: var(--border);
+}
+
+.tl-grid u {
+  position: absolute;
+  top: -7px;
+  left: -30px;
+  width: 22px;
+  color: var(--text-4);
+  font-size: var(--fs-1);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  text-decoration: none;
+}
+
+.tl-line {
+  fill: none;
+  stroke: var(--chart-1-line);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.tl-line.is-thin {
+  stroke: var(--chart-context);
+  stroke-dasharray: 4 4;
+}
+
+.tl-ref {
+  stroke: var(--chart-context-line);
+  stroke-width: 1;
+  stroke-dasharray: 4 3;
+  vector-effect: non-scaling-stroke;
+}
+
+.tl-reflabel {
+  position: absolute;
+  margin-top: -20px;
+  color: var(--text-3);
+  font-size: var(--fs-2);
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.tl-pt {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
+  border-radius: 50%;
+  cursor: default;
+  outline: none;
+}
+
+.tl-pt::before {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border-radius: 50%;
+  background: var(--chart-1-line);
+  box-shadow: 0 0 0 2px var(--canvas);
+}
+
+.tl-pt.is-key::before {
+  inset: 4px;
+  background: var(--chart-emphasis);
+}
+
+.tl-pt em {
+  position: absolute;
+  bottom: calc(100% + 2px);
+  left: 50%;
+  padding: 1px 6px;
+  border-radius: var(--r-full);
+  background: var(--ink-900);
+  color: #fff;
+  font-size: var(--fs-1);
+  font-style: normal;
+  font-weight: var(--fw-semibold);
+  font-variant-numeric: tabular-nums;
+  transform: translateX(-50%);
+}
+
+.tl-pt:hover::after,
+.tl-pt:focus-visible::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  z-index: 6;
+  padding: 5px 9px;
+  border-radius: var(--radius-small);
+  background: var(--ink-900);
+  color: #fff;
+  font-size: var(--fs-2);
+  white-space: nowrap;
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+/* near the right edge the tip hangs back from its point */
+.tl-pt.is-tail:hover::after,
+.tl-pt.is-tail:focus-visible::after {
+  right: -4px;
+  left: auto;
+  transform: none;
+}
+
+.tl-days {
+  position: relative;
+  height: 24px;
+}
+
+.tl-days span {
+  position: absolute;
+  top: 6px;
+  color: var(--text-4);
+  font-size: var(--fs-2);
+  font-variant-numeric: tabular-nums;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.tl-risks {
+  position: relative;
+  height: 28px;
+  margin-top: 4px;
+  border-radius: var(--radius-small);
+  background: var(--surface);
+}
+
+.tl-risks u {
+  position: absolute;
+  top: 7px;
+  left: -30px;
+  width: 26px;
+  color: var(--text-4);
+  font-size: var(--fs-1);
+  text-decoration: none;
+}
+
+.tl-risks span {
+  position: absolute;
+  top: 5px;
+  display: grid;
+  place-items: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  border-radius: var(--r-full);
+  background: var(--amber-100);
+  color: var(--amber-800);
+  font-size: var(--fs-0);
+  font-weight: var(--fw-semibold);
+  font-variant-numeric: tabular-nums;
+  transform: translateX(-50%);
+}
+
+.tl-plot__gap.is-next {
+  background: var(--surface);
+  margin-bottom: 0;
+}
+
+.tl-plot__gap.is-alert {
+  margin-bottom: 0;
+  background: repeating-linear-gradient(135deg, color-mix(in srgb, var(--color-amber) 12%, transparent) 0 6px, transparent 6px 12px), var(--amber-50);
+}
+
+.tl-plot__gap.is-alert b {
+  color: var(--amber-800);
+}
+
+.tl-plot__gap .sg-fine {
+  margin-top: 4px;
+}
+
+.tl-plot__gap .sg-credits {
+  margin-top: 6px;
+  background: var(--canvas);
+}
+
+/* the report's read: a wash at the top, then white */
+.tl-read {
+  --head-gap: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--head-gap);
+  background: var(--sg-wash);
+}
+
+.tl-read__body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: 28px;
+}
+
+.tl-read__main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  min-width: 0;
+}
+
+.tl-read__main h2 {
+  font-size: var(--type-h4, 18px);
+  font-weight: var(--fw-regular);
+  line-height: 1.4;
+}
+
+.tl-read__side {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.tl-cells {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: 8px;
+}
+
+.tl-read .sg-micro small {
+  display: none;
+}
+
+.tl-read__more {
+  max-width: 760px;
+}
+
+.tl-read__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px 12px;
+}
+
+/* one card, one stretch of time: what's new, the report's date, what the report found */
+.tl-rv {
+  display: flex;
+  flex-direction: column;
+}
+
+/* when collection stopped, what's new takes the top of the card */
+.tl-rv__group.is-alert {
+  margin: -20px -22px 0;
+  padding: 20px 22px 14px;
+  border-radius: var(--radius-large) var(--radius-large) 0 0;
+  background: var(--amber-50);
+}
+
+.tl-rv__group.is-alert .sg-post {
+  background: var(--canvas);
+}
+
+.tl-rv__group.is-alert .sg-post:hover {
+  background: var(--surface);
+}
+
+.tl-rv__group.is-alert .sg-post.is-row .sg-post__acts {
+  background: var(--canvas);
+  box-shadow: -18px 0 12px -2px var(--canvas);
+}
+
+.tl-rv__group.is-alert .sg-post.is-row:hover .sg-post__acts {
+  background: var(--surface);
+  box-shadow: -18px 0 12px -2px var(--surface);
+}
+
+/* the rail runs down the rows and on to the report's date */
+.tl-rv__rows {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.tl-rv__rows::before {
+  content: '';
+  position: absolute;
+  top: 22px;
+  bottom: 0;
+  left: 74px;
+  width: 2px;
+  background: var(--surface-2);
+}
+
+.tl-rv__group:last-child .tl-rv__rows::before {
+  bottom: 12px;
+}
+
+.tl-rv__more {
+  align-self: flex-start;
+  margin: 2px 0 0 88px;
+}
+
+.tl-rv__note {
+  margin-left: 40px;
+}
+
+.tl-rv__mark {
+  position: relative;
+  display: grid;
+  grid-template-columns: 62px minmax(0, 1fr);
+  align-items: center;
+  gap: 0 26px;
+  height: 44px;
+  margin-bottom: 18px;
+}
+
+.tl-rv__mark b {
+  font-size: var(--fs-3);
+  font-weight: var(--fw-medium);
+}
+
+.tl-rv__mark span {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-3);
+  font-size: var(--fs-3);
+}
+
+.tl-rv__mark span::after {
+  content: '';
+  flex: 1 1 auto;
+  height: 1px;
+  background: var(--border);
+}
+
+.tl-rv__mark::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  height: 50%;
+  left: 74px;
+  width: 2px;
+  background: var(--surface-2);
+}
+
+/* nothing above to join on to when there are no rows */
+.tl-rv__group:not(:has(.tl-rv__rows)) + .tl-rv__mark::before {
+  display: none;
+}
+
+.tl-rv__mark::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 70px;
+  width: 10px;
+  height: 10px;
+  margin-top: -5px;
+  border-radius: 50%;
+  background: var(--canvas);
+  box-shadow: inset 0 0 0 2.5px var(--text-3);
+}
+
+.tl-rday {
+  position: relative;
+  display: grid;
+  grid-template-columns: 62px minmax(0, 1fr);
+  gap: 0 26px;
+}
+
+.tl-rday::after {
+  content: '';
+  position: absolute;
+  top: 19px;
+  left: 71px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--chart-1-line);
+  box-shadow: 0 0 0 3px var(--canvas);
+}
+
+.tl-rv__group.is-alert .tl-rday::after {
+  background: var(--color-amber);
+  box-shadow: 0 0 0 3px var(--amber-50);
+}
+
+.tl-rday__when {
+  padding-top: 14px;
+}
+
+.tl-rday__when b {
+  font-size: var(--fs-3);
+  font-weight: var(--fw-medium);
+}
+
+.tl-rday__rows {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+/* the themes around one axis */
+.tl-th {
+  --head-gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--head-gap);
+}
+
+.tl-mkey,
+.tl-mrow__bar {
+  display: grid;
+  grid-template-columns: 208px minmax(0, 1fr) minmax(0, 1fr) 44px 16px;
+  align-items: center;
+  gap: 0 3px;
+}
+
+.tl-mkey {
+  padding: 0 8px;
+  color: var(--text-4);
+  font-size: var(--fs-2);
+}
+
+.tl-mkey .is-neg {
+  padding-right: 6px;
+  text-align: right;
+}
+
+.tl-mkey .is-pos {
+  padding-left: 6px;
+}
+
+.tl-mkey span:nth-child(4) {
+  text-align: right;
+}
+
+.tl-mrow {
+  border-radius: var(--radius-small);
+  background: var(--surface);
+}
+
+.tl-mrow__bar {
+  width: 100%;
+  min-height: 44px;
+  padding: 7px 8px;
+  border: 0;
+  border-radius: var(--radius-small);
+  background: none;
+  color: var(--text-4);
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--motion-control) var(--ease);
+}
+
+.tl-mrow__bar:hover {
+  background: var(--surface-2);
+}
+
+.tl-mrow__name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.tl-mrow__name b {
+  overflow: hidden;
+  color: var(--text);
+  font-size: var(--fs-4);
+  font-weight: var(--fw-regular);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tl-mir {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 12px;
+}
+
+.tl-mir.is-neg {
+  justify-content: flex-end;
+}
+
+.tl-mir i {
+  display: block;
+  height: 100%;
+  min-width: 3px;
+  border-radius: var(--r-full);
+}
+
+.tl-mir.is-neg i {
+  background: var(--sg-neg);
+  transform-origin: right center !important;
+}
+
+.tl-mir.is-pos i {
+  background: var(--sg-pos);
+}
+
+.tl-mir small {
+  color: var(--text-3);
+  font-size: var(--fs-2);
+  font-variant-numeric: tabular-nums;
+}
+
+.tl-mrow__bar > em {
+  color: var(--text);
+  font-size: var(--fs-5);
+  font-style: normal;
+  font-weight: var(--fw-medium);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.tl-mrow__bar > .sg-ic {
+  justify-self: end;
+}
+
+.tl-mrow__open {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 4px 12px 14px;
+}
+
+.tl-mrow__open .sg-bubble {
+  background: var(--canvas);
+}
+
+.tl-unclist {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.app-shell.is-tour-split .tl-plot,
+.app-shell.is-tour-split .tl-read__body {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.app-shell.is-tour-split .tl-plot__gap {
+  flex-direction: row;
+  gap: 8px;
+  margin-bottom: 0;
+}
+
+.app-shell.is-tour-split .tl-plot__gap small {
+  margin: 0;
+}
+
+.app-shell.is-tour-split .tl-tab small,
+.app-shell.is-tour-split .tl-reflabel {
+  display: none;
+}
+
+.app-shell.is-tour-split .tl-mkey {
+  display: none;
+}
+
+.app-shell.is-tour-split .tl-mrow__bar {
+  grid-template-columns: minmax(0, 1fr) 70px 70px 32px 16px;
+}
+
+.app-shell.is-tour-split .tl-rday {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.app-shell.is-tour-split .tl-rv__rows::before,
+.app-shell.is-tour-split .tl-rv__mark::before,
+.app-shell.is-tour-split .tl-rv__mark::after,
+.app-shell.is-tour-split .tl-rday::after {
+  display: none;
+}
+
+.app-shell.is-tour-split .tl-rday__when {
+  padding: 4px 6px;
+  text-align: left;
+}
+
+.app-shell.is-tour-split .sg-post.is-row {
+  display: flex;
+  align-items: stretch;
+}
+
+.app-shell.is-tour-split .sg-post.is-row .sg-post__foot {
+  position: static;
+  transform: none;
+}
+
+.app-shell.is-tour-split .tl-rv__mark {
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0 10px;
+}
+
+.app-shell.is-tour-split .tl-rv__more {
+  margin-left: 6px;
+}
+
+@media (max-width: 1100px) {
+  .tl-plot,
+  .tl-read__body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sg-post.is-row {
+    grid-template-columns: 224px minmax(0, 1fr);
+  }
+
+  .tl-mrow__bar,
+  .tl-mkey {
+    grid-template-columns: 192px minmax(0, 1fr) minmax(0, 1fr) 36px 16px;
+  }
+
+  .tl-plot__gap {
+    flex-direction: row;
+    gap: 8px;
+    margin-bottom: 0;
+  }
+
+  .tl-plot__gap small {
+    margin: 0;
+  }
+}
+
+@media (max-width: 720px) {
+  .tl-day {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .tl-day::before,
+  .tl-day::after {
+    display: none;
+  }
+
+  .tl-day__when {
+    flex-direction: row;
+    gap: 8px;
+    padding: 0 2px 6px;
+  }
+
+  .tl-rday {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .tl-rv__rows::before,
+  .tl-rv__mark::before,
+  .tl-rv__mark::after,
+  .tl-rday::after {
+    display: none;
+  }
+
+  .tl-rday__when {
+    padding: 4px 6px;
+    text-align: left;
+  }
+
+  .sg-post.is-row {
+    display: flex;
+    align-items: stretch;
+  }
+
+  .sg-post.is-row .sg-post__foot {
+    position: static;
+    transform: none;
+  }
+
+  .tl-mkey {
+    display: none;
+  }
+
+  .tl-mrow__bar {
+    grid-template-columns: minmax(0, 1fr) 32px 16px;
+  }
+
+  .tl-mir {
+    display: none;
+  }
+
+  .tl-rv__more {
+    margin-left: 6px;
+  }
+}

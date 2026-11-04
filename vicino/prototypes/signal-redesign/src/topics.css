@@ -1,0 +1,630 @@
+/* Topics: blocks sized by how much there is to say, each with its own picture. */
+
+.tp {
+  gap: 12px;
+}
+
+.tp-lead {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 14px 2px 6px;
+}
+
+.tp-lead > div:first-child {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  min-width: 0;
+}
+
+.tp-lead h2 {
+  max-width: 760px;
+  font-size: 30px;
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--tracking-title);
+  line-height: 1.24;
+}
+
+.tp-lead h2 span {
+  color: var(--text-4);
+}
+
+.tp-eyebrow > b {
+  font-size: var(--sg-title);
+  font-weight: var(--sg-title-weight);
+  line-height: 1.25;
+}
+
+.tp-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+}
+
+.tp-key {
+  display: inline-flex;
+  gap: 14px;
+  margin-left: auto;
+  color: var(--text-4);
+  font-size: var(--fs-2);
+}
+
+.tp-key span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tp-dot {
+  display: inline-block;
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.tp-dot.is-green {
+  background: var(--sg-green);
+}
+
+.tp-dot.is-amber {
+  background: var(--sg-amber);
+}
+
+/* the mosaic */
+.tp-mosaic {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 12px;
+  align-items: stretch;
+}
+
+.tp-topic {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.tp-topic.is-a {
+  grid-column: span 7;
+}
+
+.tp-topic.is-b {
+  grid-column: span 5;
+}
+
+.tp-topic.is-c {
+  grid-column: span 8;
+}
+
+.tp-stack {
+  display: flex;
+  grid-column: span 4;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.tp-topic__scene {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  min-height: 124px;
+  padding: 16px 18px;
+  /* from the top right corner, gone by the scene's lower edge so there's no line under it */
+  background: radial-gradient(72% 100% at 100% 0%, color-mix(in srgb, var(--b) 18%, transparent), transparent);
+}
+
+.tp-topic__say {
+  position: relative;
+  z-index: 1;
+  max-width: 62%;
+}
+
+.tp-topic__say b {
+  display: block;
+  font-size: 30px;
+  font-weight: var(--fw-medium);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: var(--tracking-title);
+  line-height: 1.1;
+}
+
+.tp-topic__say h2 {
+  margin-top: 4px;
+  font-size: var(--sg-title-card);
+  font-weight: var(--sg-title-weight);
+  line-height: 1.3;
+}
+
+.tp-topic__say p {
+  color: var(--text-3);
+  font-size: var(--fs-2);
+}
+
+.tp-topic__art {
+  position: absolute;
+  top: 20px;
+  right: 18px;
+  width: 104px;
+  height: 64px;
+}
+
+.tp-topic.is-d .tp-topic__scene {
+  min-height: 92px;
+  padding: 12px 16px;
+}
+
+.tp-topic.is-d .tp-topic__say b {
+  font-size: 22px;
+}
+
+.tp-topic.is-d .tp-topic__art {
+  top: 14px;
+  width: 68px;
+  height: 42px;
+}
+
+.tp-topic__rows {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  padding: 4px 6px 6px;
+}
+
+.tp-topic.is-c .tp-topic__rows {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 4px;
+}
+
+.tp-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 52px;
+  padding: 8px 12px;
+  border: 0;
+  border-radius: 10px;
+  background: none;
+  color: var(--text-4);
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--dur-2) var(--ease);
+}
+
+.tp-row:hover {
+  background: var(--surface);
+}
+
+.tp-row__text {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.tp-row__text b {
+  display: -webkit-box;
+  overflow: hidden;
+  color: var(--text);
+  font-size: var(--fs-4);
+  font-weight: var(--fw-regular);
+  line-height: 1.38;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.tp-row__chat {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  color: var(--cyan-700);
+}
+
+.tp-research {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: box-shadow var(--dur-2) var(--ease);
+}
+
+.tp-research:hover {
+  box-shadow: var(--sg-soft-2);
+}
+
+.tp-research__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-4);
+}
+
+.tp-research__head b {
+  flex: 1 1 auto;
+  color: var(--text);
+  font-size: var(--sg-title-card);
+  font-weight: var(--sg-title-weight);
+}
+
+.tp-stack .sg-attention {
+  flex: none;
+}
+
+/* ------------------------------------------------------------------ sentiment */
+
+/* The report: what it found on the left, the numbers on the right. Its title sits over the
+   card like every other section's, and the space between the parts does the separating. */
+.tp-report {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 24px 48px;
+  padding: 24px 28px;
+  background: var(--sg-wash);
+}
+
+.tp-report__read {
+  display: flex;
+  flex: 1 1 320px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  min-width: 0;
+}
+
+.tp-report__say {
+  max-width: 560px;
+  font-size: var(--fs-7);
+  line-height: 1.4;
+}
+
+.tp-report__say span {
+  color: var(--text-3);
+}
+
+.tp-report .sg-claim {
+  max-width: 640px;
+}
+
+.tp-report__nums {
+  display: flex;
+  flex: 0 1 auto;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px 40px;
+  min-width: 0;
+}
+
+.tp-report__nums.is-cells {
+  gap: 8px;
+}
+
+.tp-report__mix {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 24px;
+}
+
+.tp-report__mix .sg-donutkey {
+  gap: 10px;
+}
+
+.tp-report__count {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  padding-left: 40px;
+  box-shadow: inset 1px 0 0 var(--border);
+}
+
+.tp-report__count > b {
+  font-size: var(--fs-figure);
+  font-weight: var(--fw-medium);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+}
+
+.tp-report__count > small {
+  margin-top: 2px;
+  color: var(--text-3);
+  font-size: var(--fs-3);
+}
+
+.tp-report__count .sg-micro {
+  margin-top: 10px;
+}
+
+.tp-report__count .sg-micro small {
+  display: none;
+}
+
+/* a theme's card */
+.tp-tcard {
+  cursor: pointer;
+  transition: box-shadow var(--dur-2) var(--ease);
+}
+
+.tp-tcard:hover,
+.tp-tcard:focus-visible {
+  outline: none;
+  box-shadow: var(--sg-soft-2);
+}
+
+.tp-tcard.is-s7 {
+  grid-column: span 7;
+}
+
+.tp-tcard.is-s5 {
+  grid-column: span 5;
+}
+
+.tp-tcard.is-s4 {
+  grid-column: span 4;
+}
+
+.tp-tcard .sg-pill {
+  margin-top: 6px;
+}
+
+.tp-tcard .tp-topic__say {
+  z-index: 1;
+}
+
+.tp-tcard__body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px 18px 16px;
+}
+
+.tp-tcard__split {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.tp-tcard__split small {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 12px;
+  color: var(--text-3);
+  font-size: var(--fs-2);
+}
+
+.tp-tcard__split b {
+  color: var(--text);
+  font-weight: var(--fw-medium);
+  font-variant-numeric: tabular-nums;
+}
+
+/* the quote stands apart from the read above it, on a line inset from the card's edges */
+.tp-tcard__say {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  min-width: 0;
+  margin-top: 2px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+
+.tp-tcard__say p {
+  display: -webkit-box;
+  overflow: hidden;
+  font-size: var(--fs-4);
+  line-height: 1.42;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.tp-fine {
+  margin: -2px 4px 4px;
+}
+
+.tp-checks {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+}
+
+.tp-posts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  width: 100%;
+}
+
+/* three blocks of the same weight; what's in them is tonal, with a gap */
+.tp-trio {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: auto 1fr;
+  column-gap: 12px;
+}
+
+.tp-col {
+  display: grid;
+  grid-row: span 2;
+  grid-template-rows: subgrid;
+  row-gap: 10px;
+  min-width: 0;
+}
+
+.tp-col .sg-sec > small {
+  flex-basis: 100%;
+}
+
+.tp-panel {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 12px;
+}
+
+.tp-panel__body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.tp-panel__body > .sg-fine,
+.tp-panel__say {
+  padding: 0 4px;
+}
+
+.tp-panel__say {
+  font-size: var(--fs-4);
+  line-height: 1.45;
+}
+
+.tp-panel__body .sg-cols {
+  flex: 1 1 96px;
+  height: auto;
+  min-height: 96px;
+  margin: 8px 4px 0;
+}
+
+.tp-panel__body .sg-cols__key {
+  margin: 0 4px;
+}
+
+.tp-panel__foot {
+  padding: 10px 4px 0;
+}
+
+.tp-collect {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+/* in a narrow block, the Uncertain row stacks its moves under the post */
+.tp-panel .sg-uncrow {
+  grid-template-columns: 28px minmax(0, 1fr);
+  align-items: flex-start;
+}
+
+.tp-panel .sg-uncrow p {
+  display: -webkit-box;
+  white-space: normal;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.tp-panel .sg-uncrow > :last-child {
+  grid-column: 2;
+}
+
+/* what's new, ahead of the report when collection stopped */
+.tp-alert {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px;
+  border-radius: var(--r-lg);
+  background: var(--amber-50);
+  box-shadow: var(--sg-soft);
+}
+
+.tp-alert__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  width: 100%;
+}
+
+.tp-alert__grid .sg-post {
+  background: var(--canvas);
+}
+
+.tp-alert__grid .sg-post:hover {
+  background: var(--surface);
+}
+
+.app-shell.is-tour-split .tp-mosaic > .tp-topic,
+.app-shell.is-tour-split .tp-stack {
+  grid-column: 1 / -1;
+}
+
+.app-shell.is-tour-split .tp-topic.is-c .tp-topic__rows,
+.app-shell.is-tour-split .tp-posts,
+.app-shell.is-tour-split .tp-trio,
+.app-shell.is-tour-split .tp-alert__grid {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.app-shell.is-tour-split .tp-trio {
+  grid-template-rows: none;
+}
+
+/* narrow enough that the count may drop under the ring, where its line would point at nothing */
+.app-shell.is-tour-split .tp-report__count {
+  padding-left: 0;
+  box-shadow: none;
+}
+
+.app-shell.is-tour-split .tp-col {
+  grid-row: auto;
+  grid-template-rows: auto auto;
+}
+
+@media (max-width: 1100px) {
+  .tp-trio {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+  }
+
+  .tp-col {
+    grid-row: auto;
+    grid-template-rows: auto auto;
+  }
+
+  .tp-tcard.is-s4 {
+    grid-column: span 6;
+  }
+
+  .tp-tcard.is-s7,
+  .tp-tcard.is-s5 {
+    grid-column: span 6;
+  }
+}
+
+@media (max-width: 760px) {
+  .tp-report__count {
+    padding-left: 0;
+    box-shadow: none;
+  }
+
+  .tp-mosaic > .tp-topic,
+  .tp-stack {
+    grid-column: 1 / -1;
+  }
+
+  .tp-topic.is-c .tp-topic__rows,
+  .tp-posts,
+  .tp-alert__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .tp-lead {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

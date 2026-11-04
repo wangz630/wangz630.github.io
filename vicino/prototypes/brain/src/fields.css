@@ -1,0 +1,2039 @@
+/* The Brain fields a section is made of, in two designs (Versions → Fields design).
+
+   A section is a folder: its icon carries its own hue and says nothing about how
+   far it has got. Every field inside it says one of four things - Confirmed,
+   Direct, Inferred or Missing - in its own column, and what it rests on, how sure
+   the index is of it and who last wrote it read as one quiet line under the value.
+   The value is the thing to read, so it gets the room and the size.
+
+     1 Rows   a field a row, the value beside its question
+     2 Cards  the same fields as a grid of cards                                */
+
+.bx-bf {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+}
+
+/* --------------------------------------------------------------- the head */
+
+/* where a section stands - it lives in the section's own head card now, under
+   its name, so the table above starts with the table */
+.bx-bf__head {
+  display: grid;
+  gap: 8px;
+  grid-column: 1 / -1;
+  margin-top: 4px;
+}
+
+.bx-bf__meter {
+  display: flex;
+  gap: 0;
+  height: 6px;
+  overflow: hidden;
+  border-radius: var(--bx-r-pill);
+  background: var(--surface-2);
+}
+
+.bx-bf__meter i {
+  display: block;
+}
+
+/* the bar is one run: only its two ends are rounded */
+.bx-bf__meter i:first-child {
+  border-radius: var(--bx-r-pill) 0 0 var(--bx-r-pill);
+}
+
+.bx-bf__meter i:last-child {
+  border-radius: 0 var(--bx-r-pill) var(--bx-r-pill) 0;
+}
+
+.bx-bf__meter .is-confirmed {
+  background: var(--bx-st-confirmed);
+}
+
+.bx-bf__meter .is-direct {
+  background: var(--bx-st-direct);
+}
+
+.bx-bf__meter .is-inferred {
+  background: var(--bx-st-inferred);
+}
+
+.bx-bf__meter .is-missing {
+  background: var(--bx-st-missing);
+}
+
+.pulse-ds .bx-bf__tallies {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 14px;
+  margin: 0;
+  color: var(--text-4);
+  font-size: var(--fs-2);
+}
+
+.bx-bf__tally {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.bx-bf__tally i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.bx-bf__tally b {
+  color: var(--text);
+  font-weight: var(--fw-semibold);
+}
+
+.bx-bf__tally.is-confirmed i {
+  background: var(--bx-st-confirmed);
+}
+
+.bx-bf__tally.is-direct i {
+  background: var(--bx-st-direct);
+}
+
+.bx-bf__tally.is-inferred i {
+  background: var(--bx-st-inferred);
+}
+
+.bx-bf__tally.is-missing i {
+  background: var(--bx-st-missing);
+}
+
+.bx-bf__why {
+  margin-left: auto;
+  color: var(--text-4);
+}
+
+.bx-bf__why .bx-sep {
+  margin: 0 6px;
+}
+
+.bx-bf__why b {
+  color: var(--text-2);
+  font-weight: var(--fw-semibold);
+}
+
+/* the section was written before the brand's own changes to it */
+.pulse-ds .bx-bf__stale {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  padding: 9px 12px;
+  border-radius: var(--bx-r-inner);
+  background: color-mix(in srgb, var(--amber-500) 9%, transparent);
+  color: var(--text-3);
+  font-size: var(--fs-2);
+  line-height: 1.5;
+}
+
+.bx-bf__stale .bx-icon {
+  margin-top: 2px;
+  color: var(--amber-500);
+}
+
+.bx-bf__stale b {
+  color: var(--text);
+  font-weight: var(--fw-semibold);
+}
+
+.bx-bf__stale .bx-bf__link {
+  margin-left: 8px;
+}
+
+/* the table has a card of its own */
+/* the fields are the card - there is no white box around a grey head, and a row
+   that lights up lights up edge to edge */
+.bx-bf__tablecard {
+  display: grid;
+  gap: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* ---------------------------------------------- what the table shows, and add */
+
+/* ------------------------------------------- what the table shows, and add
+
+   Three ways of asking (Versions -> Filter bar). Whichever it is, the bar has
+   room above and below it: it belongs to the table under it, not to the head
+   card over it. */
+
+/* the filters stand on the table's own top edge, and the one in use is a small
+   white card that carries the table under it. The section is a grid with 14px
+   between its rows, so the bar pulls back over that to sit close to the head. */
+.bx-bf__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+  margin: 10px 0 -8px;
+  padding: 0 4px;
+}
+
+.bx-bf__filters {
+  gap: 4px;
+  padding: 0;
+  background: none;
+}
+
+.bx-bf__fchip {
+  height: 34px;
+  padding: 0 14px;
+  border-radius: 9px;
+}
+
+.bx-bf__fchip.is-on {
+  background: var(--canvas);
+  box-shadow: var(--bx-soft);
+}
+
+.bx-bf__filters {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.bx-bf__fchip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border: 0;
+  background: transparent;
+  color: var(--text-3);
+  font-family: var(--font-sans);
+  font-size: var(--fs-2);
+  cursor: pointer;
+  transition:
+    background var(--dur-1) var(--ease),
+    color var(--dur-1) var(--ease),
+    box-shadow var(--dur-1) var(--ease);
+}
+
+.bx-bf__fchip i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--fc, var(--text-5));
+}
+
+.bx-bf__fchip.is-all i {
+  display: none;
+}
+
+/* To check is Direct and Inferred together, so its dot is half of each */
+.bx-bf__fchip.is-check i {
+  background: linear-gradient(90deg, var(--bx-st-direct) 0 50%, var(--bx-st-inferred) 50% 100%);
+}
+
+.bx-bf__fchip.is-missing {
+  --fc: var(--border-strong);
+}
+
+.bx-bf__fchip.is-confirmed {
+  --fc: var(--bx-st-confirmed);
+}
+
+.bx-bf__fchip b {
+  color: var(--text-4);
+  font-size: var(--fs-1);
+  font-weight: var(--fw-semibold);
+}
+
+.bx-bf__fchip:hover:not(:disabled) {
+  color: var(--text);
+}
+
+.bx-bf__fchip.is-on {
+  color: var(--text);
+  font-weight: var(--fw-semibold);
+}
+
+.bx-bf__fchip.is-on b {
+  color: var(--text-2);
+}
+
+.bx-bf__fchip:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+/* adding a field is the same white plus the sections carry - nothing louder */
+/* the key to the marks stands after the filters, before the plus */
+.bx-bf__bar .bx-entkey {
+  margin-left: auto !important;
+}
+
+.bx-bf__add {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--bx-r-inner);
+  background: var(--canvas);
+  box-shadow: var(--bx-soft);
+  color: var(--text-2);
+  cursor: pointer;
+  transition:
+    background var(--dur-1) var(--ease),
+    color var(--dur-1) var(--ease),
+    box-shadow var(--dur-1) var(--ease),
+    transform var(--dur-1) var(--ease);
+}
+
+.bx-bf__add:hover,
+.bx-bf__add.is-on {
+  background: var(--ink-900);
+  box-shadow: var(--bx-soft-2);
+  color: #fff;
+}
+
+.bx-bf__add.is-on {
+  transform: rotate(45deg);
+}
+
+/* ------------------------------------------------- name, status and why */
+
+.bx-bf__name {
+  display: grid;
+  gap: 1px;
+  min-width: 0;
+  text-align: left;
+}
+
+.bx-bf__name b {
+  overflow: hidden;
+  color: var(--text);
+  font-size: var(--fs-3);
+  font-weight: var(--fw-semibold);
+  line-height: 1.3;
+  text-overflow: ellipsis;
+}
+
+.bx-bf__key {
+  overflow: hidden;
+  color: var(--text-5);
+  font-size: 10.5px;
+  letter-spacing: 0.015em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bx-bf__req {
+  margin-left: 3px;
+  color: var(--amber-500);
+  font-style: normal;
+}
+
+/* one word, the same one the section card and the overview use */
+.bx-bf__pill {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  height: 23px;
+  padding: 0 10px;
+  border-radius: var(--bx-r-pill);
+  background: color-mix(in srgb, var(--ink-900) 6%, transparent);
+  color: var(--text-3);
+  font-size: var(--fs-2);
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+}
+
+.bx-bf__pill.is-confirmed {
+  background: color-mix(in srgb, var(--bx-st-confirmed) 12%, transparent);
+  color: color-mix(in srgb, var(--bx-st-confirmed) 64%, var(--ink-900));
+}
+
+.bx-bf__pill.is-direct {
+  background: color-mix(in srgb, var(--bx-st-direct) 13%, transparent);
+  color: color-mix(in srgb, var(--bx-st-direct) 66%, var(--ink-900));
+}
+
+.bx-bf__pill.is-inferred {
+  background: color-mix(in srgb, var(--bx-st-inferred) 15%, transparent);
+  color: color-mix(in srgb, var(--bx-st-inferred) 58%, var(--ink-900));
+}
+
+.bx-bf__pill.is-missing {
+  background: color-mix(in srgb, var(--ink-900) 6%, transparent);
+  color: var(--text-3);
+}
+
+.bx-bf__pill.is-running {
+  background: color-mix(in srgb, var(--cyan-600) 12%, transparent);
+  color: var(--cyan-800);
+}
+
+/* ------------------------------------------------------------ the value */
+
+.bx-bf__muted {
+  color: var(--text-4);
+}
+
+/* the key words of the facts a value was written from - J takes them off, as it
+   does in the Knowledge tables */
+.bx-bfa__text .bx-entkey {
+  padding: 0 2px;
+}
+
+/* -------------------------------------- where it came from, and who wrote it */
+
+.bx-bf__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 8px;
+  min-width: 0;
+  margin: 0;
+  color: var(--text-4);
+  font-size: var(--fs-1);
+}
+
+.bx-bfr__c.is-who .bx-bf__who {
+  gap: 5px;
+}
+
+.bx-bfr__c.is-who .bx-bf__whot2 {
+  display: grid;
+  gap: 0;
+  line-height: 1.2;
+}
+
+.bx-bf__mdot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--text-5);
+  opacity: 0.6;
+}
+
+.bx-bf__src {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+}
+
+.bx-bf__src .bx-sc {
+  min-width: 0;
+}
+
+.bx-bf__more2 {
+  flex: none;
+  color: var(--text-4);
+  font-size: var(--fs-1);
+  font-weight: var(--fw-semibold);
+}
+
+.bx-bf__from {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  max-width: 100%;
+  min-width: 0;
+  height: 22px;
+  padding: 0 9px;
+  border-radius: var(--bx-r-pill);
+  background: var(--surface);
+  color: var(--text-3);
+  font-size: var(--fs-1);
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+}
+
+/* a source's name can be a sentence; the column it sits in is not that wide, so it
+   shortens rather than running out over the one beside it */
+.bx-bf__fromt {
+  overflow: hidden;
+  min-width: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bx-bf__from .bx-icon {
+  flex: none;
+  color: var(--text-4);
+}
+
+.bx-bf__from.is-you {
+  background: color-mix(in srgb, var(--bx-direct) 10%, transparent);
+  color: color-mix(in srgb, var(--bx-direct) 62%, var(--ink-900));
+}
+
+.bx-bf__from.is-you .bx-icon {
+  color: inherit;
+}
+
+/* a value Brain wrote with no page behind it - Inferred, and honest about it */
+.bx-bf__from.is-brainw {
+  background: color-mix(in srgb, var(--cyan-600) 10%, transparent);
+  color: var(--cyan-800);
+}
+
+.bx-bf__from.is-brainw .bx-icon {
+  color: inherit;
+}
+
+.bx-bf__none {
+  color: var(--text-5);
+}
+
+.bx-bf__who {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.bx-bf__av {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--surface-2);
+  color: var(--text-3);
+  font-size: 9px;
+  font-style: normal;
+  font-weight: var(--fw-heavy);
+  letter-spacing: 0.02em;
+}
+
+.bx-bf__av.is-you {
+  background: var(--ink);
+  color: #fff;
+}
+
+/* a person who wrote it wears their own face */
+.bx-bf__av.is-photo {
+  overflow: hidden;
+  background: var(--surface-2);
+}
+
+.bx-bf__av.is-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bx-bf__av.is-brain {
+  background: color-mix(in srgb, var(--cyan-600) 16%, transparent);
+  color: var(--cyan-800);
+}
+
+.bx-bf__av.is-ob {
+  background: color-mix(in srgb, var(--bx-direct) 14%, transparent);
+  color: color-mix(in srgb, var(--bx-direct) 62%, var(--ink-900));
+}
+
+.bx-bf__whot {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  min-width: 0;
+}
+
+.bx-bf__whot b {
+  color: var(--text-3);
+  font-size: var(--fs-1);
+  font-weight: var(--fw-semibold);
+}
+
+.bx-bf__whot small {
+  color: var(--text-4);
+  font-size: 10.5px;
+}
+
+/* --------------------------------------------------------------- moves */
+
+/* a move is an icon that says its name on hover, and looks like what it does:
+   confirming is green, the brand's own answer is ink, Generate is Brain's violet,
+   writing what the index cannot is amber, and the rest stay quiet */
+/* The move a field is waiting for is a real button with its name on it, so a
+   section reads as a list of things to do. Confirm is the loudest of them - it is
+   not green, because green reads as "already done". */
+.bx-bf__mv {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 27px;
+  height: 27px;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text-3);
+  font-family: var(--font-sans);
+  cursor: pointer;
+  transition:
+    background var(--dur-1) var(--ease),
+    color var(--dur-1) var(--ease),
+    box-shadow var(--dur-1) var(--ease),
+    transform var(--dur-1) var(--ease);
+}
+
+.bx-bf__mv:hover {
+  background: var(--surface-2);
+  color: var(--text);
+  transform: translateY(-1px);
+}
+
+.bx-bf__mv:focus-visible {
+  outline: 0;
+  box-shadow: var(--focus-ring);
+}
+
+/* with its name on: wide enough to be the thing you reach for */
+.bx-bf__mv.is-words {
+  display: inline-flex;
+  gap: 5px;
+  width: auto;
+  height: 24px;
+  padding: 0 9px 0 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+}
+
+.bx-bf__mv.is-words .bx-icon {
+  width: 12px;
+  height: 12px;
+}
+
+/* confirm - the green of what is already confirmed, deep enough to read as the
+   move it is, rather than a slab of ink */
+.bx-bf__mv.is-act-confirm {
+  --mv: #12866a;
+  background: color-mix(in srgb, var(--bx-st-confirmed) 16%, transparent);
+  color: #136048;
+  font-weight: var(--fw-heavy);
+}
+
+/* the ones only you can answer wear the accent, so they do not read as confirm */
+.bx-bf__mv.is-act-set,
+.bx-bf__mv.is-act-source {
+  --mv: var(--cyan-700);
+  background: color-mix(in srgb, var(--cyan-600) 24%, transparent);
+  color: var(--cyan-800);
+}
+
+.bx-bf__mv.is-act-set:hover,
+.bx-bf__mv.is-act-source:hover {
+  background: color-mix(in srgb, var(--cyan-600) 34%, transparent);
+}
+
+/* writing it yourself is the other way out of a gap, not the loud one */
+.bx-bf__mv.is-act-write {
+  --mv: var(--ink-900);
+  background: color-mix(in srgb, var(--ink-900) 9%, transparent);
+  color: var(--text-2);
+}
+
+.bx-bf__mv.is-act-write:hover {
+  background: color-mix(in srgb, var(--ink-900) 14%, transparent);
+  color: var(--text);
+}
+
+.bx-bf__mv.is-act-generate {
+  --mv: #7c3aed;
+  background: color-mix(in srgb, #7c3aed 14%, transparent);
+  color: color-mix(in srgb, #7c3aed 62%, var(--ink-900));
+}
+
+.bx-bf__mv.is-act-generate:hover {
+  background: #7c3aed;
+  color: #fff;
+}
+
+.bx-bf__mv.is-act-none,
+.bx-bf__mv.is-act-undo,
+.bx-bf__mv.is-act-strategy,
+.bx-bf__mv.is-act-change,
+.bx-bf__mv.is-act-edit {
+  --mv: var(--ink-900);
+  background: color-mix(in srgb, var(--ink-900) 7%, transparent);
+  color: var(--text-3);
+}
+
+/* 2 Solid - the move a field is waiting for at full strength, everything on it
+   white. It is written per move so it outweighs each move's own wash. */
+.bx-bf__mv.is-m2.is-act-confirm,
+.bx-bf__mv.is-m2.is-act-set,
+.bx-bf__mv.is-m2.is-act-source,
+.bx-bf__mv.is-m2.is-act-generate {
+  background: color-mix(in srgb, var(--mv, var(--ink-900)) 92%, transparent);
+  color: #fff;
+}
+
+.bx-bf__mv.is-m2.is-act-confirm {
+  background: #0b0b0b;
+  color: #fff;
+}
+
+.bx-bf__mv.is-m2.is-act-confirm:hover {
+  background: #0b0b0b;
+  box-shadow: var(--bx-soft-2);
+  color: #fff;
+}
+
+.bx-bf__mv.is-m2.is-act-confirm:hover,
+.bx-bf__mv.is-m2.is-act-set:hover,
+.bx-bf__mv.is-m2.is-act-source:hover,
+.bx-bf__mv.is-m2.is-act-generate:hover {
+  background: var(--mv, var(--ink-900));
+  box-shadow: var(--bx-soft-2);
+  color: #fff;
+}
+
+/* the quiet moves stay quiet even when the loud ones are solid */
+.bx-bf__mv.is-m2.is-act-write,
+.bx-bf__mv.is-m2.is-act-none,
+.bx-bf__mv.is-m2.is-act-strategy,
+.bx-bf__mv.is-m2.is-act-change,
+.bx-bf__mv.is-m2.is-act-edit {
+  background: color-mix(in srgb, var(--ink-900) 8%, transparent);
+  color: var(--text-2);
+}
+
+.bx-bf__mv.is-m2.is-act-write:hover,
+.bx-bf__mv.is-m2.is-act-none:hover,
+.bx-bf__mv.is-m2.is-act-strategy:hover,
+.bx-bf__mv.is-m2.is-act-change:hover,
+.bx-bf__mv.is-m2.is-act-edit:hover {
+  background: color-mix(in srgb, var(--ink-900) 13%, transparent);
+  box-shadow: none;
+  color: var(--text);
+}
+
+.bx-bf__mv.is-act-none:hover,
+.bx-bf__mv.is-act-undo:hover,
+.bx-bf__mv.is-act-strategy:hover,
+.bx-bf__mv.is-act-change:hover {
+  background: var(--surface-2);
+  color: var(--text-2);
+}
+
+/* ====================================================== the section's fields
+
+   Three ways to read a section (Versions → Section page). Whatever the layout,
+   the answer is the thing being read: the Panels body size, its key words marked,
+   a numbered chip for every fact it cites, and three lines with Show more once it
+   runs long. The move a field is waiting for carries its name. */
+
+/* ---------------------------------------------------------------- the answer */
+
+.bx-bfa {
+  display: grid;
+  justify-items: start;
+  gap: 6px;
+  min-width: 0;
+}
+
+.bx-bfa__text {
+  color: var(--text);
+  font-size: var(--fs-3);
+  line-height: 1.62;
+}
+
+.bx-bfa__text .bx-entkey {
+  padding: 0 2px;
+}
+
+.bx-more {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--text-3);
+  font-family: var(--font-sans);
+  font-size: var(--fs-2);
+  font-weight: var(--fw-semibold);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.bx-more:hover {
+  color: var(--ink);
+}
+
+/* editing happens where the answer is: the box has no stroke, just a fill */
+.bx-bfa.is-editing {
+  justify-items: stretch;
+  gap: 8px;
+  width: 100%;
+}
+
+.bx-bfa__hint {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  color: var(--text-4);
+  font-size: var(--fs-1);
+  line-height: 1.45;
+}
+
+.bx-bfa__ta {
+  width: 100%;
+  min-height: 76px;
+  padding: 11px 13px;
+  border: 0;
+  border-radius: var(--bx-r-inner);
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: var(--fs-4);
+  line-height: 1.6;
+  resize: vertical;
+  transition: background var(--dur-1) var(--ease);
+}
+
+.bx-bfa__ta:focus {
+  outline: 0;
+  background: color-mix(in srgb, var(--cyan-500) 6%, var(--surface));
+}
+
+.bx-bfa__eacts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+/* where it came from, how sure, and who wrote it - three lines of their own */
+.bx-bfm {
+  display: grid;
+  gap: 5px;
+  justify-items: start;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.bx-bfm__r {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  max-width: 100%;
+  color: var(--text-4);
+  font-size: var(--fs-1);
+}
+
+.bx-bfm .bx-bf__src,
+.bx-bfm .bx-sc {
+  min-width: 0;
+}
+
+.bx-bfm .bx-sc__name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bx-bfm .bx-bf__who {
+  gap: 6px;
+}
+
+.bx-bfm .bx-bf__whot {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  min-width: 0;
+}
+
+.bx-bfm .bx-bf__who {
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* what the answer rests on, under it and quiet */
+.bx-bfw__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px 8px;
+  color: var(--text-4);
+  font-size: var(--fs-1);
+}
+
+/* ----------------------------------------------------- the section's table
+
+   Read the way Knowledge F's facts are: a head that names the columns, a row a
+   field, a hairline down every column and across every row, and one fill under
+   the pointer. The name, the key and the status word share the first column;
+   what the answer rests on gets a column each after it. */
+
+.bx-bfr__thead,
+.bx-bfr__row {
+  display: grid;
+  grid-template-columns:
+    minmax(158px, 206px) minmax(0, 1fr) minmax(124px, 152px) 84px
+    minmax(112px, 136px) 144px;
+  align-items: stretch;
+}
+
+/* the head is the card's own top: it fills it edge to edge, and it does not move
+   when the fields turn */
+.bx-bfr__thead {
+  border-bottom: 1px solid var(--bx-line);
+  background: var(--surface);
+}
+
+.bx-bfr__thead > span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+  height: 40px;
+  padding: 0 16px;
+  overflow: hidden;
+  color: var(--text-4);
+  font-size: var(--fs-1);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.bx-bfr__thead > span + span {
+  box-shadow: inset 1px 0 0 var(--bx-line);
+}
+
+.bx-bfr__thead .bx-icon {
+  flex: none;
+  color: var(--text-5);
+}
+
+.pulse-ds .bx-bfr__list {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* the whole row opens the field - the last column is the only part that does
+   anything else */
+.bx-bfr__row {
+  cursor: pointer;
+  transition: background var(--dur-1) var(--ease);
+}
+
+.bx-bfr__row + .bx-bfr__row {
+  border-top: 1px solid var(--bx-line);
+}
+
+.bx-bfr__row:hover {
+  background: var(--surface);
+}
+
+.bx-bfr__row.is-open {
+  background: color-mix(in srgb, var(--cyan-500) 7%, transparent);
+}
+
+.bx-bfr__row:focus-visible {
+  outline: 0;
+  box-shadow: inset var(--focus-ring);
+}
+
+.bx-bfr__c {
+  display: flex;
+  align-items: flex-start;
+  min-width: 0;
+  padding: 15px 16px 16px;
+}
+
+.bx-bfr__c + .bx-bfr__c {
+  box-shadow: inset 1px 0 0 var(--bx-line);
+}
+
+/* 1 · the field: what it is called, its key, and the one status word */
+.bx-bfr__c.is-field {
+  display: grid;
+  align-content: start;
+  justify-items: start;
+  gap: 3px;
+}
+
+.bx-bfr__name {
+  color: var(--text);
+  font-size: var(--fs-3);
+  font-weight: var(--fw-semibold);
+  line-height: 1.35;
+}
+
+.bx-bfr__row:hover .bx-bfr__name {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.bx-bfr__c.is-field .bx-bf__pill {
+  margin-top: 5px;
+}
+
+/* 2 · the answer, the widest thing in the row */
+.bx-bfr__c.is-answer {
+  display: block;
+}
+
+/* 3-5 · where it was read, how sure, and who last wrote it */
+.bx-bfr__c.is-src,
+.bx-bfr__c.is-conf,
+.bx-bfr__c.is-who {
+  align-items: flex-start;
+  padding-top: 16px;
+  color: var(--text-4);
+  font-size: var(--fs-1);
+}
+
+.bx-bfr__c.is-src {
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.bx-bfr__c.is-src .bx-bf__src,
+.bx-bfr__c.is-who .bx-bf__who {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.bx-bfr__c.is-who .bx-bf__whot {
+  display: grid;
+  gap: 0;
+  min-width: 0;
+  line-height: 1.25;
+}
+
+/* 6 · what it is waiting for: one button a move, every one an icon and a word of
+   the same width, stacked and centred - so the column reads down, not across */
+.bx-bfr__c.is-acts {
+  display: grid;
+  align-content: start;
+  justify-items: center;
+  gap: 6px;
+  padding: 14px 16px 16px;
+}
+
+.bx-bfr__c.is-acts .bx-bf__mv.is-words {
+  width: 100%;
+  max-width: 98px;
+  justify-content: center;
+  padding: 0 8px;
+}
+
+/* a source in a table goes nowhere: reading them is what opening the field is for */
+.bx-sc--pill.is-flat {
+  cursor: inherit;
+}
+
+/* ---------------------------------------------------------------- narrower */
+
+@container bxpanel (max-width: 1080px) {
+  .bx-bfr__thead,
+  .bx-bfr__row {
+    grid-template-columns:
+      minmax(136px, 176px) minmax(0, 1fr) minmax(108px, 130px) 76px
+      minmax(100px, 122px) 128px;
+  }
+
+  .bx-bfr__c {
+    padding: 14px 11px;
+  }
+
+  .bx-bfr__thead > span {
+    padding: 0 11px;
+  }
+
+  .bx-bfr__c.is-acts .bx-bf__mv.is-words {
+    min-width: 0;
+  }
+}
+
+/* narrower than six columns can be read: the row becomes a block, and what the
+   answer rests on runs along its foot */
+@container bxpanel (max-width: 840px) {
+  .bx-bfr__thead {
+    display: none;
+  }
+
+  .bx-bfr__row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 2px 12px;
+    padding: 4px 0 12px;
+  }
+
+  .bx-bfr__c,
+  .bx-bfr__c + .bx-bfr__c {
+    padding: 4px 14px;
+    box-shadow: none;
+  }
+
+  .bx-bfr__c.is-field {
+    grid-row: 1;
+    grid-column: 1;
+    padding-top: 12px;
+  }
+
+  .bx-bfr__c.is-acts {
+    grid-row: 1;
+    grid-column: 2;
+    justify-content: flex-end;
+    padding-top: 14px;
+  }
+
+  .bx-bfr__c.is-answer {
+    grid-column: 1 / -1;
+  }
+
+  .bx-bfr__c.is-src,
+  .bx-bfr__c.is-conf,
+  .bx-bfr__c.is-who {
+    display: inline-flex;
+    grid-column: auto;
+    padding-top: 2px;
+  }
+
+  .bx-bfr__c.is-src {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ------------------------------------------------------- a field of your own */
+
+.bx-bf__new {
+  display: grid;
+  gap: 10px;
+  margin-top: 10px;
+  padding: 14px 16px;
+  border-radius: var(--bx-r-card);
+  background: var(--canvas);
+  box-shadow:
+    inset 0 0 0 1px var(--bx-line),
+    var(--shadow-2);
+}
+
+.bx-bf__newh {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--text);
+  font-size: var(--fs-3);
+  font-weight: var(--fw-semibold);
+}
+
+.bx-bf__newh span {
+  color: var(--text-4);
+  font-size: var(--fs-2);
+  font-weight: var(--fw-regular);
+}
+
+.bx-bf__newrow {
+  display: grid;
+  grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
+  gap: 10px;
+}
+
+.bx-bf__newl {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+  color: var(--text-4);
+  font-size: var(--fs-1);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+.bx-bf__newi {
+  width: 100%;
+  height: 34px;
+  padding: 0 11px;
+  border: 0;
+  border-radius: 9px;
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: var(--fs-3);
+  font-weight: var(--fw-regular);
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.bx-bf__newi:focus {
+  outline: 0;
+  background: var(--canvas);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--cyan-600) 40%, transparent);
+}
+
+.bx-bf__newacts {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bx-bf__none2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 18px 14px;
+  border-radius: var(--bx-r-inner);
+  background: var(--surface);
+  color: var(--text-4);
+  font-size: var(--fs-3);
+}
+
+/* ------------------------------------------------------------- the rest */
+
+.bx-bf__rest {
+  display: grid;
+  min-width: 0;
+  gap: 0;
+}
+
+.bx-bf__resth {
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+  margin-bottom: 2px;
+}
+
+.pulse-ds .bx-bf__resth h4 {
+  margin: 0;
+  color: var(--text);
+  font-size: var(--fs-4);
+  font-weight: var(--fw-semibold);
+}
+
+.bx-bf__resth span {
+  color: var(--text-4);
+  font-size: var(--fs-2);
+}
+
+.pulse-ds .bx-bf__foot {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0;
+  padding: 16px 16px 17px;
+  border-top: 1px solid var(--bx-line);
+  line-height: 1.55;
+  color: var(--text-5);
+  font-size: var(--fs-1);
+  line-height: 1.5;
+}
+
+.bx-bf__foot .bx-icon {
+  margin-top: 2px;
+}
+
+.bx-bf__foot b {
+  color: var(--text-4);
+  font-weight: var(--fw-semibold);
+}
+
+/* ======================================= turned like slides =============== */
+
+.bx-bfp__track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.bx-bfp__track::-webkit-scrollbar {
+  display: none;
+}
+
+.bx-bfp__track:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.bx-bfp__slide {
+  min-width: 0;
+  padding: 0;
+  scroll-snap-align: start;
+}
+
+.bx-bfp__bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px 11px;
+  border-top: 1px solid var(--bx-line);
+}
+
+.bx-bfp__arrow {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--text-3);
+  cursor: pointer;
+  transition:
+    background var(--dur-1) var(--ease),
+    color var(--dur-1) var(--ease);
+}
+
+.bx-bfp__arrow:hover:not(:disabled) {
+  background: var(--surface-2);
+  color: var(--text);
+}
+
+.bx-bfp__arrow:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.pulse-ds .bx-bfp__count {
+  color: var(--text-4);
+  font-size: var(--fs-2);
+}
+
+.bx-bfp__count b {
+  color: var(--text-2);
+  font-weight: var(--fw-semibold);
+}
+
+.bx-bfp__dots {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+}
+
+.bx-bfp__dot {
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--surface-2);
+  cursor: pointer;
+  transition:
+    background var(--dur-1) var(--ease),
+    transform var(--dur-1) var(--ease);
+}
+
+.bx-bfp__dot:hover {
+  background: var(--text-5);
+}
+
+.bx-bfp__dot.is-on {
+  background: var(--ink);
+  transform: scale(1.25);
+}
+
+/* ------------------------------------------------- a field opened up */
+
+.bx-bf__more {
+  display: grid;
+  gap: 8px;
+  margin-top: 10px;
+  padding: 12px 14px 13px;
+  border-radius: var(--bx-r-inner);
+  background: var(--surface);
+}
+
+.bx-bfr__row:hover .bx-bf__more {
+  background: var(--canvas);
+}
+
+.pulse-ds .bx-bf__query,
+.pulse-ds .bx-bf__when {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  color: var(--text-3);
+  font-size: var(--fs-2);
+  line-height: 1.5;
+}
+
+.bx-bf__query {
+  color: var(--text-2) !important;
+  font-weight: var(--fw-semibold);
+}
+
+.bx-bf__query .bx-icon,
+.bx-bf__when .bx-icon {
+  margin-top: 3px;
+  color: var(--text-4);
+}
+
+.bx-bf__when b {
+  color: var(--text-2);
+  font-weight: var(--fw-semibold);
+}
+
+.bx-bf__mlabel {
+  color: var(--text-4);
+  font-size: var(--fs-1);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+.bx-bf__mlabel .bx-num {
+  margin-left: 6px;
+  color: var(--text-5);
+}
+
+.pulse-ds .bx-bf__mlines {
+  display: grid;
+  gap: 5px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bx-bf__mlines li {
+  display: flex;
+  gap: 7px;
+  align-items: flex-start;
+  color: var(--text-3);
+  font-size: var(--fs-2);
+  line-height: 1.5;
+}
+
+.bx-bf__mlines .bx-icon {
+  margin-top: 3px;
+  color: var(--text-4);
+}
+
+.bx-bf__mlines s {
+  color: var(--text-4);
+}
+
+.bx-bf__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  justify-self: start;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--text-3);
+  font-family: var(--font-sans);
+  font-size: var(--fs-2);
+  cursor: pointer;
+}
+
+.bx-bf__link:hover {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ------------------------------------------- the facts a field rests on
+
+   Each one opens to the passage it was read from, with the wording that carries
+   it marked - the same evidence the Knowledge tables show. */
+.pulse-ds .bx-bf__facts {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bx-bf__fact {
+  overflow: hidden;
+  border-radius: var(--bx-r-inner);
+  background: var(--canvas);
+  transition: box-shadow var(--dur-1) var(--ease);
+}
+
+.bx-bf__fact.is-open {
+  box-shadow: inset 0 0 0 1px var(--bx-line);
+}
+
+.bx-bf__fhead {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 12px;
+  border: 0;
+  background: transparent;
+  color: var(--text-2);
+  font-family: var(--font-sans);
+  font-size: var(--fs-2);
+  line-height: 1.5;
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--dur-1) var(--ease);
+}
+
+.bx-bf__fhead:hover {
+  background: var(--surface);
+}
+
+.bx-bf__fstmt {
+  min-width: 0;
+}
+
+.bx-bf__ftags {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 8px;
+}
+
+.bx-bf__fchev {
+  color: var(--text-4);
+  transition: transform var(--dur-1) var(--ease);
+}
+
+.bx-bf__fact.is-open .bx-bf__fchev {
+  transform: rotate(180deg);
+}
+
+.bx-bf__fbody {
+  display: grid;
+  gap: 9px;
+  padding: 2px 12px 12px;
+}
+
+.bx-bf__fbody .bx-quote {
+  margin: 0;
+}
+
+.bx-bf__facts2 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 14px;
+}
+
+.bx-bf__flink {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--text-4);
+  font-size: var(--fs-1);
+  text-decoration: none;
+}
+
+.bx-bf__flink:hover {
+  color: var(--text-2);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.bx-bf__open {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: 0;
+  background: transparent;
+  color: var(--text-3);
+  font-family: var(--font-sans);
+  font-size: var(--fs-1);
+  cursor: pointer;
+}
+
+.bx-bf__open:hover {
+  color: var(--text);
+}
+
+/* ------------------------------------------------------------ the editor */
+
+/* it floats over the row: no stroke, a soft box, the keys spelled out */
+.bx-bf__editor {
+  display: grid;
+  gap: 8px;
+  padding: 13px 14px;
+  border: 0;
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--canvas) 88%, transparent);
+  backdrop-filter: blur(14px) saturate(1.3);
+  box-shadow:
+    0 2px 6px -2px rgba(15, 23, 42, 0.12),
+    0 20px 44px -18px rgba(15, 23, 42, 0.45);
+}
+
+.bx-bf__elabel {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  color: var(--text-4);
+  font-size: var(--fs-1);
+  line-height: 1.45;
+}
+
+.bx-bf__elabel .bx-icon {
+  margin-top: 2px;
+}
+
+.bx-bf__ta {
+  width: 100%;
+  min-height: 56px;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 9px;
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: var(--fs-3);
+  line-height: 1.55;
+  resize: vertical;
+  transition:
+    background var(--dur-1) var(--ease),
+    box-shadow var(--dur-1) var(--ease);
+}
+
+.bx-bf__ta:focus {
+  outline: 0;
+  background: var(--canvas);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--cyan-600) 40%, transparent);
+}
+
+.bx-bf__eacts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.bx-bf__ekeys {
+  margin-left: auto;
+  color: var(--text-5);
+  font-size: var(--fs-1);
+}
+
+.bx-bf__ekeys kbd {
+  padding: 1px 4px;
+  border-radius: 4px;
+  background: var(--surface);
+  color: var(--text-4);
+  font-family: var(--font-sans);
+  font-size: 10px;
+}
+
+/* ------------------------------------------------------------ narrower */
+
+@container bxpanel (max-width: 700px) {
+  .bx-bf__head {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .bx-bf__why {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .bx-bf__newrow,
+  .bx-ov__newrow {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .bx-bf__fhead {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 7px;
+  }
+
+  .bx-bf__ftags {
+    flex-wrap: wrap;
+  }
+}
+
+/* ============================================================ the drawer ==== */
+
+/* A field opens as a sheet from the right, over the table it came from - the same
+   way a fact opens in Knowledge. Three designs share this shell. */
+.bx-drawer__sheet--field {
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr) auto;
+  width: min(560px, 94vw);
+}
+
+.bx-fdr__head {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.bx-fdr__where {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  min-width: 0;
+  margin-right: auto;
+  color: var(--text-3);
+  font-size: var(--fs-2);
+  font-weight: var(--fw-semibold);
+}
+
+.pulse-ds .bx-fdr__title {
+  margin: 0;
+  padding: 16px 22px 5px;
+  color: var(--text);
+  font-size: var(--fs-7);
+  font-weight: var(--fw-heavy);
+  line-height: 1.22;
+}
+
+.bx-fdr__body {
+  min-height: 0;
+  /* the question under the name is part of the same block, so it does not start a
+     fresh run of padding - but the two are not touching either */
+  padding-top: 4px;
+  overflow-y: auto;
+}
+
+.bx-fdr {
+  display: grid;
+  gap: 16px;
+  min-width: 0;
+}
+
+/* what the field asks, over everything the sheet says about it */
+.pulse-ds .bx-fdr__q {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0 0 8px;
+  padding: 10px 12px;
+  border-radius: var(--bx-r-inner);
+  background: color-mix(in srgb, var(--cyan-600) 7%, transparent);
+  color: var(--text-2);
+  font-size: var(--fs-3);
+  line-height: 1.5;
+}
+
+.bx-fdr__q .bx-icon {
+  margin-top: 3px;
+  flex: none;
+  color: var(--cyan-800);
+}
+
+/* label and value, the way a record reads */
+.pulse-ds .bx-fdr__rows {
+  display: grid;
+  gap: 1px;
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--bx-r-inner);
+  background: var(--bx-line);
+}
+
+.bx-fdr__rows > div {
+  display: grid;
+  grid-template-columns: 148px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  padding: 9px 12px;
+  background: var(--canvas);
+}
+
+.pulse-ds .bx-fdr__rows dt {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--text-4);
+  font-size: var(--fs-2);
+}
+
+.bx-fdr__rows dt .bx-icon {
+  color: var(--text-5);
+}
+
+.pulse-ds .bx-fdr__rows dd {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  min-width: 0;
+  color: var(--text);
+  font-size: var(--fs-3);
+}
+
+.bx-fdr__key {
+  padding: 2px 8px;
+  border-radius: var(--bx-r-pill);
+  background: var(--surface-2);
+  color: var(--text-3);
+  font-size: var(--fs-1);
+}
+
+.bx-fdr__req {
+  color: var(--amber-700);
+  font-size: var(--fs-1);
+}
+
+.bx-fdr__sec {
+  color: var(--text-2);
+  font-size: var(--fs-3);
+}
+
+.bx-fdr__block {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+}
+
+.bx-fdr__block + .bx-fdr__block {
+  padding-top: 17px;
+  border-top: 1px solid var(--bx-line);
+}
+
+/* the sheet's three parts are named at reading size, not in small caps */
+.bx-fdr__bhead {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+}
+
+.pulse-ds .bx-fdr__h2 {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  color: var(--text);
+  font-size: var(--fs-6);
+  font-weight: var(--fw-semibold);
+  line-height: 1.3;
+}
+
+.bx-fdr__n {
+  display: inline-grid;
+  place-items: center;
+  min-width: 21px;
+  height: 21px;
+  margin-left: 8px;
+  padding: 0 7px;
+  border-radius: var(--bx-r-pill);
+  background: var(--surface-2);
+  color: var(--text-3);
+  font-size: var(--fs-1);
+  font-weight: var(--fw-semibold);
+  vertical-align: 2px;
+}
+
+/* the source's own site mark, the one the fact tables wear */
+.bx-fdr__fav {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  background: var(--canvas);
+}
+
+.bx-fdr__favimg {
+  display: block;
+  border-radius: 4px;
+}
+
+/* Edit loses its stroke and becomes a small black square */
+.bx-fdr__edit {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  border-radius: 9px;
+  background: var(--ink-900);
+  color: #fff;
+  cursor: pointer;
+  transition:
+    background var(--dur-1) var(--ease),
+    box-shadow var(--dur-1) var(--ease);
+}
+
+.bx-fdr__edit:hover {
+  background: var(--ink);
+  box-shadow: var(--bx-soft-2);
+}
+
+.bx-fdr__edit:focus-visible {
+  outline: 0;
+  box-shadow: var(--focus-ring);
+}
+
+/* what kind of answer this is, read off the answer itself */
+.pulse-ds .bx-fdr__aprops {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 12px;
+  margin: 5px 0 0;
+}
+
+.bx-fdr__awho {
+  color: var(--text-4);
+  font-size: var(--fs-2);
+}
+
+.bx-fdr__awho b {
+  color: var(--text-3);
+  font-weight: var(--fw-semibold);
+}
+
+/* a source it rests on: where it was read, what it says there, how sure */
+.bx-fdr__flink2 {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+  text-decoration: none;
+}
+
+.bx-fdr__flink2 .bx-fdr__filet b .bx-icon {
+  margin-left: 5px;
+  color: var(--text-5);
+  vertical-align: -1px;
+}
+
+.bx-fdr__flink2:hover .bx-fdr__filet b {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.pulse-ds .bx-fdr__fstmt {
+  margin: 0;
+  color: var(--text-2);
+  font-size: var(--fs-3);
+  line-height: 1.55;
+}
+
+.pulse-ds .bx-fdr__fmeta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 9px;
+  margin: 0;
+}
+
+.bx-fdr__fwhen {
+  color: var(--text-4);
+  font-size: var(--fs-1);
+}
+
+.bx-fdr__fmeta .bx-bf__open {
+  margin-left: auto;
+}
+
+.pulse-ds .bx-fdr__none {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 12px;
+  border-radius: var(--bx-r-inner);
+  background: var(--surface);
+  color: var(--text-4);
+  font-size: var(--fs-2);
+}
+
+.bx-fdr__foot {
+  display: flex;
+}
+
+.bx-fdr__acts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  width: 100%;
+}
+
+.bx-fdr__acts .bx-bf__mv.is-words {
+  height: 34px;
+  padding: 0 15px 0 13px;
+  border-radius: 9px;
+  font-size: var(--fs-3);
+}
+
+.bx-fdr__acts .bx-bf__mv.is-words .bx-icon {
+  width: 15px;
+  height: 15px;
+}
+
+/* 2 · Brief - the answer first, in a block you could write in */
+.pulse-ds .bx-fdr__files {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bx-fdr__file {
+  display: grid;
+  gap: 8px;
+  padding: 12px 13px 13px;
+  border-radius: var(--bx-r-inner);
+  background: var(--surface);
+  transition: background var(--dur-2) var(--ease);
+}
+
+/* the source a citation was clicked for, lit where it sits */
+.bx-fdr__file.is-lit {
+  background: color-mix(in srgb, var(--bx-st-direct) 11%, transparent);
+}
+
+.bx-fdr__filet {
+  display: grid;
+  gap: 1px;
+  min-width: 0;
+}
+
+.bx-fdr__filet b {
+  color: var(--text);
+  font-size: var(--fs-3);
+  font-weight: var(--fw-semibold);
+}
+
+.bx-fdr__filet small {
+  overflow: hidden;
+  color: var(--text-4);
+  font-size: var(--fs-1);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 3 · Trail - how the field got here, as a run of steps */
+
+/* ------------------------------------------------ Confirm, hovered
+
+   The hover moves into the accent rather than deeper into the green: a darker
+   green reads as "more confirmed", which is not what hovering a button means.
+   The hue is the design system's own cyan 600.
+
+   It is written last, and for each move design by name, because every one of
+   them states Confirm's hover for itself - one of them in a literal, which is
+   what kept winning. `--mv` is set as well as the background, since the solid
+   design paints itself from that rather than from the background. */
+.bx-bf__mv.is-act-confirm:hover,
+.bx-bf__mv.is-m1.is-act-confirm:hover,
+.bx-bf__mv.is-m2.is-act-confirm:hover,
+.bx-bf__mv.is-m3.is-act-confirm:hover {
+  --mv: var(--cyan-600);
+  background: var(--cyan-600);
+  color: #fff;
+}

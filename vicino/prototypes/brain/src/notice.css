@@ -1,0 +1,2872 @@
+/* The Brain notice, and the cues that open it.
+
+   Drawn the way the rest of the prototype is drawn: a white card lifted by
+   `--bx-soft-3` with no ring around it, pill controls, the `--bx-st-*` status
+   colours on the field dots and nothing else carrying colour. The four voices
+   differ by their mark and their dots, never by a tinted card - a notice that
+   turned amber or red all over would shout louder than the thing it describes.
+
+   The tone words and the rules live in notice.js. */
+
+/* --------------------------------------------------------------------- cue
+
+   What opens a notice on a captured page: a quiet pill that reads as a count
+   plus a reason, never a bare badge. */
+
+.bxn-cue {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 6px;
+  height: 26px;
+  padding: 0 11px 0 9px;
+  border: 0;
+  border-radius: var(--bx-r-pill);
+  background: var(--surface-2);
+  color: var(--text-2);
+  font-family: var(--font-sans);
+  font-size: var(--fs-2);
+  font-weight: var(--fw-semibold);
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background var(--dur-1) var(--ease),
+    color var(--dur-1) var(--ease);
+}
+
+.bxn-cue .bx-icon {
+  color: var(--text-4);
+}
+
+.bxn-cue:hover {
+  background: var(--ink-soft);
+  color: var(--text);
+}
+
+.bxn-cue.is-bxn-on {
+  background: var(--ink-900);
+  color: #fff;
+}
+
+.bxn-cue.is-bxn-on .bx-icon {
+  color: var(--pulse-cyan);
+}
+
+.bxn-cue:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.bxn-cue.is-guess .bx-icon {
+  color: var(--amber-600);
+}
+
+.bxn-cue.is-blocked .bx-icon {
+  color: var(--red-600);
+}
+
+.bxn-cue.is-record .bx-icon {
+  color: #2e9d40;
+}
+
+.bxn-cue.is-bxn-on .bx-icon {
+  color: var(--pulse-cyan);
+}
+
+/* a captured control that became a trigger keeps its own look and only says it
+   is holding one open */
+.post-drawer__actions button.is-bxn-on,
+.campaign-header button.is-bxn-on {
+  box-shadow: var(--focus-ring);
+}
+
+/* ------------------------------------------------------------------ bare
+
+   A notice whose whole content is a set of choices has no card round them: the
+   control that was pressed asked the question, and these are the answers. What
+   floats is the choices themselves. */
+
+/* The card is a three-row grid - head, body, moves - and its row gaps are drawn
+   between the tracks whether or not anything is in them. Bare has only the body,
+   so it takes one row and no gap; otherwise the two empty tracks leave 20px of
+   nothing under the last choice. */
+.bxn.is-bare {
+  grid-template-rows: auto;
+  width: min(380px, calc(100vw - 24px));
+  padding: 0;
+  gap: 0;
+}
+
+/* the scroller takes the card's corners, so the rows are clipped by them and
+   the arrow - which sits outside the box - is not */
+.bxn.is-bare .bxn__scroll {
+  margin: 0;
+  padding: 0;
+  border-radius: inherit;
+  gap: 0;
+}
+
+/* ----------------------------------------------------------------- the modal
+
+   A checklist long enough to be read in blocks does not hang off a button: it
+   takes the middle of the screen, over a scrim, and the page waits for it. */
+
+.bxn-host.is-modal {
+  position: fixed;
+  z-index: 1150;
+  display: grid;
+  padding: 24px;
+  place-items: center;
+  inset: 0;
+}
+
+.bxn__scrim {
+  position: absolute;
+  background: rgba(15, 23, 42, 0.26);
+  inset: 0;
+}
+
+.bxn.is-modal {
+  position: relative;
+  top: auto;
+  left: auto;
+  width: min(560px, 100%);
+  max-height: min(84vh, 740px);
+  padding: 22px 22px 17px;
+  box-shadow:
+    0 2px 8px rgba(15, 23, 42, 0.06),
+    0 24px 60px -18px rgba(15, 23, 42, 0.32);
+}
+
+.bxn.is-modal .bxn__scroll {
+  margin: 0 -22px;
+  padding: 2px 22px;
+  gap: 16px;
+}
+
+.bxn.is-modal .bxn__title strong {
+  font-size: var(--fs-5);
+}
+
+.bxn.is-modal .bxn__acts .bx-btn {
+  height: 32px;
+  padding: 0 14px;
+  font-size: var(--fs-2);
+}
+
+/* --------------------------------------------------------------- the notice */
+
+.bxn {
+  position: fixed;
+  z-index: 1150;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  width: min(464px, calc(100vw - 24px));
+  max-height: min(74vh, 620px);
+  padding: 17px 18px 14px;
+  border-radius: var(--bx-r-card);
+  background: var(--canvas);
+  color: var(--text);
+  font-family: var(--font-sans);
+  box-shadow: var(--bx-soft-3);
+  gap: 10px;
+}
+
+/* the head and the moves stay put; only what the notice is about scrolls */
+.bxn__scroll {
+  display: grid;
+  min-height: 0;
+  margin: 0 -18px;
+  padding: 2px 18px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  gap: 14px;
+}
+
+/* it points at the control that opened it */
+.bxn__arrow {
+  position: absolute;
+  top: -5px;
+  width: 12px;
+  height: 7px;
+  margin-left: -6px;
+  background: var(--canvas);
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+
+.bxn.is-up .bxn__arrow {
+  top: auto;
+  bottom: -5px;
+  clip-path: polygon(50% 100%, 100% 0, 0 0);
+}
+
+.bxn__head {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+}
+
+.bxn__mark {
+  margin-top: 1px;
+}
+
+.bxn.is-record .bxn__mark {
+  --t: var(--bx-st-confirmed);
+}
+
+.bxn.is-guess .bxn__mark {
+  --t: var(--bx-st-inferred);
+}
+
+.bxn.is-blocked .bxn__mark {
+  --t: var(--red-500);
+}
+
+.bxn.is-later .bxn__mark {
+  --t: var(--text-4);
+}
+
+.bxn__title {
+  display: grid;
+  flex: 1;
+  min-width: 0;
+  gap: 3px;
+}
+
+.bxn__title strong {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--text);
+  font-size: var(--fs-4);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-ui);
+  line-height: 1.35;
+}
+
+.bxn__tone {
+  color: var(--text-4);
+}
+
+.bxn.is-guess .bxn__tone {
+  color: var(--amber-700);
+}
+
+.bxn.is-blocked .bxn__tone {
+  color: var(--red-600);
+}
+
+.bxn.is-record .bxn__tone {
+  color: #207d32;
+}
+
+.bxn__x {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  margin: -2px -5px 0 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-4);
+  cursor: pointer;
+}
+
+.bxn__x:hover {
+  background: var(--surface-2);
+  color: var(--text);
+}
+
+.bxn__x:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.bxn__body {
+  margin: -2px 0 0;
+  color: var(--text-3);
+  font-size: var(--fs-2);
+  line-height: 1.5;
+}
+
+.bxn__body b {
+  color: var(--text-2);
+  font-weight: var(--fw-semibold);
+}
+
+/* ------------------------------------------------------------------ fields
+
+   A row is read in three parts, and it is drawn as three:
+
+     the head    the field's name, and the state it is in
+     the value   what Brain holds - the sentence Confirm is a promise about, on
+                 white, because it is the paper the promise is made on
+     the foot    the key it is filed under, and the one move the row offers
+
+   The card itself is `--surface`, not white: a white card on a white notice is
+   two surfaces claiming to be the same one, and then nothing separates them. */
+
+.bxn__list {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  gap: 8px;
+}
+
+.bxn__item {
+  display: grid;
+  padding: 13px 14px 11px;
+  border-radius: var(--bx-r-inner);
+  /* a neutral ink tint, not the DS surface: `--surface-2` carries a green cast
+     that reads as a colour rather than as a ground */
+  background: color-mix(in srgb, var(--ink-900) 3.5%, transparent);
+  gap: 9px;
+}
+
+.bxn__item.is-fresh {
+  background: color-mix(in srgb, var(--bx-st-confirmed) 12%, transparent);
+}
+
+/* A check that does not pass is marked at its edge, not flooded. Even a wash as
+   light as 3.5% sits under the reading and makes it harder to pick out, and
+   three rows of it read as an error state rather than as work to do. The ground
+   stays the one every other row has; what is wrong is said by the words and the
+   mark that leads them. */
+.bxn__item.is-fail {
+  position: relative;
+}
+
+/* The state reads in the top-right corner of the card whatever the row is
+   doing, so a column is kept for it rather than the words being asked to leave
+   room by eye. */
+.bxn__item.is-fail {
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+/* only the message shares its row with the state; the reading and the move
+   below it take the whole card, so the move ends on the card's own right edge */
+.bxn__item.is-fail > * {
+  grid-column: 1 / -1;
+}
+
+.bxn__item.is-fail > .bxn__alert {
+  grid-column: 1;
+}
+
+.bxn__item.is-fail > .bxn__labtop {
+  grid-row: 1;
+  grid-column: 2;
+  align-self: start;
+  justify-self: end;
+  margin-top: 2px;
+}
+
+/* What is wrong leads a failing check, and the colour is carried by the mark
+   beside it rather than by the ground under the words. The three designs then
+   each put it differently: Split on white paper with a rail, Gate as the only
+   full-size words on a list with nothing else on it, Board with the tile turned
+   over to ink so the message is read in white. */
+
+.bxn__alert {
+  display: flex;
+  align-items: flex-start;
+  min-width: 0;
+  gap: 11px;
+}
+
+.bxn__amark {
+  --t: var(--red-500);
+
+  flex: none;
+  margin-top: 1px;
+}
+
+.bxn__acopy {
+  display: grid;
+  min-width: 0;
+  gap: 3px;
+}
+
+.bxn__acopy strong {
+  color: var(--text);
+  font-size: var(--fs-4);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-ui);
+  line-height: 1.32;
+}
+
+.bxn__acopy small {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  color: var(--text-4);
+  font-size: var(--fs-1);
+  gap: 7px;
+}
+
+.bxn__acopy small .bxn__lab {
+  flex: none;
+}
+
+.bxn__ihead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  min-width: 0;
+  gap: 12px;
+}
+
+.bxn__iname {
+  min-width: 0;
+  color: var(--text);
+  font-size: var(--fs-3);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-ui);
+  line-height: 1.3;
+}
+
+.bxn__inote {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  color: var(--text-3);
+  font-size: var(--fs-1);
+  line-height: 1.45;
+  gap: 6px;
+}
+
+/* The mark belongs to the one design that sets the message in a band of its
+   own; everywhere else the words carry themselves. */
+.bxn__inote .bx-icon {
+  display: none;
+  flex: none;
+}
+
+/* what Brain holds - on white, so the thing being confirmed is the thing that
+   looks like a page */
+.bxn__ival {
+  display: -webkit-box;
+  padding: 9px 11px;
+  overflow: hidden;
+  border-radius: 8px;
+  background: var(--canvas);
+  color: var(--text-2);
+  font-size: var(--fs-2);
+  line-height: 1.5;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.bxn__ival.is-note {
+  padding: 0;
+  background: transparent;
+  color: var(--text-3);
+  font-size: var(--fs-1);
+}
+
+.bxn__ifoot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 0;
+  gap: 12px;
+}
+
+/* which field this is about: there to be read when it matters, not before */
+.bxn__ikey {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--text-5);
+  font-family: var(--font-mono);
+  font-size: var(--fs-0);
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.01em;
+  line-height: 1.4;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* a check that is not the reader's to make: a face, because somebody has to act */
+.bxn__owner {
+  display: flex;
+  align-items: center;
+  margin-top: -2px;
+  gap: 6px;
+  color: var(--text-3);
+  font-size: var(--fs-1);
+  line-height: 1.3;
+}
+
+.bxn__owner b {
+  color: var(--text-2);
+  font-weight: var(--fw-semibold);
+}
+
+.bxn__face {
+  flex: none;
+  border-radius: 50%;
+  background: var(--surface-2);
+  object-fit: cover;
+}
+
+/* ---- the state, as the label the Brain page already uses for it */
+
+.bxn__lab {
+  display: inline-flex;
+  align-items: baseline;
+  padding: 3px 9px;
+  border-radius: var(--bx-r-pill);
+  background: var(--surface-2);
+  color: var(--text-3);
+  font-size: var(--fs-1);
+  font-weight: var(--fw-medium);
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+.bxn__lab.is-confirmed {
+  background: color-mix(in srgb, var(--bx-st-confirmed) 13%, transparent);
+  color: color-mix(in srgb, var(--bx-st-confirmed) 66%, var(--ink-900));
+}
+
+.bxn__lab.is-direct {
+  background: color-mix(in srgb, var(--bx-st-direct) 13%, transparent);
+  color: color-mix(in srgb, var(--bx-st-direct) 62%, var(--ink-900));
+}
+
+.bxn__lab.is-inferred {
+  background: color-mix(in srgb, var(--amber-500) 15%, transparent);
+  color: color-mix(in srgb, var(--amber-500) 56%, var(--ink-900));
+}
+
+.bxn__lab.is-missing {
+  background: color-mix(in srgb, var(--ink-900) 6%, transparent);
+  color: var(--text-3);
+}
+
+/* ---- the move */
+
+.bxn__iact {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+/* the quiet way into Brain that sits beside the two words */
+.bxn__go[data-bxn-peek] {
+  width: 26px;
+  padding: 0;
+}
+
+.bxn__go[data-bxn-peek] .bx-icon {
+  transform: rotate(-45deg);
+}
+
+.bxn__more {
+  justify-self: start;
+  margin-top: -3px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--text-3);
+  font-family: var(--font-sans);
+  font-size: var(--fs-1);
+  font-weight: var(--fw-semibold);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.bxn__more:hover {
+  color: var(--text);
+}
+
+.bxn__iact:empty {
+  display: none;
+}
+
+.bxn__iact .bx-btn--xs {
+  height: 28px;
+  padding: 0 11px;
+  font-size: var(--fs-1);
+}
+
+.bxn__go {
+  gap: 3px;
+  padding: 0 8px;
+}
+
+.bxn__done,
+.bxn__sent {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #207d32;
+  font-size: var(--fs-1);
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+}
+
+.bxn__sent {
+  color: var(--text-4);
+}
+
+/* ------------------------------------------------------------------ groups
+
+   Blocks are told apart by a hairline and the space around it, never by a ring.
+   The head carries what is left to do, so the rows do not have to. */
+
+.bxn__group {
+  display: grid;
+  gap: 9px;
+}
+
+.bxn__group + .bxn__group {
+  margin-top: 6px;
+  padding-top: 18px;
+  box-shadow: inset 0 1px 0 var(--bx-line);
+}
+
+.bxn__ghead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.bxn__glabel {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  color: var(--text-2);
+  font-size: var(--fs-2);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  gap: 6px;
+}
+
+/* why this block is what it is, carried rather than printed */
+.bxn__info {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 17px;
+  height: 17px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-5);
+  cursor: help;
+}
+
+.bxn__info:hover {
+  background: var(--surface-2);
+  color: var(--text-3);
+}
+
+.bxn__info:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.bxn__gcount {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 9px;
+  border-radius: var(--bx-r-pill);
+  background: var(--surface-2);
+  color: var(--text-3);
+  font-size: var(--fs-1);
+  font-weight: var(--fw-semibold);
+}
+
+.bxn__gcount.is-clear {
+  background: color-mix(in srgb, var(--bx-st-confirmed) 16%, transparent);
+  color: #207d32;
+}
+
+/* every block carries its own move: two blocks that want two different things
+   are two calls to action, not one at the foot of the card for whichever of them
+   happens to come first */
+.bxn__gfoot {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1px;
+}
+
+.bxn__all {
+  height: 30px;
+  padding: 0 13px;
+  border-radius: 9px;
+  font-size: var(--fs-2);
+}
+
+/* ----------------------------------------------------------------- options
+
+   A reason, and the one-word name of the list it lands on. One line each: the
+   promise of the notice is that choosing is the same thing as recording, and
+   that is said once at the foot rather than under every option. */
+
+.bxn__opts {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border-radius: var(--bx-r-inner);
+  background: var(--surface);
+  list-style: none;
+}
+
+.bxn__opts li + li .bxn__opt {
+  box-shadow: inset 0 1px 0 var(--bx-line);
+}
+
+.bxn__opt {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 12px 14px;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  font-family: var(--font-sans);
+  text-align: left;
+  cursor: pointer;
+  gap: 11px;
+  transition: background var(--dur-1) var(--ease);
+}
+
+.bxn__opt:hover {
+  background: var(--ink-soft);
+}
+
+.bxn__opt.is-on {
+  background: color-mix(in srgb, var(--pulse-cyan) 10%, transparent);
+}
+
+.bxn__opt:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.bxn__tick {
+  flex: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--canvas);
+  box-shadow: inset 0 0 0 1.5px var(--ink-line);
+}
+
+.bxn__opt.is-on .bxn__tick {
+  background: var(--ink-900);
+  box-shadow:
+    inset 0 0 0 1.5px var(--ink-900),
+    inset 0 0 0 4px var(--canvas);
+}
+
+.bxn__oname {
+  flex: 1;
+  min-width: 0;
+  color: var(--text);
+  font-size: var(--fs-3);
+  font-weight: var(--fw-semibold);
+  line-height: 1.35;
+}
+
+/* where it lands: the list's own name, one word, quiet */
+.bxn__lands {
+  flex: none;
+  padding: 3px 9px;
+  border-radius: var(--bx-r-pill);
+  background: var(--surface-2);
+  color: var(--text-3);
+  font-size: var(--fs-1);
+  font-weight: var(--fw-medium);
+  white-space: nowrap;
+}
+
+.bxn__lands.is-none {
+  background: transparent;
+  color: var(--text-5);
+}
+
+/* ---- a set of choices on its own: one card, divided between them
+
+   The notice's head and foot are gone but its card is not: the same surface, the
+   same lift, the same arrow back to the control. Inside it there is nothing but
+   the choices - full-bleed rows with a hairline between them, on the page's own
+   type scale (12px for the words, 10 or 11 for what they mean). Two of the three
+   carry a `bx-tile` mark, which is how everything else on this page names a kind
+   of thing; Plain is the one that carries nothing. */
+
+.bxn__opts.is-rows,
+.bxn__opts.is-plain,
+.bxn__opts.is-split {
+  border-radius: 0;
+  background: transparent;
+}
+
+.bxn__opts.is-rows li + li .bxn__opt,
+.bxn__opts.is-plain li + li .bxn__opt,
+.bxn__opts.is-split li + li .bxn__opt {
+  box-shadow: inset 0 1px 0 var(--bx-line);
+}
+
+.bxn__opts.is-rows .bxn__opt,
+.bxn__opts.is-plain .bxn__opt,
+.bxn__opts.is-split .bxn__opt {
+  padding: 11px 15px;
+  background: transparent;
+  gap: 10px;
+}
+
+.bxn__opts.is-rows .bxn__opt:hover,
+.bxn__opts.is-plain .bxn__opt:hover,
+.bxn__opts.is-split .bxn__opt:hover {
+  background: var(--surface);
+}
+
+.bxn__opts.is-rows .bxn__oname,
+.bxn__opts.is-plain .bxn__oname,
+.bxn__opts.is-split .bxn__oname {
+  font-size: var(--fs-2);
+  letter-spacing: var(--tracking-ui);
+  line-height: 1.35;
+}
+
+/* the mark: quiet ink, because nothing here is told apart by colour */
+.bxn__oglyph {
+  --t: var(--text-4);
+
+  width: 24px;
+  height: 24px;
+  border-radius: 7px;
+}
+
+.bxn__opt:hover .bxn__oglyph {
+  --t: var(--text-3);
+}
+
+/* ---- rows: the list as a label, and the way through */
+
+.bxn__opts.is-rows .bxn__lands {
+  padding: 2px 8px;
+  font-size: var(--fs-0);
+  font-weight: var(--fw-semibold);
+}
+
+.bxn__opts.is-rows .bx-icon {
+  flex: none;
+  margin: 0 -2px 0 -3px;
+  color: var(--text-5);
+  transition: transform var(--dur-2) var(--ease);
+}
+
+.bxn__opts.is-rows .bxn__opt:hover .bx-icon {
+  color: var(--text-3);
+  transform: translateX(2px);
+}
+
+/* ---- plain: the same line with nothing on it */
+
+.bxn__opts.is-plain .bxn__lands {
+  padding: 0;
+  background: transparent;
+  color: var(--text-4);
+  font-size: var(--fs-1);
+  font-weight: var(--fw-medium);
+}
+
+/* ---- split: the reason, and under it what choosing it writes down */
+
+.bxn__opts.is-split .bxn__otext {
+  display: grid;
+  flex: 1;
+  min-width: 0;
+  gap: 2px;
+}
+
+.bxn__osub {
+  color: var(--text-4);
+  font-size: var(--fs-1);
+  font-weight: var(--fw-medium);
+  line-height: 1.4;
+}
+
+.bxn__osub.is-none {
+  color: var(--text-5);
+}
+
+/* ---- when the pick is the move itself: no tick to set, an arrow to follow */
+
+.bxn__opt.is-one .bxn__oname {
+  font-weight: var(--fw-semibold);
+}
+
+.bxn__opt.is-one .bx-icon {
+  flex: none;
+  margin-left: -3px;
+  color: var(--text-5);
+  transition: transform var(--dur-2) var(--ease);
+}
+
+.bxn__opt.is-one:hover .bx-icon {
+  color: var(--text-3);
+  transform: translateX(2px);
+}
+
+/* ----------------------------------------------- the cue on Signal's basis card
+
+   At the head of the card now, not under it, and loud enough not to be read as
+   a footnote. Three ways of being loud: a strip across the top, an edge down the
+   whole card, or a stamp over its corner. */
+
+.bxn-basis {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border: 0;
+  background: transparent;
+  font-family: var(--font-sans);
+  text-align: left;
+  cursor: pointer;
+  gap: 10px;
+  transition: background var(--dur-1) var(--ease);
+}
+
+.bxn-basis:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.bxn-basis__copy {
+  display: grid;
+  flex: 1;
+  min-width: 0;
+  gap: 2px;
+}
+
+.bxn-basis__copy strong {
+  color: var(--text);
+  font-size: var(--fs-2);
+  font-weight: var(--fw-semibold);
+  line-height: 1.3;
+}
+
+.bxn-basis__copy small {
+  overflow: hidden;
+  color: var(--text-4);
+  font-size: var(--fs-0);
+  line-height: 1.4;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bxn-basis__go {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  color: var(--amber-700);
+  font-size: var(--fs-1);
+  font-weight: var(--fw-semibold);
+  gap: 4px;
+}
+
+.bxn-basis.is-record .bxn-basis__go {
+  color: #207d32;
+}
+
+.bxn-basis__go .bx-icon {
+  transition: transform var(--dur-2) var(--ease);
+}
+
+.bxn-basis:hover .bxn-basis__go .bx-icon {
+  transform: translateX(2px);
+}
+
+/* ---- just switched from the prototype panel: it says so for a beat */
+
+@keyframes bxn-basis-new {
+  from {
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--pulse-cyan) 45%, transparent);
+  }
+}
+
+.bxn-basis.is-new {
+  animation: bxn-basis-new 0.9s var(--ease);
+}
+
+/* --------------------------------------------------------------- the way back
+
+   A finding ruled out leaves the feed, so the feed says what happened and keeps
+   a way back for a while. Left alone, both go quiet. */
+
+.bxn-undo {
+  display: flex;
+  align-items: center;
+  padding: 12px 12px 12px 13px;
+  border-radius: var(--r-lg);
+  background: var(--canvas);
+  gap: 11px;
+  box-shadow: var(--bx-soft);
+  transition:
+    opacity var(--dur-3) var(--ease),
+    transform var(--dur-3) var(--ease);
+}
+
+.bxn-undo.is-going {
+  opacity: 0;
+  transform: translateY(-4px);
+}
+
+.bxn-undo__mark {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--bx-st-confirmed) 20%, transparent);
+  color: #12866a;
+}
+
+.bxn-undo__copy {
+  display: grid;
+  flex: 1;
+  min-width: 0;
+  gap: 2px;
+}
+
+.bxn-undo__copy b {
+  color: var(--text);
+  font-size: var(--fs-3);
+  font-weight: var(--fw-semibold);
+}
+
+.bxn-undo__copy span {
+  color: var(--text-3);
+  font-size: var(--fs-1);
+  line-height: 1.4;
+}
+
+.bxn-undo__copy span b {
+  color: var(--text-2);
+  font-size: inherit;
+}
+
+/* the way back is a quiet move: an ink pill here would be the loudest thing in
+   the feed, for the one action the reader is least likely to want */
+/* The capture sets `font-size: inherit` on every button in the Signal workspace,
+   and `.signal-trends-workspace button` outranks one class - so this one says its
+   own size with two. */
+.bxn-undo .bxn-undo__btn {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  height: 26px;
+  padding: 0 11px 0 9px;
+  border: 0;
+  border-radius: var(--bx-r-pill);
+  background: var(--surface-2);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: var(--fs-1);
+  font-weight: var(--fw-semibold);
+  cursor: pointer;
+  gap: 5px;
+}
+
+.bxn-undo .bxn-undo__btn .bx-icon {
+  color: var(--text-4);
+}
+
+.bxn-undo .bxn-undo__btn:hover {
+  background: var(--ink-soft);
+}
+
+.bxn-undo .bxn-undo__btn:hover .bx-icon {
+  color: var(--text-2);
+}
+
+.bxn-undo .bxn-undo__btn:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.bxn__second {
+  gap: 6px;
+  padding-left: 7px;
+}
+
+/* ===================================================== Home: three layouts
+
+   Three different ways to be asked, not three spacings of one:
+
+     queue    one answer at a time, whole, with the two moves under it
+     compact  every answer on one line; the reading opens for the one you pick
+     sheet    no cards - the answers set as a page, a hairline between them
+*/
+
+/* ---- Queue: one answer, and nothing else to weigh it against */
+
+.bxn.is-queue .bxn__item {
+  padding: 0;
+  background: transparent;
+  gap: 11px;
+}
+
+.bxn.is-queue .bxn__iname {
+  font-size: var(--fs-6);
+  line-height: 1.25;
+}
+
+/* a long answer is read here, in full, by scrolling - not cut off at a line
+   count with no way to see the rest */
+.bxn.is-queue .bxn__ival {
+  display: block;
+  max-height: 168px;
+  padding: 13px 14px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border-radius: var(--bx-r-inner);
+  background: color-mix(in srgb, var(--ink-900) 3.5%, transparent);
+  font-size: var(--fs-3);
+}
+
+.bxn.is-queue .bxn__iact .bx-btn {
+  height: 34px;
+  padding: 0 16px;
+  border-radius: 9px;
+  font-size: var(--fs-3);
+}
+
+.bxn__pager {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.bxn__pcount {
+  color: var(--text-4);
+  font-size: var(--fs-1);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.02em;
+}
+
+.bxn__parrow {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border: 0;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--ink-900) 4%, transparent);
+  color: var(--text-3);
+  cursor: pointer;
+  transition: background var(--dur-1) var(--ease);
+}
+
+.bxn__parrow:hover:not(:disabled) {
+  background: var(--ink-soft);
+  color: var(--text);
+}
+
+.bxn__parrow:disabled {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.bxn__parrow:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.bxn__turn {
+  display: grid;
+  gap: 12px;
+}
+
+/* ---- Compact: a line an answer, and the reading only where it is wanted */
+
+.bxn.is-compact .bxn__list {
+  gap: 2px;
+}
+
+.bxn.is-compact .bxn__item {
+  padding: 9px 11px;
+  background: transparent;
+  gap: 0;
+}
+
+.bxn.is-compact .bxn__item:hover {
+  background: color-mix(in srgb, var(--ink-900) 3%, transparent);
+}
+
+.bxn.is-compact .bxn__ihead {
+  align-items: center;
+}
+
+.bxn.is-compact .bxn__iname {
+  flex: 1;
+  font-size: var(--fs-3);
+}
+
+.bxn.is-compact .bxn__ival,
+.bxn.is-compact .bxn__ikey,
+.bxn.is-compact .bxn__inote {
+  display: none;
+}
+
+.bxn.is-compact .bxn__ifoot {
+  flex: none;
+  justify-content: flex-end;
+  margin-left: 10px;
+}
+
+.bxn.is-compact .bxn__ifoot > span:first-child {
+  display: none;
+}
+
+.bxn.is-compact .bxn__item {
+  display: flex;
+  align-items: center;
+}
+
+.bxn.is-compact .bxn__ihead {
+  flex: 1;
+  min-width: 0;
+}
+
+.bxn.is-compact .bxn__iact .bx-btn--xs {
+  height: 26px;
+  padding: 0 10px;
+}
+
+/* ---- Sheet: no cards; the answers set as a page */
+
+.bxn.is-sheet .bxn__list {
+  gap: 0;
+}
+
+.bxn.is-sheet .bxn__item {
+  padding: 13px 2px;
+  background: transparent;
+  gap: 5px;
+}
+
+.bxn.is-sheet .bxn__item + .bxn__item {
+  box-shadow: inset 0 1px 0 var(--bx-line);
+}
+
+.bxn.is-sheet .bxn__iname {
+  color: var(--text-3);
+  font-size: var(--fs-1);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+.bxn.is-sheet .bxn__ival {
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--text);
+  font-size: var(--fs-3);
+  line-height: 1.55;
+}
+
+.bxn.is-sheet .bxn__ikey {
+  color: var(--text-5);
+}
+
+/* Confirm is what the sheet is read for, so it is the filled one and the
+   larger of the two; Correct stands beside it, plainly, as the other answer. */
+.bxn.is-sheet .bxn__iact .bx-btn--primary {
+  height: 31px;
+  padding: 0 17px;
+  border-radius: 9px;
+  font-size: var(--fs-2);
+}
+
+.bxn.is-sheet .bxn__iact .bx-btn--secondary {
+  height: 31px;
+  padding: 0 13px;
+  border-radius: 9px;
+  font-size: var(--fs-2);
+}
+
+.bxn__ival.is-open {
+  display: block;
+  -webkit-line-clamp: none;
+}
+
+/* A grid child is blockified, and `-webkit-box` blockifies to `flow-root` -
+   which takes the line clamp with it, so a reading in a check row was never
+   actually being cut. These rows cut by height instead, which no display type
+   argues with, and `scrollHeight` then tells the truth about whether the
+   control to see the rest is needed at all. */
+.bxn__ival.is-tight {
+  display: block;
+  max-height: calc(3em + 18px);
+  overflow: hidden;
+}
+
+.bxn__ival.is-tight.is-open {
+  max-height: none;
+}
+
+/* ===================================================== Campaign: three modals
+
+   The checks a post stops at, laid out three ways that are not the same drawing
+   with different spacing: a dark rail beside them, a chain through them, or a
+   board of them. */
+
+/* ---- Gate: how far it has got, before what is in the way */
+
+.bxn__meter {
+  display: grid;
+  gap: 7px;
+}
+
+.bxn__mbar {
+  height: 6px;
+  overflow: hidden;
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--ink-900) 7%, transparent);
+}
+
+.bxn__mbar i {
+  display: block;
+  height: 100%;
+  border-radius: 3px;
+  background: var(--bx-st-confirmed);
+}
+
+.bxn__mcount {
+  margin: 0;
+  color: var(--text-3);
+  font-size: var(--fs-1);
+  font-weight: var(--fw-medium);
+}
+
+.bxn__mcount b {
+  color: var(--text);
+  font-size: var(--fs-3);
+  font-weight: var(--fw-semibold);
+}
+
+/* ---- Split: the summary on a rail, the checks beside it */
+
+.bxn.is-split {
+  grid-template-rows: minmax(0, 1fr) auto;
+  grid-template-columns: 248px minmax(0, 1fr);
+  grid-template-areas:
+    'rail body'
+    'rail acts';
+  /* the rail says one thing and stays narrow; the width goes to the side that
+     has the checks in it, which is what is actually read here */
+  width: min(900px, 100%);
+  padding: 0;
+  overflow: hidden;
+  gap: 0;
+}
+
+.bxn.is-split .bxn__head {
+  display: grid;
+  grid-area: rail;
+  align-content: start;
+  padding: 22px 20px;
+  background: var(--ink-900);
+  color: #fff;
+  gap: 12px;
+}
+
+.bxn.is-split .bxn__mark {
+  --t: var(--pulse-cyan);
+}
+
+.bxn.is-split .bxn__title strong {
+  display: block;
+  color: #fff;
+  font-size: var(--fs-6);
+  line-height: 1.25;
+}
+
+/* the rail has room for the sentence the mark carries everywhere else */
+.bxn__railnote {
+  display: none;
+}
+
+.bxn.is-split .bxn__railnote {
+  display: block;
+  margin-top: 4px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: var(--fs-1);
+  font-weight: var(--fw-regular);
+  line-height: 1.55;
+}
+
+.bxn.is-split .bxn__info {
+  display: none;
+}
+
+.bxn.is-split .bxn__tone {
+  color: rgba(255, 255, 255, 0.58);
+}
+
+.bxn.is-split .bxn__info {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.bxn.is-split .bxn__info:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.bxn.is-split .bxn__x {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  margin: 0;
+  color: var(--text-4);
+}
+
+/* the close button gets a row of its own at the head of the body, rather than
+   the first block's head being asked to keep out from under it */
+.bxn.is-split .bxn__scroll {
+  grid-area: body;
+  /* the checks are read as work laid on a surface, so they float on a ground of
+     their own rather than sitting as tinted blocks on the card's white */
+  margin: 0;
+  padding: 46px 20px 10px;
+  background: color-mix(in srgb, var(--ink-900) 3%, var(--canvas));
+}
+
+.bxn.is-split .bxn__item {
+  padding: 14px 16px 12px;
+  background: var(--canvas);
+  box-shadow: var(--bx-soft);
+}
+
+/* with the card turned white, what Brain holds takes the tint instead - the two
+   still have to be told apart, and white on white tells nothing */
+.bxn.is-split .bxn__ival {
+  background: color-mix(in srgb, var(--ink-900) 4%, transparent);
+}
+
+/* The rail is Split's mark, down the edge of the sheet the check is written
+   on. It takes the card's own corner rather than the card clipping it: a card
+   set to `overflow: hidden` also clips anything that opens out of it, which is
+   what cut the picker's list down to its last line. */
+.bxn.is-split .bxn__item.is-fail {
+  padding-left: 19px;
+}
+
+.bxn.is-split .bxn__item.is-fail::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 3px;
+  border-radius: var(--bx-r-inner) 0 0 var(--bx-r-inner);
+  background: var(--red-400);
+  content: '';
+}
+
+.bxn.is-split .bxn__acts {
+  grid-area: acts;
+  margin: 0;
+  padding: 14px 20px 18px;
+}
+
+/* ---- Board: tiles, two across */
+
+.bxn.is-board .bxn__list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: transparent;
+  gap: 8px;
+}
+
+.bxn.is-board .bxn__item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-content: start;
+  padding: 12px 13px;
+  border-radius: var(--bx-r-inner);
+  background: var(--surface);
+  gap: 9px;
+}
+
+.bxn.is-board .bxn__item + .bxn__item {
+  box-shadow: none;
+}
+
+/* A tile that stops the post is turned over: ink ground, the message read in
+   white. A board is looked at rather than read through, and which tiles are dark
+   is answered before a single word is. Red stays on the mark. */
+.bxn.is-board .bxn__item {
+  box-shadow: var(--bx-soft);
+}
+
+.bxn.is-board .bxn__item.is-fail {
+  background: var(--ink-900);
+  box-shadow: var(--bx-soft-2);
+}
+
+.bxn.is-board .bxn__item.is-fail .bxn__acopy strong {
+  color: #fff;
+  font-size: var(--fs-3);
+}
+
+.bxn.is-board .bxn__item.is-fail .bxn__acopy small {
+  color: rgba(255, 255, 255, 0.52);
+}
+
+.bxn.is-board .bxn__item.is-fail .bxn__amark {
+  width: 26px;
+  height: 26px;
+  background: color-mix(in srgb, var(--red-400) 26%, transparent);
+  color: var(--red-300);
+}
+
+.bxn.is-board .bxn__item.is-fail .bxn__lab {
+  background: rgba(255, 255, 255, 0.11);
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.bxn.is-board .bxn__item.is-fail .bxn__ival {
+  background: rgba(255, 255, 255, 0.07);
+  color: rgba(255, 255, 255, 0.66);
+}
+
+.bxn.is-board .bxn__item.is-fail .bxn__ikey {
+  color: rgba(255, 255, 255, 0.38);
+}
+
+.bxn.is-board .bxn__item.is-fail .bxn__go {
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.bxn.is-board .bxn__item.is-fail .bxn__go:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.bxn.is-board .bxn__alert {
+  gap: 9px;
+}
+
+.bxn.is-board .bxn__iside {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 0;
+  gap: 8px;
+}
+
+.bxn.is-board .bxn__ival {
+  -webkit-line-clamp: 3;
+}
+
+/* ---- Gate: a list with nothing on it but what is in the way
+
+   Every row Gate shows is a row in the way - the ones that pass fold into a line
+   under them - so no row needs marking to be told from another. Nothing is
+   drawn: no card, no tile, no ground. What is left is that the message is the
+   only full-size writing on the page, which is emphasis by having taken
+   everything else away. */
+
+.bxn.is-gate .bxn__list {
+  background: transparent;
+  gap: 0;
+}
+
+.bxn.is-gate .bxn__item {
+  padding: 15px 2px;
+  background: transparent;
+  gap: 7px;
+}
+
+.bxn.is-gate .bxn__item + .bxn__item {
+  box-shadow: inset 0 1px 0 var(--bx-line);
+}
+
+.bxn.is-gate .bxn__amark {
+  display: none;
+}
+
+.bxn.is-gate .bxn__acopy strong {
+  color: var(--text);
+  font-size: var(--fs-5);
+  line-height: 1.3;
+}
+
+/* the one piece of colour on the row: a stop before the words */
+.bxn.is-gate .bxn__acopy strong::before {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: 9px;
+  border-radius: 50%;
+  background: var(--red-500);
+  content: '';
+  vertical-align: 1px;
+}
+
+/* what it holds reads as a quiet line, not a quotation in a box */
+.bxn.is-gate .bxn__item.is-fail .bxn__ival {
+  padding: 0;
+  background: transparent;
+  color: var(--text-4);
+  font-size: var(--fs-1);
+}
+
+/* ---- the checks that pass, folded into a line (Focus) */
+
+.bxn__gpass {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0 2px;
+  color: var(--text-4);
+  font-size: var(--fs-1);
+  line-height: 1.4;
+  gap: 6px;
+}
+
+.bxn__gpass .bx-icon {
+  flex: none;
+  color: #2e9d40;
+}
+
+/* ----------------------------------------------------- the foot and the moves
+
+   One row: the ask that is not the reader's to make at the left, the way out and
+   the way on at the right, with real space between them. (This rule went missing
+   in a rewrite, which is why the ask wrapped onto a line of its own.) */
+
+.bxn__foot {
+  margin: 0;
+  color: var(--text-4);
+  font-size: var(--fs-1);
+  line-height: 1.45;
+}
+
+.bxn__acts {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 4px;
+  gap: 14px;
+}
+
+.bxn__acts[hidden] {
+  display: none;
+}
+
+.bxn.is-modal .bxn__acts {
+  margin-top: 8px;
+}
+
+/* ------------------------------------------------------------------- the run
+
+   The reader has been sent into Brain to answer a string of fields, and
+   something has to say how far they are. Four places it can be, and none of
+   them takes space from the drawer the answering happens in:
+
+     float    over the whole window, sidebar included - rounded, see-through
+     inside   in the drawer's own foot, beside Confirm, so there is no bar
+     isle     an island in the band left between the sidebar and the drawer
+     dial     the same band, read as a row of stops
+
+   Close the drawer and every one of them says the same thing instead: the run
+   is still going, and here are the three answers to that. */
+
+.bxn-run {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1200;
+  pointer-events: none;
+}
+
+.bxn-run > * {
+  pointer-events: auto;
+}
+
+.bxn-run__bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.bxn-run__back {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  height: 30px;
+  padding: 0 12px 0 9px;
+  border: 0;
+  border-radius: var(--bx-r-pill);
+  background: transparent;
+  color: var(--text-3);
+  font-family: var(--font-sans);
+  font-size: var(--fs-2);
+  font-weight: var(--fw-semibold);
+  cursor: pointer;
+  gap: 7px;
+  transition: background var(--dur-1) var(--ease);
+}
+
+.bxn-run__back:hover {
+  background: color-mix(in srgb, var(--ink-900) 6%, transparent);
+  color: var(--text);
+}
+
+.bxn-run__now {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  min-width: 0;
+  gap: 10px;
+}
+
+.bxn-run__copy {
+  display: grid;
+  flex: 1;
+  min-width: 0;
+  gap: 1px;
+}
+
+.bxn-run__kicker {
+  overflow: hidden;
+  color: var(--text-4);
+  font-size: var(--fs-0);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-label);
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.bxn-run__name {
+  overflow: hidden;
+  color: var(--text);
+  font-size: var(--fs-4);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-ui);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bxn-run__pos {
+  flex: none;
+  color: var(--text-4);
+  font-size: var(--fs-2);
+  font-weight: var(--fw-semibold);
+}
+
+.bxn-run__sep {
+  flex: none;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--text-5);
+}
+
+.bxn-run__meta {
+  flex: none;
+  color: var(--text-4);
+  font-size: var(--fs-1);
+}
+
+/* the word alone - a tick in front of "Confirmed" says the same thing twice */
+.bxn-run__in {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  padding: 2px 9px;
+  border-radius: var(--bx-r-pill);
+  background: color-mix(in srgb, var(--bx-st-confirmed) 16%, transparent);
+  color: #18794e;
+  font-size: var(--fs-0);
+  font-weight: var(--fw-semibold);
+  gap: 3px;
+}
+
+.bxn-run__moves {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 8px;
+}
+
+.bxn-run__list {
+  display: inline-flex;
+  align-items: center;
+  height: 30px;
+  padding: 0 8px 0 11px;
+  border: 0;
+  border-radius: 9px;
+  background: color-mix(in srgb, var(--ink-900) 6%, transparent);
+  color: var(--text-3);
+  font-family: var(--font-sans);
+  font-size: var(--fs-2);
+  font-weight: var(--fw-semibold);
+  cursor: pointer;
+  gap: 5px;
+  transition: background var(--dur-1) var(--ease);
+}
+
+.bxn-run__list:hover {
+  background: color-mix(in srgb, var(--ink-900) 11%, transparent);
+  color: var(--text);
+}
+
+.bxn-run__list .bx-icon {
+  color: var(--text-4);
+  transition: transform var(--dur-2) var(--ease);
+}
+
+.bxn-run.is-listing .bxn-run__list .bx-icon {
+  transform: rotate(180deg);
+}
+
+/* Next is not Confirm, so it is not the ink slab Confirm is: white, on a
+   hairline, with only enough cyan in it to say which move it is. The glow is
+   a breath - a ring that loud reads as a focus state, not as a button. */
+.bxn-run__next.bx-btn--primary,
+.bxn-run__in-foot .bxn-run__next.bx-btn--primary {
+  background: #fff;
+  color: var(--ink-900);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--cyan-600) 20%, var(--bx-line)),
+    0 1px 2px rgba(16, 24, 40, 0.06);
+}
+
+.bxn-run__next.bx-btn--primary:hover {
+  background: #fff;
+  color: var(--ink-900);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--cyan-600) 42%, transparent),
+    0 0 0 3px color-mix(in srgb, var(--cyan-600) 8%, transparent),
+    0 2px 5px rgba(16, 24, 40, 0.08);
+}
+
+.bxn-run__next .bx-icon {
+  color: var(--cyan-600);
+  transition: transform var(--dur-2) var(--ease);
+}
+
+.bxn-run__next:hover .bx-icon {
+  transform: translateX(2px);
+}
+
+/* ---- the fold: which of them are in, and a way straight to any of them */
+
+.bxn-run__fold {
+  max-height: min(52vh, 400px);
+  margin-top: 6px;
+  padding: 12px 14px 14px;
+  overflow-y: auto;
+  border-radius: var(--r-lg);
+  background: var(--canvas);
+  box-shadow: var(--bx-soft-3);
+}
+
+.bxn-run__fold[hidden] {
+  display: none;
+}
+
+.bxn-run__fhead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin: 0 2px 8px;
+  color: var(--text-4);
+  font-size: var(--fs-0);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  gap: 12px;
+}
+
+.bxn-run__fhead b {
+  color: var(--text-3);
+  text-transform: none;
+}
+
+.bxn-run__rows {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  gap: 2px;
+}
+
+.bxn-run__row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 9px 11px;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  font-family: var(--font-sans);
+  text-align: left;
+  cursor: pointer;
+  gap: 10px;
+  transition: background var(--dur-1) var(--ease);
+}
+
+.bxn-run__row:hover {
+  background: color-mix(in srgb, var(--ink-900) 4%, transparent);
+}
+
+.bxn-run__row.is-on {
+  background: color-mix(in srgb, var(--ink-900) 6%, transparent);
+}
+
+.bxn-run__tick {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--ink-900) 7%, transparent);
+  color: #fff;
+}
+
+/* what is in, in the design system's cyan 500 - the glyph goes dark on it,
+   because a white check on a colour that light is a check nobody can see */
+.bxn-run__row.is-done .bxn-run__tick {
+  background: var(--cyan-500);
+  color: var(--cyan-900);
+}
+
+.bxn-run__rname {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  color: var(--text);
+  font-size: var(--fs-3);
+  font-weight: var(--fw-medium);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bxn-run__row.is-on .bxn-run__rname {
+  font-weight: var(--fw-semibold);
+}
+
+/* ---- Inside: no bar at all; the run joins the drawer's foot */
+
+/* the fold opens upward from the control that opens it, which is at the foot
+   of the sheet - a list that jumped to the other side of the screen was the
+   one thing about this design that had to be guessed at */
+.bxn-run.is-inside,
+.bxn-run.is-inset {
+  top: auto;
+  right: auto;
+  bottom: 74px;
+  left: 0;
+  width: min(340px, calc(100vw - 32px));
+}
+
+.bxn-run.is-inside .bxn-run__fold,
+.bxn-run.is-inset .bxn-run__fold {
+  margin: 0;
+}
+
+/* the oval tucked against the sheet's corner, in the float bar's own glass */
+.bxn-run__tab {
+  position: fixed;
+  z-index: 1201;
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  padding: 0 14px 0 11px;
+  transform: translate(-100%, 0);
+  margin-left: -8px;
+  border: 0;
+  border-radius: var(--bx-r-pill);
+  background: color-mix(in srgb, var(--canvas) 78%, transparent);
+  backdrop-filter: saturate(1.4) blur(14px);
+  -webkit-backdrop-filter: saturate(1.4) blur(14px);
+  color: var(--text-2);
+  font-family: var(--font-sans);
+  font-size: var(--fs-2);
+  font-weight: var(--fw-semibold);
+  cursor: pointer;
+  gap: 7px;
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--ink-900) 7%, transparent),
+    var(--bx-soft-2);
+  transition: background var(--dur-1) var(--ease);
+}
+
+.bxn-run__tab:hover {
+  background: var(--canvas);
+  color: var(--text);
+}
+
+.bxn-run__in-foot {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  min-width: 0;
+  gap: 8px;
+}
+
+.bxn-run__back.is-icon {
+  width: 30px;
+  padding: 0;
+  justify-content: center;
+}
+
+/* the count is the one thing on this row that must not be squeezed out: it is
+   the whole reason the row is there. The label beside it gives way instead. */
+.bxn-run__in-foot .bxn-run__meta {
+  flex: none;
+  white-space: nowrap;
+}
+
+.bxn-run__in-foot .bxn-run__back {
+  min-width: 0;
+}
+
+.bxn-run__in-foot .bxn-run__back span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bxn-run__in-foot .bxn-run__meta b {
+  color: var(--text-2);
+}
+
+/* the foot holds the field's own moves at the right; the run goes in front */
+body.bxn-run-inside .bx-drawer.is-field .bx-drawer__foot {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* The drawer's own moves are laid out as a full-width row that right-aligns
+   its buttons, so the block reaches back across the run's strip and takes the
+   clicks meant for it - the list only answered on the sliver its own button
+   stuck out past. With the run sharing the row, the block is cut to its
+   buttons. */
+body.bxn-run-inside .bx-drawer.is-field .bx-fdr__acts {
+  flex: 0 0 auto;
+  width: auto;
+  margin-left: auto;
+}
+
+/* ---- the drawer shut, and the run still going */
+
+.bxn-run.is-away {
+  top: 12px;
+  right: 12px;
+  bottom: auto;
+  left: 12px;
+  width: auto;
+  transform: none;
+}
+
+.bxn-run__away {
+  display: flex;
+  align-items: center;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 11px 12px 11px 13px;
+  border-radius: var(--r-lg);
+  background: var(--ink-900);
+  color: #fff;
+  gap: 12px;
+  box-shadow: var(--bx-soft-3);
+}
+
+.bxn-run__amark {
+  --t: var(--pulse-cyan);
+
+  flex: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--pulse-cyan);
+}
+
+.bxn-run__away .bxn-run__copy strong {
+  color: #fff;
+  font-size: var(--fs-3);
+  font-weight: var(--fw-semibold);
+}
+
+.bxn-run__away .bxn-run__copy span {
+  overflow: hidden;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: var(--fs-1);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bxn-run__away .bxn-run__copy b {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.bxn-run__away .bx-btn--ghost {
+  color: rgba(255, 255, 255, 0.66);
+}
+
+.bxn-run__away .bx-btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.bxn-run__away .bx-btn--secondary {
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  box-shadow: none;
+}
+
+.bxn-run__away .bx-btn--secondary:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.bxn-run__away .bx-btn--primary {
+  background: #fff;
+  color: var(--ink-900);
+}
+
+.bxn-run__away .bx-btn--primary:hover {
+  background: rgba(255, 255, 255, 0.86);
+}
+
+/* --------------------------------------------------------- the owner's ask
+
+   The one move that is not the reader's to make is a person, not a word in a row
+   of buttons: a face, a name, and what they are being asked for. */
+
+.bxn__ask {
+  display: flex;
+  flex: none;
+  align-items: center;
+  margin-right: auto;
+  padding: 5px 11px 5px 5px;
+  border: 0;
+  border-radius: var(--bx-r-pill);
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--font-sans);
+  text-align: left;
+  cursor: pointer;
+  gap: 9px;
+  transition:
+    background var(--dur-1) var(--ease),
+    box-shadow var(--dur-2) var(--ease);
+}
+
+.bxn__ask:hover {
+  background: var(--canvas);
+  box-shadow: var(--bx-soft-2);
+}
+
+.bxn__ask:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.bxn__asktext {
+  display: grid;
+  min-width: 0;
+  gap: 1px;
+}
+
+.bxn__asktext b {
+  color: var(--text);
+  font-size: var(--fs-2);
+  font-weight: var(--fw-semibold);
+  line-height: 1.25;
+}
+
+.bxn__asktext small {
+  color: var(--text-4);
+  font-size: var(--fs-0);
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+.bxn__ask .bx-icon {
+  flex: none;
+  color: var(--text-5);
+  transition: transform var(--dur-2) var(--ease);
+}
+
+.bxn__ask:hover .bx-icon {
+  color: var(--text-3);
+  transform: translateX(2px);
+}
+
+/* the move a campaign's own buttons are shaped like, hard right */
+.bxn__gobtn {
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 10px;
+  font-size: var(--fs-3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bxn-cue,
+  .bxn-basis,
+  .bxn-basis .bx-icon,
+  .bxn-undo,
+  .bxn-run__back,
+  .bxn-run__list,
+  .bxn-run__row,
+  .bxn__ask,
+  .bxn__ask .bx-icon,
+  .bxn__opt,
+  .bxn__opts.is-rows .bx-icon,
+  .bxn__opt.is-one .bx-icon {
+    transition: none;
+  }
+}
+
+/* ------------------------------------------------- Home's setup reminder
+
+   Two shapes for one reminder, and both lead with a mark rather than a figure:
+   the slot at the head of a row on Home is an icon slot everywhere else, and a
+   number in it reads as a badge. The count is in the sentence, where it can be
+   read as one. */
+
+.bxn-bar {
+  display: flex;
+  align-items: center;
+  margin: 0 0 16px;
+  gap: 13px;
+}
+
+.bxn-bar__tile {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+}
+
+.bxn-bar__copy {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  gap: 2px;
+}
+
+.bxn-bar__copy strong {
+  font-size: 13.5px;
+  font-weight: var(--fw-semibold);
+}
+
+/* the line wraps rather than clipping, as the bar it copies does */
+.bxn-bar__copy span {
+  color: var(--text-3);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.bxn-bar__go {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  height: 32px;
+  margin-left: auto;
+  padding: 0 15px;
+  border: 0;
+  border-radius: var(--r-full, 999px);
+  background: var(--ink-900, #11141c);
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  font-weight: var(--fw-semibold);
+  cursor: pointer;
+  gap: 6px;
+}
+
+.bxn-bar__go:hover {
+  background: var(--ink-700);
+}
+
+.bxn-bar__go .bx-icon {
+  transition: transform var(--dur-2) var(--ease);
+}
+
+.bxn-bar__go:hover .bx-icon {
+  transform: translateX(2px);
+}
+
+/* ---- Next, when an answer has just gone in
+
+   The reader is in the drawer, on the button they pressed; the bar is not where
+   they are looking. So Next says where to go - twice over and for long enough
+   to be caught out of the corner of an eye, in the accent it already wears
+   rather than by becoming a different button. */
+
+@keyframes bxn-nudge {
+  0%,
+  26%,
+  100% {
+    transform: translateX(0);
+  }
+
+  6%,
+  32% {
+    transform: translateX(4px);
+  }
+
+  13%,
+  39% {
+    transform: translateX(-3px);
+  }
+
+  19%,
+  45% {
+    transform: translateX(2px);
+  }
+}
+
+/* the button itself fills with the accent and holds there, rather than wearing
+   a ring: a glow around the edge is read as a focus state, a filled button is
+   read as the button saying something */
+@keyframes bxn-nudge-fill {
+  0%,
+  100% {
+    background: #fff;
+    color: var(--ink-900);
+    box-shadow:
+      inset 0 0 0 1px color-mix(in srgb, var(--cyan-600) 20%, var(--bx-line)),
+      0 1px 2px rgba(16, 24, 40, 0.06);
+  }
+
+  9%,
+  60% {
+    background: var(--cyan-600);
+    color: #fff;
+    box-shadow:
+      inset 0 0 0 1px var(--cyan-600),
+      0 2px 6px color-mix(in srgb, var(--cyan-600) 26%, transparent);
+  }
+}
+
+@keyframes bxn-nudge-ink {
+  0%,
+  100% {
+    color: var(--cyan-600);
+  }
+
+  9%,
+  60% {
+    color: #fff;
+  }
+}
+
+.bxn-run__next.is-nudge {
+  animation:
+    bxn-nudge 2.2s var(--ease),
+    bxn-nudge-fill 2.2s var(--ease);
+}
+
+.bxn-run__next.is-nudge .bx-icon {
+  animation:
+    bxn-nudge 2.2s var(--ease) 0.05s,
+    bxn-nudge-ink 2.2s var(--ease);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bxn-run__next.is-nudge,
+  .bxn-run__next.is-nudge .bx-icon {
+    animation: none;
+  }
+}
+
+/* ---- the picker, drawn by us
+
+   A native select hands its list to the browser, which draws a grey menu in
+   the operating system's own idiom - the one thing on this panel that would
+   not be ours. So the list is ours: the same card, the same hairline, the same
+   hover as every other list in the prototype. */
+
+/* The row that answers the question: one control and one Save.
+
+   It had no rule at all, so it fell back to a block with two inline children -
+   the Save button sat on the text baseline of the field beside it (which is
+   why it looked stuck through the words), the written answer took the
+   browser's own input, at the browser's own size, and the chooser's
+   `width: 100%` measured itself against the whole card rather than against
+   anything it was sharing a line with. */
+.bxn__ask2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bxn__pick,
+.bxn__wr {
+  flex: 1 1 auto;
+  /* a line's worth of answer, not a card's worth: these are a short phrase and
+     a name off a list, and a control the width of the panel reads as a place
+     to write a paragraph */
+  max-width: 300px;
+  min-width: 0;
+}
+
+.bxn__pick {
+  position: relative;
+}
+
+/* the written answer is the chooser's twin: same height, same corner, the same
+   hairline of ink, so the two questions look like one kind of question */
+.bxn__wr {
+  height: 34px;
+  padding: 0 11px;
+  border: 0;
+  border-radius: 9px;
+  background: var(--canvas);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: var(--fs-2);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--ink-900) 10%, transparent);
+}
+
+.bxn__wr::placeholder {
+  color: var(--text-4);
+}
+
+.bxn__wr:focus-visible {
+  outline: none;
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--ink-900) 16%, transparent),
+    var(--focus-ring);
+}
+
+.bxn__ask2 .bx-btn {
+  flex: 0 0 auto;
+}
+
+.bxn__picked {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 34px;
+  padding: 0 12px 0 11px;
+  border: 0;
+  border-radius: 9px;
+  background: var(--canvas);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: var(--fs-2);
+  text-align: left;
+  cursor: pointer;
+  gap: 10px;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--ink-900) 10%, transparent);
+  transition: box-shadow var(--dur-1) var(--ease);
+}
+
+.bxn__picked:hover {
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--ink-900) 18%, transparent);
+}
+
+.bxn__picked span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bxn__picked span.is-none {
+  color: var(--text-5);
+}
+
+.bxn__picked .bx-icon {
+  flex: none;
+  color: var(--text-4);
+  transition: transform var(--dur-2) var(--ease);
+}
+
+.bxn__pick.is-open .bxn__picked .bx-icon {
+  transform: rotate(180deg);
+}
+
+.bxn__pick.is-open .bxn__picked {
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--ink-900) 22%, transparent);
+}
+
+.bxn__picks {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  left: 0;
+  z-index: 3;
+  display: grid;
+  margin: 0;
+  padding: 5px;
+  list-style: none;
+  border-radius: 12px;
+  background: var(--canvas);
+  gap: 2px;
+  box-shadow: var(--bx-soft-3);
+}
+
+.bxn__picks[hidden] {
+  display: none;
+}
+
+.bxn__pickone {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 9px 10px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: var(--fs-2);
+  text-align: left;
+  cursor: pointer;
+  gap: 10px;
+  transition: background var(--dur-1) var(--ease);
+}
+
+.bxn__pickone:hover {
+  background: color-mix(in srgb, var(--ink-900) 5%, transparent);
+}
+
+.bxn__pickone.is-on {
+  background: color-mix(in srgb, var(--ink-900) 6%, transparent);
+  font-weight: var(--fw-semibold);
+}
+
+.bxn__pickone .bx-icon {
+  flex: none;
+  color: var(--cyan-600);
+}
+
+/* the ask is the last row of a panel that scrolls, so the list goes up when
+   there is nothing under it to go down into */
+.bxn__pick.is-up .bxn__picks {
+  top: auto;
+  bottom: calc(100% + 6px);
+}
+
+/* ------------------------------------------- the three that read as Brain
+
+   Home's reminder and Signal's cue both speak for Brain, so they borrow the
+   Brain tab's own furniture - its brain glyph in a tinted square, its cyan,
+   its sparkle - rather than the Connect bar's. The two reminders sit one above
+   the other on Home and must not read as the same object: Connect is an
+   invitation and stays quiet, this is the brand's own work waiting, so it is
+   the louder of the two. One line each, floating, and the move is dressed
+   three different ways. */
+
+.bxn-br {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 58px;
+  margin: 0 0 14px;
+  padding: 0 14px;
+  border-radius: 15px;
+  color: var(--text);
+  gap: 13px;
+}
+
+/* Signal's cue is a column about 260px wide, not a bar across a page. Laid out
+   as a row the copy was handed `flex: 1` of nothing left over - it computed to
+   zero, its words spilled out of it one to a line, and the move printed over
+   the top of them.
+
+   So it is Card brief, measured off it rather than merely resembling it: the
+   same 12/14 padding, the same 11px between the mark and the writing, a 26px
+   mark with an 8px corner one pixel down, the count at 12px over the names at
+   10px, and the move five pixels under them. Written as a grid rather than
+   brief's nested column because these designs put their move beside the copy
+   in the markup, not inside it - same picture, different plumbing. A hairline
+   border, as brief has: this cue sits inside a white card and has nothing else
+   to tell it from the page. */
+.bxn-basis.bxn-br {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  min-height: 0;
+  margin: 4px 0 14px;
+  padding: 12px 14px;
+  border: 1px solid color-mix(in srgb, var(--cyan-600) 18%, transparent);
+  border-radius: 12px;
+  column-gap: 11px;
+  /* brief's three between the two lines plus its five under them */
+  row-gap: 8px;
+}
+
+/* and the wash that carries a bar 1200px wide is a lot of weather in a column
+   of 260. A white veil over whatever the design paints takes every one of them
+   down by half at once, which keeps each one recognisable without eight
+   separate rewrites of their gradients. It lies over the backgrounds, the
+   blurred panes included, and under the writing. */
+.bxn-basis.bxn-br::before {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  border-radius: inherit;
+  /* half for everything, and a design may ask for less of it - a card whose
+     wash is light to begin with has less to give up to the veil */
+  background: rgba(255, 255, 255, var(--bxn-veil, 0.5));
+  pointer-events: none;
+}
+
+.bxn-basis.is-aurora {
+  --bxn-veil: 0.36;
+}
+
+.bxn-basis.bxn-br > .bxn-br__mk,
+.bxn-basis.bxn-br > .bxn-br__copy,
+.bxn-basis.bxn-br > .bxn-br__title,
+.bxn-basis.bxn-br > .bxn-br__go {
+  position: relative;
+  z-index: 2;
+}
+
+.bxn-br__mk {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+}
+
+.bxn-br__title {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  min-width: 0;
+  font-size: var(--fs-3);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-ui);
+  gap: 7px;
+}
+
+/* the sentence under the count is the quiet half of the bar everywhere, so it
+   says so here rather than in each design - the ones that did not name it were
+   inheriting the bar's own ink and coming out two steps too dark */
+.bxn-br__line {
+  overflow: hidden;
+  color: var(--text-3);
+  font-size: var(--fs-1);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* the move, three ways - but always with the Brain tab's sparkle on it */
+
+.bxn-br__go {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  height: 34px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: var(--bx-r-pill);
+  font-family: var(--font-sans);
+  font-size: var(--fs-2);
+  font-weight: var(--fw-semibold);
+  cursor: pointer;
+  gap: 7px;
+  transition:
+    background var(--dur-1) var(--ease),
+    box-shadow var(--dur-1) var(--ease);
+}
+
+.bxn-br__go > .bx-icon:last-child {
+  transition: transform var(--dur-2) var(--ease);
+}
+
+.bxn-br__go:hover > .bx-icon:last-child {
+  transform: translateX(2px);
+}
+
+/* ---- and the whole bar is the control
+
+   A reminder with one thing to do on it should not ask to be hit on the one
+   spot where the words are. The bar lifts under the cursor and its arrow runs
+   ahead of it; the pill stays as a sign of what will happen rather than the
+   only place it can be made to happen.
+
+   (This was written for Press and read by four cards; Frost is the one left,
+   so it is Frost's now.) */
+
+.bxn-bar.is-frost[data-bxn-run] {
+  cursor: pointer;
+  /* longer and softer than a control's click feedback - this is a card
+     rising, so the lift decelerates and the shadow follows it */
+  transition:
+    transform var(--dur-3) var(--ease-out),
+    box-shadow var(--dur-3) var(--ease);
+}
+
+/* the same four shadows the rest state has, in the same order, only grown:
+   box-shadow swaps one stack for the other outright the moment the counts
+   differ, and the glow then arrives all at once however long it is given */
+.bxn-bar.is-frost[data-bxn-run]:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 1px 0 #fff,
+    0 0 0 1px rgba(29, 29, 31, 0.045),
+    0 5px 10px -2px rgba(15, 23, 42, 0.07),
+    0 22px 40px -16px color-mix(in srgb, var(--cyan-700) 28%, transparent);
+}
+
+/* the press itself is the one quick part */
+.bxn-bar.is-frost[data-bxn-run]:active {
+  transform: translateY(0);
+  transition-duration: var(--dur-1);
+}
+
+.bxn-bar.is-frost[data-bxn-run]:focus-visible {
+  outline: none;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    var(--focus-ring);
+}
+
+/* with the whole bar for a target the move answers the cursor from anywhere
+   on it, rather than only from itself */
+.bxn-bar.is-frost[data-bxn-run]:hover .bxn-br__go.is-glass {
+  background: rgba(255, 255, 255, 0.85);
+}
+
+/* and the arrow runs while the cursor is on the bar - three beats and a rest,
+   so it reads as an invitation rather than as a thing that is loading */
+@keyframes bxn-run-right {
+  0%,
+  58%,
+  100% {
+    transform: translateX(0);
+  }
+
+  14%,
+  38% {
+    transform: translateX(4px);
+  }
+}
+
+.bxn-bar.is-frost[data-bxn-run]:hover .bxn-br__go > .bx-icon:last-child {
+  animation: bxn-run-right 1.6s var(--ease) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bxn-bar.is-frost[data-bxn-run],
+  .bxn-bar.is-frost[data-bxn-run]:hover,
+  .bxn-bar.is-frost[data-bxn-run]:hover .bxn-br__go > .bx-icon:last-child {
+    animation: none;
+    transform: none;
+  }
+}
+
+/* ---- frost: a pane of glass over a blur of the two hues */
+
+.bxn-bar.is-frost,
+.bxn-basis.is-frost {
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  /* --bx-soft-2's three, written out and taken down a little - the card still
+     stands off the page, it just does not lean on it. Written out rather than
+     left as the token so its hover has the same four layers to grow from. */
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 0 0 1px rgba(29, 29, 31, 0.03),
+    0 2px 4px rgba(15, 23, 42, 0.04),
+    0 12px 24px -12px rgba(15, 23, 42, 0.15);
+}
+
+.bxn-br__pane {
+  position: absolute;
+  inset: -40%;
+  background:
+    radial-gradient(
+      32% 70% at 14% 20%,
+      color-mix(in srgb, var(--cyan-400) 60%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      36% 80% at 82% 80%,
+      color-mix(in srgb, var(--violet-500, #7c5cff) 38%, transparent),
+      transparent 72%
+    );
+  filter: blur(26px);
+  pointer-events: none;
+}
+
+.bxn-bar.is-frost .bxn-br__mk,
+.bxn-basis.is-frost .bxn-br__mk {
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.62);
+  color: var(--cyan-700);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+/* frost takes aurora's two lines - a title and the sentence under it - so the
+   copy block, not the title, is what has to clear the blurred pane */
+.bxn-bar.is-frost .bxn-br__copy,
+.bxn-basis.is-frost .bxn-br__copy {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  flex: 1;
+  min-width: 0;
+  gap: 1px;
+}
+
+.bxn-bar.is-frost .bxn-br__title,
+.bxn-basis.is-frost .bxn-br__title {
+  z-index: 1;
+  flex: none;
+  color: var(--text);
+}
+
+.bxn-br__go.is-glass,
+.bxn-br__go.is-pale {
+  background: rgba(255, 255, 255, 0.62);
+  color: var(--cyan-900);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 2px 10px -3px rgba(16, 24, 40, 0.18);
+}
+
+.bxn-br__go.is-glass .bx-icon:first-child,
+.bxn-br__go.is-pale .bx-icon:first-child {
+  color: var(--cyan-600);
+}
+
+.bxn-br__go.is-glass:hover,
+.bxn-br__go.is-pale:hover {
+  background: rgba(255, 255, 255, 0.85);
+}

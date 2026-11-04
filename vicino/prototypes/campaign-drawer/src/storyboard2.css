@@ -1,0 +1,5968 @@
+/* The storyboard, redrawn — rounds 71 to 73.
+
+   Round 73 (Zi): the bar on top says what each number is; Add a scene,
+   Rewrite with Vicino and Use my own video are the bar's three lit buttons
+   (the timeline keeps none); notes on references sit in the confirm bar, as
+   on the Brief; every version shows four frame cards a row across the
+   drawer, and every spoken line card has one size; the scene page and its
+   Rewrite with Vicino speak side-chats' language. A guided walkthrough
+   strings the storyboard's cases together. `sb2-` is the storyboard,
+   `sp-` the scene page. */
+
+.sb2 {
+  --sb2-fix: #c2410c;
+  --sb2-fix-soft: #fdeee6;
+  --sb2-ink: #141416;
+  --sb2-wash: linear-gradient(160deg, rgba(213, 245, 250, 0.72) 0%, rgba(236, 250, 252, 0.5) 100%);
+  display: grid;
+  gap: 12px;
+}
+
+.sb2-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--cyan-700);
+  font: inherit;
+  font-weight: var(--fw-semibold);
+  cursor: pointer;
+}
+
+.sb2-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ------------------------------------------------------------------- bar */
+
+.sb2-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px;
+  padding: 12px 14px 12px 20px;
+  border-radius: 14px;
+  background: var(--canvas);
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.03),
+    0 4px 12px -10px rgba(15, 23, 42, 0.14);
+}
+
+.sb2-bar__facts {
+  display: flex;
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 10px 0;
+  min-width: 0;
+}
+
+/* each fact: a small label over its value, a soft divider between */
+.sb2-fact {
+  display: grid;
+  align-content: center;
+  gap: 4px;
+  padding: 0 20px;
+  box-shadow: inset -1px 0 0 rgba(29, 29, 31, 0.07);
+}
+
+.sb2-fact:first-child {
+  padding-left: 0;
+}
+
+.sb2-fact:last-child {
+  box-shadow: none;
+}
+
+.sb2-fact__k {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: var(--fw-medium);
+  color: var(--text-4);
+  white-space: nowrap;
+}
+
+.sb2-fact__v {
+  font-size: 15px;
+  font-weight: var(--fw-semibold);
+  line-height: 1.25;
+  color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.sb2-fact__v b {
+  color: var(--text);
+}
+
+.sb2-fact:not(.sb2-fact--mode) .sb2-fact__v {
+  color: var(--text);
+}
+
+/* New previews: the Brief's menu, small, opening downwards */
+.sb2-mode {
+  position: relative;
+}
+
+.sb2-mode__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 26px;
+  margin-left: -8px;
+  padding: 0 8px;
+  border: 0;
+  border-radius: var(--r-full);
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 13px;
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background var(--dur-2) var(--ease);
+}
+
+.sb2-mode__btn:hover,
+.sb2-mode.is-open .sb2-mode__btn {
+  background: rgba(29, 29, 31, 0.05);
+}
+
+.sb2-mode__btn > svg {
+  color: var(--text-4);
+}
+
+.sb2-mode__btn .cd-credit {
+  height: 18px;
+  font-size: 10.5px;
+}
+
+.sb2-mode__btn em.is-free {
+  display: inline-flex;
+  align-items: center;
+  height: 18px;
+  padding: 0 7px;
+  border-radius: var(--r-full);
+  background: rgba(29, 29, 31, 0.05);
+  color: var(--text-3);
+  font-size: 10.5px;
+  font-style: normal;
+}
+
+.sb2-mode__pop {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: -8px;
+  z-index: 30;
+  width: 340px;
+  padding: 8px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.97);
+  -webkit-backdrop-filter: blur(22px) saturate(1.5);
+  backdrop-filter: blur(22px) saturate(1.5);
+  box-shadow:
+    inset 0 1px 0 #fff,
+    0 4px 12px rgba(15, 23, 42, 0.06),
+    0 18px 40px -18px rgba(15, 23, 42, 0.3);
+}
+
+.sb2-mode__pop .cd-nextpop__k {
+  margin: 0;
+  padding: 6px 10px;
+  font-size: 11px;
+  font-weight: var(--fw-medium);
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--text-4);
+}
+
+/* ---- the three main tools, round and lit */
+.sb2-tools {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.sb2-tool {
+  display: inline-flex;
+}
+
+.sb2-tool__btn {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  transition:
+    transform var(--dur-2) var(--ease),
+    box-shadow var(--dur-2) var(--ease),
+    background var(--dur-2) var(--ease);
+}
+
+.sb2-tool__btn:hover {
+  transform: translateY(-1px);
+}
+
+.sb2-tool__btn:focus-visible {
+  outline: none;
+  box-shadow: var(--cd-focus);
+}
+
+/* Add a scene: side-chats' send button, the ink circle */
+.sb2-tool__btn.is-add {
+  background: var(--sb2-ink);
+  color: #fff;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.32),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.09),
+    0 1px 2px rgba(0, 0, 0, 0.25),
+    0 7px 14px -7px rgba(0, 0, 0, 0.45);
+}
+
+.sb2-tool__btn.is-add:hover {
+  background: #2a2a2e;
+}
+
+/* Rewrite with Vicino: the product's ring, cyan into indigo */
+.sb2-tool__btn.is-ai {
+  padding: 2px;
+  background: conic-gradient(from 200deg, #7ce8f7, #6b6ef2, #c7c9f8, #7ce8f7);
+  color: var(--cyan-700);
+  box-shadow: 0 8px 20px -10px rgba(99, 102, 241, 0.6);
+}
+
+.sb2-tool__btn.is-ai > span {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--canvas);
+}
+
+.sb2-tool__btn.is-ai:hover,
+.sb2-tool__btn.is-ai.is-on {
+  color: var(--text);
+}
+
+.sb2-tool__btn.is-ai.is-on {
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.18);
+}
+
+/* Use my own video: a cyan drop, lit from the top */
+.sb2-tool__btn.is-own,
+.cd-ownpick__btn {
+  background: linear-gradient(160deg, #8fe3f2 0%, #4fbfd6 100%);
+  color: #fff;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    0 8px 18px -8px rgba(30, 150, 175, 0.65);
+}
+
+.sb2-tool__btn.is-own:hover {
+  background: linear-gradient(160deg, #86dcec 0%, #44b3cb 100%);
+}
+
+.sb2-tools .cd-tip {
+  right: -6px;
+}
+
+/* the confirm bar, as on the Brief; calm when only notes are left */
+.sb2 .cdb-cbar.is-calm {
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    0 3px 10px -8px rgba(15, 23, 42, 0.25);
+}
+
+.sb2 .cdb-cbar.is-calm .cdb-cbar__ico {
+  background: rgba(29, 29, 31, 0.05);
+  color: var(--text-4);
+}
+
+.sb2 .cdb-cbar.is-calm .cdb-cbar__sum b {
+  color: var(--text-2);
+}
+
+/* Rewrite with Vicino for the whole storyboard */
+.sb2-rw {
+  padding: 14px 16px 16px;
+  border-radius: 14px;
+  background: var(--canvas);
+  box-shadow: var(--cd-soft);
+}
+
+/* --------------------------------------------------------------- gallery */
+
+.sb2-gal {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: start;
+  gap: 20px 14px;
+}
+
+.sb2-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.sb2-tile__scene {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  padding: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition:
+    box-shadow var(--dur-2) var(--ease),
+    background var(--dur-2) var(--ease);
+}
+
+/* ---- the frame */
+.sb2-frame {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  border-radius: 8px;
+  background: #eef2f4;
+  transition: box-shadow var(--dur-2) var(--ease);
+}
+
+.sb2-frame__wash {
+  position: absolute;
+  inset: -14px;
+  z-index: -1;
+  background-position: center;
+  background-size: cover;
+  filter: blur(16px) saturate(1.15) brightness(0.94);
+  transform: scale(1.08);
+}
+
+.sb2-frame > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.sb2-frame.is-off > img,
+.sb2-frame.is-off .sb2-frame__wash {
+  filter: grayscale(0.55) opacity(0.65);
+}
+
+.sb2-frame.is-off::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: repeating-linear-gradient(135deg, transparent 0 7px, rgba(250, 204, 120, 0.22) 7px 9px);
+  pointer-events: none;
+}
+
+.sb2-frame.is-broken::after {
+  background: repeating-linear-gradient(135deg, transparent 0 7px, rgba(234, 120, 70, 0.22) 7px 9px);
+}
+
+.sb2-frame.is-empty {
+  display: grid;
+  place-items: center;
+  background: linear-gradient(160deg, #f6f9fa, #e8eef1);
+}
+
+.sb2-frame__none {
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  padding: 0 10px;
+  text-align: center;
+  color: var(--text-4);
+}
+
+.sb2-frame__none svg {
+  margin-bottom: 3px;
+}
+
+.sb2-frame__none b {
+  font-size: 12px;
+  font-weight: var(--fw-semibold);
+  color: var(--text-3);
+}
+
+.sb2-frame__none small {
+  font-size: 10.5px;
+}
+
+.sb2-frame__none.is-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--cyan-700);
+  font-size: 11.5px;
+  font-weight: var(--fw-medium);
+}
+
+.sb2-frame__time {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 20px;
+  padding: 0 8px;
+  border-radius: var(--r-full);
+  background: rgba(18, 18, 22, 0.28);
+  -webkit-backdrop-filter: blur(12px) saturate(1.4);
+  backdrop-filter: blur(12px) saturate(1.4);
+  color: #fff;
+  font-size: 11px;
+  font-weight: var(--fw-medium);
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.18);
+}
+
+.sb2-frame__time i {
+  width: 1px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.sb2-tag {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  max-width: calc(100% - 16px);
+  height: 21px;
+  padding: 0 9px;
+  overflow: hidden;
+  border-radius: var(--r-full);
+  background: rgba(18, 18, 22, 0.3);
+  -webkit-backdrop-filter: blur(12px) saturate(1.4);
+  backdrop-filter: blur(12px) saturate(1.4);
+  color: #fff;
+  font-size: 11px;
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.18);
+}
+
+.sb2-tag i {
+  flex: none;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.sb2-tag.is-decide i {
+  background: #fbbf5a;
+}
+
+.sb2-tag.is-fix i {
+  background: #ff8a5c;
+}
+
+/* top right: Edit (with the pointer), then who made the picture */
+.sb2-frame__tr {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ---- name and description */
+.sb2-tile__copy {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+  padding: 0 3px;
+}
+
+.sb2-title {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  min-width: 0;
+}
+
+.sb2-title i {
+  font-style: normal;
+  font-size: 13px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+  color: var(--cyan-700);
+}
+
+.sb2-title b {
+  overflow: hidden;
+  font-size: 13px;
+  font-weight: 650;
+  color: var(--text);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.sb2-title__t {
+  margin-left: auto;
+  font-size: 11px;
+  color: var(--text-4);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.sb2 .sb2-desc {
+  display: -webkit-box;
+  min-height: 3em;
+  margin: 0;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-4);
+}
+
+/* Edit comes with the pointer, on the frame's top right */
+.sb2-edit {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 22px;
+  padding: 0 9px;
+  border: 0;
+  border-radius: var(--r-full);
+  background: var(--canvas);
+  box-shadow: 0 2px 10px -3px rgba(15, 23, 42, 0.28);
+  color: var(--text-2);
+  font: inherit;
+  font-size: 11px;
+  font-weight: var(--fw-medium);
+  opacity: 0;
+  transform: translateY(-2px);
+  transition:
+    opacity var(--dur-1) var(--ease),
+    transform var(--dur-1) var(--ease);
+  cursor: pointer;
+}
+
+.sb2-tile__scene:hover .sb2-edit,
+.sb2-edit:focus-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.sb2-edit:hover {
+  background: var(--surface-2);
+  color: var(--text);
+}
+
+/* ---- the spoken line card: one size, under its scene */
+.sb2-lc {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 4px;
+  height: 104px;
+  min-width: 0;
+  padding: 10px 12px 9px;
+  border-radius: 12px;
+}
+
+.sb2-lc[data-act] {
+  cursor: text;
+}
+
+.sb2 .sb2-tile .sb2-lc.is-editing {
+  grid-template-rows: auto;
+  gap: 8px;
+  height: auto;
+  padding: 12px 12px 10px;
+  border-radius: 12px;
+  background: var(--canvas);
+  box-shadow:
+    0 0 0 0.5px rgba(15, 23, 42, 0.05),
+    0 1px 2px rgba(15, 23, 42, 0.05),
+    0 10px 24px -14px rgba(15, 23, 42, 0.24);
+  cursor: auto;
+}
+
+.sb2 .sb2-tile .sb2-lc.is-editing::before {
+  background: var(--canvas);
+}
+
+.sb2-lc__k {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+  font-size: 11px;
+  font-weight: var(--fw-semibold);
+  color: var(--cyan-700);
+}
+
+.sb2-lc__k .sb2-placed {
+  margin-left: auto;
+}
+
+.sb2 .sb2-lc__q {
+  display: -webkit-box;
+  margin: 0;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font-size: 12.5px;
+  font-weight: var(--fw-regular);
+  line-height: 1.5;
+  color: var(--text-2);
+}
+
+.sb2-lc__grip {
+  display: grid;
+  place-items: center;
+  margin-left: auto;
+  color: var(--text-4);
+  opacity: 0;
+  cursor: grab;
+  transition: opacity var(--dur-1) var(--ease);
+}
+
+.sb2-lc:hover .sb2-lc__grip {
+  opacity: 1;
+}
+
+.sb2-lc__k .sb2-placed + .sb2-lc__grip {
+  margin-left: 6px;
+}
+
+.sb2-lc[draggable='true'] {
+  cursor: grab;
+}
+
+.sb2-lc.is-dragging,
+.sb2-sub.is-dragging {
+  opacity: 0.45;
+}
+
+/* a scene the line can be dropped on */
+.sb2-tile.is-drop {
+  border-radius: 14px;
+  background: rgba(14, 165, 184, 0.07);
+  box-shadow: 0 0 0 6px rgba(14, 165, 184, 0.07);
+}
+
+.sb2-lc[data-act]:hover .sb2-lc__q {
+  color: var(--cyan-700);
+}
+
+.sb2 .sb2-lc.is-empty .sb2-lc__q {
+  font-size: 12px;
+  font-weight: var(--fw-regular);
+  color: var(--text-4);
+}
+
+.sb2-lc__foot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  min-height: 20px;
+  font-size: 11px;
+}
+
+.sb2-lc__foot .sb2-link {
+  font-size: 11.5px;
+}
+
+.sb2-lc__foot .sb2-lbtn {
+  margin-left: auto;
+}
+
+.sb2-fit {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--text-4);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.sb2-fit.is-over {
+  font-weight: var(--fw-semibold);
+  color: var(--cd-warn);
+}
+
+.sb2-placed {
+  display: inline-flex;
+  align-items: center;
+  height: 17px;
+  padding: 0 7px;
+  border-radius: var(--r-full);
+  background: var(--cd-warn-soft);
+  color: var(--cd-warn);
+  font-size: 10px;
+  font-style: normal;
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+}
+
+.sb2-lbtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 20px;
+  padding: 0 8px;
+  border: 0;
+  border-radius: var(--r-full);
+  background: var(--cd-warn-soft);
+  color: var(--cd-warn);
+  font: inherit;
+  font-size: 10.5px;
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.sb2-lbtn:hover {
+  background: #fbe7c4;
+}
+
+/* the line in place: the words in a soft well, the count in its corner */
+.sb2-le {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+
+.sb2-le__box {
+  position: relative;
+  padding: 8px 10px 22px;
+  border-radius: 10px;
+  background: rgba(29, 29, 31, 0.04);
+  transition:
+    background var(--dur-1) var(--ease),
+    box-shadow var(--dur-1) var(--ease);
+}
+
+.sb2-le__box:focus-within {
+  background: rgba(29, 29, 31, 0.07);
+}
+
+.sb2-le__ta {
+  display: block;
+  width: 100%;
+  min-height: 40px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 12.5px;
+  line-height: 1.5;
+  resize: none;
+  outline: none;
+}
+
+.sb2-le__fit {
+  position: absolute;
+  right: 10px;
+  bottom: 5px;
+  font-size: 10.5px;
+  color: var(--text-4);
+  font-variant-numeric: tabular-nums;
+}
+
+.sb2-le__fit.is-over {
+  font-weight: var(--fw-semibold);
+  color: var(--cd-warn);
+}
+
+.sb2 .sb2-le__over {
+  display: none;
+  align-items: flex-start;
+  gap: 6px;
+  margin: 0;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: #8a5a07;
+}
+
+.sb2 .sb2-le__over.is-on {
+  display: flex;
+}
+
+.sb2 .sb2-le__over svg {
+  flex: none;
+  margin-top: 3px;
+  color: var(--cd-warn);
+}
+
+.sb2 .sb2-le__over .sb2-link {
+  font-size: 11.5px;
+}
+
+.sb2 .sb2-le__keys {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 0;
+  font-size: 11px;
+  color: var(--text-4);
+}
+
+.sb2-le__keys kbd {
+  display: inline-grid;
+  place-items: center;
+  height: 17px;
+  padding: 0 5px;
+  border-radius: 4px;
+  background: rgba(29, 29, 31, 0.06);
+  color: var(--text-3);
+  font: inherit;
+  font-size: 10px;
+  font-weight: var(--fw-semibold);
+}
+
+.sb2-le__keys kbd:not(:first-child) {
+  margin-left: 6px;
+}
+
+.sb2 .sb2-silent {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 8px;
+  margin: 0;
+  padding: 0 5px;
+  font-size: 12.5px;
+  color: var(--text-3);
+}
+
+.sb2 .sb2-silent svg {
+  color: var(--text-4);
+}
+
+.sb2 .sb2-silent b {
+  font-weight: var(--fw-semibold);
+  color: var(--text-2);
+}
+
+.sb2-tile.is-hl .sb2-frame {
+  box-shadow: 0 8px 20px -10px rgba(14, 165, 184, 0.6);
+}
+
+/* ======================================== A · As captured (the product's) */
+
+.sb2--product .sb2-tile__scene:hover .sb2-frame {
+  box-shadow: 0 3px 12px rgba(15, 23, 42, 0.16);
+}
+
+.sb2--product .sb2-frame {
+  border-radius: 4px;
+  background: #ecf1f0;
+}
+
+.sb2--product .sb2-frame__wash {
+  display: none;
+}
+
+.sb2--product .sb2-frame.is-off > img {
+  filter: none;
+}
+
+.sb2--product .sb2-frame.is-off::after {
+  background: repeating-linear-gradient(135deg, transparent 0 6px, #fef6e7 6px 9px);
+  opacity: 0.85;
+}
+
+.sb2--product .sb2-frame.is-broken::after {
+  background: repeating-linear-gradient(135deg, transparent 0 6px, #fdeee6 6px 9px);
+}
+
+.sb2--product .sb2-frame.is-empty {
+  background:
+    linear-gradient(118deg, #fff 8%, transparent 38%),
+    linear-gradient(168deg, #f4f7f6, #e1e8e6);
+}
+
+.sb2--product .sb2-frame__none svg,
+.sb2--product .sb2-frame__none small {
+  display: none;
+}
+
+.sb2--product .sb2-frame__none b {
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-4);
+}
+
+.sb2--product .sb2-frame__time {
+  height: auto;
+  padding: 2px 8px;
+  font-weight: var(--fw-regular);
+}
+
+.sb2--product .sb2-frame__time i {
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.sb2--product .sb2-tag {
+  bottom: 4px;
+  left: 4px;
+  max-width: calc(100% - 8px);
+  height: auto;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.sb2--product .sb2-tile__copy {
+  padding: 0;
+}
+
+/* the line as the product writes it: Spoken here in bold over the words */
+.sb2--product .sb2-lc {
+  height: 98px;
+  padding: 2px 5px 0;
+  border-radius: 0;
+}
+
+.sb2--product .sb2-lc__k {
+  font-size: 13px;
+  font-weight: 650;
+  color: var(--text);
+}
+
+.sb2--product .sb2-lc__k svg {
+  display: none;
+}
+
+.sb2--product .sb2-lc__q {
+  font-size: 12px;
+  font-weight: var(--fw-regular);
+  line-height: 1.5;
+}
+
+/* ======================================== B · Cards */
+
+.sb2--card .sb2-tile {
+  gap: 6px;
+}
+
+.sb2--card .sb2-tile__scene {
+  padding: 5px 5px 12px;
+  border-radius: 14px;
+  background: var(--canvas);
+  box-shadow: var(--cd-soft);
+}
+
+.sb2--card .sb2-tile__scene:hover {
+  box-shadow: var(--cd-soft-2);
+}
+
+.sb2--card .sb2-frame {
+  border-radius: 10px;
+}
+
+.sb2--card .sb2-tile__copy {
+  padding: 0 7px;
+}
+
+/* the line on a card of its own: the plan's cyan wash, its top tucked
+   under the scene it belongs to */
+.sb2--card .sb2-lc {
+  border-radius: 6px 6px 14px 14px;
+  background: var(--sb2-wash);
+}
+
+.sb2--card .sb2-lc.is-empty {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* ======================================== C · Bubbles */
+
+.sb2--bubble .sb2-frame {
+  border-radius: 12px;
+  box-shadow: var(--cd-soft);
+}
+
+.sb2--bubble .sb2-tile__scene:hover .sb2-frame {
+  box-shadow: var(--cd-soft-2);
+}
+
+.sb2--bubble .sb2-lc {
+  margin-top: 6px;
+  border-radius: 4px 16px 16px 16px;
+  background: var(--canvas);
+  box-shadow: var(--cd-soft);
+}
+
+/* the bubble's tail, pointing up at its scene */
+.sb2--bubble .sb2-lc::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 0;
+  width: 12px;
+  height: 7px;
+  background: var(--canvas);
+  clip-path: polygon(0 0, 0 100%, 100% 100%);
+}
+
+.sb2--bubble .sb2-lc.is-empty {
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: none;
+}
+
+.sb2--bubble .sb2-lc.is-empty::before {
+  background: rgba(255, 255, 255, 0.55);
+}
+
+/* ======================================== D · Subtitles */
+
+.sb2--subtitle .sb2-gal {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.sb2--subtitle .sb2-frame__time {
+  display: none;
+}
+
+.sb2--subtitle .sb2-tag {
+  top: 8px;
+  bottom: auto;
+}
+
+.sb2--subtitle .sb2-tile__scene:hover .sb2-frame {
+  box-shadow: 0 3px 12px rgba(15, 23, 42, 0.16);
+}
+
+.sb2-sub {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  left: 10px;
+  z-index: 3;
+  display: grid;
+  gap: 2px;
+  padding: 6px 10px 7px;
+  border: 0;
+  border-radius: 9px;
+  background: rgba(10, 10, 12, 0.5);
+  -webkit-backdrop-filter: blur(12px) saturate(1.3);
+  backdrop-filter: blur(12px) saturate(1.3);
+  color: #fff;
+  font: inherit;
+  text-align: left;
+  cursor: text;
+  transition: background var(--dur-1) var(--ease);
+}
+
+.sb2-sub:hover {
+  background: rgba(10, 10, 12, 0.66);
+}
+
+.sb2-sub__k {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: var(--fw-semibold);
+  color: #b9f3fb;
+}
+
+.sb2-sub__q {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font-size: 12.5px;
+  font-weight: var(--fw-medium);
+  line-height: 1.4;
+}
+
+.sb2-sub.is-over {
+  box-shadow: inset 0 -2px 0 #f5b041;
+}
+
+.sb2-sub.is-empty {
+  right: auto;
+  left: 50%;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 10px;
+  height: 26px;
+  background: rgba(18, 18, 22, 0.3);
+  font-size: 11px;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(-50%);
+}
+
+.sb2-tile__scene:hover .sb2-sub.is-empty {
+  opacity: 1;
+}
+
+.sb2-subfoot {
+  padding: 0 8px;
+}
+
+.sb2--subtitle .sb2-lc.is-editing {
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: var(--canvas);
+  box-shadow: var(--cd-soft);
+}
+
+/* ------------------------------------------------------------ the timeline */
+
+.cd .cd-tl {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.cd-tl__addcap {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 4px;
+  height: 22px;
+  margin-left: 8px;
+  padding: 0 9px;
+  border: 0;
+  border-radius: var(--r-full);
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.78);
+  font: inherit;
+  font-size: 11px;
+  font-weight: var(--fw-medium);
+  cursor: pointer;
+}
+
+.cd-tl__addcap:hover {
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+}
+
+/* ===================================================== the scene page */
+
+.sp {
+  display: grid;
+  gap: 16px;
+}
+
+/* a block inside a card: its own label row, its control, its note under it;
+   blocks are set apart by space and a soft divider */
+.sp-sec {
+  display: grid;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.sp-sec + .sp-sec {
+  padding-top: 14px;
+  box-shadow: inset 0 1px 0 rgba(29, 29, 31, 0.06);
+}
+
+.sp-sec__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.sp-sec__k {
+  font-size: 12px;
+  font-weight: var(--fw-semibold);
+  color: var(--text-2);
+}
+
+.sp-len__v {
+  font-size: 12.5px;
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+/* the length: a thin track, three stops, a white handle */
+.sp-len {
+  --p: 50%;
+  position: relative;
+  padding: 2px 0 0;
+}
+
+.sp-len::before {
+  content: '';
+  position: absolute;
+  top: 9px;
+  right: 8px;
+  left: 8px;
+  height: 4px;
+  border-radius: var(--r-full);
+  background:
+    radial-gradient(circle, rgba(29, 29, 31, 0.22) 2px, transparent 2.5px) 0 50% / 4px 4px no-repeat,
+    radial-gradient(circle, rgba(29, 29, 31, 0.22) 2px, transparent 2.5px) 50% 50% / 4px 4px no-repeat,
+    radial-gradient(circle, rgba(29, 29, 31, 0.22) 2px, transparent 2.5px) 100% 50% / 4px 4px no-repeat,
+    linear-gradient(90deg, var(--cyan-700) 0 var(--p), rgba(29, 29, 31, 0.08) var(--p) 100%);
+  pointer-events: none;
+}
+
+.sp-len__range {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 18px;
+  margin: 0;
+  background: transparent;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+.sp-len__range::-webkit-slider-runnable-track {
+  height: 18px;
+  background: transparent;
+}
+
+.sp-len__range::-webkit-slider-thumb {
+  width: 16px;
+  height: 16px;
+  margin-top: 1px;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.18),
+    0 3px 8px -2px rgba(13, 118, 133, 0.35);
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.sp-len__range::-moz-range-track {
+  background: transparent;
+}
+
+.sp-len__range::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.18),
+    0 3px 8px -2px rgba(13, 118, 133, 0.35);
+}
+
+.cd .sp-len__range:focus-visible::-webkit-slider-thumb {
+  box-shadow:
+    0 0 0 4px rgba(14, 165, 184, 0.18),
+    0 1px 2px rgba(15, 23, 42, 0.18);
+}
+
+.sp-len__ticks {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2px;
+  font-size: 10.5px;
+  color: var(--text-4);
+  font-variant-numeric: tabular-nums;
+}
+
+.sp-len__ticks i {
+  font-style: normal;
+}
+
+/* a card, as side-chats draws one Vicino writes */
+.sp-card {
+  padding: 12px 14px 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow:
+    0 0 0 0.5px rgba(15, 23, 42, 0.04),
+    0 1px 2px rgba(15, 23, 42, 0.04),
+    0 8px 20px -12px rgba(15, 23, 42, 0.16);
+}
+
+.sp-card__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sp-card__head b {
+  font-size: 13px;
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+}
+
+.sp-card__head > .sp-chip,
+.sp-card__head > .sp-note {
+  margin-left: auto;
+}
+
+.sp-card__ico {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 7px;
+  background: #e7f6f8;
+  color: var(--cyan-700);
+}
+
+.sp-card.is-warn .sp-card__ico {
+  background: var(--cd-warn-soft);
+  color: var(--cd-warn);
+}
+
+.sp-card.is-fix .sp-card__ico {
+  background: #fdeee6;
+  color: #c2410c;
+}
+
+.sp-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 21px;
+  padding: 0 8px;
+  border-radius: var(--r-full);
+  background: rgba(29, 29, 31, 0.06);
+  color: #44464a;
+  font-size: 11px;
+  font-weight: var(--fw-medium);
+  white-space: nowrap;
+}
+
+.sp-chip.is-ok,
+.sp-chip.is-live {
+  background: #e3f8fb;
+  color: var(--cyan-700);
+}
+
+.sp-chip.is-warn {
+  background: var(--cd-warn-soft);
+  color: var(--cd-warn);
+}
+
+.sp-chip.is-fix {
+  background: #fdeee6;
+  color: #c2410c;
+}
+
+.sp-chip__spin {
+  width: 9px;
+  height: 9px;
+  border: 1.5px solid rgba(14, 165, 184, 0.25);
+  border-top-color: var(--cyan-700);
+  border-radius: 50%;
+  animation: sp-spin 0.8s linear infinite;
+}
+
+@keyframes sp-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.cd .sp-say {
+  margin: 10px 0 0;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--text-2);
+}
+
+.sp-say b {
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+}
+
+/* the three facts, a row each: icon, what it is, the answer */
+.sp-facts {
+  display: grid;
+  margin-top: 12px;
+  padding: 2px 12px;
+  border-radius: 10px;
+  background: rgba(29, 29, 31, 0.035);
+}
+
+.sp-fact {
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 0;
+}
+
+.sp-fact + .sp-fact {
+  box-shadow: inset 0 1px 0 rgba(29, 29, 31, 0.06);
+}
+
+.sp-fact__ico {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--canvas);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+  color: var(--cyan-700);
+}
+
+.sp-fact__k {
+  font-size: 12px;
+  color: var(--text-3);
+}
+
+.sp-fact b {
+  font-size: 12px;
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+  text-align: right;
+}
+
+/* the foot: ghost buttons, then the one ink button, at the right */
+.sp-acts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.sp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 30px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: var(--r-full);
+  background: transparent;
+  color: #44464a;
+  font: inherit;
+  font-size: 12px;
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background var(--dur-1) var(--ease);
+}
+
+.sp-btn:hover {
+  background: rgba(29, 29, 31, 0.05);
+  color: var(--text);
+}
+
+.sp-btn.is-ink {
+  padding: 0 14px;
+  background: #141416;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.18);
+  color: #fff;
+}
+
+.sp-btn.is-ink:hover {
+  background: #2a2a2e;
+  color: #fff;
+}
+
+.sp-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.sp-done {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-right: auto;
+  color: var(--cyan-700);
+  font-size: 12px;
+  font-weight: var(--fw-semibold);
+}
+
+.sp-skel {
+  display: grid;
+  gap: 7px;
+  width: 100%;
+}
+
+.sp-skel i {
+  height: 8px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, rgba(29, 29, 31, 0.05), rgba(29, 29, 31, 0.1), rgba(29, 29, 31, 0.05));
+  background-size: 200% 100%;
+  animation: sp-shimmer 1.4s linear infinite;
+}
+
+.sp-skel i:nth-child(2) {
+  width: 78%;
+}
+
+.sp-skel i:nth-child(3) {
+  width: 56%;
+}
+
+@keyframes sp-shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* your own picture */
+.sp-own {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.sp-own__img {
+  width: 44px;
+  height: 44px;
+  overflow: hidden;
+  border-radius: 9px;
+}
+
+.sp-own__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sp-own__say {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.sp-own__say b {
+  overflow: hidden;
+  font-size: 12.5px;
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.sp-own__say small {
+  font-size: 11.5px;
+  line-height: 1.4;
+  color: var(--text-4);
+}
+
+.sp-drop {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin-top: 10px;
+  padding: 12px;
+  border: 0;
+  border-radius: 10px;
+  background: rgba(29, 29, 31, 0.035);
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--dur-1) var(--ease);
+}
+
+.sp-drop:hover {
+  background: rgba(14, 165, 184, 0.07);
+}
+
+.sp-drop:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.sp-drop__ico {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: linear-gradient(160deg, #8fe3f2 0%, #4fbfd6 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  color: #fff;
+}
+
+.sp-drop b {
+  display: block;
+  font-size: 12.5px;
+  font-weight: var(--fw-semibold);
+}
+
+.sp-drop small {
+  display: block;
+  margin-top: 2px;
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: var(--text-4);
+}
+
+.cd .sp-off {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  padding: 0 4px;
+  font-size: 12px;
+  color: var(--text-4);
+}
+
+/* the description pane's fields: soft wells, no rings */
+.sp-field {
+  display: block;
+  width: 100%;
+  min-height: 42px;
+  overflow: hidden;
+  margin-top: 0;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 10px;
+  background: rgba(29, 29, 31, 0.04);
+  color: var(--text);
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.55;
+  resize: none;
+  outline: none;
+  transition: background var(--dur-1) var(--ease);
+}
+
+.cd .sp-field:focus,
+.cd .sp-field:focus-visible,
+.cd .sp-sec:focus-within > .sp-field {
+  background: rgba(29, 29, 31, 0.07);
+  box-shadow: none;
+}
+
+.cd .sp-under {
+  margin: 0 2px;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--text-4);
+}
+
+.cd .sp-under.is-over {
+  color: var(--cd-warn);
+}
+
+.sp-sec .sp-impact {
+  margin-top: 2px;
+}
+
+.sp-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 10px;
+  margin-top: 10px;
+}
+
+.sp-row__k {
+  font-size: 12px;
+  font-weight: var(--fw-semibold);
+  color: var(--text-3);
+}
+
+.sp-note {
+  font-size: 11.5px;
+  color: var(--text-4);
+}
+
+.sp-linefit {
+  font-size: 11.5px;
+  color: var(--text-4);
+  font-variant-numeric: tabular-nums;
+}
+
+.sp-linefit.is-over {
+  color: var(--cd-warn);
+}
+
+.sp-sel {
+  height: 28px;
+  margin-left: auto;
+  font-size: 12px;
+}
+
+.cd .sp-impact {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  margin: 0;
+  padding: 9px 12px;
+  border-radius: 10px;
+  background: rgba(14, 165, 184, 0.06);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-2);
+}
+
+.sp-card .sp-impact {
+  margin-top: 10px;
+}
+
+.cd .sp-impact.is-warn {
+  background: var(--cd-warn-soft);
+  color: #8a5a07;
+}
+
+.sp-impact svg {
+  flex: none;
+  margin-top: 2px;
+}
+
+/* ---- Rewrite with Vicino: the side-chats composer */
+.sp-compose {
+  display: grid;
+  gap: 8px;
+}
+
+.sp-compose__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sp-compose__head b {
+  font-size: 12.5px;
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+}
+
+/* the product's ring, small */
+.sp-compose__ico {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  padding: 1.5px;
+  border-radius: 50%;
+  background: conic-gradient(from 200deg, #7ce8f7, #6b6ef2, #c7c9f8, #7ce8f7);
+  color: var(--cyan-700);
+}
+
+.sp-compose__ico svg {
+  box-sizing: content-box;
+  padding: 3.5px;
+  border-radius: 50%;
+  background: var(--canvas);
+}
+
+.sp-compose__x {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  margin-left: auto;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-4);
+  cursor: pointer;
+}
+
+.sp-compose__x:hover {
+  background: rgba(29, 29, 31, 0.05);
+  color: var(--text);
+}
+
+.sp-compose__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.sp-sugg {
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+  padding: 0 11px;
+  border: 0;
+  border-radius: var(--r-full);
+  background: var(--canvas);
+  box-shadow:
+    0 0 0 0.5px rgba(15, 23, 42, 0.06),
+    0 1px 2px rgba(15, 23, 42, 0.07);
+  color: var(--text-2);
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.sp-sugg:hover {
+  color: var(--text);
+  box-shadow:
+    0 0 0 0.5px rgba(15, 23, 42, 0.08),
+    0 3px 8px -3px rgba(15, 23, 42, 0.2);
+}
+
+.sp-compose__box {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 8px;
+  padding: 10px 8px 8px 14px;
+  border-radius: 14px;
+  background: rgba(29, 29, 31, 0.055);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.22),
+    0 1px 2px rgba(15, 23, 42, 0.03),
+    0 6px 16px -12px rgba(15, 23, 42, 0.18);
+  transition: background var(--dur-2) var(--ease);
+}
+
+.sp-compose__box:focus-within {
+  background: rgba(29, 29, 31, 0.07);
+}
+
+.sp-compose__ta {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  padding: 0 6px 0 0;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.5;
+  resize: none;
+  outline: none;
+}
+
+.sp-compose__ta::placeholder {
+  color: var(--text-4);
+}
+
+.cd .sp-compose__note {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin: 0 2px;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--text-4);
+}
+
+.sp-compose__note svg {
+  flex: none;
+  margin-top: 3px;
+}
+
+/* side-chats' send button: the ink circle, the arrow up */
+.sp-send {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border: 0;
+  border-radius: 50%;
+  background: #141416;
+  color: #fff;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.32),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.09),
+    0 1px 2px rgba(0, 0, 0, 0.25),
+    0 7px 14px -7px rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+}
+
+.sp-send:disabled {
+  background: rgba(29, 29, 31, 0.16);
+  box-shadow: none;
+  cursor: default;
+}
+
+/* =========================================== the Brief: two small additions */
+
+/* the folded Look card shows its reference pictures */
+.cdb-style__peek {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 4px;
+  margin-left: 10px;
+}
+
+.cdb-style__pk {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  overflow: hidden;
+  border-radius: 7px;
+  background: #eef2f4;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.12);
+}
+
+.cdb-style__pk img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cdb-style__pk.is-dark {
+  background: #111;
+}
+
+.cdb-style__pk.is-dark img {
+  object-fit: contain;
+}
+
+.cdb-style__pk.is-more {
+  background: rgba(29, 29, 31, 0.05);
+  box-shadow: none;
+  color: var(--text-3);
+  font-size: 10px;
+  font-weight: var(--fw-semibold);
+}
+
+/* B · own video beside the next step: "or", then a round button after it */
+.cd-ownpick {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 10px;
+}
+
+.cd-ownpick__wrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.cd-ownpick__btn {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform var(--dur-2) var(--ease);
+}
+
+.cd-ownpick__btn:hover {
+  transform: translateY(-1px);
+}
+
+/* flatter than the storyboard's: a faint highlight and a light shadow */
+.cd-ownpick__btn {
+  background: linear-gradient(160deg, #9ae5f2 0%, #62c6da 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 3px 8px -5px rgba(30, 150, 175, 0.4);
+}
+
+.cd-ownpick__or {
+  font-size: 12px;
+  font-weight: var(--fw-medium);
+  color: var(--text-4);
+}
+
+/* in the footer the tip opens upwards */
+.cd-ownpick .cd-tip {
+  top: auto;
+  right: -10px;
+  bottom: calc(100% + 10px);
+  transform: translateY(4px);
+}
+
+.cd-ownpick .cd-tip::before {
+  top: auto;
+  right: 22px;
+  bottom: -5px;
+}
+
+.cd-ownpick .cd-coach {
+  right: -14px;
+}
+
+/* =============================================== the walkthrough's hints */
+
+.is-flowhint {
+  /* one quick pulse when a step begins, then gone */
+  animation: cd-flowglow 1.2s ease-in-out 1;
+}
+
+@keyframes cd-flowglow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(73, 224, 245, 0);
+  }
+  40% {
+    box-shadow:
+      0 0 0 3px rgba(73, 224, 245, 0.5),
+      0 0 20px 5px rgba(73, 224, 245, 0.32);
+  }
+}
+
+.cd-flow {
+  display: grid;
+  gap: 6px;
+  padding: 12px 12px 10px;
+  border-radius: 12px;
+  background: linear-gradient(160deg, rgba(213, 245, 250, 0.8), rgba(236, 250, 252, 0.6));
+}
+
+.cd-flow__n {
+  font-size: 10.5px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--cyan-700);
+}
+
+.cd-flow__t {
+  font-size: 13.5px;
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+}
+
+.cd-flow p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-2);
+}
+
+.cd-flow__next span {
+  display: inline-flex;
+  align-items: center;
+  height: 17px;
+  margin-right: 6px;
+  padding: 0 7px;
+  border-radius: var(--r-full);
+  background: #141416;
+  color: #fff;
+  font-size: 10px;
+  font-weight: var(--fw-semibold);
+  vertical-align: 1px;
+}
+
+.cd-flow__acts {
+  display: flex;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.cd-flow__acts button {
+  height: 26px;
+  padding: 0 11px;
+  border: 0;
+  border-radius: var(--r-full);
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--text-2);
+  font: inherit;
+  font-size: 11.5px;
+  font-weight: var(--fw-semibold);
+  cursor: pointer;
+}
+
+.cd-flow__acts button:first-child {
+  background: #141416;
+  color: #fff;
+}
+
+.cd-flow__acts button:hover {
+  filter: brightness(0.96);
+}
+
+/* over the Prototype tab when the panel is folded */
+.cd-flow.is-compact {
+  width: 320px;
+  background:
+    radial-gradient(110% 80% at 100% 0%, rgba(73, 224, 245, 0.16), transparent 60%),
+    rgba(255, 255, 255, 0.97);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  backdrop-filter: blur(20px) saturate(1.4);
+  box-shadow:
+    inset 0 1px 0 #fff,
+    0 6px 26px -10px rgba(15, 23, 42, 0.3);
+}
+
+.cd-sw__tab b.is-flow {
+  background: var(--cyan-700);
+  color: #fff;
+}
+
+/* ------------------------------------------------------ narrow drawers */
+
+@media (max-width: 760px) {
+  .sb2-gal {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sb2-bar {
+    padding-left: 14px;
+  }
+
+  .sb2-fact {
+    padding: 0 12px;
+  }
+
+  .sb2-tools {
+    margin-left: 0;
+  }
+
+}
+
+/* the folded Look row makes room for the pictures before its chevron */
+.cdb-style__sum:has(.cdb-style__peek) {
+  grid-template-columns: 28px auto minmax(0, 1fr) auto 28px;
+}
+
+/* ---- round 75: a field shows focus the side-chats way, the well darkening
+   a little, never a ring; the scene page's scrollbar thin and quiet */
+.cd textarea:focus-visible,
+.cd input:not([type='range']):focus-visible {
+  box-shadow: none;
+}
+
+.cd .cd-ta:not(.cdb-ie):focus,
+.cd .cd-in:focus {
+  background: rgba(29, 29, 31, 0.075);
+  box-shadow: none;
+}
+
+.sp-compose__ta:focus,
+.sp-compose__ta:focus-visible,
+.sb2-le__ta:focus,
+.sb2-le__ta:focus-visible {
+  background: transparent;
+  box-shadow: none;
+}
+
+.cd-pane__body {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(29, 29, 31, 0.12) transparent;
+}
+
+.cd-pane__body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.cd-pane__body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.cd-pane__body::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background: rgba(29, 29, 31, 0.12);
+}
+
+.cd-pane__body::-webkit-scrollbar-thumb:hover {
+  background: rgba(29, 29, 31, 0.22);
+}
+
+.cdb-helppop .cd-tip__txt > span {
+  line-height: 1.5;
+}
+
+/* a line's words stop cleanly at two lines */
+.sb2 .sb2-lc__q {
+  max-height: 3em;
+}
+
+/* the bar's (i) notes have room to read */
+.sb2-bar .cdb-helppop {
+  width: 340px;
+}
+
+/* ---- round 76: who made the picture. A small glass disc at the frame's
+   bottom right with its icon cut out, so the picture shows through the
+   icon: cyan for a picture you uploaded (the Use my own video button's
+   colour), white with a faint shimmer for a preview Vicino drew (the
+   Rewrite with Vicino button's ring). A card on hover says what it means. */
+.sb2-framewrap {
+  position: relative;
+}
+
+.sb2-srcwrap {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  z-index: 4;
+  display: grid;
+}
+
+.sb2-src {
+  --ico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='8' r='4'/%3E%3Cpath d='M4 21a8 8 0 0 1 16 0'/%3E%3C/svg%3E");
+  display: block;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  -webkit-mask:
+    var(--ico) center / 12px 12px no-repeat,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    var(--ico) center / 12px 12px no-repeat exclude,
+    linear-gradient(#000 0 0);
+  cursor: help;
+}
+
+.sb2-src.is-you {
+  background: linear-gradient(160deg, rgba(150, 230, 244, 0.86) 0%, rgba(79, 191, 214, 0.86) 100%);
+}
+
+.sb2-src.is-you.is-bad {
+  background: linear-gradient(160deg, rgba(255, 178, 140, 0.9) 0%, rgba(234, 110, 60, 0.88) 100%);
+}
+
+.sb2-src.is-ai {
+  --ico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z'/%3E%3C/svg%3E");
+  background: conic-gradient(
+    from 200deg,
+    rgba(255, 255, 255, 0.9),
+    rgba(196, 238, 250, 0.88),
+    rgba(255, 255, 255, 0.9),
+    rgba(214, 214, 252, 0.88),
+    rgba(255, 255, 255, 0.9)
+  );
+}
+
+/* a preview that isn't used: the same disc, fainter */
+.sb2-src.is-ai.is-off {
+  opacity: 0.6;
+}
+
+.sb2-srctip {
+  position: absolute;
+  right: -6px;
+  bottom: calc(100% + 8px);
+  z-index: 20;
+  display: grid;
+  gap: 3px;
+  width: 232px;
+  padding: 10px 12px 11px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.97);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  backdrop-filter: blur(16px) saturate(1.4);
+  box-shadow:
+    0 4px 10px rgba(15, 23, 42, 0.07),
+    0 18px 36px -14px rgba(15, 23, 42, 0.3);
+  text-align: left;
+  opacity: 0;
+  transform: translateY(4px);
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity var(--dur-2) var(--ease),
+    transform var(--dur-2) var(--ease),
+    visibility 0s linear var(--dur-2);
+}
+
+.sb2-srctip b {
+  font-size: 12px;
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+}
+
+.sb2-srctip span {
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--text-3);
+}
+
+.sb2-srcwrap:hover .sb2-srctip {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+  transition:
+    opacity var(--dur-2) var(--ease) 0.15s,
+    transform var(--dur-2) var(--ease) 0.15s,
+    visibility 0s linear 0.15s;
+}
+
+/* the state label keeps clear of the disc */
+.sb2 .sb2-tag {
+  max-width: calc(100% - 46px);
+}
+
+/* D: the subtitle has the foot, so the disc sits at the top left, the label
+   beside it, and its card opens downwards */
+.sb2--subtitle .sb2-srcwrap {
+  top: 8px;
+  right: auto;
+  bottom: auto;
+  left: 8px;
+}
+
+.sb2--subtitle .sb2-framewrap:has(.sb2-srcwrap) .sb2-tag {
+  left: 36px;
+}
+
+.sb2--subtitle .sb2-srctip {
+  top: calc(100% + 8px);
+  right: auto;
+  bottom: auto;
+  left: -6px;
+  transform: translateY(-4px);
+}
+
+
+/* ---- round 77: no field is resized by hand; each starts at a set height
+   and grows with its words */
+.cd textarea {
+  resize: none;
+}
+
+.cd .sp-field {
+  min-height: 84px;
+}
+
+.cd .sp-compose__ta {
+  min-height: 48px;
+}
+
+/* the scene page's right side: no white card behind its cards, so the
+   cards sit on the drawer and keep its full width */
+.cd[data-surface] .cd-view--scene .cd-pane,
+.cd .cd-view--scene .cd-pane {
+  background: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  box-shadow: none;
+}
+
+.cd .cd-view--scene .cd-pane__tabs {
+  padding: 0;
+}
+
+.cd .cd-view--scene .cd-pane__body {
+  padding: 14px 4px 12px 0;
+}
+
+.cd .cd-view--scene .cd-pane__foot {
+  padding: 10px 0 0;
+}
+
+/* ---- round 78 */
+
+/* a picture's label: glass on every picture, and a card on hover that says
+   what it means and, when something is wrong, how to fix it */
+.sb2-tagwrap {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  z-index: 4;
+  display: flex;
+  max-width: calc(100% - 46px);
+}
+
+.sb2 .sb2-tagwrap .sb2-tag,
+.sb2-tagwrap .sb2-tag {
+  position: static;
+  max-width: 100%;
+  cursor: help;
+}
+
+.sb2-tag.is-ok i {
+  background: #7fe3f2;
+}
+
+.sb2-tag.is-live i {
+  background: #7fe3f2;
+  animation: cd-pulse 1.4s ease-in-out infinite;
+}
+
+.sb2--product .sb2-tagwrap {
+  bottom: 4px;
+  left: 4px;
+}
+
+.sb2--subtitle .sb2-tagwrap {
+  top: 8px;
+  bottom: auto;
+}
+
+.sb2--subtitle .sb2-framewrap:has(.sb2-srcwrap) .sb2-tagwrap {
+  left: 36px;
+}
+
+/* the scene page's big picture: top left */
+.sb2-tagwrap.is-stage {
+  top: 12px;
+  bottom: auto;
+  left: 12px;
+  max-width: calc(100% - 24px);
+}
+
+.sb2-tagwrap.is-stage .sb2-tag {
+  height: 24px;
+  padding: 0 10px;
+  font-size: 11.5px;
+}
+
+.sb2-tagtip {
+  position: absolute;
+  bottom: 100%;
+  left: -6px;
+  z-index: 30;
+  width: 256px;
+  padding-bottom: 8px;
+  opacity: 0;
+  transform: translateY(4px);
+  visibility: hidden;
+  transition:
+    opacity var(--dur-2) var(--ease),
+    transform var(--dur-2) var(--ease),
+    visibility 0s linear var(--dur-2);
+}
+
+.sb2--subtitle .sb2-tagtip,
+.sb2-tagwrap.is-stage .sb2-tagtip {
+  top: 100%;
+  bottom: auto;
+  padding-top: 8px;
+  padding-bottom: 0;
+  transform: translateY(-4px);
+}
+
+.sb2-tagwrap:hover .sb2-tagtip,
+.sb2-tagwrap:focus-within .sb2-tagtip {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+  transition:
+    opacity var(--dur-2) var(--ease) 0.15s,
+    transform var(--dur-2) var(--ease) 0.15s,
+    visibility 0s linear 0.15s;
+}
+
+.sb2-tagtip__in {
+  display: grid;
+  gap: 4px;
+  padding: 11px 12px 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.97);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  backdrop-filter: blur(16px) saturate(1.4);
+  box-shadow:
+    0 4px 10px rgba(15, 23, 42, 0.07),
+    0 18px 36px -14px rgba(15, 23, 42, 0.3);
+  text-align: left;
+  white-space: normal;
+  cursor: default;
+}
+
+.sb2-tagtip__in > b {
+  font-size: 12px;
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+}
+
+.sb2-tagtip__in > span {
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--text-3);
+}
+
+.sb2-tagtip__acts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.sb2-tagtip__btn {
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+  padding: 0 11px;
+  border: 0;
+  border-radius: var(--r-full);
+  background: rgba(29, 29, 31, 0.05);
+  color: var(--text-2);
+  font: inherit;
+  font-size: 11.5px;
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.sb2-tagtip__btn:hover {
+  background: rgba(29, 29, 31, 0.09);
+  color: var(--text);
+}
+
+.sb2-tagtip__btn.is-ink {
+  background: #141416;
+  color: #fff;
+}
+
+.sb2-tagtip__btn.is-ink:hover {
+  background: #2a2a2e;
+}
+
+/* not used: the picture dims and greys under a clear amber hatch, so it
+   reads as out of play */
+.sb2-frame.is-off > img,
+.sb2-frame.is-off .sb2-frame__wash,
+.sb2--product .sb2-frame.is-off > img {
+  filter: grayscale(0.75) brightness(0.62);
+}
+
+.sb2-frame.is-off::after,
+.sb2--product .sb2-frame.is-off::after {
+  background:
+    repeating-linear-gradient(135deg, transparent 0 6px, rgba(251, 191, 90, 0.55) 6px 8.5px),
+    rgba(20, 20, 22, 0.16);
+  opacity: 1;
+}
+
+.sb2-frame.is-broken::after,
+.sb2--product .sb2-frame.is-broken::after {
+  background:
+    repeating-linear-gradient(135deg, transparent 0 6px, rgba(255, 138, 92, 0.6) 6px 8.5px),
+    rgba(20, 20, 22, 0.16);
+}
+
+/* the same on the scene page's big picture */
+.cd-stage--stale .cd-stage__frame > img {
+  filter: grayscale(0.75) brightness(0.62);
+}
+
+.cd-stage--stale .cd-stage__frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: repeating-linear-gradient(135deg, transparent 0 9px, rgba(251, 191, 90, 0.45) 9px 12px);
+  pointer-events: none;
+}
+
+/* your upload: an arrow into a tray, cut out of a cyan disc lit from the top */
+.sb2-src.is-you {
+  --ico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='M12 3.2 5.2 10h4.3v5.6h5V10h4.3z'/%3E%3Crect x='5' y='18' width='14' height='2.8' rx='1.4'/%3E%3C/svg%3E");
+  background:
+    radial-gradient(circle at 30% 22%, rgba(255, 255, 255, 0.55), transparent 48%),
+    linear-gradient(150deg, rgba(150, 232, 246, 0.94) 0%, rgba(56, 184, 212, 0.92) 100%);
+}
+
+/* the scene page: the picture a little narrower, the edits a little wider */
+.cd .cd-scenepage {
+  grid-template-columns: minmax(0, 1fr) minmax(400px, 1.12fr);
+}
+
+/* ---- the scene page's two tabs, three ways */
+.sp-tabs {
+  display: flex;
+  align-items: center;
+}
+
+.sp-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: var(--text-3);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background var(--dur-2) var(--ease),
+    color var(--dur-2) var(--ease),
+    box-shadow var(--dur-2) var(--ease);
+}
+
+.sp-tab__ico {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 7px;
+  color: var(--text-4);
+}
+
+.sp-tab__say {
+  display: grid;
+  min-width: 0;
+}
+
+.sp-tab__say b {
+  font-size: 12.5px;
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+}
+
+.sp-tab__say small {
+  overflow: hidden;
+  font-size: 11px;
+  color: var(--text-4);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.sp-tab.is-on {
+  color: var(--text);
+}
+
+.sp-tab.is-on .sp-tab__ico {
+  color: var(--cyan-700);
+}
+
+/* A · underline */
+.sp-tabs.is-line {
+  gap: 20px;
+  padding: 0 2px;
+  box-shadow: inset 0 -1px 0 rgba(29, 29, 31, 0.07);
+}
+
+.sp-tabs.is-line .sp-tab {
+  position: relative;
+  height: 38px;
+  padding: 0 2px;
+}
+
+.sp-tabs.is-line .sp-tab.is-on::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--cyan-700);
+}
+
+.sp-tabs.is-line .sp-tab:hover {
+  color: var(--text);
+}
+
+/* B · glass track */
+.sp-tabs.is-glass {
+  gap: 4px;
+  padding: 4px;
+  border-radius: var(--r-full);
+  background: rgba(29, 29, 31, 0.045);
+  box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.05);
+}
+
+.sp-tabs.is-glass .sp-tab {
+  flex: 1;
+  justify-content: center;
+  height: 34px;
+  padding: 0 12px;
+  border-radius: var(--r-full);
+}
+
+.sp-tabs.is-glass .sp-tab:not(.is-on):hover {
+  color: var(--text);
+}
+
+.sp-tabs.is-glass .sp-tab.is-on {
+  background: #fff;
+  box-shadow:
+    inset 0 1px 0 #fff,
+    0 1px 2px rgba(15, 23, 42, 0.06),
+    0 4px 12px -6px rgba(15, 23, 42, 0.22);
+}
+
+.sp-tabs.is-glass .sp-tab.is-on .sp-tab__ico {
+  background: #e7f6f8;
+}
+
+/* C · cards */
+.sp-tabs.is-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.sp-tabs.is-cards .sp-tab {
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.sp-tabs.is-cards .sp-tab:not(.is-on):hover {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.sp-tabs.is-cards .sp-tab.is-on {
+  background: #fff;
+  box-shadow:
+    0 0 0 0.5px rgba(15, 23, 42, 0.04),
+    0 1px 2px rgba(15, 23, 42, 0.04),
+    0 8px 20px -12px rgba(15, 23, 42, 0.18);
+}
+
+.sp-tabs.is-cards .sp-tab__ico {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: rgba(29, 29, 31, 0.05);
+}
+
+.sp-tabs.is-cards .sp-tab.is-on .sp-tab__ico {
+  background: #e7f6f8;
+}
+
+/* a card's title can carry its (i) */
+.sp-card__head b {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.sp-card__head .cdb-helppop {
+  width: 300px;
+  font-weight: var(--fw-regular);
+}
+
+/* the composer on its card: head, suggestions, field, note, evenly spaced */
+.sp-compose.sp-card {
+  gap: 10px;
+  padding: 12px 14px 14px;
+}
+
+/* Editing and Unsaved, lighter */
+.cd .cdb-editing {
+  background: rgba(14, 165, 184, 0.08);
+}
+
+.cd .cd-unsaved {
+  background: rgba(245, 158, 11, 0.1);
+}
+
+/* the timeline floats a little, on dark glass, as side-chats' send button */
+.cd .cd-tl__strip {
+  border-radius: 14px;
+  background: rgba(22, 22, 26, 0.8);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  backdrop-filter: blur(14px) saturate(1.4);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.07),
+    0 2px 4px rgba(0, 0, 0, 0.12),
+    0 16px 30px -14px rgba(0, 0, 0, 0.5);
+  transform: translateY(-3px);
+}
+
+
+/* ---- round 79 */
+
+/* a scene with no preview: Draw a preview comes with the pointer */
+.sb2-drawbtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 28px;
+  margin-top: 8px;
+  padding: 0 6px 0 11px;
+  border: 0;
+  border-radius: var(--r-full);
+  background: #141416;
+  color: #fff;
+  font: inherit;
+  font-size: 11.5px;
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(3px);
+  transition:
+    opacity var(--dur-1) var(--ease),
+    transform var(--dur-1) var(--ease);
+  cursor: pointer;
+}
+
+.sb2-tile__scene:hover .sb2-drawbtn,
+.sb2-drawbtn:focus-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.sb2-drawbtn .cd-credit {
+  height: 18px;
+  background: rgba(255, 255, 255, 0.14);
+  color: #b9f3fb;
+  font-size: 10px;
+}
+
+/* the frame's empty state makes room for it */
+.sb2-frame.is-empty .sb2-frame__none {
+  pointer-events: auto;
+}
+
+/* draw every missing preview at once */
+.sb2-drawall {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 7px;
+  height: 32px;
+  margin-left: auto;
+  padding: 0 8px 0 13px;
+  border: 0;
+  border-radius: var(--r-full);
+  background: rgba(14, 165, 184, 0.08);
+  color: var(--cyan-700);
+  font: inherit;
+  font-size: 12px;
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.sb2-drawall:hover {
+  background: rgba(14, 165, 184, 0.14);
+}
+
+.sb2-drawall .cd-credit {
+  height: 20px;
+}
+
+/* the bar's two versions: A, one white card; B, the facts on the card and
+   the three buttons beside it, on the drawer */
+.sb2-bar__card {
+  display: flex;
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+  min-width: 0;
+}
+
+.sb2-bar.is-split {
+  padding: 0;
+  background: none;
+  box-shadow: none;
+}
+
+.sb2-bar.is-split .sb2-bar__card {
+  padding: 12px 16px 12px 20px;
+  border-radius: 14px;
+  background: var(--canvas);
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.03),
+    0 4px 12px -10px rgba(15, 23, 42, 0.14);
+}
+
+.sb2-bar.is-split .sb2-tools {
+  padding: 0 2px 0 4px;
+}
+
+/* the timeline: darker glass */
+.cd .cd-tl__strip {
+  background: rgba(12, 12, 14, 0.94);
+}
+
+/* the generating footer's Stop */
+.cd-genfoot__stop {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ---- the scene page: folder tabs over one white sheet */
+.cd .cd-view--scene .cd-pane {
+  grid-template-rows: auto minmax(0, 1fr);
+}
+
+.cd .cd-view--scene .cd-pane__tabs {
+  padding: 0 0 0 18px;
+}
+
+.sp-ftabs {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.sp-ftab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 40px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 14px 14px 0 0;
+  background: transparent;
+  color: var(--text-3);
+  font: inherit;
+  font-size: 13px;
+  font-weight: var(--fw-medium);
+  cursor: pointer;
+  transition: color var(--dur-2) var(--ease);
+}
+
+.sp-ftab svg {
+  color: var(--text-4);
+}
+
+.sp-ftab:not(.is-on):hover {
+  color: var(--text);
+}
+
+.sp-ftab.is-on {
+  z-index: 1;
+  background: var(--canvas);
+  color: var(--text);
+  font-weight: var(--fw-semibold);
+}
+
+.sp-ftab.is-on svg {
+  color: var(--cyan-700);
+}
+
+/* the tab's feet curve out into the sheet */
+.sp-ftab.is-on::before,
+.sp-ftab.is-on::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  width: 14px;
+  height: 14px;
+  pointer-events: none;
+}
+
+.sp-ftab.is-on::before {
+  left: -14px;
+  background: radial-gradient(circle at 0 0, transparent 14px, var(--canvas) 14.5px);
+}
+
+.sp-ftab.is-on::after {
+  right: -14px;
+  background: radial-gradient(circle at 100% 0, transparent 14px, var(--canvas) 14.5px);
+}
+
+.cd-pane__sheet {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: 16px;
+  background: var(--canvas);
+  box-shadow: 0 12px 28px -18px rgba(15, 23, 42, 0.22);
+}
+
+.cd .cd-view--scene .cd-pane__body {
+  padding: 4px 6px 4px 0;
+}
+
+.cd .cd-view--scene .cd-pane__foot {
+  padding: 10px 18px 12px;
+  box-shadow: inset 0 1px 0 rgba(29, 29, 31, 0.06);
+}
+
+/* inside the sheet the parts are not cards: flat, set apart by a divider */
+.cd-pane__sheet .sp {
+  gap: 0;
+}
+
+.cd-pane__sheet .sp > .sp-card,
+.cd-pane__sheet .sp > .sp-compose.sp-card {
+  padding: 18px 16px 18px 20px;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+
+.cd-pane__sheet .sp > * + * {
+  box-shadow: inset 0 1px 0 rgba(29, 29, 31, 0.06);
+}
+
+.cd-pane__sheet .sp > .sp-impact {
+  margin: 0 16px 16px 20px;
+  box-shadow: none;
+}
+
+.cd-pane__sheet .sp > .sp-off {
+  padding: 16px 20px;
+}
+
+/* ---- the Preview tab: what the main button costs, beside it */
+.sp-cost {
+  display: inline-flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.sp-done + .sp-cost,
+.sp-btn + .sp-cost {
+  margin-left: auto;
+}
+
+.sp-cost .cd-credit {
+  height: 22px;
+}
+
+.sp-cost em.is-free {
+  display: inline-flex;
+  align-items: center;
+  height: 22px;
+  padding: 0 9px;
+  border-radius: var(--r-full);
+  background: rgba(29, 29, 31, 0.05);
+  color: var(--text-3);
+  font-size: 11px;
+  font-style: normal;
+  font-weight: var(--fw-semibold);
+}
+
+.sp-acts {
+  justify-content: flex-start;
+}
+
+/* ---- earlier previews, on the big picture */
+.sp-hist {
+  position: absolute;
+  right: 12px;
+  bottom: 54px;
+  z-index: 5;
+  display: grid;
+  justify-items: end;
+}
+
+.sp-hist__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 28px;
+  padding: 0 6px 0 10px;
+  border: 0;
+  border-radius: var(--r-full);
+  background: rgba(18, 18, 22, 0.32);
+  -webkit-backdrop-filter: blur(12px) saturate(1.4);
+  backdrop-filter: blur(12px) saturate(1.4);
+  color: #fff;
+  font: inherit;
+  font-size: 11.5px;
+  font-weight: var(--fw-semibold);
+  cursor: pointer;
+}
+
+.sp-hist__btn:hover,
+.sp-hist.is-open .sp-hist__btn {
+  background: rgba(18, 18, 22, 0.5);
+}
+
+.sp-hist__btn b {
+  display: inline-grid;
+  place-items: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: var(--r-full);
+  background: rgba(255, 255, 255, 0.2);
+  font-size: 10.5px;
+}
+
+.sp-hist__pop {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 8px);
+  width: 300px;
+  padding: 12px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.97);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  backdrop-filter: blur(16px) saturate(1.4);
+  box-shadow:
+    0 4px 10px rgba(15, 23, 42, 0.08),
+    0 18px 36px -14px rgba(15, 23, 42, 0.32);
+}
+
+.cd .sp-hist__k {
+  display: grid;
+  gap: 2px;
+  margin: 0 0 10px;
+  font-size: 12px;
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+}
+
+.sp-hist__k span {
+  font-size: 11.5px;
+  font-weight: var(--fw-regular);
+  color: var(--text-4);
+}
+
+.sp-hist__list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.sp-hist__it {
+  position: relative;
+  display: grid;
+  gap: 4px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  text-align: center;
+  cursor: pointer;
+}
+
+.sp-hist__it img {
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  border-radius: 8px;
+  transition:
+    filter var(--dur-1) var(--ease),
+    box-shadow var(--dur-1) var(--ease);
+}
+
+.sp-hist__it small {
+  font-size: 11px;
+  color: var(--text-3);
+}
+
+.sp-hist__it.is-now {
+  cursor: default;
+}
+
+.sp-hist__it.is-now img {
+  box-shadow: 0 8px 16px -8px rgba(13, 118, 133, 0.6);
+}
+
+.sp-hist__it.is-now small {
+  font-weight: var(--fw-semibold);
+  color: var(--cyan-700);
+}
+
+.sp-hist__it em {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  padding: 3px 8px;
+  border-radius: var(--r-full);
+  background: #141416;
+  color: #fff;
+  font-size: 10.5px;
+  font-style: normal;
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  transition: opacity var(--dur-1) var(--ease);
+}
+
+.sp-hist__it:hover img {
+  filter: brightness(0.8);
+}
+
+.sp-hist__it:hover em {
+  opacity: 1;
+}
+
+.sb2-bar.is-split {
+  flex-wrap: nowrap;
+  align-items: stretch;
+}
+
+.sb2-bar.is-split .sb2-tools {
+  flex: none;
+  align-self: center;
+}
+
+/* the history's thumbnails are not the stage's picture */
+.cd-stage__frame .sp-hist__it img {
+  position: static;
+  width: 100%;
+  height: auto;
+  max-width: none;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  filter: none;
+  transform: none;
+}
+
+.cd-stage__frame .sp-hist__it:not(.is-now):hover img {
+  filter: brightness(0.8);
+}
+
+/* ---- round 80: no hatch. A picture that isn't used is dimmed and faded,
+   so it reads as out of play while what it shows stays clear */
+.sb2-frame.is-off::after,
+.sb2--product .sb2-frame.is-off::after,
+.sb2-frame.is-broken::after,
+.sb2--product .sb2-frame.is-broken::after,
+.cd-stage--stale .cd-stage__frame::after {
+  content: none;
+}
+
+.sb2-frame.is-off,
+.sb2--product .sb2-frame.is-off {
+  background: #26262a;
+}
+
+.sb2-frame.is-off > img,
+.sb2-frame.is-off .sb2-frame__wash,
+.sb2--product .sb2-frame.is-off > img {
+  filter: grayscale(0.45) brightness(0.8);
+  opacity: 0.55;
+}
+
+.cd-stage--stale .cd-stage__frame > img {
+  filter: grayscale(0.45) brightness(0.8);
+  opacity: 0.55;
+}
+
+/* ---- round 81: the open tab and its sheet lift off the drawer as one
+   shape; one drop shadow follows both, so there is no seam between them */
+.cd .cd-view--scene .cd-pane {
+  filter:
+    drop-shadow(0 1px 1px rgba(15, 23, 42, 0.05))
+    drop-shadow(0 6px 14px rgba(15, 23, 42, 0.09));
+}
+
+.cd-pane__sheet {
+  box-shadow: none;
+}
+
+.sp-ftab {
+  padding: 0 20px;
+}
+
+.sp-ftab:not(.is-on) {
+  color: var(--text-4);
+}
+
+/* ---- round 82: the composer is taller; the text has the top, the send
+   button a row of its own at the bottom right, as in side-chats */
+.sp-compose__box {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 6px;
+  padding: 12px 10px 10px 14px;
+}
+
+.cd .sp-compose__ta {
+  min-height: 52px;
+  padding-right: 4px;
+}
+
+.sp-compose__box .sp-send {
+  justify-self: end;
+}
+
+/* ---- round 83: the Preview picture and Your own picture parts share one
+   tile: a 56px picture at the left, the words beside it, the buttons under
+   the words (a second choice at the left; the cost and the main button at
+   the right) */
+.sp-tile,
+.cd .sp-drop {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr);
+  align-items: start;
+  gap: 14px;
+  margin-top: 12px;
+  padding: 12px 14px 12px 12px;
+  border-radius: 12px;
+  background: rgba(29, 29, 31, 0.035);
+}
+
+.sp-tile__pic {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: var(--canvas);
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.1);
+  color: var(--text-4);
+}
+
+.sp-tile__pic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sp-tile.is-off .sp-tile__pic img {
+  filter: grayscale(0.45) brightness(0.8);
+  opacity: 0.6;
+}
+
+.sp-tile__body {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+  padding-top: 2px;
+}
+
+.cd .sp-tile .sp-say {
+  margin: 0;
+}
+
+.sp-tile .sp-acts {
+  justify-content: flex-start;
+  margin: 0;
+}
+
+.sp-tile .sp-acts .sp-btn:first-child:not(.is-ink) {
+  margin-left: -12px;
+}
+
+.sp-tile .sp-skel {
+  padding: 4px 0;
+}
+
+/* Use an image, the same tile: the cyan disc in the picture's place */
+.cd .sp-drop {
+  width: 100%;
+  border: 0;
+  text-align: left;
+  cursor: pointer;
+}
+
+.sp-drop .sp-drop__ico {
+  background: var(--canvas);
+}
+
+.sp-drop .sp-drop__ico i {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: linear-gradient(160deg, #8fe3f2 0%, #4fbfd6 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  color: #fff;
+}
+
+.sp-tile__pic i {
+  display: grid;
+  place-items: center;
+  font-style: normal;
+}
+
+.sp-drop .sp-tile__body {
+  gap: 3px;
+}
+
+.sp-drop .sp-tile__body b {
+  font-size: 12.5px;
+  font-weight: var(--fw-semibold);
+}
+
+.sp-drop .sp-tile__body small {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-3);
+}
+
+.sp-drop__go {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 7px;
+  font-size: 12px;
+  font-weight: var(--fw-semibold);
+  color: var(--cyan-700);
+}
+
+.sp-drop__go em.is-free {
+  display: inline-flex;
+  align-items: center;
+  height: 20px;
+  padding: 0 8px;
+  border-radius: var(--r-full);
+  background: rgba(29, 29, 31, 0.05);
+  color: var(--text-3);
+  font-size: 10.5px;
+  font-style: normal;
+  font-weight: var(--fw-semibold);
+}
+
+.cd .sp-drop:hover {
+  background: rgba(14, 165, 184, 0.07);
+}
+
+/* your picture, when there is one: the same 56px square */
+.sp-own {
+  grid-template-columns: 56px minmax(0, 1fr) auto auto;
+}
+
+.sp-own__img {
+  width: 56px;
+  height: 56px;
+  border-radius: 10px;
+}
+
+/* both tiles' actions start under their words */
+.sp-tile .sp-cost,
+.sp-tile .sp-done + .sp-cost,
+.sp-tile .sp-btn + .sp-cost {
+  margin-left: 0;
+}
+
+.sp-tile .sp-acts .sp-btn + .sp-cost {
+  margin-left: 4px;
+}
+
+/* ---- round 84: the tiles' other buttons get a soft fill, so each reads
+   as a button (Draw it again, Use the words only, Try again) */
+.sp-tile .sp-btn:not(.is-ink) {
+  background: rgba(29, 29, 31, 0.06);
+  color: var(--text-2);
+}
+
+.sp-tile .sp-btn:not(.is-ink):hover {
+  background: rgba(29, 29, 31, 0.1);
+  color: var(--text);
+}
+
+.sp-tile .sp-acts .sp-btn:first-child:not(.is-ink) {
+  margin-left: 0;
+}
+
+/* ---- round 85: the sheet sits lower; a lighter, closer shadow */
+.cd .cd-view--scene .cd-pane {
+  filter:
+    drop-shadow(0 1px 1px rgba(15, 23, 42, 0.04))
+    drop-shadow(0 3px 7px rgba(15, 23, 42, 0.05));
+}
+
+/* ---- round 86: a field in focus looks as side-chats' composer does: it
+   turns white, a faint cyan line around it and a soft cyan glow */
+.sp-compose__box:focus-within,
+.sb2-le__box:focus-within,
+.cd .sp-sec:focus-within > .sp-field,
+.cd .sp-field:focus,
+.cd .cd-ta:not(.cdb-ie):focus,
+.cd .cd-in:focus {
+  background: #fff;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    0 0 0 1px color-mix(in srgb, var(--cyan-600, #0ea5b8) 22%, transparent),
+    0 0 10px color-mix(in srgb, var(--cyan-600, #0ea5b8) 12%, transparent),
+    0 8px 20px -12px rgba(15, 23, 42, 0.2);
+}
+
+.sp-compose__box,
+.sb2-le__box,
+.sp-field {
+  transition:
+    background var(--dur-2) var(--ease),
+    box-shadow var(--dur-2) var(--ease);
+}
+
+/* ---- round 87: the length slider's fill one step lighter, --cyan-600 */
+.sp-len::before {
+  background:
+    radial-gradient(circle, rgba(29, 29, 31, 0.22) 2px, transparent 2.5px) 0 50% / 4px 4px no-repeat,
+    radial-gradient(circle, rgba(29, 29, 31, 0.22) 2px, transparent 2.5px) 50% 50% / 4px 4px no-repeat,
+    radial-gradient(circle, rgba(29, 29, 31, 0.22) 2px, transparent 2.5px) 100% 50% / 4px 4px no-repeat,
+    linear-gradient(90deg, var(--cyan-600) 0 var(--p), rgba(29, 29, 31, 0.08) var(--p) 100%);
+}
+
+.sp-len__range::-webkit-slider-thumb {
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.18),
+    0 3px 8px -2px rgba(14, 165, 184, 0.4);
+}
+
+/* ---- round 88: each part of the scene page has its own icon colour, from
+   the Brief's palette (a warning or a fault still turns it amber or orange) */
+.sp-card__ico.is-cyan {
+  background: #e4f6f9;
+  color: #0d7685;
+}
+
+.sp-card__ico.is-indigo {
+  background: #edeefd;
+  color: #4f46e5;
+}
+
+.sp-card__ico.is-violet {
+  background: #f3edfd;
+  color: #7c3aed;
+}
+
+.sp-card__ico.is-blue {
+  background: #e8f1fe;
+  color: #1f6fe0;
+}
+
+.sp-card.is-warn .sp-card__ico {
+  background: var(--cd-warn-soft);
+  color: var(--cd-warn);
+}
+
+.sp-card.is-fix .sp-card__ico {
+  background: #fdeee6;
+  color: #c2410c;
+}
+
+/* ---- round 89 */
+
+/* an empty frame's words sit in its middle; Draw a preview floats over its
+   foot on dark glass, out of their way */
+.sb2-drawbtn {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  z-index: 3;
+  margin: 0;
+  height: 30px;
+  padding: 0 5px 0 12px;
+  line-height: 1;
+  background: rgba(20, 20, 22, 0.72);
+  -webkit-backdrop-filter: blur(12px) saturate(1.4);
+  backdrop-filter: blur(12px) saturate(1.4);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 2px 4px rgba(0, 0, 0, 0.12),
+    0 10px 20px -10px rgba(0, 0, 0, 0.45);
+  transform: translate(-50%, 4px);
+}
+
+.sb2-tile__scene:hover .sb2-drawbtn,
+.sb2-drawbtn:focus-visible {
+  transform: translate(-50%, 0);
+}
+
+.sb2-drawbtn:hover {
+  background: rgba(20, 20, 22, 0.86);
+}
+
+.sb2-drawbtn > svg {
+  display: block;
+  flex: none;
+}
+
+.sb2-drawbtn .cd-credit {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 20px;
+  line-height: 1;
+}
+
+.sb2-drawbtn .cd-credit__ico {
+  display: grid;
+  place-items: center;
+}
+
+.sb2-drawbtn .cd-credit__ico svg {
+  display: block;
+}
+
+/* A · its own row under the bar, at the right */
+.sb2-drawrow {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.sb2-drawrow__say {
+  font-size: 12px;
+  color: var(--text-3);
+}
+
+.sb2-drawrow .sb2-drawall {
+  margin-left: 0;
+}
+
+/* B · a fourth round button with the tools, with how many to draw */
+.sb2-tool {
+  position: relative;
+}
+
+.sb2-tool__btn.is-draw {
+  position: relative;
+  background: var(--canvas);
+  color: var(--cyan-700);
+  box-shadow:
+    inset 0 1px 0 #fff,
+    0 1px 2px rgba(15, 23, 42, 0.08),
+    0 8px 18px -10px rgba(13, 118, 133, 0.45);
+}
+
+.sb2-tool__btn.is-draw:hover {
+  background: #f4fdfe;
+}
+
+.sb2-tool__n {
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  display: grid;
+  place-items: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: var(--r-full);
+  background: var(--cyan-600);
+  box-shadow: 0 2px 6px -2px rgba(14, 165, 184, 0.6);
+  color: #fff;
+  font-size: 10px;
+  font-weight: var(--fw-bold);
+}
+
+/* the first time: a note under it, saying what it does */
+.sb2-note {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: -8px;
+  z-index: 30;
+  display: grid;
+  gap: 8px;
+  width: 248px;
+  padding: 11px 12px 10px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.97);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  backdrop-filter: blur(16px) saturate(1.4);
+  box-shadow:
+    0 4px 10px rgba(15, 23, 42, 0.07),
+    0 18px 36px -14px rgba(15, 23, 42, 0.3);
+}
+
+.sb2-note::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  right: 22px;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background: inherit;
+  transform: rotate(45deg);
+}
+
+.sb2-note__say {
+  display: grid;
+  gap: 2px;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--text-3);
+}
+
+.sb2-note__say b {
+  font-size: 12px;
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+}
+
+.sb2-note__ok {
+  justify-self: end;
+  height: 24px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: var(--r-full);
+  background: #141416;
+  color: #fff;
+  font: inherit;
+  font-size: 11px;
+  font-weight: var(--fw-semibold);
+  cursor: pointer;
+}
+
+/* the empty frame's icon rules must not reach the button's icons */
+.sb2 .sb2-frame__none .sb2-drawbtn svg,
+.sb2--product .sb2-frame__none .sb2-drawbtn svg {
+  display: block;
+  margin: 0;
+}
+
+/* ---- round 90: an out-of-date picture fades toward the page, whole. The
+   backdrop keeps its blur (the round 80 filter had dropped it, so a sharp
+   copy filled the frame behind a portrait), and the picture itself stays
+   solid under a pale veil, so nothing shows through it */
+.sb2-frame.is-off,
+.sb2--product .sb2-frame.is-off {
+  background: #eef0f1;
+}
+
+.sb2-frame.is-off > img,
+.sb2--product .sb2-frame.is-off > img {
+  filter: grayscale(0.7);
+  opacity: 1;
+}
+
+.sb2-frame.is-off .sb2-frame__wash {
+  filter: blur(16px) saturate(1.15) brightness(0.94) grayscale(0.7);
+  opacity: 1;
+}
+
+.sb2-frame.is-off::after,
+.sb2--product .sb2-frame.is-off::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(246, 246, 244, 0.62);
+  opacity: 1;
+  pointer-events: none;
+}
+
+.cd-stage--stale .cd-stage__frame > img {
+  filter: grayscale(0.7);
+  opacity: 0.4;
+}
+
+/* the label itself, set in a sentence so the words point at what it looks like */
+.sb2-tag.is-inline {
+  position: static;
+  vertical-align: -5px;
+  margin: 0 2px;
+  max-width: none;
+  background: rgba(18, 18, 22, 0.62);
+}
+
+/* ---- round 91: a long label scrolls to its end and back, slowly, with a
+   rest at each end; while its card is open it stands still */
+.sb2-tag__vp {
+  flex: 0 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sb2-tag__t {
+  white-space: nowrap;
+}
+
+.sb2-tag.is-marquee {
+  gap: 0;
+  text-overflow: clip;
+}
+
+.sb2-tag.is-marquee .sb2-tag__vp {
+  flex: 1 1 auto;
+  text-overflow: clip;
+  padding-left: 5px;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 5px, #000 calc(100% - 10px), transparent);
+  mask-image: linear-gradient(90deg, transparent 0, #000 5px, #000 calc(100% - 10px), transparent);
+}
+
+.sb2-tag.is-marquee .sb2-tag__t {
+  display: inline-block;
+  animation: sb2-marquee var(--mqd, 8s) ease-in-out infinite;
+}
+
+.sb2-tagwrap:hover .sb2-tag.is-marquee .sb2-tag__t,
+.sb2-tagwrap:focus-within .sb2-tag.is-marquee .sb2-tag__t {
+  animation-play-state: paused;
+}
+
+@keyframes sb2-marquee {
+  0%,
+  18% {
+    transform: translateX(0);
+  }
+  50%,
+  68% {
+    transform: translateX(var(--mq, 0));
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sb2-tag.is-marquee .sb2-tag__t {
+    animation: none;
+  }
+}
+
+/* a card about something to decide or fix opens with an amber sign and
+   carries a faint warm wash from its top corner */
+.sb2-tagtip.is-decide .sb2-tagtip__in,
+.sb2-tagtip.is-fix .sb2-tagtip__in {
+  background:
+    radial-gradient(120% 90% at 0 0, rgba(251, 191, 90, 0.14), transparent 62%),
+    rgba(255, 255, 255, 0.97);
+}
+
+.sb2-tagtip__in > b {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.sb2-tagtip__in > b svg {
+  flex: none;
+  margin-top: 1px;
+  color: #e59a1f;
+}
+
+.sb2-tagtip.is-fix .sb2-tagtip__in > b svg {
+  color: #f0703a;
+}
+
+.cd-tip .sb2-tag.is-inline,
+.sb2-tag.is-inline {
+  height: 20px;
+  color: #fff;
+  font-size: 11px;
+  line-height: 1;
+}
+
+/* ---- round 92: Delete scene sits apart the way the drawer's footer does:
+   no line; the scrolling content fades out above it, and the foot is a thin
+   glass bar with a soft lift */
+.cd .cd-view--scene .cd-pane__body {
+  -webkit-mask-image: linear-gradient(180deg, #000 calc(100% - 16px), transparent 100%);
+  mask-image: linear-gradient(180deg, #000 calc(100% - 16px), transparent 100%);
+}
+
+.cd .cd-view--scene .cd-pane__foot {
+  margin: 0 8px 8px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.42));
+  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+  backdrop-filter: blur(20px) saturate(1.5);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.85),
+    0 1px 2px rgba(15, 23, 42, 0.04),
+    0 -4px 14px -8px rgba(15, 23, 42, 0.1),
+    0 6px 16px -10px rgba(15, 23, 42, 0.14);
+}
+
+/* ---- round 93: buttons outside, the facts' card hugs them as closely on
+   the right as on the left; the buttons stay at the far right */
+.sb2-bar.is-split .sb2-bar__card {
+  flex: 0 1 auto;
+  padding: 12px 20px;
+}
+
+.sb2-bar.is-split .sb2-bar__facts {
+  flex: 0 1 auto;
+}
+
+.sb2-bar.is-split .sb2-tools {
+  margin-left: auto;
+}
+
+.sb2-bar.is-split .sb2-fact:last-child {
+  padding-right: 0;
+}
+
+/* ---- round 94: Subtitles. The count sits on the subtitle's top row, with
+   Spoken here, so it reads as the line's; the line is edited in the same
+   dark box, on the frame */
+.sb2 .sb2-sub__k {
+  min-width: 0;
+}
+
+.sb2-sub__k > span:first-of-type {
+  flex: none;
+}
+
+.sb2-sub .sb2-placed {
+  height: 15px;
+  padding: 0 5px;
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+  font-size: 9.5px;
+}
+
+.sb2 .sb2-sub__fit,
+.sb2 .sb2-sub .sb2-le__fit {
+  position: static;
+  margin-left: auto;
+  padding-left: 8px;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 10px;
+  font-weight: var(--fw-medium);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.sb2 .sb2-sub__fit.is-over,
+.sb2 .sb2-sub .sb2-le__fit.is-over {
+  color: #fbbf5a;
+  font-weight: var(--fw-semibold);
+}
+
+.sb2-sub__acts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 6px;
+  margin-top: 3px;
+  font-size: 10.5px;
+  color: #fbd08a;
+}
+
+.sb2-sub__acts svg {
+  flex: none;
+  color: #fbbf5a;
+}
+
+.sb2 .sb2-sub .sb2-link {
+  color: #b9f3fb;
+  font-size: 10.5px;
+}
+
+.sb2-sub .sb2-lbtn {
+  height: 18px;
+  margin-left: auto;
+  background: rgba(251, 191, 90, 0.22);
+  color: #fde3b5;
+}
+
+.sb2-sub .sb2-lbtn:hover {
+  background: rgba(251, 191, 90, 0.34);
+}
+
+/* editing, in place */
+.sb2-sub.is-editing {
+  gap: 4px;
+  max-height: calc(100% - 20px);
+  padding: 7px 10px 8px;
+  overflow-y: auto;
+  background: rgba(10, 10, 12, 0.78);
+  box-shadow: 0 0 0 1.5px rgba(124, 228, 242, 0.55);
+  cursor: default;
+  scrollbar-width: none;
+}
+
+.sb2-sub.is-editing:hover {
+  background: rgba(10, 10, 12, 0.78);
+}
+
+.sb2 .sb2-sub__ta,
+.sb2 .sb2-sub__ta:focus,
+.sb2 .sb2-sub__ta:focus-visible {
+  min-height: 0;
+  padding: 0;
+  overflow: hidden;
+  resize: none;
+  background: transparent;
+  box-shadow: none;
+  outline: none;
+  color: #fff;
+  caret-color: #7fe3f2;
+  font-size: 12.5px;
+  font-weight: var(--fw-medium);
+  line-height: 1.4;
+}
+
+.sb2-sub__ta::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.sb2 .sb2-sub .sb2-le__over {
+  gap: 5px;
+  font-size: 10.5px;
+  line-height: 1.45;
+  color: #fbd08a;
+}
+
+.sb2 .sb2-sub .sb2-le__over svg {
+  margin-top: 2px;
+  color: #fbbf5a;
+}
+
+.sb2 .sb2-sub .sb2-le__over .sb2-link {
+  font-size: 10.5px;
+}
+
+.sb2 .sb2-sub .sb2-le__keys {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.sb2 .sb2-sub .sb2-le__keys kbd {
+  height: 15px;
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  font-size: 9.5px;
+}
+
+/* ---- round 95: Draw the missing previews says it uses credits in a block
+   of its own, in the credits' cyan, so it can't be missed */
+.sb2 .sb2-cost,
+.cd-tip__txt span.sb2-cost {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 8px;
+  padding: 8px 10px 8px 8px;
+  border-radius: 10px;
+  background: var(--cyan-100);
+  color: var(--cyan-800);
+}
+
+.sb2 .sb2-cost__ico {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--cyan-600);
+  color: #fff;
+  box-shadow: 0 2px 6px -2px rgba(8, 145, 178, 0.6);
+}
+
+.sb2 .sb2-cost > span,
+.cd-tip__txt span.sb2-cost > span {
+  display: grid;
+  gap: 1px;
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--cyan-800);
+  opacity: 0.85;
+}
+
+.sb2 .sb2-cost b {
+  font-size: 12.5px;
+  font-weight: var(--fw-bold);
+  line-height: 1.3;
+  color: var(--cyan-800);
+}
+
+.sb2-note .sb2-cost {
+  margin-top: 0;
+}
+
+/* ---- round 96: Subtitles, an empty frame that also has no line: Add a line
+   keeps the subtitle's place at the foot, Draw a preview stands just above
+   it, and the frame's words move up to make room */
+.sb2--subtitle .sb2-frame:has(> .sb2-sub.is-empty) .sb2-drawbtn {
+  bottom: 44px;
+}
+
+.sb2--subtitle .sb2-frame:has(> .sb2-sub.is-empty) .sb2-frame__none {
+  margin-bottom: 52px;
+}
+
+/* ---- round 97: Bubbles. While its line is edited the bubble is the field
+   itself, as the subtitle is in Subtitles: no well inside it; the count on
+   its top row. Round 98: the cyan line is drawn round the bubble's whole
+   shape, tail included (drop shadows follow the shape, a box shadow can't),
+   with one soft glow and no second ring; it keeps the card's height */
+.sb2--bubble .sb2-tile .sb2-lc.is-editing.is-box {
+  gap: 6px;
+  min-height: 104px;
+  border-radius: 4px 16px 16px 16px;
+  box-shadow: none;
+  filter: drop-shadow(1px 0 0 #a6ecf6) drop-shadow(-1px 0 0 #a6ecf6) drop-shadow(0 1px 0 #a6ecf6)
+    drop-shadow(0 -1px 0 #a6ecf6) drop-shadow(0 0 6px rgba(73, 224, 245, 0.28));
+}
+
+.sb2--bubble .sb2-lc.is-box .sb2-le__fit {
+  position: static;
+  margin-left: auto;
+  font-size: 10.5px;
+  font-weight: var(--fw-medium);
+  color: var(--text-4);
+}
+
+.sb2--bubble .sb2-lc.is-box .sb2-le__fit.is-over {
+  font-weight: var(--fw-semibold);
+  color: var(--cd-warn);
+}
+
+.sb2--bubble .sb2-lc.is-box .sb2-le__ta {
+  min-height: 0;
+  font-size: 12.5px;
+  line-height: 1.4;
+}
+
+/* the line's words at the subtitle's size, read or edited */
+.sb2--bubble .sb2-lc .sb2-lc__q {
+  font-size: 12.5px;
+  line-height: 1.4;
+}
+
+/* Subtitles: while a line is edited the frame comes forward, so who made
+   the picture (and its label) sit behind the field */
+.sb2--subtitle .sb2-framewrap:has(.sb2-sub.is-editing) > .sb2-frame {
+  z-index: 5;
+}
+
+/* ---- round 99: Draw previews. A faint cyan ring; now and then it hops, as
+   Plan the storyboard does, and a small glass bubble over it says what it
+   is for; hovering it opens its card instead */
+.sb2-tool__btn.is-draw {
+  box-shadow:
+    inset 0 1px 0 #fff,
+    0 0 0 1.5px rgba(73, 224, 245, 0.55),
+    0 0 0 4px rgba(73, 224, 245, 0.12),
+    0 8px 18px -10px rgba(13, 118, 133, 0.45);
+  animation: cd-beat 7s var(--ease) infinite;
+}
+
+.sb2-drawtool:hover .sb2-tool__btn.is-draw {
+  animation: none;
+}
+
+.sb2-drawhint {
+  position: absolute;
+  bottom: calc(100% + 9px);
+  left: 50%;
+  z-index: 25;
+  padding: 4px 9px;
+  border-radius: var(--r-full);
+  background: rgba(20, 20, 22, 0.62);
+  -webkit-backdrop-filter: blur(10px) saturate(1.4);
+  backdrop-filter: blur(10px) saturate(1.4);
+  color: #fff;
+  font-size: 10.5px;
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, 3px);
+  animation: sb2-drawhint 7s var(--ease) infinite;
+}
+
+/* its notch, pointing down at the button */
+.sb2-drawhint::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 8px;
+  height: 4px;
+  background: inherit;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform: translateX(-50%);
+}
+
+@keyframes sb2-drawhint {
+  0%,
+  76% {
+    opacity: 0;
+    transform: translate(-50%, 3px);
+  }
+  80%,
+  97% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, 3px);
+  }
+}
+
+.sb2-drawtool:hover .sb2-drawhint {
+  animation: none;
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sb2-tool__btn.is-draw,
+  .sb2-drawhint {
+    animation: none;
+  }
+}
+
+/* its card: the icon beside the title, the words and the credits under
+   them at full width */
+.sb2-tools .cd-tip.sb2-drawtip {
+  display: grid;
+  justify-items: start;
+  gap: 6px;
+  width: 248px;
+  padding: 11px 12px 12px;
+}
+
+.sb2-drawtip__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sb2-drawtip .cd-tip__ico {
+  width: 22px;
+  height: 22px;
+  border-radius: 7px;
+}
+
+.sb2-drawtip__head b {
+  font-size: 12.5px;
+  font-weight: var(--fw-semibold);
+  line-height: 1.3;
+}
+
+.sb2-drawtip__say {
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--text-3);
+}
+
+.sb2-drawtip .cd-credit {
+  margin-top: 2px;
+}
+
+/* ---- round 99: the scene page. A cost sits inside its button, after the
+   label; the Preview image tab gets a small orange dot while its picture
+   needs something done; Your own picture's icon takes the upload disc's
+   light cyan, and the disc stands without a white tile behind it */
+.sp-btn .cd-credit,
+.sp-btn .is-free {
+  margin-left: 3px;
+}
+
+.sp-btn .cd-credit {
+  height: 18px;
+  font-size: 10.5px;
+}
+
+.sp-btn .cd-credit__ico {
+  width: 14px;
+  height: 14px;
+}
+
+.sp-btn.is-ink .cd-credit {
+  background: rgba(255, 255, 255, 0.14);
+  color: #b9f3fb;
+}
+
+.sp-btn .is-free {
+  display: inline-flex;
+  align-items: center;
+  height: 18px;
+  padding: 0 6px;
+  border-radius: 6px;
+  background: rgba(29, 29, 31, 0.06);
+  color: var(--text-3);
+  font-size: 10.5px;
+  font-style: normal;
+}
+
+.sp-btn.is-ink .is-free {
+  background: rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.sp-btn.is-ink {
+  padding-right: 6px;
+}
+
+.sp-btn.is-ink:not(:has(.cd-credit, .is-free)) {
+  padding-right: 14px;
+}
+
+.sp-ftab {
+  position: relative;
+}
+
+.sp-ftab__dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-left: 7px;
+  border-radius: 50%;
+  background: #f59e0b;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.18);
+  vertical-align: 2px;
+}
+
+.sp-card__ico.is-sky {
+  background: #e3f7fb;
+  color: #2ea8c2;
+}
+
+.sp-drop .sp-drop__ico {
+  background: transparent;
+  box-shadow: none;
+}
+
+.sp-drop .sp-drop__ico i {
+  width: 44px;
+  height: 44px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    0 6px 14px -8px rgba(13, 118, 133, 0.55);
+}
+
+/* a button in a label's card carries its cost the same way */
+.sb2-tagtip__btn .cd-credit {
+  height: 18px;
+  margin: 0 -6px 0 6px;
+  font-size: 10.5px;
+}
+
+.sb2-tagtip__btn .cd-credit__ico {
+  width: 14px;
+  height: 14px;
+}
+
+.sb2-tagtip__btn.is-ink .cd-credit {
+  background: rgba(255, 255, 255, 0.14);
+  color: #b9f3fb;
+}
+
+/* Rewrite with Vicino's mark: a bigger white disc, so the sparkle has air
+   inside its ring */
+.sp-compose__ico {
+  width: 26px;
+  height: 26px;
+}
+
+.sp-compose__ico svg {
+  padding: 5.5px;
+}
+
+/* ---- round 100: a composer's note can open on the credits label */
+.sp-compose__note .cd-credit {
+  margin-right: 4px;
+  vertical-align: 0;
+}
+
+.sp-compose__note .cd-credit svg {
+  margin-top: 0;
+}
+
+/* ---- round 101: Earlier previews. The button sits at the big picture's
+   bottom left, level with its time; its card has room to breathe and two
+   clear parts: the take in use, then every earlier take as square pictures,
+   numbered in the order they were drawn */
+.sp-hist {
+  right: auto;
+  left: 12px;
+  bottom: 4px;
+  justify-items: start;
+}
+
+.sp-hist__pop {
+  right: auto;
+  left: 0;
+  display: grid;
+  gap: 0;
+  width: 320px;
+  max-height: 420px;
+  padding: 0;
+  overflow: hidden;
+  border-radius: 16px;
+  text-align: left;
+}
+
+.sp-hist__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 16px 18px 12px;
+}
+
+.sp-hist__head b {
+  font-size: 13px;
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+}
+
+.sp-hist__head span {
+  font-size: 11.5px;
+  color: var(--text-4);
+}
+
+.sp-hist__sec {
+  display: grid;
+  gap: 10px;
+  min-height: 0;
+  padding: 14px 18px 16px;
+  box-shadow: inset 0 1px 0 rgba(29, 29, 31, 0.07);
+}
+
+.sp-hist__sec:first-of-type {
+  padding-top: 2px;
+  box-shadow: none;
+}
+
+.cd .sp-hist__k {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  font-size: 11px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--text-4);
+}
+
+.cd .sp-hist__k span {
+  font-size: 11.5px;
+  font-weight: var(--fw-regular);
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--text-4);
+}
+
+.sp-hist__k .is-free {
+  margin-left: auto;
+  padding: 1px 7px;
+  border-radius: 6px;
+  background: rgba(29, 29, 31, 0.06);
+  color: var(--text-3);
+  font-size: 10.5px;
+  font-style: normal;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* the take in use: its picture and what it is, side by side */
+.sp-hist__now {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  border-radius: 12px;
+  background: #eefafc;
+}
+
+.cd-stage__frame .sp-hist__now img {
+  position: static;
+  flex: none;
+  width: 56px;
+  height: 56px;
+  max-width: none;
+  border-radius: 9px;
+  object-fit: cover;
+  object-position: center 30%;
+  filter: none;
+  transform: none;
+}
+
+.sp-hist__now span {
+  display: grid;
+  gap: 2px;
+}
+
+.sp-hist__now b {
+  font-size: 12.5px;
+  font-weight: var(--fw-semibold);
+  color: var(--cyan-800);
+}
+
+.sp-hist__now small {
+  font-size: 11.5px;
+  line-height: 1.4;
+  color: var(--text-3);
+}
+
+/* every earlier take: square pictures, four to a row, scrolling when many */
+.sp-hist__list {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px 10px;
+  max-height: 196px;
+  margin: 0 -4px;
+  padding: 4px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(29, 29, 31, 0.14) transparent;
+}
+
+.sp-hist__it {
+  gap: 5px;
+}
+
+.sp-hist__pic {
+  position: relative;
+  display: block;
+  border-radius: 9px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.12);
+}
+
+.cd-stage__frame .sp-hist__pic img {
+  position: static;
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: none;
+  aspect-ratio: 1 / 1;
+  border-radius: 0;
+  object-fit: cover;
+  object-position: center 30%;
+  filter: none;
+  transform: none;
+}
+
+.sp-hist__pic em {
+  top: 50%;
+  padding: 2px 7px;
+  font-size: 10px;
+}
+
+.sp-hist__it:hover .sp-hist__pic em {
+  opacity: 1;
+}
+
+.cd-stage__frame .sp-hist__it:hover .sp-hist__pic img {
+  filter: brightness(0.75);
+}
+
+.sp-hist__it:focus-visible .sp-hist__pic {
+  box-shadow: 0 0 0 2px var(--cyan-500);
+}
+
+.sp-hist__it small {
+  font-size: 11px;
+  font-weight: var(--fw-medium);
+  color: var(--text-3);
+}
+
+/* the card lies on the picture, so it is dark glass like its button */
+.sp-hist__pop {
+  background: rgba(18, 18, 22, 0.66);
+  -webkit-backdrop-filter: blur(22px) saturate(1.4);
+  backdrop-filter: blur(22px) saturate(1.4);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 18px 40px -16px rgba(0, 0, 0, 0.55);
+  color: #fff;
+}
+
+.sp-hist__head b {
+  color: #fff;
+}
+
+.sp-hist__head span,
+.cd .sp-hist__k,
+.cd .sp-hist__k span {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.sp-hist__sec {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.sp-hist__k .is-free {
+  background: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.sp-hist__now {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.sp-hist__now b {
+  color: #b9f3fb;
+}
+
+.sp-hist__now small,
+.sp-hist__it small {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.sp-hist__pic {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.sp-hist__pic em {
+  background: rgba(255, 255, 255, 0.92);
+  color: #141416;
+}
+
+.sp-hist__list {
+  scrollbar-color: rgba(255, 255, 255, 0.22) transparent;
+}
+
+/* Draw it again, Draw a preview: the ink of Save changes on hover, with its
+   cyan glow under it, never grey */
+.sp-btn.is-ink[data-act='regen'] {
+  background: #14181a;
+  box-shadow:
+    0 2px 4px rgba(15, 23, 42, 0.06),
+    0 8px 18px -8px rgba(14, 165, 184, 0.55);
+}
+
+.sp-btn.is-ink[data-act='regen']:hover {
+  background: #22292c;
+}
+
+/* ---- round 103: Add a scene at the far right of the scene page's top
+   row, the arrows' size, in the ink of the storyboard's Add */
+.cd-scenehead__add {
+  position: relative;
+  display: inline-flex;
+  margin-left: 6px;
+}
+
+.cd-scenehead__nav .cd-ibtn.is-add {
+  background: #141416;
+  color: #fff;
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.18),
+    0 6px 14px -8px rgba(15, 23, 42, 0.5);
+}
+
+.cd-scenehead__nav .cd-ibtn.is-add:hover {
+  background: #2a2a2e;
+}
+
+.cd-scenehead__add .cd-tip {
+  right: -6px;
+  z-index: 40;
+}
+
+/* ---- round 104: Earlier previews and the time share one row, a little
+   higher, on the same glass, one that shows on the picture and on the
+   black around it */
+.cd-stage__frame .sp-hist {
+  bottom: 14px;
+}
+
+.cd-stage__frame .cd-scene__time {
+  right: 12px;
+  bottom: 14px;
+  display: inline-flex;
+  align-items: center;
+  height: 28px;
+  padding: 0 11px;
+  border-radius: var(--r-full);
+  font-size: 11.5px;
+  font-weight: var(--fw-semibold);
+  line-height: 1;
+}
+
+.cd-stage__frame .cd-scene__time,
+.sp-hist__btn {
+  background: rgba(64, 64, 70, 0.55);
+  -webkit-backdrop-filter: blur(12px) saturate(1.4);
+  backdrop-filter: blur(12px) saturate(1.4);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.sp-hist__btn:hover,
+.sp-hist.is-open .sp-hist__btn {
+  background: rgba(64, 64, 70, 0.75);
+}
+
+/* round 105: a little more room between the keys and Add a scene */
+.cd-scenehead__add {
+  margin-left: 14px;
+}
+
+/* ---- round 106: the card is fixed, placed over its button by script, so
+   nothing around the picture cuts it; when the drawer is short it shortens
+   and the earlier takes scroll */
+.cd-stage__frame .sp-hist__pop {
+  position: fixed;
+  right: auto;
+  bottom: auto;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+}
+
+.sp-hist__pop > .sp-hist__sec:last-child {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.sp-hist__pop > .sp-hist__sec:last-child .sp-hist__list {
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: 196px;
+}
+
+.sp-hist__head,
+.sp-hist__pop > .sp-hist__sec:first-of-type {
+  flex: none;
+}
+
+/* ---- round 107: Delete scene is part of the sheet, as the drawer's footer
+   is in A · Part of the drawer: no card, no line; the fields above fade
+   out into it (the round 92 fade stays) */
+.cd .cd-view--scene .cd-pane__foot {
+  margin: 0;
+  padding: 6px 18px 12px;
+  border-radius: 0;
+  background: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  box-shadow: none;
+}
+
+/* ---- round 108: Draw it again keeps the ink without a glow, and the
+   picture's buttons sit at the right of its tile */
+.sp-btn.is-ink[data-act='regen'] {
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.18);
+}
+
+.sp-tile .sp-acts {
+  justify-content: flex-end;
+}
+
+/* ---- round 109: the timeline stays dark but lets a little through */
+.cd .cd-tl__strip {
+  background: rgba(14, 14, 16, 0.78);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  backdrop-filter: blur(16px) saturate(1.4);
+}
+
+/* ---- round 110: the Preview picture tile, tall (A · Footer and B · Words
+   first were tried and dropped in round 126) */
+
+/* C · Tall: a taller picture; the words and the buttons share one left edge */
+.sp-pv.is-c {
+  grid-template-columns: 84px minmax(0, 1fr);
+  gap: 16px;
+  padding: 12px 14px 12px 12px;
+}
+
+.sp-pv.is-c .sp-tile__pic {
+  width: 84px;
+  height: 112px;
+  border-radius: 10px;
+}
+
+.sp-pv.is-c .sp-tile__body {
+  align-content: space-between;
+  min-height: 112px;
+  gap: 12px;
+}
+
+.sp-pv.is-c .sp-acts {
+  justify-content: flex-start;
+}
+
+.sp-pv.is-c .sp-acts .sp-btn:first-child:not(.is-ink) {
+  margin-left: 0;
+  background: rgba(29, 29, 31, 0.06);
+}
+
+/* ---- round 111: Said in, our own menu. A soft grey pill like the page's
+   other secondary buttons; the menu a white card listing every scene with
+   its picture and number, the one in use ticked in cyan; focus is the page's
+   faint cyan line, not the system ring */
+.sp-pick {
+  position: relative;
+  margin-left: auto;
+}
+
+.sp-pick__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 28px;
+  padding: 0 9px 0 12px;
+  border: 0;
+  border-radius: var(--r-full);
+  background: rgba(29, 29, 31, 0.06);
+  color: var(--text);
+  font: inherit;
+  font-size: 12px;
+  font-weight: var(--fw-semibold);
+  cursor: pointer;
+  transition: background var(--dur-1) var(--ease);
+}
+
+.sp-pick__btn svg {
+  color: var(--text-4);
+}
+
+.sp-pick__btn:hover,
+.sp-pick.is-open .sp-pick__btn {
+  background: rgba(29, 29, 31, 0.1);
+}
+
+.sp-pick__btn:focus {
+  outline: none;
+}
+
+.sp-pick__btn:focus-visible {
+  box-shadow:
+    0 0 0 1px rgba(73, 224, 245, 0.55),
+    0 0 0 4px rgba(73, 224, 245, 0.14);
+}
+
+.sp-pick__menu {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 6px);
+  z-index: 30;
+  display: grid;
+  gap: 2px;
+  width: 200px;
+  padding: 6px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.97);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  backdrop-filter: blur(16px) saturate(1.4);
+  box-shadow:
+    0 4px 10px rgba(15, 23, 42, 0.08),
+    0 18px 36px -14px rgba(15, 23, 42, 0.32);
+}
+
+.sp-pick__opt {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  height: 38px;
+  padding: 0 8px 0 5px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-2);
+  font: inherit;
+  font-size: 12.5px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.sp-pick__opt:hover {
+  background: rgba(29, 29, 31, 0.05);
+  color: var(--text);
+}
+
+.sp-pick__opt.is-on {
+  background: #eefafc;
+  color: var(--text);
+  font-weight: var(--fw-semibold);
+}
+
+.sp-pick__opt > svg {
+  margin-left: auto;
+  color: var(--cyan-700);
+}
+
+.sp-pick__pic {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  overflow: hidden;
+  border-radius: 6px;
+  background: #2a2a2e;
+}
+
+.sp-pick__pic img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+.sp-pick__name {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 7px;
+}
+
+.sp-pick__name b {
+  font-size: 11px;
+  font-weight: var(--fw-semibold);
+  color: var(--cyan-700);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- round 112: the timeline darker again, still a touch see-through */
+.cd .cd-tl__strip {
+  background: rgba(12, 12, 14, 0.9);
+}
+
+/* "or" sits as far from the next step as from the round button, and the
+   tip's arrow points at the button's middle */
+.cd-ownpick {
+  gap: 12px;
+  margin-left: 0;
+}
+
+.cd-ownpick .cd-coach__arrow {
+  right: 25px;
+}
+
+/* ---- round 113: who approves and Comment on one soft pill, so they read
+   as one thing and the date and the next step get more room */
+.cd-fpair {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 0;
+  padding: 2px;
+  border-radius: var(--r-full);
+  background: rgba(29, 29, 31, 0.045);
+}
+
+.cd-fpair .cd-fchip {
+  height: 32px;
+  padding: 0 8px 0 2px;
+}
+
+.cd-fpair .cd-fchip:hover,
+.cd-fpair .cd-fchip__ib:hover {
+  background: rgba(29, 29, 31, 0.06);
+}
+
+.cd-fpair .cd-fchip__ib {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: none;
+}
+
+.cd-foot__bar .cd-fpair + .cd-fchip--when {
+  margin-left: 6px;
+}
+
+/* ---- round 115: Your video. The video large on a dark stage, playable;
+   what it is and what you can do beside it */
+.cds-own2 {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 18px;
+  align-items: stretch;
+  min-height: min(620px, calc(100vh - 290px));
+}
+
+.cds-player {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 420px;
+  overflow: hidden;
+  border-radius: 18px;
+  background: #121214;
+  cursor: pointer;
+  isolation: isolate;
+}
+
+/* the picture, blurred, filling the stage behind the 9:16 frame */
+.cds-player__bg {
+  position: absolute;
+  inset: -30px;
+  z-index: -1;
+  width: calc(100% + 60px);
+  height: calc(100% + 60px);
+  object-fit: cover;
+  filter: blur(28px) brightness(0.45) saturate(1.1);
+}
+
+.cds-player__frame {
+  position: relative;
+  height: calc(100% - 80px);
+  max-height: 560px;
+  aspect-ratio: 9 / 16;
+  margin: 24px 0 56px;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.7);
+}
+
+.cds-player__vid {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform-origin: 50% 40%;
+  animation: cds-push 14s linear infinite alternate;
+  animation-play-state: paused;
+}
+
+.cds-player.is-on .cds-player__vid {
+  animation-play-state: running;
+}
+
+@keyframes cds-push {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+
+/* the big play, centred on the frame */
+.cds-player__big {
+  position: absolute;
+  top: calc(50% - 16px);
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  backdrop-filter: blur(14px) saturate(1.4);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    0 10px 30px -10px rgba(0, 0, 0, 0.6);
+  color: #fff;
+  transform: translate(-50%, -50%);
+  transition:
+    transform var(--dur-2) var(--ease),
+    background var(--dur-2) var(--ease);
+}
+
+.cds-player__big svg {
+  margin-left: 3px;
+}
+
+.cds-player:hover .cds-player__big {
+  background: rgba(255, 255, 255, 0.28);
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+/* the controls, a glass bar along the stage's foot */
+.cds-player__bar {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  left: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 40px;
+  padding: 0 8px;
+  border-radius: var(--r-full);
+  background: rgba(64, 64, 70, 0.55);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  backdrop-filter: blur(14px) saturate(1.4);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  color: #fff;
+  cursor: default;
+}
+
+.cds-player__ib {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+
+.cds-player__ib:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.cds-player__time {
+  flex: none;
+  font-size: 11.5px;
+  font-variant-numeric: tabular-nums;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.cds-player__time b {
+  font-weight: var(--fw-semibold);
+  color: #fff;
+}
+
+.cds-player__track {
+  position: relative;
+  flex: 1;
+  height: 16px;
+  cursor: pointer;
+}
+
+.cds-player__track::before,
+.cds-player__track i {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: 4px;
+  border-radius: var(--r-full);
+  transform: translateY(-50%);
+}
+
+.cds-player__track::before {
+  right: 0;
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.cds-player__track i {
+  background: #7ce8f7;
+}
+
+.cds-player__track:hover::before,
+.cds-player__track:hover i {
+  height: 6px;
+}
+
+/* beside it: what it is, then what you can do */
+.cds-own2__info {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  padding: 20px;
+  border-radius: 18px;
+  background: var(--canvas);
+  box-shadow: var(--cd-soft);
+}
+
+.cds-own2__name {
+  font-size: 16px;
+  font-weight: var(--fw-semibold);
+  line-height: 1.35;
+  color: var(--text);
+}
+
+.cds-own2__facts {
+  display: grid;
+  gap: 0;
+  margin: 2px 0 0;
+}
+
+.cds-own2__facts > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 0;
+  box-shadow: inset 0 -1px 0 rgba(29, 29, 31, 0.06);
+  font-size: 12.5px;
+}
+
+.cds-own2__facts dt {
+  color: var(--text-4);
+}
+
+.cds-own2__facts dd {
+  margin: 0;
+  font-weight: var(--fw-medium);
+  color: var(--text);
+}
+
+.cd .cds-own2__info p {
+  margin: 4px 0 0;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--text-3);
+}
+
+.cds-own2__acts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cds-player__vid {
+    animation: none;
+  }
+}
+
+/* the stage fits above the footer */
+.cds-own2 {
+  min-height: 0;
+  height: min(580px, calc(100vh - 330px));
+}
+
+.cds-player {
+  min-height: 0;
+}
+
+/* the approval pill has no fill of its own; it shows on hover, whole */
+.cd-fpair {
+  background: transparent;
+  transition: background var(--dur-2) var(--ease);
+}
+
+.cd-fpair:hover {
+  background: rgba(29, 29, 31, 0.045);
+}
+
+.cd-fpair .cd-fchip:hover,
+.cd-fpair .cd-fchip__ib:hover {
+  background: rgba(29, 29, 31, 0.05);
+}
+
+/* ---- round 116: the timeline quieter. Its shadow no longer falls on the
+   footer under it (it had dimmed Approve & generate); it is more see-through */
+.cd .cd-tl__strip {
+  background: rgba(20, 20, 24, 0.68);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  backdrop-filter: blur(18px) saturate(1.4);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+/* ---- round 117: less shine on the glass pieces that sit on pictures and
+   dark stages: the white top-edge highlight and edge ring about halved */
+.cds-player__big {
+  background: rgba(255, 255, 255, 0.16);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    0 10px 30px -12px rgba(0, 0, 0, 0.5);
+}
+
+.cds-player:hover .cds-player__big {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.cds-player__bar,
+.sp-hist__btn,
+.cd-stage__frame .cd-scene__time {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.sp-hist__pop {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.03),
+    0 18px 40px -16px rgba(0, 0, 0, 0.55);
+}
+
+.sb2-drawbtn {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 2px 4px rgba(0, 0, 0, 0.12),
+    0 10px 20px -10px rgba(0, 0, 0, 0.45);
+}
+
+.cd .cd-tl__strip {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.03),
+    0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+/* ---- round 118: Let Vicino make it stands clear of Change the video and
+   carries a switch mark: it goes back to a storyboard Vicino makes */
+.cds-own2__acts {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.cds-own2__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+}
+
+.cds-own2__back svg {
+  flex: none;
+  color: var(--text-4);
+}
+
+/* ---- round 119: the big play is clearer glass: a light blur and a thin
+   fill, so the picture shows through; the triangle keeps a soft shadow */
+.cds-player__big {
+  background: rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(4px) saturate(1.2);
+  backdrop-filter: blur(4px) saturate(1.2);
+}
+
+.cds-player:hover .cds-player__big {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.cds-player__big svg {
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.35));
+}
+
+/* ---- round 120: the info card's two ways out. Change the video, a full
+   width soft button under the words; Let Vicino make it at the card's foot,
+   under a divider, as a row with its own small line of explanation */
+.cds-own2__info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cds-own2__change {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  width: 100%;
+  height: 36px;
+  margin-top: 8px;
+  border: 0;
+  border-radius: 10px;
+  background: rgba(29, 29, 31, 0.06);
+  color: var(--text);
+  font: inherit;
+  font-size: 12.5px;
+  font-weight: var(--fw-semibold);
+  cursor: pointer;
+  transition: background var(--dur-1) var(--ease);
+}
+
+.cds-own2__change:hover {
+  background: rgba(29, 29, 31, 0.1);
+}
+
+.cds-own2__back {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: calc(100% + 16px);
+  margin: auto -8px 0;
+  padding: 16px 8px 4px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: inset 0 1px 0 rgba(29, 29, 31, 0.08);
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.cds-own2__backico {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: rgba(29, 29, 31, 0.05);
+  color: var(--text-3);
+  transition: background var(--dur-1) var(--ease);
+}
+
+.cds-own2__back > span:nth-child(2) {
+  display: grid;
+  flex: 1;
+  gap: 1px;
+  min-width: 0;
+}
+
+.cds-own2__back b {
+  font-size: 12.5px;
+  font-weight: var(--fw-semibold);
+}
+
+.cds-own2__back small {
+  font-size: 11.5px;
+  line-height: 1.4;
+  color: var(--text-4);
+}
+
+.cds-own2__back > svg {
+  flex: none;
+  color: var(--text-4);
+  transition: transform var(--dur-1) var(--ease);
+}
+
+.cds-own2__back:hover .cds-own2__backico {
+  background: rgba(29, 29, 31, 0.09);
+}
+
+.cds-own2__back:hover > svg {
+  transform: translateX(2px);
+}
+
+.cds-own2__back {
+  box-shadow: inset 0 1px 0 rgba(29, 29, 31, 0.1);
+}
+
+/* ---- round 121: the big play takes the control bar's darker tint, and
+   both blur less, so the picture behind them stays readable */
+.cds-player__big {
+  background: rgba(64, 64, 70, 0.55);
+  -webkit-backdrop-filter: blur(4px) saturate(1.2);
+  backdrop-filter: blur(4px) saturate(1.2);
+}
+
+.cds-player:hover .cds-player__big {
+  background: rgba(64, 64, 70, 0.7);
+}
+
+.cds-player__bar {
+  -webkit-backdrop-filter: blur(4px) saturate(1.2);
+  backdrop-filter: blur(4px) saturate(1.2);
+}
+
+/* ---- round 122: a label's card is wider, so its two buttons share a row */
+.sb2-tagtip {
+  width: 340px;
+}
+
+.sb2-tagtip__acts {
+  flex-wrap: nowrap;
+}
+
+.sb2-tagtip {
+  width: 356px;
+}
+
+/* ---- round 123: what must be fixed (a picture that can't be read) is an
+   error red, not orange: the label's dot, the upload disc, the card's sign
+   and wash, and the scene page's icon and chip */
+.sb2-tag.is-fix i {
+  background: #f05252;
+}
+
+.sb2-src.is-you.is-bad {
+  background:
+    radial-gradient(circle at 30% 22%, rgba(255, 255, 255, 0.4), transparent 48%),
+    linear-gradient(150deg, rgba(248, 113, 113, 0.94) 0%, rgba(220, 38, 38, 0.92) 100%);
+}
+
+.sb2-tagtip.is-fix .sb2-tagtip__in {
+  background:
+    radial-gradient(120% 90% at 0 0, rgba(239, 68, 68, 0.1), transparent 62%),
+    rgba(255, 255, 255, 0.97);
+}
+
+.sb2-tagtip.is-fix .sb2-tagtip__in > b svg {
+  color: #dc2626;
+}
+
+.sp-card.is-fix .sp-card__ico {
+  background: #fdecec;
+  color: #dc2626;
+}
+
+.sp-chip.is-fix {
+  background: #fdecec;
+  color: #b91c1c;
+}
+
+/* ---- round 124: a preview on its way (the Sweep; Aura and Ring were tried
+   and dropped in round 129) */
+.sb2-live {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 8px;
+  overflow: hidden;
+  text-align: center;
+  pointer-events: none;
+}
+
+.sb2-live__txt {
+  position: relative;
+  display: grid;
+  gap: 1px;
+}
+
+.sb2-live__txt b {
+  font-size: 12.5px;
+  font-weight: var(--fw-semibold);
+  color: var(--text-2);
+}
+
+.sb2-live__txt small {
+  font-size: 11px;
+  color: var(--text-4);
+}
+
+.sb2-live__ico {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 4px 12px -6px rgba(13, 118, 133, 0.45);
+  color: var(--cyan-700);
+}
+
+/* A · Sweep: a soft light passes over the blank frame; the sparkle breathes */
+.sb2-live.is-a {
+  background: linear-gradient(160deg, #eef3f5, #e6ecef);
+}
+
+.sb2-live__sweep {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 30%, rgba(255, 255, 255, 0.85) 50%, transparent 70%);
+  background-size: 250% 100%;
+  animation: sb2-sweep 1.8s var(--ease) infinite;
+}
+
+.sb2-live.is-a .sb2-live__ico {
+  animation: sb2-breathe 1.8s ease-in-out infinite;
+}
+
+@keyframes sb2-sweep {
+  from {
+    background-position: 130% 0;
+  }
+  to {
+    background-position: -30% 0;
+  }
+}
+
+@keyframes sb2-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 4px 12px -6px rgba(13, 118, 133, 0.45);
+  }
+  50% {
+    transform: scale(1.08);
+    box-shadow:
+      0 0 0 6px rgba(73, 224, 245, 0.16),
+      0 4px 12px -6px rgba(13, 118, 133, 0.45);
+  }
+}
+
+/* checking runs slower: nobody knows yet how long */
+.sb2-live.is-check .sb2-live__sweep,
+.sb2-live.is-check .sb2-live__ico {
+  animation-duration: 2.8s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sb2-live__sweep,
+  .sb2-live__ico {
+    animation: none;
+  }
+}
+
+/* in product capture the frame's corners are small */
+.sb2--product .sb2-live {
+  border-radius: 4px;
+}
+
+/* small frames keep the words to one line and the marks smaller */
+.sb2-frame {
+  container-type: inline-size;
+}
+
+@container (max-width: 220px) {
+  .sb2-live {
+    gap: 5px;
+  }
+
+  .sb2-live__txt small {
+    display: none;
+  }
+
+  .sb2-live__txt b {
+    font-size: 11.5px;
+  }
+}
+
+/* ---- round 125: the timeline's corners smaller */
+.cd .cd-tl__strip {
+  border-radius: 9px;
+}
+
+/* ---- round 128: Draw previews' bubble. It stands higher over its button
+   and stays longer each time; the body's top fade only comes once the page
+   has scrolled, and the storyboard leaves a little room above the bar, so
+   the bubble is never faded or cut */
+.cd[data-surface] .cd-body:not(.is-scrolled),
+.cd[data-chrome] .cd-body:not(.is-scrolled) {
+  -webkit-mask-image: linear-gradient(180deg, #000 0, #000 calc(100% - 22px), transparent 100%);
+  mask-image: linear-gradient(180deg, #000 0, #000 calc(100% - 22px), transparent 100%);
+}
+
+.sb2:has(.sb2-drawhint) {
+  padding-top: 14px;
+}
+
+.sb2-drawhint {
+  bottom: calc(100% + 14px);
+  animation-name: sb2-drawhint2;
+}
+
+@keyframes sb2-drawhint2 {
+  0%,
+  58% {
+    opacity: 0;
+    transform: translate(-50%, 3px);
+  }
+  62%,
+  97% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, 3px);
+  }
+}
+
+/* ---- round 129: the sweep's sparkle smaller, on a fainter disc */
+.sb2-live__ico {
+  width: 26px;
+  height: 26px;
+  background: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 3px 10px -6px rgba(13, 118, 133, 0.35);
+}
+
+@keyframes sb2-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 3px 10px -6px rgba(13, 118, 133, 0.35);
+  }
+  50% {
+    transform: scale(1.08);
+    box-shadow:
+      0 0 0 5px rgba(73, 224, 245, 0.12),
+      0 3px 10px -6px rgba(13, 118, 133, 0.35);
+  }
+}
+
+/* ---- round 130: while its line is edited the bubble becomes a plain
+   rounded card: no tail, every corner round */
+.sb2--bubble .sb2-tile .sb2-lc.is-editing.is-box {
+  border-radius: 14px;
+}
+
+.sb2--bubble .sb2-tile .sb2-lc.is-editing.is-box::before {
+  content: none;
+}
+
+/* ---- round 131: the edited bubble, now a plain card, takes a quieter
+   focus: the thin cyan line and only a faint halo */
+.sb2--bubble .sb2-tile .sb2-lc.is-editing.is-box {
+  filter: none;
+  box-shadow:
+    0 0 0 1px #a6ecf6,
+    0 0 0 3px rgba(73, 224, 245, 0.08),
+    0 6px 16px -12px rgba(15, 23, 42, 0.2);
+}
+
+/* ---- round 132: the sweep's words smaller and softer */
+.sb2-live__txt b {
+  font-size: 11.5px;
+  font-weight: var(--fw-medium);
+  color: var(--text-4);
+}
+
+.sb2-live__txt small {
+  font-size: 10.5px;
+  color: var(--text-5, #b1b5bb);
+}
+
+.sb2-live__txt b {
+  color: #8a8e95;
+}
+
+.sb2-live__txt small {
+  color: #a3a7ad;
+}
+
+/* ---- round 133: D · Subtitles, the label at the top stops short of Edit
+   (top right); a longer one scrolls as elsewhere */
+.sb2--subtitle .sb2-tagwrap {
+  max-width: calc(100% - 100px);
+}
+
+.sb2--subtitle .sb2-framewrap:has(.sb2-srcwrap) .sb2-tagwrap {
+  max-width: calc(100% - 128px);
+}
+
+/* ---- round 134: what sits over the sweep (C · Mark; A · Pill and B ·
+   Shimmer were tried and dropped in round 138) */
+
+/* a sparkle twinkling over a two-line caption */
+.sb2-lw-mark {
+  position: relative;
+  width: 22px;
+  height: 22px;
+  background: linear-gradient(135deg, #49e0f5, #6b6ef2);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='3 1 18 18'%3E%3Cpath d='M12 1.5c.7 5.4 3.1 7.8 8.5 8.5-5.4.7-7.8 3.1-8.5 8.5-.7-5.4-3.1-7.8-8.5-8.5 5.4-.7 7.8-3.1 8.5-8.5Z'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='3 1 18 18'%3E%3Cpath d='M12 1.5c.7 5.4 3.1 7.8 8.5 8.5-5.4.7-7.8 3.1-8.5 8.5-.7-5.4-3.1-7.8-8.5-8.5 5.4-.7 7.8-3.1 8.5-8.5Z'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+  animation: sb2-twinkle 1.8s ease-in-out infinite;
+}
+
+@keyframes sb2-twinkle {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.82) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1) rotate(45deg);
+  }
+}
+
+.sb2-lw-cap {
+  position: relative;
+  display: grid;
+  gap: 1px;
+  justify-items: center;
+  font-size: 10.5px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6b7d84;
+}
+
+.sb2-lw-cap small {
+  font-size: 11px;
+  font-weight: var(--fw-regular);
+  letter-spacing: 0;
+  text-transform: none;
+  color: #a3a7ad;
+}
+
+.sb2-live.is-lw-c {
+  gap: 8px;
+}
+
+/* checking runs slower */
+.sb2-live.is-check .sb2-lw-mark {
+  animation-duration: 2.8s;
+}
+
+@container (max-width: 220px) {
+  .sb2-lw-cap small {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sb2-lw-mark {
+    animation: none;
+  }
+}
+
+/* ---- round 136: C · Mark in the theme's cyan */
+.sb2-lw-mark {
+  background: linear-gradient(135deg, var(--cyan-400, #65e4f6), var(--cyan-600));
+}
+
+/* ---- round 137: Vicino's preview set aside while your picture is in use:
+   the picture faded and grey, the card's icon quiet; its chip neutral */
+.sp-tile.is-aside .sp-tile__pic img {
+  filter: grayscale(1);
+  opacity: 0.45;
+}
+
+.sp-card.is-aside .sp-card__ico {
+  background: rgba(29, 29, 31, 0.05);
+  color: var(--text-4);
+}
+
+.sp-card.is-aside > .sp-card__head b {
+  color: var(--text-3);
+}
+
+/* ---- round 140: the line over "Rewrite with Vicino works on…" stops short
+   of the sheet's edges, in line with the words */
+.cd-pane__sheet .sp > .sp-off {
+  position: relative;
+  box-shadow: none;
+}
+
+.cd-pane__sheet .sp > .sp-off::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 16px;
+  left: 20px;
+  height: 1px;
+  background: rgba(29, 29, 31, 0.07);
+}
+
+/* ---- round 141: "can't be read" back to orange (round 123 had made the
+   whole must-fix tone red); and your picture's disc reads as glass, not
+   metal: a flatter, see-through fill, only a faint highlight, the picture
+   blurred behind it */
+.sb2-tag.is-fix i {
+  background: #ff8a5c;
+}
+
+.sb2-tagtip.is-fix .sb2-tagtip__in {
+  background:
+    radial-gradient(120% 90% at 0 0, rgba(251, 191, 90, 0.14), transparent 62%),
+    rgba(255, 255, 255, 0.97);
+}
+
+.sb2-tagtip.is-fix .sb2-tagtip__in > b svg {
+  color: #f0703a;
+}
+
+.sp-card.is-fix .sp-card__ico {
+  background: #fdeee6;
+  color: #c2410c;
+}
+
+.sp-chip.is-fix {
+  background: #fdeee6;
+  color: #c2410c;
+}
+
+.sb2-src.is-you {
+  background:
+    radial-gradient(circle at 32% 22%, rgba(255, 255, 255, 0.2), transparent 52%),
+    linear-gradient(160deg, rgba(120, 214, 232, 0.72), rgba(64, 178, 204, 0.72));
+  -webkit-backdrop-filter: blur(8px) saturate(1.3);
+  backdrop-filter: blur(8px) saturate(1.3);
+}
+
+.sb2-src.is-you.is-bad {
+  background:
+    radial-gradient(circle at 32% 22%, rgba(255, 255, 255, 0.2), transparent 52%),
+    linear-gradient(160deg, rgba(255, 160, 120, 0.74), rgba(236, 112, 64, 0.74));
+}
+
+/* ---- round 142: your picture's disc floats as bright glass: a lighter,
+   clearer fill that lifts the picture behind it, a thin white edge and a
+   lit top inside, and a soft shadow under the whole disc */
+.sb2-src.is-you {
+  background: linear-gradient(160deg, rgba(150, 236, 250, 0.55), rgba(70, 200, 226, 0.5));
+  -webkit-backdrop-filter: blur(10px) saturate(1.6) brightness(1.15);
+  backdrop-filter: blur(10px) saturate(1.6) brightness(1.15);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.55),
+    inset 0 1px 1px rgba(255, 255, 255, 0.6);
+}
+
+.sb2-src.is-you.is-bad {
+  background: linear-gradient(160deg, rgba(255, 186, 150, 0.6), rgba(244, 128, 80, 0.55));
+}
+
+/* the shadow sits on the wrap, so the cut-out icon doesn't clip it */
+.sb2-srcwrap:has(.sb2-src.is-you) {
+  filter: drop-shadow(0 3px 6px rgba(15, 23, 42, 0.28));
+}
+
+/* ---- round 143: our own tooltip, in place of the browser's: a small dark
+   glass bubble with a notch at its source */
+.cd-ttip {
+  position: fixed;
+  z-index: 2000;
+  max-width: 260px;
+  padding: 6px 10px 7px;
+  border-radius: 9px;
+  background: rgba(24, 24, 28, 0.86);
+  -webkit-backdrop-filter: blur(10px) saturate(1.3);
+  backdrop-filter: blur(10px) saturate(1.3);
+  box-shadow: 0 8px 22px -10px rgba(15, 23, 42, 0.45);
+  color: #fff;
+  font-family: var(--font-sans, Manrope, sans-serif);
+  font-size: 11.5px;
+  font-weight: 500;
+  line-height: 1.45;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(-3px);
+  transition:
+    opacity 0.14s ease,
+    transform 0.14s ease;
+}
+
+.cd-ttip.is-up {
+  transform: translateY(3px);
+}
+
+.cd-ttip.is-on {
+  opacity: 1;
+  transform: none;
+}
+
+.cd-ttip::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: calc(var(--nx, 50%) - 5px);
+  width: 10px;
+  height: 5px;
+  background: inherit;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+
+.cd-ttip.is-up::before {
+  top: auto;
+  bottom: -4px;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+/* ---- the frame's discs: a lighter white edge on yours; Vicino's takes the
+   same glass (a see-through fill, a faint edge, a soft shadow) */
+.sb2-src.is-you {
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.28),
+    inset 0 1px 1px rgba(255, 255, 255, 0.35);
+}
+
+.sb2-src.is-ai {
+  background: conic-gradient(
+    from 200deg,
+    rgba(255, 255, 255, 0.62),
+    rgba(196, 238, 250, 0.5),
+    rgba(255, 255, 255, 0.62),
+    rgba(214, 214, 252, 0.5),
+    rgba(255, 255, 255, 0.62)
+  );
+  -webkit-backdrop-filter: blur(10px) saturate(1.4) brightness(1.15);
+  backdrop-filter: blur(10px) saturate(1.4) brightness(1.15);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.28),
+    inset 0 1px 1px rgba(255, 255, 255, 0.35);
+}
+
+.sb2-srcwrap {
+  filter: drop-shadow(0 3px 6px rgba(15, 23, 42, 0.24));
+}
+
+/* ---- round 144: Vicino's disc brighter: a fuller white fill and a much
+   brighter view of the picture through it, still glass */
+.sb2-src.is-ai {
+  background: conic-gradient(
+    from 200deg,
+    rgba(255, 255, 255, 0.82),
+    rgba(214, 244, 252, 0.74),
+    rgba(255, 255, 255, 0.82),
+    rgba(226, 226, 254, 0.74),
+    rgba(255, 255, 255, 0.82)
+  );
+  -webkit-backdrop-filter: blur(10px) saturate(1.3) brightness(1.5);
+  backdrop-filter: blur(10px) saturate(1.3) brightness(1.5);
+}

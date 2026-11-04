@@ -1,0 +1,122 @@
+/* The shell while one of the captured pages is up.
+
+   `pages.css` is the product's own stylesheet, purged and generated; these are
+   the few rules the prototype adds around it, so they live apart from it and
+   survive a re-cut. */
+
+/* The post drawer is a full-height panel over the campaign, and its footer -
+   where Approve is, and so the publishing touchpoint - sits exactly where the
+   message bar does. The bar steps aside while the drawer is open, the same move
+   Brain makes when the chat panel takes the page. */
+body.app-drawer-open .chat-dock {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+}
+
+body.app-drawer-open .chat-dock {
+  transition:
+    opacity var(--dur-2) var(--ease),
+    transform var(--dur-2) var(--ease);
+}
+
+/* Away from Brain the page is the product's, so the prototype's own page frame
+   does not apply to it. */
+body[data-app-route='home'] .bx-askw,
+body[data-app-route='signal'] .bx-askw,
+body[data-app-route='campaigns'] .bx-askw {
+  display: none;
+}
+
+/* ------------------------------------------------ Signal's row of card moves
+
+   A finding's three moves are a footnote to the card, not a toolbar: they were
+   reading at the weight of the claim above them, on ringed pills a size too big.
+   They step down to the size the prototype's own small buttons use, and the rings
+   come off - a quiet move is told from the one that acts by its fill. */
+
+.signal-trends-feed-card__actions {
+  margin-top: 10px;
+  gap: 4px;
+}
+
+.signal-trends-feed-card__actions .signal-trends-quiet-btn,
+.signal-trends-feed-card__actions .signal-trends-primary-button.is-small {
+  min-height: 0;
+  height: 28px;
+  padding: 0 11px;
+  border: 0;
+  border-radius: var(--r-full);
+  font-size: var(--fs-1);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-ui);
+}
+
+.signal-trends-feed-card__actions .signal-trends-quiet-btn {
+  background: transparent;
+  color: var(--text-3);
+  transition:
+    background var(--dur-1) var(--ease),
+    color var(--dur-1) var(--ease);
+}
+
+.signal-trends-feed-card__actions .signal-trends-quiet-btn:hover {
+  background: var(--ink-soft);
+  color: var(--text);
+}
+
+/* "Show more" is a disclosure, not a move: it reads as text, not as a control */
+.signal-trends-feed-card__actions .signal-trends-feed-card__more {
+  padding-left: 0;
+  color: var(--text-4);
+}
+
+.signal-trends-feed-card__actions .signal-trends-feed-card__more:hover {
+  background: transparent;
+  color: var(--text-2);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Not relevant asks a question before it does anything, and says so */
+.signal-trends-feed-card__actions .bxn-ask {
+  gap: 5px;
+  padding: 0 11px 0 9px;
+}
+
+.signal-trends-feed-card__actions .bxn-ask .bx-icon {
+  color: var(--text-5);
+}
+
+.signal-trends-feed-card__actions .bxn-ask:hover .bx-icon {
+  color: var(--text-3);
+}
+
+.signal-trends-feed-card__actions .bxn-ask.is-bxn-on {
+  background: var(--ink-900);
+  color: #fff;
+}
+
+.signal-trends-feed-card__actions .bxn-ask.is-bxn-on .bx-icon {
+  color: var(--pulse-cyan);
+}
+
+.signal-trends-feed-card__actions .signal-trends-primary-button.is-small {
+  box-shadow: none;
+}
+
+/* the research basis ends on its cue, so its own foot stops being a boxed-off
+   line and reads as the caption it is */
+.signal-market-rail__foot {
+  margin-top: 12px;
+  padding-top: 0;
+  border-top: 0;
+  line-height: 1.45;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.app-drawer-open .chat-dock,
+  .signal-trends-feed-card__actions .signal-trends-quiet-btn {
+    transition: none;
+  }
+}

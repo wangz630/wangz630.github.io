@@ -1,0 +1,940 @@
+/* the layered answer: lede, the rest folded, then the brand's own words */
+.bx-alead {
+  color: var(--text);
+  font-size: var(--fs-6);
+  font-weight: var(--fw-medium);
+  line-height: 1.45;
+  text-wrap: pretty;
+}
+
+.bx-arest {
+  margin-top: 10px;
+  color: var(--text-2);
+  font-size: var(--fs-4);
+  line-height: var(--lh-relaxed);
+  text-wrap: pretty;
+}
+
+.bx-arest p + p {
+  margin-top: 8px !important;
+}
+
+.bx-aquotes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 8px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--bx-line);
+}
+
+.bx-aquote {
+  padding: 4px 11px;
+  border-radius: var(--bx-r-pill);
+  background: var(--surface);
+  color: var(--text-2);
+  font-size: var(--fs-3);
+  quotes: '“' '”';
+}
+
+/* ------------------------------------------------------------ the sections */
+
+.bx-bp__block {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+}
+
+.bx-bp__h {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  color: var(--text);
+  font-size: var(--fs-5);
+  font-weight: var(--fw-semibold);
+}
+
+.bx-bp__h .bx-icon {
+  color: var(--text-4);
+}
+
+.bx-bp__lede {
+  color: var(--text);
+  font-size: var(--fs-5);
+  line-height: var(--lh-relaxed);
+  text-wrap: pretty;
+}
+
+.bx-bp__vnote {
+  color: var(--text-3);
+  font-size: var(--fs-2);
+  line-height: var(--lh-normal);
+}
+
+.bx-bp__list {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0 0 0 18px;
+  color: var(--text-2);
+  font-size: var(--fs-4);
+  line-height: var(--lh-normal);
+}
+
+.bx-bp__list--spaced {
+  gap: 10px;
+}
+
+.bx-bp__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* a label / value table, the profile's own rhythm */
+.bx-bp__kv {
+  display: grid;
+}
+
+.bx-bp__row {
+  display: grid;
+  grid-template-columns: 148px minmax(0, 1fr);
+  gap: 8px 20px;
+  padding: 12px 0;
+}
+
+.bx-bp__row + .bx-bp__row {
+  border-top: 1px solid var(--bx-line);
+}
+
+.bx-bp__row dt {
+  color: var(--text-3);
+  font-size: var(--fs-3);
+  font-weight: var(--fw-medium);
+}
+
+.bx-bp__row dd {
+  display: grid;
+  gap: 8px;
+  justify-items: start;
+  min-width: 0;
+  margin: 0;
+  color: var(--text);
+  font-size: var(--fs-4);
+  line-height: var(--lh-normal);
+}
+
+.bx-bp__two {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px 24px;
+}
+
+.bx-bp__col {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  min-width: 0;
+}
+
+.bx-bp__col .bx-label {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+/* competitors */
+.bx-bp__comp {
+  display: grid;
+}
+
+.bx-bp__comprow {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: 6px 20px;
+  padding: 12px 0;
+  color: var(--text-2);
+  font-size: var(--fs-4);
+  line-height: var(--lh-normal);
+}
+
+.bx-bp__comprow + .bx-bp__comprow {
+  border-top: 1px solid var(--bx-line);
+}
+
+.bx-bp__comprow b {
+  display: block;
+  color: var(--text);
+  font-weight: var(--fw-semibold);
+}
+
+.bx-bp__comprow small {
+  color: var(--text-4);
+  font-size: var(--fs-2);
+}
+
+/* SWOT */
+.bx-bp__swot {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.bx-bp__quad {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  padding: 14px 16px;
+  border-radius: var(--bx-r-inner);
+  background: var(--surface);
+}
+
+.bx-bp__quad.is-strengths {
+  background: var(--success-50);
+}
+
+.bx-bp__quad.is-opportunities {
+  background: var(--cyan-50);
+}
+
+.bx-bp__quad.is-threats,
+.bx-bp__quad.is-weaknesses {
+  background: var(--amber-50);
+}
+
+/* conviction */
+.bx-bp__stands {
+  display: grid;
+  gap: 10px;
+}
+
+.bx-bp__stand {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 20px;
+  padding: 12px 14px;
+  border-radius: var(--bx-r-inner);
+  background: var(--surface);
+  font-size: var(--fs-4);
+  line-height: var(--lh-normal);
+}
+
+.bx-bp__stand p {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr);
+  gap: 8px;
+}
+
+.bx-bp__stand .is-for span {
+  color: var(--success-600);
+  font-weight: var(--fw-semibold);
+}
+
+.bx-bp__stand .is-against {
+  color: var(--text-3);
+}
+
+.bx-bp__rules {
+  display: grid;
+  gap: 10px;
+}
+
+.bx-bp__rule {
+  display: grid;
+  gap: 6px;
+  padding: 12px 14px;
+  border-radius: var(--bx-r-inner);
+  background: var(--surface);
+  color: var(--text-2);
+  font-size: var(--fs-4);
+  line-height: var(--lh-normal);
+}
+
+.bx-bp__rule .bx-label {
+  margin-right: 8px;
+  color: var(--text-4);
+}
+
+/* community */
+.bx-bp__persona {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: var(--bx-r-inner);
+  background: var(--surface);
+}
+
+.bx-bp__avatar {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--ink-900);
+  color: #fff;
+  font-size: var(--fs-4);
+  font-weight: var(--fw-semibold);
+}
+
+.bx-bp__persona b {
+  color: var(--text);
+  font-size: var(--fs-5);
+  font-weight: var(--fw-semibold);
+}
+
+.bx-bp__persona p {
+  margin-top: 6px !important;
+  color: var(--text-2);
+  font-size: var(--fs-4);
+  line-height: var(--lh-relaxed);
+}
+
+.bx-bp__seeds,
+.bx-bp__insights {
+  display: grid;
+  gap: 12px;
+}
+
+.bx-bp__seed,
+.bx-bp__insight {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: var(--bx-r-inner);
+  background: var(--surface);
+}
+
+.bx-bp__seedn {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--canvas);
+  box-shadow: inset 0 0 0 1px var(--bx-line);
+  color: var(--text-2);
+  font-size: var(--fs-2);
+  font-weight: var(--fw-semibold);
+}
+
+.bx-bp__seed b,
+.bx-bp__insight b {
+  color: var(--text);
+  font-size: var(--fs-5);
+  font-weight: var(--fw-semibold);
+}
+
+.bx-bp__seed p,
+.bx-bp__insight p {
+  margin-top: 6px !important;
+  color: var(--text-2);
+  font-size: var(--fs-4);
+  line-height: var(--lh-relaxed);
+}
+
+.bx-bp__insight .bx-bp__lede {
+  color: var(--text);
+}
+
+.bx-bp__insight .bx-pill {
+  margin-top: 10px;
+}
+
+/* ground truth table */
+.bx-bp__ground {
+  display: grid;
+  border-radius: var(--bx-r-inner);
+  background: var(--surface);
+}
+
+.bx-bp__grow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 120px 180px;
+  gap: 12px;
+  align-items: center;
+  min-height: 40px;
+  padding: 6px 14px;
+  color: var(--text-2);
+  font-size: var(--fs-3);
+}
+
+.bx-bp__grow + .bx-bp__grow {
+  border-top: 1px solid var(--bx-line);
+}
+
+.bx-bp__grow.is-head {
+  color: var(--text-4);
+  font-size: var(--fs-2);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+/* --------------------------------------------------------- visual identity */
+
+.bx-bp__visual {
+  display: grid;
+  gap: 22px;
+}
+
+.bx-bp__vblock {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+}
+
+.bx-bp__vh {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text);
+  font-size: var(--fs-4);
+  font-weight: var(--fw-semibold);
+}
+
+.bx-bp__vh .bx-icon {
+  color: var(--text-4);
+}
+
+.bx-bp__logo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  border-radius: var(--bx-r-inner);
+  background: var(--surface);
+}
+
+.bx-bp__logo img {
+  flex: none;
+  width: 72px;
+  height: 72px;
+  border-radius: var(--r-sm);
+  object-fit: contain;
+  background: var(--canvas);
+}
+
+.bx-bp__logo p {
+  color: var(--text-3);
+  font-size: var(--fs-3);
+}
+
+.bx-bp__swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 10px;
+}
+
+.bx-bp__swatch {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 2px 12px;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: var(--bx-r-inner);
+  background: var(--surface);
+}
+
+.bx-bp__chip {
+  grid-row: span 3;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--bx-r-tag);
+  box-shadow: inset 0 0 0 1px var(--border-strong);
+}
+
+.bx-bp__sname {
+  color: var(--text);
+  font-size: var(--fs-3);
+  font-weight: var(--fw-semibold);
+}
+
+.bx-bp__shex {
+  color: var(--text-2);
+  font-size: var(--fs-2);
+}
+
+.bx-bp__srole {
+  display: none;
+}
+
+.bx-bp__sfrom {
+  color: var(--text-4);
+  font-size: var(--fs-1);
+  line-height: 1.35;
+  text-wrap: pretty;
+}
+
+.bx-bp__swatch.is-low .bx-bp__sfrom {
+  color: var(--amber-700);
+}
+
+.bx-bp__contrast ul {
+  display: grid;
+  gap: 2px;
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bx-bp__contrast li {
+  display: grid;
+  grid-template-columns: 32px 150px 72px minmax(0, 1fr);
+  gap: 12px;
+  align-items: center;
+  min-height: 34px;
+  color: var(--text-3);
+  font-size: var(--fs-2);
+}
+
+.bx-bp__pair i {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 22px;
+  border-radius: var(--bx-r-tag);
+  box-shadow: inset 0 0 0 1px var(--border-strong);
+}
+
+.bx-bp__pair b {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+.bx-bp__pairtext {
+  color: var(--text-2);
+}
+
+.bx-bp__ratio {
+  color: var(--text);
+  font-weight: var(--fw-semibold);
+}
+
+.bx-bp__type {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 10px;
+}
+
+.bx-bp__face {
+  display: grid;
+  gap: 2px;
+  padding: 14px 16px;
+  border-radius: var(--bx-r-inner);
+  background: var(--surface);
+}
+
+.bx-bp__aa {
+  color: var(--text);
+  font-size: var(--fs-9);
+  font-weight: var(--fw-medium);
+  line-height: 1.1;
+}
+
+.bx-bp__face b {
+  color: var(--text);
+  font-size: var(--fs-3);
+  font-weight: var(--fw-semibold);
+}
+
+.bx-bp__face small {
+  color: var(--text-4);
+  font-size: var(--fs-2);
+}
+
+.bx-bp__imgs {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.bx-bp__imgs figure {
+  display: grid;
+  gap: 5px;
+  margin: 0;
+  min-width: 0;
+}
+
+.bx-bp__imgs img {
+  display: block;
+  width: 100%;
+  height: 104px;
+  border-radius: var(--bx-r-inner);
+  object-fit: cover;
+  background: var(--surface-2);
+}
+
+.bx-bp__imgs figcaption {
+  color: var(--text-4);
+  font-size: var(--fs-1);
+}
+
+/* the same blocks under the report's Visual identity answer */
+.bx-bp__visual--field {
+  gap: 18px;
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid var(--bx-line);
+}
+
+@container bxpanel (max-width: 760px) {
+  .bx-bp__two,
+  .bx-bp__swot,
+  .bx-bp__stand {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .bx-bp__row,
+  .bx-bp__comprow {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .bx-bp__grow {
+    grid-template-columns: minmax(0, 1fr) 90px;
+  }
+
+  .bx-bp__grow > :nth-child(3) {
+    display: none;
+  }
+
+  .bx-bp__contrast li {
+    grid-template-columns: 32px minmax(0, 1fr) 72px;
+  }
+
+  .bx-bp__verdict {
+    display: none;
+  }
+}
+
+/* ------------------------------------------ the profile, open in the report pane
+
+   The product's cards sit on the page, so the pane lets go of its own card while
+   the profile is open; the browser shows Back and the product's section list. */
+
+.bx-rf__detail.is-profile {
+  padding: 0;
+  overflow: visible;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.bx-bpp {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 14px;
+  min-width: 0;
+}
+
+/* the product's article is a flex column: let it shrink to the pane */
+.bx-bpp > *,
+.bx-bpp .bp-prototype-report > * {
+  min-width: 0;
+}
+
+/* the article runs to the header's right edge, and its cards take the radius of the
+   cards around it (8px outside, 6px for the blocks inside) */
+.bx-bpp .bp-prototype-report {
+  width: 100%;
+}
+
+.bx-bpp .bp-prototype-report .rep-hero,
+.bx-bpp .bp-prototype-report .rep-sec {
+  border-radius: var(--bx-r-card);
+}
+
+.bx-bpp .bp-prototype-report .stat-cols,
+.bx-bpp .bp-prototype-report .persona,
+.bx-bpp .bp-prototype-report .card,
+.bx-bpp .bp-prototype-report .tbl,
+.bx-bpp .bp-prototype-report .rule,
+.bx-bpp .bp-prototype-report .vt {
+  border-radius: var(--bx-r-inner);
+}
+
+/* on a narrow pane the profile's two-up grids stack; its wide tables already
+   scroll sideways inside their own box, as the product's do */
+@container bxpanel (max-width: 560px) {
+  .bx-bpp .grid-2,
+  .bx-bpp .type-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .bx-bpp .bp-prototype-report {
+    gap: 12px;
+  }
+
+  .bx-bpp .source-ref-chips {
+    flex-wrap: wrap;
+    max-width: 100%;
+  }
+
+  .bx-bpp .source-ref-chip {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+/* the compact entry: the logo, the name, an arrow - no stroke at rest */
+.bx-bpm {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  min-height: 40px;
+  padding: 6px 12px 6px 6px;
+  overflow: hidden;
+  isolation: isolate;
+  border: 0;
+  border-radius: 10px;
+  background: var(--canvas);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: var(--fs-3);
+  font-weight: var(--fw-semibold);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background var(--dur-2) var(--ease),
+    box-shadow var(--dur-2) var(--ease);
+}
+
+/* 1 · Wash - the Light card's cyan wash */
+.bx-bpm--v1 {
+  background:
+    radial-gradient(
+      120% 160% at 100% 0%,
+      color-mix(in srgb, var(--pulse-cyan) 24%, transparent),
+      transparent 62%
+    ),
+    radial-gradient(
+      70% 140% at 0% 100%,
+      color-mix(in srgb, var(--pulse-cyan) 9%, transparent),
+      transparent 70%
+    ),
+    var(--canvas);
+}
+
+.bx-bpm__logo {
+  display: block;
+  flex: none;
+  width: 28px;
+  height: 28px;
+  overflow: hidden;
+  border-radius: 7px;
+}
+
+.bx-bpm__logo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bx-bpm__name {
+  white-space: nowrap;
+}
+
+.bx-bpm__go {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: auto;
+  padding-left: 6px;
+  color: var(--text-4);
+  transition:
+    color var(--dur-2) var(--ease),
+    transform var(--dur-2) var(--ease);
+}
+
+.bx-bpm:hover {
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--pulse-cyan) 50%, transparent),
+    0 6px 16px -10px rgba(14, 116, 144, 0.45);
+}
+
+.bx-bpm--v1:hover {
+  background:
+    radial-gradient(
+      120% 160% at 100% 0%,
+      color-mix(in srgb, var(--pulse-cyan) 34%, transparent),
+      transparent 64%
+    ),
+    radial-gradient(
+      70% 140% at 0% 100%,
+      color-mix(in srgb, var(--pulse-cyan) 12%, transparent),
+      transparent 70%
+    ),
+    var(--canvas);
+}
+
+.bx-bpm:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.bx-bpm:hover .bx-bpm__go,
+.bx-bpm:focus-visible .bx-bpm__go {
+  transform: translateX(3px);
+}
+
+.bx-bpm--v1:hover .bx-bpm__go {
+  color: var(--cyan-700);
+}
+
+.bx-bpm.is-on {
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--pulse-cyan) 55%, transparent);
+}
+
+.bx-bpm--nav {
+  display: flex;
+  width: 100%;
+}
+
+/* the preview a hover brings: the imagery, the sections, and what a click does */
+.bx-bpv {
+  position: fixed;
+  z-index: 1300;
+  width: 280px;
+  overflow: hidden;
+  border-radius: 12px;
+  background: var(--canvas);
+  box-shadow:
+    0 0 0 1px var(--bx-line),
+    0 18px 40px -16px rgba(15, 23, 42, 0.35);
+  font-family: var(--font-sans);
+  pointer-events: none;
+}
+
+.bx-bpv[hidden] {
+  display: none;
+}
+
+.bx-bpv__art {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 2px;
+  height: 84px;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.bx-bpv__art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bx-bpv__body {
+  padding: 0 14px 12px;
+}
+
+/* the logo hangs over the imagery's edge; the name sits on white beside it */
+.bx-bpv__id {
+  position: relative;
+  min-height: 26px;
+  margin-top: 8px;
+  padding-left: 48px;
+}
+
+.bx-bpv__logo {
+  position: absolute;
+  top: -26px;
+  left: 0;
+  display: block;
+  width: 38px;
+  height: 38px;
+  overflow: hidden;
+  border: 2px solid var(--canvas);
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.18);
+}
+
+.bx-bpv__logo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bx-bpv__id p {
+  display: grid;
+  gap: 1px;
+  margin: 0;
+  padding-bottom: 1px;
+  line-height: 1.25;
+}
+
+.bx-bpv__id b {
+  color: var(--text);
+  font-size: var(--fs-4);
+  font-weight: var(--fw-semibold);
+}
+
+.bx-bpv__id small {
+  color: var(--text-3);
+  font-size: var(--fs-1);
+}
+
+.bx-bpv__id .bx-sep {
+  margin: 0 4px;
+}
+
+.bx-bpv__secs {
+  display: grid;
+  gap: 5px;
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bx-bpv__secs li {
+  display: flex;
+  gap: 8px;
+  color: var(--text-2);
+  font-size: var(--fs-2);
+  line-height: 1.3;
+}
+
+.bx-bpv__secs li .bx-num {
+  color: var(--text-4);
+}
+
+.bx-bpv__secs li.is-more {
+  padding-left: 22px;
+  color: var(--text-4);
+}
+
+.bx-bpv__cta {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0;
+  padding: 9px 14px;
+  border-top: 1px solid var(--bx-line);
+  background: color-mix(in srgb, var(--pulse-cyan) 8%, var(--canvas));
+  color: var(--cyan-800);
+  font-size: var(--fs-2);
+  font-weight: var(--fw-semibold);
+}
+
+.bx-bpv__cta .bx-icon:last-child {
+  margin-left: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bx-bpm,
+  .bx-bpm__go {
+    transition: none;
+  }
+}

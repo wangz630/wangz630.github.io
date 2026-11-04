@@ -15,7 +15,7 @@
       '#text > h2', '#text > h4', '#text > .cs-split', '#text > .cs-callout',
       '#text > .cs-stats', '#text > .cs-process', '#text > .cs-eyebrow',
       '#text > .cs-overview', '#text > .cs-overview-hint', '#text > .cs-video',
-      '#text > .cs-result',
+      '#text > .cs-result', '#text > .cs-numlist',
       // empower  (content lives inside #slides ul)
       '#slides > .caption1', '#slides > h2', '#slides > .text-large',
       '#slides > .image-container', '#slides > .image', '#slides > .text',
@@ -119,8 +119,18 @@
      also drag / swipe / wheel through; loops seamlessly (content duplicated) */
   function initCarousels() {
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var carousels = document.querySelectorAll('.cs-carousel');
+    var carousels = document.querySelectorAll('.cs-carousel, .cs-overview');
     carousels.forEach(function (el) {
+      // .cs-overview holds its cards directly (no __track) and isn't pre-duplicated
+      // in markup, so clone the current set once for a seamless loop.
+      if (el.classList.contains('cs-overview')) {
+        Array.prototype.slice.call(el.children).forEach(function (k) {
+          var c = k.cloneNode(true);
+          c.setAttribute('aria-hidden', 'true');
+          c.tabIndex = -1;
+          el.appendChild(c);
+        });
+      }
       var paused = false, dragging = false, startX = 0, startScroll = 0, moved = false, acc = 0;
       var half = function () { return el.scrollWidth / 2; };
       var last = null;
