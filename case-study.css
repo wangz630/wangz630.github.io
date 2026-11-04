@@ -380,9 +380,13 @@
 
 /* ---------- image ⇄ caption spacing: pull captions up to their media ---------- */
 #text .image-container + .shot-caption,
-#text .image-container + .video-caption,
-#text .img-pair + .shot-caption{
+#text .image-container + .video-caption{
   margin-top: -36px;
+}
+/* the .img-pair only carries an 8px bottom margin, so the -36px pull-up would
+   overlap the images — give its caption a small positive gap instead */
+#text .img-pair + .shot-caption{
+  margin-top: 16px;
 }
 .cs-split__media .cs-mediacap{ margin-top: 10px; }
 
