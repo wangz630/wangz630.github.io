@@ -1,107 +1,154 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>Side By Side</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
-  <link href="../case-study.css" rel="stylesheet" type="text/css" />
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Side by Side — Zi Wang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../home.css?v=10">
+<link rel="stylesheet" href="../project.css?v=10">
 </head>
+<body data-back="#p-side-by-side" data-hero="b">
+<div class="progress"></div>
+<header id="nav"></header>
 
-<body class="cs-dark">
-  <a class="cs-back" href="../index.html#p-side-by-side" aria-label="Back to home">
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 5l-7 7 7 7" stroke="#181818" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  </a>
- <h1 id="title">SIDE BY SIDE</h1>
-  <div class="cs-hero-tags"><span>Mobile App</span><span>UI/UX Design</span></div>
-
-  <img id="arrow" src = "images/arrow.png">
-  <p id="scroll">scroll</p>
-
-  <!-- The video -->
-<!-- <video autoplay muted loop id="myVideo">
-  <source src="video/video_present.mov" type="video/mp4">
-</video> -->
-<img id="cover" src = "images/cover.png">
-
-<!-- <div class="video-container">
-<iframe src="https://www.youtube.com/embed/4Wa3HitoVac?controls=0&&autoplay=1&mute=1&playsinline=1&loop=1&playlist=4Wa3HitoVac" ></iframe>
-</div> -->
-
-<!-- Optional: some overlay text to describe the video -->
-<div class="content">
-  <h1>SIDE BY SIDE</h1>
-  <!-- <form action="https://hubs.mozilla.com/r4sg26c/friendly-powerful-barbecue" method="get" target="_blank">
-    <button id="myBtn" type="submit">Go view the space</button>
- </form> -->
-</div>
-
-<!-- thesis proposal -->
-<div id="text">
-  <div class="year-team-role">
-    <p><strong>Year:</strong> 2022 <span class="divider">|</span> <strong>Type:</strong> Individual Project <span class="divider">|</span> <strong>Role:</strong> Designer</p>
+<section class="p-hero-b">
+  <img class="bg" src="images/s1.jpg" alt="">
+  <h1 id="title">SIDE BY SIDE</h1>
+  <div class="tags"><span>Mobile App</span><span>Service Design</span></div>
+  <a class="down" href="#after-hero" aria-label="Scroll"><svg viewBox="0 0 34 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 2l15 11L32 2"/></svg><span>scroll</span></a>
+</section>
+<div id="after-hero"></div>
+<section class="p-hero-b-info">
+  <div class="phb-band">
+  <p>An app and a self-pickup locker that help neighbours get through a city lockdown <em>— together.</em></p>
+  <dl class="facts">
+      <div><dt>Role</dt><dd>Designer · Individual project</dd></div>
+      <div><dt>Year</dt><dd>2022</dd></div>
+      <div><dt>Scope</dt><dd>Research · app · product design</dd></div>
+      <div><dt>Context</dt><dd>Shanghai lockdown</dd></div>
+    </dl>
   </div>
-<h1 class="caption1">Overview</h1>
-<p class="proposal">This project focuses on the current pandemic lockdown in Shanghai, targeting various problems that residents encounter in their daily lives. With this as the core, an app and corresponding auxiliary products are designed to provide people with more convenient and organized life services. The App mainly involves four sections: delivery pickup and information updates, group purchase organization, neighbor barter, and help center for minority groups (pets, the elderly and airport stranded people, etc.). The related product is a self-pickup locker designed to provide residents with safer and cleaner pickup services.</p>
+</section>
 
-<img class = "background-image" src = "images/work4.jpg">
+<main class="wrap">
 
-<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/770871710?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:80px;left:50%;transform: translateX(-50%);width:90%;height:90%;" title="Side by Side"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+<section class="sec two rv">
+  <h2>Overview</h2>
+  <div>
+    <p class="big">During the 2022 Shanghai lockdown, daily life depended on neighbours organising themselves. <em>Side by Side gives a residential community one place for deliveries, group purchases, bartering and help.</em></p>
+    <div class="flow" style="margin-top:clamp(30px,4vw,54px)">
+      <div class="st"><b>01</b><h4>Homepage</h4><p>Delivery pickup and community updates.</p></div>
+      <div class="st key"><b>02</b><h4>Group purchase</h4><p>Organise and track buying together.</p></div>
+      <div class="st"><b>03</b><h4>Help center</h4><p>Pets, the elderly, stranded travellers.</p></div>
+      <div class="st"><b>04</b><h4>Exchange</h4><p>Barter between neighbours.</p></div>
+      <div class="st dark"><b>+</b><h4>Pickup locker</h4><p>Safer, cleaner self-pickup.</p></div>
+    </div>
+    <div class="actions"><button class="vbtn" data-vimeo="770871710" data-ratio="16/9">Watch the project film <small>video</small></button></div>
+  </div>
+</section>
 
-<h1 class="caption1" style = "margin-top: 100px;">Progress</h1>
+<section class="band dark rv">
+  <div class="in">
+    <div class="head"><div><div class="ch-no"><b>01</b>Background</div><h2>Two months indoors</h2></div>
+      <p class="lead">From March to May 2022 the city went from partial closures to a full lockdown. Buying food moved online, deliveries became scarce, and people far from home were stranded.</p></div>
+    <img class="art" loading="lazy" data-zoom src="images/s2.jpg" alt="Background timeline">
+  </div>
+</section>
 
-  <!-- <div id="container">
-        <ul id="slides">
-          <a class="prev">&#10094;</a>
-          <a class="next">&#10095;</a>
-        </ul>
-  </div> -->
+<section class="chapter" id="interview">
+  <div class="ch-head rv">
+    <div><div class="ch-no"><b>02</b>Interviews</div><h2>What residents struggled with</h2>
+      <div class="tags"><span>Interview analysis</span><span>Survey data</span></div></div>
+    <p class="lead">I interviewed residents and grouped what they told me into three areas of difficulty.</p>
+  </div>
+  <div class="stage rv" style="padding:0;overflow:hidden"><img loading="lazy" data-zoom src="images/s3.jpg" alt="Interview analysis" style="border-radius:0;box-shadow:none"></div>
+  <div class="steps rv">
+    <div><b>Purchasing</b><h4>Hard to buy, hard to trust</h4><p>High prices, few choices, confusing markets, and fear of contaminated deliveries.</p></div>
+    <div><b>The elderly &amp; volunteers</b><h4>Left out of online ordering</h4><p>Older residents could not use the apps; volunteers were overloaded and disorganised.</p></div>
+    <div><b>Pets</b><h4>No supplies, no plan</h4><p>Pet food ran out, and nobody knew who would care for pets if owners were quarantined.</p></div>
+  </div>
+</section>
 
-  <div id="container">
-    <ul id="slides">
-      <img class = "image" src = "images/sbs1.png">
-      <div class='text'>APP Overview</div>
+<section class="band dark rv">
+  <div class="in">
+    <div class="head"><div><div class="ch-no"><b>03</b>Personas</div><h2>Two neighbours, two sets of needs</h2></div>
+      <p class="lead">An older resident who lives alone and is new to smartphones, and a young pet owner — the two ends of the community the app has to serve.</p></div>
+    <img class="art" loading="lazy" data-zoom src="images/s4.jpg" alt="Personas">
+    <div class="steps" style="--n:2">
+      <div><b>Fanyu Ye · 71</b><h4>Needs people with tech skills nearby</h4><p>Struggles with online purchasing and needs a simple way to ask neighbours for help.</p></div>
+      <div><b>Lanyi Xu · 25</b><h4>Needs supplies and a backup for her pets</h4><p>Wants a way to get pet supplies and to know her pets are safe if she has to leave.</p></div>
+    </div>
+  </div>
+</section>
 
-      <img class = "image" src = "images/sbs2.png">
-      <div class='text'>Background Research</div>
+<section class="chapter" id="journey">
+  <div class="ch-head rv">
+    <div><div class="ch-no"><b>04</b>Journey map</div><h2>Seven steps to one grocery order</h2></div>
+    <p class="lead">Mapping a group purchase from being confined at home to picking up the package showed where the experience broke — and where the app could help.</p>
+  </div>
+  <img class="rv" loading="lazy" data-zoom src="images/s5.jpg" alt="Customer journey map" style="width:100%">
+  <div class="steps rv">
+    <div><b>Pain</b><h4>Information is scattered</h4><p>Purchases are organised across chat groups and spreadsheets.</p></div>
+    <div><b>Pain</b><h4>Nobody knows the status</h4><p>Payment, delivery time and pickup are tracked by hand.</p></div>
+    <div><b>Opportunity</b><h4>One place for the whole process</h4><p>Collect, pay, track and pick up inside a single flow.</p></div>
+  </div>
+</section>
 
-      <img class = "image" src = "images/sbs3.png">
-      <div class='text'>Interview Analysis</div>
+<section class="band dark rv">
+  <div class="in">
+    <div class="head"><div><div class="ch-no"><b>05</b>Brand &amp; solutions</div><h2>Side by Side.</h2></div>
+      <p class="lead">A name and a mark for neighbours standing next to each other — and five “how might we” answers that became the app’s sections.</p></div>
+    <img class="art" loading="lazy" data-zoom src="images/s6.jpg" alt="Logo design, pain points and solutions">
+  </div>
+</section>
 
-      <img class = "image" src = "images/sbs4.png">
-      <div class='text'>Persona</div>
+<section class="chapter" id="wire">
+  <div class="ch-head rv">
+    <div><div class="ch-no"><b>06</b>Prototype</div><h2>From wireframe to high fidelity</h2>
+      <div class="tags"><span>Wireframes</span><span>UI design</span></div></div>
+    <p class="lead">Structure first, in grey boxes; then colour, photography and the warm palette of the brand. Three screens from the group-purchase flow, before and after.</p>
+  </div>
+  <div class="w2h rv">
+    <figure><div class="pp"><div class="phone wf"><img loading="lazy" data-zoom src="images/app/w-groups.jpg" alt=""></div><i>→</i><div class="phone "><img loading="lazy" data-zoom src="images/app/groups.jpg" alt=""></div></div><figcaption><strong>Groups</strong>Upcoming groups to join, and votes for new ones.</figcaption></figure>
+    <figure><div class="pp"><div class="phone wf"><img loading="lazy" data-zoom src="images/app/w-group-join.jpg" alt=""></div><i>→</i><div class="phone "><img loading="lazy" data-zoom src="images/app/group-join.jpg" alt=""></div></div><figcaption><strong>Join a group</strong>Time left, who is in, one button to join.</figcaption></figure>
+    <figure><div class="pp"><div class="phone wf"><img loading="lazy" data-zoom src="images/app/w-group-track.jpg" alt=""></div><i>→</i><div class="phone "><img loading="lazy" data-zoom src="images/app/group-track.jpg" alt=""></div></div><figcaption><strong>Track the order</strong>Arrival date, shopping list and payment progress.</figcaption></figure>
+  </div>
+  <div class="grid2 block rv">
+    <figure class="card-img"><img loading="lazy" data-zoom src="images/s7.jpg" alt="All wireframes"><figcaption><strong>All wireframes</strong> — homepage, group purchase, help center, exchange.</figcaption></figure>
+    <figure class="card-img"><img loading="lazy" data-zoom src="images/s8.jpg" alt="All app screens"><figcaption><strong>All app screens</strong> — with colour scheme, typography and icons.</figcaption></figure>
+  </div>
+</section>
 
-      <img class = "image" src = "images/sbs5.png">
-      <div class='text'>Customer Journey Map</div>
+<section class="band dark rv">
+  <div class="in">
+    <div class="head"><div><div class="ch-no"><b>07</b>The app</div><h2>Four sections, screen by screen</h2></div>
+      <p class="lead">Each section answers one of the problems residents described. Click a screen to see it in full.</p></div>
+    <div class="feat rv"><div><div class="no">01</div><h3>Homepage</h3></div><div class="phs"><div class="phone "><img loading="lazy" data-zoom src="images/app/home.jpg" alt=""></div><div class="phone "><img loading="lazy" data-zoom src="images/app/map.jpg" alt=""></div></div><p class="say">Today’s <em>pickup time</em> and community news come first, with the nearest <em>self-pickup locker</em> on a map.</p></div>
+    <div class="feat flip rv"><div><div class="no">02</div><h3>Group Purchase</h3></div><div class="phs"><div class="phone "><img loading="lazy" data-zoom src="images/app/groups.jpg" alt=""></div><div class="phone "><img loading="lazy" data-zoom src="images/app/group-join.jpg" alt=""></div><div class="phone "><img loading="lazy" data-zoom src="images/app/group-track.jpg" alt=""></div></div><p class="say">People can manage <em>every step and detail</em> of a group purchase, so everything is <em>more organised</em>.</p></div>
+    <div class="feat rv"><div><div class="no">03</div><h3>Help Center</h3></div><div class="phs"><div class="phone "><img loading="lazy" data-zoom src="images/app/help.jpg" alt=""></div><div class="phone "><img loading="lazy" data-zoom src="images/app/help-elder.jpg" alt=""></div><div class="phone "><img loading="lazy" data-zoom src="images/app/help-detail.jpg" alt=""></div></div><p class="say">Pets, the elderly and stranded travellers each get a place to <em>ask neighbours for help</em>.</p></div>
+    <div class="feat flip rv"><div><div class="no">04</div><h3>Exchange</h3></div><div class="phs"><div class="phone "><img loading="lazy" data-zoom src="images/app/exchange.jpg" alt=""></div><div class="phone "><img loading="lazy" data-zoom src="images/app/exchange-detail.jpg" alt=""></div></div><p class="say">Neighbours <em>barter</em> what they have for what they need — no money involved.</p></div>
+  </div>
+</section>
 
-      <img class = "image" src = "images/sbs6.png">
-      <div class='text'>Brand Design & Pain Points & Solutions</div>
+<section class="chapter" id="locker">
+  <div class="ch-head rv">
+    <div><div class="ch-no"><b>08</b>User test &amp; product</div><h2>A self-pickup locker</h2>
+      <div class="tags"><span>User test</span><span>Product design</span><span>3D mockup</span></div></div>
+    <p class="lead">Testers asked for a contact-free way to collect deliveries. The locker lets residents pick up packages safely, and is opened from the app.</p>
+  </div>
+  <div class="stage rv" style="padding:0;overflow:hidden;background:#efefef"><img loading="lazy" data-zoom src="images/s9.jpg" alt="Self-pickup locker design" style="border-radius:0;box-shadow:none"></div>
+  <div class="stage block rv" style="padding:0;overflow:hidden"><img loading="lazy" data-zoom src="images/s10.jpg" alt="Locker mockup" style="border-radius:0;box-shadow:none"></div>
+</section>
 
-      <img class = "image" src = "images/sbs7.png">
-      <div class='text'>App Prototype</div>
+<div class="next"><a class="ul" href="../index.html#p-side-by-side">← All projects</a><a class="more" href="../empwer/index.html">Next project: Empower@Home <b>→</b></a></div>
+</main>
 
-      <img class = "image" src = "images/sbs8.png">
-      <div class='text'>High-fidelity APP</div>
-
-      <img class = "image" src = "images/sbs9.png">
-      <div class='text'>User Test & self-pickup locker design</div>
-
-      <img class = "image" src = "images/sbs10.png">
-      <div class='text'>MOCKUP</div>
-    </ul>
-</div>
-</div>
-
-
-
-<div class="home">
-  <a href="../index.html#p-side-by-side">Home</a>
-</div>
-<footer>wangz630@newschool.edu</footer>
-  <script src="script.js"></script>
-  <script src="../case-study.js"></script>
+<footer id="footer"></footer>
+<script src="../home.js?v=2" data-root="../"></script>
+<script src="../hero.js"></script>
+<script src="../project.js?v=10"></script>
 </body>
-
 </html>

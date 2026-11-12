@@ -1,52 +1,47 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>Music visualizer</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Music Visualizer — Zi Wang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../home.css?v=13">
+<link rel="stylesheet" href="../project.css?v=13">
 </head>
+<body data-back="#work" data-hero="b">
+<div class="progress"></div>
+<header id="nav"></header>
 
-<body>
- <h1 id="title">Music visualizer</h1>
+<section class="p-hero-b">
+  <img class="bg" src="images/cover.png" alt="">
+  <h1 id="title">MUSIC VISUALIZER</h1>
+  <div class="tags"><span>Experimental Web</span><span>Interaction</span></div>
+  <a class="down" href="#after-hero" aria-label="Scroll"><svg viewBox="0 0 34 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 2l15 11L32 2"/></svg><span>scroll</span></a>
+</section>
+<div id="after-hero"></div>
+<section class="p-hero-b-info">
+  <div class="phb-band">
+  <p>Keys trigger sounds and shapes <em>— the music becomes a painting.</em></p>
+  <dl class="facts"><div><dt>Type</dt><dd>Experimental website</dd></div><div><dt>Built with</dt><dd>HTML · CSS · JavaScript</dd></div></dl>
+  </div>
+</section>
 
-  <img id="arrow" src = "images/arrow.png">
-  <p id="scroll">scroll</p>
+<main class="wrap">
+<section class="sec two rv"><h2>Overview</h2><div><p class="body">This is another experimental website that translates sound into geometric shapes. Each keyboard key corresponds to a specific sound, generating a unique shape. The music you create becomes a personalized painting. Even if you can't hear the music, the abstract painting on the screen provides a visual representation of the music in a different form.</p>
+  <div class="actions"><a class="more" href="../project-4/index.html" target="_blank" rel="noopener">Go view the site <b>→</b></a></div></div></section>
+<section class="sec"><div class="notes rv" style="margin-top:0"><div><b>Input</b><h4>One key, one sound</h4><p>Each keyboard key plays a specific sound.</p></div><div><b>Output</b><h4>One sound, one shape</h4><p>Every note draws a unique geometric shape.</p></div><div><b>Result</b><h4>A personal painting</h4><p>The piece you play stays on screen as an image.</p></div></div></section>
+<section class="sec rv">
+  <div class="browser"><div class="bar"><i></i><i></i><i></i><span>Music Visualizer</span></div><div class="view live"><iframe loading="lazy" src="../project-4/index.html" title="Music Visualizer — live site"></iframe></div></div>
+  <p class="hint">The live site — click inside, then press keys on your keyboard.</p>
+</section>
+<div class="next"><a class="ul" href="../index.html#work">← All projects</a><a class="more" href="../256-images/index.html">Next project: 256 Images <b>→</b></a></div>
+</main>
 
-  <!-- The video -->
-<img id = "cover" src = "images/cover.png">
-
-
-<!-- Optional: some overlay text to describe the video -->
-<div class="content">
-  <h1>MUSIC VISUALIZER</h1>
-  <form action="../project-4/index.html" method="get" target="_blank">
-    <button id="myBtn" type="submit">Go view the site</button>
- </form>
-</div>
-
-
-<!-- thesis proposal -->
-<div id="text">
-<h1 class="caption1">Oeverview</h1>
-<p class="proposal">This is another experimental website that translates sound into geometric shapes. Each keyboard key corresponds to a specific sound, generating a unique shape. The music you create becomes a personalized painting. Even if you can't hear the music, the abstract painting on the screen provides a visual representation of the music in a different form.</p>
-</div>
-
-  <!-- <div id="container">
-        <ul id="slides">
-          <a class="prev">&#10094;</a>
-          <a class="next">&#10095;</a>
-        </ul>
-  </div> -->
-
-
-<div class="home">
-  <a href="../index.html">Home</a>
-</div>
-<footer>wangz630@newschool.edu</footer>
-  <script src="script.js"></script>
+<footer id="footer"></footer>
+<script src="../home.js?v=2" data-root="../"></script>
+<script src="../hero.js"></script>
+<script src="../project.js?v=13"></script>
 </body>
-
 </html>

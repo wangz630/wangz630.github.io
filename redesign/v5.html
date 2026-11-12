@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zi Wang — Portfolio (v5 · Slices)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<style>
+body{font-family:'DM Sans',sans-serif}
+
+/* ---------- hero: a row of image slices rises from the bottom; one slice at a time opens wide ---------- */
+.hero{height:100svh;min-height:640px;display:flex;flex-direction:column;padding:clamp(96px,13vh,130px) var(--pad) 22px}
+.hero .txt{display:grid;grid-template-columns:1fr auto;gap:30px;align-items:end;padding-bottom:clamp(20px,3.4vh,38px)}
+.hero h1{font-weight:500;font-size:clamp(38px,min(6vw,9.4vh),96px);letter-spacing:-.05em;line-height:1}
+.hero h1 em{font-style:normal;color:var(--faint)}
+.hero .side{text-align:right;opacity:0;animation:fadeIn 1s ease 1.2s forwards}
+.slices{flex:1;min-height:0;display:flex;gap:10px}
+.s{position:relative;flex:1 1 0;min-width:0;overflow:hidden;border-radius:16px;box-shadow:0 20px 40px -22px rgba(20,20,40,.4);background:var(--soft);
+  clip-path:inset(100% 0 0 0);animation:rise 1.3s var(--ease) forwards;animation-delay:calc(var(--i)*90ms + 500ms);
+  transition:flex-grow 1.1s var(--ease)}
+@keyframes rise{to{clip-path:inset(0)}}
+.s.on{flex-grow:5.2}
+.s img{position:absolute;left:50%;top:0;height:100%;width:auto;min-width:100%;max-width:none;object-fit:cover;aspect-ratio:4/3;
+  transform:translateX(-50%) scale(1.3);transition:transform 1.4s var(--ease),filter .9s ease}
+.s.on img{transform:translateX(-50%) scale(1.02)}
+.s::after{content:attr(data-n);position:absolute;left:12px;bottom:10px;font-size:11px;letter-spacing:.14em;color:#fff;mix-blend-mode:difference;opacity:0;transition:opacity .5s .3s}
+.s.on::after{opacity:1}
+.bar{height:4px;border-radius:999px;background:var(--chip);margin-top:16px;position:relative;overflow:hidden}
+.bar i{position:absolute;inset:0;border-radius:999px;background:var(--ink);transform-origin:left;transform:scaleX(0)}
+.bar i.run{animation:fill var(--dur,2800ms) linear forwards}
+@keyframes fill{to{transform:scaleX(1)}}
+
+/* ---------- recent project: the image opens from a centre slit ---------- */
+.recent{padding-top:clamp(80px,10vw,150px)}
+.recent .head{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,90px);align-items:end;margin-bottom:28px}
+.recent h2{font-weight:500;font-size:clamp(56px,9vw,150px);letter-spacing:-.06em;line-height:.9;margin-top:16px}
+.recent .head p{color:#3d3d44;line-height:1.7;max-width:50ch;margin-bottom:16px}
+.recent .ph{aspect-ratio:16/8;clip-path:inset(0 46%);transition:clip-path 1.5s var(--ease)}
+.recent .shot.in .ph{clip-path:inset(0)}
+.recent .ph img,.recent a:hover > .ph img{height:114%;transform:translateY(var(--py,-5%));transition:none}
+
+/* ---------- projects: two per row; images drift slightly inside their frames ---------- */
+.cat{padding-top:clamp(80px,10vw,150px)}
+.cat-h{display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:baseline;padding-bottom:18px;border-bottom:1px solid var(--line);margin-bottom:clamp(24px,3vw,40px)}
+.cat-h b{font-weight:500;font-size:13px;color:var(--mute);font-variant-numeric:tabular-nums}
+.cat-h h3{font-weight:500;font-size:clamp(28px,3.8vw,58px);letter-spacing:-.045em;line-height:1.05}
+.rhythm{display:grid;grid-template-columns:repeat(6,1fr);gap:clamp(40px,4.4vw,68px) clamp(16px,2vw,30px)}
+.rhythm .item{grid-column:span var(--span)}
+.rhythm .item.full .ph{aspect-ratio:16/7.2}
+.rhythm .item .ph img{height:112%;transform:translateY(var(--py,-5%));transition:filter .5s}
+.rhythm a.item[href]:hover .ph img{transform:translateY(var(--py,-5%));filter:brightness(.93)}
+@media (max-width:760px){.rhythm .item{grid-column:1/-1}.hero .txt,.recent .head{grid-template-columns:1fr}.hero .side{text-align:left}.hero .side p{margin-left:0}.s:nth-child(n+6){display:none}}
+</style>
+</head>
+<body>
+<header id="nav"></header>
+
+<section class="hero">
+  <div class="txt">
+    <h1><span class="ln" style="--n:0"><span><em>I'm</em> Zi Wang,</span></span><span class="ln" style="--n:1"><span><em>a</em> visual designer</span></span><span class="ln" style="--n:2"><span><em>and</em> UI &amp; UX designer.</span></span></h1>
+    <div class="side"><span class="badge">Portfolio</span><br><a class="ul" style="margin-top:14px" href="#featured">Scroll ↓</a></div>
+  </div>
+  <div class="slices" id="slices"></div>
+  <div class="bar"><i id="bar"></i></div>
+</section>
+
+<section class="recent wrap" id="featured">
+  <div class="head rv"><div><span class="badge" id="f-badge"></span><h2 id="f-title"></h2></div><div><p id="f-desc"></p><a class="more" id="f-b">View project <b>→</b></a></div></div>
+  <a class="shot" id="f-a"><div class="ph"><img id="f-img" alt=""></div></a>
+  <div class="lbl" id="f-sub" style="padding-top:14px"></div>
+</section>
+
+<main id="work" class="wrap"></main>
+<div id="exp" class="wrap"></div>
+<footer id="footer"></footer>
+
+<script src="shared.js"></script>
+<script>
+(function(){
+  var $=function(s){return document.querySelector(s)}, F=PF.featured;
+  PF.chrome();
+  $('#f-badge').textContent=F.badge; $('#f-img').src=F.img; $('#f-title').textContent=F.title; $('#f-sub').textContent=F.sub; $('#f-desc').textContent=F.desc; $('#f-a').href=$('#f-b').href=F.href;
+
+  /* slices */
+  var covers=PF.covers(8), box=$('#slices'), bar=$('#bar'), DUR=2800;
+  box.innerHTML=covers.map(function(p,i){return '<div class="s" data-n="'+String(i+1).padStart(2,'0')+' / '+String(covers.length).padStart(2,'0')+'" style="--i:'+i+'"><img src="'+p.img+'" alt=""></div>'}).join('');
+  var sl=[].slice.call(box.children), cur=-1, timer=null, hover=false;
+  function open(i){cur=i;sl.forEach(function(s,k){s.classList.toggle('on',k===i)});
+    bar.classList.remove('run');void bar.offsetWidth;bar.style.setProperty('--dur',DUR+'ms');if(!hover)bar.classList.add('run')}
+  function next(){open((cur+1)%sl.length)}
+  function play(){clearInterval(timer);timer=setInterval(function(){if(!hover)next()},DUR)}
+  setTimeout(function(){open(2);play()},1500);                       /* first slice opens once the row has risen */
+  sl.forEach(function(s,i){s.addEventListener('mouseenter',function(){hover=true;open(i)})});
+  box.addEventListener('mouseleave',function(){hover=false;open(cur);play()});
+
+  /* gallery rows cycle 1-up, 2-up, 3-up; a short last row is stretched to fill */
+  $('#work').innerHTML=PF.cats.map(function(c,ci){
+    var list=PF.byCat(c.id), out='', i=0, step=0, sizes=[2,2,2];
+    while(i<list.length){var n=Math.min(sizes[step%3],list.length-i);
+      for(var k=0;k<n;k++) out+=PF.item(list[i+k],k,n===1?'full':'').replace('style="','style="--span:'+(6/n)+';');
+      i+=n;step++}
+    return '<section class="cat" id="c-'+c.id+'"><div class="cat-h rv"><b>0'+(ci+1)+'</b><h3>'+PF.esc(c.name)+'</h3><span class="lbl">'+String(list.length).padStart(2,'0')+' projects</span></div><div class="rhythm">'+out+'</div></section>';
+  }).join('');
+  PF.reveal('.rv'); PF.reveal('.shot',{threshold:.25});
+
+  /* gentle parallax of images inside their frames (only for frames on screen) */
+  var frames=[].slice.call(document.querySelectorAll('.rhythm .ph, .recent .ph'));
+  if(!PF.reduced)(function tick(){
+    frames.forEach(function(f){var r=f.getBoundingClientRect(); if(r.bottom<0||r.top>innerHeight)return;
+      f.firstChild.style.setProperty('--py',(-5.5+((r.top+r.height/2-innerHeight/2)/innerHeight)*-5.5).toFixed(2)+'%')});
+    requestAnimationFrame(tick);
+  })();
+})();
+</script>
+</body>
+</html>

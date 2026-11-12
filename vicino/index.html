@@ -1,274 +1,465 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vicino</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
-  <link href="../case-study.css" rel="stylesheet" type="text/css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vicino — Zi Wang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../home.css?v=10">
+<link rel="stylesheet" href="../project.css?v=10">
 </head>
+<body data-back="#p-vicino" data-hero="b">
+<div class="progress"></div>
+<header id="nav"></header>
 
-<body>
+<!-- ============================ HERO ============================ -->
+<!-- alternative first screen (full-bleed cover, centred title) — switch with the "Hero" control -->
+<section class="p-hero-b">
+  <img class="bg" src="../project-image/Vicino Cover Image.png" alt="">
+  <h1 id="title">VICINO</h1>
+  <div class="tags"><span>AI Product</span><span>Workflow Canvas</span><span>Pulse</span><span>Product Design</span></div>
+  <a class="down" href="#after-hero" aria-label="Scroll"><svg viewBox="0 0 34 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 2l15 11L32 2"/></svg><span>scroll</span></a>
+</section>
+<div id="after-hero"></div>
+<section class="p-hero-b-info">
+  <div class="phb-band">
+  <p>Designing an AI creative-workflow canvas <em>and</em> Pulse, a content-lifecycle platform <em>— eight features, owned end to end.</em></p>
+  <dl class="facts">
+    <div><dt>Role</dt><dd>Product Designer</dd></div>
+    <div><dt>Timeline</dt><dd>2026 – Present</dd></div>
+    <div><dt>Tools</dt><dd>Figma · Claude Code · HTML prototypes</dd></div>
+    <div><dt>Scope</dt><dd>Concept → interaction → handoff</dd></div>
+  </dl>
+  </div>
+</section>
 
-  <a class="cs-back" href="../index.html#p-vicino" aria-label="Back to home">
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 5l-7 7 7 7" stroke="#181818" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  </a>
 
-  <h1 id="title">Vicino</h1>
-  <div class="cs-hero-tags">
-    <span>Chatbot</span><span>Sliding Panel</span><span>Image Editor</span><span>Audio Node</span><span>Pulse Onboarding</span>
+<main class="wrap">
+
+<!-- ============================ OVERVIEW ============================ -->
+<section class="sec rv">
+  <div class="two"><h2>Overview</h2><div><p class="big">Vicino builds AI tools that help teams generate, manage and ship content. <em>I design both of its products — and every feature below is mine from the first sketch to the engineering handoff.</em></p></div></div>
+  <div class="prow">
+    <div class="pinfo"><span class="badge">Product 01</span><h3>Workflow Canvas</h3><p>A node-based canvas that chains image, video and audio generation into one workflow.</p></div>
+    <nav class="toc">
+        <a href="#chatbot"><img loading="lazy" src="images/figma/c2c-2.jpg" alt=""><b>01</b><span>Chatbot — 2C &amp; 2B</span><i>Two audiences</i></a>
+        <a href="#panel"><img loading="lazy" src="images/figma/sp-3.png" alt=""><b>02</b><span>Sliding panel</span><i>Lower learning cost</i></a>
+        <a href="#editor"><img loading="lazy" src="images/figma/ie-3.jpg" alt=""><b>03</b><span>Image editor node</span><i>Precise control</i></a>
+        <a href="#audio"><img loading="lazy" src="images/figma/au-4.jpg" alt=""><b>04</b><span>Audio node</span><i>Prompt to sound</i></a>
+      </nav>
+  </div>
+  <div class="prow">
+    <div class="pinfo"><span class="badge">Product 02</span><h3>Pulse</h3><p>An AI content-lifecycle platform: brand knowledge, planning, production and approval.</p></div>
+    <nav class="toc">
+        <a href="#calendar"><img loading="lazy" src="images/cs/after-calendar.jpg" alt=""><b>05</b><span>Calendar</span><i>Three tabs → one</i></a>
+        <a href="#drawer"><img loading="lazy" src="images/cs/after-story.jpg" alt=""><b>06</b><span>Post drawer</span><i>Brief → storyboard → preview</i></a>
+        <a href="#brain"><img loading="lazy" src="images/cs/after-brain-report.jpg" alt=""><b>07</b><span>Brain</span><i>Text → a readable report</i></a>
+        <a href="#chat"><img loading="lazy" src="images/cs/after-chat-fail.jpg" alt=""><b>08</b><span>AI chat</span><i>Three fixes from feedback</i></a>
+      </nav>
+  </div>
+</section>
+
+<!-- ============================ PROCESS ============================ -->
+<section class="sec two rv">
+  <h2>How I work</h2>
+  <div>
+    <p class="body" style="margin-bottom:26px">The same loop sits behind every feature. The step that changed my speed the most is the third: I turn Figma concepts into <strong>interactive HTML prototypes with Claude Code</strong>, so interactions, motion and edge states are tested as the real thing before any engineering time is spent.</p>
+    <div class="flow sm">
+      <div class="st"><b>01</b><h4>Read the PRD</h4><p>Requirements and constraints.</p></div>
+      <div class="st"><b>02</b><h4>Draft &amp; align</h4><p>Early sketches, lock a direction with the team.</p></div>
+      <div class="st key"><b>03</b><h4>Prototype fast</h4><p>Figma + Claude Code, round after round.</p></div>
+      <div class="st"><b>04</b><h4>Review</h4><p>Stand-up share, collect feedback.</p></div>
+      <div class="st"><b>05</b><h4>Finalize</h4><p>States, details, components.</p></div>
+      <div class="st dark"><b>06</b><h4>Handoff</h4><p>Docs, flows, a working prototype.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================================
+     PART 1 — WORKFLOW CANVAS
+     ===================================================================== -->
+<section class="part rv">
+  <div><span class="badge">Product 01</span><h2>Workflow Canvas</h2></div>
+  <p>A node canvas is powerful and intimidating in equal measure. Across these four features the question was the same: <strong>how does a complex tool stay intuitive</strong>, so people get to a result without first learning the system?</p>
+</section>
+
+<!-- ---------- 01 CHATBOT ---------- -->
+<section class="chapter" id="chatbot">
+  <div class="ch-head rv">
+    <div><div class="ch-no"><b>01</b>Workflow Canvas</div><h2>One chatbot, two audiences</h2>
+      <div class="tags"><span>Conversational UI</span><span>2C</span><span>2B</span><span>Interaction model</span></div></div>
+    <p class="lead">The canvas needed a chatbot so people could drive generation in plain language. But a solo creator and a brand team want opposite things from it — so I designed <strong>two interaction models</strong> on one visual system.</p>
   </div>
 
-  <img id="arrow" src="images/arrow.png">
-  <p id="scroll">scroll</p>
-
-  <div id="cover-container">
-    <img id="cover" src="../project-image/Vicino Cover Image.png">
+  <div class="cols rv">
+    <div class="persona">
+      <div class="who"><img src="images/cs/avatars/a1.png" alt=""><div><b>The everyday creator</b><span>2C · makes content alone</span></div><span class="badge">Speed</span></div>
+      <q>I just want the image. I don’t want to learn what a node is first.</q>
+      <dl><div><dt>Pain point</dt><dd>A full workflow canvas is too much to learn for one quick asset.</dd></div>
+      <div><dt>What they need</dt><dd>The shortest path from an idea to a result.</dd></div></dl>
+    </div>
+    <div class="persona">
+      <div class="who"><img src="images/cs/avatars/a2.png" alt=""><div><b>The brand team</b><span>2B · ships campaigns at scale</span></div><span class="badge">Accuracy</span></div>
+      <q>If step three of a long workflow is wrong, I can’t afford to find out at the end.</q>
+      <dl><div><dt>Pain point</dt><dd>One-shot generation of a complex workflow is unpredictable and hard to correct.</dd></div>
+      <div><dt>What they need</dt><dd>To see the plan first, and to change any single step afterwards.</dd></div></dl>
+    </div>
   </div>
 
-  <div id="text">
-    <div class="year-team-role">
-      <p><strong>Year:</strong> 2026 – Present <span class="divider">|</span> <strong>Role:</strong> Product Designer <span class="divider">|</span> <strong>Tools:</strong> Figma, Claude</p>
+  <div class="block part-line rv">
+    <div class="kicker"><b>2C</b>Speed &amp; simplicity</div>
+    <h3 class="h3">Break the workflow into single functions, and let the chat be the hook</h3>
+    <p class="body">Instead of exposing the whole canvas, the 2C chatbot splits the workflow into standalone node functions. The user picks the kind of asset they want, talks to the chatbot, and gets it in a single back-and-forth. Once they have seen what one node can do, the full canvas is one step away.</p>
+    <div class="flow" style="margin-top:26px">
+      <div class="st"><b>01</b><h4>Pick an asset type</h4><p>Image, video, audio — each one is a single node function.</p></div>
+      <div class="st"><b>02</b><h4>Describe it in chat</h4><p>One prompt, optional references.</p></div>
+      <div class="st key"><b>03</b><h4>Result in one exchange</h4><p>No setup, no canvas to learn.</p></div>
+      <div class="st ghost"><b>→</b><h4>Continue on the canvas</h4><p>The hook into the full, more capable workflow.</p></div>
     </div>
-
-    <!-- ===================== OVERVIEW ===================== -->
-    <h1 class="caption1">Project Overview</h1>
-    <p class="proposal">
-      Vicino is a startup building AI-powered creative tools that help teams generate, manage, and ship content through node-based creative workflows. As a Product Designer, I worked across the company's AI creative workflow canvas, designing new features that make multi-step AI generation clearer, faster, and more controllable for both everyday creators and professional teams.
-      <br><br>
-      Everything shown below I <strong>owned end-to-end and individually</strong> — from the very first concept and interaction design through to the final handoff to engineering. My core toolkit was Figma and Claude: I used AI tools like Claude to rapidly prototype and validate interaction ideas, then refined the UI, states, and micro-interactions in Figma into a polished, developer-ready design.
-    </p>
-    <!-- ===================== MY CONTRIBUTIONS OVERVIEW ===================== -->
-    <span class="cs-eyebrow">What I Owned</span>
-    <h1 class="caption1">Features I Designed</h1>
-    <p class="proposal" style="text-align:center;">These are the parts of the product I personally owned end-to-end at Vicino — each designed from scratch and handed off to engineering. Here's a quick look at what they are:</p>
-    <div class="cs-overview">
-      <div class="cs-fcard"><img class="cs-fcard__thumb" src="images/2C-chatbot.png" alt="Chatbot preview"><p class="cs-fcard__name">Chatbot — B2C &amp; B2B</p><p class="cs-fcard__tag">Conversational generation</p></div>
-      <div class="cs-fcard"><img class="cs-fcard__thumb" src="images/sliding-panel-thumb.jpg" alt="Sliding Panel preview"><p class="cs-fcard__name">Sliding Panel</p><p class="cs-fcard__tag">Quick in-context controls</p></div>
-      <div class="cs-fcard"><img class="cs-fcard__thumb" src="images/imageeditor-components.png" alt="Image Editor preview"><p class="cs-fcard__name">Image Editor Node</p><p class="cs-fcard__tag">Advanced image refinement</p></div>
-      <div class="cs-fcard"><img class="cs-fcard__thumb" src="images/audio-node-thumb.jpg" alt="Audio Node preview"><p class="cs-fcard__name">Audio Node</p><p class="cs-fcard__tag">Prompt-to-audio flow</p></div>
-      <div class="cs-fcard"><img class="cs-fcard__thumb" src="images/onboarding-userflow.png" alt="Pulse Onboarding preview"><p class="cs-fcard__name">Pulse Onboarding</p><p class="cs-fcard__tag">New-user onboarding</p></div>
-      <div class="cs-fcard"><img class="cs-fcard__thumb" src="images/brain-thumb.jpg" alt="Brain preview"><p class="cs-fcard__name">Brain</p><p class="cs-fcard__tag">Brand-data intelligence</p></div>
-      <div class="cs-fcard"><img class="cs-fcard__thumb" src="images/sidechats-thumb.jpg" alt="Side Chats preview"><p class="cs-fcard__name">Side Chats</p><p class="cs-fcard__tag">In-context brief edits</p></div>
-      <div class="cs-fcard"><img class="cs-fcard__thumb" src="images/campaign-thumb.jpg" alt="Campaign Drawer preview"><p class="cs-fcard__name">Campaign Drawer</p><p class="cs-fcard__tag">Brief &amp; scheduling</p></div>
+    <span class="eyebrow" style="margin-top:40px">2C user flow</span>
+    <div class="shots alt lead3">
+      <figure class="shot"><div class="im"><img loading="lazy" data-zoom src="images/figma/c2c-1.jpg" alt=""></div><figcaption><b>01</b><span><strong>Start.</strong> Each tool is one node function — image, video, script, storyboard — plus quick-start templates.</span></figcaption></figure>
+      <figure class="shot"><div class="im"><img loading="lazy" data-zoom src="images/figma/c2c-2.jpg" alt=""></div><figcaption><b>02</b><span><strong>One exchange.</strong> The chatbot confirms the task and the result lands as a node, ready to continue on the canvas.</span></figcaption></figure>
+      <figure class="shot"><div class="im"><img loading="lazy" data-zoom src="images/figma/c2c-3.jpg" alt=""></div><figcaption><b>03</b><span><strong>Asset library.</strong> Everything generated is kept in one place and can be reused as a reference.</span></figcaption></figure>
+      <figure class="shot"><div class="im"><img loading="lazy" data-zoom src="images/figma/c2c-4.jpg" alt=""></div><figcaption><b>04</b><span><strong>Community.</strong> Other people’s results become starting points — another way in without learning nodes.</span></figcaption></figure>
     </div>
-    <p class="cs-overview-hint">auto-scrolling · hover to pause · drag to browse</p>
-
-    <!-- ===================== DESIGN PROCESS ===================== -->
-    <span class="cs-eyebrow">How I Work</span>
-    <h1 class="caption1">My Design Process</h1>
-    <p class="proposal" style="text-align:center;">A consistent end-to-end flow sits behind every feature below — from understanding the requirement to handing engineering a build-ready design.</p>
-    <div class="cs-process">
-      <div class="cs-process__grid">
-        <div class="cs-step">
-          <div class="cs-step__badge">1</div>
-          <p class="cs-step__title">Receive PRD</p>
-          <p class="cs-step__desc">Read the PRD to understand the design requirements and constraints.</p>
-        </div>
-        <div class="cs-step">
-          <div class="cs-step__badge">2</div>
-          <p class="cs-step__title">Draft &amp; Align</p>
-          <p class="cs-step__desc">Sketch early drafts, then meet with the team to lock the design direction.</p>
-        </div>
-        <div class="cs-step">
-          <div class="cs-step__badge">3</div>
-          <p class="cs-step__title">Rapid Iteration</p>
-          <p class="cs-step__desc">Prototype and iterate fast with AI-assisted tooling.</p>
-          <div class="cs-step__tools"><span>Claude</span><span>MCP</span><span>Figma</span></div>
-        </div>
-        <div class="cs-step">
-          <div class="cs-step__badge">4</div>
-          <p class="cs-step__title">Standup Share</p>
-          <p class="cs-step__desc">Share progress with other designers at standup and gather feedback.</p>
-        </div>
-        <div class="cs-step">
-          <div class="cs-step__badge">5</div>
-          <p class="cs-step__title">Finalize</p>
-          <p class="cs-step__desc">Refine toward a polished, production-ready final design.</p>
-        </div>
-        <div class="cs-step">
-          <div class="cs-step__badge">6</div>
-          <p class="cs-step__title">Handoff</p>
-          <p class="cs-step__desc">Deliver detailed handoff docs, user flows, and an HTML prototype for motion.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- ===================== 1. CHATBOT ===================== -->
-    <span class="cs-eyebrow">Node 1</span>
-    <h1 class="caption1">Chatbot Design — B2C &amp; B2B</h1>
-    <p class="proposal">
-      Our AI creative workflow product needed a chatbot so users could drive generation through natural conversation. I designed the chatbot's UI and interaction model across two distinct audiences — <strong>B2C</strong> and <strong>B2B</strong> — each optimized for very different needs.
-    </p>
-
-    <!-- B2C: process design (left) + UI (right) -->
-    <div class="cs-split">
-      <div class="cs-split__text">
-        <span class="cs-eyebrow" style="text-align:left;">B2C</span>
-        <h2 class="cs-h">Speed &amp; simplicity</h2>
-        <p>The B2C interaction is streamlined so that most of what a user wants to generate can be completed in a <strong>single back-and-forth</strong> with the chatbot — keeping the experience light and conversational.</p>
-      </div>
-      <div class="cs-split__media">
-        <a class="cs-imgwrap"><img src="images/2C-chatbot.png" alt="B2C chatbot UI design"></a>
-        <p class="cs-mediacap">B2C chatbot — UI mockup</p>
-      </div>
-    </div>
-    <!-- B2C: final result video -->
-    <div class="cs-video">
-      <div class="video-wrap">
-        <div style="padding:62.5% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1212776327?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="2C Chatbot Example Flow"></iframe></div>
-      </div>
-    </div>
-    <p class="video-caption">B2C Chatbot — final result</p>
-
-    <!-- B2B: UI (left) + process design (right) -->
-    <div class="cs-split cs-split--reverse">
-      <div class="cs-split__text">
-        <span class="cs-eyebrow" style="text-align:left;">B2B</span>
-        <h2 class="cs-h">Accuracy &amp; control</h2>
-        <p>Instead of generating in one shot, the B2B chatbot first shows the user a <strong>generation plan</strong> — a main task plus a to-do list — for confirmation. Once approved, it builds out the workflow, and the user can inspect the status of every node and adjust its properties, giving professional teams the precision and transparency they need.</p>
-      </div>
-      <div class="cs-split__media">
-        <a class="cs-imgwrap"><img src="images/2B-chatbot.png" alt="B2B chatbot UI design"></a>
-        <p class="cs-mediacap">B2B chatbot — UI mockup</p>
-      </div>
-    </div>
-    <!-- B2B: final result video -->
-    <div class="cs-video">
-      <div class="video-wrap">
-        <div style="padding:50.7% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1212776919?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479%2Fembed" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen="" frameborder="0" style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>
-      </div>
-    </div>
-    <p class="video-caption">B2B Chatbot — final result</p>
-
-    <!-- ===================== 2. SLIDING PANEL ===================== -->
-    <span class="cs-eyebrow">Node 2</span>
-    <h1 class="caption1">Sliding Panel</h1>
-    <p class="proposal">
-      Our earlier product exposed a large number of adjustable properties, all buried in a single property panel on the right side of the canvas — users had to scroll a long way to find the setting they wanted. To fix this, I designed a <strong>sliding panel</strong> that attaches directly to its node, surfacing the most-used controls for quick, in-context adjustments right where the user is working.
-    </p>
-    <div class="cs-video">
-      <div class="video-wrap">
-        <div style="padding:62.5% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1212775633?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Sliding Panel Example Flow"></iframe></div>
-      </div>
-    </div>
-    <p class="video-caption">Sliding Panel — final result</p>
-
-    <!-- ===================== 3. IMAGE EDITOR NODE ===================== -->
-    <span class="cs-eyebrow">Node 3</span>
-    <h1 class="caption1">Image Editor Node</h1>
-    <p class="proposal">
-      Because Vicino is B2B-facing, users need precise control over the product images they generate. So we proposed an <strong>Image Editor node</strong> — a standalone node for the manual, advanced refinement of AI-generated images. I owned it end-to-end, studying <strong>Lightroom and Photoshop</strong> alongside the marketing team's PRD to design its full feature set, UI, and component system from scratch.
-    </p>
-
-    <!-- process: interface & components -->
-    <div class="cs-split">
-      <div class="cs-split__text">
-        <span class="cs-eyebrow" style="text-align:left;">Interface &amp; Components</span>
-        <h2 class="cs-h">A Lightroom-style workspace</h2>
-        <p>The interface centers on a <strong>main canvas</strong> for real-time preview, with a right-side panel for parameter controls, a side toolbar for switching modules, and a bottom bar for zoom, pan, opacity, and before/after comparison.</p>
-      </div>
-      <div class="cs-split__media">
-        <a class="cs-imgwrap"><img src="images/imageeditor-components.png" alt="Image Editor components"></a>
-        <p class="cs-mediacap">Image Editor Components Design</p>
-      </div>
-    </div>
-
-    <!-- process: modules & flow -->
-    <div class="cs-split cs-split--reverse">
-      <div class="cs-split__text">
-        <span class="cs-eyebrow" style="text-align:left;">Modules &amp; Flow</span>
-        <h2 class="cs-h">Basic to advanced editing</h2>
-        <p>I designed modules covering both basic and advanced needs — Crop &amp; Transform, Basic &amp; Advanced Adjustment (HSL, Color Grading, Curves, Levels), Filters, Masking, Lens effects, Image Style transfer, Shooting Studio, and an <strong>AI Chatbot</strong> for natural-language editing.</p>
-      </div>
-      <div class="cs-split__media">
-        <a class="cs-imgwrap"><img src="images/imageeditor-userflow.png" alt="Image Editor user flow"></a>
-        <p class="cs-mediacap">Example user flow</p>
-      </div>
-    </div>
-
-    <!-- final result video -->
-    <div class="cs-video">
-      <div class="video-wrap">
-        <div style="padding:62.5% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1213108066?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Image Editor"></iframe></div>
-      </div>
-    </div>
-    <p class="video-caption">Image Editor Node — final result</p>
-
-    <!-- ===================== 4. AUDIO NODE ===================== -->
-    <span class="cs-eyebrow">Node 4</span>
-    <h1 class="caption1">Audio Node</h1>
-    <!-- process: user flow + text -->
-    <div class="cs-split">
-      <div class="cs-split__text">
-        <span class="cs-eyebrow" style="text-align:left;">End-to-end flow</span>
-        <h2 class="cs-h">From prompt to generated audio</h2>
-        <p>I designed the Audio Node from start to finish — the full flow of entering a prompt, uploading audio, and generating the final output, along with every state and interaction in between.</p>
-      </div>
-      <div class="cs-split__media">
-        <a class="cs-imgwrap"><img src="images/audionode-userflow.png" alt="Audio Node user flow"></a>
-        <p class="cs-mediacap">Example user flow</p>
-      </div>
-    </div>
-    <!-- final result video -->
-    <div class="cs-video">
-      <div class="video-wrap">
-        <div style="padding:55.28% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1212774824?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="AudioNode Demo Video"></iframe></div>
-      </div>
-    </div>
-    <p class="video-caption">Audio Node — final result</p>
-
-    <!-- ===================== PULSE ===================== -->
-    <span class="cs-eyebrow">Pulse</span>
-    <h1 class="caption1">Pulse — Platform Design</h1>
-    <p class="proposal">
-      Beyond the creative workflow canvas, I design <strong>Pulse</strong> — an AI-driven content lifecycle platform for strategy-driven content creation, lifecycle management, and performance analytics. I started with the onboarding experience and have since designed its brand-data management hub (<strong>Brain</strong>), <strong>side-chats</strong>, the <strong>campaign drawer</strong>, and more — rapidly iterating each design through <strong>vibe-coding</strong>, building live, interactive prototypes to test and refine the experience fast.
-    </p>
-
-    <!-- rapid-iteration prototype showcase (featured first) -->
-    <span class="cs-eyebrow">Rapid Iteration · Vibe-Coding</span>
-    <h1 class="caption1">Feature Prototypes</h1>
-    <p class="proposal" style="text-align:center;">A quick look at some of these features as draft prototypes from rapid iteration — Side Chats, the Campaign Drawer, and Brain. Each one is a real interface and a simple flow I designed and refined fast through vibe-coding.</p>
-    <div class="ps-embed">
-      <iframe src="prototype-showcase.html" title="Pulse feature prototype showcase" loading="lazy"></iframe>
-    </div>
-    <p class="ps-caption">Auto-playing showcase — each feature's UI and a short look at its flow. Click a feature to jump.</p>
-
-    <!-- onboarding -->
-    <span class="cs-eyebrow">Onboarding</span>
-    <h1 class="caption1">New-user Onboarding</h1>
-    <p class="proposal">The onboarding experience guides new users into the product from their very first session.</p>
-    <div class="image-container">
-      <a href="Part One Onboarding.html" target="_blank" class="now-btn">Open the HTML Prototype →</a>
-    </div>
-    <div class="image-container">
-      <a class="cs-imgwrap"><img class="figma-shot" src="images/brand-setup-part-one.png" alt="Pulse onboarding brand setup mockup"></a>
-    </div>
-    <p class="shot-caption">Pulse onboarding — brand setup (mockup)</p>
-
-    <!-- ===================== RESULTS ===================== -->
-    <div class="cs-result">
-      <span class="cs-result__label">Results</span>
-      <p>My designs were <strong>recognized by the PM</strong> and <strong>implemented into the product</strong>.</p>
-    </div>
-
+    <div class="actions"><button class="vbtn" data-vimeo="1212776327">Watch the 2C flow <small>prototype recording</small></button></div>
   </div>
 
-  <div class="home">
-    <a href="../index.html#p-vicino">Home</a>
+  <div class="block part-line rv">
+    <div class="kicker"><b>2B</b>Accuracy &amp; control</div>
+    <h3 class="h3">Plan first, then generate step by step</h3>
+    <p class="body">For professional teams the priority is that a complex workflow comes out right. So the 2B chatbot never generates in one shot: it first turns the request into a <strong>plan</strong> — a main task with a to-do list — and waits for confirmation. Only then does it build the workflow node by node, and every node stays open to inspection and adjustment.</p>
+    <div class="flow" style="margin-top:26px">
+      <div class="st"><b>01</b><h4>State the goal</h4><p>The user describes the whole deliverable.</p></div>
+      <div class="st key"><b>02</b><h4>Review the plan</h4><p>Main task + to-do list, before anything runs.</p></div>
+      <div class="st"><b>03</b><h4>Confirm</h4><p>Nothing is spent until the plan is approved.</p></div>
+      <div class="st"><b>04</b><h4>Step-by-step generation</h4><p>Each node reports its own status.</p></div>
+      <div class="st dark"><b>05</b><h4>Adjust any node</h4><p>Change one step without redoing the rest.</p></div>
+    </div>
+    <span class="eyebrow" style="margin-top:40px">2B user flow</span>
+    <div class="shots alt tl">
+      <figure class="shot"><div class="im"><img loading="lazy" data-zoom src="images/figma/c2b-1.jpg" alt=""></div><figcaption><b>01</b><span><strong>Task loaded.</strong> The chatbot restates the main task and asks for references before building anything.</span></figcaption></figure>
+      <figure class="shot"><div class="im"><img loading="lazy" data-zoom src="images/figma/c2b-2.jpg" alt=""></div><figcaption><b>02</b><span><strong>The plan.</strong> A main task with a to-do checklist. Nothing runs until the user says “Yes, let’s start”.</span></figcaption></figure>
+      <figure class="shot"><div class="im"><img loading="lazy" data-zoom src="images/figma/c2b-3.jpg" alt=""></div><figcaption><b>03</b><span><strong>Confirmed.</strong> The plan is locked and the first step begins; progress stays one click away.</span></figcaption></figure>
+      <figure class="shot"><div class="im"><img loading="lazy" data-zoom src="images/figma/c2b-4.jpg" alt=""></div><figcaption><b>04</b><span><strong>Step by step.</strong> Each step reports what it made and with which model before moving on.</span></figcaption></figure>
+      <figure class="shot"><div class="im"><img loading="lazy" data-zoom src="images/figma/c2b-5.jpg" alt=""></div><figcaption><b>05</b><span><strong>Results on the canvas.</strong> Generated assets appear as nodes while the chat explains each one.</span></figcaption></figure>
+      <figure class="shot"><div class="im"><img loading="lazy" data-zoom src="images/figma/c2b-6.jpg" alt=""></div><figcaption><b>06</b><span><strong>The full workflow.</strong> Every step maps to nodes the team can open, adjust and re-run on their own.</span></figcaption></figure>
+    </div>
+    <div class="actions"><button class="vbtn" data-vimeo="1212776919" data-ratio="16/8.1">Watch the 2B flow <small>prototype recording</small></button></div>
   </div>
-  <footer>ziwang1247@gmail.com</footer>
+</section>
 
-  <script src="https://player.vimeo.com/api/player.js"></script>
-  <script>
-    window.onscroll = function () {
-      var scrolled = document.body.scrollTop > 500 || document.documentElement.scrollTop > 500;
-      document.getElementById("arrow").style.display = scrolled ? "none" : "block";
-      document.getElementById("scroll").style.display = scrolled ? "none" : "block";
-    };
-  </script>
-  <script src="../case-study.js"></script>
+<!-- ---------- 02 SLIDING PANEL ---------- -->
+<section class="chapter" id="panel">
+  <div class="ch-head rv">
+    <div><div class="ch-no"><b>02</b>Workflow Canvas</div><h2>A sliding panel that puts settings where the work is</h2>
+      <div class="tags"><span>Information architecture</span><span>New pattern</span><span>Learning cost</span></div></div>
+    <p class="lead">Every parameter of every node used to live in one long sidebar. I added a panel that slides out of the node itself, so the settings for a node sit next to that node.</p>
+  </div>
+
+  <div class="rv schematic">
+    <span class="eyebrow">Before &amp; after — where the parameters live</span>
+    <p class="body" style="margin-bottom:22px">Purple marks the settings that belong to the selected node. They leave the shared sidebar and attach to the node — the diagram on top, the real interface underneath.</p>
+    <div class="cols">
+      <div class="wire"><span class="chip tag">Before</span>
+        <div class="cv"><div class="nd n1"></div><div class="nd n2 sel"></div><div class="nd n3"></div></div>
+        <div class="pn"><i></i><i class="p"></i><i></i><i></i><i class="p"></i><i></i><i></i><i></i><i class="p"></i><i></i><i class="p"></i><i></i><i></i><i class="p"></i><i></i></div>
+      </div>
+      <div class="wire"><span class="chip a tag">After</span>
+        <div class="cv"><div class="nd n1"></div><div class="nd n2 sel"></div><div class="nd n3"></div><div class="sp"><i></i><i style="width:80%"></i><i></i><i style="width:64%"></i><i></i></div></div>
+        <div class="pn"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cols rv tight" style="align-items:start">
+    <figure class="shot crop"><div class="im" style="--ar:1436/1130"><img loading="lazy" data-zoom src="images/figma/sp-v1.png" alt="Before: every parameter in the sidebar"></div>
+      <figcaption><span class="chip">Before</span><span><strong>Everything in the sidebar.</strong> Global settings and the node’s own Prompt Builder share one long column.</span></figcaption></figure>
+    <figure class="shot crop"><div class="im" style="--ar:1436/1130"><img loading="lazy" data-zoom src="images/figma/sp-v2.png" alt="After: node-specific parameters in a sliding panel"></div>
+      <figcaption><span class="chip a">After</span><span><strong>Two kinds of parameters, two places.</strong> The sidebar keeps global settings (model); the node’s own tools slide out beside it.</span></figcaption></figure>
+  </div>
+
+  <div class="block part-line rv">
+    <div class="kicker"><b>Flow</b>Using the panel, step by step</div>
+    <p class="body" style="margin-bottom:28px">The comparison above shows where settings moved. The eight screens below show the panel in use — from opening a node to connecting, generating and disconnecting an input.</p>
+    <div class="shots">
+      <figure class="shot"><div class="im" style="--ar:1436/800"><img loading="lazy" data-zoom src="images/figma/sp-1.png" alt=""></div><figcaption><b>01</b><span><strong>Node inactive.</strong> The user clicks the node.</span></figcaption></figure>
+      <figure class="shot"><div class="im" style="--ar:1436/800"><img loading="lazy" data-zoom src="images/figma/sp-2.png" alt=""></div><figcaption><b>02</b><span><strong>The panel slides out</strong> from the node’s edge; the sidebar shows only the model.</span></figcaption></figure>
+      <figure class="shot"><div class="im" style="--ar:1436/800"><img loading="lazy" data-zoom src="images/figma/sp-3.png" alt=""></div><figcaption><b>03</b><span><strong>Panel expanded.</strong> Inputs, prompt enhancement and the full editor in one place.</span></figcaption></figure>
+      <figure class="shot"><div class="im" style="--ar:1436/800"><img loading="lazy" data-zoom src="images/figma/sp-4.png" alt=""></div><figcaption><b>04</b><span><strong>Drag from the output</strong> to open a menu and connect an image node.</span></figcaption></figure>
+      <figure class="shot"><div class="im" style="--ar:1436/800"><img loading="lazy" data-zoom src="images/figma/sp-5.png" alt=""></div><figcaption><b>05</b><span><strong>The image node appears,</strong> already connected. The user presses play.</span></figcaption></figure>
+      <figure class="shot"><div class="im" style="--ar:1436/800"><img loading="lazy" data-zoom src="images/figma/sp-6.png" alt=""></div><figcaption><b>06</b><span><strong>Image generated.</strong> Input thumbnails in the panel lead back to their source.</span></figcaption></figure>
+      <figure class="shot"><div class="im" style="--ar:1436/800"><img loading="lazy" data-zoom src="images/figma/sp-7.jpg" alt=""></div><figcaption><b>07</b><span><strong>Connection highlighted.</strong> Clicking an input thumbnail lights up its wire, with a delete action.</span></figcaption></figure>
+      <figure class="shot"><div class="im" style="--ar:1436/800"><img loading="lazy" data-zoom src="images/figma/sp-8.jpg" alt=""></div><figcaption><b>08</b><span><strong>Input disconnected.</strong> The node keeps its result; the panel updates in place.</span></figcaption></figure>
+    </div>
+    <div class="actions"><button class="vbtn" data-vimeo="1212775633">Watch the sliding panel flow <small>prototype recording</small></button></div>
+  </div>
+</section>
+
+<!-- ---------- 03 IMAGE EDITOR ---------- -->
+<section class="chapter" id="editor">
+  <div class="ch-head rv">
+    <div><div class="ch-no"><b>03</b>Workflow Canvas</div><h2>Image editor node</h2>
+      <div class="tags"><span>0 → 1</span><span>Component system</span><span>Pro tooling</span></div></div>
+    <p class="lead">Brand teams need precise control over generated product images. I designed a standalone node for manual, advanced refinement — feature set, UI and components from scratch, after studying Lightroom and Photoshop alongside the marketing team’s PRD.</p>
+  </div>
+  <div class="cols wide rv">
+    <div>
+      <span class="eyebrow">Interface &amp; components</span>
+      <h3 class="h3">A workspace that feels familiar to editors</h3>
+      <p class="body" style="margin-top:12px">A main canvas for real-time preview, a right panel for parameters, a side toolbar to switch modules, and a bottom bar for zoom, pan, opacity and before/after.</p>
+      <div class="tags" style="margin-top:18px"><span>Crop &amp; transform</span><span>Basic adjustment</span><span>HSL</span><span>Color grading</span><span>Curves</span><span>Levels</span><span>Filters</span><span>Masking</span><span>Lens effects</span><span>Style transfer</span><span>Shooting studio</span><span>AI chatbot</span></div>
+      <div class="actions"><button class="vbtn" data-vimeo="1213108066">Watch the editor <small>prototype recording</small></button></div>
+    </div>
+    <figure class="stage flat"><img loading="lazy" data-zoom src="images/imageeditor-components.png" alt="Image editor component design"></figure>
+  </div>
+  <div class="block rv">
+    <span class="eyebrow">Modules, screen by screen</span>
+    <div class="shots alt bento">
+      <figure class="shot"><div class="im"><img loading="lazy" data-zoom src="images/figma/ie-1.jpg" alt=""></div><figcaption><b>01</b><span><strong>Basic adjustment.</strong> Colour and light sliders beside a live preview.</span></figcaption></figure>
+      <figure class="shot"><div class="im"><img loading="lazy" data-zoom src="images/figma/ie-2.jpg" alt=""></div><figcaption><b>02</b><span><strong>Crop &amp; transform.</strong> Grid overlays appear on the image while hovering an option.</span></figcaption></figure>
+      <figure class="shot"><div class="im"><img loading="lazy" data-zoom src="images/figma/ie-3.jpg" alt=""></div><figcaption><b>03</b><span><strong>Advanced adjustment.</strong> HSL, colour grading wheels, curves and levels.</span></figcaption></figure>
+      <figure class="shot"><div class="im"><img loading="lazy" data-zoom src="images/figma/ie-4.jpg" alt=""></div><figcaption><b>04</b><span><strong>Filters.</strong> Preset looks previewed as thumbnails of the actual image.</span></figcaption></figure>
+      <figure class="shot"><div class="im"><img loading="lazy" data-zoom src="images/figma/ie-5.jpg" alt=""></div><figcaption><b>05</b><span><strong>Masking.</strong> Select a subject and edit only that region.</span></figcaption></figure>
+      <figure class="shot"><div class="im"><img loading="lazy" data-zoom src="images/figma/ie-6.jpg" alt=""></div><figcaption><b>06</b><span><strong>Image style.</strong> AI style transfer, with a version history bar to switch back.</span></figcaption></figure>
+      <figure class="shot"><div class="im"><img loading="lazy" data-zoom src="images/figma/ie-7.jpg" alt=""></div><figcaption><b>07</b><span><strong>Shooting studio.</strong> Drag the camera and light around the product.</span></figcaption></figure>
+      <figure class="shot"><div class="im"><img loading="lazy" data-zoom src="images/figma/ie-8.jpg" alt=""></div><figcaption><b>08</b><span><strong>AI chatbot.</strong> Edit in plain language; the window can float or dock to the side.</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- 04 AUDIO NODE ---------- -->
+<section class="chapter" id="audio">
+  <div class="ch-head rv">
+    <div><div class="ch-no"><b>04</b>Workflow Canvas</div><h2>Audio node</h2>
+      <div class="tags"><span>End-to-end flow</span><span>States</span></div></div>
+    <p class="lead">The full path from entering a prompt or uploading audio to the generated result — with every state and interaction in between.</p>
+  </div>
+  <div class="rv">
+    <span class="eyebrow">Voiceover flow</span>
+    <div class="shots alt s3">
+      <figure class="shot"><div class="im" style="--ar:1440/790"><img loading="lazy" data-zoom src="images/figma/au-1.jpg" alt=""></div><figcaption><b>01</b><span><strong>Start.</strong> Enter a script, then upload audio or record a voice. Model and voice persona sit in the sidebar.</span></figcaption></figure>
+      <figure class="shot"><div class="im" style="--ar:1440/790"><img loading="lazy" data-zoom src="images/figma/au-2.jpg" alt=""></div><figcaption><b>02</b><span><strong>Record.</strong> A focused recorder with the time limit stated up front.</span></figcaption></figure>
+      <figure class="shot"><div class="im" style="--ar:1440/790"><img loading="lazy" data-zoom src="images/figma/au-3.jpg" alt=""></div><figcaption><b>03</b><span><strong>Recording complete.</strong> Listen back, start over or save.</span></figcaption></figure>
+      <figure class="shot"><div class="im" style="--ar:1440/790"><img loading="lazy" data-zoom src="images/figma/au-4.jpg" alt=""></div><figcaption><b>04</b><span><strong>Saved.</strong> The recording sits in the node, which prompts the next action: press play to generate.</span></figcaption></figure>
+      <figure class="shot"><div class="im" style="--ar:1440/790"><img loading="lazy" data-zoom src="images/figma/au-5.jpg" alt=""></div><figcaption><b>05</b><span><strong>Generating.</strong> Progress shows inside the node; inputs stay visible as connected nodes.</span></figcaption></figure>
+      <figure class="shot"><div class="im" style="--ar:1440/790"><img loading="lazy" data-zoom src="images/figma/au-6.jpg" alt=""></div><figcaption><b>06</b><span><strong>Done.</strong> The generated audio replaces the progress bar, ready to play or pass on.</span></figcaption></figure>
+    </div>
+  </div>
+  <div class="actions rv"><button class="vbtn" data-vimeo="1212774824" data-ratio="16/8.85">Watch the audio node <small>prototype recording</small></button></div>
+</section>
+
+<!-- =====================================================================
+     PART 2 — PULSE
+     ===================================================================== -->
+<section class="part rv">
+  <div><span class="badge">Product 02</span><h2>Pulse</h2></div>
+  <p>Pulse plans, produces and approves a brand’s content. It is designed in fast rounds on live prototypes — which also means every screen below has a <strong>previous version</strong>. Here is what changed between iterations, and why.</p>
+</section>
+
+<!-- ---------- 05 CALENDAR ---------- -->
+<section class="chapter" id="calendar">
+  <div class="ch-head rv">
+    <div><div class="ch-no"><b>05</b>Pulse</div><h2>Three tabs became one calendar</h2>
+      <div class="tags"><span>Navigation</span><span>IA simplification</span><span>Iteration</span></div></div>
+    <p class="lead">Posts used to sit three levels deep inside a campaign, and three sidebar tabs — Campaigns, Calendar, Approvals — all showed roughly the same posts. Feedback was direct: simplify the flow.</p>
+  </div>
+
+  <div class="cols wide rv">
+    <div class="persona">
+      <div class="who"><img src="images/cs/avatars/a3.png" alt=""><div><b>The content manager</b><span>Plans and approves a brand’s posts</span></div></div>
+      <q>Campaigns, Calendar, Approvals — they all list my posts. Which one am I supposed to use?</q>
+      <dl><div><dt>Pain point</dt><dd>Too many steps to reach one post, and three near-identical entry points.</dd></div>
+      <div><dt>What they need</dt><dd>One place to see everything, and one click to open a post.</dd></div></dl>
+    </div>
+    <div>
+      <div class="rails" data-v="b">
+      <div class="rail before"><span><i>Before</i><strong>4</strong>steps</span>
+        <div class="flow sm"><div class="st bad"><b>01</b><h4>Campaigns tab</h4></div><div class="st bad"><b>02</b><h4>Open a campaign</h4></div><div class="st bad"><b>03</b><h4>Find the post in a list</h4></div><div class="st"><b>04</b><h4>Post drawer</h4></div></div></div>
+      <div class="rail after"><span><i>After</i><strong>2</strong>steps</span>
+        <div class="flow sm"><div class="st key"><b>01</b><h4>Calendar</h4><p>Campaigns + Approvals + Calendar, merged</p></div><div class="st dark"><b>02</b><h4>Post drawer</h4><p>Click any post</p></div></div>
+      </div></div>
+      <p class="wire-cap" style="margin-top:18px">The campaign level is gone. A campaign is now a <b>tag</b> the user assigns to any post, so grouping stays without becoming a place you must navigate through.</p>
+    </div>
+  </div>
+
+  <div class="block rv">
+    <div class="ba"><img loading="lazy" src="images/cs/after-calendar.jpg" alt="After: the calendar"><img loading="lazy" class="b" src="images/cs/before-camp-page.jpg" alt="Before: a campaign page with a post list"><span class="l bf">Before</span><span class="l af">After</span><span class="h"></span></div>
+    <p class="hint">Drag to compare · campaign page with a post list → one calendar</p>
+  </div>
+  <div class="notes rv">
+    <div><b>Sidebar</b><h4>3 tabs → 1</h4><p><s>Campaigns · Calendar · Approvals</s> are merged into a single Calendar with the approval count on it.</p></div>
+    <div><b>Hierarchy</b><h4>Campaign becomes a tag</h4><p>Tags like “AI shopping” sit on each post card and can be filtered, added or removed freely.</p></div>
+    <div><b>Access</b><h4>What needs you, up front</h4><p>“To approve / to fix / to schedule” counters replace a separate approvals page.</p></div>
+  </div>
+</section>
+
+<!-- ---------- 06 POST DRAWER ---------- -->
+<section class="chapter" id="drawer">
+  <div class="ch-head rv">
+    <div><div class="ch-no"><b>06</b>Pulse</div><h2>Brief → storyboard → preview</h2>
+      <div class="tags"><span>Generation flow</span><span>Cost control</span><span>Iteration</span></div></div>
+    <p class="lead">A video post used to go straight from its brief to a generated video. Video costs far more credits than an image — so every miss was an expensive one.</p>
+  </div>
+
+  <div class="rv">
+    <div class="rails" data-v="b">
+      <div class="rail before"><span><i>Before</i><em>All or nothing</em></span>
+      <div class="flow sm"><div class="st"><b>01</b><h4>Brief</h4><p>Text only</p></div><div class="st bad"><b>02</b><h4>Generate video</h4><p>Full credit cost — wrong result means paying again</p></div></div></div>
+    <div class="rail after"><span><i>After</i><em>Check before you spend</em></span>
+      <div class="flow sm"><div class="st"><b>01</b><h4>Brief</h4><p>What the post says</p></div><div class="st key"><b>02</b><h4>Storyboard</h4><p>Scenes and key frames — cheap to change</p></div><div class="st"><b>03</b><h4>Generate</h4><p>Only after approval</p></div><div class="st dark"><b>04</b><h4>Preview &amp; approve</h4><p>As it will appear on each channel</p></div></div>
+      </div></div>
+  </div>
+
+  <div class="block rv">
+    <span class="eyebrow">The new flow, screen by screen</span>
+    <div class="shots">
+      <figure class="shot"><div class="im"><img loading="lazy" data-zoom="images/cs/after-brief.jpg" src="images/cs/brief-scroll.webp" alt="Post drawer — brief, scrolling"></div><figcaption><b>01</b><span><strong>Brief.</strong> The main message first, the video plan below it. One primary action: Plan the storyboard.</span></figcaption></figure>
+      <figure class="shot"><div class="im"><img loading="lazy" data-zoom src="images/cs/after-story.jpg" alt="Post drawer — storyboard"></div><figcaption><b>02</b><span><strong>Storyboard.</strong> Four scenes with key frames and spoken lines — edited here, before any video credit is spent.</span></figcaption></figure>
+      <figure class="shot"><div class="im"><img loading="lazy" data-zoom src="images/cs/after-generating.jpg" alt="Post drawer — generating"></div><figcaption><b>03</b><span><strong>Generating.</strong> Scene-by-scene progress, drawn as the nodes Vicino is running.</span></figcaption></figure>
+      <figure class="shot"><div class="im"><img loading="lazy" data-zoom src="images/cs/after-review.jpg" alt="Post drawer — review"></div><figcaption><b>04</b><span><strong>Review.</strong> The post as each channel will show it, then Approve.</span></figcaption></figure>
+    </div>
+  </div>
+
+  <div class="block rv">
+      <div class="ba-set">
+        <div class="seg"><button class="on">Brief</button><button>Storyboard</button><button>Review</button></div>
+        <div class="ba on"><img loading="lazy" src="images/cs/after-brief.jpg" alt="After: brief"><img loading="lazy" class="b" src="images/cs/before-camp-brief.jpg" alt="Before: brief"><span class="l bf">Before</span><span class="l af">After</span><span class="h"></span></div>
+        <div class="ba"><img loading="lazy" src="images/cs/after-story.jpg" alt="After: storyboard"><img loading="lazy" class="b" src="images/cs/before-camp-story.jpg" alt="Before: storyboard"><span class="l bf">Before</span><span class="l af">After</span><span class="h"></span></div>
+        <div class="ba"><img loading="lazy" src="images/cs/after-review.jpg" alt="After: review"><img loading="lazy" class="b" src="images/cs/before-camp-final.jpg" alt="Before: content review"><span class="l bf">Before</span><span class="l af">After</span><span class="h"></span></div>
+        <p class="hint">Previous version → current version · drag to compare, switch pages above</p>
+      </div>
+    <div class="after-ba">
+      <div class="persona">
+        <div class="who"><img src="images/cs/avatars/a4.png" alt=""><div><b>Feedback on the previous version</b><span>Internal review</span></div></div>
+        <q>There’s too much on this page. I don’t know what I’m supposed to click.</q>
+        <dl><div><dt>What I changed</dt><dd>Consolidated and compressed each page’s functions, and gave every step one clear, labelled next action.</dd></div></dl>
+      </div>
+    <div class="notes">
+      <div><b>Steps</b><h4>Numbered, in order</h4><p>Brief · Storyboard · Context tabs became a 1–2–3 step bar that shows where the post is.</p></div>
+      <div><b>Next action</b><h4>One primary button per page</h4><p>“Plan the storyboard”, “Approve &amp; generate”, “Approve” — always in the same corner.</p></div>
+      <div><b>Density</b><h4>Less to read first</h4><p>The main message leads; secondary brief fields and warnings fold away until needed.</p></div>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- ---------- 07 BRAIN ---------- -->
+<section class="chapter" id="brain">
+  <div class="ch-head rv">
+    <div><div class="ch-no"><b>07</b>Pulse</div><h2>Brain: from a wall of text to a report you can scan</h2>
+      <div class="tags"><span>Redesign</span><span>Data visualisation</span><span>Iteration</span></div></div>
+    <p class="lead">Brain holds everything Vicino knows about a brand. The previous version presented it almost entirely as paragraphs and plain tables — users felt overwhelmed and could not tell what the page was for.</p>
+  </div>
+  <div class="block0 rv"><span class="eyebrow">Report tab</span>
+    <div class="ba"><img loading="lazy" src="images/cs/after-brain-report.jpg" alt="After"><img loading="lazy" class="b" src="images/cs/before-brain-report.jpg" alt="Before"><span class="l bf">Before</span><span class="l af">After</span><span class="h"></span></div>
+    <p class="hint">Drag to compare</p>
+  </div>
+  <div class="block rv"><span class="eyebrow">Knowledge tab</span>
+    <div class="ba"><img loading="lazy" src="images/cs/after-brain-knowledge.jpg" alt="After"><img loading="lazy" class="b" src="images/cs/before-brain-knowledge.jpg" alt="Before"><span class="l bf">Before</span><span class="l af">After</span><span class="h"></span></div>
+    <p class="hint">Drag to compare</p>
+  </div>
+  <div class="after-ba rv">
+    <div class="persona">
+      <div class="who"><img src="images/cs/avatars/a5.png" alt=""><div><b>Feedback on the previous version</b><span>Internal review</span></div></div>
+      <q>It’s all text. I can’t tell what this page wants me to do.</q>
+      <dl><div><dt>Pain point</dt><dd>Text-heavy answers with no visual hierarchy; the purpose of the page was unclear.</dd></div>
+      <div><dt>Goal of the redesign</dt><dd>Show the state of the brand’s knowledge at a glance, and make the next action obvious.</dd></div></dl>
+    </div>
+  <div class="notes">
+    <div><b>Summary first</b><h4>A header that explains the page</h4><p>What Brain has read, how many questions are answered and how many are missing — as numbers, not prose.</p></div>
+    <div><b>Structure</b><h4>Sections as cards with progress</h4><p>Each section shows confirmed / direct / inferred / missing as a coloured bar, plus a visual roadmap.</p></div>
+    <div><b>Action</b><h4>“Needs your review” queue</h4><p>What the user should confirm or fill is pulled out beside the report, each with one button.</p></div>
+  </div>
+  </div>
+</section>
+
+<!-- ---------- 08 AI CHAT ---------- -->
+<section class="chapter" id="chat">
+  <div class="ch-head rv">
+    <div><div class="ch-no"><b>08</b>Pulse</div><h2>AI chat: three fixes from real usage</h2>
+      <div class="tags"><span>Usability issues</span><span>Error recovery</span><span>Iteration</span></div></div>
+    <p class="lead">After the chat shipped to the dev build I logged the problems I found using it, proposed the fixes, and prototyped each one. Three of them are below — the issue on the left, the redesign on the right.</p>
+  </div>
+
+  <div class="issue rv">
+    <div>
+      <span class="eyebrow">Issue 01</span><h3 class="h3">Poor error recovery after an approved change fails</h3>
+      <ul>
+        <li><b>Problem</b>The user had already reviewed and approved the change, yet a failure told them to ask the AI again from scratch.</li>
+        <li><b>Problem</b>The error was technical and shown twice — a red card, then an AI message repeating it.</li>
+        <li class="fix"><b>Fix</b>The approved version stays on the card with a direct Retry — no new approval needed.</li>
+        <li class="fix"><b>Fix</b>One plain line: “Your post is unchanged.” with an optional Why?</li>
+        <li class="fix"><b>Fix</b>The post being edited is marked “not updated”, so the failure is visible where it happened.</li>
+      </ul>
+    </div>
+    <div class="pair">
+      <figure><span class="chip">Before</span><div class="pic"><img loading="lazy" data-zoom="images/cs/before-chat-fail.jpg" src="images/cs/before-chat-fail-p.jpg" alt="Before: technical error shown twice"></div></figure>
+      <span class="arrow">→</span>
+      <figure class="new"><span class="chip a">After</span><div class="pic"><img loading="lazy" data-zoom="images/cs/after-chat-fail.jpg" src="images/cs/p-chat-fail.jpg" alt="After: one card with Retry"></div></figure>
+    </div>
+  </div>
+
+  <div class="issue rv">
+    <div>
+      <span class="eyebrow">Issue 02</span><h3 class="h3">Attachments stacked up and pushed the conversation away</h3>
+      <ul>
+        <li><b>Problem</b>Each file took a full row of text; five files hid most of the chat, and the names were hard to tell apart.</li>
+        <li class="fix"><b>Fix</b>Compact thumbnail tiles in one horizontal row that scrolls sideways.</li>
+        <li class="fix"><b>Fix</b>Image previews and PDF / DOC labels first; file name and remove button appear on hover.</li>
+      </ul>
+    </div>
+    <div class="pair">
+      <figure><span class="chip">Before</span><div class="pic"><img loading="lazy" data-zoom="images/cs/before-chat-attach.jpg" src="images/cs/before-chat-attach-p.jpg" alt="Before: attachments as stacked rows"></div></figure>
+      <span class="arrow">→</span>
+      <figure class="new"><span class="chip a">After</span><div class="pic"><img loading="lazy" data-zoom="images/cs/after-chat-attach.jpg" src="images/cs/p-chat-attach.jpg" alt="After: attachments as thumbnails"></div></figure>
+    </div>
+  </div>
+
+  <div class="issue rv">
+    <div>
+      <span class="eyebrow">Issue 03</span><h3 class="h3">Chat history was hard to scan and impossible to manage</h3>
+      <ul>
+        <li><b>Problem</b>Titles were raw, truncated prompts; every row had the same dot whatever its state; no search, no actions.</li>
+        <li class="fix"><b>Fix</b>Short descriptive titles, grouped by Today / Yesterday / This week.</li>
+        <li class="fix"><b>Fix</b>The main chat is pinned on top, apart from side chats.</li>
+        <li class="fix"><b>Fix</b>Search, plus a ••• menu on hover: Rename, Pin, Archive, Delete.</li>
+      </ul>
+    </div>
+    <div class="pair">
+      <figure><span class="chip">Before</span><div class="pic"><img loading="lazy" data-zoom src="images/cs/before-chat-history.jpg" alt="Before: chat history list"></div></figure>
+      <span class="arrow">→</span>
+      <figure class="new"><span class="chip a">After</span><div class="pic"><img loading="lazy" data-zoom="images/cs/after-chat-history.jpg" src="images/cs/p-chat-history.jpg" alt="After: grouped chat history"></div></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- ONBOARDING ---------- -->
+<section class="chapter" id="onboarding">
+  <div class="ch-head rv">
+    <div><div class="ch-no"><b>+</b>Pulse</div><h2>New-user onboarding</h2>
+      <div class="tags"><span>First-run experience</span><span>HTML prototype</span></div></div>
+    <p class="lead">My first project on Pulse: the brand setup that takes a new user from sign-up to a brand profile Vicino can work from.</p>
+  </div>
+  <figure class="stage rv"><img loading="lazy" data-zoom src="images/brand-setup-part-one.png" alt="Pulse onboarding — brand setup"></figure>
+  <div class="actions rv"><a class="more" href="Part One Onboarding.html" target="_blank" rel="noopener">Open the HTML prototype <b>→</b></a></div>
+</section>
+
+<!-- ============================ RESULT ============================ -->
+<section class="result rv">
+  <span class="badge">Outcome</span>
+  <p>Recognised by the PM, <em>and</em> implemented into the product.</p>
+</section>
+
+<div class="next"><a class="ul" href="../index.html#p-vicino">← All projects</a><a class="more" href="../route-app/index.html">Next project: RouteApp <b>→</b></a></div>
+</main>
+
+<footer id="footer"></footer>
+<script src="../home.js?v=2" data-root="../"></script>
+<script src="../hero.js"></script>
+<script src="../project.js?v=10"></script>
 </body>
-
 </html>

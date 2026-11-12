@@ -1,153 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Artisk</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
-  <link href="../case-study.css" rel="stylesheet" type="text/css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Artisk — Zi Wang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../home.css?v=13">
+<link rel="stylesheet" href="../project.css?v=13">
 </head>
+<body data-back="#p-artisk" data-hero="b">
+<div class="progress"></div>
+<header id="nav"></header>
 
-<body class="cs-theme-green">
-
-  <a class="cs-back" href="../index.html#p-artisk" aria-label="Back to home">
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 5l-7 7 7 7" stroke="#181818" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  </a>
-
-  <h1 id="title">Artisk</h1>
-  <div class="cs-hero-tags">
-    <span>Landing Page Redesign</span><span>Wireframing</span><span>AI Visual Generation</span><span>Marketing Imagery</span>
+<section class="p-hero-b" data-title="Artisk" data-badge="Web · Landing Page Redesign">
+  <img class="bg" src="../project-image/artisk-cover.jpg" alt="">
+  <h1 id="title">ARTISK</h1>
+  <div class="tags"><span>Web</span><span>Landing Page Redesign</span></div>
+  <a class="down" href="#after-hero" aria-label="Scroll"><svg viewBox="0 0 34 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 2l15 11L32 2"/></svg><span>scroll</span></a>
+</section>
+<div id="after-hero"></div>
+<section class="p-hero-b-info">
+  <div class="phb-band">
+  <p>Redesigning the homepage of an AI brand-kit generator <em>— and creating the AI-generated visuals that sell it.</em></p>
+  <dl class="facts">
+      <div><dt>Role</dt><dd>UX Designer · Internship</dd></div>
+      <div><dt>Timeline</dt><dd>2025 – 2026</dd></div>
+      <div><dt>Scope</dt><dd>Homepage redesign · marketing imagery</dd></div>
+      <div><dt>Tools</dt><dd>Figma · Photoshop · Artisk Brand Kit · RoboNeo AI · ChatGPT</dd></div>
+    </dl>
   </div>
+</section>
 
-  <img id="arrow" src="images/arrow.png">
-  <p id="scroll">scroll</p>
+<main class="wrap">
 
-  <div id="cover-container">
-    <img id="cover" src="../project-image/artisk-cover.jpg">
+<section class="sec two rv">
+  <h2>Overview</h2>
+  <div><p class="big">Artisk instantly produces logos, product imagery and complete visual identities for any brand. <em>I redesigned its homepage and generated the marketing visuals the new site needed.</em></p></div>
+</section>
+
+<section class="chapter" id="brief">
+  <div class="ch-head rv">
+    <div><div class="ch-no"><b>01</b>The brief</div><h2>Too dark, too heavy</h2></div>
+    <p class="lead">The existing site was black-dominant with a green accent. The founder wanted a direction that felt <strong>lighter, airier and less demanding</strong> — closer to a modern AI product.</p>
   </div>
-
-  <div id="text">
-    <div class="year-team-role">
-      <p><strong>Year:</strong> 2025 – 2026 <span class="divider">|</span> <strong>Type:</strong> UX Design Internship <span class="divider">|</span> <strong>Role:</strong> UX Designer <span class="divider">|</span> <strong>Tools:</strong> Figma, Photoshop, Artisk Brand Kit, RoboNeo AI, ChatGPT</p>
-    </div>
-
-    <!-- ===================== OVERVIEW ===================== -->
-    <h1 class="caption1">Project Overview</h1>
-    <p class="proposal">
-      <strong>Artisk</strong> is a startup building an AI brand-kit generation tool — a product that instantly produces logos, product imagery, and complete visual identities for any brand. During my time there I worked on a redesign of the company's landing page and on creating and generating the marketing visuals the new site needed to promote the product.
-    </p>
-
-    <!-- ===================== THE BRIEF ===================== -->
-    <h1 class="caption1">The Brief</h1>
-    <p class="proposal">
-      Artisk's existing website was built around a dark, black-dominant palette with green as the accent color. The brief from the founder was clear: the current design felt too heavy and dull. They wanted a fresh direction that would make the site feel <strong>lighter, airier, and less visually demanding</strong> — one that would place less unnecessary burden on visitors and better match the positioning of a modern AI product.
-    </p>
-    <div class="gif-row">
-      <div class="gif-item">
-        <img src="images/original-landing.gif" alt="Original Artisk landing page">
-        <p>Original landing page</p>
-      </div>
-      <div class="gif-item">
-        <img src="images/original-inspiration.gif" alt="Original Artisk inspiration page">
-        <p>Original inspiration page</p>
-      </div>
-    </div>
-    <p class="shot-caption">The original website — dark and heavy, the starting point for the redesign.</p>
-
-    <!-- ===================== RESEARCH & DIRECTION ===================== -->
-    <h1 class="caption1">Research &amp; Design Direction</h1>
-    <p class="proposal">
-      Together with several other designers on the team, I ran a round of research, studying how other modern web products approach layout, hierarchy, and lightness. From this exploration we distilled <strong>three possible design directions</strong>.
-      <br><br>
-      We ultimately chose a <strong>card-based, modern style</strong>, punctuated with our brand's <strong>green accent</strong>. This direction resonated most with our core product — the AI brand-kit generator — because it mirrors the <strong>interface and visual language</strong> of the tool itself, keeping the site and the product feeling like one coherent system.
-    </p>
-    <div class="image-container">
-      <a class="cs-imgwrap"><img class="media-frame" src="images/inspiration-exploration.png" alt="Inspiration exploration"></a>
-    </div>
-    <p class="shot-caption">Inspiration exploration</p>
-    <div class="image-container">
-      <a class="cs-imgwrap"><img class="media-frame" src="images/design-direction.png" alt="Design direction reference"></a>
-    </div>
-    <p class="shot-caption">Three design directions — the card-based modern style was selected.</p>
-
-    <!-- ===================== MY ROLE: HOMEPAGE (split) ===================== -->
-    <div class="cs-split">
-      <div class="cs-split__text">
-        <span class="cs-eyebrow" style="text-align:left;">My Role</span>
-        <h2 class="cs-h">Homepage Redesign</h2>
-        <p>The full redesign spanned many pages — <strong>landing page / homepage, About, Inspiration, Pricing, and Blog</strong>. I was primarily responsible for the <strong>homepage redesign</strong>.</p>
-        <p>I began with a series of <strong>wireframe iterations</strong> to lock down the overall layout, then worked with a <strong>senior designer</strong> to finalize the structure — before refining the page in depth and filling it with visual assets.</p>
-      </div>
-      <div class="cs-split__media">
-        <a class="cs-imgwrap"><img src="images/wireframe.png" alt="Landing page wireframe"></a>
-        <p class="cs-mediacap">Landing page wireframe — finalized layout structure.</p>
-      </div>
-    </div>
-
-    <!-- ===================== VISUAL ASSETS ===================== -->
-    <h1 class="caption1">Creating the Visual Assets</h1>
-    <p class="proposal">
-      This was one of the most significant parts of my internship. To bring the page to life, I produced the imagery that introduces and promotes the product — using <strong>our own brand-kit generation tool</strong> to create logos, product images, and color palettes, supported by other AI image generators (RoboNeo AI, ChatGPT, and more) and finished with Photoshop retouching.
-      <br><br>
-      I first crafted distinct logos and imagery across a range of industries, demonstrating that our AI tool can generate cohesive brand directions for virtually any kind of business. These <strong>cross-industry brand-kit showcases</strong> anchor the top of the page:
-    </p>
-    <div class="carousel carousel--auto" aria-label="Cross-industry brand kit showcase">
-      <div class="carousel-track">
-        <div class="carousel-item"><img src="images/industry-1.jpg" alt="Cross-industry brand kit 1"></div>
-        <div class="carousel-item"><img src="images/industry-2.jpg" alt="Cross-industry brand kit 2"></div>
-        <div class="carousel-item"><img src="images/industry-3.jpg" alt="Cross-industry brand kit 3"></div>
-        <div class="carousel-item"><img src="images/industry-4.jpg" alt="Cross-industry brand kit 4"></div>
-        <div class="carousel-item" aria-hidden="true"><img src="images/industry-1.jpg" alt=""></div>
-        <div class="carousel-item" aria-hidden="true"><img src="images/industry-2.jpg" alt=""></div>
-        <div class="carousel-item" aria-hidden="true"><img src="images/industry-3.jpg" alt=""></div>
-        <div class="carousel-item" aria-hidden="true"><img src="images/industry-4.jpg" alt=""></div>
-      </div>
-    </div>
-    <p class="carousel-hint">Cross-industry brand kits generated with our AI tool &nbsp;·&nbsp; hover to pause</p>
-
-    <p class="proposal">
-      Beyond the industry showcases, I designed the imagery that walks visitors through how the product actually works — communicating both its availability and the full generation-and-interaction flow. This section moves from "From One Logo to Every Touchpoint" into the <strong>Chat → Customize → Launch</strong> journey, laying out the whole experience end to end: start with your logo → chat with Artisk AI → logo customization → generate the full brand kit → make it real.
-      <br><br>
-      To get these right, I communicated frequently with the designer responsible for the AI chat and the product's UI, making sure my showcase imagery <strong>perfectly summarized and represented the real features and capabilities</strong> of our AI brand-kit generation tool.
-    </p>
-    <div class="img-pair">
-      <a class="cs-imgwrap"><img src="images/showcase-5-6.jpg" alt="From one logo to every touchpoint — product showcase"></a>
-      <a class="cs-imgwrap"><img src="images/showcase-6.jpg" alt="Chat, customize, launch — interaction flow showcase"></a>
-    </div>
-    <p class="shot-caption">Product availability &amp; the full generation-and-interaction flow — from one logo to every touchpoint</p>
-
-    <!-- ===================== FINAL ===================== -->
-    <h1 class="caption1">The Final Landing Page Redesign</h1>
-    <p class="proposal">
-      Here is the final homepage redesign — light, card-based, and unmistakably an AI product, with the brand's green woven through as an accent.
-    </p>
-    <div class="scroll-frame">
-      <img src="images/homepage-final.jpg" alt="Final Artisk landing page redesign">
-    </div>
-    <p class="frame-hint">↕ scroll inside the frame to view the full page</p>
-
-    <!-- ===================== RESULT ===================== -->
-    <div class="cs-result">
-      <span class="cs-result__label">Outcome</span>
-      <p>This redesign was <strong>recognized by both the senior designer and the founder</strong>, and became a reference point for the direction of the site's visual language going forward.</p>
-    </div>
-
+  <div class="grid2 rv">
+    <figure class="card-img"><div class="browser still"><div class="bar"><i></i><i></i><i></i><span>artisk — landing</span></div><div class="view"><img loading="lazy" src="images/original-landing.gif" alt="Original landing page"></div></div><figcaption><span class="chip">Before</span> &nbsp;<strong>Original landing page</strong></figcaption></figure>
+    <figure class="card-img"><div class="browser still"><div class="bar"><i></i><i></i><i></i><span>artisk — inspiration</span></div><div class="view"><img loading="lazy" src="images/original-inspiration.gif" alt="Original inspiration page"></div></div><figcaption><span class="chip">Before</span> &nbsp;<strong>Original inspiration page</strong></figcaption></figure>
   </div>
+</section>
 
-  <div class="home">
-    <a href="../index.html#p-artisk">Home</a>
+<section class="chapter" id="direction">
+  <div class="ch-head rv">
+    <div><div class="ch-no"><b>02</b>Research &amp; direction</div><h2>Three directions, one choice</h2>
+      <div class="tags"><span>Team research</span><span>Visual direction</span></div></div>
+    <p class="lead">With the other designers I studied how modern web products handle layout, hierarchy and lightness, and we distilled three directions.</p>
   </div>
-  <footer>ziwang1247@gmail.com</footer>
+  <div class="flow rv" style="margin-bottom:clamp(28px,3.4vw,48px)">
+    <div class="st"><b>01</b><h4>Explore</h4><p>Collect references from modern web products.</p></div>
+    <div class="st"><b>02</b><h4>Distil</h4><p>Three possible design directions.</p></div>
+    <div class="st key"><b>03</b><h4>Choose</h4><p>Card-based modern style with the brand’s green accent.</p></div>
+    <div class="st dark"><b>04</b><h4>Why</h4><p>It mirrors the interface of the generator itself — site and product feel like one system.</p></div>
+  </div>
+  <div class="grid2 rv">
+    <figure class="card-img"><img loading="lazy" data-zoom src="images/inspiration-exploration.png" alt=""><figcaption><strong>Inspiration exploration</strong></figcaption></figure>
+    <figure class="card-img"><img loading="lazy" data-zoom src="images/design-direction.png" alt=""><figcaption><strong>Three directions</strong> — the card-based style was selected.</figcaption></figure>
+  </div>
+</section>
 
-  <script>
-    window.onscroll = function () {
-      var scrolled = document.body.scrollTop > 500 || document.documentElement.scrollTop > 500;
-      document.getElementById("arrow").style.display = scrolled ? "none" : "block";
-      document.getElementById("scroll").style.display = scrolled ? "none" : "block";
-    };
-  </script>
-  <script src="../case-study.js"></script>
+<section class="chapter" id="homepage">
+  <div class="ch-head rv">
+    <div><div class="ch-no"><b>03</b>My role</div><h2>Homepage: from wireframe to final</h2>
+      <div class="tags"><span>Wireframing</span><span>Layout</span></div></div>
+    <p class="lead">The redesign covered Home, About, Inspiration, Pricing and Blog. I owned the <strong>homepage</strong>: wireframe iterations to lock the layout, finalised with a senior designer, then refined and filled with visuals.</p>
+  </div>
+  <div class="cols rv" style="align-items:start">
+    <figure class="card-img"><img loading="lazy" data-zoom src="images/wireframe.png" alt="Homepage wireframe"><figcaption><span class="chip">Wireframe</span> &nbsp;Finalised layout structure.</figcaption></figure>
+    <figure class="card-img"><div class="browser"><div class="bar"><i></i><i></i><i></i><span>artisk.ai</span></div><div class="view" style="height:min(60vh,560px)"><img loading="lazy" src="images/homepage-full.jpg" alt="Final homepage"></div></div><figcaption><span class="chip a" style="color:#fff">Final</span> &nbsp;Scroll inside the frame.</figcaption></figure>
+  </div>
+</section>
+
+<section class="chapter" id="assets">
+  <div class="ch-head rv">
+    <div><div class="ch-no"><b>04</b>Visual assets</div><h2>Imagery made with the product itself</h2>
+      <div class="tags"><span>AI visual generation</span><span>Photoshop retouching</span></div></div>
+    <p class="lead">One of the biggest parts of the internship. I used <strong>our own brand-kit generator</strong> for logos, product images and palettes, supported by other AI image tools and finished in Photoshop.</p>
+  </div>
+  <span class="eyebrow rv">Cross-industry brand kits</span>
+  <div class="marq rv"><div class="tr"><img src="images/industry-1.jpg" alt=""><img src="images/industry-2.jpg" alt=""><img src="images/industry-3.jpg" alt=""><img src="images/industry-4.jpg" alt=""></div><div class="tr" aria-hidden="true"><img src="images/industry-1.jpg" alt=""><img src="images/industry-2.jpg" alt=""><img src="images/industry-3.jpg" alt=""><img src="images/industry-4.jpg" alt=""></div></div>
+  <p class="hint rv">Distinct logos and imagery across industries — proof the tool can build a cohesive direction for almost any business. Hover to pause.</p>
+
+  <div class="block rv">
+    <span class="eyebrow">Showing how the product works</span>
+    <div class="flow" style="margin-bottom:clamp(28px,3.4vw,48px)">
+      <div class="st"><b>01</b><h4>Start with your logo</h4></div>
+      <div class="st key"><b>02</b><h4>Chat with Artisk AI</h4></div>
+      <div class="st"><b>03</b><h4>Customise the logo</h4></div>
+      <div class="st"><b>04</b><h4>Generate the full brand kit</h4></div>
+      <div class="st dark"><b>05</b><h4>Make it real</h4></div>
+    </div>
+    <div class="cols" style="align-items:start">
+      <figure class="card-img"><img loading="lazy" data-zoom src="images/showcase-5-6.jpg" alt=""><figcaption><strong>From one logo to every touchpoint</strong> — product availability.</figcaption></figure>
+      <figure class="card-img"><img loading="lazy" data-zoom src="images/showcase-6.jpg" alt=""><figcaption><strong>Chat → Customise → Launch</strong> — checked against the real features with the designer of the AI chat and product UI.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="chapter" id="final">
+  <div class="ch-head rv">
+    <div><div class="ch-no"><b>05</b>Result</div><h2>The final landing page</h2></div>
+    <p class="lead">Light, card-based and unmistakably an AI product, with the brand’s green woven through as an accent. Scroll inside the frame, or open it full size.</p>
+  </div>
+  <div class="browser rv"><div class="bar"><i></i><i></i><i></i><span>artisk.ai</span></div><div class="view"><img loading="lazy" data-zoom src="images/homepage-full.jpg" alt="Final homepage — full page"></div></div>
+</section>
+
+<section class="result rv">
+  <span class="badge">Outcome</span>
+  <p>Recognised by the senior designer and the founder, <em>and</em> a reference for the site’s visual direction.</p>
+</section>
+
+<div class="next"><a class="ul" href="../index.html#p-artisk">← All projects</a><a class="more" href="../side-by-side/index.html">Next project: SideBySIDE <b>→</b></a></div>
+</main>
+
+<footer id="footer"></footer>
+<script src="../home.js?v=2" data-root="../"></script>
+<script src="../hero.js"></script>
+<script src="../project.js?v=13"></script>
 </body>
-
 </html>

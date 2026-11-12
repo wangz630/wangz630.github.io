@@ -1,59 +1,43 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>Indoor Activities Website</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
-  <link href="../case-study.css" rel="stylesheet" type="text/css" />
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Indoor Activities — Zi Wang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../home.css?v=13">
+<link rel="stylesheet" href="../project.css?v=13">
 </head>
+<body data-back="#p-indoor" data-hero="b">
+<div class="progress"></div>
+<header id="nav"></header>
 
-<body class="cs-dark">
-  <a class="cs-back" href="../index.html#p-indoor" aria-label="Back to home">
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 5l-7 7 7 7" stroke="#181818" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  </a>
- <h1 id="title">Indoor Activities Website</h1>
-  <div class="cs-hero-tags"><span>Web</span><span>App</span></div>
-
-  <img id="arrow" src = "images/arrow.png">
-  <p id="scroll">scroll</p>
-
-  <!-- The video -->
-<img id = "cover" src = "images/cover.png">
-
-
-<!-- Optional: some overlay text to describe the video -->
-<div class="content">
-  <h1>INDOOR ACTIVITIES WEBSITE</h1>
-</div>
-
-
-<!-- thesis proposal -->
-<div id="text">
-<h1 class="caption1">Project Brief</h1>
-<p class="proposal">This is a series of design focus on the transition from printed format to digital world. The imagined event is about indoor activities sharing during the pandemic as pandemic makes almost everyone rely heavily on internet. The whole event would be held online and it targets to the youth who love board game and are familiar with those live streaming platform. Just to have  fun even though you’re staying at home.</p>
-</div>
-
-<img class = "background-image" src = "images/work4.jpg">
-
-  <div id="container">
-        <ul id="slides">
-          <a class="prev">&#10094;</a>
-          <a class="next">&#10095;</a>
-        </ul>
+<section class="p-hero-b" data-title="Indoor Activities" data-badge="Web · App · Visual Identity">
+  <img class="bg" src="images/cover.png" alt="">
+  <h1 id="title">INDOOR ACTIVITIES</h1>
+  <div class="tags"><span>Web</span><span>App</span><span>Visual Identity</span></div>
+  <a class="down" href="#after-hero" aria-label="Scroll"><svg viewBox="0 0 34 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 2l15 11L32 2"/></svg><span>scroll</span></a>
+</section>
+<div id="after-hero"></div>
+<section class="p-hero-b-info">
+  <div class="phb-band">
+  <p>An online event identity <em>carried from print to web and app.</em></p>
+  <dl class="facts"><div><dt>Type</dt><dd>Web &amp; app</dd></div><div><dt>Focus</dt><dd>Print to digital</dd></div></dl>
   </div>
+</section>
 
+<main>
+<section class="sec two wrap rv"><h2>Project brief</h2><div><p class="body">This is a series of design focus on the transition from printed format to digital world. The imagined event is about indoor activities sharing during the pandemic as pandemic makes almost everyone rely heavily on internet. The whole event would be held online and it targets to the youth who love board game and are familiar with those live streaming platform. Just to have fun even though you’re staying at home.</p></div></section>
+<section class="sec cf-sec"><div id="container"></div></section>
+<div class="next wrap"><a class="ul" href="../index.html#p-indoor">← All projects</a><a class="more" href="../kindle-app/index.html">Next project: Kindle for Kids <b>→</b></a></div>
+</main>
 
-
-
-<div class="home">
-  <a href="../index.html#p-indoor">Home</a>
-</div>
-<footer>wangz630@newschool.edu</footer>
-  <script src="script.js"></script>
-  <script src="../case-study.js"></script>
+<footer id="footer"></footer>
+<script src="../home.js?v=2" data-root="../"></script>
+<script src="../carousel.js?v=3"></script>
+<script src="../hero.js"></script>
+<script src="../project.js?v=13"></script>
 </body>
-
 </html>

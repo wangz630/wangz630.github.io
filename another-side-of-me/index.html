@@ -1,74 +1,44 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>Another Side of Me</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
-  <link href="../case-study.css" rel="stylesheet" type="text/css" />
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Another Side of Me — Zi Wang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../home.css?v=12">
+<link rel="stylesheet" href="../project.css?v=12">
 </head>
+<body data-back="#p-another">
+<div class="progress"></div>
+<header id="nav"></header>
 
-<body class="cs-dark">
-  <a class="cs-back" href="../index.html#p-another" aria-label="Back to home">
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 5l-7 7 7 7" stroke="#181818" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  </a>
- <h1 id="title">ANOTHER SIDE OF ME</h1>
-  <div class="cs-hero-tags"><span>App</span><span>VR</span><span>Thesis</span></div>
-
-  <img id="arrow" src = "images/arrow.png">
-  <p id="scroll">scroll</p>
-
-  <!-- The video -->
-<video autoplay muted loop id="myVideo">
-  <source src="video/video_present.mov" type="video/mp4">
-</video>
-
-<!-- <div class="video-container">
-<iframe src="https://www.youtube.com/embed/4Wa3HitoVac?controls=0&&autoplay=1&mute=1&playsinline=1&loop=1&playlist=4Wa3HitoVac" ></iframe>
-</div> -->
-
-<!-- Optional: some overlay text to describe the video -->
-<div class="content">
-  <h1>ANOTHER SIDE OF ME</h1>
-  <form action="https://hubs.mozilla.com/r4sg26c/friendly-powerful-barbecue" method="get" target="_blank">
-    <button id="myBtn" type="submit">Go view the space</button>
- </form>
-</div>
-
-
-<!-- thesis proposal -->
-<div id="text">
-<h1 class="caption1">The Distinction and Connection Between Two Identities</h1>
-<p class="proposal">In today's interconnected world, more and more of our daily communication and social interactions occur online rather than in-person. This shift towards virtual communication has created a new landscape in which we can explore and express ourselves in unique ways. With the rise of social media and gaming, individuals are finding a sense of liberation and escapism in virtual worlds. It is an environment in which one can let go of the constraints and pressures of everyday life and truly let their imaginations run wild.</p>
-<h2 class="caption2">Community is here</h2>
-<p class="proposal">This is where the idea of creating Another Side of Me, a community for digital identities. By building a VR space and mobile app, I want to provide a safe space for people to explore and celebrate their virtual selves, ultimately bridging the gap between the two worlds and help people feel more grounded and connected. Through fostering a community of individuals who share similar interests and passions, we can help people build a sense of belonging and identity in the virtual world. Ultimately, this can lead to a more inclusive and accepting society, one that recognizes and values the diversity of digital identities.</p>
-</div>
-
-<img class = "background-image" src = "images/work4.jpg">
-
-  <div id="container">
-        <ul id="slides">
-          <a class="prev">&#10094;</a>
-          <a class="next">&#10095;</a>
-        </ul>
+<section class="p-hero wrap">
+  <span class="badge">App · VR · Thesis</span>
+  <h1 class="long"><span class="ln" style="--n:0"><span>Another Side of Me</span></span></h1>
+  <div class="sub">
+    <p>A VR space and mobile app <em>for exploring and celebrating digital identities.</em></p>
+    <dl class="facts"><div><dt>Type</dt><dd>Thesis project</dd></div><div><dt>Scope</dt><dd>VR space · mobile app</dd></div></dl>
   </div>
+  <div class="cover"><div class="ph"><video autoplay muted loop playsinline poster="../project-image/work4.jpeg" style="width:100%;height:100%;object-fit:cover;display:block"><source src="video/video_present.mov" type="video/mp4"></video></div></div>
+  <div class="actions"><a class="more" href="https://hubs.mozilla.com/r4sg26c/friendly-powerful-barbecue" target="_blank" rel="noopener">Go view the space <b>→</b></a></div>
+</section>
 
+<main>
+<section class="sec two wrap rv"><h2>The distinction and connection between two identities</h2><div>
+  <p class="body">In today's interconnected world, more and more of our daily communication and social interactions occur online rather than in-person. This shift towards virtual communication has created a new landscape in which we can explore and express ourselves in unique ways. With the rise of social media and gaming, individuals are finding a sense of liberation and escapism in virtual worlds. It is an environment in which one can let go of the constraints and pressures of everyday life and truly let their imaginations run wild.</p>
+</div></section>
+<section class="sec two wrap rv"><h2>Community is here</h2><div>
+  <p class="body">This is where the idea of creating Another Side of Me, a community for digital identities. By building a VR space and mobile app, I want to provide a safe space for people to explore and celebrate their virtual selves, ultimately bridging the gap between the two worlds and help people feel more grounded and connected. Through fostering a community of individuals who share similar interests and passions, we can help people build a sense of belonging and identity in the virtual world. Ultimately, this can lead to a more inclusive and accepting society, one that recognizes and values the diversity of digital identities.</p>
+</div></section>
+<section class="sec cf-sec"><div id="container"></div></section>
+<div class="next wrap"><a class="ul" href="../index.html#p-another">← All projects</a><a class="more" href="../atomo/index.html">Next project: Atomo <b>→</b></a></div>
+</main>
 
-
-<!-- <img class = "thesis-image" class = "image01" src = "images/Web01.jpg">
-<img class = "thesis-image" src = "images/Web02.jpg">
-<img class = "thesis-image" src = "images/Web03.gif">
-<img class = "thesis-image" src = "images/Web04.jpg">
-<img class = "thesis-image" src = "images/Web05.jpg"> -->
-
-<div class="home">
-  <a href="../index.html#p-another">Home</a>
-</div>
-<footer>wangz630@newschool.edu</footer>
-  <script src="script.js"></script>
-  <script src="../case-study.js"></script>
+<footer id="footer"></footer>
+<script src="../home.js?v=2" data-root="../"></script>
+<script src="../carousel.js?v=3"></script>
+<script src="../project.js?v=12"></script>
 </body>
-
 </html>

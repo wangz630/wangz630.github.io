@@ -1,83 +1,47 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>Marine Life</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
-  <link href="../case-study.css" rel="stylesheet" type="text/css" />
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marine Life — Zi Wang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../home.css?v=10">
+<link rel="stylesheet" href="../project.css?v=10">
 </head>
+<body data-back="#p-marine">
+<div class="progress"></div>
+<header id="nav"></header>
 
-<body class="cs-dark">
-  <a class="cs-back" href="../index.html#p-marine" aria-label="Back to home">
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 5l-7 7 7 7" stroke="#181818" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  </a>
- <h1 id="title">MARINE LIFE</h1>
-  <div class="cs-hero-tags"><span>Book Design</span><span>Illustration</span></div>
+<section class="p-hero wrap">
+  <span class="badge">Book Design · Illustration</span>
+  <h1><span class="ln" style="--n:0"><span>Marine Life</span></span></h1>
+  <div class="sub">
+    <p>A book introducing <em>the creatures of the underwater world.</em></p>
+    <dl class="facts"><div><dt>Type</dt><dd>Book design</dd></div><div><dt>Year</dt><dd>2020</dd></div><div><dt>Tools</dt><dd>InDesign</dd></div><div><dt>Role</dt><dd>Designer</dd></div></dl>
+  </div>
+  <div class="cover"><div class="ph"><img src="images/cover.png" alt=""></div></div>
+</section>
 
-  <img id="arrow" src = "images/arrow.png">
-  <p id="scroll">scroll</p>
+<main class="wrap">
+<section class="sec two rv"><h2>Overview</h2><div><p class="body">Perhaps because we live in a different world from Marine life, people don't know much about them and thus call underwater world a mysterious place. Therefore, I want to design a book to introduce people to all creatures living underwater, endangered species, and the increasingly fragile Marine environment under the influence of human activities. After getting to know them, I believe it will be easier for people to empathize with marine life. This is a project to translate wikipedia content into a physical book. The term I chose was “Marine life”. All the images and text are from the original Wikipedia.</p></div></section>
+<section class="sec">
+  <div id="container"><ul id="slides">
+      <h3 class="caption1">Book Selected Pages</h3>
+      <img src="images/Free_Book_Mockup_3 1.png" alt="">
+      <img src="images/Free_Book_Mockup_5 1.png" alt="">
+      <img src="images/Free_Book_Mockup_6 1.png" alt="">
+      <img src="images/Free_Book_Mockup_7 1.png" alt="">
+      <img src="images/Free_Folded_Square_Brochure_Mockup_3 1.png" alt="">
+  </ul></div>
+</section>
+<div class="next"><a class="ul" href="../index.html#p-marine">← All projects</a><a class="more" href="../sun-a-wear/index.html">Next project: sun·a·wear <b>→</b></a></div>
+</main>
 
-  <!-- The video -->
-<!-- <video autoplay muted loop id="myVideo">
-  <source src="video/video_present.mov" type="video/mp4">
-</video> -->
-<img id="cover" src = "images/cover.png">
-
-<!-- <div class="video-container">
-<iframe src="https://www.youtube.com/embed/4Wa3HitoVac?controls=0&&autoplay=1&mute=1&playsinline=1&loop=1&playlist=4Wa3HitoVac" ></iframe>
-</div> -->
-
-<!-- Optional: some overlay text to describe the video -->
-<div class="content">
-  <h1>SIDE BY SIDE</h1>
-  <!-- <form action="https://hubs.mozilla.com/r4sg26c/friendly-powerful-barbecue" method="get" target="_blank">
-    <button id="myBtn" type="submit">Go view the space</button>
- </form> -->
-</div>
-
-<!-- thesis proposal -->
-<div id="text">
-<h1 class="caption1">Overview</h1>
-<p class="proposal">Perhaps because we live in a different world from Marine life, people don't know much about them and thus call underwater world a mysterious place. Therefore, I want to design a book to introduce people to all creatures living underwater, endangered species, and the increasingly fragile Marine environment under the influence of human activities. After getting to know them, I believe it will be easier for people to empathize with marine life. This is a project to translate wikipedia content into a physical book. The term I chose was “Marine life”. All the images and text are from the original Wikipedia.</p>
-
-<img class = "background-image" src = "images/work4.jpg">
-
-<h1 class="caption1" style = "margin-top: 100px;">Book Selected Pages</h1>
-
-  <!-- <div id="container">
-        <ul id="slides">
-          <a class="prev">&#10094;</a>
-          <a class="next">&#10095;</a>
-        </ul>
-  </div> -->
-
-  <div id="container">
-    <ul id="slides">
-      <img class = "image" src = "images/Free_Book_Mockup_3 1.png">
-
-      <img class = "image" src = "images/Free_Book_Mockup_5 1.png">
-
-      <img class = "image" src = "images/Free_Book_Mockup_6 1.png">
-
-      <img class = "image" src = "images/Free_Book_Mockup_7 1.png">
-
-      <img class = "image" src = "images/Free_Folded_Square_Brochure_Mockup_3 1.png">
-
-    </ul>
-</div>
-</div>
-
-
-
-<div class="home">
-  <a href="../index.html#p-marine">Home</a>
-</div>
-<footer>wangz630@newschool.edu</footer>
-  <script src="script.js"></script>
-  <script src="../case-study.js"></script>
+<footer id="footer"></footer>
+<script src="../home.js?v=2" data-root="../"></script>
+<script src="../gallery.js?v=4"></script>
+<script src="../project.js?v=10"></script>
 </body>
-
 </html>

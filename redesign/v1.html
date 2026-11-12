@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zi Wang — Portfolio (v1 · Float)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<style>
+body{font-family:'Red Hat Display',sans-serif}
+
+/* ---------- hero: covers burst out from the centre, then float with depth around the headline ---------- */
+.hero{position:relative;height:100svh;min-height:640px;overflow:hidden;display:grid;place-items:center;text-align:center}
+#float{position:absolute;inset:0}
+.f{position:absolute;left:var(--x);top:var(--y);width:var(--w);aspect-ratio:4/3;border-radius:12px;overflow:hidden;background:var(--soft);
+  box-shadow:0 2px 4px rgba(20,20,40,.05),0 26px 54px -18px rgba(20,20,40,.32);opacity:0;will-change:transform,opacity;pointer-events:none}
+.f img{width:100%;height:100%;object-fit:cover}
+.mid{position:relative;z-index:2;padding:0 var(--pad)}
+.mid .badge{opacity:0;animation:fadeIn .9s ease .15s forwards}
+.hero h1{font-weight:600;font-size:clamp(40px,min(6.5vw,11vh),108px);line-height:1.03;letter-spacing:-.045em;margin:22px 0 26px}
+.hero h1 em{font-style:normal;color:var(--faint)}
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.16em;margin-bottom:-.16em}
+.w>span{display:inline-block;transform:translateY(115%);animation:lnUp 1.05s var(--ease) forwards;animation-delay:calc(var(--i)*70ms + 350ms)}
+.mid .go{font-size:14px;color:var(--mute);opacity:0;animation:fadeIn 1s ease 1.5s forwards}
+.mid .go b{display:inline-block;font-weight:400;animation:nudge 1.8s ease-in-out infinite}
+@keyframes nudge{50%{transform:translateY(5px)}}
+
+/* ---------- recent project ---------- */
+.recent{padding-top:clamp(80px,10vw,150px)}
+.recent .ph{aspect-ratio:16/8.4;clip-path:inset(0 0 100% 0);transition:clip-path 1.3s var(--ease)}
+.recent.in .ph{clip-path:inset(0)}
+.recent .ph img,.recent a:hover > .ph img{height:116%;transform:translateY(var(--py,-6%));transition:none}
+.recent .info{display:grid;grid-template-columns:1fr 1.25fr auto;gap:clamp(20px,4vw,70px);align-items:start;padding-top:26px}
+.recent h2{font-weight:600;font-size:clamp(40px,5.4vw,84px);letter-spacing:-.035em;line-height:1}
+.recent .lbl{display:block;margin-top:12px}
+.recent p{color:#3d3d44;line-height:1.65;font-size:16px;max-width:56ch;padding-top:8px}
+.recent .more{margin-top:10px;white-space:nowrap}
+
+/* ---------- projects: two aligned columns ---------- */
+.cat{padding-top:clamp(80px,10vw,150px)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:clamp(44px,5vw,80px) clamp(20px,2.6vw,44px)}
+@media (max-width:760px){.g2{grid-template-columns:1fr}.recent .info{grid-template-columns:1fr}.f{--w:30vw!important}}
+</style>
+</head>
+<body>
+<header id="nav"></header>
+
+<section class="hero" id="hero">
+  <div id="float"></div>
+  <div class="mid">
+    <span class="badge">Portfolio</span>
+    <h1 id="h1" aria-label="I'm Zi Wang, a visual designer and UI & UX designer."></h1>
+    <a class="go" href="#featured">Scroll to explore <b>↓</b></a>
+  </div>
+</section>
+
+<section class="recent wrap" id="featured">
+  <div class="sec-h"><span class="badge" id="f-badge"></span><span class="lbl">Recent project</span></div>
+  <a id="f-a"><div class="ph"><img id="f-img" alt=""></div></a>
+  <div class="info"><div><h2 id="f-title"></h2><span class="lbl" id="f-sub"></span></div><p id="f-desc"></p><a class="more" id="f-b">View project <b>→</b></a></div>
+</section>
+
+<main id="work" class="wrap"></main>
+<div id="exp" class="wrap"></div>
+<footer id="footer"></footer>
+
+<script src="shared.js"></script>
+<script>
+(function(){
+  var $=function(s){return document.querySelector(s)}, F=PF.featured;
+  PF.chrome();
+  $('#f-badge').textContent=F.badge; $('#f-img').src=F.img; $('#f-title').textContent=F.title; $('#f-sub').textContent=F.sub; $('#f-desc').textContent=F.desc; $('#f-a').href=$('#f-b').href=F.href;
+
+  /* headline, word by word; connecting words are dimmed */
+  var lines=[["I'm",1],["Zi",0],["Wang,",0],["<br>"],["a",1],["visual",0],["designer",0],["<br>"],["and",1],["UI",0],["&",0],["UX",0],["designer.",0]], n=0;
+  $('#h1').innerHTML=lines.map(function(w){return w[0]==='<br>'?'<br>':'<span class="w" aria-hidden="true"><span style="--i:'+(n++)+'">'+(w[1]?'<em>'+PF.esc(w[0])+'</em>':PF.esc(w[0]))+'</span></span>'}).join(' ');
+
+  /* floating covers: [left %, top %, width vw, depth] — kept clear of the centred headline */
+  var spots=[[3,14,15,1],[23,9,10,.45],[70,10,12,.7],[85,23,13,1.1],[-3,49,12,.6],[90,55,13,.9],[6,76,14,.85],[28,86,10,.45],[62,84,14,1],[83,86,10,.55]];
+  var covers=PF.covers(spots.length), hero=$('#hero');
+  $('#float').innerHTML=spots.map(function(s,i){return '<div class="f" style="--x:'+s[0]+'%;--y:'+s[1]+'%;--w:'+s[2]+'vw"><img src="'+covers[i].img+'" alt=""></div>'}).join('');
+  var els=[].slice.call(document.querySelectorAll('.f')), geo=[];
+  function measure(){var W=hero.clientWidth,H=hero.clientHeight;geo=els.map(function(e){var cx=e.offsetLeft+e.offsetWidth/2,cy=e.offsetTop+e.offsetHeight/2,dx=cx-W/2,dy=cy-H/2,l=Math.hypot(dx,dy)||1;return {dx:dx,dy:dy,ux:dx/l,uy:dy/l}})}
+  measure(); addEventListener('resize',measure); addEventListener('load',measure);
+
+  var mx=0,my=0,sx=0,sy=0,t0=performance.now()+250, ease=function(v){v=Math.max(0,Math.min(1,v));return 1-Math.pow(1-v,4)};
+  addEventListener('mousemove',function(e){mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5},{passive:true});
+
+  $('#work').innerHTML=PF.cats.map(function(c){
+    var list=PF.byCat(c.id);
+    return '<section class="cat" id="c-'+c.id+'"><div class="sec-h rv"><h3>'+PF.esc(c.name)+'</h3><span class="lbl">'+String(list.length).padStart(2,'0')+' projects</span></div><div class="g2">'+
+      list.map(function(p,i){return PF.item(p,i%2)}).join('')+'</div></section>';
+  }).join('');
+  PF.reveal('.rv'); PF.reveal('.recent',{threshold:.2});
+
+  var fimg=$('#f-img'), ph=fimg.parentNode;
+  (function tick(now){
+    var p=Math.min(1.2,scrollY/innerHeight);
+    if(p<1.15){
+      sx+=(mx-sx)*.06; sy+=(my-sy)*.06;
+      els.forEach(function(el,i){
+        var g=geo[i], d=spots[i][3], e=PF.reduced?1:ease((now-t0-i*90)/1500);
+        var x=-(1-e)*g.dx - sx*46*d + Math.sin(now/1900+i*1.7)*7*d + g.ux*p*innerWidth*.34*d;      /* burst-in · mouse parallax · idle drift · scroll scatter */
+        var y=-(1-e)*g.dy - sy*46*d + Math.cos(now/2300+i*2.3)*9*d + g.uy*p*innerHeight*.34*d;
+        el.style.transform='translate3d('+x.toFixed(1)+'px,'+y.toFixed(1)+'px,0) scale('+((.25+.75*e)*(1+p*.3*d)).toFixed(3)+') rotate('+((1-e)*(i%2?14:-14))+'deg)';
+        el.style.opacity=(e*Math.max(0,1-p*1.25)).toFixed(3);
+      });
+    }
+    var q=ph.getBoundingClientRect(); if(q.bottom>0&&q.top<innerHeight) fimg.style.setProperty('--py',(-8+((q.top+q.height/2-innerHeight/2)/innerHeight)*-7)+'%');
+    requestAnimationFrame(tick);
+  })(performance.now());
+})();
+</script>
+</body>
+</html>

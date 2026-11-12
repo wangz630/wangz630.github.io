@@ -1,223 +1,182 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>Route App</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
-  <link href="../case-study.css" rel="stylesheet" type="text/css" />
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RouteApp — Zi Wang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../home.css?v=10">
+<link rel="stylesheet" href="../project.css?v=10">
 </head>
+<body data-back="#p-route-app" data-hero="b">
+<div class="progress"></div>
+<header id="nav"></header>
 
-<body class="cs-theme-blue">
-  <a class="cs-back" href="../index.html#p-route-app" aria-label="Back to home">
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 5l-7 7 7 7" stroke="#181818" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  </a>
-
-  <h1 id="title">Route App</h1>
-  <div class="cs-hero-tags">
-    <span>Mobile Navigation App</span><span>UX Research</span><span>Usability Testing</span><span>Accessibility</span>
+<section class="p-hero-b">
+  <img class="bg" src="images/cover.png" alt="">
+  <h1 id="title">ROUTEAPP</h1>
+  <div class="tags"><span>Mobile App</span><span>Accessibility</span></div>
+  <a class="down" href="#after-hero" aria-label="Scroll"><svg viewBox="0 0 34 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 2l15 11L32 2"/></svg><span>scroll</span></a>
+</section>
+<div id="after-hero"></div>
+<section class="p-hero-b-info">
+  <div class="phb-band">
+  <p>A walking-navigation app designed for older adults <em>— researched, designed and usability-tested end to end.</em></p>
+  <dl class="facts">
+      <div><dt>Role</dt><dd>Sole UI/UX Designer</dd></div>
+      <div><dt>Timeline</dt><dd>2024 – 2025 · Part-time</dd></div>
+      <div><dt>Team</dt><dd>UM Civil &amp; Environmental Engineering</dd></div>
+      <div><dt>Tools</dt><dd>Figma · Mapbox</dd></div>
+    </dl>
   </div>
+</section>
 
-  <img id="arrow" src="images/arrow.png">
-  <p id="scroll">scroll</p>
+<main class="wrap">
 
-<div id="cover-container">
-  <img id="cover" src="images/cover.png">
-</div>
-
-  <!-- thesis proposal -->
-  <div id="text">
-    <div class="year-team-role">
-      <p><strong>Year:</strong> 2024-2025 <span class="divider">|</span> <strong>Type:</strong>Part-time job <span class="divider">|</span> <strong>Role:</strong> Designer <span class="divider">|</span> <strong>Tool:</strong> Figma</p>
-    </div>
-    <h1 class="caption1">Project Overview</h1>
-    <p class="proposal">Under the support of the National Science Foundation, this project aims to develop a mobile application designed to improve the <strong>walking experience of older adults</strong>. My responsibilities include creating and refining the application’s design, collaborating with developers to ensure design alignment with technical feasibility throughout the development process, and conducting usability testing to identify areas for improvements.
-    </p>
-
-    <h1 class="caption1">Problem Statement & Research</h1>
-    <p class="proposal">In 2013, only 18% of US adults ages 65 or above owned a smartphone [1]. In 2024, 79% of older adults owns smartphones [2]. The usage of mobile phones and technologies are significantly increased. Mobile maps applications are popular among all ages include senior adults, which assist them navigate independently and avail city facilities. However, the interface design decisions of mainstream mobile apps are rarely aligned with older adults’ changing abilities. Research indicates that the accessibility features for those map applications are not sufficient for older adults as they encounter hundreds of issues due to <strong>inadequate visual saliency, ambiguous affordance, and low information scent</strong>[1]. Therefore, this study aims to develop a walking navigation app tailored for older adults and propose design modifications that remove usability barriers, enhance accessibility, and foster greater confidence in independent navigation. Through usability testing, we will evaluate whether these modifications improve ease of use and reduce cognitive loads for seniors. 
-    </p>
-    <div class="image-container">
-      <img class="flex-image" src="images/research1.png">
-      <img class="flex-image" src="images/research2.png">
-      <img class="flex-image" src="images/research3.png">
-      <img class="flex-image" src="images/research4.png">
-    </div>
-
-    <h1 class="caption1">Competitive Analysis</h1>
-    <p class="proposal">We conducted a competitive analysis of existing mobile navigation apps to identify their strengths and weaknesses in serving older adult users. The analysis revealed that while some apps offer basic accessibility features, they often fall short in providing a user-friendly experience tailored to the needs of seniors. Key findings from the analysis include:</p>
-    <ol class="cs-numlist">
-      <li>Many apps have small text sizes and <strong>complex interfaces</strong> that can be difficult for older adults to navigate.</li>
-      <li>Few walking apps provide multimodal navigation aids, such as voice guidance and haptic feedback, which are crucial for seniors with varying levels of vision and hearing abilities.</li>
-      <li><strong>Sidewalk and pedestrian path information</strong> is often lacking or inaccurate, making it challenging for older adults to find safe and comfortable walking routes.</li>
-      <li>There is a lack of personalized route recommendations that consider factors important to older adults, such as <strong>surface condition, safety and comfort</strong>.</li>
-    </ol>
-    <div class="image-container">
-      <img class="flex-image" src="images/competitive1.png">
-      <img class="flex-image" src="images/competitive2.png">
-      <img class="flex-image" src="images/competitive3.png">
-      <img class="flex-image" src="images/competitive4.png">
-    </div>
-
-    <h1 class="caption1">Web Survey</h1>
-    <p class="proposal">
-    To address these issues, we conducted user survyes to understand what factors of conditions affects older adults' walking experiences the most. The results indicated that <strong>surface condition, safety, and comfort</strong> are the top three factors that older adults consider when choosing walking routes. Based on these insights, we aim to design a walking navigation app that prioritizes accessibility and user-friendliness for older adult users, while also providing personalized route recommendations that consider their specific needs and preferences.
-    </p>
-    <div class="image-container">
-      <img class="flex-image" src="images/websurvey1.png">
-      <img class="flex-image" src="images/websurvey2.png">
-    </div>
-
-    <p class="proposal">
-    The findings from our research highlighted several key areas for improvement, including the need for larger text sizes, simplified interfaces, multimodal navigation aids (such as voice guidance and haptic feedback), and personalized route recommendations that consider factors important to older adults, such as surface condition, safety, and comfort.
-    <br><br>
-    Based on these insights, we designed a walking navigation app tailored specifically for older adults, incorporating features that address their unique requirements and improve their overall walking experience.
-    </p>
-
-    <h1 class="caption1">App Features</h1>
-    <p class="proposal">The app is built specifically for senior users, following mobile accessibility guidelines for older adults. It centers on <strong>5 core features</strong>:</p>
-
-    <!-- Feature 1: single image -->
-    <div class="cs-split">
-      <div class="cs-split__text">
-        <span class="cs-eyebrow" style="text-align:left;">Feature 1</span>
-        <h2 class="cs-h">Preset text-size settings</h2>
-        <p>To better serve senior users, the very first step is <strong>adjusting font size</strong> to their preference — putting readability first before anything else.</p>
-      </div>
-      <div class="cs-split__media" style="text-align:center;">
-        <img class="cs-phone" src="images/textadjustmentfeature.png" alt="Text size adjustment">
-      </div>
-    </div>
-
-    <!-- Feature 2: carousel -->
-    <div class="cs-split cs-split--reverse">
-      <div class="cs-split__text">
-        <span class="cs-eyebrow" style="text-align:left;">Feature 2</span>
-        <h2 class="cs-h">Senior-focused points of interest</h2>
-        <p>The five <strong>POIs</strong> most relevant to older adults are surfaced up front and can be filtered, so the places they care about are always one tap away.</p>
-      </div>
-      <div class="cs-split__media">
-        <div class="cs-carousel"><div class="cs-carousel__track">
-          <img src="images/poi1.png" alt="POIs"><img src="images/poi2.png" alt="POI filtering">
-          <img src="images/poi1.png" alt=""><img src="images/poi2.png" alt="">
-        </div></div>
-      </div>
-    </div>
-
-    <!-- Feature 3: carousel -->
-    <div class="cs-split">
-      <div class="cs-split__text">
-        <span class="cs-eyebrow" style="text-align:left;">Feature 3</span>
-        <h2 class="cs-h">Clear map modes &amp; highlighted sidewalks</h2>
-        <p>Users can switch between <strong>2D and 3D map views</strong>, with <strong>sidewalk information customized and highlighted</strong> via Mapbox. Voice, text, and haptic guidance work together to make navigation easier to follow.</p>
-      </div>
-      <div class="cs-split__media">
-        <div class="cs-carousel"><div class="cs-carousel__track">
-          <img src="images/Map Redesign.png" alt="Map redesign"><img src="images/mode1.png" alt="2D mode"><img src="images/mode2.png" alt="3D mode">
-          <img src="images/Map Redesign.png" alt=""><img src="images/mode1.png" alt=""><img src="images/mode2.png" alt="">
-        </div></div>
-      </div>
-    </div>
-
-    <!-- Feature 4: carousel -->
-    <div class="cs-split cs-split--reverse">
-      <div class="cs-split__text">
-        <span class="cs-eyebrow" style="text-align:left;">Feature 4</span>
-        <h2 class="cs-h">Comfort-aware route recommendations</h2>
-        <p>Our team built a custom <strong>optimal walking-route algorithm</strong>, collecting data on <strong>surface condition, traffic and crime safety, and thermal comfort</strong> to recommend routes that feel right for older adults.</p>
-      </div>
-      <div class="cs-split__media">
-        <div class="cs-carousel"><div class="cs-carousel__track">
-          <img src="images/stress1.png" alt="Stress level"><img src="images/shade1.png" alt="Shade level"><img src="images/surfacecondition.png" alt="Surface condition"><img src="images/NetworkReference.png" alt="Network reference">
-          <img src="images/stress1.png" alt=""><img src="images/shade1.png" alt=""><img src="images/surfacecondition.png" alt=""><img src="images/NetworkReference.png" alt="">
-        </div></div>
-      </div>
-    </div>
-
-    <!-- Feature 5: carousel -->
-    <div class="cs-split">
-      <div class="cs-split__text">
-        <span class="cs-eyebrow" style="text-align:left;">Feature 5</span>
-        <h2 class="cs-h">Weekly records &amp; in-app route survey</h2>
-        <p><strong>Weekly walking records</strong> and an in-app survey help users track their activity and give feedback on usability and route conditions — motivating older adults to walk more and improve their health.</p>
-      </div>
-      <div class="cs-split__media">
-        <div class="cs-carousel"><div class="cs-carousel__track">
-          <img src="images/routesurvey1.png" alt="Route survey"><img src="images/routesurvey2.png" alt="Route survey"><img src="images/routesurvey3.png" alt="Route survey"><img src="images/setting_FINAL.png" alt="Settings">
-          <img src="images/routesurvey1.png" alt=""><img src="images/routesurvey2.png" alt=""><img src="images/routesurvey3.png" alt=""><img src="images/setting_FINAL.png" alt="">
-        </div></div>
-      </div>
-    </div>
-
-    <h1 class="caption1">App User Flow</h1>
-    <p class="proposal">
-    The user flow of the Route App is designed to be intuitive and straightforward, ensuring that older adult users can easily navigate through the app's features. The main user flow consists of the following steps: <strong>Presets, Map View, Navigation, Route Survey, and Settings</strong>. 
-    <br><br>
-    Users begin by adjusting preset settings. They can then access the map view to search for destinations using text or voice input. Once a destination is selected, users can choose between 2D and 3D map modes for navigation, with highlighted sidewalk information for better visibility. After completing their walk, users are prompted to fill out a route survey to provide feedback on their experience. Finally, users can access the settings menu to update personal information and review their weekly walking records.
-    </p>
-    <div class="image-container">
-      <img class="small-image" src="images/userFlow.png" width="80%">
-    </div>
-
-        <h1 class="caption1">Usability Test</h1>
-    <div class="cs-stats">
-      <div class="cs-stat"><div class="cs-stat__num">10</div><div class="cs-stat__label">Older-adult participants</div></div>
-      <div class="cs-stat"><div class="cs-stat__num">85<span class="cs-unit">%</span></div><div class="cs-stat__label">Task success rate</div></div>
-      <div class="cs-stat"><div class="cs-stat__num">85.6</div><div class="cs-stat__label">SUS score / 100 (excellent)</div></div>
-      <div class="cs-stat"><div class="cs-stat__num">14.95</div><div class="cs-stat__label">NASA-TLX load / 100 (low)</div></div>
-    </div>
-    <p class="proposal">
-    I conducted <strong>usability tests with 10 older adult participants</strong> to evaluate the app's design and functionality. The tests focused on assessing the ease of use, accessibility features, and overall user experience. Participants were asked to complete a series of tasks using the app, including adjusting settings, searching for destinations, navigating using different map modes, filling out route surveys, and checking walking records.<br><br>
-    <span class="image-container">
-      <img class="small-image" src="images/usabilityTest1.png" width="40%" style="object-fit: contain;">
-      <img class="small-image" src="images/usabilityTest4.png" width="40%" style="object-fit: contain;">
-      <img class="small-image" src="images/usabilityTest2.png" width="40%" style="object-fit: contain;">
-      <img class="small-image" src="images/usabilityTest3.png" width="40%" style="object-fit: contain;">
-    </span>
-    <br>
-
-    <strong>Task success rate</strong> (4 levels: 1.complete success 2. success with one minor issue 3. success with a major issue 4. failure): Overall task success rate: 65% of participants with complete success; 20% were able to complete tasks with one minor issue.<br><br>
-    <strong>Cognitive Load based on NASA-TLX</strong>: Overall task load score is 14.95 out of 100, indicating a low to medium perceived workload.<br><br>
-    <strong>SUS score</strong>: The average overall SUS score across all participants is ≈ 85.56 / 100, which indicates excellent usability according to standard SUS interpretation (typically anything above 80 is considered “excellent” or “grade A”)<br><br>
-
-    I gained valuable insights into the user preference and areas for improvement. Participants appreciated the simplified interface, multimodal navigation aids, and stress level indicator (indicator of surface condition, traffic safety and thermal comfort of current sidewalk), which enhanced their overall experience. However, some users encountered challenges with certain features, such as voice input/voice guidance accuracy, missing back options/loading status indication, and understanding the stress level/shade level indicator.
-    <br><br>
-  
-    Based on the feedback received, I made several design refinements to improve usability and accessibility, ensuring that the app better meets the needs of older adult users.
-    </p>
-
-
-    <h1 class="caption1">Final Outcome</h1>
-    <img class="image" src="images/finalInterface.png" width="80%">
-    <iframe width="800" height="500" src="https://www.youtube.com/embed/w-YVpEW_Svw?si=Kc9-EjGLNMtdnzvt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-    <h2>Impact & Future Improvements</h2>
-    <p class="proposal">
-    The Route App has the potential to significantly enhance the walking experience for older adults by addressing their unique needs and challenges. By providing an accessible and user-friendly navigation tool, the app can empower seniors to walk more confidently and independently, promoting physical activity and overall well-being. The personalized route recommendations based on surface condition, safety, and comfort can help older adults choose routes that are best suited to their preferences and abilities, further encouraging them to engage in regular walking activities.<br><br>
-    Due to unexpectedly frozen recruitment budget, we were only able to conduct usability tests with 10 older adult participants instead of the planned ~30. This limited sample size may affect the generalizability of our findings and the robustness of our design improvements. Future studies with a larger and more diverse participant pool are needed to validate the app's effectiveness and further refine its features based on broader user feedback.<br><br>
-    Future improvements for the Route App could include integrating real-time data on sidewalk conditions and hazards.
-    </p>
-
-    <h4>Reference</h4>
-    <p class="proposal">
-      [1] Yu, J. E., & Chattopadhyay, D. (2020). "Maps are hard for me": Identifying How Older Adults Struggle with Mobile Maps. ACM SIGACCESS Conference on Computers and Accessibility (ASSETS '20). https://doi.org/10.1145/3373625.3416997<br>
-
-      [2] Pew Research Center. (2019). Mobile Fact Sheet. Retrieved March 13, 2025, from https://www.pewinternet.org/fact-sheet/mobile/
-         </p>
-      </ul>
-    </div>
-
+<section class="sec two rv">
+  <h2>Overview</h2>
+  <div>
+    <p class="big">Supported by the National Science Foundation, this project builds a mobile app that makes walking easier for older adults. <em>I designed and refined the app, worked with developers on feasibility, and ran the usability tests.</em></p>
   </div>
+</section>
 
-
-  <div class="home">
-    <a href="../index.html#p-route-app">Home</a>
+<section class="chapter" id="problem">
+  <div class="ch-head rv">
+    <div><div class="ch-no"><b>01</b>Problem</div><h2>More seniors use smartphones — maps weren’t designed for them</h2></div>
+    <p class="lead">Mainstream map apps rarely match older adults’ changing abilities: research finds hundreds of issues caused by weak visual saliency, ambiguous affordances and low information scent <sup>[1]</sup>.</p>
   </div>
-  <footer>ziwang1247@gmail.com</footer>
-  <script src="script.js"></script>
-  <script src="../case-study.js"></script>
+  <div class="stats rv" style="--n:3">
+    <div class="stat"><b>18<small>%</small></b><span>2013</span><p>of US adults aged 65+ owned a smartphone <sup>[1]</sup></p></div>
+    <div class="stat key"><b>79<small>%</small></b><span>2024</span><p>of older adults own a smartphone <sup>[2]</sup></p></div>
+    <div class="stat"><b>3</b><span>Barriers to remove</span><p>Hard to see · unclear what is tappable · unclear what comes next</p></div>
+  </div>
+</section>
+
+<section class="chapter" id="research">
+  <div class="ch-head rv">
+    <div><div class="ch-no"><b>02</b>Research</div><h2>What existing apps miss, and what seniors care about</h2>
+      <div class="tags"><span>Competitive analysis</span><span>Web survey</span></div></div>
+    <p class="lead">Two inputs shaped the design: a competitive analysis of current navigation apps, and a survey on what affects older adults’ walking experience the most.</p>
+  </div>
+  <span class="eyebrow rv">Competitive analysis</span>
+  <div class="grid4 rv">
+    <figure class="card-img"><img loading="lazy" data-zoom src="images/competitive1.png" alt=""><figcaption><strong>Usage statistics.</strong> Which navigation apps people use.</figcaption></figure>
+    <figure class="card-img"><img loading="lazy" data-zoom src="images/competitive2.png" alt=""><figcaption><strong>Map apps.</strong> How each one displays additional information.</figcaption></figure>
+    <figure class="card-img"><img loading="lazy" data-zoom src="images/competitive3.png" alt=""><figcaption><strong>Walking apps.</strong> What they offer pedestrians, and what they lack.</figcaption></figure>
+    <figure class="card-img"><img loading="lazy" data-zoom src="images/competitive4.png" alt=""><figcaption><strong>Takeaways.</strong> Differences to design for, and what to test.</figcaption></figure>
+  </div>
+  <div class="notes rv" style="grid-template-columns:repeat(4,1fr)">
+    <div><b>Finding 01</b><h4>Small text, complex screens</h4><p>Hard for older adults to read and navigate.</p></div>
+    <div><b>Finding 02</b><h4>Few multimodal aids</h4><p>Voice and haptic guidance are rare in walking apps.</p></div>
+    <div><b>Finding 03</b><h4>Sidewalk data is missing</h4><p>Pedestrian paths are often absent or inaccurate.</p></div>
+    <div><b>Finding 04</b><h4>No personal routes</h4><p>Surface, safety and comfort are not considered.</p></div>
+  </div>
+  <div class="block rv">
+    <span class="eyebrow">Web survey</span>
+    <div class="cols wide">
+      <div>
+        <h3 class="h3">Surface condition, safety and comfort come first</h3>
+        <p class="body" style="margin-top:12px">These were the top three factors older adults weigh when choosing a walking route — so they became the inputs of the route recommendation and the overlays shown during navigation.</p>
+        <div class="tags" style="margin-top:18px"><span>Surface condition</span><span>Safety</span><span>Thermal comfort</span></div>
+      </div>
+      <div class="grid2">
+        <figure class="card-img"><img loading="lazy" data-zoom src="images/websurvey1.png" alt=""></figure>
+        <figure class="card-img"><img loading="lazy" data-zoom src="images/websurvey2.png" alt=""></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="chapter" id="features">
+  <div class="ch-head rv">
+    <div><div class="ch-no"><b>03</b>Design</div><h2>Five features built around senior users</h2>
+      <div class="tags"><span>Mobile accessibility guidelines</span><span>Multimodal guidance</span></div></div>
+    <p class="lead">Every feature answers a finding from the research. Click any screen to see it full size.</p>
+  </div>
+  <div class="tiles rv">
+    <div class="tile w3" style="--tb:#eef1fb"><span class="n">Feature 01</span><h3>Text size comes first</h3><p>The very first step is choosing a comfortable font size — readability before anything else.</p>
+      <div class="ph-row"><div class="phone "><img loading="lazy" data-zoom src="images/textadjustmentfeature.png" alt=""></div><div class="phone "><img loading="lazy" data-zoom src="images/app/profile.jpg" alt=""></div></div></div>
+    <div class="tile w3" style="--tb:#f6efe6"><span class="n">Feature 02</span><h3>Senior-focused points of interest</h3><p>The five kinds of places older adults look for most — market, food, park, bench, restroom — are one tap away and can be filtered.</p>
+      <div class="ph-row"><div class="phone "><img loading="lazy" data-zoom src="images/app/poi.jpg" alt=""></div><div class="phone "><img loading="lazy" data-zoom src="images/app/detail.jpg" alt=""></div></div></div>
+    <div class="tile w6 row" style="--tb:#eaf3ee"><div><span class="n">Feature 03</span><h3>Clear map modes and highlighted sidewalks</h3><p>Switch between 2D and 3D views; sidewalks are customised and highlighted with Mapbox. Voice, text and haptic guidance work together so a turn is never missed.</p></div>
+      <div class="ph-row"><div class="phone "><img loading="lazy" data-zoom src="images/app/nav.jpg" alt=""></div><div class="phone "><img loading="lazy" data-zoom src="images/app/nav3d.jpg" alt=""></div><div class="phone "><img loading="lazy" data-zoom src="images/app/voice.jpg" alt=""></div></div></div>
+    <div class="tile w4 row" style="--tb:#fbeeee"><div><span class="n">Feature 04</span><h3>Comfort-aware routes</h3><p>Our team’s routing algorithm weighs surface condition, traffic and crime safety, and thermal comfort. Stress and shade overlays show it on the map.</p></div>
+      <div class="ph-row"><div class="phone "><img loading="lazy" data-zoom src="images/app/stress.jpg" alt=""></div><div class="phone "><img loading="lazy" data-zoom src="images/app/shade.jpg" alt=""></div></div></div>
+    <div class="tile" style="--tb:#f1eef9"><span class="n">Feature 05</span><h3>Weekly records &amp; route survey</h3><p>A record of the week’s walking, and a short survey after each route.</p>
+      <div class="ph-row"><div class="phone "><img loading="lazy" data-zoom src="images/app/survey1.jpg" alt=""></div></div></div>
+  </div>
+  <div class="grid2 block rv">
+    <figure class="card-img"><img loading="lazy" data-zoom src="images/surfacecondition.png" alt=""><figcaption><strong>Surface condition data</strong> collected for the routing algorithm.</figcaption></figure>
+    <figure class="card-img"><img loading="lazy" data-zoom src="images/Map Redesign.png" alt=""><figcaption><strong>Map redesign</strong> — sidewalks and crossings made visible.</figcaption></figure>
+  </div>
+</section>
+
+<section class="chapter" id="flow">
+  <div class="ch-head rv">
+    <div><div class="ch-no"><b>04</b>User flow</div><h2>From “where to?” to a finished walk</h2></div>
+    <p class="lead">Search by voice or text, preview the route, navigate with overlays, then rate the walk. Ten screens, in order.</p>
+  </div>
+  <div class="pflow rv" style="--n:5">
+    <figure class="pstep"><div class="phone "><img loading="lazy" data-zoom src="images/app/home.jpg" alt=""></div><figcaption><b>01</b><strong>Home map</strong>Large targets; search and voice search sit at thumb height.</figcaption></figure>
+    <figure class="pstep"><div class="phone "><img loading="lazy" data-zoom src="images/app/voice.jpg" alt=""></div><figcaption><b>02</b><strong>Voice search</strong>Speak the destination — no typing needed.</figcaption></figure>
+    <figure class="pstep"><div class="phone "><img loading="lazy" data-zoom src="images/app/search.jpg" alt=""></div><figcaption><b>03</b><strong>Or type it</strong>Recent places and big suggestions.</figcaption></figure>
+    <figure class="pstep"><div class="phone "><img loading="lazy" data-zoom src="images/app/preview.jpg" alt=""></div><figcaption><b>04</b><strong>Route preview</strong>Distance, time, and stress / shade labels before starting.</figcaption></figure>
+    <figure class="pstep"><div class="phone "><img loading="lazy" data-zoom src="images/app/nav.jpg" alt=""></div><figcaption><b>05</b><strong>Navigate</strong>One instruction at a time, with 2D / 3D switch.</figcaption></figure>
+    <figure class="pstep"><div class="phone "><img loading="lazy" data-zoom src="images/app/stress.jpg" alt=""></div><figcaption><b>06</b><strong>Stress overlay</strong>The route is coloured by sidewalk stress level.</figcaption></figure>
+    <figure class="pstep"><div class="phone "><img loading="lazy" data-zoom src="images/app/shade.jpg" alt=""></div><figcaption><b>07</b><strong>Shade overlay</strong>See how much of the path is shaded.</figcaption></figure>
+    <figure class="pstep"><div class="phone "><img loading="lazy" data-zoom src="images/app/summary.jpg" alt=""></div><figcaption><b>08</b><strong>Arrive</strong>A short summary of the walk.</figcaption></figure>
+    <figure class="pstep"><div class="phone "><img loading="lazy" data-zoom src="images/app/survey1.jpg" alt=""></div><figcaption><b>09</b><strong>Route survey</strong>One question per screen, large options.</figcaption></figure>
+    <figure class="pstep"><div class="phone "><img loading="lazy" data-zoom src="images/app/profile.jpg" alt=""></div><figcaption><b>10</b><strong>Weekly record</strong>Steps, miles and minutes, with text-size settings.</figcaption></figure>
+  </div>
+  <figure class="card-img block rv"><img loading="lazy" data-zoom src="images/userFlow.png" alt="Full user flow diagram"><figcaption><strong>Full flow diagram</strong> — presets, map view, navigation, route survey and settings.</figcaption></figure>
+</section>
+
+<section class="chapter" id="test">
+  <div class="ch-head rv">
+    <div><div class="ch-no"><b>05</b>Usability test</div><h2>Tested with 10 older adults</h2>
+      <div class="tags"><span>Task success</span><span>NASA-TLX</span><span>SUS</span></div></div>
+    <p class="lead">Participants adjusted settings, searched for places, navigated in both map modes, filled out the route survey and checked their walking record.</p>
+  </div>
+  <div class="stats rv">
+    <div class="stat"><b>10</b><span>Participants</span><p>Older adults, outdoor sessions</p></div>
+    <div class="stat"><b>85<small>%</small></b><span>Task success</span><p>65% complete success + 20% with one minor issue</p></div>
+    <div class="stat key"><b>85.6</b><span>SUS score / 100</span><p>“Excellent” — above 80 is grade A</p></div>
+    <div class="stat"><b>14.9</b><span>NASA-TLX / 100</span><p>Low to medium perceived workload</p></div>
+  </div>
+  <div class="grid3 block rv">
+    <figure class="card-img"><img loading="lazy" data-zoom src="images/usabilityTest2.png" alt=""></figure>
+    <figure class="card-img"><img loading="lazy" data-zoom src="images/usabilityTest3.png" alt=""></figure>
+    <figure class="card-img"><img loading="lazy" data-zoom src="images/usabilityTest4.png" alt=""></figure>
+  </div>
+  <div class="lists block rv">
+    <div><h4>What worked</h4><ul><li>The simplified interface</li><li>Voice, text and haptic guidance together</li><li>The stress-level indicator for surface, traffic and thermal comfort</li></ul></div>
+    <div><h4>What I refined afterwards</h4><ul><li>Voice input and voice guidance accuracy</li><li>Missing back options and loading-status feedback</li><li>Making the stress / shade indicators easier to understand</li></ul></div>
+  </div>
+</section>
+
+<section class="chapter" id="final">
+  <div class="ch-head rv">
+    <div><div class="ch-no"><b>06</b>Outcome</div><h2>Final interface</h2></div>
+    <p class="lead">The app can help older adults walk more confidently and independently, with routes chosen for surface, safety and comfort.</p>
+  </div>
+  <figure class="stage flat rv"><img loading="lazy" data-zoom src="images/finalInterface.png" alt="Final interface"></figure>
+  <div class="actions rv"><button class="vbtn" data-youtube="w-YVpEW_Svw" data-ratio="16/9">Watch the demo <small>video</small></button></div>
+  <div class="notes n2 rv">
+    <div><b>Limitation</b><h4>10 participants instead of ~30</h4><p>A frozen recruitment budget cut the planned sample, which limits how far the findings generalise.</p></div>
+    <div><b>Next</b><h4>Larger study, real-time data</h4><p>Validate with a broader group, and integrate live sidewalk conditions and hazards.</p></div>
+  </div>
+</section>
+
+<p class="refs">[1] Yu, J. E., &amp; Chattopadhyay, D. (2020). “Maps are hard for me”: Identifying How Older Adults Struggle with Mobile Maps. ASSETS ’20. https://doi.org/10.1145/3373625.3416997<br>[2] Pew Research Center. (2019). Mobile Fact Sheet. https://www.pewinternet.org/fact-sheet/mobile/</p>
+
+<div class="next"><a class="ul" href="../index.html#p-route-app">← All projects</a><a class="more" href="../artisk/index.html">Next project: Artisk <b>→</b></a></div>
+</main>
+
+<footer id="footer"></footer>
+<script src="../home.js?v=2" data-root="../"></script>
+<script src="../hero.js"></script>
+<script src="../project.js?v=10"></script>
 </body>
-
 </html>

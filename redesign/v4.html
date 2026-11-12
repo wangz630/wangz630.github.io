@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zi Wang — Portfolio (v4 · Depth)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<style>
+body{font-family:'Bricolage Grotesque',sans-serif}
+
+/* ---------- hero: a depth carousel — covers glide through 3D space, the front one in focus ---------- */
+.hero{position:relative;height:100svh;min-height:680px;overflow:hidden;display:flex;flex-direction:column;align-items:center;text-align:center;padding:clamp(96px,12.5vh,130px) var(--pad) 0}
+.hero .badge{opacity:0;animation:fadeIn .9s ease .15s forwards}
+.hero h1{font-weight:500;font-size:clamp(34px,min(5.4vw,8.4vh),84px);line-height:1.02;letter-spacing:-.05em;margin-top:clamp(14px,2.2vh,22px)}
+.hero h1 em{font-style:normal;color:var(--faint)}
+.stage{position:relative;flex:1;width:100%;min-height:0;margin-top:clamp(18px,3.4vh,40px);perspective:1500px;perspective-origin:50% 40%}
+.rig{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(var(--ry,0deg)) rotateX(var(--rx,0deg));transition:transform .5s var(--ease)}
+.dc{position:absolute;left:50%;top:4%;width:var(--cw);aspect-ratio:16/10.4;margin-left:calc(var(--cw)/-2);border-radius:22px;overflow:hidden;background:var(--soft);cursor:pointer;
+  box-shadow:0 2px 6px rgba(20,20,40,.06),0 44px 80px -28px rgba(20,20,40,.45);
+  transform:translate3d(calc(var(--d)*var(--cw)*.30),calc(var(--abs)*-1.5%),calc(var(--abs)*-190px)) rotateY(calc(var(--d)*-11deg));
+  opacity:var(--o,0);transition:transform 1.15s var(--ease),opacity .9s ease,filter .9s ease;filter:brightness(calc(1 - var(--abs)*.05)) saturate(calc(1 - var(--abs)*.16));will-change:transform}
+.dc img{width:100%;height:100%;object-fit:cover}
+.dc::after{content:'';position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(255,255,255,.5);
+  background:linear-gradient(150deg,rgba(255,255,255,.34),rgba(255,255,255,0) 34%)}
+.dots{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);z-index:5;display:flex;gap:6px;padding:8px 10px;border-radius:999px;
+  background:rgba(255,255,255,.72);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 8px 26px -10px rgba(20,20,40,.3);opacity:0;animation:fadeIn 1s ease 1.6s forwards}
+.dots i{width:6px;height:6px;border-radius:999px;background:#c9c9d0;transition:width .5s var(--ease),background .4s}
+.dots i.on{width:22px;background:var(--ink)}
+
+/* ---------- recent project: a soft stage that settles into place as it scrolls in ---------- */
+.recent{padding-top:clamp(80px,10vw,150px)}
+.recent .head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:26px}
+.recent h2{font-weight:500;font-size:clamp(54px,8.6vw,150px);letter-spacing:-.06em;line-height:.9;margin-top:16px}
+.recent .head p{max-width:46ch;color:#3d3d44;line-height:1.65;padding-bottom:10px}
+.shot{display:block;background:var(--soft);border-radius:24px;padding:clamp(18px,4.2vw,70px);transform:scale(calc(.9 + .1*var(--p,0)));transform-origin:50% 0;will-change:transform}
+.shot .ph,.shot:hover > .ph{aspect-ratio:16/8.6;box-shadow:0 30px 70px -20px rgba(20,20,40,.4);transform:translateY(calc((1 - var(--p,0))*60px))}
+.recent .foot{display:flex;justify-content:space-between;align-items:center;padding-top:20px}
+
+/* ---------- projects: two per row, unequal widths, equal heights ---------- */
+.cat{padding-top:clamp(80px,10vw,150px)}
+.sec-h h3{letter-spacing:-.045em}
+.pairs{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(40px,4.6vw,72px) clamp(18px,2.2vw,34px)}
+.pairs .item{grid-column:span 7}
+.pairs .item:nth-child(4n+2),.pairs .item:nth-child(4n+3){grid-column:span 5}
+.pairs .item .ph{aspect-ratio:auto;height:clamp(230px,29vw,450px)}
+.pairs .item h4{font-size:clamp(19px,1.6vw,25px);letter-spacing:-.03em}
+@media (max-width:760px){.pairs .item{grid-column:1/-1!important}.recent .head{flex-direction:column;align-items:flex-start}}
+</style>
+</head>
+<body>
+<header id="nav"></header>
+
+<section class="hero" id="hero">
+  <span class="badge">Portfolio</span>
+  <h1 aria-label="I'm Zi Wang, a visual designer and UI & UX designer.">
+    <span class="ln" style="--n:0"><span><em>I'm</em> Zi Wang,</span></span>
+    <span class="ln" style="--n:1"><span><em>a</em> visual designer <em>and</em> UI &amp; UX designer.</span></span>
+  </h1>
+  <div class="stage" id="stage"><div class="rig" id="rig"></div><div class="dots" id="dots"></div></div>
+</section>
+
+<section class="recent wrap" id="featured">
+  <div class="head rv"><div><span class="badge" id="f-badge"></span><h2 id="f-title"></h2></div><p id="f-desc"></p></div>
+  <a class="shot" id="f-a"><div class="ph"><img id="f-img" alt=""></div></a>
+  <div class="foot rv"><span class="lbl" id="f-sub"></span><a class="more" id="f-b">View project <b>→</b></a></div>
+</section>
+
+<main id="work" class="wrap"></main>
+<div id="exp" class="wrap"></div>
+<footer id="footer"></footer>
+
+<script src="shared.js"></script>
+<script>
+(function(){
+  var $=function(s){return document.querySelector(s)}, F=PF.featured;
+  PF.chrome();
+  $('#f-badge').textContent=F.badge; $('#f-img').src=F.img; $('#f-title').textContent=F.title; $('#f-sub').textContent=F.sub; $('#f-desc').textContent=F.desc; $('#f-a').href=$('#f-b').href=F.href;
+
+  $('#work').innerHTML=PF.cats.map(function(c){
+    var list=PF.byCat(c.id);
+    return '<section class="cat" id="c-'+c.id+'"><div class="sec-h rv"><h3>'+PF.esc(c.name)+'</h3><span class="lbl">'+String(list.length).padStart(2,'0')+' projects</span></div><div class="pairs">'+
+      list.map(function(p,i){return PF.item(p,i%2)}).join('')+'</div></section>';
+  }).join('');
+  PF.reveal('.rv');
+
+  /* ---- depth carousel (images are display-only: clicking a card just brings it forward) ---- */
+  var hero=$('#hero'), stage=$('#stage'), rig=$('#rig'), covers=PF.covers(9), n=covers.length, cur=0, paused=false, timer;
+  rig.innerHTML=covers.map(function(p){return '<div class="dc" style="--d:0;--abs:0"><img src="'+p.img+'" alt=""></div>'}).join('');
+  $('#dots').innerHTML=covers.map(function(){return '<i></i>'}).join('');
+  var cards=[].slice.call(rig.children), dots=[].slice.call($('#dots').children);
+  function size(){var h=stage.clientHeight, cw=Math.min(innerWidth*.46, (h*.84)*16/10.4, 760); stage.style.setProperty('--cw',Math.max(260,cw)+'px')}
+  size(); addEventListener('resize',size);
+  function lay(){
+    cards.forEach(function(c,i){var d=i-cur; if(d>n/2)d-=n; if(d<-n/2)d+=n; var ab=Math.abs(d);
+      c.style.setProperty('--d',d); c.style.setProperty('--abs',ab); c.style.setProperty('--o',ab>3?0:1); c.style.zIndex=20-ab});
+    dots.forEach(function(x,i){x.classList.toggle('on',i===cur)});
+  }
+  function go(i){cur=(i+n)%n;lay()}
+  function play(){clearInterval(timer);timer=setInterval(function(){if(!paused)go(cur+1)},2600)}
+  setTimeout(function(){lay();play()},500);                               /* cards start stacked, then fan out into depth */
+  cards.forEach(function(c,i){c.addEventListener('click',function(){go(i);play()})});
+  stage.addEventListener('mouseenter',function(){paused=true}); stage.addEventListener('mouseleave',function(){paused=false;rig.style.setProperty('--ry','0deg');rig.style.setProperty('--rx','0deg')});
+  if(!PF.reduced) stage.addEventListener('mousemove',function(e){var r=stage.getBoundingClientRect();
+    rig.style.setProperty('--ry',(((e.clientX-r.left)/r.width-.5)*10)+'deg'); rig.style.setProperty('--rx',((.5-(e.clientY-r.top)/r.height)*6)+'deg')});
+
+  var shot=$('#f-a');
+  (function tick(){
+    var r=shot.getBoundingClientRect(), p=Math.max(0,Math.min(1,(innerHeight-r.top)/(innerHeight*.75)));
+    shot.style.setProperty('--p',(1-Math.pow(1-p,3)).toFixed(4));
+    requestAnimationFrame(tick);
+  })();
+})();
+</script>
+</body>
+</html>

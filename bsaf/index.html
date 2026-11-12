@@ -1,64 +1,46 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>Black Space Art Fashion</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
-  <link href="../case-study.css" rel="stylesheet" type="text/css" />
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Black Space Art Fashion — Zi Wang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../home.css?v=13">
+<link rel="stylesheet" href="../project.css?v=13">
 </head>
+<body data-back="#p-bsaf" data-hero="b">
+<div class="progress"></div>
+<header id="nav"></header>
 
-<body class="cs-dark">
-  <a class="cs-back" href="../index.html#p-bsaf" aria-label="Back to home">
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 5l-7 7 7 7" stroke="#181818" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  </a>
- <h1 id="title">Black Space Art Fashion</h1>
-  <div class="cs-hero-tags"><span>App</span><span>Graphics</span></div>
-
-  <img id="arrow" src = "images/arrow.png">
-  <p id="scroll">scroll</p>
-
-  <!-- The video -->
-<img id = "cover" src = "images/cover.png">
-
-
-<!-- Optional: some overlay text to describe the video -->
-<div class="content">
-  <h1>BLACK SPACE ART FASHION</h1>
-  <!-- <form action="https://hubs.mozilla.com/r4sg26c/friendly-powerful-barbecue" method="get" target="_blank">
-    <button id="myBtn" type="submit">Go view the space</button>
- </form> -->
-</div>
-
-
-<!-- thesis proposal -->
-<div id="text">
-<h1 class="caption1">Music and Art community & online Concert</h1>
-<p class="proposal">I collaborated with a real-world client, Black Space Art Fashion, a small startup based in New York that focuses on art, classical music, and education. My work included redesigning their webpage and participating in the initial stages of creating a new app, where I helped determine its target audience, basic functions, and interface. Additionally, I created promotional flyers.</p>
-
-<p class="proposal"> The app's primary purpose is to establish a platform and community exclusively for artists to communicate with each other. Whether they are new or experienced artists, they can upload their work here and access various opportunities. The app can also be used to host online concerts, liberating classical performances from the constraints of physical venues.</p>
-</div>
-
-<img class = "background-image" src = "images/work4.jpg">
-
-  <div id="container">
-        <ul id="slides">
-          <a class="prev">&#10094;</a>
-          <a class="next">&#10095;</a>
-        </ul>
+<section class="p-hero-b" data-title="Black Space Art Fashion" data-badge="App · Web · Graphics">
+  <img class="bg" src="images/cover.png" alt="">
+  <h1 id="title">BLACK SPACE ART FASHION</h1>
+  <div class="tags"><span>App</span><span>Web</span><span>Graphics</span></div>
+  <a class="down" href="#after-hero" aria-label="Scroll"><svg viewBox="0 0 34 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 2l15 11L32 2"/></svg><span>scroll</span></a>
+</section>
+<div id="after-hero"></div>
+<section class="p-hero-b-info">
+  <div class="phb-band">
+  <p>Web redesign and a community app for artists, <em>for a New York startup in art, classical music and education.</em></p>
+  <dl class="facts"><div><dt>Client</dt><dd>Black Space Art Fashion</dd></div><div><dt>Scope</dt><dd>Website redesign · app concept · flyers</dd></div></dl>
   </div>
+</section>
 
+<main>
+<section class="sec two wrap rv"><h2>Music &amp; art community, online concerts</h2><div>
+  <p class="body">I collaborated with a real-world client, Black Space Art Fashion, a small startup based in New York that focuses on art, classical music, and education. My work included redesigning their webpage and participating in the initial stages of creating a new app, where I helped determine its target audience, basic functions, and interface. Additionally, I created promotional flyers.</p>
+  <p class="body">The app's primary purpose is to establish a platform and community exclusively for artists to communicate with each other. Whether they are new or experienced artists, they can upload their work here and access various opportunities. The app can also be used to host online concerts, liberating classical performances from the constraints of physical venues.</p>
+</div></section>
+<section class="sec cf-sec"><div id="container"></div></section>
+<div class="next wrap"><a class="ul" href="../index.html#p-bsaf">← All projects</a><a class="more" href="../another-side-of-me/index.html">Next project: Another Side of Me <b>→</b></a></div>
+</main>
 
-
-
-<div class="home">
-  <a href="../index.html#p-bsaf">Home</a>
-</div>
-<footer>wangz630@newschool.edu</footer>
-  <script src="script.js"></script>
-  <script src="../case-study.js"></script>
+<footer id="footer"></footer>
+<script src="../home.js?v=2" data-root="../"></script>
+<script src="../carousel.js?v=3"></script>
+<script src="../hero.js"></script>
+<script src="../project.js?v=13"></script>
 </body>
-
 </html>

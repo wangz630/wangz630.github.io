@@ -1,63 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Zi Wang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../home.css">
+<style>
+body{font-family:'Manrope',sans-serif}
+
+/* ---------- intro ---------- */
+.hero{padding:clamp(140px,22vh,220px) 0 clamp(60px,9vh,110px)}
+.hero .badge{opacity:0;animation:fadeIn .9s ease .1s forwards}
+.hero h1{font-weight:600;font-size:clamp(38px,6vw,96px);letter-spacing:-.05em;line-height:1.04;margin-top:22px;max-width:17ch}
+.hero h1 em{font-style:normal;color:var(--faint)}
+.lead{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,90px);margin-top:clamp(34px,5vh,60px);opacity:0;animation:fadeIn 1s ease 1s forwards}
+.lead p{font-size:clamp(17px,1.45vw,21px);line-height:1.6;color:#33333a;max-width:46ch}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:22px 30px;align-content:start}
+.facts dt{font-size:13px;color:var(--mute);font-weight:500}
+.facts dd{font-size:16px;font-weight:500;margin-top:4px;letter-spacing:-.01em}
+
+/* ---------- sections: label on the left (sticky), content on the right, one rule between sections ---------- */
+.sec{display:grid;grid-template-columns:minmax(160px,300px) 1fr;gap:clamp(24px,5vw,90px);padding:clamp(44px,6vw,84px) 0;border-top:1px solid var(--line)}
+.sec > h2{position:sticky;top:96px;align-self:start;font-weight:500;font-size:clamp(22px,2.2vw,32px);letter-spacing:-.03em;line-height:1.1}
+.sec > h2 span{display:block;font-size:13px;color:var(--mute);font-weight:500;letter-spacing:0;margin-top:8px}
+
+.job{display:grid;grid-template-columns:1fr auto;gap:6px 24px;padding:0 0 clamp(28px,3.4vw,44px)}
+.job + .job{padding-top:clamp(28px,3.4vw,44px);border-top:1px solid var(--line)}
+.job:last-child{padding-bottom:0}
+.job h3{font-weight:600;font-size:clamp(19px,1.7vw,25px);letter-spacing:-.025em;line-height:1.25}
+.job .role{font-size:15px;color:#33333a;margin-top:4px;font-weight:500}
+.job .when{text-align:right;font-size:14px;color:var(--mute);white-space:nowrap;line-height:1.5}
+.job ul{grid-column:1/-1;list-style:none;margin-top:14px;display:grid;gap:10px;max-width:74ch}
+.job li{position:relative;padding-left:20px;font-size:15.5px;line-height:1.62;color:#3d3d44}
+.job li::before{content:'';position:absolute;left:2px;top:.72em;width:5px;height:5px;border-radius:50%;background:var(--faint)}
+
+.edu{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,44px)}
+.edu div h3{font-weight:600;font-size:clamp(18px,1.6vw,23px);letter-spacing:-.025em}
+.edu div p{font-size:15px;color:#3d3d44;margin-top:6px;line-height:1.55}
+.edu div small{display:block;font-size:14px;color:var(--mute);margin-top:8px}
+
+.skills{display:grid;gap:clamp(22px,2.6vw,34px)}
+.skills h3{font-weight:500;font-size:14px;color:var(--mute);margin-bottom:12px}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chips span{padding:8px 13px;border-radius:999px;background:var(--chip);font-size:13.5px;font-weight:500;color:#3a3a42;line-height:1.2}
+
+.awards{list-style:none;display:grid}
+.awards li{display:grid;grid-template-columns:70px 1fr auto;gap:18px;align-items:baseline;padding:18px 0;font-size:16px}
+.awards li + li{border-top:1px solid var(--line)}
+.awards li:first-child{padding-top:0}
+.awards b{font-weight:500;color:var(--mute);font-size:14px;font-variant-numeric:tabular-nums}
+.awards i{font-style:normal;font-weight:500;color:#3a3a42;font-size:14px}
+
+@media (max-width:820px){.sec{grid-template-columns:1fr}.sec > h2{position:static}.lead,.edu{grid-template-columns:1fr}.job{grid-template-columns:1fr}.job .when{text-align:left}.awards li{grid-template-columns:54px 1fr}.awards i{grid-column:2}}
+</style>
 </head>
 <body>
-    <!-- basic setting -->
-    <a class="cs-back" href="../index.html" aria-label="Back to home">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 5l-7 7 7 7" stroke="#181818" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </a>
-    <img src="../project-image/logozi.png" alt="img" class="logo" aria-label="Scroll to Top">
-    <!--main-->
-    <pre>
-    <span style="font-size: 30px;">Hi</span>
-    <span style="font-size: 25px; font-weight: 400; font-style: normal;">I'm Zi Wang, a visual designer and a UIUX designer, with special interest in web coding:)</span>
+<header id="nav"></header>
 
+<section class="hero wrap">
+  <span class="badge">About</span>
+  <h1><span class="ln" style="--n:0"><span><em>Hi, I'm</em> Zi Wang —</span></span><span class="ln" style="--n:1"><span><em>a</em> product designer</span></span><span class="ln" style="--n:2"><span><em>working across</em> UX,</span></span><span class="ln" style="--n:3"><span>interaction <em>and</em> visual design.</span></span></h1>
+  <div class="lead">
+    <p>I'm currently a Product Designer at Vicino, where I design and prototype end-to-end experiences for an AI-powered content platform — from AI creative workflows and chatbot interactions to the design system behind them.</p>
+    <dl class="facts">
+      <div><dt>Now</dt><dd>Product Designer, Vicino</dd></div>
+      <div><dt>Previously</dt><dd>Artisk · University of Michigan</dd></div>
+      <div><dt>Education</dt><dd>MSI, University of Michigan</dd></div>
+      <div><dt>Focus</dt><dd>UX · Interaction · Visual</dd></div>
+    </dl>
+  </div>
+</section>
 
-    <span>EDUCATION</span>                                                            
+<main class="wrap">
+  <section class="sec rv">
+    <h2>Work experience<span>2021 — Present</span></h2>
+    <div>
+      <article class="job">
+        <div><h3>Vicino, Inc.</h3><p class="role">Product Designer</p></div>
+        <p class="when">Jan 2026 – Present<br>Remote</p>
+        <ul>
+          <li>Designed and prototyped end-to-end experiences for an AI-powered content platform, transforming Figma concepts into interactive HTML prototypes using Claude Code to rapidly validate interactions, animations, and user flows before development.</li>
+          <li>Designed AI-powered creative workflows (audio, image, storyboarding workflows) and chatbot interactions, improving task clarity across multi-step generation pipelines.</li>
+          <li>Standardizing design system and interaction patterns to ensure consistency across B2B and B2C product surfaces.</li>
+        </ul>
+      </article>
+      <article class="job">
+        <div><h3>Artisk</h3><p class="role">UX Designer</p></div>
+        <p class="when">Oct 2025 – Jan 2026<br>Internship · Remote</p>
+        <ul><li>Designed web interfaces while creating AI-generated visual assets to support product launches and marketing initiatives.</li></ul>
+      </article>
+      <article class="job">
+        <div><h3>UM Department of Civil and Environmental Engineering</h3><p class="role">UI/UX Designer</p></div>
+        <p class="when">May 2024 – May 2025<br>Part time · Remote</p>
+        <ul>
+          <li>Sole UX designer for a navigation app that visualizes sidewalk routes for elders, delivering end-to-end experience along with user flows, wireframes, prototypes, and interactive designs.</li>
+          <li>Conducted user research and usability testing with 10 older adults, achieving an 85% task success rate and SUS score of 85.6/100 after iterative improvements.</li>
+        </ul>
+      </article>
+      <article class="job">
+        <div><h3>Empower@Home Program, UM School of Social Work</h3><p class="role">UI/UX Designer</p></div>
+        <p class="when">Dec 2023 – Jan 2025<br>Part time · Remote</p>
+        <ul>
+          <li>Led the UX redesign of Empower@Home, a digital platform supporting mental health and learning for older adults, resulting in 90% session completion rate in testings.</li>
+          <li>Delivered a responsive website redesign following a full accessibility audit, improving color contrast, heading hierarchy, and alt text coverage.</li>
+          <li>Created high-fidelity Figma prototypes and rebuilt the site in WordPress with custom CSS for mobile and tablet, achieving 91% user satisfaction across 255 participants.</li>
+        </ul>
+      </article>
+      <article class="job">
+        <div><h3>Sun-a-wear (Swiss Startup)</h3><p class="role">Visual Designer</p></div>
+        <p class="when">Jun 2023 – Aug 2023<br>Remote</p>
+        <ul><li>Designed a suite of digital and print assets, including 10+ social-post templates (Canva), gift-cards, company-wide videos, and banners to supporting marketing for a solar-powered wearable UV tracker.</li></ul>
+      </article>
+      <article class="job">
+        <div><h3>Parsons School of Design – The New School</h3><p class="role">Coding Tutor Specialist</p></div>
+        <p class="when">May 2023<br>Part time · On-site</p>
+        <ul>
+          <li>Tutored undergraduate students in HTML, CSS, and JavaScript while helping them strengthen front-end development fundamentals and solve coding challenges.</li>
+          <li>Supported students through one-on-one guidance and debugging across web development assignments.</li>
+        </ul>
+      </article>
+      <article class="job">
+        <div><h3>Zhejiang Broad International Convention &amp; Exhibition Co., Ltd</h3><p class="role">Graphic Designer</p></div>
+        <p class="when">Jul 2021 – Aug 2021<br>Internship · Zhejiang, China</p>
+        <ul>
+          <li>Designed promotional materials for international exhibitions, including posters, brochures, presentation boards, and event collateral.</li>
+          <li>Assisted with cross-border business communication and supported exhibition preparation through visual design and marketing materials.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
 
-    Sep. 2023 – Now                                                                                                        
-    University of Michigan, Ann Arbor, U.S.                                                                      
-    MSI Master of Science in Information                                                                                    
+  <section class="sec rv">
+    <h2>Project experience</h2>
+    <div>
+      <article class="job">
+        <div><h3>NOAA Great Lakes Water Life</h3><p class="role">Designer &amp; Developer · UMSI Capstone Project</p></div>
+        <p class="when">Feb 2025 – Apr 2025<br>Ann Arbor, United States</p>
+        <ul>
+          <li>Redesigned Explore page front-end development for NOAA’s Great Lakes Water Life, improving data accessibility for researchers and the public.</li>
+          <li>Partnered with other developers to build a Next.js web app with a MongoDB database, enabling efficient species search, filtering, and data retrieval.</li>
+          <li>Deployed the final product and delivered full documentation and assets, achieving high client satisfaction and establishing the foundation for future CMS integration.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
 
-    Sep. 2019 – May 2023                                                                                                    
-    Parsons School of Design, New York, U.S.
-    BFA in communication design | Minor in Japanese Studies
+  <section class="sec rv">
+    <h2>Education</h2>
+    <div class="edu">
+      <div><h3>University of Michigan, Ann Arbor</h3><p>MSI — Master of Science in Information</p><small>Sep 2023 – May 2025</small></div>
+      <div><h3>Parsons School of Design</h3><p>BFA in Communication Design<br>Minor in Japanese Studies</p><small>Sep 2019 – May 2023</small></div>
+    </div>
+  </section>
 
-    Aug. 2022 – May 2023
-    Cornell Tech, New York, U.S.
-    Product Studio | Startup Studio
+  <section class="sec rv">
+    <h2>Skills</h2>
+    <div class="skills" id="skills"></div>
+  </section>
 
-    </pre>
-    <span id="experience">
-        <span>EXPERIENCE</span><br><br>
-        July - Aug. 2023<br>
-        Graphic Designer | sun-a-wear Swiss Startup<br>
-        Part-time · Remote<br>
-        <span style="font-size: 15px; font-weight: 400;">Designed digital and printed advertisements across multiple platforms to drive product sales and assisted in the development of the company's social media design strategy.</span><br><br>
+  <section class="sec rv">
+    <h2>Recognition</h2>
+    <ul class="awards">
+      <li><b>2022</b><span>Hong Kong Digital Art Design Competition</span><i>Second Place</i></li>
+      <li><b>2022</b><span>International Trend Culture Design Competition</span><i>Bronze Award</i></li>
+    </ul>
+  </section>
+</main>
 
-        <br>
-        April – May 2023<br>
-        Coding Tutor Specialist | Parsons School of Design<br>
-        Part-time · Onsite, New York<br>
-        <span style="font-size: 15px; font-weight: 400;">Tutored undergraduate students in problem-solving related to HTML, CSS, and JavaScript.</span><br><br>
+<footer id="footer"></footer>
 
-        <br>
-        July- Aug. 2021<br>
-        Graphic Designer | Zhejiang Broad International Convention & Exhibition Co., Ltd.      <br>
-        Internship · Onsite, Hangzhou<br>
-        <span style="font-size: 15px; font-weight: 400;">Designed promotional materials, including posters, boards, brochures, and folders, for international exhibitions and events. Also, assisted in coordinating online meetings to facilitate business connections between Chinese and foreign enterprises.</span><br>
-    </span>
-    
-
-    <div class="home">
-        <a href="../index.html">Home</a>
-      </div>
-    <footer>ziwang1247@gmail.com</footer>
+<script src="../home.js?v=2" data-root="../"></script>
+<script>
+(function(){
+  PF.chrome({home:PF.me.home, active:'about'});
+  var skills={
+    'Design':['UX design','Interaction design','Prototyping','Wireframing','User flow','Visual design','Branding','Illustration','Storyboarding','Mobile & Web design','Data & information visualization'],
+    'Technical':['Figma','HTML','CSS','JavaScript','Photoshop','Illustrator','InDesign','After Effects','Premiere','Microsoft Office'],
+    'Research':['A/B testing','Survey','User interview','Journey mapping','Persona','Competitive analysis','Card sorting','Information Architecture','Usability testing','Contextual inquiry','Heuristic evaluation','Field study']
+  };
+  document.getElementById('skills').innerHTML=Object.keys(skills).map(function(k){
+    return '<div><h3>'+k+'</h3><div class="chips">'+skills[k].map(function(s){return '<span>'+PF.esc(s)+'</span>'}).join('')+'</div></div>'}).join('');
+  PF.reveal('.rv',{threshold:.05});
+})();
+</script>
 </body>
 </html>

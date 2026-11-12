@@ -1,388 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <script src="global.js" defer></script>
-    <title>Zi Wang</title>
-    <h1 style="font-style: regular;">I'm <span class="zi" style="font-style: bold;">Zi Wang</span>.</h1>
-    <h2>A visual designer and UI&UX designer!</h2>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zi Wang — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="home.css">
+<style>
+body{font-family:'Red Hat Display',sans-serif}
+
+/* ---------- hero: covers are dealt onto a huge wheel that keeps turning ---------- */
+.hero{position:relative;height:100svh;min-height:660px;overflow:hidden;text-align:center;padding:clamp(104px,14vh,150px) var(--pad) 0}
+.hero .badge{opacity:0;transform:translateY(10px);animation:pop .9s var(--ease) .1s forwards}
+@keyframes pop{to{opacity:1;transform:none}}
+.hero h1{font-weight:600;font-size:clamp(38px,min(6.2vw,9.6vh),100px);letter-spacing:-.05em;line-height:1.04;margin-top:clamp(16px,2.6vh,28px)}
+.hero h1 em{font-style:normal;color:var(--faint)}
+.lc{display:block;overflow:hidden;padding-bottom:.16em;margin-bottom:-.16em}
+.ch{display:inline-block;white-space:pre;transform:translateY(118%) rotate(10deg);transform-origin:0 100%;opacity:0;
+  animation:chUp .95s var(--ease) forwards;animation-delay:calc(var(--c)*22ms + 280ms)}
+@keyframes chUp{to{transform:none;opacity:1}}
+.hero .go{display:inline-block;margin-top:clamp(14px,2.4vh,26px);font-size:14px;color:var(--mute);opacity:0;animation:fadeIn 1s ease 1.6s forwards}
+
+/* edges dissolve into the page so cards glide in and out instead of popping at the screen edge */
+.hero::before,.hero::after{content:'';position:absolute;top:38%;bottom:0;width:14vw;z-index:3;pointer-events:none}
+.hero::before{left:0;background:linear-gradient(90deg,#fff 10%,rgba(255,255,255,0))}
+.hero::after{right:0;background:linear-gradient(270deg,#fff 10%,rgba(255,255,255,0))}
+.wheel{position:absolute;left:50%;top:calc(100% - var(--peek) + var(--ch)/2 + var(--R));width:0;height:0;will-change:transform}
+.card{position:absolute;left:calc(var(--cw)/-2);top:calc(var(--ch)/-2);width:var(--cw);height:var(--ch);opacity:0;will-change:transform,opacity}
+.card i{position:relative;display:block;width:100%;height:100%;border-radius:18px;overflow:hidden;background:var(--soft);
+  box-shadow:0 2px 4px rgba(20,20,40,.05),0 22px 44px -16px rgba(20,20,40,.3);transition:transform .6s var(--ease),box-shadow .5s}
+.card i::after{content:'';position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(255,255,255,.45);
+  background:linear-gradient(160deg,rgba(255,255,255,.28),rgba(255,255,255,0) 38%)}
+.card img{width:100%;height:100%;object-fit:cover}
+.card:hover i{transform:translateY(-22px) scale(1.05);box-shadow:0 4px 8px rgba(20,20,40,.06),0 40px 70px -20px rgba(20,20,40,.4)}
+
+/* ---------- recent project: text left, image right ---------- */
+.recent{padding-top:clamp(80px,10vw,150px)}
+.r-split .grid{display:grid;grid-template-columns:1fr 1.5fr;gap:clamp(24px,5vw,90px);align-items:center}
+.r-split h2{font-weight:600;font-size:clamp(44px,6vw,96px);letter-spacing:-.05em;line-height:1;margin:18px 0 8px}
+.r-split p{color:#3d3d44;line-height:1.7;margin:20px 0 26px;max-width:44ch}
+.r-split .ph{aspect-ratio:16/10.5}
+
+/* ---------- projects: two per row ---------- */
+.cat{padding-top:clamp(80px,10vw,150px)}
+.g3{display:grid;grid-template-columns:1fr 1fr;gap:clamp(44px,5vw,80px) clamp(20px,2.6vw,44px)}
+@media (max-width:900px){.r-split .grid{grid-template-columns:1fr}}
+@media (max-width:640px){.g3{grid-template-columns:1fr}}
+</style>
 </head>
-
 <body>
-    <!-- basic setting -->
-    <a href="about/about.html" class="about nav-link">About</a>
-    <a href="#wa-name" class="nav-projects nav-link" id="projectsNav">Projects</a>
-    <img src="project-image/logozi.png" alt="img" class="logo" aria-label="Scroll to Top">
-    <!--heading-->
-    <img src="project-image/arrow.png" alt="img" class="arrow">
-    <h3 class="project">Project</h3>
-    <!-- scroll-down hint (black, for the light home screen) -->
-    <div class="scroll-hint" id="scrollHint">
-        <span class="scroll-text">scroll</span>
-        <svg width="26" height="15" viewBox="0 0 26 15" fill="none" xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true">
-            <path d="M2 2 L13 12 L24 2" stroke="#181818" stroke-width="2.4" stroke-linecap="round"
-                stroke-linejoin="round" />
-        </svg>
-    </div>
-    <!-- <span class="thesis2023">THESIS 2023</span> -->
-    <!--main-->
-    <div id="main-container">
-        <!-- ===================== FEATURED: currently working on ===================== -->
-        <a href="vicino/index.html" id="featured-vicino" class="featured-project">
-            <div class="featured-media">
-                <img src="project-image/Vicino Cover Image.png" alt="Vicino — AI Creative Workflow">
-            </div>
-            <div class="featured-text">
-                <div class="featured-badge">Currently Working On</div>
-                <div class="featured-title">Vicino</div>
-                <div class="featured-sub">AI Product · AI Creative Workflow</div>
-                <div class="featured-desc">As a Product Designer at an AI startup, I design node-based creative-workflow
-                    features and the Pulse content-lifecycle platform — from chatbot and image-editor nodes to
-                    onboarding, Brain, side-chats, and campaign tools.</div>
-                <div class="featured-cta">View project →</div>
-            </div>
-        </a>
+<header id="nav"></header>
 
-        <!--website & application-->
-        <h4 id="wa-name">Website & Application</h4>
-        <div id="wa-container" class="open">
-            <div class="homepage-app" id="p-vicino">
-                <a href="vicino/index.html"><img src="project-image/Vicino Cover Image.png" alt="img" class="app-image"
-                        class="home-image"></a>
-                <br><span>AI PRODUCT - Vicino (AI Creative Workflow)</span>
-            </div>
-            <div class="homepage-app" id="p-route-app">
-                <a href="route-app/index.html"><img src="project-image/route-app.png" alt="img" class="app-image"
-                        class="home-image"></a>
-                <br><span>APP - RouteApp</span>
-            </div>
-            <div class="homepage-app" id="p-artisk">
-                <a href="artisk/index.html"><img src="project-image/artisk-cover.jpg" alt="img" class="app-image"
-                        class="home-image"></a>
-                <br><span>WEB - Artisk (AI Brand Kit — Landing Page Redesign)</span>
-            </div>
-            <div class="homepage-app" id="p-empwer">
-                <a href="empwer/index.html"><img src="project-image/empower.png" alt="img" class="app-image"
-                        class="home-image"></a>
-                <br><span>Website&APP&Book Design - Empower@Home</span>
-            </div>
-        <div class="homepage-app">
-                <a
-                    href="https://fifth-yacht-d4d.notion.site/NOAA-Great-Lakes-Water-Life-1df26e9cb532800992fcf9f36f4e2e63"><img
-                        src="project-image/greatlake.png" alt="img" class="app-image" class="home-image"></a>
-                <br><span>Website - NOAA: Great Lakes Water Life</span>
-            </div>
-            <div class="homepage-app" id="p-puzzle">
-                <a href="puzzle/index.html"><img src="project-image/puzzle.png" alt="img" class="app-image"
-                        class="home-image"></a>
-                <br><span>APP - Puzzle</span>
-            </div>
-            <div class="homepage-app" id="p-side-by-side">
-                <a href="side-by-side/index.html"><img src="project-image/work21.jpeg" alt="img" class="app-image"
-                        class="home-image"></a>
-                <br><span>APP - SideBySIDE</span>
-            </div>
-            <div class="homepage-book2" id="p-bsaf">
-                <a href="bsaf/index.html"><img src="project-image/scene07.jpg" alt="img" class="book-image"
-                        class="home-image"></a>
-                <br><span>APP&GRAPHICS - Black Space Art Fashion</span>
-            </div>
-            <div class="homepage-vr" id="p-another">
-                <a href="another-side-of-me/index.html"><img src="project-image/work4.jpeg" alt="img" class="vr-image"
-                        class="home-image"></a>
-                <br><span>APP&VR - Another Side of Me</span>
-            </div>
-            <div class="homepage-web" id="p-atomo">
-                <a href="atomo/index.html"><img src="project-image/atomo.gif" alt="img" class="atomo-image"
-                        class="home-image"></a>
-                <br><span>WEB&APP - Atomo Startup Studio</span>
-            </div>
-            <div class="homepage-app" id="p-connected">
-                <a href="connected/index.html"><img src="project-image/work12.jpg" alt="img" class="app-image"
-                        class="home-image"></a>
-                <br><span>APP - Connected</span>
-            </div>
-            <div class="homepage-web" id="p-indoor">
-                <a href="indoor-acitivity/index.html"><img src="project-image/work13.jpg" alt="img" class="web-image"
-                        class="home-image"></a>
-                <br><span>WEB&APP - Indoor Activities</span>
-            </div>
-            <div class="homepage-app">
-                <a href="kindle-app/index.html"><img src="project-image/kindle.png" alt="img" class="app-image"
-                        class="home-image"></a>
-                <br><span>APP - Kindle app for kids</span>
-            </div>
-            <div class="homepage-app">
-                <a href="Dating-app/index.html"><img src="project-image/dating.png" alt="img" class="web-image"
-                        class="home-image"></a>
-                <br><span>APP - Dating app</span>
-            </div>
-        </div>
+<section class="hero" id="hero">
+  <span class="badge">Portfolio</span>
+  <h1 id="h1" aria-label="I'm Zi Wang, a visual designer and UI & UX designer.">
+    <span class="lc"><em>I'm</em> Zi Wang,</span>
+    <span class="lc"><em>a</em> visual designer</span>
+    <span class="lc"><em>and</em> UI &amp; UX designer.</span>
+  </h1>
+  <a class="go ul" href="#featured">Scroll ↓</a>
+  <div class="wheel" id="wheel"></div>
+</section>
 
-        <h4 id="typo-name">Typography & Graphics</h4>
-        <div id="typo-container">
-            <div class="homepage-type" id="p-sunawear">
-                <a href="sun-a-wear/index.html"><img src="project-image/sunawear1.jpg" alt="img" class="type-image"
-                        class="home-image"></a>
-                <br><span>Graphics - sun·a·wear</span>
-            </div>
-            <div class="homepage-book" id="p-fromprint">
-                <a href="from-print-to-digital/index.html"><img src="project-image/work16.jpg" alt="img"
-                        class="book-image" class="home-image"></a>
-                <br><span>BOOK - From Print To Digital</span>
-            </div>
-            <div class="homepage-book1" id="p-marine">
-                <a href="marine-life/index.html"><img src="project-image/work17.jpg" alt="img" class="book-image"
-                        class="home-image"></a>
-                <br><span>BOOK - Marine Life</span>
-            </div>
-            <div class="homepage-type">
-                <img src="project-image/work19.jpg" alt="img" class="type-image" class="home-image">
-                <br><span>Typography - Experimental Typeface</span>
-            </div>
-        </div>
+<div id="featured">
+<section class="recent r-split wrap" data-layout="split">
+  <div class="grid">
+    <div class="rv"><span class="badge f-badge"></span><h2 class="f-title"></h2><span class="lbl f-sub"></span><p class="f-desc"></p><a class="more f-link">View project <b>→</b></a></div>
+    <a class="rv f-link" style="--d:120ms"><div class="ph"><img class="f-img" alt=""></div></a>
+  </div>
+</section>
+</div>
 
-        <h4 id="vga-name">VR & Game & Animation</h4>
-        <div id="vga-container">
-            <div class="homepage-XR" id="p-journalist">
-                <a href="journalist-trainingXR/index.html"><img src="project-image/XRtraining.png" alt="img"
-                        class="training-image" class="home-image"></a>
-                <br><span>XR - Journalist Training</span>
-            </div>
-            <div class="homepage-voice">
-                <a href="https://seasoned-hexagonal-booklet.glitch.me/"><img src="project-image/voice.jpg" alt="img"
-                        class="voice-image" class="home-image"></a>
-                <br><span>VR - Deep Voice From Sea</span>
-            </div>
-            <div class="homepage-game">
-                <a href="https://vimeo.com/770869657"><img src="project-image/work23.jpg" alt="img" class="game-image"
-                        class="home-image"></a>
-                <br><span>GAME - Dream Chaser</span>
-            </div>
-            <div class="homepage-animation">
-                <a href="https://vimeo.com/770867648"><img src="project-image/sloth.gif" alt="img" class="drop-image"
-                        class="home-image"></a>
-                <br><span>Animation - Drop</span>
-            </div>
-            <div class="homepage-game">
-                <a href="https://vimeo.com/770939098"><img src="project-image/heaven.jpg" alt="img" class="drop-image"
-                        class="home-image"></a>
-                <br><span>GAME - Welcome to Heaven</span>
-            </div>
-            <div class="homepage-vr">
-                <a href="https://hubs.mozilla.com/scenes/d9zhHgu"><img src="project-image/world.jpg" alt="img"
-                        class="drop-image" class="home-image"></a>
-                <br><span>VR - My World</span>
-            </div>
-        </div>
+<main id="work" class="wrap"></main>
+<div id="exp" class="wrap"></div>
+<footer id="footer"></footer>
 
-        <h4 id="webex-name">Website Coding</h4>
-        <div id="wc-container">
-            <div class="homepage-256">
-                <a href="256-images/index.html"><img src="project-image/256.jpg" alt="img" class="256-image"
-                        class="home-image"></a>
-                <br><span>EXPERIMENTAL WEB - 256 Images (Brainstorming Process Visualizer)</span>
-            </div>
-            <div class="homepage-map">
-                <a href="website-map/index.html"><img src="project-image/work14.jpg" alt="img" class="map-image"
-                        class="home-image"></a>
-                <br><span>EXPERIMENTAL WEB - World Trip</span>
-            </div>
-            <div class="homepage-web2">
-                <a href="website-music/index.html"><img src="project-image/work15.jpg" alt="img" class="web-image"
-                        class="home-image"></a>
-                <br><span>EXPERIMENTAL WEB - Music Visualizer</span>
-            </div>
-            <!-- <div class="homepage-web">
-                    <a href = "visual-identity/index.html"><img src="project-image/identity.jpg" alt="img" class="web-image" class="home-image"></a>
-                    <br><span>WEB - Visual Identity "World Under Mask"</span>
-                </div> -->
-            <div class="homepage-pet">
-                <a href="Pet Adoption/index.html"><img src="project-image/pet.jpg" alt="img" class="pet-image"
-                        class="home-image"></a>
-                <br><span>EXPERIMETAL WEB - Pet Adoption</span>
-            </div>
-            <div class="homepage-web">
-                <a href="NFT-gallery/index.html"><img src="project-image/nft.jpg" alt="img" class="web-image"
-                        class="home-image"></a>
-                <br><span>WEB - NFT Gallery</span>
-            </div>
-            <div class="homepage-web">
-                <a href="project-2/index.html"><img src="project-image/shadow.jpg" alt="img" class="web-image"
-                        class="home-image"></a>
-                <br><span>WEB - In Praise of Shadow</span>
-            </div>
-        </div>
-        <div id="webex-container">
-            <a href="clock2/index.html">Experiment - clock</a><br>
-            <a href="information-overload/index.html">Experiment - Information Overload</a><br>
-            <a href=core-1-interaction/living-collection>living-collection</a><br>
-            <a href="core-2-studio-project1">studio project 1 - Cross-platform Story</a><br>
-            <a href="assignment-5/">Experiment 3 Recipes</a><br>
-            <a href="assignment-4/">Experiment 2 Airtable Demo</a><br>
-            <a href="digital-zine">Experiment 1 digital zine</a><br>
-            <a href="exercise-4">Exercise 4 Media Queries + CSS Animation</a><br>
-            <a href="exercise-3">Exercise 3 Multimedia Story</a><br>
-            <a href="exercise-2">Exercise 2 Translating Printed Media to Web Format</a><br>
-            <a href="exercise-1-embedded-content">Exercise 1 embedded content</a><br>
-            <a href="core-1-skills-test">core 1 skills test</a><br>
-            <a href=core-1-interaction/toy>toy</a><br>
-            <a href=core-1-interaction/abstracted-text-pt2>abstracted-text-pt2</a><br>
-            <a href=core-1-interaction/abstracted-text-pt1>abstracted-text-pt1</a><br>
-            <a href=core-1-interaction/nametag>nametag</a><br>
-            <a href=core-1-interaction/expressive-text>expressive-text</a><br>
-            <a href=core-1-interaction/all-html>all-html</a><br>
-            <a href=core-1-interaction/interview>interview</a><br><br>
-        </div>
-
-    </div>
+<script src="home.js?v=2"></script>
+<script>
+(function(){
+  var $=function(s){return document.querySelector(s)}, F=PF.featured;
+  PF.chrome();
+  var all$=function(q,f){[].forEach.call(document.querySelectorAll(q),f)};
+  all$('.f-badge',function(e){e.textContent=F.badge}); all$('.f-img',function(e){e.src=F.img}); all$('.f-title',function(e){e.textContent=F.title});
+  all$('.f-sub',function(e){e.textContent=F.sub}); all$('.f-desc',function(e){e.textContent=F.desc}); all$('.f-link',function(e){e.href=F.href});
 
 
-    <!-- random display -->
-    <div class="image-box"></div>
-    <!-- <a href="https://wangz630.github.io/another-side-of-me/index.html"><img src="project-image/work4.jpg" alt="img" class="thesis-cover"></a> -->
+  /* headline: split every line into characters (keeps the dimmed <em> words) */
+  var c=0;
+  function chars(txt){return txt.split('').map(function(ch){return '<span class="ch" aria-hidden="true" style="--c:'+(c++)+'">'+(ch===' '?' ':PF.esc(ch))+'</span>'}).join('')}
+  [].forEach.call(document.querySelectorAll('.lc'),function(line){
+    line.innerHTML=[].map.call(line.childNodes,function(n){return n.nodeType===3?chars(n.textContent.replace(/\s+/g,' ')):'<em>'+chars(n.textContent)+'</em>'}).join('');
+    c+=6;                                             /* small pause between lines */
+  });
 
-    <div id="all-project-container">
-        <div id="THESIS">
-            <p id="thesis-name">Thesis</p>
-            <div id="thesis-project-container">
+  /* the wheel shows only the Website & Application covers, each exactly once.
+     They sit a constant gap apart on a very wide circle but only fill an arc of it; a card that leaves
+     on one side is carried round (off-screen) to re-enter on the other, so nothing is ever repeated. */
+  var all=PF.byCat('wa'), N=all.length, wheel=$('#wheel'), hero=$('#hero'), GAP=18, R=1000, step=12, span=N*step;
+  wheel.innerHTML=all.map(function(p){return '<div class="card"><i><img src="'+p.img+'"'+PF.pos(p)+' alt=""></i></div>'}).join('');
+  var cards=[].slice.call(wheel.children);
+  function size(){
+    var cw=Math.max(180,Math.min(290,innerWidth*.17)), ch=cw*.75;
+    R=30*(cw+GAP)/(2*Math.PI); step=(cw+GAP)/R*180/Math.PI; span=N*step;      /* same curvature as a 30-card wheel */
+    hero.style.setProperty('--cw',cw+'px'); hero.style.setProperty('--ch',ch+'px'); hero.style.setProperty('--R',R+'px'); hero.style.setProperty('--peek',(ch*1.72)+'px');
+  }
+  size(); addEventListener('resize',size);
 
-                <li><a href="another-side-of-me/index.html">Another Side of Me</a>
-                    <div class="image">
-                        <img src="project-image/work4.jpeg" alt="img">
-                    </div>
-                </li>
-            </div>
-        </div>
+  $('#work').innerHTML=PF.cats.map(function(c){
+    var list=PF.byCat(c.id);
+    return '<section class="cat" id="c-'+c.id+'"><div class="sec-h rv"><h3>'+PF.esc(c.name)+'</h3><span class="lbl">'+String(list.length).padStart(2,'0')+' projects</span></div><div class="g3">'+
+      list.map(function(p,i){return PF.item(p,i%2)}).join('')+'</div></section>';
+  }).join('');
+  PF.reveal('.rv');
 
-
-        <div id="website">
-            <p id="website-name">Website & VR</p>
-            <div id="website-project-container">
-                <li><a href="https://seasoned-hexagonal-booklet.glitch.me/">Deep Voice From Sea</a>
-                    <div class="image">
-                        <img src="project-image/voice.jpg" alt="img">
-                    </div>
-                <li><a href="visual-identity/index.html">Visual Identity - World Under Mask</a>
-                    <div class="image">
-                        <img src="project-image/identity.jpg" alt="img">
-                    </div>
-                </li>
-                <li><a href="256-images/index.html">256 IMAGES</a>
-                    <div class="image">
-                        <img src="project-image/256.jpg" alt="img">
-                    </div>
-                </li>
-                <li><a href="https://final-project-ziwang3.advjavascripts1.repl.co/">Pet Adoption</a>
-                    <div class="image">
-                        <img src="project-image/pet.jpg" alt="img">
-                    </div>
-                </li>
-                <li><a href="project-4">studio project 4 - Music Visualizer</a>
-                    <div class="image">
-                        <img src="project-image/music.jpg" alt="img">
-                    </div>
-                </li>
-                <li><a href="project-3">studio project 3 - World Trip</a>
-                    <div class="image">
-                        <img src="project-image/map.jpg" alt="img">
-                    </div>
-                </li>
-                <li><a href="NFT-gallery/index.html">NFT gallery</a>
-                    <div class="image">
-                        <img src="project-image/nft.jpg" alt="img">
-                    </div>
-                </li>
-
-                <li><a href="project-2">studio project 2 - In Praise of Shadow</a>
-                    <div class="image">
-                        <img src="project-image/shadow.jpg" alt="img">
-                    </div>
-                </li>
-                <li><a href="https://jazzy-ajar-charger.glitch.me/">Real World and Fake Me</a></li>
-                <li><a href="https://class-7-hw-simple-game-21-ziwang3.advjavascripts1.repl.co/">Simple Memory Game</a>
-                </li>
-                <li><a href="https://class-10-hw-json-gallery-ziwang3.advjavascripts1.repl.co/">JSON Gallery</a></li>
-                <li><a href="json-gallery/index.html">JSON Gallery</a></li>
-                <li><a href="https://class-4-madlibs-forms-ziwang3.advjavascripts1.repl.co/">Madlibs</a></li>
-            </div>
-        </div>
-
-        <div id="tyrpography">
-            <p id="typography-name">Typography</p>
-            <div id="typography-project-container">
-                <li><a href="sun-a-wear/index.html">sun-a-wear</a></li>
-                <li><a href="from-print-to-digital/index.html">From Printed to Digital</a></li>
-                <li><a href="marine-life/index.html">Marine Life</a></li>
-                <li><a>Experimental Typeface</a></li>
-            </div>
-
-            <div id="core-2-lab">
-                <p id="core-2-lab-name">Animation & Game</p>
-                <ul id="core-2-lab-project-container">
-                    <li><a href="https://vimeo.com/770867648">Drop</a></li>
-                    <li><a href="https://vimeo.com/770869657">Dream Chaser</a></li>
-                    <li><a href="https://vimeo.com/770939098">Welcome to Heaven</a></li>
-                </ul>
-            </div>
-
-            <div id="uiux">
-                <p id="uiux-name">Digital Application</p>
-                <ul id="uiux-project-container">
-                    <li><a href="https://vimeo.com/770871710">Side by Side</a></li>
-                    <li><a
-                            href="https://www.figma.com/proto/cYNSo0YKYhI1FJAYqR3duq/ATOMO---Website-Wireframes-(Copy)?page-id=1%3A1109&type=design&node-id=303-6068&viewport=1596%2C554%2C0.09&t=x7aLVq39bKdYHTau-1&scaling=scale-down&starting-point-node-id=303%3A6068&mode=design">ATOMO</a>
-                    </li>
-                    <li><a href="bsaf/index.html">BAF Music/Art</a></li>
-                    <li><a href="connected/index.html">Connected</a></li>
-                    <li><a
-                            href="https://www.figma.com/proto/zuY3sa9Gt7faW2UPNcDhYI/Project%233-(Copy)?page-id=0%3A1&type=design&node-id=50-3133&viewport=53%2C770%2C0.11&t=1HPrcb1M9Yed3bFY-1&scaling=scale-down&starting-point-node-id=50%3A3133&mode=design">Dating
-                            App</a></li>
-                    <li><a
-                            href="https://www.figma.com/proto/hYxuj7v3quzCCn4g7bZfHG/Project-2%3A-Zi-%2B-Vicky-Presentation?page-id=94%3A106&type=design&node-id=94-112&viewport=173%2C359%2C0.06&t=nBRcMFVpggHF9Fw2-1&scaling=min-zoom&starting-point-node-id=94%3A112&mode=design">Kindle
-                            app for kids</a></li>
-                </ul>
-            </div>
-
-            <div id="core-1-studio">
-                <p id="core-1-studio-project-name">Experiments</p>
-                <ul id="core-1-studio-project-container">
-                    <li><a href="clock2/index.html">Experiment - clock</a></li>
-                    <li><a href="information-overload/index.html">Experiment - Information Overload</a></li>
-                    <li><a href=core-1-interaction/living-collection>living-collection</a></li>
-                    <li><a href="core-2-studio-project1">studio project 1 - Cross-platform Story</a></li>
-                    <li><a href="assignment-5/">Experiment 3 Recipes</a></li>
-                    <li><a href="assignment-4/">Experiment 2 Airtable Demo</a></li>
-                    <li><a href="digital-zine">Experiment 1 digital zine</a></li>
-                    <li><a href="exercise-4">Exercise 4 Media Queries + CSS Animation</a></li>
-                    <li><a href="exercise-3">Exercise 3 Multimedia Story</a></li>
-                    <li><a href="exercise-2">Exercise 2 Translating Printed Media to Web Format</a></li>
-                    <li><a href="exercise-1-embedded-content">Exercise 1 embedded content</a></li>
-                    <li><a href="core-1-skills-test">core 1 skills test</a></li>
-                    <li><a href=core-1-interaction/toy>toy</a></li>
-                    <li><a href=core-1-interaction/abstracted-text-pt2>abstracted-text-pt2</a></li>
-                    <li><a href=core-1-interaction/abstracted-text-pt1>abstracted-text-pt1</a></li>
-                    <li><a href=core-1-interaction/nametag>nametag</a></li>
-                    <li><a href=core-1-interaction/expressive-text>expressive-text</a></li>
-                    <li><a href=core-1-interaction/all-html>all-html</a></li>
-                    <li><a href=core-1-interaction/interview>interview</a></li><br><br>
-                </ul>
-            </div>
-
-            <div id="more">
-                <p id="more-name">...</p>
-            </div>
-
-        </div>
-    </div>
-
-
-    <div id="ball-container"></div>
-    <footer>ziwang1247@gmail.com</footer>
+  /* time-based motion: constant drift, eases down under the cursor, page scroll nudges it; cards are dealt in on load */
+  var rot=0, rate=1, want=1, kick=0, lastY=scrollY, last=performance.now(), t0=last+450, SPEED=PF.reduced?0:1.9;      /* deg / second */
+  var ease=function(v){v=Math.max(0,Math.min(1,v));return 1-Math.pow(1-v,4)};
+  wheel.addEventListener('mouseenter',function(){want=.12}); wheel.addEventListener('mouseleave',function(){want=1});
+  addEventListener('scroll',function(){kick+=(scrollY-lastY)*.02;lastY=scrollY},{passive:true});
+  (function tick(now){
+    var dt=Math.min(.05,(now-last)/1000); last=now;
+    rate+=(want-rate)*.06; if(now>t0+1500) rot-=SPEED*rate*dt; rot-=kick*.1; kick*=.9;
+    var drop=innerHeight*.34;
+    cards.forEach(function(c,i){
+      var a=(((i*step+rot)%span)+span)%span; if(a>span/2)a-=span;                 /* wrap into (-span/2, span/2] */
+      if(Math.abs(a)>62){ if(c.style.opacity!=='0')c.style.opacity=0; return; }    /* far outside the visible arc */
+      var o=PF.reduced?1:ease((now-t0-Math.abs(a)/step*45)/1700);
+      c.style.transform='rotate('+(a*o).toFixed(3)+'deg) translateY('+(-R+(1-o)*drop).toFixed(1)+'px) scale('+(.5+.5*o).toFixed(3)+')';
+      c.style.opacity=o.toFixed(3);
+    });
+    requestAnimationFrame(tick);
+  })(last);
+})();
+</script>
 </body>
-
 </html>

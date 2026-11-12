@@ -1,126 +1,170 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>Puzzle</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
-  <link href="../case-study.css" rel="stylesheet" type="text/css" />
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Puzzle — Zi Wang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../home.css?v=10">
+<link rel="stylesheet" href="../project.css?v=10">
 </head>
+<body data-back="#p-puzzle" data-hero="b">
+<div class="progress"></div>
+<header id="nav"></header>
 
-<body>
-  <a class="cs-back" href="../index.html#p-puzzle" aria-label="Back to home">
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 5l-7 7 7 7" stroke="#181818" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  </a>
-  <h1 id="title">Puzzle</h1>
-  <div class="cs-hero-tags"><span>Mobile App</span><span>UI/UX Design</span><span>Figma</span></div>
+<section class="p-hero-b">
+  <img class="bg" src="images/cover.png" alt="">
+  <h1 id="title">PUZZLE</h1>
+  <div class="tags"><span>Web App</span><span>AI Design Tool</span><span>Team Project</span></div>
+  <a class="down" href="#after-hero" aria-label="Scroll"><svg viewBox="0 0 34 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 2l15 11L32 2"/></svg><span>scroll</span></a>
+</section>
+<div id="after-hero"></div>
+<section class="p-hero-b-info">
+  <div class="phb-band">
+  <p>A generative-AI design tool that lowers the barrier for non-designers <em>— questions instead of prompts, direct edits instead of layers.</em></p>
+  <dl class="facts"><div><dt>Role</dt><dd>Designer</dd></div><div><dt>Year</dt><dd>2023</dd></div><div><dt>Type</dt><dd>Team project</dd></div><div><dt>Tool</dt><dd>Figma</dd></div></dl>
+  </div>
+</section>
 
-  <img id="arrow" src="images/arrow.png">
-  <p id="scroll">scroll</p>
+<main class="wrap">
+<section class="sec two rv"><h2>Problem</h2><div>
+  <p class="big">Traditional design tools and existing AI tools have steep learning curves. <em>How might we create an affordable, user-friendly AI design tool that helps nonprofits and small businesses with limited resources design faster and better?</em></p>
+  <div class="tags" style="margin-top:22px"><span>Non-designers</span><span>Small businesses &amp; startups</span><span>Nonprofits</span><span>Educational institutions</span><span>Less tech-savvy users</span></div>
+</div></section>
 
-<div id="cover-container">
-  <img id="cover" src="images/cover.png">
-</div>
-
-  <!-- thesis proposal -->
-  <div id="text">
-    <div class="year-team-role">
-      <p><strong>Year:</strong> 2023 <span class="divider">|</span> <strong>Type:</strong>Team project <span class="divider">|</span> <strong>Role:</strong> Designer <span class="divider">|</span> <strong>Tool:</strong> Figma</p>
-    </div>
-    <h1 class="caption1">Problem Statement</h1>
-    <p class="proposal">Despite the potential benefits of traditional design tools and existing generative AI tools, their steep learning curves and various usage barriers pose accessibility issues for non-designers in professional settings. This generates an unmet need for more user-friendly design tools within the nonprofit and small business sector, where access to design resources is often limited. Consequently, we propose <strong>“How might we create an affordable, user-friendly AI-powered design tool that enables nonprofits and small businesses with limited resources to expedite and enhance their design capabilities effectively?</strong>
-    </p>
-    <h1 class="caption1">Target Audience</h1>
-    <p class="proposal"> In terms of stakeholders, although our target group includes design enthusiasts, <strong>non-designers</strong> are the demographic we mainly want to reach: small businesses and startups with limited budgets,
-      design-related educational institutions, and even elderly and technologically challenged users. All of
-      these user groups are in need of design assistance. We hope that our creation can lower the barriers of
-      the design field and improve digital literacy as a learning tool.
-    </p>
-    <h1 class="caption1">Solution Overview</h1>
-    <p class="proposal"> With two core functions, Information Collection and Result Modification, our design tool solves two pain points for non-designers in nonprofit and startup settings.<br><br>
-
-    1. <strong>Information Collection allows users to input materials, color preferences, style, and keywords to generate related images.</strong> By breaking down the traditional prompt engineering process into questionnaire-style interactions, users can answer questions related to different aspects of designs instead of entering a long prompt. This approach could lower the barrier of generative AI tools, such as the difficulty of describing images with art jargon in prompts.<br><br>
-
-    2. <strong> Result Modification allows users to use a combination of a selection tool and keywords for minor tweaks.</strong> Compared to traditional design tools such as Adobe, with which users have to create layers for modification, our tool integrates such direct modification features to better suit business needs. Consequently, users do not have to process images back-and-forth in different softwares to achieve final results.
-    </p>
-    <h1 class="caption1">Outcome</h1>
-    <iframe width="800" height="400" src="https://www.youtube.com/embed/ObdFTJR7XXs?si=wj5hhMj-C3tVxvFT" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    <br><br><br><br>
-    <h1 class="caption1">Process</h1>
+<section class="chapter" id="solution">
+  <div class="ch-head rv">
+    <div><div class="ch-no"><b>01</b>Solution</div><h2>Two core functions</h2></div>
+    <p class="lead">Each one answers a pain point non-designers described in our research.</p>
+  </div>
+  <div class="tiles rv">
+    <div class="tile w3" style="--tb:#efecfb;min-height:0"><span class="n">Function 01</span><h3>Information collection</h3><p>Materials, colour, style and keywords are gathered through questionnaire-style steps — so nobody has to write a long prompt full of art jargon.</p><div class="pic"><img loading="lazy" data-zoom src="images/final/q3.jpg" alt=""></div></div>
+    <div class="tile w3" style="--tb:#f3eef6;min-height:0"><span class="n">Function 02</span><h3>Result modification</h3><p>A selection tool plus keywords for small tweaks, right on the result — no layers, and no jumping between different software.</p><div class="pic"><img loading="lazy" data-zoom src="images/final/modify.jpg" alt=""></div></div>
+  </div>
+</section>
 
 
-    <div id="container">
-      <ul id="slides">
-        <img class="image" src="images/cover.png">
-        <div class='text'>Application Overview</div>
+<section class="chapter" id="research">
+  <div class="ch-head rv">
+    <div><div class="ch-no"><b>02</b>Research</div><h2>Interviews and competitors</h2><div class="tags"><span>6 user interviews</span><span>Competitive analysis</span></div></div>
+    <p class="lead">Six interviews with people from non-design backgrounds to basic design experience, and an analysis of four AI-powered tools.</p>
+  </div>
+  <div class="notes rv">
+    <div><b>Interviews</b><h4>Ideation is hard</h4><p>Many struggled to come up with fresh ideas.</p></div>
+    <div><b>Interviews</b><h4>Little onboarding</h4><p>Features were hard to find; tools like Canva were hard to adapt for complex tasks.</p></div>
+    <div><b>Interviews</b><h4>Need for flexibility</h4><p>People wanted diverse functions in one place.</p></div>
+  </div>
+  <div class="stats block rv">
+    <div class="stat"><span>Midjourney</span><p>Fast ideation and unique visuals, but little control or precision.</p></div>
+    <div class="stat"><span>Canva</span><p>Accessible and collaborative; limited by template quality and unclear onboarding.</p></div>
+    <div class="stat"><span>Uizard</span><p>Rapid prototyping and real-time collaboration; learning curve and pricing concerns.</p></div>
+    <div class="stat"><span>GitHub Copilot</span><p>Useful AI-assisted workflow ideas; risks over-reliance and privacy issues.</p></div>
+  </div>
+  <p class="body block rv"><strong>Takeaway:</strong> balance creative idea generation with customisation, add clear in-app tutorials, and support an iterative, user-driven process.</p>
+</section>
 
-    <h2>User Interview</h2>
-    <p class="text-large"> We conducted <strong>six user interviews</strong> with participants of diverse backgrounds, ranging from non-design professionals to individuals with basic design experience, to understand their challenges and expectations when using digital design tools. Participants described difficulties in <strong>ideation</strong>, <strong>limited onboarding support</strong>, and a strong need for <strong>flexibility</strong> and diverse functionalities. Many struggled with generating fresh ideas, locating features, and adapting tools like Canva for complex tasks.</p>
+<section class="chapter" id="persona">
+  <div class="ch-head rv">
+    <div><div class="ch-no"><b>03</b>Personas &amp; flow</div><h2>Two kinds of needs</h2></div>
+    <p class="lead">One is about efficiency in the design process; the other about ideation and an easy start.</p>
+  </div>
+  <div class="grid2 rv">
+    <figure class="card-img"><img loading="lazy" data-zoom src="images/Persona1.jpeg" alt=""><figcaption><strong>Lily</strong> wants usable content quickly, without switching between tools.</figcaption></figure>
+    <figure class="card-img"><img loading="lazy" data-zoom src="images/Persona2.jpeg" alt=""><figcaption><strong>Alex</strong> wants diverse ideas, but has no time to learn design tools.</figcaption></figure>
+  </div>
+  <div class="block rv"><figure class="card-img"><img loading="lazy" data-zoom src="images/userflow.jpeg" alt=""><figcaption><strong>User flow diagram</strong></figcaption></figure></div>
+</section>
 
-    <h2>Competitive Analysis</h2>
-    <p class="text-large"> We conducted a competitive analysis of four AI-powered tools, <strong>Midjourney, Canva, Uizard, and GitHub Copilot</strong>, to understand how existing platforms support creativity, flexibility, and collaboration in design. Midjourney excels at rapid ideation and generating unique visual concepts but lacks control and precision; Canva offers accessibility and collaboration but is limited by low-quality templates and unclear onboarding; Uizard supports rapid prototyping and real-time collaboration yet poses a learning curve and pricing concerns; and GitHub Copilot demonstrates valuable AI-assisted workflow ideas applicable to design, though it risks over-reliance and privacy issues. From these insights, we concluded that our proposed AI design tool should balance <strong>creative idea generation with customization flexibility</strong>, incorporate <strong>clear in-app tutorials</strong>, and support <strong>iterative, user-driven design processes</strong> that empower non-designers to create effectively.</p>
+<section class="chapter" id="paper">
+  <div class="ch-head rv">
+    <div><div class="ch-no"><b>04</b>Paper prototype</div><h2>Tested on paper first</h2><div class="tags"><span>4 participants</span><span>Paper prototype test</span></div></div>
+    <p class="lead">Four participants tried the information-collection and modification flows on paper.</p>
+  </div>
+  <div class="embed rv"><iframe loading="lazy" src="https://www.youtube.com/embed/2--nWSyUC5c" allow="fullscreen; picture-in-picture" allowfullscreen title="video"></iframe></div>
+  <div class="lists block rv">
+    <div><h4>What we found</h4><ul><li>Unclear input fields and a confusing upload feature</li><li>No guidance for design terminology</li><li>Information overload and unclear icons on the result page</li><li>Copyright concerns; no undo</li></ul></div>
+    <div><h4>What we changed</h4><ul><li>Example prompts and tooltips</li><li>Tutorials</li><li>Version history</li><li>Multiple logo results with similarity checks</li></ul></div>
+  </div>
+</section>
 
-    <h2>Persona</h2>
-    <p class="text-large"> Based on the interviews we conducted earlier, we were finally able to identify two distinct types of user needs. The first one revolves around efficiency in the design process, while the second is essentially about ideation and creating an easy onboarding experience. We recognized that there were still noticeable differences among individuals within these groups. For instance, Lily aims to generate usable content quickly, even without switching between different software tools. In her case, having both background image and typography readily available within one tool would be ideal.</p>
-    <p class="text-large">In contrast, Alex seeks to generate diverse ideas that emphasize visual communication to encourage the audience on environmental awareness. However, he lacks the time to learn essential design tools and doesn't feel confident in expressing his ideas through them. For him, the ideal design tool should address both the need for inspiration and overcoming the challenges of expression.</p>
-    <img class="image" src="images/Persona1.jpeg">
-    <div class='text'>Persona 1 - Lily</div>
-    <img class="image" src="images/Persona2.jpeg">
-    <div class='text'>Persona 2 - Alex</div>
-
-    <h2>User Flow Diagram</h2>
-    <img class="image" src="images/userflow.jpeg">
-    <div class='text'>User Flow Eiagram</div>
-
-    <h2>Paper Prototype</h2>
-    <iframe width="800" height="400" src="https://www.youtube.com/embed/2--nWSyUC5c?si=oADgVBAc7ola4Mmd" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    <p class="text-large">We conducted a <strong>paper prototype testing with four participants</strong> to evaluate the information collection and modification processes of our AI design tool prototype. While participants found the overall interface intuitive, they encountered several usability issues, including <strong>unclear input fields</strong>, <strong>confusing upload features</strong>, and <strong>a lack of guidance for complex design terminology</strong>. On the result/edit page, users reported <strong>information overload</strong>, <strong>unclear icon meanings</strong>, <strong>copyright concerns</strong>, <strong>confusion about the AI suggestion section</strong>, and the <strong>absence of an undo option</strong>. To address these problems, we proposed design improvements such as adding <strong>example prompts, tooltips, tutorials, a version history</strong>, and multiple-choice logo results with similarity checks.</p>
-
-    <h2>Wireframe</h2>
-    <div class="image-container">
-      <img class="flex-image" src="images/wireframe1.png">
-      <img class="flex-image" src="images/wireframe2.png">
-      <img class="flex-image" src="images/wireframe3.png">
-      <img class="flex-image" src="images/wireframe4.png">
-    </div>
-    <img class="image" src="images/Style Guide.png">
-    <h2>High Fidelity</h2>
-    <img class="image" src="images/Hi-Fidelity.png">
-
-    <h2>Heuristic Evaluation & Usability Tests</h2>
-    <p class="text-large">We conducted <strong>heuristic evaluations and 6 usability tests to further identify design issues</strong>. Participants commonly found the button functions confusing, the wording unclear, and important features like “Skip” or “Confirmation” either missing or hidden. Users also expressed uncertainty about system capabilities, such as file uploads, color customization, and AI suggestions. To address these issues, the team proposed improving label clarity, adding tooltips and question marks for unclear terms, ensuring consistent button placement and visibility, and implementing real-time AI feedback that adapts to user input. These refinements aim to create a more intuitive, consistent, and responsive user experience across the platform</p>
-    <div class="image-container">
-      <img class="flex-image" src="images/Usability test 1.png" alt="Usability test">
-      <img class="flex-image" src="images/Usability test 2.png" alt="Usability test">
-      <div class='text'>Example - Usability test 5</div>
-    </div>
-    <div class="image-container">
-      <img class="flex-image" src="images/Heuristic-evaluation1.png" alt="Heuristic-evaluation1">
-      <img class="flex-image" src="images/Heuristic-evaluation2.png" alt="Heuristic-evaluation2">
-      <div class='text'>Example - Heuristic Evaluation 1</div>
-    </div>
-
-    <h2>Impact & Future Improvements</h2>
-    <p class="text-large">Our design tool can potentially democratize generative design by making it accessible for a broader audience, leading to diverse designs and improved digital literacy. It enables underserved communities, such as nonprofits and small businesses, to access high-quality design resources that could elevate their work and help them stand out in a competitive market. Compared to traditional prompting, the “human-AI interaction” that the present tool facilitates also allows users without art domain knowledge to express their ideas easily, enhancing communication and collaboration in professional settings.<br><br>
-
-    However, potential negatives should also be taken into consideration. First, we must avoid oversimplification leading to homogenizing outputs; the tool must balance simplicity with personalized design. Secondly, misuse is a concern; preventative measures and guidelines against inappropriate use are necessary. Lastly, ethical issues around AI use should be monitored. Mitigation of AI bias is also important; our "Report a Bias" feature helps combat this.<br><br>
-
-    Future efforts could involve conducting additional usability tests with a larger sample size to better understand user needs.
-       </p>
-      </ul>
+<section class="chapter" id="wire">
+  <div class="ch-head rv">
+    <div><div class="ch-no"><b>05</b>Wireframe to hi-fi</div><h2>Wireframes, logo and style guide</h2><div class="tags"><span>Wireframes</span><span>Logo design</span><span>Style guide</span></div></div>
+    <p class="lead">The structure was fixed in greyscale, then the brand and UI were layered on.</p>
+  </div>
+  <span class="eyebrow rv">Wireframes</span>
+  <div class="grid2">
+    <figure class="card-img"><img loading="lazy" data-zoom src="images/wireframe1.png" alt=""></figure><figure class="card-img"><img loading="lazy" data-zoom src="images/wireframe2.png" alt=""></figure><figure class="card-img"><img loading="lazy" data-zoom src="images/wireframe3.png" alt=""></figure><figure class="card-img"><img loading="lazy" data-zoom src="images/wireframe4.png" alt=""></figure>
+  </div>
+  <div class="block">
+    <span class="eyebrow rv">Logo exploration</span>
+    <div class="cols wide flip rv" style="align-items:center">
+      <figure class="stage" style="padding:0;overflow:hidden;background:#f5f5f5"><img loading="lazy" data-zoom src="images/logo-explore.jpg" alt="Logo explorations" style="box-shadow:none;border-radius:0"></figure>
+      <div><h3 class="h3">Four pieces that fit together</h3><p class="body" style="margin-top:12px">The mark is built from puzzle pieces. We explored how many pieces to show, how far apart they sit, and how it reads on dark and light backgrounds, with and without the wordmark.</p></div>
     </div>
   </div>
-
-
-
-  <div class="home">
-    <a href="../index.html#p-puzzle">Home</a>
+  <div class="grid2 block">
+    <figure class="card-img"><img loading="lazy" data-zoom src="images/Style Guide.png" alt=""><figcaption><strong>Style guide</strong></figcaption></figure><figure class="card-img"><img loading="lazy" data-zoom src="images/Hi-Fidelity.png" alt=""><figcaption><strong>High-fidelity screens</strong></figcaption></figure>
   </div>
-  <footer>wangz630@newschool.edu</footer>
-  <script src="script.js"></script>
-  <script src="../case-study.js"></script>
+</section>
+
+<section class="chapter" id="outcome">
+  <div class="ch-head rv">
+    <div><div class="ch-no"><b>06</b>Outcome</div><h2>Final digital prototype</h2><div class="tags"><span>Hi-fi prototype</span><span>User flow</span></div></div>
+    <p class="lead">The full walkthrough, followed by the same flow screen by screen.</p>
+  </div>
+  <div class="embed rv"><iframe loading="lazy" src="https://www.youtube.com/embed/ObdFTJR7XXs" allow="fullscreen; picture-in-picture" allowfullscreen title="video"></iframe></div>
+  <div class="block">
+    <span class="eyebrow rv">User flow, screen by screen</span>
+    <div class="shots alt s3">
+      <figure class="shot"><div class="im"><img loading="lazy" data-zoom src="images/final/login.jpg" alt=""></div><figcaption><b>01</b><span><strong>Log in.</strong> A calm entry point with the Puzzle mark.</span></figcaption></figure>
+      <figure class="shot"><div class="im"><img loading="lazy" data-zoom src="images/final/projects.jpg" alt=""></div><figcaption><b>02</b><span><strong>Projects.</strong> Start a new project or reopen an earlier one.</span></figcaption></figure>
+      <figure class="shot"><div class="im"><img loading="lazy" data-zoom src="images/final/purpose.jpg" alt=""></div><figcaption><b>03</b><span><strong>Purpose.</strong> Pick what to make — logo, poster, video, interface.</span></figcaption></figure>
+      <figure class="shot"><div class="im"><img loading="lazy" data-zoom src="images/final/q1.jpg" alt=""></div><figcaption><b>04</b><span><strong>Question 1.</strong> A guided question replaces the blank prompt box.</span></figcaption></figure>
+      <figure class="shot"><div class="im"><img loading="lazy" data-zoom src="images/final/q2.jpg" alt=""></div><figcaption><b>05</b><span><strong>Project details.</strong> Suggested chips help people describe the project.</span></figcaption></figure>
+      <figure class="shot"><div class="im"><img loading="lazy" data-zoom src="images/final/q3.jpg" alt=""></div><figcaption><b>06</b><span><strong>Colour.</strong> Choose a palette instead of naming colours.</span></figcaption></figure>
+      <figure class="shot"><div class="im"><img loading="lazy" data-zoom src="images/final/q4.jpg" alt=""></div><figcaption><b>07</b><span><strong>Style.</strong> Pick preferred styles from examples.</span></figcaption></figure>
+      <figure class="shot"><div class="im"><img loading="lazy" data-zoom src="images/final/q5.jpg" alt=""></div><figcaption><b>08</b><span><strong>Upload.</strong> Add sketches or references to guide the result.</span></figcaption></figure>
+      <figure class="shot"><div class="im"><img loading="lazy" data-zoom src="images/final/select.jpg" alt=""></div><figcaption><b>09</b><span><strong>Result selection.</strong> Several results to choose from.</span></figcaption></figure>
+      <figure class="shot"><div class="im"><img loading="lazy" data-zoom src="images/final/modify.jpg" alt=""></div><figcaption><b>10</b><span><strong>Result modification.</strong> Circle an area, describe the change — no layers needed.</span></figcaption></figure>
+      <figure class="shot"><div class="im"><img loading="lazy" data-zoom src="images/final/loading.jpg" alt=""></div><figcaption><b>11</b><span><strong>Regenerate.</strong> Version history keeps every earlier result.</span></figcaption></figure>
+      <figure class="shot"><div class="im"><img loading="lazy" data-zoom src="images/final/export.jpg" alt=""></div><figcaption><b>12</b><span><strong>Export.</strong> Download the final design.</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="chapter" id="eval">
+  <div class="ch-head rv">
+    <div><div class="ch-no"><b>07</b>Evaluation</div><h2>Heuristic evaluation &amp; 6 usability tests</h2><div class="tags"><span>Heuristic evaluation</span><span>6 usability tests</span></div></div>
+    <p class="lead">Participants found some button functions confusing, wording unclear, and key actions like “Skip” or “Confirm” missing or hidden.</p>
+  </div>
+  <div class="grid4">
+    <figure class="card-img"><img loading="lazy" data-zoom src="images/Usability test 1.png" alt=""></figure><figure class="card-img"><img loading="lazy" data-zoom src="images/Usability test 2.png" alt=""></figure><figure class="card-img"><img loading="lazy" data-zoom src="images/Heuristic-evaluation1.png" alt=""></figure><figure class="card-img"><img loading="lazy" data-zoom src="images/Heuristic-evaluation2.png" alt=""></figure>
+  </div>
+  <div class="notes rv" style="grid-template-columns:repeat(4,1fr)">
+    <div><b>Fix</b><h4>Clearer labels</h4></div><div><b>Fix</b><h4>Tooltips for unclear terms</h4></div><div><b>Fix</b><h4>Consistent button placement</h4></div><div><b>Fix</b><h4>Real-time AI feedback</h4></div>
+  </div>
+</section>
+
+<section class="chapter" id="impact">
+  <div class="ch-head rv">
+    <div><div class="ch-no"><b>08</b>Impact</div><h2>Impact &amp; future improvements</h2></div>
+    <p class="lead">Puzzle can open generative design to a broader audience and help nonprofits and small businesses access quality design.</p>
+  </div>
+  <div class="notes rv">
+    <div><b>Risk</b><h4>Homogenised output</h4><p>Simplicity must be balanced with personal design.</p></div>
+    <div><b>Risk</b><h4>Misuse and bias</h4><p>Guidelines against misuse; a “Report a bias” feature.</p></div>
+    <div><b>Next</b><h4>More usability tests</h4><p>A larger sample to understand needs better.</p></div>
+  </div>
+</section>
+<div class="next"><a class="ul" href="../index.html#p-puzzle">← All projects</a><a class="more" href="../side-by-side/index.html">Next project: SideBySIDE <b>→</b></a></div>
+</main>
+
+<footer id="footer"></footer>
+<script src="../home.js?v=2" data-root="../"></script>
+<script src="../hero.js"></script>
+<script src="../project.js?v=10"></script>
 </body>
-
 </html>

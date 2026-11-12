@@ -1,52 +1,47 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>256 Images</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>256 Images — Zi Wang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../home.css?v=13">
+<link rel="stylesheet" href="../project.css?v=13">
 </head>
+<body data-back="#work" data-hero="b">
+<div class="progress"></div>
+<header id="nav"></header>
 
-<body>
- <h1 id="title">256 Images</h1>
+<section class="p-hero-b">
+  <img class="bg" src="images/cover.jpg" alt="">
+  <h1 id="title">256 IMAGES</h1>
+  <div class="tags"><span>Experimental Web</span><span>API</span></div>
+  <a class="down" href="#after-hero" aria-label="Scroll"><svg viewBox="0 0 34 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 2l15 11L32 2"/></svg><span>scroll</span></a>
+</section>
+<div id="after-hero"></div>
+<section class="p-hero-b-info">
+  <div class="phb-band">
+  <p>A site that visualises my brainstorming process <em>with 256 collected images.</em></p>
+  <dl class="facts"><div><dt>Type</dt><dd>Experimental website</dd></div><div><dt>Built with</dt><dd>HTML · CSS · JavaScript · Airtable API</dd></div></dl>
+  </div>
+</section>
 
-  <img id="arrow" src = "images/arrow.png">
-  <p id="scroll">scroll</p>
+<main class="wrap">
+<section class="sec two rv"><h2>Overview</h2><div><p class="body">This is an experimental website I created to mimic and visualize my brainstorming process. I used <strong>Airtable</strong> to build a custom API library and collected a total of <strong>256 images</strong> that I’ve used as inspiration over the years. All the images are stacked on the homepage, and users can freely drag them around the screen to reorganize—just like iterating on design ideas. The <strong>color dots</strong> on the right side serve as a simple filter: users can click on a color they like to display only the images that share that hue.</p>
+  <div class="actions"><a class="more" href="256images/index.html" target="_blank" rel="noopener">Go view the site <b>→</b></a></div></div></section>
+<section class="sec"><div class="notes rv" style="margin-top:0"><div><b>Interaction</b><h4>Drag to reorganise</h4><p>Every image can be moved freely, like shuffling ideas on a desk.</p></div><div><b>Filter</b><h4>Colour dots</h4><p>Click a colour to show only the images that share that hue.</p></div><div><b>Data</b><h4>Airtable as an API</h4><p>256 images served from a custom library.</p></div></div></section>
+<section class="sec rv">
+  <div class="browser"><div class="bar"><i></i><i></i><i></i><span>256 Images</span></div><div class="view live"><img loading="lazy" src="images/256images.gif" alt="256 Images — website overview"></div></div>
+  <p class="hint">Website overview</p>
+</section>
+<div class="next"><a class="ul" href="../index.html#work">← All projects</a><a class="more" href="../website-map/index.html">Next project: World Trip <b>→</b></a></div>
+</main>
 
-  <!-- The video -->
-<img id = "cover" src = "images/cover.jpg">
-
-
-<!-- Optional: some overlay text to describe the video -->
-<div class="content">
-  <h1>256 Images</h1>
-  <form action="256images/index.html" method="get" target="_blank">
-    <button id="myBtn" type="submit">Go view the site</button>
- </form>
-</div>
-
-
-<!-- thesis proposal -->
-<div id="text">
-<h1 class="caption1">Overview</h1>
-<p class="proposal">This is an experimental website I created to mimic and visualize my brainstorming process. I used <strong>Airtable</strong> to build a custom API library and collected a total of <strong>256 images</strong> that I’ve used as inspiration over the years. All the images are stacked on the homepage, and users can freely drag them around the screen to reorganize—just like iterating on design ideas. The <strong>color dots</strong> on the right side serve as a simple filter: users can click on a color they like to display only the images that share that hue.</p>
-</div>
-
-  <div id="container">
-    <ul id="slides">
-      <img class = "image" src = "images/256images.gif">
-      <div class='text'>Website Overview</div>
-    </ul>
-</div>
-
-
-<div class="home">
-  <a href="../index.html">Home</a>
-</div>
-<footer>wangz630@newschool.edu</footer>
-  <script src="script.js"></script>
+<footer id="footer"></footer>
+<script src="../home.js?v=2" data-root="../"></script>
+<script src="../hero.js"></script>
+<script src="../project.js?v=13"></script>
 </body>
-
 </html>
