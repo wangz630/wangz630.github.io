@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOAA Great Lakes Water Life — Zi Wang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../home.css?v=14">
+<link rel="stylesheet" href="../project.css?v=19">
+</head>
+<body data-back="#work" data-hero="b">
+<div class="progress"></div>
+<header id="nav"></header>
+
+<section class="p-hero-b">
+  <img class="bg" src="../project-image/greatlake.png" alt="">
+  <h1 id="title">NOAA GREAT LAKES WATER LIFE</h1>
+  <div class="tags"><span>Website</span><span>Redesign</span><span>Next.js</span></div>
+  <a class="down" href="#after-hero" aria-label="Scroll"><svg viewBox="0 0 34 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 2l15 11L32 2"/></svg><span>scroll</span></a>
+</section>
+<div id="after-hero"></div>
+<section class="p-hero-b-info">
+  <div class="phb-band">
+  <p>Redesigning and rebuilding NOAA’s species database for the Great Lakes <em>— easier to search, faster to load.</em></p>
+  <dl class="facts"><div><dt>My role</dt><dd>Redesign of all pages · front-end code for the Explore page</dd></div><div><dt>Timeline</dt><dd>Feb – Apr 2025 · 10 weeks</dd></div><div><dt>Team</dt><dd>7 people · UMSI Capstone (SI 699)</dd></div><div><dt>Stack</dt><dd>Figma · Next.js · MongoDB · MUI · Docker</dd></div></dl>
+  </div>
+</section>
+
+<main class="wrap">
+<section class="sec two rv"><h2>Overview</h2><div>
+  <p class="big">NOAA’s Great Lakes Water Life lets anyone explore every species in the Great Lakes. <em>We rebuilt it as a dynamic Next.js application on a custom MongoDB database, so users can browse, search and filter species data easily.</em></p>
+  <p class="body" style="margin-top:22px">The client identified that the site’s design and functionality were outdated. Together we set goals for both the interface and the back end: a database to store wildlife information, and an application that mirrors what the current site can do while being more modern and intuitive.</p>
+  <div class="mine rv"><span class="badge">What I did</span>
+    <div class="cols" style="margin-top:14px">
+      <div><h3 class="h3">Redesigned every page</h3><p class="body" style="margin-top:8px">Low- and high-fidelity designs for the homepage, Explore, About, Additional Resources, Review &amp; Contribute, and the mobile layout.</p></div>
+      <div><h3 class="h3">Built the Explore page front end</h3><p class="body" style="margin-top:8px">Wrote the front-end code for the Explore page — search, filters and results — in the team’s Next.js application.</p></div>
+    </div></div>
+  <div class="actions"><a class="ul" href="https://fifth-yacht-d4d.notion.site/NOAA-Great-Lakes-Water-Life-1df26e9cb532800992fcf9f36f4e2e63" target="_blank" rel="noopener">Original write-up on Notion ↗</a></div>
+</div></section>
+
+
+<section class="chapter" id="goals">
+  <div class="ch-head rv">
+    <div><div class="ch-no"><b>01</b>Goals &amp; audience</div><h2>Who it is for, and what “done” meant</h2></div>
+    <p class="lead">Two very different audiences use the same database.</p>
+  </div>
+  <div class="cols rv">
+    <div class="persona"><div class="who"><div><b>Researchers</b><span>Study specific species</span></div><span class="badge">Precision</span></div>
+      <dl><div><dt>Need</dt><dd>Easy, intuitive filters and the ability to download filtered data about species.</dd></div></dl></div>
+    <div class="persona"><div class="who"><div><b>Children &amp; explorers</b><span>Discover and learn</span></div><span class="badge">Clarity</span></div>
+      <dl><div><dt>Need</dt><dd>Information that is easy to understand, and species that are easy to browse.</dd></div></dl></div>
+  </div>
+  <div class="notes rv">
+    <div><b>MVP goal</b><h4>A database for performance</h4><p>Flat files become a relational store.</p></div>
+    <div><b>MVP goal</b><h4>Queries from the React front end</h4><p>Functional end to end.</p></div>
+    <div><b>MVP goal</b><h4>Better usability through redesign</h4><p>Modern, intuitive, responsive.</p></div>
+  </div>
+</section>
+
+<section class="chapter" id="problem">
+  <div class="ch-head rv">
+    <div><div class="ch-no"><b>02</b>Problem → solution</div><h2>Areas of improvement</h2></div>
+    <p class="lead">What was wrong with the old site, aspect by aspect, and what the new one does instead.</p>
+  </div>
+  <div class="cmp cards rv">
+    <div class="cmp-h"><span>Aspect</span><span><i class="chip">Old website</i></span><span><i class="chip a">New website</i></span></div>
+    <div class="cmp-r"><b>Navigation</b><p>Repetitive headings (e.g. “About” shown multiple times)</p><p class="new">Streamlined — each menu item has a distinct purpose</p></div>
+    <div class="cmp-r"><b>Homepage content</b><p>Duplicate sections and redundant links</p><p class="new">Focused layout with clear calls to action</p></div>
+    <div class="cmp-r"><b>User flow</b><p>Confusing, hard to tell where to go next</p><p class="new">Straightforward guidance to Explore and Contribute</p></div>
+    <div class="cmp-r"><b>Visual design</b><p>Dense, blocky layout with heavy text</p><p class="new">Open, visual-first layout with gallery and CTAs</p></div>
+    <div class="cmp-r"><b>Clarity</b><p>Overlapping information creating visual clutter</p><p class="new">Clean hierarchy and reduced cognitive load</p></div>
+    <div class="cmp-r"><b>Engagement</b><p>Static and text-heavy</p><p class="new">Dynamic gallery inviting immediate interaction</p></div>
+    <div class="cmp-r"><b>Consistency</b><p>Mixed navigation logic between homepage and other pages</p><p class="new">Unified structure across homepage and navigation bar</p></div>
+    <div class="cmp-r"><b>Client-side computation</b><p>Loaded all data and processed it in the browser</p><p class="new">Database queries for paginated data</p></div>
+  </div>
+</section>
+
+<section class="chapter" id="design">
+  <div class="ch-head rv">
+    <div><div class="ch-no"><b>03</b>Design</div><h2>From low fidelity to high fidelity</h2><div class="tags"><span>Wireframes</span><span>Hi-fi</span><span>Mobile</span></div></div>
+    <p class="lead">I designed every page, first in greyscale to settle the structure, then in high fidelity for desktop and mobile.</p>
+  </div>
+  <span class="eyebrow rv">Low fidelity</span>
+  <img class="plain rv" loading="lazy" data-zoom src="images/lowfi-board.jpg" alt="Low-fidelity designs">
+  <div class="steps rv">
+    <div><b>Search</b><h4>Filter options and a combined search view</h4><p>Two ways to start: a compact filter row, or search and advanced filters together.</p></div>
+    <div><b>Results</b><h4>Gallery, map view, table view and a species pop-up</h4><p>Different ways to read the same result set.</p></div>
+    <div><b>Alternative</b><h4>A sidebar version</h4><p>Filters in a collapsible sidebar next to the table, explored and compared with filters on top.</p></div>
+  </div>
+  <div class="block">
+    <span class="eyebrow rv">Homepage — before and after</span>
+    <div class="cols rv" style="align-items:start">
+      <figure class="card-img"><div class="browser"><div class="bar"><i></i><i></i><i></i><span>Before</span></div><div class="view" style="height:min(64vh,620px)"><img loading="lazy" data-zoom src="images/home-before.png" alt=""></div></div><figcaption><span class="chip">Before</span> &nbsp;Scroll inside · click to enlarge</figcaption></figure>
+      <figure class="card-img"><div class="browser"><div class="bar"><i></i><i></i><i></i><span>After — redesign</span></div><div class="view" style="height:min(64vh,620px)"><img loading="lazy" data-zoom src="images/h-home.jpg" alt=""></div></div><figcaption><span class="chip a" style="color:#fff">After</span> &nbsp;Scroll inside · click to enlarge</figcaption></figure>
+    </div>
+    <div class="cmp tcols rv">
+      <div class="cmp-h"><span>What changed</span><span><i class="chip">Problem</i></span><span><i class="chip a">Solution</i></span></div>
+      <div class="cmp-r"><b>Entry points</b><p>Four blue blocks repeat what the navigation already says</p><p class="new">Four cards with icons and one-line descriptions make each destination clear</p></div>
+      <div class="cmp-r"><b>Content</b><p>A dense paragraph and duplicate links; nothing to look at</p><p class="new">A species photo gallery invites browsing, with “See more” and “Advanced filter search” as calls to action</p></div>
+      <div class="cmp-r"><b>Navigation</b><p>Repetitive headings and mixed logic between pages</p><p class="new">One navigation bar, the current page highlighted, the same on every page</p></div>
+    </div>
+  </div>
+  <div class="block">
+    <span class="eyebrow rv">Explore page — before and after</span>
+    <div class="cols rv" style="align-items:start">
+      <figure class="card-img"><div class="browser"><div class="bar"><i></i><i></i><i></i><span>Before</span></div><div class="view" style="height:min(64vh,620px)"><img loading="lazy" data-zoom src="images/explore-before.jpg" alt=""></div></div><figcaption><span class="chip">Before</span> &nbsp;Scroll inside · click to enlarge</figcaption></figure>
+      <figure class="card-img"><div class="browser"><div class="bar"><i></i><i></i><i></i><span>After — redesign</span></div><div class="view" style="height:min(64vh,620px)"><img loading="lazy" data-zoom src="images/h-explore.jpg" alt=""></div></div><figcaption><span class="chip a" style="color:#fff">After</span> &nbsp;Scroll inside · click to enlarge</figcaption></figure>
+    </div>
+    <div class="cmp tcols rv">
+      <div class="cmp-h"><span>What changed</span><span><i class="chip">Problem</i></span><span><i class="chip a">Solution</i></span></div>
+      <div class="cmp-r"><b>Search</b><p>No search field; the user must fill a long form</p><p class="new">A search bar comes first, for a species’ scientific or common name</p></div>
+      <div class="cmp-r"><b>Filters</b><p>Rows of small checkboxes and five dropdowns shown all at once</p><p class="new">Filters grouped by Lakes, Rivers and Domain with “Clear all / Select all”; advanced filters stay folded until needed</p></div>
+      <div class="cmp-r"><b>Results</b><p>Columns of coded letters (S, M, H, E…) that need a legend to read</p><p class="new">Lake and river names written out in the table; “More info” opens a species pop-up</p></div>
+      <div class="cmp-r"><b>Views</b><p>One long table only</p><p class="new">Map view and Table view tabs, with pagination</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band rv" id="hifi" style="--bb:#f7faff">
+  <div class="in">
+    <div class="head"><div><span class="eyebrow" style="margin-bottom:0">High fidelity</span></div>
+      <p class="lead">All pages in their final design — About, Additional Resources, Review &amp; Contribute, Homepage, Explore with the species pop-up — plus the mobile layout and the colour palette.</p></div>
+    <img class="art" loading="lazy" data-zoom src="images/hifi-board.jpg" alt="High-fidelity designs">
+  </div>
+</section>
+
+<section class="chapter" id="build">
+  <div class="ch-head rv">
+    <div><div class="ch-no"><b>04</b>Build</div><h2>Tech stack</h2></div>
+    <p class="lead">Chosen for speed of development, performance, and the client’s planned move to the cloud.</p>
+  </div>
+  <div class="stats rv">
+    <div class="stat"><span>Next.js</span><p>Server-side rendering for faster loads and better SEO; API routes in the same code base.</p></div>
+    <div class="stat"><span>MongoDB</span><p>A document-oriented NoSQL database with data structured in web-friendly formats.</p></div>
+    <div class="stat"><span>Docker</span><p>Containerised for easy deployment across platforms, ready for the cloud migration.</p></div>
+    <div class="stat"><span>MUI</span><p>One consistent, accessible component suite for search bar, table, pagination and buttons.</p></div>
+  </div>
+</section>
+
+<section class="chapter" id="perf">
+  <div class="ch-head rv">
+    <div><div class="ch-no"><b>05</b>Performance</div><h2>10× less memory in the browser</h2></div>
+    <p class="lead">Paginated queries mean less to render, less data sent from the server, and far less memory used by the client.</p>
+  </div>
+  <div class="stats rv" style="--n:3">
+    <div class="stat"><b>999<small>MB</small></b><span>Before</span><p>Memory used by the existing site for a query</p></div>
+    <div class="stat key"><b>101<small>MB</small></b><span>After</span><p>The same query on the rebuilt Explore page</p></div>
+    <div class="stat"><b>10<small>×</small></b><span>Improvement</span><p>From sending everything up front to sending only what is requested</p></div>
+  </div>
+  <div class="grid2 block"><figure class="card-img"><img loading="lazy" data-zoom src="images/mem-before.png" alt=""><figcaption><strong>Before</strong> — glerl.noaa.gov</figcaption></figure><figure class="card-img"><img loading="lazy" data-zoom src="images/mem-after.png" alt=""><figcaption><strong>After</strong> — rebuilt Explore page</figcaption></figure></div>
+</section>
+
+<section class="chapter" id="agile">
+  <div class="ch-head rv">
+    <div><div class="ch-no"><b>06</b>Process</div><h2>Agile, in five sprints</h2><div class="tags"><span>Jira</span><span>User stories</span></div></div>
+    <p class="lead">We tracked every user story in Jira and assigned points to each task. After a slow Sprint 0 and 1, most of the application was built in Sprints 3 and 4 — completing more points than we had committed to.</p>
+  </div>
+  <div class="grid2"><figure class="card-img"><img loading="lazy" data-zoom src="images/sprints.png" alt=""><figcaption><strong>What each sprint delivered</strong></figcaption></figure><figure class="card-img"><img loading="lazy" data-zoom src="images/velocity.png" alt=""><figcaption><strong>Jira velocity report</strong> — completed stories rise as sprints progress.</figcaption></figure></div>
+</section>
+
+<section class="chapter" id="outcome">
+  <div class="ch-head rv">
+    <div><div class="ch-no"><b>07</b>Outcome</div><h2>What we delivered</h2></div>
+    <p class="lead">The final product as handed off and implemented.</p>
+  </div>
+  <div class="lists rv">
+    <div><h4>Application</h4><ul><li>A working Next.js application (static pages and API route)</li><li>Containerised for platform independence</li><li>Custom error pages</li><li>A photo gallery reflecting the project’s roots</li></ul></div>
+    <div><h4>Design &amp; data</h4><ul><li>Modernised design improving usability, performance, scalability and maintenance</li><li>Filter options that are more intuitive and easier to use</li><li>Data transformed from flat files into a database with relations</li></ul></div>
+  </div>
+  <div class="block">
+    <span class="eyebrow rv">Demo of the shipped version</span>
+    <div class="embed rv" style="max-width:none"><iframe loading="lazy" src="https://www.youtube.com/embed/TNuY6-ztTvQ" allow="fullscreen; picture-in-picture" allowfullscreen title="NOAA Great Lakes Water Life — demo"></iframe></div>
+  </div>
+  <p class="body block rv"><strong>Team:</strong> Ethan Snyder, Swetha Sriram, Zi Wang, Sue Yixin Wang, Jacob Weiskopf, Boyan Wu, Catherine Zhou. &nbsp;<strong>Professors:</strong> Stephanie Brenton, Janet Szczesny.</p>
+</section>
+<div class="next"><a class="ul" href="../index.html#work">← All projects</a><a class="more" href="../atomo/index.html">Next project: Atomo <b>→</b></a></div>
+</main>
+
+<footer id="footer"></footer>
+<script src="../home.js?v=4" data-root="../"></script>
+<script src="../hero.js?v=2"></script>
+<script src="../project.js?v=18"></script>
+</body>
+</html>
