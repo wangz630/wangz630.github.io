@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="home.css">
+<link rel="stylesheet" href="home.css?v=6">
 <style>
 body{font-family:'Red Hat Display',sans-serif}
 
@@ -114,6 +114,19 @@ body{font-family:'Red Hat Display',sans-serif}
       list.map(function(p,i){return PF.item(p,i%2)}).join('')+'</div></section>';
   }).join('');
   PF.reveal('.rv');
+
+  /* coming back from a project (index.html#p-…): bring that card into view and give it a soft pulse,
+     instead of the browser's blue focus box */
+  if(location.hash.length>1){
+    var back=document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    if(back&&back.classList.contains('item')){
+      back.classList.add('in');
+      back.scrollIntoView({block:'center'});
+      /* the browser focuses the link it scrolled to, a moment after load; let go of that focus so no ring is drawn */
+      [0,120,400].forEach(function(ms){setTimeout(function(){if(document.activeElement===back) back.blur()},ms)});
+      back.classList.add('came-back'); setTimeout(function(){back.classList.remove('came-back')},1800);
+    }
+  }
 
   /* time-based motion: constant drift, eases down under the cursor, page scroll nudges it; cards are dealt in on load */
   var rot=0, rate=1, want=1, kick=0, lastY=scrollY, last=performance.now(), t0=last+450, SPEED=PF.reduced?0:1.9;      /* deg / second */
