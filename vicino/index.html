@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../home.css?v=10">
-<link rel="stylesheet" href="../project.css?v=10">
+<link rel="stylesheet" href="../project.css?v=34">
 </head>
 <body data-back="#p-vicino" data-hero="b">
 <div class="progress"></div>
@@ -255,16 +255,19 @@
 <!-- =====================================================================
      PART 2 — PULSE
      ===================================================================== -->
-<section class="part rv">
+<section class="part top rv">
   <div><span class="badge">Product 02</span><h2>Pulse</h2></div>
-  <p>Pulse plans, produces and approves a brand’s content. It is designed in fast rounds on live prototypes — which also means every screen below has a <strong>previous version</strong>. Here is what changed between iterations, and why.</p>
+  <div>
+    <p>Pulse is Vicino’s AI content-lifecycle platform. It learns a brand, then helps a marketing team plan, produce, approve and publish its social content in one place.</p>
+    <p style="margin-top:14px">As the product designer, I worked directly in code: I built <strong>interactive prototypes with Claude Code</strong> and iterated on them quickly, so each design update could be tried, reviewed and revised as a working product rather than a static mock-up. Below is a selection of those iterations — what I changed, and why.</p>
+  </div>
 </section>
 
 <!-- ---------- 05 CALENDAR ---------- -->
 <section class="chapter" id="calendar">
   <div class="ch-head rv">
     <div><div class="ch-no"><b>05</b>Pulse</div><h2>Three tabs became one calendar</h2>
-      <div class="tags"><span>Navigation</span><span>IA simplification</span><span>Iteration</span></div></div>
+      <div class="tags"><span>Design iteration</span><span>Navigation</span><span>IA simplification</span></div></div>
     <p class="lead">Posts used to sit three levels deep inside a campaign, and three sidebar tabs — Campaigns, Calendar, Approvals — all showed roughly the same posts. Feedback was direct: simplify the flow.</p>
   </div>
 
@@ -286,9 +289,32 @@
     </div>
   </div>
 
-  <div class="block rv">
-    <div class="ba"><img loading="lazy" src="images/cs/after-calendar.jpg" alt="After: the calendar"><img loading="lazy" class="b" src="images/cs/before-camp-page.jpg" alt="Before: a campaign page with a post list"><span class="l bf">Before</span><span class="l af">After</span><span class="h"></span></div>
-    <p class="hint">Drag to compare · campaign page with a post list → one calendar</p>
+  <div class="block rv"><span class="eyebrow">Design iteration: folding features into the Calendar, so there is less to learn</span>
+    <div class="folds">
+      <div class="fold">
+        <div class="fold-head"><span class="n">1</span><h3><s>Campaigns section</s> → <em>a tag</em></h3><p>Two pages to click through became one tag you filter by.</p></div>
+        <div class="merge" style="--wb:50%;--wa:30%">
+          <div class="merge-was">
+            <figure><span class="lab"><s>Campaigns list</s></span><img loading="lazy" data-zoom src="images/cs/before-camp-list.jpg" alt="Before: the list of campaigns"><span class="gone">Removed</span></figure>
+            <figure><span class="lab"><s>Campaign page</s></span><img loading="lazy" data-zoom src="images/cs/before-camp-page.jpg" alt="Before: a campaign page with its post list"><span class="gone">Removed</span></figure>
+          </div>
+          <figure class="merge-now"><span class="lab">After · tag menu</span><img loading="lazy" data-zoom src="images/cs/w-cal-tags.jpg" alt="After: the tag menu"></figure>
+        </div>
+      </div>
+      <div class="fold">
+        <div class="fold-head"><span class="n">2</span><h3><s>Approvals section</s> → <em>a side list</em></h3><p>A separate page became a list that opens beside the posts.</p></div>
+        <div class="merge one" style="--t1:#eff8f8;--wb:34%;--wa:36%">
+          <div class="merge-was">
+            <figure><span class="lab"><s>Approvals tab</s></span><img loading="lazy" data-zoom src="images/cs/before-sidebar.jpg" alt="Before: the sidebar with a separate Approvals tab"><i class="mark" style="left:2%;top:73.5%;width:96%;height:14%"></i><span class="gone" style="bottom:-10px">Removed</span></figure>
+          </div>
+          <figure class="merge-now"><span class="lab">After · “Needs you” list</span><img loading="lazy" data-zoom src="images/cs/w-cal-needs.jpg" alt="After: the Needs you list"></figure>
+        </div>
+      </div>
+    </div>
+    <div class="calshow">
+      <div class="calshow-head"><h3>Both now live in the Calendar</h3><p>One screen to learn: tags replace campaigns, and approvals open from the counters.</p></div>
+      <figure><img loading="lazy" data-zoom src="images/cs/after-calendar.jpg" alt="After: the calendar"><i class="focus" style="left:54.3%;top:9.4%;width:7.3%;height:4.4%"><b>1</b></i><i class="focus" style="left:55.7%;top:15.3%;width:24.6%;height:4.4%"><b style="left:auto;right:-14px">2</b></i></figure>
+    </div>
   </div>
   <div class="notes rv">
     <div><b>Sidebar</b><h4>3 tabs → 1</h4><p><s>Campaigns · Calendar · Approvals</s> are merged into a single Calendar with the approval count on it.</p></div>
@@ -355,8 +381,17 @@
     <p class="lead">Brain holds everything Vicino knows about a brand. The previous version presented it almost entirely as paragraphs and plain tables — users felt overwhelmed and could not tell what the page was for.</p>
   </div>
   <div class="block0 rv"><span class="eyebrow">Report tab</span>
-    <div class="ba"><img loading="lazy" src="images/cs/after-brain-report.jpg" alt="After"><img loading="lazy" class="b" src="images/cs/before-brain-report.jpg" alt="Before"><span class="l bf">Before</span><span class="l af">After</span><span class="h"></span></div>
-    <p class="hint">Drag to compare</p>
+    <div class="drill" data-s="1">
+      <div class="drill-deck">
+        <div class="drill-b"><span class="tag">Before</span><div class="shot"><img loading="lazy" src="images/cs/before-brain-report.jpg" alt="Before"></div></div>
+        <div class="drill-stage"><span class="tag a">After</span><div class="peek"><span>After</span></div><div class="drill-in">
+          <figure class="ly l1" data-full="images/cs/after-brain-report.jpg"><img loading="lazy" src="images/cs/after-brain-report.jpg" alt="Brain report with section cards"></figure>
+          <figure class="ly l2" data-full="images/cs/brain-section.jpg"><img loading="lazy" src="images/cs/brain-section.jpg" alt="Snapshot section as a table of fields"></figure>
+          <figure class="ly l3" data-full="images/cs/brain-drawer.jpg"><img loading="lazy" src="images/cs/brain-drawer.jpg" alt="Field drawer for Official names"></figure>
+        </div></div>
+      </div>
+      <div class="drill-foot"><button type="button" class="cap"><b>Before</b><h4>One page of paragraphs</h4><p>Every answer sat in one long list of text, with nothing to open and nothing to act on.</p></button><button type="button"><b>01</b><h4>Report</h4><p>Sections are cards with their own progress, next to a queue of what needs review.</p></button><button type="button"><b>02</b><h4>Section</h4><p>Open Snapshot: one row per field — what it answers, where Brain read it, how confident it is.</p></button><button type="button"><b>03</b><h4>Field</h4><p>Open a field: the answer, its status and every source it rests on, with Confirm one click away.</p></button></div>
+    </div>
   </div>
   <div class="block rv"><span class="eyebrow">Knowledge tab</span>
     <div class="ba"><img loading="lazy" src="images/cs/after-brain-knowledge.jpg" alt="After"><img loading="lazy" class="b" src="images/cs/before-brain-knowledge.jpg" alt="Before"><span class="l bf">Before</span><span class="l af">After</span><span class="h"></span></div>
@@ -382,57 +417,59 @@
   <div class="ch-head rv">
     <div><div class="ch-no"><b>08</b>Pulse</div><h2>AI chat: three fixes from real usage</h2>
       <div class="tags"><span>Usability issues</span><span>Error recovery</span><span>Iteration</span></div></div>
-    <p class="lead">After the chat shipped to the dev build I logged the problems I found using it, proposed the fixes, and prototyped each one. Three of them are below — the issue on the left, the redesign on the right.</p>
+    <p class="lead">After the chat shipped to the dev build I logged the problems I found using it, proposed the fixes, and prototyped each one. Three of them are below — the numbered pins mark where each problem showed up, and where its fix landed.</p>
   </div>
 
-  <div class="issue rv">
-    <div>
-      <span class="eyebrow">Issue 01</span><h3 class="h3">Poor error recovery after an approved change fails</h3>
-      <ul>
-        <li><b>Problem</b>The user had already reviewed and approved the change, yet a failure told them to ask the AI again from scratch.</li>
-        <li><b>Problem</b>The error was technical and shown twice — a red card, then an AI message repeating it.</li>
-        <li class="fix"><b>Fix</b>The approved version stays on the card with a direct Retry — no new approval needed.</li>
-        <li class="fix"><b>Fix</b>One plain line: “Your post is unchanged.” with an optional Why?</li>
-        <li class="fix"><b>Fix</b>The post being edited is marked “not updated”, so the failure is visible where it happened.</li>
-      </ul>
+  <div class="case rv">
+    <div class="case-txt">
+      <div class="ch-no"><b>01</b>Issue</div><h3 class="h3">Poor error recovery after an approved change fails</h3>
+      <ol>
+        <li class="grp">Problem</li>
+        <li data-p="1"><i class="num">1</i><span>A technical error, shown twice — a red card, then an AI message repeating it.</span></li>
+        <li data-p="2"><i class="num">2</i><span>The change was already approved, yet the user is told to ask again from scratch.</span></li>
+        <li class="grp">Fix</li>
+        <li data-p="3" class="fix"><i class="num">3</i><span>One plain line — “Your post is unchanged.” — with an optional Why?</span></li>
+        <li data-p="4" class="fix"><i class="num">4</i><span>The approved version stays on the card with a direct Retry. No new approval.</span></li>
+        <li data-p="5" class="fix"><i class="num">5</i><span>The post being edited is marked “not updated”, so the failure shows where it happened.</span></li>
+      </ol>
     </div>
-    <div class="pair">
-      <figure><span class="chip">Before</span><div class="pic"><img loading="lazy" data-zoom="images/cs/before-chat-fail.jpg" src="images/cs/before-chat-fail-p.jpg" alt="Before: technical error shown twice"></div></figure>
-      <span class="arrow">→</span>
-      <figure class="new"><span class="chip a">After</span><div class="pic"><img loading="lazy" data-zoom="images/cs/after-chat-fail.jpg" src="images/cs/p-chat-fail.jpg" alt="After: one card with Retry"></div></figure>
-    </div>
-  </div>
-
-  <div class="issue rv">
-    <div>
-      <span class="eyebrow">Issue 02</span><h3 class="h3">Attachments stacked up and pushed the conversation away</h3>
-      <ul>
-        <li><b>Problem</b>Each file took a full row of text; five files hid most of the chat, and the names were hard to tell apart.</li>
-        <li class="fix"><b>Fix</b>Compact thumbnail tiles in one horizontal row that scrolls sideways.</li>
-        <li class="fix"><b>Fix</b>Image previews and PDF / DOC labels first; file name and remove button appear on hover.</li>
-      </ul>
-    </div>
-    <div class="pair">
-      <figure><span class="chip">Before</span><div class="pic"><img loading="lazy" data-zoom="images/cs/before-chat-attach.jpg" src="images/cs/before-chat-attach-p.jpg" alt="Before: attachments as stacked rows"></div></figure>
-      <span class="arrow">→</span>
-      <figure class="new"><span class="chip a">After</span><div class="pic"><img loading="lazy" data-zoom="images/cs/after-chat-attach.jpg" src="images/cs/p-chat-attach.jpg" alt="After: attachments as thumbnails"></div></figure>
+    <div class="case-stage">
+      <figure class="was"><span class="tag">Before</span><img loading="lazy" data-zoom src="images/cs/before-chat-fail-p.jpg" alt="Before: technical error shown twice"><i class="num" data-p="1" style="left:86%;top:40%;--i:1">1</i><i class="num" data-p="2" style="left:86%;top:64%;--i:2">2</i></figure>
+      <figure class="now"><span class="tag a">After</span><img loading="lazy" data-zoom src="images/cs/p-chat-fail.jpg" alt="After: one card with Retry"><i class="num fix" data-p="3" style="left:46%;top:67.6%;--i:3">3</i><i class="num fix" data-p="4" style="left:90%;top:64.5%;--i:4">4</i><i class="num fix" data-p="5" style="left:38%;top:80%;--i:5">5</i></figure>
     </div>
   </div>
-
-  <div class="issue rv">
-    <div>
-      <span class="eyebrow">Issue 03</span><h3 class="h3">Chat history was hard to scan and impossible to manage</h3>
-      <ul>
-        <li><b>Problem</b>Titles were raw, truncated prompts; every row had the same dot whatever its state; no search, no actions.</li>
-        <li class="fix"><b>Fix</b>Short descriptive titles, grouped by Today / Yesterday / This week.</li>
-        <li class="fix"><b>Fix</b>The main chat is pinned on top, apart from side chats.</li>
-        <li class="fix"><b>Fix</b>Search, plus a ••• menu on hover: Rename, Pin, Archive, Delete.</li>
-      </ul>
+  <div class="case rv">
+    <div class="case-txt">
+      <div class="ch-no"><b>02</b>Issue</div><h3 class="h3">Attachments stacked up and pushed the conversation away</h3>
+      <ol>
+        <li class="grp">Problem</li>
+        <li data-p="1"><i class="num">1</i><span>Each file took a full row of text. Five files hid most of the chat, and the names were hard to tell apart.</span></li>
+        <li class="grp">Fix</li>
+        <li data-p="2" class="fix"><i class="num">2</i><span>Compact thumbnail tiles in one row that scrolls sideways.</span></li>
+        <li data-p="3" class="fix"><i class="num">3</i><span>Image previews and PDF / DOC labels first; file name and remove appear on hover.</span></li>
+      </ol>
     </div>
-    <div class="pair">
-      <figure><span class="chip">Before</span><div class="pic"><img loading="lazy" data-zoom src="images/cs/before-chat-history.jpg" alt="Before: chat history list"></div></figure>
-      <span class="arrow">→</span>
-      <figure class="new"><span class="chip a">After</span><div class="pic"><img loading="lazy" data-zoom="images/cs/after-chat-history.jpg" src="images/cs/p-chat-history.jpg" alt="After: grouped chat history"></div></figure>
+    <div class="case-stage" style="--t1:#e8f5f5;--t2:#f0e8f9">
+      <figure class="was"><span class="tag">Before</span><img loading="lazy" data-zoom src="images/cs/before-chat-attach-p.jpg" alt="Before: attachments as stacked rows"><i class="num" data-p="1" style="left:62%;top:73.5%;--i:1">1</i></figure>
+      <figure class="now"><span class="tag a">After</span><img loading="lazy" data-zoom src="images/cs/p-chat-attach.jpg" alt="After: attachments as thumbnails"><i class="num fix" data-p="2" style="left:58.5%;top:83.6%;--i:2">2</i><i class="num fix" data-p="3" style="left:23.5%;top:88.6%;--i:3">3</i></figure>
+    </div>
+  </div>
+  <div class="case rv">
+    <div class="case-txt">
+      <div class="ch-no"><b>03</b>Issue</div><h3 class="h3">Chat history was hard to scan and impossible to manage</h3>
+      <ol>
+        <li class="grp">Problem</li>
+        <li data-p="1"><i class="num">1</i><span>Titles were raw, truncated prompts, and every row had the same dot whatever its state.</span></li>
+        <li data-p="2"><i class="num">2</i><span>No search and no actions on a chat.</span></li>
+        <li class="grp">Fix</li>
+        <li data-p="3" class="fix"><i class="num">3</i><span>The main chat is pinned on top, apart from side chats.</span></li>
+        <li data-p="4" class="fix"><i class="num">4</i><span>Short descriptive titles, grouped by Today / Yesterday / This week.</span></li>
+        <li data-p="5" class="fix"><i class="num">5</i><span>Search, plus a ••• menu on hover: Rename, Pin, Archive, Delete.</span></li>
+      </ol>
+    </div>
+    <div class="case-stage" style="--t1:#f0e8f9;--t2:#e8f5f5">
+      <figure class="was"><span class="tag">Before</span><img loading="lazy" data-zoom src="images/cs/before-chat-history.jpg" alt="Before: chat history list"><i class="num" data-p="1" style="left:90%;top:30%;--i:1">1</i><i class="num" data-p="2" style="left:90%;top:4.5%;--i:2">2</i></figure>
+      <figure class="now"><span class="tag a">After</span><img loading="lazy" data-zoom src="images/cs/p-chat-history.jpg" alt="After: grouped chat history"><i class="num fix" data-p="3" style="left:60%;top:14.5%;--i:3">3</i><i class="num fix" data-p="4" style="left:22%;top:21%;--i:4">4</i><i class="num fix" data-p="5" style="left:80%;top:27.7%;--i:5">5</i></figure>
     </div>
   </div>
 </section>
@@ -460,6 +497,6 @@
 <footer id="footer"></footer>
 <script src="../home.js?v=4" data-root="../"></script>
 <script src="../hero.js?v=2"></script>
-<script src="../project.js?v=10"></script>
+<script src="../project.js?v=24"></script>
 </body>
 </html>

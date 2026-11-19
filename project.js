@@ -97,6 +97,44 @@
     show(0);
   });
 
+  /* ---- drill-down: the after layers all stay on stage (click one, or a step, to bring it forward);
+          the before panel waits behind and swaps places with the after panel when chosen ---- */
+  $$('.drill').forEach(function (d) {
+    var tabs = $$('.drill-foot button:not(.cap)', d), cap = d.querySelector('.drill-foot .cap'), lys = $$('.ly', d),
+        bp = d.querySelector('.drill-b'), st = d.querySelector('.drill-stage'), bimg = bp && bp.querySelector('img'), cur = 0;
+    /* a screen opens full size only when it is already in front, on the click after the one that chose it */
+    function arm(el, src, ok) { setTimeout(function () { if (ok()) el.setAttribute('data-zoom', src); }, 0); }
+    function side(b) {
+      d.classList.toggle('b-on', b); if (cap) cap.classList.toggle('on', b);
+      if (bimg) { bimg.removeAttribute('data-zoom'); if (b) arm(bimg, bimg.getAttribute('src'), function () { return d.classList.contains('b-on'); }); }
+      if (b) tabs.forEach(function (t) { t.classList.remove('on'); });
+    }
+    function show(n) {
+      cur = n; side(false);
+      tabs.forEach(function (t, k) { t.classList.toggle('on', k === n); });
+      lys.forEach(function (l, k) {
+        l.classList.toggle('on', k === n); l.style.zIndex = 10 * (lys.length - Math.abs(k - n)) + k;
+        l.removeAttribute('data-zoom');
+      });
+      var f = lys[n], full = f && f.getAttribute('data-full');
+      if (full) arm(f, full, function () { return cur === n && !d.classList.contains('b-on'); });
+    }
+    tabs.forEach(function (t, i) { t.addEventListener('click', function () { show(i); }); });
+    lys.forEach(function (l, i) { l.addEventListener('click', function () { if (cur !== i) show(i); }); });
+    if (cap) cap.addEventListener('click', function () { side(true); });
+    if (bp) bp.addEventListener('click', function () { if (!d.classList.contains('b-on')) side(true); });
+    if (st) st.addEventListener('click', function (e) { if (d.classList.contains('b-on')) { e.stopPropagation(); show(cur); } }, true);
+    show(+d.getAttribute('data-s') || 0);
+  });
+  /* ---- annotated before / after: a note and its pin light up together ---- */
+  $$('.case').forEach(function (c) {
+    $$('[data-p]', c).forEach(function (el) {
+      var mates = $$('[data-p="' + el.getAttribute('data-p') + '"]', c);
+      el.addEventListener('mouseenter', function () { mates.forEach(function (m) { m.classList.add('hl'); }); });
+      el.addEventListener('mouseleave', function () { mates.forEach(function (m) { m.classList.remove('hl'); }); });
+    });
+  });
+
   /* ---- lightbox: any [data-zoom] image at full size, any [data-vimeo] button as a player ---- */
   var lb = document.createElement('div');
   lb.className = 'lb'; lb.innerHTML = '<button class="x" aria-label="Close">×</button><div class="in"></div>';
@@ -107,7 +145,16 @@
   addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
   document.addEventListener('click', function (e) {
     var z = e.target.closest('[data-zoom]'), w = e.target.closest('[data-vimeo],[data-youtube]');
-    if (z) { inner.innerHTML = '<img src="' + (z.getAttribute('data-zoom') || z.currentSrc || z.src) + '" alt="">'; inner.style.display = 'contents'; lb.classList.add('on'); }
+    if (z) {
+      inner.innerHTML = '<img src="' + (z.getAttribute('data-zoom') || z.currentSrc || z.src) + '" alt="">'; inner.style.display = 'contents'; lb.classList.add('on');
+      /* show the whole image, as large as the window allows (small sources may grow up to 2x) */
+      var big = inner.firstChild, fit = function () {
+        if (!big.naturalWidth) return;
+        var pad = Math.max(14, Math.min(44, innerWidth * .03)) * 2, k = Math.min((innerWidth - pad) / big.naturalWidth, (innerHeight - pad) / big.naturalHeight, 2);
+        big.style.width = Math.floor(big.naturalWidth * k) + 'px'; big.style.height = 'auto';
+      };
+      big.addEventListener('load', fit); fit();
+    }
     else if (w) {
       inner.style.display = 'contents';
       inner.innerHTML = '<div class="vid" style="aspect-ratio:' + (w.getAttribute('data-ratio') || '16/10') + '"><iframe allow="autoplay; fullscreen; picture-in-picture" allowfullscreen src="' +
